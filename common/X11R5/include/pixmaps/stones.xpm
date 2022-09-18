@@ -1,0 +1,45 @@
+#define stones_format 1
+#define stones_width 32
+#define stones_height 32
+#define stones_ncolors 4
+#define stones_chars_per_pixel 1
+static char * stones_colors[] = {
+" " , "#000000000000",
+"." , "#00000000AAAA",
+"X" , "#AAAAAAAAAAAA",
+"o" , "#0000AAAA0000"
+} ;
+static char * stones_pixels[] = {
+"       .         .              ",
+"XXXXXXXXXXXXX       XXXXXXXXXXXX",
+"XXXX XXXXXXX X .  oXXXXXXXoXXXXX",
+"XXX XXXXXX XXXX   XXXXXXXXXXX XX",
+"XXXXXX XXXX XXX  .X. XoXXXXXXXX ",
+"Xo X XXXX XXX X   XXXXXXXXXXXXoX",
+"XXXXXXXoXX XX    XXXXXXXXXXXXXXX",
+"XXXXoXXX XXo XX  XXoXXXXXXXXXXXX",
+"X XXXX Xo  X X.   X XXXXXXoXXXXX",
+" XXoXXoX X  X o   XXXXXXXXXXXoXX",
+"XXXXXX X X o X    XXXXXXoXXXXXXX",
+"XoX X o X X X     oXXXoXX XoXX o",
+"XXXXX X Xo X  X    XX XoXX XXoXX",
+"X  XoX   X  Xo .  .X XXXXXXX X X",
+" o X   o X o X      XX X o XXXoX",
+"   .  .                .        ",
+" .          .     .         .   ",
+"    .   XXXXXXXXXXXXXXXX XX     ",
+"    XXXXXXXXXXXXXXXXXXX XX XX  .",
+"  oXXXXXXXX XXXXXXXXXXXXXXXX X  ",
+"  XXXXXXXXXXXXXXXXXXX XX XXXXXo ",
+" .XX  XXXXXXXXXXXX XXXXX XX XX  ",
+"  X XXXXXXX  XoXXXXXX X o XXo   ",
+"  XXXXXXXXXXXXXXoXXX XXX X   XX ",
+"  XXXXX XXXXXX XXX XXo X Xo X   ",
+"  XXXXoXXXXoXX X XXX X o   X X. ",
+" .XXXXXXoXXXXoXXoXXo XX X X  X  ",
+"  XXXXXXXXXXXXXXXX  X XX      X ",
+"  oXXoXX X X  o XoXX X  o   o o ",
+".  X  X Xo  X XX  X o   X X  X  ",
+"    XX XX  X o.X o X X X.Xo X   ",
+"  .      .           .         ."
+} ;

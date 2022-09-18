@@ -1,0 +1,33 @@
+#ident	"@(#)face:OBJECTS/Text.mfhelp	1.6.4.2"
+#ident  "$Header: Text.mfhelp 1.4 91/10/15 $"
+
+title=$$uxface:360:"HELP on $ARG2"
+
+init="$RETVAL"
+
+framemsg=$$uxface:321:"Press the CANCEL function key to cancel."
+
+`test -r $VMSYS/HELP/$ARG1 && set -l RETVAL=true || set -l RETVAL=false; 
+ regex -e -v "$RETVAL" 
+	'^false$' '`message $$uxface:354:"No HELP text is available for this item."`'`
+
+begrow=distinct
+begcol=distinct
+rows=12
+lifetime=shortterm
+text="`pathconv -f -v "HELP/$ARG1" | readfile`"
+columns=`longline | set -l LL;
+if [ "${LL}" -gt "${DISPLAYW}" ];
+then
+	echo ${DISPLAYW};
+else
+	echo ${LL};
+fi`
+
+name=""
+button=1
+action=nop
+
+name=$$uxface:355:"CONTENTS"
+button=8
+action=OPEN MENU OBJECTS/Menu.h0.toc

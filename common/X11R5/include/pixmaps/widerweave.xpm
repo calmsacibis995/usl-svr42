@@ -1,0 +1,31 @@
+#define widerweave_format 1
+#define widerweave_width 16
+#define widerweave_height 16
+#define widerweave_ncolors 6
+#define widerweave_chars_per_pixel 1
+static char * widerweave_colors[] = {
+" " , "#FFFFAAAA0000",
+"." , "#FFFFFFFF0000",
+"X" , "#AAAA55550000",
+"o" , "#0000AAAAFFFF",
+"O" , "#000000000000",
+"+" , "#00000000FFFF"
+} ;
+static char * widerweave_pixels[] = {
+" . XooooooooXO  ",
+"  . XooooooX XO ",
+"X  . XooooX   XO",
+"OX  . XooX .  XO",
+"+OX  . XX .  XO+",
+"o+OX  .X .  XO+o",
+"oo+OX X .  XO+oo",
+"ooo+OX .  XO+ooo",
+"ooooX .  XOOoooo",
+"oooX .  XOX Xooo",
+"ooX .  XOX   Xoo",
+"oX .  XOOX  . Xo",
+"X .  XO++OX  . X",
+"X.  XO+oo+OX  . ",
+" X XO+oooo+OX  .",
+". XO+oooooo+OX  "
+} ;

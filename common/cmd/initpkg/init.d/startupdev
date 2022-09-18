@@ -1,0 +1,48 @@
+#ident	"@(#)initpkg:common/cmd/initpkg/init.d/startupdev	1.1.4.1"
+#ident  "$Header: startupdev 1.2 91/06/28 $"
+# When 'start', this script invokes admalloc -s which
+# allocates all devices that have the 'startup' flag set to 'y'.
+# In the case were the script is invoked with argument 'stop',
+# getdev is invoked to get a list of devices that have
+# the 'startup' flag set to 'y' and the list is then given
+# to admalloc to deallocate the devices.
+
+
+if [ ! -d /usr/bin ]
+then
+        # have to have /usr mounted
+        exit 1
+fi
+
+case $1 in
+'start')
+	/usr/sbin/admalloc -s 2>./.admalloc.err
+	ex=$?
+	;;
+
+'stop')
+	ex=0
+	devices="`/usr/bin/getdev startup=y`"
+	if [ ! -z "$devices" ]
+	then
+		/usr/sbin/admalloc -d $devices 2>./.admalloc.err
+		ex=$?
+	fi
+	;;
+
+*)        
+	exit 1;;
+esac
+
+case $ex in 
+0) # success
+	rm -rf ./.admalloc.err;;
+
+3) # system service not installed. Do nothing with diagnostics.
+	rm -rf ./.admalloc.err ;;
+
+*) # Something went wrong. In some other release when the exit status
+   # have a finer granularity error message should be displayed
+	rm -rf ./.admalloc.err ;;
+esac
+exit $ex

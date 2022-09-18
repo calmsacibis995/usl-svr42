@@ -1,0 +1,9 @@
+#ident	"@(#)disksetup:i386at/cmd/disksetup/ufs.dflt	1.1"
+BLKSIZE=4096,8192
+MNTOPT=
+MKFSTYP=3
+LABELIT=YES
+
+
+
+

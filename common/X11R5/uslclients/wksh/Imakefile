@@ -1,0 +1,224 @@
+/**/#ident	"@(#)wksh:Imakefile	1.13"
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+
+#define IHaveSubdirs
+
+SUBDIRS = xksrc
+
+LOCAL_LIBRARIES =
+SRCS =
+OBJS =
+
+XKSHSRC = ./xksrc
+
+#if UTSXENV
+KSHSRC = /x/DTXENV/ksh
+#else
+KSHSRC = $(ROOT)/usr/src/$(WORK)/cmd/ksh
+#endif
+
+#
+# NOTE: we need compatibility mode of Olit so we can run wksh scripts
+# that were created for the GS 4i version of Open Look, thus we redefine
+# XOLLIB to include -lXol here.
+#
+XOLLIB = -L$(XOLSRC) -lOlit -lXol
+
+DTILIBSRC = $(USLCLIENTSRC)/libDtI
+DTILIB = $(DTILIBSRC)/libDtI.so
+DTLIBSRC = $(LIBSRC)/Dt
+DTLIB = $(DTLIBSRC)/libDt.so
+
+OTHERLIBS = $(XEXTLIB) -lnsl -ldl -lw -lgen $(MEMUTILLIB) $(DTILIB) $(DTLIB)
+
+INCLUDES = -I$(TOP)/lib -I$(KSHSRC)/include -I$(XKSHSRC) -I. -I$(DTILIBSRC)
+
+EXTRA_DEFINES =  -DKSHELL -DUSER_PROMPT -DTEST_CODE -DSVR4_USER -DMOOLIT
+
+#
+# Dynamic Library Definitions
+#
+
+LIB_KIND = .so
+
+XKSHOBJ = $(XKSHSRC)/xksh.o
+
+XKSH_LISTS = \
+	basetbl.list \
+	docall.list \
+	extra.list \
+	genlib.list \
+	kshall.list \
+	xksh_tbls.list
+
+GENSYM = $(XKSHSRC)/gensym.sh
+
+OL_LIST = libwkol.list
+
+XM_LIST = libwkxm.list
+
+all:: xkshsrc openlook
+
+xkshsrc:
+	(cd $(XKSHSRC) && $(MAKE))
+
+openlook: olwksh wksh
+
+motif: xmwksh wksh
+
+#
+# A Note about Shared Objects
+#
+# It is necessary to force the dynamic loader to export symbols from
+# the xksh executable so they may be accessed by the "call" command
+# and other commands.  To do this, we create another shared object, called
+# libXXforce.so, that is simply a table of all the functions we are interested
+# in, and we will put that library on the load line.  However, we really
+# don't need this library to run, it's only purpose is to fool the dynamic
+# loader into exporting the symbols.  Thus, we use a trick: we use the
+# -h flag to cause this library to be renamed to a library we will be using.
+# Thus, there is no need to install this fake forcing library on the system.
+
+libolforce.so: olwksym.c
+	$(CC) -h /usr/lib/libnsl.so $(CFLAGS) \
+		$(SHLIBLDFLAGS) $(PICFLAGS) -o $@ olwksym.c
+
+libolforce.a: olwksym.o
+	$(AR) $@ olwksym.o
+
+libxmforce.so: xmwksym.c
+	$(CC) -h /usr/lib/libnsl.so $(CFLAGS) \
+		$(SHLIBLDFLAGS) $(PICFLAGS) -o $@ xmwksym.c
+
+libxmforce.a: xmwksym.o
+	$(AR) $@ xmwksym.o
+
+WK_OBJS =  \
+		widget.o \
+		wkcvt.o \
+		wkcmds.o \
+		xpm.o
+
+OL_OBJS = \
+		olcvt.o \
+		olflatcvt.o \
+		olcmds.o \
+		olstrings.o \
+		olname.o \
+		olwidgets.o
+
+MO_OBJS = \
+		xmcvt.o \
+		xmcmds.o \
+		xmstrings.o \
+		xmname.o \
+		xmwidgets.o
+
+ALL_OBJS = $(WK_OBJS) $(OL_OBJS) $(MO_OBJS)
+
+libwkol.a: $(WK_OBJS) $(OL_OBJS)
+	$(AR) $@ $(WK_OBJS) $(OL_OBJS)
+
+libwkxm.a: $(WK_OBJS) $(MO_OBJS)
+	$(AR) $@ $(WK_OBJS) $(MO_OBJS)
+
+olwksym.c: libwkol.list $(XKSH_LISTS)
+	NM=$(NM) sh $(GENSYM) $@ $(XKSH_LISTS) $(OL_LIST)
+
+xmwksym.c: libwkxm.list $(XKSH_LISTS)
+	sh $(GENSYM) $@ $(XKSH_LISTS) $(XM_LIST)
+
+$(XKSH_LISTS): $(XKSHSRC)/$$@
+	$(RM) -f ./$@; \
+	$(CP) $(XKSHSRC)/$@ .
+
+olwksh: libwkol.a $(XKSHOBJ) libolforce$(LIB_KIND)
+	$(CC) -o $@ $(XKSHOBJ) \
+		-L . -lolforce -lwkol \
+		$(XLIB) $(XOLLIB) $(XTOOLLIB) $(X11LIB) $(XMULIB) \
+		$(OTHERLIBS)
+
+xmwksh: libwkxm.a $(XKSHOBJ) libxmforce$(LIB_KIND)
+	$(CC) -o $@ $(XKSHOBJ) libwkxm.a \
+		-L . -lxmforce -lwkxm  \
+		$(XLIB) $(MRMLIB) $(XMLIB) $(XTOOLLIB) $(X11LIB) $(XMULIB) \
+		$(OTHERLIBS)
+
+wksh: wksh.c
+	$(CC) $(CFLAGS) -o wksh wksh.c
+
+clean::
+	$(RM) -f $(ALL_OBJS)
+
+clobber:: clean
+	(cd xksrc && $(MAKE) clobber); \
+	$(RM) -f wksh olwksh xmwksh libwkol.a libwkxm.a \
+		libolforce$(LIB_KIND) libxmforce$(LIB_KIND) \
+		olwksym.c olwksym.o xmwksym.c xmwksym.o
+
+# Installation Of WKSH
+
+WKSHLIB = $(USRLIBDIR)/wksh
+
+ICONS = icons/calendar.xpm
+
+PIXMAPS = pixmaps/blend.xpm pixmaps/blueblend.xpm pixmaps/ckbook.xpm \
+		pixmaps/expl.xpm pixmaps/greenblend.xpm \
+		pixmaps/lander.xpm pixmaps/lander0.xpm \
+		pixmaps/lander1.xpm pixmaps/lander2.xpm pixmaps/lander3.xpm \
+		pixmaps/lander4.xpm pixmaps/lander5.xpm pixmaps/lander6.xpm \
+		pixmaps/lander7.xpm pixmaps/landerF0.xpm \
+		pixmaps/landerF1.xpm pixmaps/landerF2.xpm \
+		pixmaps/landerF3.xpm pixmaps/landerF4.xpm \
+		pixmaps/landerF5.xpm pixmaps/landerF6.xpm \
+		pixmaps/landerF7.xpm pixmaps/moonsurf.xpm \
+		pixmaps/redblend.xpm pixmaps/usllogo.xpm \
+		pixmaps/right.xpm pixmaps/left.xpm
+
+
+OLEXAMPLEDATA = olexamples/README olexamples/cut.opts olexamples/grep.opts \
+		olexamples/sort.opts olexamples/wc.opts
+
+OLEXAMPLES = olexamples/ammort olexamples/cardfile olexamples/creation \
+		olexamples/docsamples olexamples/flat \
+		olexamples/goodbyworld olexamples/helloworld \
+		olexamples/lander olexamples/procs \
+		olexamples/progguide1 olexamples/progguide2 \
+		olexamples/progguide3 olexamples/progguide4 \
+		olexamples/progguide5 olexamples/progguide6 \
+		olexamples/progguide7 olexamples/sampler olexamples/timer \
+		olexamples/wcalc olexamples/wcalen olexamples/wkcmd
+
+OLFUNCLINKS = addbuttons addfields under rightof warn fatal confirm \
+		floatright floatbottom spanwidth spanheight adddatefields
+
+
+InstallProgram(wksh,$(BINDIR))
+InstallProgram(olwksh,$(BINDIR))
+
+InstallMultiple($(PIXMAPS),$(WKSHLIB)/pixmaps)
+InstallMultiple($(ICONS),$(WKSHLIB)/icons)
+InstallMultiple($(OLEXAMPLEDATA),$(WKSHLIB)/olexamples)
+InstallMultipleFlags($(OLEXAMPLES),$(WKSHLIB)/olexamples,$(INSTBINFLAGS))
+InstallMultiple(olkfuncs.sh,$(WKSHLIB)/olfuncs)
+InstallMultiple(olwksh.rc,$(WKSHLIB))
+
+install::
+	for i in $(OLFUNCLINKS); \
+	do \
+		$(RM) -f $(WKSHLIB)/olfuncs/$$i; \
+		$(LN) $(WKSHLIB)/olfuncs/olkfuncs.sh $(WKSHLIB)/olfuncs/$$i; \
+	done;
+
+depend::
+
+floppy: mkdel
+	./mkdel

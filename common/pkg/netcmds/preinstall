@@ -1,0 +1,120 @@
+#ident	"@(#)pkg.netcmds:common/pkg/netcmds/preinstall	1.2"
+#ident "$Header: $"
+
+trap "exit 3" 1 2 3 15
+TEMPFILE=/tmp/netcmds.$$
+
+# Add "smtp" user to /etc/passwd
+# echo "smtp:x:55:6:SMTP Processes:/var/spool/smtpq:" >> /etc/passwd
+
+/usr/sbin/useradd -g mail -d /var/spool/smtpq -c "SMTP Processes" smtp > ${TEMPFILE} 2>&1
+
+##########
+#
+# Make life a little easier...
+##########
+
+CKYORN () {
+	ans=`ckyorn "$@"` || exit $?
+	case "${ans}" in
+	y | yes | Y | YES )  return 0 ;;
+	n | no  | N | NO  )  return 1 ;;
+	esac
+}
+
+CONTINUE () {
+	if CKYORN -d n -h "$1" -p "Should installation continue?\n"
+	then
+		return 0
+	else
+		exit 3
+	fi
+}
+
+environ=$1
+>${environ}
+
+addenv () {
+	eval echo $1 >>${environ}
+}
+
+
+##########
+#
+# The package isn't really relocatable (yet), but making it so
+# eases testing of the packaging and installation.
+##########
+
+TEST_T=/tmp/t-lp
+[ -r "${TEST_T}" ] && T=`cat ${TEST_T}`
+
+addenv USR=${T}/usr  > /dev/null
+addenv USRSBIN=${USR}/sbin  > /dev/null
+addenv USRBIN=${USR}/bin > /dev/null
+addenv USRLIB=${USR}/lib > /dev/null
+addenv USRUCB=${USR}/ucb > /dev/null
+addenv VAR=${T}/var > /dev/null
+addenv VARSPOOL=${VAR}/spool > /dev/null
+addenv ETC=${T}/etc > /dev/null
+
+
+##########
+#
+# ${VARSPOOLLP} and ${ETCLP} are the names of the new directories where
+# things are now kept.
+##########
+
+addenv VARSPOOLLP=${VARSPOOL}/lp > /dev/null
+addenv ETCLP=${ETC}/lp > /dev/null
+addenv USRLIBLP=${USRLIB}/lp > /dev/null
+addenv OLD_VERSION=NONE > /dev/null
+
+
+	if ls ${VARSPOOLLP}/requests/*/* 1>/dev/null 2>&1
+	then
+		echo "
+There are still some print requests queued for printing.  Installation
+of the new Spooler over the old configuration will DESTROY them."
+
+		CONTINUE "
+		If you answer \"n\" (or \"no\") installation will stop
+		to give the queued print requests a chance to be printed.
+		If you answer \"y\" (or \"yes\") installation will proceed
+		WITHOUT SAVING any currently queued jobs.
+\n\n
+		If you suspect that there really are no requests still
+		queued, look for strange files in the directories under
+		${SPOOLDIR}/request."
+	fi
+
+
+##########
+##
+## Shutdown Spooler
+## 
+##
+##########
+
+if [ -x "/usr/sbin/lpshut" ]
+then
+	/usr/sbin/lpshut >/dev/null 2>&1
+fi
+
+##########
+##
+## Save 4.0ES Spooler and lpadmin
+## 
+##
+##########
+
+#echo "Saving secure lpsched. . ."
+
+cp /usr/lib/lp/lpsched /usr/lib/lp/lpsched.LPM
+
+#echo "Secure lpsched saved in /usr/lib/lp/lpsched.LPM"
+
+#echo "Saving secure lpadmin. . ."
+
+cp /usr/sbin/lpadmin /usr/sbin/lpadmin.LPM
+
+#echo "Secure lpadmin saved in /usr/sbin/lpadmin.LPM"

@@ -1,0 +1,16 @@
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+/**/#ident	"@(#)r5xrdb:Imakefile	1.2"
+XCOMM $XConsortium: Imakefile,v 1.7 91/07/17 00:46:42 gildea Exp $
+        DEFINES = $(STD_CPP_DEFINES)
+        DEPLIBS = $(DEPXMULIB) $(DEPXLIB) 
+LOCAL_LIBRARIES = $(XMULIB) $(XLIB) $(XTOOLLIB)
+
+SimpleProgramTarget(xrdb)

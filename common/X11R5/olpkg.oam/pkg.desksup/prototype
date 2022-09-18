@@ -1,0 +1,44 @@
+#ident	"@(#)olpkg.oam:pkg.desksup/prototype	1.6"
+#	Copyright (c) 1990, 1991 UNIX System Laboratories, Inc.
+#	Copyright (c) 1988 AT&T
+#	  All Rights Reserved
+
+#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+#	UNIX System Laboratories, Inc.
+#	The copyright notice above does not evidence any
+#	actual or intended publication of such source code.
+
+
+i copyright
+i depend
+i pkginfo
+i postinstall
+i preremove
+
+!PKGINST=desksup
+
+!default 0755 bin bin
+
+d enduser /usr ? ? ?
+
+d enduser /usr/X
+d enduser /usr/X/lib
+d enduser /usr/X/include
+d enduser /usr/X/include/DnD
+d enduser /usr/X/include/Dt
+
+!default 0644 bin bin
+
+f enduser /usr/X/include/DnD/FuncProto.h
+f enduser /usr/X/include/DnD/OlDnDUtil.h
+f enduser /usr/X/include/DnD/OlDnDVCX.h
+f enduser /usr/X/include/DnD/OlDnDVCXI.h
+f enduser /usr/X/include/DnD/OlDnDVCXP.h
+
+f enduser /usr/X/lib/libDt.a
+f enduser /usr/X/include/Dt/Desktop.h
+f enduser /usr/X/include/Dt/DtDTMMsg.h
+f enduser /usr/X/include/Dt/DtHMMsg.h
+f enduser /usr/X/include/Dt/DtMsg.h
+f enduser /usr/X/include/Dt/DtWBMsg.h
+f enduser /usr/X/include/Dt/Property.h

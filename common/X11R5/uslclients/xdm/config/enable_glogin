@@ -1,0 +1,11 @@
+#!/bin/sh
+#ident	"@(#)xdm:config/enable_glogin	1.2"
+
+ORIGINAL=/usr/X/adm/S69xdm
+START_LOGIN=/etc/rc2.d/S69xdm
+
+if [ -s $START_LOGIN ]; then
+	exit 0
+else
+	/usr/bin/cp $ORIGINAL $START_LOGIN
+fi

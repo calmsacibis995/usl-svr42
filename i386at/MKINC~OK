@@ -1,0 +1,267 @@
+#!/bin/sh
+
+#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+#	Copyright (c) 1984, 1985, 1986, 1987, 1988, 1989, 1990 AT&T
+#	  All Rights Reserved
+
+#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+#	UNIX System Laboratories, Inc.
+#	The copyright notice above does not evidence any
+#	actual or intended publication of such source code.
+
+
+#ident	"@(#)mk:i386at/:mkinc	1.2"
+
+test -z "$ROOT" && {
+	echo "ROOT not set"
+	exit 1
+}
+test -z "$MACH" && {
+	echo "MACH not set"
+	exit 1
+}
+test -z "$CH" && {
+	echo "CH not set"
+	exit 1
+}
+test -z "$WORK" && {
+	echo "WORK not set"
+	exit 1
+}
+test -z "$TOOLS" && {
+	echo "TOOLS not set"
+	exit 1
+}
+test -z "$PFX" && {
+	echo "PFX not set"
+	exit 1
+}
+test -z "$CPU" && {
+	echo "CPU not set"
+	exit 1
+}
+
+CMD=$0
+DESCRIPTION="Script to incrementally merge & build SVR4.2 SCP additions"
+
+Usage(){
+	echo "Usage: ${CMD} -c | -v | -m"
+	echo "Usage: ${CMD} -h #for help info"
+	test "$1" = "help" && {
+		echo
+		echo ${CMD} - ${DESCRIPTION}
+		echo
+		test -f ${2:-Not-Set} && {
+			grep '##USAGE##' $2 | 
+			while read opt xxx descript
+			do
+				case ${opt} in
+				-*)	
+					opt=`echo $opt | sed 's/)//p'`
+					echo "$opt	# $descript"
+					;;
+				esac
+			done
+		}
+		echo
+	}
+	exit 1
+}
+#
+build=""
+flag=0
+
+set -- `getopt hmvc? $*` || Usage
+
+for i in $*
+do
+	case $i in
+		-h)	##USAGE## This extended usage information
+			Usage help `type ${CMD}|awk '{print $3}'`
+			shift;;
+		-c)	##USAGE## Merge & build c2 SCP Add-on
+			build=c2; flag=`expr ${flag} + 1` shift;;
+		-v)	##USAGE## Merge & build vxfs SCP Add-on
+			build=vxfs; flag=`expr ${flag} + 1` shift;;
+		-m)	##USAGE## Merge & build Motif SCP Add-on
+			build=motif; flag=`expr ${flag} + 1` shift;;
+		--)	shift; break;;
+	esac
+done
+
+if [ "${flag}" != "1" ]
+then
+	echo "Only one of -c, -v or -m must be specified"
+	Usage
+fi
+
+if [ ! -x ${TOOLS}/usr/ccs/bin/${CPU}env ]
+then
+	echo "ERROR: Cannot find \${TOOLS}/usr/ccs/bin/\${CPU}env"
+	echo "       exiting"
+	exit 3
+fi
+
+UTSRULES=${ROOT}/usr/src/${WORK}/uts/uts.rulefile
+UTSDEPEND=/dev/null
+export UTSRULES UTSDEPEND
+
+
+if [ "${build}" = "motif" ]
+then
+if [ ! -f ${ROOT}/usr/src/common/X11R5/motif/GO ]
+then
+	echo "ERROR: Cannot find Motif source code"
+	echo "       Read in Motif SCP Add-on as per the SCP build"
+	echo "       instructions and re-execute this script"
+	exit 2
+fi
+
+MOTIFOUT=${ROOT}/usr/src/${WORK}/motif.out
+
+cd ${ROOT}/usr/src
+echo "Merging Motif SCP"
+${MACH}/:mkmerge -d X11R5/motif common ${WORK}
+${MACH}/:mkmerge -d X11R5/olpkg.oam/pkg.mdev common ${WORK}
+${MACH}/:mkmerge -d X11R5/olpkg.oam/pkg.mrun common ${WORK}
+echo "Merging Motif SCP, Complete"
+cd ${ROOT}/usr/src/${WORK}/X11R5/motif
+chmod 0755 GO
+echo "Building Motif SCP"
+echo "Compile output will be saved in motif.out and"
+echo "${ROOT}/usr/src/${WORK}/X11R5/motif/world.log"
+echo "Note this will take ~ 2 hours"
+${TOOLS}/usr/ccs/bin/${CPU}env ./GO > ${MOTIFOUT} 2>&1
+
+echo "Building Motif SCP, Complete"
+echo "\ncd ${ROOT}/usr/src/${WORK} and execute"
+echo "\"./:mkpkg -c pkg.mdev pkg.mrun\" to build the two"
+echo "Motif packages"
+
+fi
+
+
+if [ "${build}" = "c2" ]
+then
+if [ ! -f ${ROOT}/usr/src/common/uts/acc/audit/auditctl.c ]
+then
+	echo "ERROR: Cannot find audit kernel source code"
+	echo "       Read in C2 SCP Add-on as per the SCP build"
+	echo "       instructions and re-execute this script"
+	exit 2
+fi
+for i in auditcnv auditlog auditmap auditoff auditon auditrpt auditset oamintf/security/audit
+do
+if [ ! -d ${ROOT}/usr/src/common/cmd/$i ]
+then
+	echo "ERROR: Cannot find audit cmd source code for ${i}"
+	echo "       Read in C2 SCP Add-on as per the SCP build"
+	echo "       instructions and re-execute this script"
+	exit 2
+fi
+done
+
+C2OUT=${ROOT}/usr/src/${WORK}/c2.out
+
+cd ${ROOT}/usr/src
+echo "Merging c2 SCP"
+for i in auditcnv auditlog auditmap auditoff auditon auditrpt auditset
+do
+${MACH}/:mkmerge -d cmd/${i} common ${CPU} ${MACH} ${WORK}
+done
+
+${MACH}/:mkmerge -d cmd/oamintf/security/audit common ${CPU} ${MACH} ${WORK}
+${MACH}/:mkmerge -d uts/acc/audit common ${CPU} ${MACH} ${WORK}
+${MACH}/:mkmerge -d pkg/audit common ${CPU} ${MACH} ${WORK}
+${MACH}/:mkmerge -d set/c2 common ${CPU} ${MACH} ${WORK}
+
+echo "Merging c2 SCP, Complete"
+
+echo "Building c2 SCP"
+echo "Compile output will be saved in ${C2OUT}"
+
+cd ${ROOT}/usr/src/${WORK}/cmd/oamintf/security/audit
+echo "\tBuilding c2 SCP, oamintf/secutity/audit cmd"
+echo "=== oamintf/security/audit" > ${C2OUT} 2>&1
+${TOOLS}/usr/ccs/bin/${CPU}env ${CPU}make -f Makefile install >>${C2OUT} 2>&1
+echo "\tBuilding c2 SCP, oamintf/secutity/audit cmd, Complete"
+
+for i in auditcnv auditlog auditmap auditoff auditon auditrpt auditset
+do
+cd ${ROOT}/usr/src/${WORK}/cmd/${i}
+echo "\tBuilding c2 SCP, ${i} cmd"
+echo "=== $i" >> ${C2OUT} 2>&1
+${TOOLS}/usr/ccs/bin/${CPU}env ${CPU}make -f ${i}.mk install >>${C2OUT} 2>&1
+echo "\tBuilding c2 SCP, ${i} cmd, Complete"
+done
+
+cd ${ROOT}/usr/src/${WORK}/uts/acc/audit
+echo "\tBuilding c2 SCP, kernel"
+echo "=== uts/acc/audit" >> ${C2OUT} 2>&1
+${TOOLS}/usr/ccs/bin/${CPU}env ${CPU}make -f audit.mk \
+	UTSRULES=${UTSRULES} UTSDEPEND=${UTSDEPEND} >>${C2OUT} 2>&1
+echo "\tBuilding c2 SCP, kernel, Complete"
+
+cd ${ROOT}/usr/src/${WORK}/uts
+echo "\tBuilding c2 SCP, doing idbuild"
+echo "=== idbuild" >> ${C2OUT} 2>&1
+${TOOLS}/usr/ccs/bin/${CPU}env ${CPU}make -f unix.mk idbuild \
+	UTSRULES=${UTSRULES} UTSDEPEND=${UTSDEPEND} >>${C2OUT} 2>&1
+echo "\tBuilding c2 SCP, doing idbuild, Complete"
+
+echo "Building C2 SCP, Complete"
+echo "\ncd ${ROOT}/usr/src/${WORK} and execute"
+echo "\"./:mkpkg -c audit c2\" to build the"
+echo "audit pkg and the c2 set (SIP)"
+fi
+
+
+#vxfs
+
+if [ "${build}" = "vxfs" ]
+then
+if [ ! -d ${ROOT}/usr/src/common/cmd/fs.d/vxfs/fscat ]
+then
+	echo "ERROR: Cannot find Advanced vxfs source code"
+	echo "       Read in vxfs SCP Add-on as per the SCP build"
+	echo "       instructions and re-execute this script"
+	exit 2
+fi
+
+VXFSOUT=${ROOT}/usr/src/${WORK}/vxfs.out
+
+cd ${ROOT}/usr/src
+echo "Merging vxfs SCP"
+${MACH}/:mkmerge -d cmd/fs.d/vxfs common ${CPU} ${MACH} ${WORK}
+${MACH}/:mkmerge -d uts/fs/vxfs common ${CPU} ${MACH} ${WORK}
+${MACH}/:mkmerge -d pkg/vxfs common ${CPU} ${MACH} ${WORK}
+echo "Merging vxfs SCP, Complete"
+
+cd ${ROOT}/usr/src/${WORK}/cmd/fs.d/vxfs
+echo "Building vxfs SCP"
+echo "Compile output will be saved in ${VXFSOUT}"
+echo "\tBuilding vxfs SCP, fs.d cmds"
+echo "=== cmd/fs.d/vxfs" > ${VXFSOUT} 2>&1
+${TOOLS}/usr/ccs/bin/${CPU}env ${CPU}make -f vxfs.mk install >> ${VXFSOUT} 2>&1
+echo "\tBuilding vxfs SCP, fs.d cmds, Complete"
+
+cd ${ROOT}/usr/src/${WORK}/uts/fs/vxfs
+echo "\tBuilding vxfs SCP, kernel"
+echo "=== uts/fs/vxfs" >> ${VXFSOUT} 2>&1
+${TOOLS}/usr/ccs/bin/${CPU}env ${CPU}make -f vxfs.mk \
+	UTSRULES=${UTSRULES} UTSDEPEND=${UTSDEPEND} >> ${VXFSOUT} 2>&1
+echo "\tBuilding vxfs SCP, kernel, Complete"
+
+cd ${ROOT}/usr/src/${WORK}/uts
+echo "\tBuilding vxfs SCP, doing idbuild"
+echo "=== idbuild" >> ${VXFSOUT} 2>&1
+${TOOLS}/usr/ccs/bin/${CPU}env ${CPU}make -f unix.mk idbuild \
+	UTSRULES=${UTSRULES} UTSDEPEND=${UTSDEPEND} >> ${VXFSOUT} 2>&1
+echo "\tBuilding vxfs SCP, doing idbuild, Complete"
+
+echo "Building vxfs SCP, Complete"
+echo "\ncd ${ROOT}/usr/src/${WORK} and execute"
+echo "\"./:mkpkg -c vxfs\" to build the"
+echo "Advanced vxfs pkg"
+
+fi

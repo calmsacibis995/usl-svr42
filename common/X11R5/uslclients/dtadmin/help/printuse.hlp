@@ -1,0 +1,343 @@
+#ident	"@(#)dtadmin:help/printuse.hlp	1.10"
+^*version^1
+^*title^Printer: printername
+^:Printer
+^*width^70
+^+DesktopMgr/help.defs
+^?check, delete, and change print jobs
+^0^Printer: printername
+^$10
+Printer: printername
+
+Use the Printer: printername window to display all the print requests
+currently waiting to be printed on the printer shown in the title area
+of the window. Each print request is identified by the login ID of the
+person submitting the request. To cancel or check the properties of a
+print request, click on the icon of the print request, click on the
+Print Request button, and then select the Properties menu option.
+
+The following windows are provided for Printer: printername:
+
+        \k(printername Window)
+        \k(Print Job Properties Window)
+        \k(Filter Options Window)
+^1^printername Window
+^$20
+\k{Printer: printername}
+1. printername Window
+
+The Printer: printername window shows all the print requests currently
+waiting to be printed on the printer shown in the title bar of the
+window. Each print request is identified by the login ID of the person
+submitting the request. To cancel or check the properties of a print
+request, click on the icon of the print request and then click on the
+\k(Properties^^PropertiesPP) menu item under the \k(Printer Request button^^Printer Request ButtonPP).
+
+The \d(buttons^button) available for the Printer: printername window
+are:
+
+        \k(Actions Button^^Actions ButtonPP)
+        \k(Printer Request Button^^Printer Request ButtonPP)
+        \k(Help Button^^Help ButtonPP)
+^2^Actions Button=Actions ButtonPP
+^$30
+1. \k{printername Window}
+   1.1 Actions Button
+
+The Actions button allows you to exit from the Printer: printername
+window. Clicking on the Edit button brings up a menu with the follow-
+ing option:
+
+        \k(Exit)
+^3^Exit
+^$40
+1. \k{printername Window}
+   1.1 \k{Actions Button^^Actions ButtonPP}
+       1.1.1 Exit
+
+The Exit menu option closes the Printer: printername window. Clicking
+on the Exit menu option closes the Printer: printername window.
+^2^Printer Request Button=Printer Request ButtonPP
+^$50
+1. \k{printername Window}
+   1.2 Printer Request Button
+
+The Print Request button allows you to delete and change properties
+for files waiting to be printed. Clicking on the Print Request button
+brings up a menu with the following option:
+
+        \k(Delete^^DeletePP)
+        \k(Properties^^PropertiesPP)
+^3^Delete=DeletePP
+^$60
+1. \k{printername Window}
+   1.2 \k{Printer Request Button^^Printer Request ButtonPP}
+       1.2.1 Delete
+
+The Delete menu option lets you delete print requests waiting to be
+printed. You must click on a print request before you select the
+Delete menu option. A Delete notice appears so that you can confirm
+that you want to delete the print request.
+
+The Delete notice has two buttons: Delete and Cancel.
+
+   o Delete Button: This button deletes the selected print request.
+
+   o Cancel Button: This button cancels your request to delete the
+     selected print request.
+^3^Properties=PropertiesPP
+^$70
+1. \k{printername Window}
+   1.2 \k{Printer Request Button^^Printer Request ButtonPP}
+       1.2.2 Properties
+
+The Properties menu option lets you make changes to a print request
+waiting to be printed. Clicking on the Properties menu option brings
+up the Print Request Properties window.
+
+More Information: \k(Print Job Properties Window)
+^2^Help Button=Help ButtonPP
+^$80
+1. \k{printername Window}
+   1.3 Help Button
+
+The Help button provides on-line help for the Printer: printername
+window. Clicking on the Help button brings up a menu with the
+following options:
+
+        \k(Printer^^PrinterPP)
+        \k(Table of Contents^^Table of ContentsPP)
+        \k(Help Desk^^Help DeskPP)
+^3^Printer=PrinterPP
+^$90
+1. \k{printername Window}
+   1.3 \k{Help Button^^Help ButtonPP}
+       1.3.1 Printer
+
+The Printer menu option provides on-line help for the Printer:
+printername window.
+^3^Table of Contents=Table of ContentsPP
+^$100
+1. \k{printername Window}
+   1.3 \k{Help Button^^Help ButtonPP}
+       1.3.2 Table of Contents
+
+The Table of Contents menu option displays the list of help topics
+available for the Printer: printername window.
+^3^Help Desk=Help DeskPP
+^$110
+1. \k{printername Window}
+   1.3 \k{Help Button^^Help ButtonPP}
+       1.3.3 Help Desk
+
+The Help Desk menu option opens the Help Desk window. From there, you
+can select the icon for which you want on-line help.
+^1^Print Job Properties Window
+^$120
+\k{Printer: printername}
+2. Print Job Properties Window
+
+The Print Request Properties window lets you make changes to some of
+the properties of print requests waiting to print, such as how many
+copies, should mail be sent, should a banner page be printed, and the
+type of file being printed.
+
+Before you access the Print Request Properties window from the
+Printer: printername window, select the print-request icon for which
+you want to change the properties.  Once you select a print-request
+icon and access the Print Request Properties window, you can change
+the following properties of the print request:
+
+   o The Banner Page Title text text box lets you give the print
+     request a title, which can be printed on the banner page. The
+     print request title helps you identify your print request after
+     it's printed. Enter the title for the print request.
+
+   o The Copies text box lets you set the number of copies to be
+     printed. Enter the number of copies you want printed.
+
+   o The Send Mail when done? line lets you set whether or not
+     electronic mail is sent when the print request has been printed.
+     Note: Mail is always sent when there is a problem (error)
+     printing the request. Click on either Yes or No to send mail or
+     not to send mail, respectively.
+
+   o The Print Banner Page option lets you specify whether or
+     not a banner page is printed. The banner page gives the name of
+     the user who owns the print request and is useful for separating
+     print requests when many users use the same printer. Click on
+     either Yes or No for print banner page or do not print banner
+     page, respectively. Not all printers allow you to suppress the
+     banner page.
+
+   o The File to be printed line lets you indicate how the information
+     in the file is to be formatted. If you want to specify a
+     different format, click on the arrow. A menu with the following
+     options appears: Text, Postscript, HP PCL, Troff Output, and Other.
+
+     - The Text menu option is for printing text files (sometimes
+       called ASCII or flat files). These types of files do not
+       contain any formatting information. They are simply files con-
+       taining characters typed with the keyboard. The Text Editor,
+       for example, produces this type of file. Page layout or word
+       processing programs, such as FrameMaker and WordPerfect, on the
+       other hand, normally produce files with embedded formatting
+       information. You would not print these as Text files.
+
+     - The PostScript menu option is for printing PostScript language
+       files. To print these types of files, you must have a
+       PostScript printer. Some applications enable you to print a
+       document (or other datafile) to a file in PostScript format.
+       To print this file, set the File to be printed is option to
+       PostScript.
+
+     - The HP PCL menu option is for printing files created for
+       printers using the HP PCL emulation, such as the HP LaserJet
+       printer.
+
+     - The Troff Output menu option is for printing files created with
+       the UNIX command troff.
+
+     - The Other menu option is for printing file types other than
+       Text, PostScript, HP PCL, and Troff Output.
+
+The \d(buttons^button) on the Print Request Properties window are:
+
+        \k(Apply Button^^Apply ButtonJ)\t\t\k(Reset Button^^Reset ButtonJ)
+        \k(Other Options Button^^Other Options ButtonJ)\t\k(Cancel Button^^Cancel ButtonJ)
+        \k(Help Button^^Help ButtonJ)
+^2^Apply Button=Apply ButtonJ
+^$130
+2. \k{Print Job Properties Window}
+   2.1 Apply Button
+
+The Apply button applies any changes you make in the Print Request
+Properties window to the selected entry in the Printer: printername
+window. After applying the changes, the Print Request Properties win-
+dow closes.
+^2^Reset Button=Reset ButtonJ
+^$140
+2. \k{Print Job Properties Window}
+   2.2 Reset Button
+
+The Reset button reverses any changes you have not yet applied. The
+Print Request Properties window remains open.
+^2^Other Options Button=Other Options ButtonJ
+^$150
+2. \k{Print Job Properties Window}
+   2.3 Other Options Button
+
+The Other Options button lets you adjust additional properties for the
+selected print request. Clicking on the Other Options button brings up
+the Filter Options window.
+
+More Information: \k(Filter Options Window)
+^2^Cancel Button=Cancel ButtonJ
+^$160
+2. \k{Print Job Properties Window}
+   2.4 Cancel Button
+
+The Cancel button closes the Print Request Properties window without
+making any changes.
+^2^Help Button=Help ButtonJ
+^$170
+2. \k{Print Job Properties Window}
+   2.5 Help Button
+
+The Help button provides on-line help for the Print Request Properties
+window.
+^1^Filter Options Window
+^$180
+\k{Printer: printername}
+3. Filter Options Window
+
+Use the Filter Options window to make changes to properties not shown
+on the Print Request Properties window, such as Page Length and Width,
+Character and Line Pitch, Character Set, and other Options.
+
+Note: Not all printers accept changes to all of the following
+characteristics. 
+
+   o Page Length: If you're using the paper size that the printer is
+     normally set up for, leave this text box blank. However, if
+     you're using a different size paper, enter the length in this
+     text box and click on either in (inches) or cm (centimeters). If
+     you want to indicate the length of the page by the number of
+     lines on the page, enter the number and click on chars.
+
+   o Page Width: If you're using the paper size that the printer is
+     normally set up for, leave this text box blank. However, if
+     you're using a different size paper, enter the width in this text
+     box and click on either in (inches) or cm (centimeters). If you
+     want to indicate the width of the page by the number of
+     characters across a page, enter the number and click on chars.
+
+   o Character Pitch: If you're printing at the character pitch your
+     printer is normally set up for, leave this text box blank. If
+     you're printing at a different character pitch, enter the width
+     of each character and click on either in or cm, as appropriate.
+     If you want to indicate character pitch by the number of
+     characters per inch, enter the number and click on chars. For
+     example, you can enter 0.1 and click on in or enter 10 and click
+     on chars.
+
+   o Line Pitch: If you're printing at the line pitch that your
+     printer is normally setup for, leave this line blank. If you're
+     printing at a different pitch, enter the height of each line and
+     click on either in or cm, as appropriate. If you want to indicate
+     line pitch by the number of lines per inch, enter the number and
+     click on chars. For example, you can enter 0.166 and click on in
+     or enter 6 and click on chars.
+
+   o Character Set: Use this option to change the character set used
+     for printing. The character set in use is shown on the line. To
+     change it, click on the arrow to bring up a list of optional
+     character sets. Click on the character set you want to use.
+
+   o Options: Use the Options text box to add options for PostScript
+     printers. For example, you can have Landscape printing instead of
+     Portrait printing. You also can enter options in the Misc.
+     Options text box. For more information about lp options, see the
+     lp manual page in the UNIX reference manuals.
+
+The \d(buttons^button) on the Filter Options window are:
+
+        \k(Apply Button^^Apply ButtonF)\t\t\k(Set Defaults^^Set DefaultsF)
+        \k(Reset Button^^Reset ButtonF)\t\t\k(Cancel Button^^Cancel ButtonF)
+        \k(Help Button^^Help ButtonF)
+^2^Apply Button=Apply ButtonF
+^$190
+3. \k{Filter Options Window}
+   3.1 Apply Button
+
+The Apply button applies any changes you make in the Filter Options
+window to the selected entry in the Printer: printername window. After
+applying the changes, the Filter Options window closes.
+^2^Set Defaults=Set DefaultsF
+^$200
+3. \k{Filter Options Window}
+   3.2 Set Defaults
+
+The Set Defaults button is similar to the Apply button. In addition to
+applying your changes, it stores the current settings for future use.
+The next time you use the Reset button, the values stored are used.
+^2^Reset Button=Reset ButtonF
+^$210
+3. \k{Filter Options Window}
+   3.3 Reset Button
+
+The Reset button reverses any changes you have not yet applied. The
+Filter Options window remains open.
+^2^Cancel Button=Cancel ButtonF
+^$220
+3. \k{Filter Options Window}
+   3.4 Cancel Button
+
+The Cancel button closes the Filter Options window without making any
+changes.
+^2^Help Button=Help ButtonF
+^$230
+3. \k{Filter Options Window}
+   3.5 Help Button
+
+The Help button provides on-line help for the Filter Options window.

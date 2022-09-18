@@ -1,0 +1,75 @@
+#ident	"@(#)filemgmt:common/cmd/oamintf/files/make/Form.vxfs	1.2"
+
+# Copyright (c) 1991, 1992 VERITAS Software Corporation.  ALL RIGHTS RESERVED.
+# UNPUBLISHED -- RIGHTS RESERVED UNDER THE COPYRIGHT
+# LAWS OF THE UNITED STATES.  USE OF A COPYRIGHT NOTICE
+# IS PRECAUTIONARY ONLY AND DOES NOT IMPLY PUBLICATION
+# OR DISCLOSURE.
+# 
+# THIS SOFTWARE CONTAINS CONFIDENTIAL INFORMATION AND
+# TRADE SECRETS OF VERITAS SOFTWARE.  USE, DISCLOSURE,
+# OR REPRODUCTION IS PROHIBITED WITHOUT THE PRIOR
+# EXPRESS WRITTEN PERMISSION OF VERITAS SOFTWARE.
+# 
+#               RESTRICTED RIGHTS LEGEND
+# USE, DUPLICATION, OR DISCLOSURE BY THE GOVERNMENT IS
+# SUBJECT TO RESTRICTIONS AS SET FORTH IN SUBPARAGRAPH
+# (C) (1) (ii) OF THE RIGHTS IN TECHNICAL DATA AND
+# COMPUTER SOFTWARE CLAUSE AT DFARS 252.227-7013.
+#               VERITAS SOFTWARE
+# 4800 GREAT AMERICA PARKWAY, SUITE 420, SANTA CLARA, CA 95054
+
+# Portions Copyright 1992, 1991 UNIX System Laboratories, Inc.
+# Portions Copyright 1990 - 1984 AT&T
+# All Rights Reserved
+
+Form="Create A vxfs File System (make)"
+lifetime=shortterm
+help=OPEN TEXT $INTFBASE/Text.itemhelp $LININFO
+close=unset -l BLOCKSIZE -l BLOCKS  -l RVAL -l NFILES
+
+framemsg=`readfile $INTFBASE/form.msg`
+
+done=` indicator -w;
+	set -l BLOCKSIZE="$F1" -l BLOCKS="$F2";
+
+	$OAMBASE/bin/ifdiskette $DEVICE | set -l RVAL;
+	if [ "$RVAL" = "true" ];
+	then
+		set -l CMD="OPEN FORM $OBJ_DIR/Form.vxfsins";
+	else
+		message -f "Creating a vxfs file system on $DEVICE. Please Wait...";
+		$OAMBASE/bin/mkfs_vxfs $BLOCKSIZE $DEVICE $BLOCKS $LABEL $MNTPT 2>\&1 >/dev/null;
+		set -l CMD="OPEN TEXT $OBJ_DIR/Text.make";
+	fi;
+	`$!CMD
+
+name="Block Size in Bytes:"
+lininfo=Form.vxfs2:F1
+nrow=2
+ncol=1
+frow=2
+fcol=22
+rows=1
+columns=10
+rmenu={ 1024 2048 4096 8192 }
+menuonly=true
+value=1024
+#show=`[ ! "$F1" -o ! -f "$F1" ]`
+invalidmsg="Press CHOICES to select valid response."
+
+name="Number of Blocks:"
+lininfo=Form.vxfs2:F2
+nrow=3
+ncol=1
+frow=3
+fcol=19
+rows=1
+columns=10
+#show=`[ ! "$F1" -o ! -f "$F1" ]`
+valid="`valint $F2`"
+value=`if [ "$DEVICE" ];
+	then
+		$OAMBASE/bin/numblocks "$DEVICE";
+	fi;`
+invalidmsg="Error - invalid number of blocks."

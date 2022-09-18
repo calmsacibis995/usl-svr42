@@ -1,0 +1,35 @@
+The Print Screen application gives you a menu selection with \
+the ability to display, capture, and print all or portions of \
+a window or screen. This application combines the features of \
+the X Window System commands xwd, xwud, xpr, together with \
+the UNIX System command lp. 
+
+To capture an image (i.e., window, area of screen, or entire screen) \
+onto the canvas of Print Screen, select the "Window", "Area", \
+or "Screen" item from the "Capture Image" menu button. The \
+application will disappear momentarily to allow you \
+to capture the desired image.
+
+Once the image is captured onto Print Screen's canvas, \
+you can save it via the "Save As" item from the "File" menu \
+button. To read in a previously saved file, select the "Open" item \
+from the same "File" menu button. 
+
+To print the canvas contents of Print Screen, select \
+the "Print Contents" item from the "Print" menu button. To \
+print an already saved file, select the "Print File" item from \
+the same "Print" menu button.
+
+To capture an image and direct it \
+automatically to a printer without displaying it on \
+Print Screen's canvas, select \
+the "Window", "Area", or "Screen" item from the "Print" menu \
+button.
+
+To change the properties for the default filename, the image formatting \
+settings (i.e., xpr command options), and printing settings \
+(i.e., lp command line), select the "Properties" item.
+
+For more detailed information, please refer to the User's \
+Guide Chapter on the Print Screen application, as well as the \
+User's Guide Appendix A man pages for xwd, xwud, and xpr.

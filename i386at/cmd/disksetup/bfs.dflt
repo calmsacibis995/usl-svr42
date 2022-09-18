@@ -1,0 +1,5 @@
+#ident	"@(#)disksetup:i386at/cmd/disksetup/bfs.dflt	1.1"
+BLKSIZE=512
+LABELIT=
+MNTOPT=
+MKFSTYP=2

@@ -1,0 +1,59 @@
+#	Copyright (c) 1991, 1992 UNIX System Laboratories, Inc.
+#	All Rights Reserved     */
+
+#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+#	UNIX System Laboratories, Inc.
+#	The copyright notice above does not evidence any
+#	actual or intended publication of such source code.
+
+#ident	"@(#)wksh:lclvars	1.1"
+
+#
+# Standard X Libraries
+#
+
+XROOT = $(TOP)
+XLIB = $(TOP)/lib
+X11LIB = $(XLIB)/X/libX11.so.1
+XtLIB  = $(XLIB)/Xt/libXt.so.1
+XmuLIB = $(XLIB)/Xmu/libXmu.so.1
+XextLIB = $(TOP)/extensions/lib/libXext.so.1
+
+#
+# Other libraries needed for linking
+#
+
+OTHERLIBS = $(XextLIB) -lnsl -ldl -lw -lgen
+
+#
+# OPEN LOOK Libraries
+#
+
+XolLIB = $(XLIB)/Xol/libOlit.so.1 $(XLIB)/Xol/libXol.so.1
+
+#
+# MOTIF Libraries
+#
+
+MrmLIB = -lMrm
+XmLIB  = -lXm
+
+#
+# Standard user level compilation flags for X programs
+#
+
+LDFLAGS = -L $(LIB)
+
+SUBCFLAGS = -O -I$(INC) -I$(INC)/sys
+
+XFLAGS = -DUSL -DSVR4 -DI18N -DNARROWPROTO -DMOOLIT
+
+UFLAGS = $(XFLAGS) -DKSHELL -DUSER_PROMPT -DTEST_CODE -DSVR4_USER
+
+CFLAGS = $(SUBCFLAGS) -I. $(XKSHINCLUDES) -I$(TOP) -I$(TOP)/lib $(UFLAGS)
+
+#
+# Dynamic Library Definitions
+#
+
+LIB_KIND = .so

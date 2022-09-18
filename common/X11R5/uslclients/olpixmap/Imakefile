@@ -1,0 +1,50 @@
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+/**/#ident	"@(#)olpixmap:Imakefile	1.18"
+
+       DTLIBSRC = $(LIBSRC)/Dt
+          DTLIB = $(DTLIBSRC)/libDt.so
+
+       INCLUDES = -I$(DTLIBSRC) -I$(LIBSRC) -I$(XOLLIBSRC)
+LOCAL_LIBRARIES = $(XMULIB) XolClientLibs $(DTLIB) 
+
+#if Release5
+        DEPLIBS = $(DEPXMULIB) XolClientDepLibs $(DTLIB)
+#else
+        DEPLIBS = $(XMULIB) XolClientDepLibs $(DTLIB)
+#endif
+
+APP_NAME=olpixmap
+
+SRCS =	canvas.c color.c draw.c edit.c events.c file.c initialize.c \
+	magnify.c pixmap.c popup.c settings.c utils.c view.c zoom.c error.c
+OBJS =	canvas.o color.o draw.o edit.o events.o file.o initialize.o \
+	magnify.o pixmap.o popup.o settings.o utils.o view.o zoom.o error.o
+
+ComplexProgramTarget($(APP_NAME))
+
+InstallAppDefaults($(APP_NAME))
+
+
+INSTALLABLES = README
+
+SOURCEDIR =	$(USRLIBDIR)/tutorial
+
+InstallMultiple($(INSTALLABLES),$(SOURCEDIR)/XPM)
+
+TOOLBOX=$(DESKTOPDIR)/Utilities 
+ICON_NAME=Pixmap_Editor
+OLD_ICON_NAME=Icon_Editor
+MKDIR=/bin/mkdir
+
+InstallDesktopClient($(BINDIR)/$(APP_NAME),$(TOOLBOX)/$(ICON_NAME))
+
+clean::
+	$(RM) $(TOOLBOX)/$(OLD_ICON_NAME)

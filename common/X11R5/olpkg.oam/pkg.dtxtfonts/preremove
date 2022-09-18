@@ -1,0 +1,53 @@
+#ident	"%W%"
+#	Copyright (c) 1990, 1991 UNIX System Laboratories, Inc.
+#	Copyright (c) 1988 AT&T
+#	  All Rights Reserved
+
+#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+#	UNIX System Laboratories, Inc.
+#	The copyright notice above does not evidence any
+#	actual or intended publication of such source code.
+
+
+#
+#       USL XWIN Fonts
+#
+
+NAME="XWIN GWS Fonts"
+echo "\n\tRemoving\n\t${NAME}\n\tpackage...\n"
+
+cd /usr/X/lib/fonts/100dpi
+rm -f charB08.snf charB10.snf charB12.snf charB14.snf charB18.snf charB24.snf charBI08.snf charBI10.snf charBI12.snf charBI14.snf charBI18.snf charBI24.snf charI08.snf charI10.snf charI12.snf charI14.snf charI18.snf charI24.snf charR08.snf charR10.snf charR12.snf charR14.snf charR18.snf charR24.snf courB08.snf courB10.snf courB14.snf courB18.snf courB24.snf courBO08.snf courBO10.snf courBO14.snf courBO18.snf courBO24.snf courO08.snf courO10.snf courO14.snf courO18.snf courO24.snf courR08.snf courR10.snf courR14.snf courR18.snf courR24.snf helvB08.snf helvB10.snf helvB14.snf helvB18.snf helvB24.snf helvBO08.snf helvBO10.snf helvBO12.snf helvBO14.snf helvBO18.snf helvBO24.snf helvO08.snf helvO10.snf helvO14.snf helvO18.snf helvO24.snf helvR08.snf helvR10.snf helvR14.snf helvR18.snf helvR24.snf luBIS08.snf luBIS10.snf luBIS14.snf luBIS18.snf luBIS19.snf luBIS24.snf luBS08.snf luBS10.snf luBS18.snf luBS19.snf luBS24.snf luIS08.snf luIS10.snf luIS14.snf luIS18.snf luIS19.snf luIS24.snf luRS08.snf luRS10.snf luRS14.snf luRS18.snf luRS19.snf luRS24.snf lubB08.snf lubB10.snf lubB12.snf lubB14.snf lubB18.snf lubB19.snf lubB24.snf lubBI08.snf lubBI10.snf lubBI12.snf lubBI14.snf lubBI18.snf lubBI19.snf lubBI24.snf lubI08.snf lubI10.snf lubI12.snf lubI14.snf lubI18.snf lubI19.snf lubI24.snf lubR08.snf lubR10.snf lubR12.snf lubR14.snf lubR18.snf lubR19.snf lubR24.snf lutBS08.snf lutBS10.snf lutBS14.snf lutBS18.snf lutBS19.snf lutBS24.snf lutRS08.snf lutRS10.snf lutRS14.snf lutRS18.snf lutRS19.snf lutRS24.snf ncenB08.snf ncenB10.snf ncenB12.snf ncenB14.snf ncenB18.snf ncenB24.snf ncenBI08.snf ncenBI10.snf ncenBI12.snf ncenBI14.snf ncenBI18.snf ncenBI24.snf ncenI08.snf ncenI10.snf ncenI12.snf ncenI14.snf ncenI18.snf ncenI24.snf ncenR08.snf ncenR10.snf ncenR12.snf ncenR14.snf ncenR18.snf ncenR24.snf symb08.snf symb10.snf symb12.snf symb14.snf symb18.snf symb24.snf tech14.snf techB14.snf term14.snf termB14.snf timB08.snf timB10.snf timB12.snf timB14.snf timB18.snf timB24.snf timBI08.snf timBI10.snf timBI12.snf timBI14.snf timBI18.snf timBI24.snf timI08.snf timI10.snf timI12.snf timI14.snf timI18.snf timI24.snf timR08.snf timR10.snf timR12.snf timR14.snf timR18.snf timR24.snf 
+cd /usr/X/lib/fonts/75dpi
+rm -f charB08.snf charB10.snf charB12.snf charB14.snf charB18.snf charB24.snf charBI08.snf charBI10.snf charBI12.snf charBI14.snf charBI18.snf charBI24.snf charI08.snf charI10.snf charI12.snf charI14.snf charI18.snf charI24.snf charR08.snf charR10.snf charR12.snf charR14.snf charR18.snf charR24.snf courB08.snf courB10.snf courB14.snf courB18.snf courB24.snf courBO08.snf courBO10.snf courBO12.snf courBO14.snf courBO18.snf courBO24.snf courO08.snf courO10.snf courO14.snf courO18.snf courO24.snf courR08.snf courR18.snf courR24.snf helvB08.snf helvB10.snf helvB18.snf helvB24.snf helvBO08.snf helvBO10.snf helvBO12.snf helvBO14.snf helvBO18.snf helvBO24.snf helvO08.snf helvO18.snf helvO24.snf helvR08.snf helvR18.snf helvR24.snf luBIS08.snf luBIS10.snf luBIS14.snf luBIS18.snf luBIS19.snf luBIS24.snf luBS08.snf luBS10.snf luBS19.snf luBS24.snf luIS08.snf luIS18.snf luIS19.snf luIS24.snf luRS08.snf luRS18.snf luRS19.snf luRS24.snf lubB08.snf lubB10.snf lubB12.snf lubB14.snf lubB18.snf lubB19.snf lubB24.snf lubBI08.snf lubBI10.snf lubBI12.snf lubBI14.snf lubBI18.snf lubBI19.snf lubBI24.snf lubI08.snf lubI10.snf lubI12.snf lubI14.snf lubI18.snf lubI19.snf lubI24.snf lubR08.snf lubR10.snf lubR12.snf lubR14.snf lubR18.snf lubR19.snf lubR24.snf lutBS08.snf lutBS18.snf lutBS19.snf lutBS24.snf lutRS08.snf lutRS18.snf lutRS19.snf lutRS24.snf ncenB08.snf ncenB10.snf ncenB12.snf ncenB14.snf ncenB18.snf ncenB24.snf ncenBI08.snf ncenBI10.snf ncenBI12.snf ncenBI14.snf ncenBI18.snf ncenBI24.snf ncenI08.snf ncenI10.snf ncenI12.snf ncenI14.snf ncenI18.snf ncenI24.snf ncenR08.snf ncenR10.snf ncenR12.snf ncenR14.snf ncenR18.snf ncenR24.snf symb08.snf symb10.snf symb12.snf symb14.snf symb18.snf symb24.snf tech14.snf techB14.snf term14.snf termB14.snf timB08.snf timB10.snf timB12.snf timB14.snf timB18.snf timB24.snf timBI08.snf timBI10.snf timBI12.snf timBI14.snf timBI18.snf timBI24.snf timI08.snf timI10.snf timI12.snf timI14.snf timI18.snf timI24.snf timR08.snf timR10.snf timR12.snf timR14.snf timR18.snf timR24.snf 
+cd /usr/X/lib/fonts/misc
+rm -f 10x20.snf 12x24.snf 12x24rk.snf 5x8.snf 6x10.snf 6x13B.snf 6x9.snf 7x13.snf 7x13B.snf 7x14rk.snf 8x16.snf 8x16rk.snf 9x15.snf 9x15B.snf clB6x10.snf clB6x12.snf clB8x10.snf clB8x12.snf clB8x13.snf clB8x14.snf clB8x16.snf clB8x8.snf clB9x15.snf clI6x12.snf clI8x8.snf clR4x6.snf clR5x10.snf clR5x6.snf clR5x8.snf clR6x10.snf clR6x12.snf clR6x13.snf clR6x6.snf clR6x8.snf clR7x10.snf clR7x12.snf clR7x14.snf clR7x8.snf clR8x10.snf clR8x12.snf clR8x13.snf clR8x14.snf clR8x16.snf clR8x8.snf clR9x15.snf deccurs.snf decsess.snf nil2.snf olcursor.snf olgl10.snf olgl12.snf olgl14.snf olgl19.snf pc12x20.snf pc6x10.snf 
+
+#
+# update the fonts.dir and fonts.alias files
+#
+if [ -f /usr/X/lib/fonts/misc/dtxt.alias ]
+then
+    cp /usr/X/lib/fonts/misc/dtxt.alias /usr/X/lib/fonts/misc/fonts.alias
+fi
+if [ -f /usr/X/lib/fonts/75dpi/desk.alias ]
+then
+    cp /usr/X/lib/fonts/75dpi/desk.alias /usr/X/lib/fonts/75dpi/fonts.alias
+fi
+if [ -f /usr/X/lib/fonts/100dpi/desk.alias ]
+then
+    cp /usr/X/lib/fonts/100dpi/desk.alias /usr/X/lib/fonts/100dpi/fonts.alias
+fi
+/usr/X/bin/mkfontdir /usr/X/lib/fonts/misc
+/usr/X/bin/mkfontdir /usr/X/lib/fonts/75dpi
+/usr/X/bin/mkfontdir /usr/X/lib/fonts/100dpi
+
+#
+# re-run xset if the package is removed will in graphics
+#
+TTY=`/bin/tty`
+echo "$TTY" | grep "/dev/pts" > /dev/null 2>&1
+RET_VAL=$?
+[ "$RET_VAL" = "0" ] && LD_LIBRARY_PATH=/usr/X/lib /usr/X/bin/xset -display unix:0 fp rehash >/dev/null 2>&1
+
+exit 0

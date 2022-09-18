@@ -1,0 +1,356 @@
+#ident	"@(#)pkg.inet:i386/pkg/inet/prototype	1.32.12.13"
+#ident	"$Header: $"
+
+#
+# information files
+#
+
+i pkginfo
+i depend
+i inet/menu.inet=menu.inet
+i preinstall
+i postinstall
+i preremove
+i copyright
+i request
+i response
+
+!PATCH_LOC=/etc/inst/up/patch
+
+#
+# package object files and directories
+#
+!default	0775	root	sys	1 NULL NULL
+d	none	/etc	?	?	?
+d	none	/etc/conf	?	?	?
+d	none	/etc/conf/pack.d	?	?	?
+d	none	/etc/conf/mdevice.d	?	?	?
+d	none	/etc/conf/sdevice.d	?	?	?
+d	none	/etc/init.d	?	?	?
+d	none	/etc/rc0.d	?	?	?
+d	none	/etc/rc1.d	?	?	?
+d	none	/etc/rc2.d	?	?	?
+#	Add file level 1 (SYS_PUBLIC) field 7
+#make the /etc/inet directory SYS_PUBLIC
+d	none	/etc/inet	0775 root sys 1 NULL NULL
+d	none	/dev/inet	0755 root root 1 NULL NULL
+d	none	/etc/master.d	?	?	?
+d	none	/usr	?	?	?
+d	none	/usr/lib	?	?	?	?	?	?
+d	none	/usr/lib/iaf	?	?	?
+d	none	/usr/lib/iaf/in.login	0755 root sys 1 NULL NULL
+d	none	/usr/sbin	?	?	?
+d	none	/usr/bin	?	?	?
+#d	none	/usr/sadm/sysadm/menu/netservices	?	?	?
+#d	none	/usr/sadm/sysadm/menu/netservices/name_to_addr	?	?	?
+#make these sysadm/.../name_to_addr dirs conform to level policy
+#d	none	/usr/sadm/sysadm/menu/netservices/name_to_addr/inet 0755 bin bin	1 NULL NULL
+#d	none	/usr/sadm/sysadm/menu/netservices/name_to_addr/inet/bin 0755 bin bin	1 NULL NULL
+!default	0775	root	sys	4 NULL NULL
+d	none	/usr/include	?	?	?
+d	none	/usr/include/arpa
+d	none	/usr/include/protocols
+d	none	/usr/include/sys	?	?	?
+d	none	/tmp	?	?	?
+d	none	/tmp/inet	-	-	-
+
+#make these boot and master.d files conform to level policy
+!default	0444	root	root	4 NULL NULL
+
+v	none	/tmp/inet/app.o=/etc/conf/pack.d/app/Driver.o
+v	none	/tmp/inet/app.Master=/etc/conf/mdevice.d/app
+v	none	/tmp/inet/app.System=/etc/conf/sdevice.d/app
+
+v	none	/tmp/inet/arp.o=/etc/conf/pack.d/arp/Driver.o
+v	none	/tmp/inet/arp.Master=/etc/conf/mdevice.d/arp
+v	none	/tmp/inet/arp.System=/etc/conf/sdevice.d/arp
+v	none	/tmp/inet/arp.Space=/etc/conf/pack.d/arp/space.c
+v	none	/tmp/inet/arp.Node=/etc/conf/node.d/arp
+
+v	none	/tmp/inet/icmp.o=/etc/conf/pack.d/icmp/Driver.o
+v	none	/tmp/inet/icmp.Master=/etc/conf/mdevice.d/icmp
+v	none	/tmp/inet/icmp.System=/etc/conf/sdevice.d/icmp
+v	none	/tmp/inet/icmp.Node=/etc/conf/node.d/icmp
+
+v	none	/tmp/inet/ip.o=/etc/conf/pack.d/ip/Driver.o
+v	none	/tmp/inet/ip.Master=/etc/conf/mdevice.d/ip
+v	none	/tmp/inet/ip.System=/etc/conf/sdevice.d/ip
+v	none	/tmp/inet/ip.Space=/etc/conf/pack.d/ip/space.c
+v	none	/tmp/inet/ip.Stubs=/etc/conf/pack.d/ip/stubs.c
+v	none	/tmp/inet/ip.Node=/etc/conf/node.d/ip
+
+v	none	/tmp/inet/llcloop.o=/etc/conf/pack.d/llcloop/Driver.o
+v	none	/tmp/inet/llcloop.Master=/etc/conf/mdevice.d/llcloop
+v	none	/tmp/inet/llcloop.System=/etc/conf/sdevice.d/llcloop
+v	none	/tmp/inet/llcloop.Space=/etc/conf/pack.d/llcloop/space.c
+v	none	/tmp/inet/llcloop.Node=/etc/conf/node.d/llcloop
+
+v	none	/tmp/inet/tcp.o=/etc/conf/pack.d/tcp/Driver.o
+v	none	/tmp/inet/tcp.Master=/etc/conf/mdevice.d/tcp
+v	none	/tmp/inet/tcp.System=/etc/conf/sdevice.d/tcp
+v	none	/tmp/inet/tcp.Space=/etc/conf/pack.d/tcp/space.c
+v	none	/tmp/inet/tcp.Mtune=/etc/conf/mtune.d/tcp
+v	none	/tmp/inet/tcp.Node=/etc/conf/node.d/tcp
+
+v	none	/tmp/inet/udp.o=/etc/conf/pack.d/udp/Driver.o
+v	none	/tmp/inet/udp.Master=/etc/conf/mdevice.d/udp
+v	none	/tmp/inet/udp.System=/etc/conf/sdevice.d/udp
+v	none	/tmp/inet/udp.Space=/etc/conf/pack.d/udp/space.c
+v	none	/tmp/inet/udp.Node=/etc/conf/node.d/udp
+
+v	none	/tmp/inet/rawip.o=/etc/conf/pack.d/rawip/Driver.o
+v	none	/tmp/inet/rawip.Master=/etc/conf/mdevice.d/rawip
+v	none	/tmp/inet/rawip.System=/etc/conf/sdevice.d/rawip
+v	none	/tmp/inet/rawip.Node=/etc/conf/node.d/rawip
+#
+#	init script
+#	Add file level 2 (SYS_PRIVATE) field 7
+!default	0444	root	sys	2 NULL NULL
+f	none	/etc/init.d/inetinit
+v	none	/etc/inet/rc.inet
+
+f	none	/etc/inet/listen.setup 0755 root sys
+f	none	/etc/inet/rc.restart 0755 root sys
+
+
+l	none	/etc/rc0.d/K69inet=/etc/init.d/inetinit
+l	none	/etc/rc1.d/K69inet=/etc/init.d/inetinit
+l	none	/etc/rc2.d/S69inet=/etc/init.d/inetinit
+
+#	Inet Privilege enable/disable script
+f	none	/etc/inet/inet.priv	0540	root	sys	2 NULL NULL
+
+!default	0444	root	sys	1 NULL NULL
+#These dynamic libs have to be SYS_PUBLIC
+#	Add file level 1 (SYS_PUBLIC) field 7
+f	none	/usr/lib/tcpip.so
+f	none	/usr/lib/resolv.so
+l	none	/usr/lib/libresolv.so=/usr/lib/resolv.so
+f	none	/usr/lib/libresolv.a
+
+#
+#	administrative tables
+#
+!default	0444	root	sys	1 NULL NULL
+#Unless otherwise marked, these tables have to be SYS_PUBLIC
+v	none	/etc/inet/hosts
+v	none	/etc/inet/inetd.conf
+v	none	/etc/inet/named.boot
+v	none	/etc/inet/networks
+v	none	/etc/inet/protocols
+v	none	/etc/inet/services
+v	none	/etc/inet/shells
+e	none	/etc/inet/strcf	0444 root sys 2 NULL NULL
+#must match nslookup: 1 
+!default	0444	bin	bin	1 NULL NULL
+f	none	/usr/lib/nslookup.help
+
+#symlinks to traditional location
+!default	0444	root	sys	1 NULL NULL
+s	none	/etc/hosts=/etc/inet/hosts
+s	none	/etc/inetd.conf=/etc/inet/inetd.conf
+s	none	/etc/named.boot=/etc/inet/named.boot
+s	none	/etc/networks=/etc/inet/networks
+s	none	/etc/protocols=/etc/inet/protocols
+s	none	/etc/services=/etc/inet/services
+s	none	/etc/shells=/etc/inet/shells
+s	none	/etc/strcf=/etc/inet/strcf
+
+#put all outbound binaries that are for users at USER_PUBLIC
+#put others at SYS_PUBLIC 
+#
+#	usr commands
+#
+!default	0555	bin	bin	4 dev NULL
+f	none	/usr/bin/finger
+f	none	/usr/bin/ftp
+f	none	/usr/bin/rcp	0555  bin  bin 4 dev,filesys NULL
+f	none	/usr/bin/rdate	0555  bin  bin 1 NULL dacwrite,dev,macread,macwrite,sysops
+f	none	/usr/bin/rlogin	0555  bin  bin 4 dev,filesys NULL
+f	none	/usr/bin/rsh	0555  root  bin 4 dev,filesys NULL
+f	none	/usr/bin/ruptime	0555 bin bin	1 macread NULL
+f	none	/usr/bin/rwho	0555  bin  bin 1 macread NULL
+f	none	/usr/bin/talk
+f	none	/usr/bin/telnet
+f	none	/usr/bin/tftp
+f	none	/usr/bin/whois	0555  bin  bin 4 NULL NULL
+f	none	/usr/bin/netstat	02555 bin sys	1 dev NULL
+
+#
+#	daemons and admin commands
+#
+#put all inbound daemons at level USER_PUBLIC that service user requests 
+#initialization binaries get inheritable privs and level SYS_PRIVATE 
+#put all administrator cmds at level SYS_PUBLIC
+!default	0555	bin	bin	1 NULL NULL
+f	none	/usr/sbin/arp 02555 bin sys	1 NULL dev,filesys,macread,macwrite,driver,dacread,dacwrite
+f	none	/usr/sbin/gettable
+f	none	/usr/sbin/htable
+f	none	/usr/sbin/ifconfig	0555 bin bin	2 NULL dev,macread,macwrite,driver,dacread,dacwrite
+f	none	/usr/sbin/in.comsat	0555 bin bin	4 NULL allprivs
+f	none	/usr/sbin/in.fingerd	0555 bin bin	4 NULL dev
+f	none	/usr/sbin/in.ftpd	0555 bin bin	4 NULL dev,filesys,macread,setuid
+#/usr/lib/iaf/in.login/scheme must have a superset of /usr/bin/passwd privileges
+f	none	/usr/lib/iaf/in.login/scheme	04550 root bin	2 NULL owner,audit,dacread,dacwrite,dev,macread,macwrite,setplevel,setuid,sysops,setflevel
+f	none	/usr/sbin/in.named	0555 bin bin	1 NULL dev,macread,macwrite
+f	none	/usr/sbin/nstest
+f	none	/usr/sbin/nslookup	0555 bin bin	4 dev  macread,macwrite
+f	none	/usr/sbin/in.rarpd	0555 bin bin	1 NULL allprivs
+f	none	/usr/sbin/in.rexecd	0555 bin bin	4 NULL dev,macread,setuid,owner
+# /usr/sbin/in.rlogind and /usr/sbin/in.telnetd
+# must have a superset of /usr/lib/iaf/in.login/scheme privs
+f	none	/usr/sbin/in.rlogind	0555 bin bin	4 NULL owner,audit,dacread,dacwrite,dev,macread,macwrite,setplevel,setuid,sysops,setflevel
+f	none	/usr/sbin/in.telnetd	0555 bin bin	4 NULL owner,audit,dacread,dacwrite,dev,macread,macwrite,setplevel,setuid,sysops,setflevel
+f	none	/usr/sbin/in.routed	0555 bin bin	2 NULL dev,filesys,macread,macwrite,dacread,dacwrite
+f	none	/usr/sbin/in.rshd	0555 bin bin	4 NULL dev,filesys,setuid,owner
+f	none	/usr/sbin/in.rwhod	0555 bin bin	1 NULL owner,dacread,dacwrite,dev,filesys,macread,macwrite,setuid,sysops,driver
+f	none	/usr/sbin/in.talkd	0555 bin bin	4 NULL dacwrite,dev,sysops
+f	none	/usr/sbin/in.tftpd	0555 bin bin	4 NULL dev,filesys,macread,setuid
+f	none	/usr/sbin/in.tnamed	0555 bin bin	1 NULL allprivs
+f	none	/usr/sbin/inetd	0555 bin bin	1 NULL allprivs
+f	none	/usr/sbin/ping	04555 root bin	1 dev,macread,macwrite NULL
+f	none	/usr/sbin/route 0555 bin bin	1 NULL dacread,dacwrite,dev,macread,macwrite
+f	none	/usr/sbin/slink	0500 root bin	2 NULL dev,filesys,macread,macwrite,driver,dacread,dacwrite
+f	none	/usr/sbin/trpt
+
+d	none	/etc/confnet.d/inet	0775  root sys	2 NULL NULL
+f	none	/etc/confnet.d/inet/configure  0755 root sys	2 NULL NULL
+f	none	/etc/confnet.d/inet/config.boot.sh 0555 root sys 2 NULL NULL
+v	none	/etc/confnet.d/inet/interface  0755 root sys	2 NULL NULL
+
+#
+#	header files
+#
+!default 0444 bin bin	1 NULL NULL
+f	none	/usr/include/resolv.h
+f	none	/usr/include/netdb.h
+f	none	/usr/include/arpa/ftp.h
+f	none	/usr/include/arpa/inet.h
+f	none	/usr/include/arpa/nameser.h
+f	none	/usr/include/arpa/telnet.h
+f	none	/usr/include/arpa/tftp.h
+f	none	/usr/include/netconfig.h
+f	none	/usr/include/netdir.h
+f	none	/usr/include/protocols/dumprestore.h
+f	none	/usr/include/protocols/routed.h
+f	none	/usr/include/protocols/rwhod.h
+f	none	/usr/include/protocols/timed.h
+f	none	/usr/include/syslog.h
+f	none	/usr/include/sys/syslog.h
+f	none	/usr/include/sys/un.h
+
+#
+#	OAM name to address files...
+#
+#make these sysadm/.../name_to_addr files conform to level policy
+
+!default 0644 bin bin	1 NULL NULL
+f OAMadmin /usr/sadm/sysadm/menu/netservices/name_to_addr/inet/Form.inethost
+f OAMadmin /usr/sadm/sysadm/menu/netservices/name_to_addr/inet/Form.inetserv
+f OAMadmin /usr/sadm/sysadm/menu/netservices/name_to_addr/inet/Help
+f OAMadmin /usr/sadm/sysadm/menu/netservices/name_to_addr/inet/Menu.inet
+f OAMadmin /usr/sadm/sysadm/menu/netservices/name_to_addr/inet/Text.badaddr
+f OAMadmin /usr/sadm/sysadm/menu/netservices/name_to_addr/inet/Text.badport
+f OAMadmin /usr/sadm/sysadm/menu/netservices/name_to_addr/inet/Text.h_exists
+f OAMadmin /usr/sadm/sysadm/menu/netservices/name_to_addr/inet/Text.h_success
+f OAMadmin /usr/sadm/sysadm/menu/netservices/name_to_addr/inet/Text.s_exists
+f OAMadmin /usr/sadm/sysadm/menu/netservices/name_to_addr/inet/Text.s_success
+
+#make these sysadm/.../name_to_addr binary files conform
+!default 0755 bin bin	1 NULL allprivs
+
+f OAMadmin /usr/sadm/sysadm/menu/netservices/name_to_addr/inet/bin/inet.host
+f OAMadmin /usr/sadm/sysadm/menu/netservices/name_to_addr/inet/bin/inet.services
+
+!default	0775	root	sys	4 NULL NULL
+
+f none /usr/include/net/af.h
+
+f none /usr/include/net/if.h
+
+f none /usr/include/net/if_arp.h
+
+f none /usr/include/net/route.h
+
+f none /usr/include/net/strioc.h
+
+f none /usr/include/netinet/icmp_var.h
+
+f none /usr/include/netinet/if_ether.h
+
+f none /usr/include/netinet/in.h
+
+f none /usr/include/netinet/in_pcb.h
+
+f none /usr/include/netinet/in_systm.h
+
+f none /usr/include/netinet/in_var.h
+
+f none /usr/include/netinet/insrem.h
+
+f none /usr/include/netinet/ip.h
+
+f none /usr/include/netinet/ip_icmp.h
+
+f none /usr/include/netinet/ip_str.h
+
+f none /usr/include/netinet/ip_var.h
+
+f none /usr/include/netinet/llcloop.h
+f none /usr/include/netinet/nihdr.h
+
+f none /usr/include/netinet/symredef.h
+
+f none /usr/include/netinet/tcp.h
+
+f none /usr/include/netinet/tcp_debug.h
+f none /usr/include/netinet/tcp_fsm.h
+
+f none /usr/include/netinet/tcp_seq.h
+f none /usr/include/netinet/tcp_timer.h
+f none /usr/include/netinet/tcp_var.h
+
+f none /usr/include/netinet/tcpip.h
+
+f none /usr/include/netinet/udp.h
+
+f none /usr/include/netinet/udp_var.h
+
+f none /usr/include/sys/byteorder.h
+f none /usr/include/net/arp.h
+###############################
+##     Graphical admin objects
+
+!default        755     root    sys     2       NULL    NULL
+
+f DTMadmin /usr/X/bin/InternetMgr
+d DTMadmin /usr/X/desktop/System_Setup ? ? ?
+s DTMadmin /usr/X/desktop/System_Setup/Internet_Setup=/usr/X/bin/InternetMgr
+f DTMadmin /usr/X/desktop/PackageMgr/inet
+f DTMadmin /usr/X/lib/classdb/inet.cdb
+f DTMadmin /usr/X/lib/pixmaps/tcpadm.icon
+f DTMadmin /usr/X/lib/pixmaps/tcpadm48.icon
+f DTMadmin /usr/X/lib/locale/C/help/dtadmin/inet.hlp
+l DTMadmin /usr/X/lib/locale/C/help/InternetMgr.hlp=/usr/X/lib/locale/C/help/dtadmin/inet.hlp
+f DTMadmin /usr/X/lib/bitmaps/tcpadm.icon
+f DTMadmin /usr/X/lib/bitmaps/tcpadm48.icon
+
+#########################
+# Upgrade installation
+# patch files
+
+!default 0755 root sys 1 NULL NULL
+
+d none  $PATCH_LOC/etc/inet
+
+!default 0644 root sys 1 NULL NULL
+
+f none	$PATCH_LOC/etc/inet/hosts
+f none	$PATCH_LOC/etc/inet/rc.inet
+f none	$PATCH_LOC/etc/inet/named.boot
+f none	$PATCH_LOC/etc/inet/networks
+f none	$PATCH_LOC/etc/inet/protocols
+f none	$PATCH_LOC/etc/inet/services
+f none	$PATCH_LOC/etc/inet/shells
+#########################
+

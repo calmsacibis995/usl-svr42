@@ -1,0 +1,56 @@
+/**/#ident	"@(#)libfolio1.2:f3/Imakefile	1.3"
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+
+/**/#include ../include/Master.cfg
+
+
+CCOPTIONS = -K PIC -DFUNCPROTO=15
+
+CDEBUGFLAGS =  
+ /* USL, SVR4 SPECIAL RULES: add new rules as needed.
+ */
+#ifndef FolioSharedLibraryObjectRule
+#define FolioSharedLibraryObjectRule()                                       @@\.c.o:                                                                   @@\
+        $(CC) -c $(CCOPTIONS) $(INCLUDES)  $<
+#endif
+
+
+/**/#TEMP until optimization problems fixed. 11/6/91
+
+HEADERS = \
+	array.h error.h glbvars.h oparith.h opcntrl.h opgraph.h \
+	opother.h rname.h xstack.h 
+
+  FOLIOINCSRC = -I./include
+
+   INCLUDES = -I. -I./include  -I../include  -I$(TOP)/X11 -I$(FONTSRC)/include -I$(FONTINCSRC) -I$(FONTLIBINCSRC) -I$(SERVERSRC)/include -I$(FOLIOINCSRC)
+     LFLAGS = -buxz
+
+EXTRA_DEFINES = -DFUNCPROTO=15 
+
+SRCS =  array.c  error.c io.c main.c oparith.c opcntrl.c opgraph.c \	
+	opother.c  rname.c scanners.c xstack.c
+
+OBJS =  array.o error.o io.o main.o oparith.o opcntrl.o opgraph.o \	
+	opother.o  rname.o scanners.o xstack.o
+
+
+
+SubdirLibraryRule($(OBJS))
+FolioSharedLibraryObjectRule()
+SHAREDOBJS = $(OBJS)
+
+
+install::
+
+DependTarget()
+clean::
+

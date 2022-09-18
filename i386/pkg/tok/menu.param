@@ -1,0 +1,55 @@
+#ident	"@(#)pkg.tok:menu.param	1.3"
+#ident	"$Header: $"
+
+.optstring
+Your options are:
+.pageno
+Page %d of %d
+.ul
+Token Ring Hardware Support
+.hhelp_ban
+Instructions
+.helpbanner
+Help: Token Ring Parameter Selection
+.ur
+Parameter Selection
+.lr
+F1=Help
+.top
+IBM Token Ring Adaptor
+
+This screen allows you to select various parameters
+to be configured for adaptor `echo $BNO`.
+`if [ -f "${RAM_FILE}" ];then echo "Please select ROM and RAM addresses that do not overlap"; fi`
+.form
+#TYPE_ENUM
+2 `echo ${NVECT}${INT_CHOICES}`Interrupt Vector://IRQ//
+//Right/Left arrow keys for new choice (`echo $NVECT` choices)//
+#TYPE_ENUM
+`if [ -f "${RAM_FILE}" ];then echo "2 ${NRAMADDR}${RAMADDR_CHOICES}RAM Address://RAMADDR//"; fi`
+`if [ -f "${RAM_FILE}" ];then echo "//Right/Left arrow keys for new choice ($NRAMADDR choices)//"; fi`
+`if [ -f "${ROM_FILE}" ];then echo "2 ${NROMADDR}${ROMADDR_CHOICES}ROM Address://ROMADDR//"; fi`
+`if [ -f "${ROM_FILE}" ];then echo "//Right/Left arrow keys for new choice ($NROMADDR choices)//"; fi`
+.button
+Apply
+Reset
+.bottom
+Use TAB/BACK TAB to move between fields. When form is complete, TAB to the
+"Action:" field, select "Apply", and press the space bar to continue.
+.help
+INTERRUPT VECTOR
+The following is a list of available interrupt vectors:
+        `echo $AVAIL_INTVS`
+`[ -f "$RAM_FILE" ] && echo "RAM ADDRESS"`
+`[ -f "$RAM_FILE" ] && echo "The following is a list of available RAM addresses:"`
+`[ -f "$RAM_FILE" ] && cat $RAM_FILE`
+`[ -f "$ROM_FILE" ] && echo "ROM ADDRESS"`
+`[ -f "$ROM_FILE" ] && echo "The following is a list of available ROM addresses:"`
+`[ -f "$ROM_FILE" ] && cat $ROM_FILE`
+.hhelpinst
+ESC=Exit instructions  1=Forward  2=Back
+.helpinst
+ESC=Exit help F1=Instructions  1=Forward  2=Back
+.working
+Working...
+.end

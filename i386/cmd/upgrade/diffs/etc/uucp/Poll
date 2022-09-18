@@ -1,0 +1,14 @@
+*** ./etc/uucp/Poll	Wed Feb  5 18:29:25 1992
+--- ../p8.save/./etc/uucp/Poll	Wed Feb  5 18:29:09 1992
+***************
+*** 1,4 ****
+! #ident	"@(#)/etc/uucp/Poll.sl 1.1 4.0 05/29/91 15505 AT&T-USL"
+  # This file (Poll) contains a list of
+  #  "system <tab> hour1 hour2 hour3 ..." lines for polling remote systems.
+  # See examples below
+--- 1,5 ----
+! #ident	"@(#)/etc/uucp/Poll.sl 1.2 4.1dt 05/28/92 45599 AT&T-USL"
+! #ident "$Header: Poll 1.1 91/02/28 $"
+  # This file (Poll) contains a list of
+  #  "system <tab> hour1 hour2 hour3 ..." lines for polling remote systems.
+  # See examples below

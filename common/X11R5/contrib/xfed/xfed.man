@@ -1,0 +1,119 @@
+.\"ident	"@(#)r4xfed:xfed.man	1.1"
+.TH XFED 1 "17 Mar 1988" "X Version 11"
+.SH NAME
+xfed \- font editor for X window systems bdf fontfiles
+
+.SH SYNOPSIS
+.B xfed
+[\fIoptions\fP] filename.bdf
+
+.SH DESCRIPTION
+
+.I xfed
+lets you interactively edit existing bdf-fontfiles.
+When started,
+.I xfed,
+opens up a window showing a magnified version of the characters in the font.
+There are four buttons to interact with 
+.I xfed
+, two stepping buttons to advance to the previous/next character in the
+font, a write-file button and an exit button.
+.br
+If you leave
+.I xfed
+without pressing the write-button, no changes will be written to the
+fontfile; otherwise the original fontfile is saved
+to a backup file (filename~) and the new output written onto the original
+fontfile.
+
+.I xfed
+accepts the following command line arguments:
+
+.PP
+.TP 8
+.I -fg colorname
+as usual - default is black
+.PP
+.TP 8
+.I -bg colorname
+as usual - default is white
+.PP
+.TP 8
+.I -bd colorname
+as usual - default is black
+ note, that this color is also used for the grid; 'xfed -bd red ...' looks nice.
+.PP
+.TP 8
+.I -bw number
+as usual - default is 1
+.PP
+.TP 8
+.I -nogrid
+do not draw a grid (not very useful)
+.PP
+.TP 8
+.I -psize number
+to change the pixel magnification factor (default 16)
+
+.SH COMMANDS
+
+When the cursor is in the edit region, each mouse button has
+a different effect upon the square that the cursor is over.
+
+The 
+.I left mouse button
+turns a pixel to black
+
+The 
+.I right mouse button
+turns a pixel to white
+
+The
+.I middle mouse button
+inverts a pixel, turning it white if it was
+black, or black if it was white.
+  
+.SH FILE FORMAT
+
+see X-Doc 'Character Bitmap Distribution Format 2.1'
+
+.SH ENVIRONMENT
+DISPLAY - the default host and display number.
+
+.SH SEE ALSO
+X(1), BITMAP(1).
+
+.SH BUGS
+
+This is a first version - a quick hack.
+
+Many edit features missing !
+
+Should be able to change font characteristics and character properties.
+
+If you move the mouse too fast while holding a mouse button down,
+some squares may be `missed'.  This is caused by limitations in how
+frequently the X server can sample the mouse location.
+
+There is no way to write to a file other than that specified on the
+command line.
+
+.SH AUTHOR
+Copyright (c) 1988 by Siemens
+
+Claus Gittinger
+.br
+Software Consultant
+.br
+Siemens Munich
+.br
+Dep. D-St-Sp-4
+.br
+Charles-de-Gaullestr. 2a
+.br
+8000 Munich/Neuperlach
+.br
+West Germany
+.br
+
+Email: ..!decvax!unido!sinix!claus

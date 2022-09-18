@@ -1,0 +1,22 @@
+#ident	"@(#)idmap:oam/name_map/Text.add	1.3.3.1"
+#ident  "$Header: Text.add 2.0 91/07/12 $"
+
+################################################################################
+#
+#	Module Name: Text.add
+#
+#	Functional Description: This Text reports status of scheme add
+#			
+################################################################################
+
+title="Add a Scheme"
+
+begrow=any
+begcol=any
+
+rows=10
+columns=50
+
+text="     $ARG1 of scheme $ARG2"
+
+`readfile $INTFBASE/display.msg | message -s`

@@ -1,0 +1,60 @@
+% %!PS-Adobe-
+% %%DocumentFont:
+% %%BoundingBox: (atend)
+% %%EndComments
+
+/getcnt
+{
+	/hex2 2 string def
+	currentfile hex2 readhexstring pop pop
+	hex2 0 get 256 mul hex2 1 get add
+} def
+
+/bitgen
+{
+	% The data is packed into fields:
+	%	rHHHHXX		% repeat byte XX HHHH times
+	%	dHHHHXXXX...XX	% data bytes XXXX...XX (HHHH in length)
+	% where HHHH is a 4-byte hex value, and XX is a 2-byte hex datum.
+
+	/firstchar 1 string def
+	{
+		currentfile firstchar readstring not { exit } if
+		(rd) exch search { pop pop pop exit } if
+		pop
+	} loop
+
+	firstchar (r) eq {
+		/cnt getcnt def
+		/hex1 1 string def
+		currentfile hex1 readhexstring pop pop
+		0 1 cnt 1 sub {
+			picstr exch hex1 putinterval
+		} for
+		picstr 0 cnt getinterval
+	} if
+
+	firstchar (d) eq {
+		currentfile getcnt string readhexstring pop
+	} if
+} def
+
+
+/bitdump
+{
+	% The stack should contain: width, height, iscale
+	/iscale exch def
+	/height exch def
+	/width exch def
+
+	width iscale mul height iscale mul scale
+
+	/picstr width 7 add 8 idiv string def	% ceiling(width / 8)
+
+	width height 1 [width 0 0 height neg 0 height] { bitgen } image
+} def
+
+72 300 div dup scale
+
+% %%EndProlog
+% %%Page 1 1

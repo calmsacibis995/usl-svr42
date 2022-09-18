@@ -1,0 +1,10 @@
+#ident	"@(#)oamintf:i386/cmd/oamintf/devices/add/Prototype	1.2"
+#ident	"$Header: Prototype 1.1 91/08/29 $"
+!MENU=/usr/sadm/sysadm/menu
+!INTFBIN=/usr/sadm/sysadm/bin
+
+d intf $MENU/devices/add 0755 bin bin
+f intf $MENU/devices/add/Form.adddevice 0644 bin bin
+f intf $MENU/devices/add/Text.addrem 0644 bin bin
+f intf $MENU/devices/add/Help 0644 bin bin
+

@@ -1,0 +1,44 @@
+#ident	"@(#)olpkg.oam:pkg.dtf3/prototype	1.2"
+#	Copyright (c) 1990, 1991 UNIX System Laboratories, Inc.
+#	Copyright (c) 1988 AT&T
+#	  All Rights Reserved
+
+#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+#	UNIX System Laboratories, Inc.
+#	The copyright notice above does not evidence any
+#	actual or intended publication of such source code.
+
+
+i copyright
+i depend
+i pkginfo
+i postinstall
+i preremove
+
+!PKGINST=dtf3
+
+!default 0755 bin bin
+
+d enduser /usr ? ? ?
+
+d enduser /usr/X
+d enduser /usr/X/lib
+d enduser /usr/X/lib/fonts
+d enduser /usr/X/lib/fonts/folio
+
+!default 0644 bin bin
+
+f enduser /usr/X/lib/libfolio.so
+
+f enduser /usr/X/lib/fonts/folio/LcdBr.f3b
+f enduser /usr/X/lib/fonts/folio/LcdBrDB.f3b
+f enduser /usr/X/lib/fonts/folio/LcdBrDBI.f3b
+f enduser /usr/X/lib/fonts/folio/LcdBrI.f3b
+f enduser /usr/X/lib/fonts/folio/LcdSanB.f3b
+f enduser /usr/X/lib/fonts/folio/LcdSanBI.f3b
+f enduser /usr/X/lib/fonts/folio/LcdSanI.f3b
+f enduser /usr/X/lib/fonts/folio/LcdSanT.f3b
+f enduser /usr/X/lib/fonts/folio/LcdSanTB.f3b
+f enduser /usr/X/lib/fonts/folio/LcdSans.f3b
+f enduser /usr/X/lib/fonts/folio/fonts.dir
+f enduser /usr/X/lib/fonts/folio/fonts.scale=/usr/X/lib/fonts/folio/fonts.dir

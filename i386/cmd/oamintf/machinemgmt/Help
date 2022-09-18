@@ -1,0 +1,7 @@
+#ident	"@(#)oamintf:i386/cmd/oamintf/machinemgmt/Help	1.3"
+#ident  "$Header: Help 1.1 91/08/28 $"
+ABSTRACT:
+	The items in the "machine" menu provide functions for machine
+	operations.  They include the ability to shut down the
+	system, to reboot, and to display all users logged into the
+	system.

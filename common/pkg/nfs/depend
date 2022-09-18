@@ -1,0 +1,8 @@
+#ident	"@(#)pkg.nfs:common/pkg/nfs/depend	1.1.3.3"
+#ident  "$Header: $"
+
+P  base         Base System
+P  nsu		Networking Support Utilities
+P  inet		Internet Utilities
+P  rpc		Remote Procedure Call Utilities
+P  dfs		Distributed File System Utilities

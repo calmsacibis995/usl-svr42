@@ -1,0 +1,11 @@
+#ident	"@(#)filemgmt:common/cmd/oamintf/files/defaults/defaults.menu	1.3.2.2"
+#ident  "$Header: defaults.menu 2.0 91/07/12 $"
+
+#menu#Manage Defaults
+#help#defaults.help^Defaults Managment
+#life#permanent
+
+add^Add defaults^Form.add
+display^Display defaults^Form.display
+modify^Modify defaults^Form.modify
+remove^Remove defaults^Form.remove

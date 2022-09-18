@@ -1,0 +1,5 @@
+#ident	"@(#)pkg.cmds:i386/pkg/cmds/preinstall	1.6"
+#ident	"$Header: $"
+
+# Don't pdelete. Can't padd once it is pdeleted.
+exit 0

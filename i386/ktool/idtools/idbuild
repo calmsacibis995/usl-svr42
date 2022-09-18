@@ -1,0 +1,341 @@
+#!/sbin/sh
+#ident	"@(#)idtools:i386/ktool/idtools/idbuild	1.28"
+#ident	"$Header:"
+#
+# This script will build a UNIX Operating System kernel using ID native mode.
+# It is called by ID Install scripts that add device drivers
+# to the UNIX Operating System kernel.
+#
+# This script calls /etc/conf/bin/idconfig, /etc/conf/bin/idmkunix,
+# and /etc/conf/bin/unixsyms
+#
+USAGE="Usage: $0 [-Q] [-K] [[-I include_path] ...] [-O output_file]\n\
+[-S] [-B] [-#] [[-M module] ...] [-l sym_list] [[-D symbol] ...]\n\
+[[-U symbol] ...]"
+MKOP=
+CFOP=
+MODOP=
+SYMSOP=
+DBG=
+OUTFILE=unix
+STUNE=stune
+bflag=1
+kflag=0
+mflag=0
+qflag=0
+
+_PFX=`basename $0 | sed -n 's/idbuild$//p'`
+_PFX=${_PFX:-$PFX}
+
+# delay build if it's not in a cross environment and no option specified
+if [ "${ROOT:=/}" = "/" -a $# -eq 0 ]
+then
+	bflag=0
+fi
+
+while getopts KQI:O:D:U:M:SBl:# op
+do
+	case "$op" in
+	K)
+		kflag=1
+		;;
+	Q)
+		qflag=1
+		MKOP="$MKOP -${op}"
+		;;
+	I)
+		if [ ! -d $OPTARG ]
+                then
+                        echo "\n\tThe directory \"$OPTARG\" doesn't exist.\n"
+                        exit 1
+                fi
+		echo $OPTARG | grep "^/" > /dev/null 2>&1 || 
+		{
+			OPTARG=`cd $OPTARG;pwd`
+		}
+
+		MKOP="$MKOP -${op} ${OPTARG}"
+		;;
+	O)
+		OUTDIR=`dirname $OPTARG`
+                if [ ! -d $OUTDIR ]
+                then
+                        echo "\n\tThe directory \"$OUTDIR\" doesn't exist.\n"
+                        exit 1
+                fi
+		echo $OUTDIR | grep "^/" > /dev/null 2>&1 || 
+		{
+			OUTDIR=`cd $OUTDIR;pwd`
+		}
+		OUTFILE=${OUTDIR}/`basename $OPTARG`
+		MKOP="$MKOP -${op} $OUTFILE"
+		;;
+	D | U)
+		MKOP="$MKOP -${op}${OPTARG}"
+		;;
+	M)
+		mflag=1
+		MODULES="$MODULES $OPTARG"
+		MODOP="$MODOP -${op} $OPTARG"
+		;;
+	S)
+		CFOP="$CFOP -${op}"
+		;;
+	B)
+		bflag=1
+		;;
+	l)
+		SYMSOP="$SYMSOP -${op} ${OPTARG}"
+		;;
+	'#')
+		DBG="-#"
+		;;
+	*)
+		if [ "$OPTARG" = "#" ]
+		then
+			DBG="-#"
+		else
+			echo "$USAGE"
+			exit 1
+		fi
+		;;
+	esac
+done
+
+if [ $mflag -eq 0 ]
+then
+	if [ "$OUTFILE" = "unix" ]
+	then
+		echo "\n\tThe UNIX Operating System kernel will be rebuilt\c"
+	else
+		echo "\n\tThe \"$OUTFILE\" kernel will be built\c"
+	fi
+	if [ $bflag -eq 1 ]
+	then
+		echo " now.\n\tThis will take some time. Please wait.\n"
+	else
+		echo " to include your\n\tconfiguration changes during \c"
+		echo "the next system reboot.\n"
+	fi
+else
+	echo "\n\tThe following loadable modules will be configured now:"
+	echo "\n\t$MODULES\n"
+fi
+
+if [ "${ROOT}" != "/" ]
+then
+	ROOT=${ROOT}${MACH:+"/$MACH"}
+        echo "\tRoot for this process is ${ROOT}"
+else
+	_PFX=
+	MACH=
+	TOOLS=
+	PATH=/bin:/sbin:/usr/bin:/usr/sbin:/etc sync
+fi
+
+if [ $bflag -eq 0 ]
+then
+	> /etc/conf/.rebuild
+	exit 0
+fi
+
+ETC=$ROOT/etc
+ID=$ETC/conf
+P_IDCONFIG=/etc/conf/bin/${_PFX}idconfig
+IDCONFIG=$ROOT/$P_IDCONFIG
+[ -x $IDCONFIG -o ! -x $TOOLS/$P_IDCONFIG ] || IDCONFIG=$TOOLS/$P_IDCONFIG
+P_IDMKUNIX=/etc/conf/bin/${_PFX}idmkunix
+IDMKUNIX=$ROOT/$P_IDMKUNIX
+[ -x $IDMKUNIX -o ! -x $TOOLS/$P_IDMKUNIX ] || IDMKUNIX=$TOOLS/$P_IDMKUNIX
+P_UNIXSYMS=/etc/conf/bin/${_PFX}unixsyms
+UNIXSYMS=$ROOT/$P_UNIXSYMS
+[ -x $UNIXSYMS -o ! -x $TOOLS/$P_UNIXSYMS ] || UNIXSYMS=$TOOLS/$P_UNIXSYMS
+
+IDMODREG=/etc/conf/bin/idmodreg
+IDMKINIT=/etc/conf/bin/idmkinit
+IDMKNOD=/etc/conf/bin/idmknod
+
+IDBLD="config.h conf.c direct ifile modlist"
+# RECOVERY_CODE Disabled:
+# IDLCK="$ID/.unix_reconf $ID/.last_dev_add $ID/.last_dev_del"
+IDLCK="$ID/.unix_reconf"
+
+set +e
+
+>$ID/.unix_reconf
+ 
+cd $ID/cf.d
+if [ $mflag -eq 0 ]
+then
+	rm -f $OUTFILE
+fi
+
+if [ $qflag -eq 0 ]
+then
+        cd $ID/sdevice.d; cat * > $ID/cf.d/sdevice.new
+	cd $ID/cf.d
+	if [ "`echo $ID/sassign.d/*`" != $ID/sassign.d/'*' ]
+	then
+		cat $ID/sassign.d/* > $ID/cf.d/sassign.new
+	else
+		> sassign.new
+	fi
+        (echo "* Lines ending in \"%%INS%%\" are from mtune.d/*\t%%INS%%"
+	 echo "* and constructed automatically.\t\t%%INS%%"
+	 echo "* DO NOT edit manually.\t\t\t\t%%INS%%"
+	 sed '/./s/$/	%%INS%%/' $ID/mtune.d/*
+	) > mtune.new
+	if [ -f mtune ]
+	then
+		echo "* The following lines, if any, are entries\t%%INS%%" >>mtune.new
+		echo "* preserved from the previous mtune file.\t%%INS%%" >>mtune.new
+		sed -e '/^[ 	]*$/d' -e '/%%INS%%$/d' mtune | while read LN
+		do
+			# ignore tunables already appearing in mtune.new;
+			# take everything else including comments, etc.
+			TUNABLE=`expr "x$LN" : ".\([A-Z_a-z][^	 ]*\)"` &&
+			grep "^$TUNABLE[ 	]" mtune.new >/dev/null &&
+			continue
+			echo "$LN" >>mtune.new
+		done
+	fi
+	if [ mflag -eq 1 ]
+	then
+		STUNE=stune.current
+	fi
+	[ -f ${STUNE} ] || >${STUNE}
+	rm -f modlist
+	rm -f $ID/pack.d/*/mod_reg
+        $IDCONFIG -d sdevice.new -a sassign.new -T mtune.new -t ${STUNE} -r $ID $CFOP $MODOP $DBG
+        if [ $? -ne 0 ]
+        then
+                rm -rf $IDLCK
+                if [ $kflag -eq 0 ]
+                then
+                        rm -rf $IDBLD
+                        rm -rf sdevice.new sassign.new mtune.new
+                	rm -f $ID/pack.d/*/mod_conf.c
+	                rm -f $ID/pack.d/*/mod_sec.s
+                	rm -f $ID/pack.d/*/mod_reg
+                	rm -f $ID/pack.d/*/mod_ifile
+                fi
+                exit 1
+        fi
+fi
+
+$IDMKUNIX -r $ROOT $MKOP $MODOP $DBG
+if [ $? -ne 0 ]
+then
+        rm -rf $IDLCK
+        if [ $kflag -eq 0 ]
+        then
+                rm -rf $IDBLD
+                rm -rf sdevice.new sassign.new mtune.new
+                rm -f conf.o
+                rm -f $ID/pack.d/*/space.o
+                rm -f $ID/pack.d/*/stubs.o
+                rm -f $ID/pack.d/*/mod_conf.[co]
+                rm -f $ID/pack.d/*/mod_sec.[so]
+                rm -f $ID/pack.d/*/mod_reg
+                rm -f $ID/pack.d/*/mod_ifile
+        fi
+        exit 1
+fi
+
+
+if [ "${ROOT}" = "/" -a $mflag -eq 1 ]
+then
+	$IDMKNOD -r $ID -d sdevice.new $MODOP
+	if [ $? -ne 0 ]
+	then
+		echo "Failed to make /dev entries for the specified modules."
+		exit 1
+	fi
+	$IDMODREG -r $ID $MODOP
+	if [ $? -ne 0 ]
+	then
+		echo "Failed to register the specified loadable modules."
+		exit 1
+	fi
+	$IDMKINIT -e $ID/init.d -o $ID/cf.d $MODOP
+	if [ $? -ne 0 ]
+	then
+		echo "Failed to create inittab entries for the specified modules."
+		exit 1
+	fi
+fi
+
+if [ $mflag -eq 0 ]
+then
+	cat $ID/pack.d/*/mod_reg > $ID/cf.d/mod_register 2>/dev/null
+fi
+
+if [ $kflag -eq 0 ]
+then
+        rm -rf $IDBLD
+        rm -f conf.o
+        rm -f $ID/pack.d/*/space.o
+        rm -f $ID/pack.d/*/stubs.o
+        rm -f $ID/pack.d/*/mod_conf.[co]
+        rm -f $ID/pack.d/*/mod_sec.[so]
+        rm -f $ID/pack.d/*/mod_reg
+        rm -f $ID/pack.d/*/mod_ifile
+fi
+ 
+if [ $mflag -ne 0 ]
+then
+	echo "\n\tModule configuration is completed."
+        mv $ID/cf.d/sdevice.new $ID/cf.d/sdevice
+        mv $ID/cf.d/mtune.new $ID/cf.d/mtune
+	rm -rf $IDLCK $ID/cf.d/sassign.new
+	exit 0
+fi
+
+# If possible, set up symbol info for kernel debuggers and DLM
+if [ -r $ID/sdevice.d/modksym -a `grep "^modksym" $ID/sdevice.d/modksym | cut -f2` = "Y" ]
+then
+	$UNIXSYMS $SYMSOP -i $ID/cf.d/kdb.rc -e $ID/cf.d/kdb.early $OUTFILE 2>/dev/null
+	if [ $? != 0 ]
+	then
+		echo "ERROR: Cannot load the symbol table for $OUTFILE."
+		echo "The rebuild of the UNIX Operating System kernel failed."
+		exit 1
+	fi
+else
+	echo "\n\tWARNING: No symbol table will be loaded for $OUTFILE."
+	if [ -r $ID/sdevice.d/kdb -a `grep "^kdb" $ID/sdevice.d/kdb | cut -f2` = "Y" ]
+	then
+		$UNIXSYMS -d -i $ID/cf.d/kdb.rc -e $ID/cf.d/kdb.early $OUTFILE 2>/dev/null
+		if [ $? != 0 ]
+		then
+			echo "\n\tWARNING: Failed to load kdb commands."
+			echo "\tIf any commands were specified in kdb.rc or kdb.early,"
+			echo "\tthey will not be executed during system initialization."
+		fi
+	fi
+fi
+
+if [ $qflag -eq 0 ]
+then
+        mv $ID/cf.d/sdevice.new $ID/cf.d/sdevice
+        mv $ID/cf.d/sassign.new $ID/cf.d/sassign
+        mv $ID/cf.d/mtune.new $ID/cf.d/mtune
+fi
+
+chmod 744 $OUTFILE
+chgrp other $OUTFILE 2>/dev/null
+
+if [ "$OUTFILE" = "unix" ]
+then
+        # copy of unix to /stand/unix done at shutdown in rc0
+        >$ID/.copy_unix
+	rm -rf $ID/.rebuild
+	echo "\n\tThe UNIX Operating System kernel has been rebuilt.\n"
+else
+	echo "\n\tThe \"$OUTFILE\" kernel has been built.\n"
+fi
+
+rm -rf $IDLCK
+PATH=/bin:/sbin:/usr/bin:/usr/sbin sync
+
+exit 0

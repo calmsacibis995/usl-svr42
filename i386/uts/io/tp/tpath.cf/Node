@@ -1,0 +1,7 @@
+#ident	"@(#)uts-x86:io/tp/tpath.cf/Node	1.1"
+#ident	"$Header: $"
+
+tpath	tp/cons	c	0	0	0	720
+tpath	tp/ctrl	c	1	0	7	620
+tpath	tp/data	c	2	0	7	620
+tpath	tp/adm	c	3	0	0	720

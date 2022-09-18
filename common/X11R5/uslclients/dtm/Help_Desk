@@ -1,0 +1,27 @@
+viewType=DM_ICONIC
+locale=C
+dtm28,202{_HELPFILE="DesktopMgr/folder.hlp";_ICONLABEL="Folder";_DESCRP="Store files and other folders.";_ICONFILE="dir.icon";_DFLT_ICONLABEL="Folder"}
+fontmgr16,264{_HELPFILE="dtadmin/font.hlp";_ICONLABEL="Font_Setup";_DESCRP="Managing and using fonts.";_ICONFILE="font.icon";_DFLT_ICONLABEL="Font_Setup"}
+dtmail112,326{_HELPFILE="dtmail/mail.hlp";_ICONLABEL="Mail";_DESCRP="Edit text files.";_ICONFILE="mail32.icon";_DFLT_ICONLABEL="Mail"}
+dtedit14,636{_HELPFILE="dtedit/edit.hlp";_ICONLABEL="Text_Editor";_DESCRP="Edit text files.";_ICONFILE="editor.glyph";_DFLT_ICONLABEL="Text_Editor"}
+dtclock28,78{_HELPFILE="dtclock/clock.hlp";_ICONLABEL="Clock";_DESCRP="Display and set time and alarm";_ICONFILE="dtclock.32";_DFLT_ICONLABEL="Clock"}
+dtm100,264{_HELPFILE="DesktopMgr/iconset.hlp";_ICONLABEL="Icon_Setup";_DESCRP="Manage file classes.";_ICONFILE="binder.icon";_DFLT_ICONLABEL="Icon_Setup"}
+PackageMgr10,16{_HELPFILE="dtadmin/pkgset.hlp";_ICONLABEL="Appl-n_Setup";_DESCRP="Installing and managing applications.";_ICONFILE="pkgmgr.icon";_DFLT_ICONLABEL="Appl-n_Setup"}
+}
+DialupMgr11,140{_HELPFILE="dtadmin/DialMgr.hlp";_ICONLABEL="Dialup_Setup";_DESCRP="Communicate between computers.";_ICONFILE="modem.icon";_DFLT_ICONLABEL="Dialup_Setup"}
+LoginMgr3,388{_HELPFILE="dtadmin/passwd.hlp";_ICONLABEL="Password_Setup";_DESCRP="Change your login password.";_ICONFILE="passwd.32";_DFLT_ICONLABEL="Password_Setup"}
+prtsetup9,450{_HELPFILE="dtadmin/printer.hlp";_ICONLABEL="Printer_Setup";_DESCRP="Install and setup printers";_ICONFILE="prtsetup.icon";_DFLT_ICONLABEL="Printer_Setup"}
+LoginMgr17,697{_HELPFILE="dtadmin/LoginMgr.hlp";_ICONLABEL="User_Setup";_DESCRP="Setup and managing user accounts.";_ICONFILE="user.glyph";_DFLT_ICONLABEL="User_Setup"}
+MediaMgr88,16{_HELPFILE="dtadmin/backup.hlp";_ICONLABEL="Backup-Restore";_DESCRP="Backup-Restore management";_ICONFILE="backup.glyph";_DFLT_ICONLABEL="Backup-Restore"}
+dtm104,450{_HELPFILE="DesktopMgr/shutdown.hlp";_ICONLABEL="Shutdown";_DESCRP="Prepare system to be turned off.";_ICONFILE="shut.icon";_DFLT_ICONLABEL="Shutdown"}
+dtm99,202{_HELPFILE="DesktopMgr/fmap.hlp";_ICONLABEL="Folder_Map";_DESCRP="Displaying tree view of file system.";_ICONFILE="fmap.icon";_DFLT_ICONLABEL="Folder_Map"}
+prtsetup111,388{_HELPFILE="dtadmin/printuse.hlp";_ICONLABEL="Printer";_DESCRP="check, delete, and change print jobs";_ICONFILE="printer.icon";_DFLT_ICONLABEL="Printer"}
+dtm94,636{_HELPFILE="DesktopMgr/desktop.hlp";_ICONLABEL="UNIX Desktop";_DESCRP="Introduction to the UNIX Desktop";_ICONFILE="dtprop.icon";_DFLT_ICONLABEL="UNIX Desktop"}
+MediaMgr112,512{_HELPFILE="dtadmin/tape.hlp";_ICONLABEL="Tape";_DESCRP="Using Cartridge Tapes";_ICONFILE="ctape.glyph";_DFLT_ICONLABEL="Tape"}
+MediaMgr107,140{_HELPFILE="dtadmin/disk.hlp";_ICONLABEL="Diskette";_DESCRP="Using Floppy Disks";_ICONFILE="disk3.5.xpm";_DFLT_ICONLABEL="Diskette"}
+dtm108,78{_HELPFILE="DesktopMgr/datafile.hlp";_ICONLABEL="Datafile";_DESCRP="Introduction to Datafiles.";_ICONFILE="datafile.icon";_DFLT_ICONLABEL="Datafile"}
+dtm28,326{_HELPFILE="DesktopMgr/links.hlp";_ICONLABEL="Links";_DESCRP="Introduction to Links";_ICONFILE="exec.icon";_LINK="Y";_DFLT_ICONLABEL="Link"}
+dashboard7,512{_HELPFILE="dtadmin/dashbrd.hlp";_ICONLABEL="System_Status";_DESCRP="Display system information.";_ICONFILE="dash.icon";_DFLT_ICONLABEL="System_Status"}
+dtm99,697{_HELPFILE="DesktopMgr/wb.hlp";_ICONLABEL="Wastebasket";_DESCRP="Managing deleted files";_ICONFILE="wb32.icon";_DFLT_ICONLABEL="Wastebasket"}
+dtsched4,574{_HELPFILE="dtsched/sched.hlp";_ICONLABEL="Task_Scheduler";_DESCRP="Run programs at preset times.";_ICONFILE="dtsched.32";_DFLT_ICONLABEL="Task_Scheduler"}
+xterm106,574{_HELPFILE="xterm/term.hlp";_ICONLABEL="Terminal";_DESCRP="Using the UNIX System command line.";_ICONFILE="term.icon";_DFLT_ICONLABEL="Terminal"}

@@ -1,0 +1,7 @@
+#ident	"@(#)oamintf:common/cmd/oamintf/applications/Help	1.2.7.2"
+#ident  "$Header: Help 2.0 91/07/12 $"
+
+ABSTRACT:
+	The items in the "applications" menu are menus and tasks
+	supplied by add-on packages for the administration of their
+	respective features.

@@ -1,0 +1,41 @@
+#ident	"@(#)oamintf:i386/cmd/oamintf/xx/FACE3.2/OBJECTS/PS/FORM/Menu.muser	1.3"
+#ident	"$Header: $"
+menu="Choices"
+multiselect
+
+done=`getitems " " | set -l Form_Choice` close
+
+close=`/usr/bin/rm -f /usr/tmp/user.$VPID`
+
+`/usr/vmsys/admin/PS/FORM/user.sh`
+
+`message "MARK items to select and press RETURN."`
+
+`/usr/bin/cat /usr/tmp/user.$VPID | regex '^(.*)$0'
+'name="$m0" 
+itemmsg="MARK items to select and press RETURN."
+'`
+
+name=""
+action=nop
+button=1
+
+name="MARK"
+action=return 364
+button=2
+
+name=""
+action=nop
+button=4
+
+name=""
+action=nop
+button=5
+
+name=""
+button=7
+action=nop
+
+name=""
+button=8
+actio=nop

@@ -1,0 +1,3 @@
+#ident	"@(#)uts-x86:proc/class/ts.cf/Mtune	1.3"
+#ident	"$Header: $"
+TSMAXUPRI	20	10	30

@@ -1,0 +1,9 @@
+#ident	"@(#)pkg.softint:common/pkg/softint/pkginfo	1.4"
+#ident  "$Header: $"
+
+PKG="softint"
+CLASSES="none"
+NAME="Software Packaging Tools"
+VERSION="1"
+VENDOR="UNIX System Laboratories"
+CATEGORY="system"

@@ -1,0 +1,68 @@
+#ident  "@(#)set:common/set/network/prototype	1.26"
+#ident  "$Header: $"
+
+i pkginfo 
+i preinstall 
+i response
+i setinfo
+i set.1
+i set.2
+i set.3
+i set.4
+i set.5
+i set.6
+i postinstall
+#i preremove
+i setsize
+
+!PKGSRCLOC=../../pkg
+!XPKGSRCLOC=../../X11R5/olpkg.oam
+!SETSRCLOC=../../set
+
+i request=$SETSRCLOC/fnd/request
+i copyright=$SETSRCLOC/fnd/copyright
+
+i dfs/copyright=$PKGSRCLOC/dfs/copyright
+i dfs/pkginfo=$PKGSRCLOC/dfs/pkginfo
+i dfs/depend=$PKGSRCLOC/dfs/depend
+
+i rpc/depend=$PKGSRCLOC/rpc/depend
+i rpc/copyright=$PKGSRCLOC/rpc/copyright
+i rpc/pkginfo=$PKGSRCLOC/rpc/pkginfo
+
+i inet/menu.inet=$PKGSRCLOC/inet/menu.inet
+i inet/request=$PKGSRCLOC/inet/request
+i inet/depend=$PKGSRCLOC/inet/depend 
+i inet/copyright=$PKGSRCLOC/inet/copyright 
+i inet/pkginfo=$PKGSRCLOC/inet/pkginfo 
+i inet/response=$PKGSRCLOC/inet/response 
+
+i eth/request=$PKGSRCLOC/eth/request
+i eth/menu.eth=$PKGSRCLOC/eth/menu.eth
+i eth/menu.err=$PKGSRCLOC/eth/menu.err
+i eth/menu.param=$PKGSRCLOC/eth/menu.param
+i eth/depend=$PKGSRCLOC/eth/depend
+i eth/copyright=$PKGSRCLOC/eth/copyright
+i eth/pkginfo=$PKGSRCLOC/eth/pkginfo
+
+i nfs/depend=$PKGSRCLOC/nfs/depend
+i nfs/menu.nfs=$PKGSRCLOC/nfs/menu.nfs
+i nfs/request=$PKGSRCLOC/nfs/request
+i nfs/response=$PKGSRCLOC/nfs/response
+i nfs/copyright=$PKGSRCLOC/nfs/copyright
+i nfs/pkginfo=$PKGSRCLOC/nfs/pkginfo
+
+i netcmds/depend=$PKGSRCLOC/netcmds/depend
+i netcmds/copyright=$PKGSRCLOC/netcmds/copyright
+i netcmds/pkginfo=$PKGSRCLOC/netcmds/pkginfo
+
+i rfs/depend=$PKGSRCLOC/rfs/depend
+i rfs/menu.rfs=$PKGSRCLOC/rfs/menu.rfs
+i rfs/request=$PKGSRCLOC/rfs/request
+i rfs/response=$PKGSRCLOC/rfs/response
+i rfs/copyright=$PKGSRCLOC/rfs/copyright
+i rfs/pkginfo=$PKGSRCLOC/rfs/pkginfo
+
+i dtnet/depend=$XPKGSRCLOC/pkg.dtnet/depend
+i dtnet/copyright=$XPKGSRCLOC/pkg.dtnet/copyright
+i dtnet/pkginfo=$XPKGSRCLOC/pkg.dtnet/pkginfo

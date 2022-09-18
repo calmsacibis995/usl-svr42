@@ -1,0 +1,17 @@
+*** uudemon.hour4	Mon Feb 24 11:56:11 1992
+--- uudemon.hourD	Mon Feb 24 11:56:35 1992
+***************
+*** 1,4 ****
+! #!/sbin/sh
+! 
+! 
+! #ident	"@(#)/usr/lib/uucp/uudemon.hou.sl 1.1 4.0 05/29/91 49824 AT&T-USL"
+--- 1,8 ----
+! #!/usr/lib/uucp/permld /var/spool/uucp
+! #ident	"@(#)/usr/lib/uucp/uudemon.hou.sl 1.2 4.1dt 05/28/92 3472 AT&T-USL"
+! #ident "$Header: uudemon.hour 1.1 91/02/28 $"
+! #
+! #	This shell should be run out of uucp's crontab
+! #	twice an hour, shortly after uudemon.poll, e.g.
+! #
+! # 41,11 * * * * /usr/lib/uucp/uudemon.hour > /dev/null

@@ -1,0 +1,92 @@
+#ident	"@(#)proto:desktop/menus/fd/getFlop3.2	1.7"
+#ident	"$Header: $"
+#
+# Menu description file format
+#
+# Lines beginning with '#' are comments
+#
+# format string for page numbering - 1st %d is current pg and 2nd is total pgs
+.pageno
+Page %d of %d
+#
+# string that appears in the upper left corner
+.ul
+UNIX System Installation
+#
+# The banner for the help_within_help screen
+.hhelp_ban
+Instructions
+#
+# The banner for the help screen
+.helpbanner
+Help: Cannot Access Floppy Diskette
+#
+# string that appears in the upper right corner
+.ur
+Cannot Access Floppy Diskette
+#
+# string that appears in the lower left corner
+#.ll
+#THIS SPACE INTENTIONALLY LEFT BLANK.
+#
+# string that appears in the lower right corner
+.lr
+Del=Cancel  F1=Help
+#
+# text for above the menu form (used to be -s strings)
+.top
+WARNING:  An error occurred while accessing the diskette.
+
+Possible reasons for the error are:  
+
+         - no diskette was inserted
+         - an incorrect or damaged diskette was inserted
+         - a diskette was inserted incorrectly
+
+Replace the diskette currently in the drive with the diskette labeled 
+"Boot Floppy 3 of 3" and then press 'ENTER' to continue.
+#
+# This is the "options" string for menus.
+#.optstring
+#THIS SPACE INTENTIONALLY LEFT BLANK.
+#
+# Delimiter for form - the contents of this section are the same as
+# the contents of a file specified w/-f options, autodetects whether its
+# a form or a menu.
+.form
+ENTER
+#
+# This is the prompt string for a MENU only.
+#.selection
+#THIS SPACE INTENTIONALLY LEFT BLANK.
+#
+# This is the text for beneath the menu (used to be -i strings)  Now we
+# can include text underneath the menu selection line, because of .selection
+.selection
+Press 'ENTER' to continue.
+#
+# Help text.  This can also be done using I/O redirection; if aline begins
+# with a <, the rest of the line is considered to be a filename and is
+# read in as though it were part of the file.  If the file contains other
+# .keywords, or `backticks` or <redirection, these will not be processed.
+.help
+For detailed instructions, press the 'F1' (or '?') key at any time.
+
+The UNIX System installation process needs to access the diskette labeled
+"Boot Floppy 3 of 3".  Remove the diskette currently in the drive and insert
+the diskette labeled "Boot Floppy 3 of 3".  After you have inserted the
+correct diskette, press 'ENTER' to continue the installation.
+#
+# This is the instructions (help banner) for the help screens.
+.helpinst
+ESC=Exit help  F1=Instructions  Del=Cancel  1=Forward  2=Backward
+.hhelpinst
+ESC=Exit instructions  Del=Cancel  1=Forward  2=Backward
+#
+# This is the "Working..." flag that flashes on the screen if the -r
+# option is specified on the command line.
+#.working
+#THIS SPACE INTENTIONALLY LEFT BLANK.
+#
+# This is an optional keyword for the end of input
+.end

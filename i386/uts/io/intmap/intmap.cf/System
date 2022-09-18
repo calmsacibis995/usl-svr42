@@ -1,0 +1,4 @@
+#ident	"@(#)uts-x86:io/intmap/intmap.cf/System	1.1"
+#ident	"$Header: $"
+$version 1
+intmap	N	1	0	0	0	0	0	0	0     -1

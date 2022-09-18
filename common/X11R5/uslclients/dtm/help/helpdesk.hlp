@@ -1,0 +1,106 @@
+#ident	"@(#)dtm:help/helpdesk.hlp	1.12"
+^*version^1
+^*title^Help Desk
+^:Help_Desk
+^*width^70
+^+DesktopMgr/help.defs
+^?Access help on applications.
+^0^Help Desk
+^$10
+Help Desk
+
+The Help Desk window contains icons for UNIX Desktop Applications and
+subjects for which on-line help is available. If you click on an icon,
+you see a short description of that application at the bottom of the
+window. When you \d(double-click) on the icon, on-line help for that
+application appears in a help window.
+
+The following window is provided for the Help Desk:
+
+        \k(Help Desk Window)
+^1^Help Desk Window
+^$20
+\k{Help Desk}
+1. Help Desk Window
+
+Use the Help Desk window to display on-line help for applications
+and subjects for which on-line help is available. It is a central
+location for help information. To see a brief description of the
+application, click on an icon. The description is displayed at the
+bottom of the window. To display the help window, \d(double-click) on an
+icon or use the \k(File button^^File ButtonHD) after clicking on an icon.
+
+The buttons available from the Help Desk window are:
+
+        \k(File Button^^File ButtonHD)
+        \k(View Button ^^View ButtonHD)
+        \k(Help Button ^^Help ButtonHD)
+^2^File Button=File ButtonHD
+^$30
+1. \k{Help Desk Window}
+   1.1 File Button
+
+The File button lets you open a help window for selected applications
+and exit from the Help Desk window. Clicking on the File button brings
+up a menu with the following options:
+
+        \k(Open)
+        \k(Exit)
+^3^Open
+^$40
+1. \k{Help Desk Window}
+   1.1 \k{File Button^^File ButtonHD}
+       1.1.1 Open
+
+The Open menu item displays a help window for the selected icon.
+^3^Exit
+^$50
+1. \k{Help Desk Window}
+   1.1 \k{File Button^^File ButtonHD}
+       1.1.2 Exit
+
+The Exit menu item closes the Help Desk window.
+^2^View Button=View ButtonHD
+^$60
+1. \k{Help Desk Window}
+   1.2 View Button
+
+The View button lets you align the icons in the Help Desk window.
+Clicking on the View button displays a menu with the following
+option:
+^3^Align
+^$70
+1. \k{Help Desk Window}
+   1.2 \k{View Button^^View ButtonHD}
+       1.2.1 Align
+
+The Align menu option lets you align the icons in the Help Desk
+window. You may want to align your icons after resizing the Help Desk
+window.
+^2^Help Button=Help ButtonHD
+^$80
+1. \k{Help Desk Window}
+   1.3 Help Button
+
+The Help button provides on-line help for the Help Desk window.
+Clicking on the Help button displays a menu with the following
+options:
+
+        \k(Help Desk^^Help DeskHD)
+        \k(Table of Contents)
+^3^Help Desk=Help DeskHD
+^$90
+1. \k{Help Desk Window}
+   1.3 \k{Help Button^^Help ButtonHD}
+       1.3.1 Help Desk
+
+The Help Desk menu option provides on-line help for the Help Desk
+window.
+^3^Table of Contents
+^$100
+1. \k{Help Desk Window}
+   1.3 \k{Help Button^^Help ButtonHD}
+       1.3.2 Table of Contents
+
+The Table of Contents menu option displays the list of help topics
+available for the Help Desk window.

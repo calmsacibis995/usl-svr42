@@ -1,0 +1,83 @@
+Following are brief descriptions of each property setting.
+
+The "Default pathname" field is filename supplied to the 3 popup \
+command windows (Open, Save As, Print File). This field cannot \
+be blank.
+
+The "Print command" field is for setting your favorite lp command \
+line (e.g., "lp -dprinter2 -opostscript -oPages4"). Refer to the \
+lp man page and to your local System Administrator for valid lp options. \
+This field cannot be blank.
+
+All of the following fields are used to set xpr options; they cannot be blank.
+
+The "Output format" field specifies the format mode used to print \
+the window image. It is equivalent to xpr's "-d" option field. Refer to \
+the xpr man page for a list of valid items.
+
+The "Orientation" field specifies a portrait or landscape mode \
+on paper for the printed image. It is equivalent respectively to \
+xpr's "-p" or "-l" option. 
+
+Setting the "Reverse video" field to "on" will cause the \
+image to be printed intensity inverted. It is equivalent \
+to xpr's "-r" option.
+
+All of the following fields are used to set xpr options; they \
+are optional and can be blank.
+
+The "Header" field allows you to specify a title above \
+the printed image. It is equivalent to xpr's "-h" option. 
+
+The "Footer" field allows you to specify a title below the printed \
+image. It is equivalent to xpr's "-t" option. 
+
+The "Pages" field specifies how many pages the printed image will be \
+split into. It is equivalent to xpr's "-s" option. 
+
+The "Scale" field specifies the factor to which the printed image \
+is scaled. It is equivalent to xpr's "-S" option. 
+
+The "Left offset" field specifies the left offset from which the printed \
+image will appear on paper. It is equivalent to xpr's "-L" option. 
+
+The "Top offset" field specifies the top offset from which \
+the printed image will appear on paper. It is equivalent to \
+xpr's "-T" option.
+
+The "Max width" field specifies the maximum width the image \
+is scalable to. It is equivalent to xpr's "-W" option. \
+It overrides the "Scale" field.
+
+The "Max height" field specifies the maximum height the image is \
+scalable to. It is equivalent to xpr's "-H" option. \
+It overrides the "Scale" field.
+
+Selecting the "Apply" button will set the properties for your current \
+Print Screen session only.  All changes take effect immediately for \
+this session. The window will be dismissed.
+
+Selecting the "Set Default" button will set and save the properties for \
+your current and all future Print Screen sessions.  All \
+changes take effect immediately. The window will be dismissed.
+
+Selecting the "Reset" button will reset the property \
+fields to their previously saved values. This only changes the \
+visual appearance of the property sheet; nothing is changed \
+for this session nor for future sessions (you still have to \
+select Apply or Set Defaults to do that).
+
+Selecting the "Reset To Factory" button will reset the property \
+fields to their default system values. This only changes the \
+visual appearance of the property sheet; nothing is changed \
+for this session nor for future sessions (you still \
+have to select Apply or Set Defaults to do that).
+
+For more information on above settings, refer to the man pages for xpr and lp.
+
+When you select one of the print functions, xpr \
+and lp will be executed, with options specified from the saved settings \
+of your most recent "Apply" or "Set Defaults" invocation. \
+Any subsequent errors will appear in the file $HOME/.oliniterr, and \
+any messages from xpr and lp will appear in the \
+file $HOME/.olinitout.

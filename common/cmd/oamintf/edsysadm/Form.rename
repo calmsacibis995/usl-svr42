@@ -1,0 +1,75 @@
+#ident	"@(#)oamintf:common/cmd/oamintf/edsysadm/Form.rename	1.1.2.3"
+#ident  "$Header: Form.rename 2.0 91/07/12 $"
+
+################################################################################
+#	Module Name: Form.rename
+#	Date: November 1990
+#
+#	ARGS PASSED IN:
+#			ARG1 -> Original menu name
+#			ARG2 -> New menu name
+#			ARG3 -> Original menu directory
+#			ARG4 -> New menu directory
+#
+################################################################################
+form="Renaming Menu"
+
+framemsg=`readfile $INTFBASE/form.msg`
+
+help=OPEN TEXT $INTFBASE/Text.itemhelp $LININFO
+
+`set -l life=longterm`
+
+lifetime=$life
+
+done=`
+      if [ "$F4" = "yes" ];
+      then 
+	    indicator -w;
+	    shell "/usr/sadm/sysadm/edbin/newname $ARG1 $ARG2 $ARG3 $ARG4 >${TESTBASE}/newname 2>&1";
+	    if [ "$RET" -eq "0" ];
+	    then
+		set -l CMD="OPEN TEXT $EDSYSADM/Text.rename $ARG1 $ARG2 $ARG3 $ARG4";
+	    else
+		set -l CMD="OPEN TEXT $EDSYSADM/Text.namerr $OMENU $NMENU";
+	    fi;
+      else
+	    set -l life=shortterm;
+	    set -l CMD="UPDATE $ARG5 TRUE";
+      fi`$CMD
+
+#F1
+name="You are attempting to rename '$ARG1' to '$ARG2'.  This will"
+nrow=1
+ncol=3
+inactive=TRUE
+
+#F2
+name="result in '$ARG3' and everything"
+nrow=2
+ncol=3
+inactive=TRUE
+
+#F3
+name="below it to be moved to '$ARG4'."
+nrow=3
+ncol=3
+inactive=TRUE
+
+#F4
+name="Do you want to continue:"
+lininfo=Form.rename:continue 
+nrow=4
+ncol=3
+frow=4
+fcol=28
+columns=3
+value=yes
+valid=`test "$F4" = "yes" -o "$F4" = "no"`
+invalidmsg="Error - enter 'yes' or 'no'."
+fieldmsg="Enter yes or no."
+
+
+name=RESET
+button=8
+action=reset

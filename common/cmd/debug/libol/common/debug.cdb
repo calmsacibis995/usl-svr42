@@ -1,0 +1,14 @@
+#ident	"@(#)debugger:libol/common/debug.cdb	1.2"
+# class database file (resides usually in /usr/X/lib/classdb)
+#
+CLASS debug
+BEGIN
+	_CLASSNAME      "Enhanced Debugger";
+	_FILETYPE       EXEC;
+	_LPATTERN       "debug";
+	_ICONFILE       "debug.32";
+	_DFLTICONFILE   exec.icon;
+	MENU _Open      "exec %F &";
+	_DROP		"exec %F %S &";
+	_UNIQUE         "y";
+END

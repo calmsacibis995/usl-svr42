@@ -1,0 +1,11 @@
+When the "power user" option is on (i.e., selectDoesPreview is True),
+click SELECT on the Window menu button to activate the default item
+from the Window menu without displaying the menu. For example, when
+Close is the default item on the Window menu, moving the pointer to
+the Window menu button and clicking SELECT closes the window to
+an icon.
+
+When the "power user" option is off (i.e., selectDoesPreview is False),
+click SELECT on the Window menu button to display the Window menu
+in Stayup mode, or press SELECT on the Window menu button to display
+the Window menu in Press-Drag-Release mode.

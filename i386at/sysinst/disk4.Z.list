@@ -1,0 +1,24 @@
+#ident	"@(#)proto:disk4.Z.list	1.4.1.8"
+#ident	"$Header: $"
+usr/sbin/pkgadd
+usr/bin/pkgparam
+usr/sadm/install/bin/pkginstall
+usr/sadm/install/bin/setsizecvt
+usr/bin/ckyorn
+usr/bin/ckpath
+usr/bin/message
+usr/bin/ckrange
+var/sadm/install/admin/default
+sbin/filepriv
+sbin/fstyp
+usr/bin/dd
+etc/fs/s5/fstyp
+etc/inst/up/patch/base.LIST
+etc/inst/up/patch/lp.LIST
+etc/inst/up/base.v4.log
+etc/inst/up/straglers.v4
+etc/inst/up/boot.inst
+usr/sbin/pkginst/chkmrgfiles
+usr/sbin/pkginst/chkpkgrel
+usr/sbin/pkginst/pkgsavfiles
+etc/inst/locale/C/menus/upgrade/mergefiles.3

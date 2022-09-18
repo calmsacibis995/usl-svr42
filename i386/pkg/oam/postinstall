@@ -1,0 +1,71 @@
+#ident	"@(#)pkg.oam:postinstall	1.12"
+#ident	"$Header: $"
+
+#
+#  We created the sysadm userid in the request script without the correct
+#  shell.  Usermod it to sysadm here, but only if sysadm installed OK.
+#  If sysadm wasn't installed, then we have sh for the shell, but we know
+#  a password was put on this account in the request script, so we're safe.
+#
+if [ -x /usr/sbin/sysadm ]
+then
+	usermod -s /usr/sbin/sysadm sysadm >/dev/null 2>&1
+fi
+
+
+# Work-around for long pathname, supported by all files systems except s5
+
+if [ -d "${MENU}/netservices" ]
+then
+	FSTYPE="`/etc/devnm ${MENU}/netservices |
+		sed -e 's/ .*//' |
+		xargs fstyp`"
+
+	if [ "${FSTYPE}" != "s5"  -a ! -d "${MENU}/netservices/basic_networking" ]
+	then
+		#echo "## Creating symbolic link for long $FSTYPE pathname."
+		ln -s ${MENU}/netservices/basic_networki ${MENU}/netservices/basic_networking
+		if [ $? -ne 0 ]
+		then
+			echo "WARNING: Could not create symbolic link for basic_networking!"
+		fi
+	fi
+fi
+
+#
+#	Modify the OAM menu to include name to address mapping...
+#
+
+# OAM - OAM
+NSMENU=/usr/sadm/sysadm/menu/netservices/netserve.menu
+if [ -f $NSMENU -a -f /usr/sadm/sysadm/menu/netservices/name_to_addr/map.menu ]
+then
+	if fgrep 'name_to_address^Machine and Service Address Management^name_to_addr/map.menu' ${NSMENU} >/dev/null 2>&1
+	then
+		: Already there!
+	else
+		echo "name_to_address^Machine and Service Address Management^name_to_addr/map.menu" >> ${NSMENU}
+		#installf -c OAMintf $PKGINST ${NSMENU} f
+	fi
+fi
+
+#clean up menu dir and files
+#
+#  Make sure LANG environment variable is set.  If it's not set
+#  coming in to this request script, then default to the C-locale.
+#
+[ ${LANG} ] || LANG="C"
+export LANG
+
+rm -fr /etc/inst/locale/${LANG}/menus/oam
+
+#echo "Setting up the system administration menu interface."
+/usr/sadm/install/bin/ie_build > /dev/null 2>&1
+
+## lp package's OAM objects are moved to OAM package. However, corresponding 
+## changes are not made to menu files. 
+## As a short term fix we simply link ../add-ons/lp and ../add-ons/oam.
+
+ln -s /usr/sadm/sysadm/add-ons/oam /usr/sadm/sysadm/add-ons/lp 2>/dev/null 
+
+exit 0

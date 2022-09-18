@@ -1,0 +1,12 @@
+*** workstations.v	Wed Feb 26 20:38:19 1992
+--- workstations.d	Wed Feb 26 20:38:39 1992
+***************
+*** 1 ****
+--- 1,2 ----
++ #!/sbin/sh
+  #	Copyright (c) 1990, 1991 UNIX System Laboratories, Inc.
+***************
+*** 10 ****
+! #ident	"@(#)/etc/default/workstation.sl 1.1 4.0 05/29/91 49356 AT&T-USL"
+--- 10 ----
+! #ident	"@(#)/etc/default/workstation.sl 1.1 4.1dt 10/05/91 43940 AT&T-USL"

@@ -1,0 +1,6 @@
+#ident	"@(#)uts-x86at:io/hba/dpt.cf/Master	1.8"
+#ident	"$Header: $"
+$version 1
+$entry start intr init halt
+$modtype Host Bus Adaptor Driver
+dpt	dpt	h	20	0	0

@@ -1,0 +1,8 @@
+*** su.v4	Tue Feb 25 11:08:03 1992
+--- su.destiny	Tue Feb 25 11:08:25 1992
+***************
+*** 1 ****
+! #ident	"@(#)/etc/default/su.sl 1.1 4.0 05/29/91 57553 AT&T-USL"
+--- 1,2 ----
+! #ident	"@(#)/etc/default/su.sl 1.1 4.1dt 10/05/91 52981 AT&T-USL"
+! #ident "$Header: /sms/sinixV5.4es/rcs/s19-full/usr/src/cmd/su/su.dfl,v 1.1 91/02/28 20:11:13 ccs Exp $"

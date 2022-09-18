@@ -1,0 +1,5 @@
+#ident	"@(#)uts-x86:svc/hrt.cf/Master	1.4"
+#ident	"$Header: $"
+$version 1
+$entry	init
+hrt	hrt	or	0	0	0

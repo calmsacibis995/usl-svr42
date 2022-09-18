@@ -1,0 +1,44 @@
+#ident	"@(#)set:common/set/graphics/set.5	1.6"
+#ident	"$Header: $"
+.optstring
+.selection
+Press 'ENTER' to continue:
+.pageno
+Page %d of %d
+.ul
+Graphical Applications Set Installation
+.hhelp_ban
+Instructions
+.helpbanner
+Help: Package Dependency Warning
+.ur
+Package Dependency Warning
+#.ll
+#Please make a selection.  Press F1 for Help.
+.lr
+F1=Help
+.top
+You have selected to install the "`echo $PKG`" package.  This package
+depends on the "`echo $DEPENDENCY`" package, which is neither included in this 
+set nor installed on your computer.  You must install "`echo $DEPENDENCY`" first.
+
+After you press 'ENTER', installation will continue, but the "`echo $PKG`" 
+package will not be installed.
+.form
+ENTER
+.bottom
+.help
+For detailed instructions, press the 'F1' (or '?') key at any time.
+
+You have selected to install the "`echo $PKG`" package.  This package depends
+on the "`echo $DEPENDENCY`" package.  However, this package isn't part of this 
+set nor has it already been installed on your computer.  Because of this, 
+the "`echo $PKG`" package cannot be installed.  In order to resolve this 
+problem, you must install the "`echo $DEPENDENCY`" package.
+.helpinst
+ESC=Exit help  F1=Instructions  1=Forward  2=Backward
+.hhelpinst
+ESC=Exit instructions  1=Forward  2=Backward
+.working
+Working...
+.end

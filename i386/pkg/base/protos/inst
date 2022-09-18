@@ -1,0 +1,48 @@
+#ident	"@(#)pkg.base:i386/pkg/base/protos/inst	1.4.4.15"
+#ident	"$Header: $"
+
+!PKGADM=/var/sadm/install
+!PKGBIN=/usr/sadm/install/bin
+!PKGLOC=/var/sadm/pkg
+!PKGOLD=/usr/options
+!PKGSCR=/usr/sadm/install/scripts
+
+# prototype from source area cmd/oamintf/Prototype
+d inst /var/sadm 755 root root 1 NULL NULL
+d inst $PKGLOC 555 root sys 1 NULL NULL
+d inst /var/spool/pkg 755 bin bin
+f inst $PKGBIN/pkgaudit 500 root sys
+1 f inst $PKGBIN/pkginstall 500 root sys
+f inst $PKGBIN/pkgremove 500 root sys
+f inst $PKGBIN/pkgname 0555 root sys
+f inst $PKGBIN/setsizecvt 0555 root sys
+f inst /usr/sbin/installf 0500 root sys
+l inst /usr/sbin/removef=/usr/sbin/installf
+1 f inst /usr/sbin/pkgadd 4511 root sys
+l inst /usr/sbin/pkgask=/usr/sbin/pkgadd
+f inst /usr/bin/pkginfo 0555 bin sys
+f inst /usr/bin/pkgparam 0555 root sys
+f inst /usr/sbin/pkgchk 500 root sys
+f inst /usr/sbin/pkgrm 4511 root sys
+
+f inst /usr/bin/ckyorn 755 root sys
+l inst /usr/bin/getyorn=/usr/bin/ckyorn
+f inst /usr/bin/ckpath 755 root sys
+l inst /usr/bin/getpath=/usr/bin/ckpath
+f inst /usr/bin/ckrange 755 root sys
+l inst /usr/bin/getrange=/usr/bin/ckrange
+
+x inst $PKGADM 555 bin bin
+x inst $PKGADM/admin 555 bin bin
+d inst $PKGADM/logs 555 bin bin
+v inst $PKGADM/admin/default 444 root sys
+v inst $PKGADM/admin/check 444 root sys
+x inst $PKGSCR 555 bin bin
+f inst $PKGSCR/i.build 500 root sys
+f inst $PKGSCR/i.sed 500 root sys
+f inst $PKGSCR/i.awk 500 root sys
+f inst $PKGSCR/r.sed 500 root sys
+f inst $PKGSCR/r.awk 500 root sys
+f inst $PKGSCR/r.build 500 root sys
+f inst $PKGSCR/cmdexec 500 root sys
+f inst /usr/sbin/prtconf 0555 bin bin 1 NULL dacread,dacwrite

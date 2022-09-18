@@ -1,0 +1,4 @@
+#ident	"@(#)proto:autodsk0.lay	1.1"
+10	/stand	bfs	512	STANDM	STANDR
+2	/dev/swap	-	-	SWAPM	SWAPR
+1	/	vxfs	1024	ROOTW	ROOTR

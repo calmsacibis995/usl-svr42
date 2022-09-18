@@ -1,0 +1,13 @@
+Use the Properties button to display the application Properties window.
+You can usually set the following properties from this properties window:
+
+	Window color
+	Initial location
+	Initial state
+	Initial size
+	Base window scale
+	Pop-up window scale
+	Window layering
+
+To display the Properties window, drag MENU onto the Properties button,
+and release MENU.

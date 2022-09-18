@@ -1,0 +1,5 @@
+#ifdef MERGE386
+*ident	"@(#)uts-x86at:util/merge/merge.cf/System	1.1"
+$version 1
+merge	N	1	0	0	0	0	0	0	0	-1
+#endif /* MERGE386 */

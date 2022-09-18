@@ -1,0 +1,5 @@
+#ident	"@(#)uts-x86:io/clist/clist.cf/System	1.4"
+#ident	"$Header: $"
+$version 1
+$loadable clist
+clist	Y	1	0	0	0	0	0	0	0	-1

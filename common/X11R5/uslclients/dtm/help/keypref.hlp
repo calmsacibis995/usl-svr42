@@ -1,0 +1,140 @@
+#ident	"@(#)dtm:help/keypref.hlp	1.9"
+^*version^1
+^*title^Keyboard Preferences
+^*width^70
+^+DesktopMgr/help.defs
+^?Bind keys to Desktop functions.
+^0^Keyboard Preferences
+^$10
+Keyboard Preferences
+
+Use Keyboard Preferences to change various aspects of how your key-
+board works, including cut, copy, and paste functions, inter- and
+intra-window navigation functions, and text selection and editing
+functions.
+
+The following window is provided for Keyboard Preferences:
+
+        \k(Keyboard Preferences Window)
+^1^Keyboard Preferences Window
+^$20
+\k{Keyboard Preferences}
+1. Keyboard Preferences Window
+
+Use the Keyboard Preferences window to display the key sequences asso-
+ciated with various keyboard functions.
+
+To make changes in the Keyboard Preferences window, click on the key
+sequence you want to change, press the backslash key (\) and then the
+new key.
+
+The keyboard settings are displayed in nine categories:
+
+   o Keyboard Core Functions: Used to associate keys to common func-
+     tions.
+
+   o Keyboard Cut-Copy-Paste Functions: Used to associate keys to Cut,
+     Copy, and Paste functions.
+
+   o Keyboard Inter-Window Navigation Functions: Used to associate
+     keys to common window, document, and text "traversal" functions.
+     Use these functions to move among different windows.
+
+   o Keyboard Intra-Window Navigation Functions: Used to associate
+     keys to common window, document, and text "traversal" functions.
+     Use these functions to move within a single window.
+
+   o Keyboard Mouse Functions: Used to associate keys to common mouse
+     equivalent functions.
+
+   o Keyboard Scrolling Functions: Used to associate keys to document
+     or picture manipulation.
+
+   o Keyboard Text Selection Functions: Used to associate keys to
+     functions for selecting all or parts of a document or picture.
+
+   o Keyboard Text Edit Functions: Used to associate keys to common
+     editing functions.
+
+   o Keyboard System Functions: Used to associate keys to system
+     "accelerators." Use these keys to quickly move or close a window,
+     quit an application, remove a pop-up, or access a menu.
+
+The first line of the Keyboard Preferences window contains a CATEGORY
+button (arrow). This button lets you quickly switch Preferences
+categories (including preferences for Color, Desktop, Icons, Keyboard,
+Locale, Miscellaneous, and Mouse). When you click on the arrow, a menu
+appears with the Preferences categories listed. Click on the
+Preferences category you want or click on Next Page to get the next
+Preferences category in the list.
+
+Each category window has three columns: a Function column, a Primary
+Key Sequence column, and an Alternate Key Sequence column. The Primary
+Key Sequence column lists the key the Desktop uses to perform the
+action listed in the Function column when no conflict over the use of
+the key exists (for example, the Desktop uses the Return key - often
+labeled Enter on PC keyboards - as the Default Action key). When an
+application uses that key for another purpose, conflict can arise (for
+example, most text editors use the Return key to create a new line).
+to allow your application to work as it always has (pressing Return
+creates a new line when yo use your text editor), change the way the
+Desktop performs its default action: Use the Keyboard Core Functions
+category window to specify an Alternate Key Sequence for the Default
+Action function. To make the Desktop recognize Ctrl-Return as the key
+sequence for default actions, click on the key-cap in the Alternate
+Key Sequence column, press backslash (\), and then press the key or
+keys you want to use as the alternate.
+
+The buttons available from the Keyboard Preferences window are:
+
+        \k(Apply Button^^Apply ButtonKB)
+        \k(Reset Button^^Reset ButtonKB)
+        \k(Reset to Factory Button^^Reset to Factory ButtonKB)
+        \k(Cancel Button^^Cancel ButtonKB)
+        \k(Help Button^^Help ButtonKB)
+^2^Apply Button=Apply ButtonKB
+^$30
+1. \k{Keyboard Preferences Window}
+   1.1 Apply Button
+
+The Apply button saves and applies all changes made in any preferences
+window. If you made any changes, they are immediately applied to all
+Desktop applications, including those currently open. After applying
+the changes, the Keyboard Preferences window closes.
+^2^Reset Button=Reset ButtonKB
+^$40
+1. \k{Keyboard Preferences Window}
+   1.2 Reset Button
+
+The Reset button reverses any changes you have not yet applied in the
+Keyboard Preferences window. The Keyboard Preferences window remains
+open.
+
+Note: The Reset button does not affect the saved values, which are
+changed only when the \k(Apply button^^Apply ButtonKB) is used.
+^2^Reset to Factory Button=Reset to Factory ButtonKB
+^$50
+1. \k{Keyboard Preferences Window}
+   1.3 Reset to Factory Button
+
+The Reset to Factory button resets all characteristics for the current
+category to those that originally came with the UNIX Desktop. Use the
+\k(Apply button^^Apply ButtonKB) to have the changes take effect. The Keyboard Preferences
+Window remains open.
+
+Note: The Reset to Factory button does not affect the saved values,
+which are changed only when the Apply button is used.
+^2^Cancel Button=Cancel ButtonKB
+^$60
+1. \k{Keyboard Preferences Window}
+   1.4 Cancel Button
+
+The Cancel button closes the Keyboard Preferences window without
+making any changes.
+^2^Help Button=Help ButtonKB
+^$70
+1. \k{Keyboard Preferences Window}
+   1.5 Help Button
+
+The Help Button provides on-line help for the Keyboard Preferences
+window.

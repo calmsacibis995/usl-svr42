@@ -1,0 +1,8 @@
+display VGA16 StaticColor "VGA STDVGA 640x480 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+# /* Standard VGA 16 colors: common for all VGA cards */
+
+#display VGA16 StaticColor "WDC1x MULTISYNC 800x600 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+# /* Western Digital WDC10 or WDC11 chipset and normal multisync monitors */
+
+#display VGA16 StaticColor "WDC11 MULTISYNC 1024x768 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+# /* ONLY FOR Western Digital WDC11 chipset and normal multisync monitors */

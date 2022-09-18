@@ -1,0 +1,63 @@
+#ident	"@(#)debugger:libol/i386/ui.libs	1.10"
+
+LIBRARIES = \
+	-L$(PRODLIB) \
+	-L$(ROOT)/$(MACH)/usr/X/lib \
+	-lol \
+	-lint \
+	-ldbgen \
+	-lgen \
+	-lOlit \
+	-lDt \
+	-lXmu \
+	-lXext \
+	-lw \
+	-lXt \
+	-lX11 \
+	-lXIM \
+	-lnsl \
+	-ldl
+
+# since this is included by gui.d/i386/makefile ...
+# we really should rethink this (rtl)
+OLCOMMON = ../../libol/common
+ICON_FILES = \
+	$(OLCOMMON)/debug32.pmp \
+	$(OLCOMMON)/debug32.pmk \
+	$(OLCOMMON)/debug32.bm \
+	$(OLCOMMON)/debug.pmp
+DT_FILES = \
+	$(OLCOMMON)/debug.cdb \
+	$(OLCOMMON)/debug.idf
+
+olinstall:	$(ICON_FILES) $(DT_FILES)
+	if [ ! -d $(ROOT)/$(MACH)/usr/X/lib/pixmaps ]; then \
+		mkdir -p $(ROOT)/$(MACH)/usr/X/lib/pixmaps; \
+	fi
+	if [ ! -d $(ROOT)/$(MACH)/usr/X/lib/bitmaps ]; then \
+		mkdir -p $(ROOT)/$(MACH)/usr/X/lib/bitmaps; \
+	fi
+	if [ ! -d $(ROOT)/$(MACH)/usr/X/lib/pixmasks ]; then \
+		mkdir -p $(ROOT)/$(MACH)/usr/X/lib/pixmasks; \
+	fi
+	if [ ! -d $(ROOT)/$(MACH)/usr/X/lib/classdb ]; then \
+		mkdir -p $(ROOT)/$(MACH)/usr/X/lib/classdb; \
+	fi
+	if [ ! -d $(ROOT)/$(MACH)/usr/X/lib/classdb ]; then \
+		mkdir -p $(ROOT)/$(MACH)/usr/X/lib/classdb; \
+	fi
+	if [ ! -d $(ROOT)/$(MACH)/usr/X/desktop/PackageMgr ]; then \
+		mkdir -p $(ROOT)/$(MACH)/usr/X/desktop/PackageMgr; \
+	fi
+	rm -f $(ROOT)/$(MACH)/usr/X/lib/pixmaps/debug.32
+	rm -f $(ROOT)/$(MACH)/usr/X/lib/bitmaps/debug.32
+	rm -f $(ROOT)/$(MACH)/usr/X/lib/pixmasks/debug.32
+	rm -f $(ROOT)/$(MACH)/usr/X/lib/pixmaps/debug.48
+	rm -f $(ROOT)/$(MACH)/usr/X/lib/classdb/debug.cdb
+	rm -f $(ROOT)/$(MACH)/usr/X/desktop/PackageMgr/edebug
+	cp $(OLCOMMON)/debug32.pmp $(ROOT)/$(MACH)/usr/X/lib/pixmaps/debug.32
+	cp $(OLCOMMON)/debug32.pmk $(ROOT)/$(MACH)/usr/X/lib/pixmasks/debug.32
+	cp $(OLCOMMON)/debug32.bm $(ROOT)/$(MACH)/usr/X/lib/bitmaps/debug.32
+	cp $(OLCOMMON)/debug.pmp $(ROOT)/$(MACH)/usr/X/lib/pixmaps/debug.48
+	cp $(OLCOMMON)/debug.cdb $(ROOT)/$(MACH)/usr/X/lib/classdb/debug.cdb
+	cp $(OLCOMMON)/debug.idf $(ROOT)/$(MACH)/usr/X/desktop/PackageMgr/edebug

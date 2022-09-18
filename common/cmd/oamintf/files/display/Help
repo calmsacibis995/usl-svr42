@@ -1,0 +1,16 @@
+#ident	"@(#)filemgmt:common/cmd/oamintf/files/display/Help	1.2.3.2"
+#ident  "$Header: Help 2.0 91/07/12 $"
+ABSTRACT:
+	This task displays a list of the file system types 
+	installed on your system. This includes both add-on
+	file system types that have been installed by the 
+	administrator and the file system types that are
+	delivered in the System V core.
+TITLE:
+dispfstyptask:
+	Displays a list of file system types installed on
+	your system.  This includes both add-on file system
+	types that have been installed by the administrator and
+	the file system types that are delivered in the System
+	V core.
+

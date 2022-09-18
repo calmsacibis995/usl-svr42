@@ -1,0 +1,51 @@
+#ident	"@(#)lp.admin:printers/printers/modify/Text.confirm	1.4.3.1"
+#ident  "$Header: Text.confirm 2.0 91/07/12 $"
+
+title="Printer $lp_printer: Successfully Modified."
+altslks=true
+
+row=15
+columns=55
+
+begrow=distinct
+begcol=distinct
+
+text="
+    Press CANCEL to Continue. 
+
+   Information on $lp_printer:
+`lpstat -p $lp_printer -l`
+"
+
+name=HELP
+button=9
+action=help
+
+name=PREVPAGE
+button=10
+action=prevpage
+
+name=NEXTPAGE
+button=11
+action=nextpage
+
+name=PREV-FRM
+button=12
+action=prev-frm
+
+name=NEXT-FRM
+button=13
+action=next-frm
+
+name=CANCEL
+button=14
+action=`
+	set -e toclose="$toclose $OAMBASE/add-ons/lp/printers/printers/modify/Text.confirm";
+	message -w "End of successful printer modify.";
+	sleep 2;
+	echo "close $toclose";
+`
+
+name=CMD-MENU
+button=15
+action=cmd-menu

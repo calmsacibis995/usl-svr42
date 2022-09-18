@@ -1,0 +1,1718 @@
+#ident	"@(#)dtmail:help/mail.hlp	1.15"
+^*version^1
+^*title^Mail
+#^:Mail
+^*width^70
+^+DesktopMgr/help.defs
+^?Send electronic mail messages.
+^0^Mail
+^$10
+Mail
+
+Use the Mail Window to read, send, and manage your electronic mail
+messages sent to you by other users on your system and systems
+accessible through the network, and to send mail and manage your mail
+messages and alias file (used to create shortcut names for people to
+which you frequently send mail).
+
+In addition, you can include the contents of other files in your mail message by
+\d(dragging-and-dropping^drag-and-drop) the file's icon onto your message.
+
+The following windows are provided for Mail:
+
+        \k(Mail Window)
+        \k(Mail Reader Properties Window)
+        \k(Mail Sender Properties Window)
+        \k(Mail Manager Window)
+        \k(Mail Reader: Open Mail File Window)
+        \k(Mail Reader: Save Mail Message Window)
+        \k(Mail Reader Window)
+        \k(Mail Sender Window)
+        \k(Mail Sender: Save Outgoing Message Window)
+        \k(Mail Alias Manager Window)
+^1^Mail Window
+^$20
+\k{Mail}
+1. Mail Window
+
+The Mail Window lets you open and read mail messages sent to you by
+other users on your computer and computers accessible through a net-
+work. It also lets you send mail and manage your mail messages and
+alias file (a list of short names for people to whom you frequently
+send messages).
+
+The buttons available from the Mail window are:
+
+        \k(File Button)
+        \k(Mail Button)
+        \k(Help Button)
+        \k(Manager Button)
+        \k(Reader Button)
+        \k(Sender Button)
+        \k(Alias Mgr Button)
+^2^File Button
+^$30
+1. \k{Mail Window}
+   1.1 File Button
+
+The File button lets you set which header lines are displayed when you
+read your incoming mail and whether or not to record outgoing mail. It
+also lets you exit the Mail window. Clicking on the File button displays
+a menu with the following options:
+
+        \k(Reader Properties)
+        \k(Sender Properties)
+        \k(Exit)
+^3^Reader Properties
+^$40
+1. \k{Mail Window}
+   1.1 \k{File Button}
+       1.1.1 Reader Properties
+
+The Reader Properties menu option lets you set which mail message
+header lines, which are attached to the top of your incoming mail
+messages, should be displayed when you read your mail. Clicking on the
+Reader Properties menu option displays the Mail Reader Properties
+window.
+
+More information: \k(Mail Reader Properties Window)
+^3^Sender Properties
+^$50
+1. \k{Mail Window}
+   1.1 \k{File Button}
+       1.1.2 Sender Properties
+
+The Sender Properties menu option lets you set whether a copy of out-
+going mail message is saved. It also lets you create a signature that is
+appended to your outgoing mail. Clicking on the Sender Properties menu
+option displays the Mail Sender Properties window.
+
+More information: \k(Mail Sender Properties Window)
+^3^Exit
+^$60
+1. \k{Mail Window}
+   1.1 \k{File Button}
+       1.1.3 Exit
+
+The Exit menu option closes the Mail window and any sub-windows that
+are open. If you have unsent, outgoing mail messages, a notice window
+appears. If no other Mail windows are open, the notice window does not
+appear.
+
+The notice window has three buttons: Exit, Cancel, and Help.
+
+   o Exit Button: This button exits you from Mail.
+
+   o Cancel Button: This button cancels your request to exit and
+     returns you to the Mail window.
+
+   o Help Button: This button provides on-line help for the Exit menu
+     option.
+^2^Mail Button
+^$70
+1. \k{Mail Window}
+   1.2 Mail Button
+
+The Mail button lets you manage, read, and send electronic mail. It
+also lets you edit your alias file (a list of short names for people
+to whom you frequently send messages). Clicking on the Mail button
+displays a menu with the following options:
+
+        \k(Manager)
+        \k(Reader)
+        \k(Sender)
+        \k(Alias Manager)
+^3^Manager
+^$80
+1. \k{Mail Window}
+   1.2 \k{Mail Button}
+       1.2.1 Manager
+
+The Manager menu option lets you open, save, and print specific mail
+files (files on your computer's hard disk containing mail messages),
+as well as delete, read, reply to, and forward mail messages. Clicking
+on the Manager menu option displays the Mail Manager window.
+
+More information: \k(Mail Manager Window)
+^3^Reader
+^$90
+1. \k{Mail Window}
+   1.2 \k{Mail Button}
+       1.2.2 Reader
+
+The Reader menu option lets you open, save, and print specific mail
+messages, as well as delete, read, reply to, and forward mail mes-
+sages. Clicking on the Reader menu option displays the Mail Reader
+window.
+
+More information: \k(Mail Reader Window)
+^3^Sender
+^$100
+1. \k{Mail Window}
+   1.2 \k{Mail Button}
+       1.2.3 Sender
+
+The Sender menu option lets you create new mail messages to send to
+other users. Clicking on the Sender menu option displays the Mail
+Sender window.
+
+More information: \k(Mail Sender Window)
+^3^Alias Manager
+^$110
+1. \k{Mail Window}
+   1.2 \k{Mail Button}
+       1.2.4 Alias Manager
+
+The Alias Manager menu option lets you maintain your mail aliases,
+which are short names for users to whom you frequently send mail.
+Clicking on the Alias Manager menu option displays the Mail Alias
+Manager window.
+
+More information: \k(Mail Alias Manager Window)
+^2^Help Button
+^$120
+1. \k{Mail Window}
+   1.3 Help Button
+
+The Help button provides on-line help for the Mail window. Clicking on
+the Help button displays a menu with the following options:
+
+        \k(Mail^^Mail Help)
+        \k(Table of Contents)
+        \k(Help Desk)
+^3^Mail=Mail Help
+^$130
+1. \k{Mail Window}
+   1.3 \k{Help Button}
+       1.3.1 Mail
+
+The Mail menu option provides on-line help for the Mail window.
+^3^Table of Contents
+^$140
+1. \k{Mail Window}
+   1.3 \k{Help Button}
+       1.3.2 Table of Contents
+
+The Table of Contents menu option displays the list of help topics
+available for the Mail window.
+^3^Help Desk
+^$150
+1. \k{Mail Window}
+   1.3 \k{Help Button}
+       1.3.3 Help Desk
+
+The Help Desk menu option opens the Help Desk window. From there, you
+can select the icon for which you want on-line help.
+^2^Manager Button
+^$160
+1. \k{Mail Window}
+   1.4 Manager Button
+
+The Manager button displays the Mail Manager window.
+
+More information: \k(Mail Manager Window)
+^2^Reader Button
+^$170
+1. \k{Mail Window}
+   1.5 Reader Button
+
+The Reader button displays the Mail Reader window.
+
+More information: \k(Mail Reader Window)
+^2^Sender Button
+^$180
+1. \k{Mail Window}
+   1.6 Sender Button
+
+The Sender button displays the Mail Sender window.
+
+More information: \k(Mail Sender Window)
+^2^Alias Mgr Button
+^$190
+1. \k{Mail Window}
+   1.7 Alias Mgr Button
+
+The Alias Manager button displays the Alias Manager window.
+
+More information: \k(Mail Alias Manager Window)
+^1^Mail Reader Properties Window
+^$200
+\k{Mail}
+2. Mail Reader Properties Window
+
+Use the Mail Reader Properties window to set which mail header lines
+are attached to and displayed when you read your incoming mail
+messages.
+
+The Header line in the Mail Reader Properties window, lets you choose
+between a brief or full message header. The header consists of infor-
+mation lines showing who the mail is being sent to, who it's from,
+subject, and so on. Normally, the header type is set to Brief and only
+the following information lines are attached to the top of a mail
+message:
+
+   o Cc
+
+   o Date
+
+   o From
+
+   o Subject
+
+   o To
+
+By clicking on specific header lines in the Brief Header Shows list
+box, you can select which lines should or should not appear when you
+read your mail.
+
+Clicking on the Full option on the Header line causes all header
+lines to be displayed.
+
+The buttons available from the Mail Reader Properties window are:
+
+        \k(Apply Button^^Apply ButtonRP)
+        \k(Reset Button^^Reset ButtonRP)
+        \k(Cancel Button^^Cancel ButtonRP)
+        \k(Help Button^^Help ButtonRP)
+^2^Apply Button=Apply ButtonRP
+^$210
+2. \k{Mail Reader Properties Window}
+   2.1 Apply Button
+
+The Apply button immediately applies any changes made in the Mail
+Reader Properties window. After applying the changes, the Mail Reader
+Properties window closes.
+^2^Reset Button=Reset ButtonRP
+^$220
+2. \k{Mail Reader Properties Window}
+   2.2 Reset Button
+
+The Reset button reverses any changes you have not yet applied. The
+Mail Reader Properties window remains open.
+^2^Cancel Button=Cancel ButtonRP
+^$230
+2. \k{Mail Reader Properties Window}
+   2.3 Cancel Button
+
+The Cancel button closes the Mail Reader Properties window without
+making any changes.
+^2^Help Button=Help ButtonRP
+^$240
+2. \k{Mail Reader Properties Window}
+   2.4 Help Button
+
+The Help button provides on-line help for the Mail Reader Properties
+window.
+^1^Mail Sender Properties Window
+^$250
+\k{Mail}
+3. Mail Sender Properties Window
+
+The Mail Sender Properties window lets you set whether or not your
+outgoing mail is automatically saved to a file and also lets you
+create a signature that automatically is appended to your messages.
+
+The Save copy of outgoing mail line has two options:
+
+   o The On option saves all your outgoing mail to a file on your hard
+     disk.
+
+   o The Off option does not save your outgoing mail to a file.
+
+In the Signature text box, you can enter your name or any other
+information you want automatically to appear as part of your outgoing
+mail. For example, you might want your name and login ID to appear at
+the end of your mail messages (you can also \d(double-click) on a
+message to read it).
+
+The buttons available from the Mail Sender Properties window are:
+
+        \k(Apply Button^^Apply ButtonSP)
+        \k(Reset Button^^Reset ButtonSP)
+        \k(Cancel Button^^Cancel ButtonSP)
+        \k(Help Button^^Help ButtonSP)
+^2^Apply Button=Apply ButtonSP
+^$260
+3. \k{Mail Sender Properties Window}
+   3.1 Apply Button
+
+The Apply button immediately applies any changes made in the Mail
+Sender Properties window. After applying the changes, the Mail Sender
+Properties window closes.
+^2^Reset Button=Reset ButtonSP
+^$270
+3. \k{Mail Sender Properties Window}
+   3.2 Reset Button
+
+The Reset button reverses any changes you have not yet applied. The
+Mail Sender Properties window remains open.
+^2^Cancel Button=Cancel ButtonSP
+^$280
+3. \k{Mail Sender Properties Window}
+   3.3 Cancel Button
+
+The Cancel button closes the Mail Sender Properties window without
+making any changes.
+^2^Help Button=Help ButtonSP
+^$290
+3. \k{Mail Sender Properties Window}
+   3.4 Help Button
+
+The Help button provides on-line help for the Mail Sender Properties
+window.
+^1^Mail Manager Window
+^$300
+\k{Mail}
+4. Mail Manager Window
+
+Use the Mail Manager window to list incoming mail messages and to
+respond to them individually. This includes reading, printing,
+editing, and replying to your messages. You can read a message by
+\d(double-clicking^double-click) on it in the Mail Manager window.
+
+The box in the center of the Mail Manager window lists your mail
+messages. There are eight columns of information:
+
+   o Icon: three possible icons may appear:
+
+     - closed envelope: unread mail message
+
+     - open envelope: read mail message
+
+     - check mark: new mail message
+
+   o No: message number
+
+   o Status: each message has a status of U, R, or N:
+
+     - U: unread mail message
+
+     - R: read mail message
+
+     - N: new mail message
+
+   o From: the sender of the mail message
+
+   o Date: date the mail was received
+
+   o Time: time the mail was received
+
+   o Size: the size of the mail message, given as number of
+     lines/number of characters. If the word "binary" replaces the
+     number of lines, the mail message does not contain ASCII
+     (readable) characters.
+
+   o Subject: the subject of the message (if any was specified by the
+     sender)
+
+Click on a mail message to select it and then click on one of the
+buttons for an action. For example, to read a mail message, use the
+Message button and the Reader menu option.
+
+The buttons available from the Mail Manager window are:
+
+        \k(File Button^^File ButtonMg)
+        \k(Edit Button^^Edit ButtonMg)
+        \k(Message Button^^Message ButtonMg)
+        \k(Help Button^^Help ButtonMg)
+^2^File Button=File ButtonMg
+^$310
+4. \k{Mail Manager Window}
+   4.1 File Button
+
+The File button lets you open mail files and save and print messages.
+It also lets you exit the Mail window. Clicking on the File button
+displays a menu with the following options:
+
+        \k(Open^^OpenMg)
+        \k{Save Message(s)^^Save Message(s)Mg}
+        \k{Save Message(s) To^^Save Message(s) ToMg}
+        \k(Print^^PrintMg)
+        \k(Exit^^ExitMg)
+^3^Open=OpenMg
+^$320
+4. \k{Mail Manager Window}
+   4.1 \k{File Button^^File ButtonMg}
+       4.1.1 Open
+
+The Open menu option lets you open another file containing mail mes-
+sages. Clicking on the Open menu option displays the Mail Manager:
+Open Mail File window, which is identical to the Mail Reader: Open
+Mail File window.
+
+More information: \k(Mail Reader: Open Mail File Window)
+^3^Save Message(s)=Save Message(s)Mg
+^$330
+4. \k{Mail Manager Window}
+   4.1 \k{File Button^^File ButtonMg}
+       4.1.2 Save Message(s)
+
+The Save Message(s) menu option lets you save a mail message to the
+file SavedMail.ml in your Mailbox folder. Additions are made to this
+file each time you save a message to it.
+^3^Save Message(s) To=Save Message(s) ToMg
+^$340
+4. \k{Mail Manager Window}
+   4.1 \k{File Button^^File ButtonMg}
+       4.1.3 Save Message(s) To
+
+The Save Message(s) To menu option is similar to the Save Message(s)
+menu option except it lets you specify the name of the file to which
+your message should be saved. Clicking on the Save Messages(s) To menu
+option displays the Mail Manager: Save Mail Message window, which is
+identical to the Mail Reader: Save Mail Message window.
+
+More information: \k(Mail Reader: Save Mail Message Window)
+^3^Print=PrintMg
+^$350
+4. \k{Mail Manager Window}
+   4.1 \k{File Button^^File ButtonMg}
+       4.1.4 Print
+
+The Print menu option sends the selected mail message(s) to the
+\d(default) printer.
+
+More information: \k(Printer Setup^dtadmin/printer.hlp^Printer Setup)
+^3^Exit=ExitMg
+^$360
+4. \k{Mail Manager Window}
+   4.1 \k{File Button^^File ButtonMg}
+       4.1.5 Exit
+
+The Exit menu option updates the current mail file and closes the Mail
+Manager window if no Mail Reader windows open. If other Mail Reader
+windows are open, the Mail Reader windows remain open.
+^2^Edit Button=Edit ButtonMg
+^$370
+4. \k{Mail Manager Window}
+   4.2 Edit Button
+
+The Edit button lets you select and delete or undelete mail messages.
+Clicking on the Edit button displays a menu with the following
+options:
+
+        \k(Undo^^UndoMg)
+        \k(Delete^^DeleteMg)
+        \k(Undelete^^UndeleteMg)
+        \k(Select All^^Select AllMg)
+        \k(Unselect All^^Unselect AllMg)
+^3^Undo=UndoMg
+^$380
+4. \k{Mail Manager Window}
+   4.2 \k{Edit Button^^Edit ButtonMg}
+       4.2.1 Undo
+
+The Undo menu option restores the last delete you did. For example, if
+you deleted a message, clicking on Undo restores the mail message.
+^3^Delete=DeleteMg
+^$390
+4. \k{Mail Manager Window}
+   4.2 \k{Edit Button^^Edit ButtonMg}
+       4.2.2 Delete
+
+The Delete menu option lets you delete one or more mail messages. To
+delete messages, first select from the Mail Manager window the
+messages you want deleted and then select the Delete menu option. The
+selected messages disappear. You can retrieve deleted messages by
+using the \k(Undelete^^UndeleteMg) menu option or the \k(Undo^^UndoMg) menu option.
+^3^Undelete=UndeleteMg
+^$400
+4. \k{Mail Manager Window}
+   4.2 \k{Edit Button^^Edit ButtonMg}
+       4.2.3 Undelete
+
+The Undelete menu option lets you restore previously deleted mail mes-
+sages. Clicking on the Undelete menu option displays the Mail
+Manager: Undelete window. The Mail Manager: Undelete window has three
+buttons: Undelete, Cancel, and Help.
+
+   o Undelete Button: After selecting the mail messages to undelete,
+     click on the Undelete button to restore them to the Mail Manager
+     window.
+
+   o Cancel Button: The Cancel button closes the Mail Manager:
+     Undelete window without undeleting any mail messages.
+
+   o Help Button: The Help button provides on-line help for the Mail
+     Manager: Undelete window.
+^3^Select All=Select AllMg
+^$410
+4. \k{Mail Manager Window}
+   4.2 \k{Edit Button^^Edit ButtonMg}
+       4.2.4 Select All
+
+The Select All menu option selects all mail messages in the Mail
+Manager window. Use the Select All menu option to save or print all
+your messages.
+^3^Unselect All=Unselect AllMg
+^$420
+4. \k{Mail Manager Window}
+   4.2 \k{Edit Button^^Edit ButtonMg}
+       4.2.5 Unselect All
+
+The Unselect All menu option unselects any selected mail messages in
+the Mail Manager window.
+^2^Message Button=Message ButtonMg
+^$430
+4. \k{Mail Manager Window}
+   4.3 Message Button
+
+The Message button lets you read, send, and reply to mail messages. It
+also lets you forward messages to others. Clicking on the Messages
+button displays a menu with the following options:
+
+        \k(Reader^^ReaderMg)
+        \k(Sender^^SenderMg)
+        \k(Reply to Sender^^Reply to SenderMg)
+        \k{Reply to Sender (Att.)^^Reply to Sender (Att.)Mg}
+        \k(Reply to All^^Reply to AllMg)
+        \k{Reply to All (Att.)^^Reply to All (Att.)Mg}
+        \k(Forward^^ForwardMg)
+^3^Reader=ReaderMg
+^$440
+4. \k{Mail Manager Window}
+   4.3 \k{Message Button^^Message ButtonMg}
+       4.3.1 Reader
+
+The Reader menu option lets you read your mail messages. Clicking on
+the Reader menu option displays the Mail Reader window.
+
+More information: \k(Mail Reader Window)
+^3^Sender=SenderMg
+^$450
+4. \k{Mail Manager Window}
+   4.3 \k{Message Button^^Message ButtonMg}
+       4.3.2 Sender
+
+The Sender menu option lets you send mail messages. Clicking on the
+Sender menu option displays the Mail Sender window.
+
+More information: \k(Mail Sender Window)
+^3^Reply to Sender=Reply to SenderMg
+^$460
+4. \k{Mail Manager Window}
+   4.3 \k{Message Button^^Message ButtonMg}
+       4.3.3 Reply to Sender
+
+The Reply to Sender menu option is similar to the Sender menu option.
+Clicking on the Reply to Sender menu option displays the Mail Sender
+window. However, when the Mail Sender window appears, the To text box
+is already filled in with the electronic mail address of the person
+who sent you the selected mail message. In addition, if the selected
+message has the Subject text box filled in, then the Mail Sender
+window has its Subject text box filled in with "Re:" plus the subject
+of the selected message.
+
+More information: \k(Mail Sender Window)
+^3^Reply to Sender (Att.)=Reply to Sender (Att.)Mg
+^$470
+4. \k{Mail Manager Window}
+   4.3 \k{Message Button^^Message ButtonMg}
+       4.3.4 Reply to Sender (Att.)
+
+The Reply to Sender (Att.) menu option is similar to the \k(Reply to Sender^^Reply to SenderMg)
+menu option except that a copy of the mail to which you are replying
+is attached to the reply. The attached mail precedes the signature;
+each line of it begins with the greater-than symbol (>) so that it can
+be easily distinguished from the reply.
+^3^Reply to All=Reply to AllMg
+^$480
+4. \k{Mail Manager Window}
+   4.3 \k{Message Button^^Message ButtonMg}
+       4.3.5 Reply to All
+
+The Reply to All menu option is similar to the Reply to Sender menu
+option. Clicking on the Reply to All menu option displays the Mail
+Sender window. However, when the Mail Sender window appears, the To
+text box is already filled in with the electronic mail address of the
+person who sent you the selected mail message. The Cc text box is
+filled in with the addresses of all others who also received the
+selected message. In addition, if the selected message has the Subject
+text box filled in, the Mail Sender window has its Subject text box
+filled in with "Re:" plus the subject of the selected message.
+
+More information: \k(Mail Sender Window)
+^3^Reply to All (Att.)=Reply to All (Att.)Mg
+^$490
+4. \k{Mail Manager Window}
+   4.3 \k{Message Button^^Message ButtonMg}
+       4.3.6 Reply to All (Att.)
+
+The Reply to All (Att.) menu option is similar to the \k(Reply to All^^Reply to AllMg) menu
+option except that a copy of the mail being replied to is attached to
+the reply. The attached mail precedes the signature; each line of the
+original message begins with the greater-than symbol (>) so that it
+can be easily be distinguished from the reply.
+^3^Forward=ForwardMg
+^$500
+4. \k{Mail Manager Window}
+   4.3 \k{Message Button^^Message ButtonMg}
+       4.3.7 Forward
+
+The Forward menu option is similar to the Sender menu option. Clicking
+on the Forward menu option displays the Mail Sender window. However,
+when the Mail Sender window appears, the content of the selected mes-
+sage is already in the message area of the Mail Sender window.
+
+More information: \k(Mail Sender Window)
+^2^Help Button=Help ButtonMg
+^$510
+4. \k{Mail Manager Window}
+   4.4 Help Button
+
+The Help button provides on-line help for the Mail Manager window.
+Clicking on the Help button displays a menu with the following
+options:
+
+        \k(Mail Manager^^Mail ManagerMG)
+        \k(Table of Contents^^Table of ContentsMG)
+        \k(Help Desk^^Help DeskMG)
+^3^Mail Manager=Mail ManagerMG
+^$520
+4. \k{Mail Manager Window}
+   4.4 \k{Help Button^^Help ButtonMg}
+       4.4.1 Mail Manager
+
+The Mail Manager menu option provides on-line help for the Mail Manager
+window.
+^3^Table of Contents=Table of ContentsMG
+^$530
+4. \k{Mail Manager Window}
+   4.4 \k{Help Button^^Help ButtonMg}
+       4.4.2 Table of Contents
+
+The Table of Contents menu option displays the list of help topics
+available for the Mail Manager window.
+^3^Help Desk=Help DeskMG
+^$540
+4. \k{Mail Manager Window}
+   4.4 \k{Help Button^^Help ButtonMg}
+       4.4.3 Help Desk
+
+The Help Desk menu option opens the Help Desk window. From there, you
+can select the icon for which you want on-line help.
+^1^Mail Reader: Open Mail File Window
+^$550
+\k{Mail}
+5. Mail Reader: Open Mail File Window
+
+Use the Mail Reader: Open Mail File window to open another file con-
+taining mail messages. This could be, for example, a file in which you
+saved previously received mail messages.
+
+The current \d(path) is shown at the top of the window. Below that is the
+File text box, where you can enter the name of the file you want to
+open. The text *.ml appears in the File text box to give you access to
+all files with the .ml suffix. The files matching *.ml are listed in
+the File(s) box. If you don't see the file you want, select a
+different folder from the list in the Folder(s) box (as you do so, the
+path at the top of the window changes) and then select a file from the
+File(s) box. If present, use the scrollbars to view additional folders
+and files. Be sure to enter .ml as the suffix for the file name you
+enter.
+
+The buttons available from the Mail Reader: Open Mail File window are:
+
+        \k(Open Button^^Open ButtonOF)
+        \k(Cancel Button^^Cancel ButtonOF)
+        \k(Help Button^^Help ButtonOF)
+^2^Open Button=Open ButtonOF
+^$560
+5. \k{Mail Reader: Open Mail File Window}
+   5.1 Open Button
+
+The Open button opens the selected file and displays the mail messages
+it contains in the Mail Manager window. The Mail Reader: Open Mail
+File window closes.
+^2^Cancel Button=Cancel ButtonOF
+^$570
+5. \k{Mail Reader: Open Mail File Window}
+   5.2 Cancel Button
+
+The Cancel button closes the Mail Reader: Open Mail File window
+without opening any files.
+^2^Help Button=Help ButtonOF
+^$580
+5. \k{Mail Reader: Open Mail File Window}
+   5.3 Help Button
+
+The Help button provides on-line help for the Mail Reader: Open Mail
+File window.
+^1^Mail Reader: Save Mail Message Window
+^$590
+\k{Mail}
+6. Mail Reader: Save Mail Message Window
+
+The Mail Reader: Save Mail Message window lets you save your mail
+messages to a file.
+
+The current \d(path) is shown at the top of the window. Below that is the
+File text box, where you can enter the name of the file to which you
+want to save your messages. You also can select a folder from the list
+in the Folder(s) box (as you do so, the path at the top of the window
+changes). If present, use the scroll bar to view additional folders.
+
+The buttons available from the Mail Reader: Save Mail Message window
+are:
+
+        \k(Save Button^^Save ButtonSF)
+        \k(Cancel Button^^Cancel ButtonSF)
+        \k(Help Button^^Help ButtonSF)
+^2^Save Button=Save ButtonSF
+^$600
+6. \k{Mail Reader: Save Mail Message Window}
+   6.1 Save Button
+
+The Save button saves your mail messages to the file specified in
+the Folder(s) box and the File text box. The Mail Reader:
+Save Mail Message window closes.
+
+^2^Cancel Button=Cancel ButtonSF
+^$610
+6. \k{Mail Reader: Save Mail Message Window}
+   6.2 Cancel Button
+
+The Cancel button closes the Mail Reader: Save Mail Message window.
+^2^Help Button=Help ButtonSF
+^$620
+6. \k{Mail Reader: Save Mail Message Window}
+   6.3 Help Button
+
+The Help button provides on-line help for the Mail Reader: Save Mail
+Messages window.
+^1^Mail Reader Window
+^$630
+\k{Mail}
+7. Mail Reader Window
+
+Use the Mail Reader window to read the contents of your mail mes-
+sages. It also lets you delete, send, and reply to messages.
+
+The buttons available from the Mail Reader window are:
+
+        \k(File Button^^File ButtonR)
+        \k(Edit Button^^Edit ButtonR)
+        \k(View Button^^View ButtonR)
+        \k(Message Button^^Message ButtonR)
+        \k(Help Button^^Help ButtonR)
+^2^File Button=File ButtonR
+^$640
+7. \k{Mail Reader Window}
+   7.1 File Button
+
+The File button lets you open mail Reader files and save and print
+messages. It also lets you exit the Mail Reader window. Clicking on
+the File button displays a menu with the following options:
+
+        \k(Open^^OpenR)
+        \k(Save Message^^Save MessageR)
+        \k(Save Message To^^Save Message ToR)
+        \k(Print^^PrintR)
+        \k(Reader Properties^^Reader PropertiesR)
+        \k(Exit^^ExitR)
+^3^Open=OpenR
+^$650
+7. \k{Mail Reader Window}
+   7.1 \k{File Button^^File ButtonR}
+       7.1.1 Open
+
+The Open menu option lets you open another file containing mail mes-
+sages. Clicking on the Open menu option displays the Mail Reader:
+Open Mail File window.
+
+More information: \k(Mail Reader: Open Mail File Window)
+^3^Save Message=Save MessageR
+^$660
+7. \k{Mail Reader Window}
+   7.1 \k{File Button^^File ButtonR}
+       7.1.2 Save Message
+
+The Save Message menu option lets you save a mail message to the
+SavedMail.ml file in your mail folder. Additions are made to this file
+each time you save a message.
+^3^Save Message To=Save Message ToR
+^$670
+7. \k{Mail Reader Window}
+   7.1 \k{File Button^^File ButtonR}
+       7.1.3 Save Message To
+
+The Save Message To menu option is similar to the Save Message menu
+option except that you specify the name of a file to which you want to
+save your messages. Clicking on the Save Messages To menu option
+displays the Mail Reader: Save Mail Message window.
+
+More information: \k(Mail Reader: Save Mail Message Window)
+^3^Print=PrintR
+^$680
+7. \k{Mail Reader Window}
+   7.1 \k{File Button^^File ButtonR}
+       7.1.4 Print
+
+The Print menu option sends the selected mail message to the \d(default)
+printer.
+
+More information: \k(Printer Setup^dtadmin/printer.hlp^Printer Setup)
+^3^Reader Properties=Reader PropertiesR
+^$690
+7. \k{Mail Reader Window}
+   7.1 \k{File Button^^File ButtonR}
+       7.1.5 Reader Properties
+
+The Reader Properties menu option lets you set which information lines
+are attached to the top of your incoming mail messages. Clicking on
+the Reader Properties menu option displays the Mail Reader Properties
+window.
+
+More information: \k(Mail Reader Properties Window)
+^3^Exit=ExitR
+^$700
+7. \k{Mail Reader Window}
+   7.1 \k{File Button^^File ButtonR}
+       7.1.6 Exit
+
+The Exit menu option closes the Mail Reader window and updates the
+mail file if there are no Mail Reader windows open for this mail file
+and the Mail Manager window isn't open.
+
+Note: The last Mail Reader or Mail Manager window you close updates
+the mail file.
+^2^Edit Button=Edit ButtonR
+^$710
+7. \k{Mail Reader Window}
+   7.2 Edit Button
+
+The Edit button lets you select and delete mail messages. It also lets
+you undo the last change you made. Clicking on the Edit button displays
+a menu with the following options:
+
+        \k(Undo^^UndoR)
+        \k(Delete^^DeleteR)
+        \k(Select All^^Select AllR)
+        \k(Unselect All^^Unselect AllR)
+^3^Undo=UndoR
+^$720
+7. \k{Mail Reader Window}
+   7.2 \k{Edit Button^^Edit ButtonR}
+       7.2.1 Undo
+
+The Undo menu option restores the last delete you did. For example, if
+you deleted a message, clicking on Undo restores the mail message.
+^3^Delete=DeleteR
+^$730
+7. \k{Mail Reader Window}
+   7.2 \k{Edit Button^^Edit ButtonR}
+       7.2.2 Delete
+
+The Delete menu option lets you delete the current mail message. To
+delete a message, click on the Delete menu option. The selected
+message disappears. If there are any more messages, the next message
+appears; otherwise, the window is left blank.
+^3^Select All=Select AllR
+^$740
+7. \k{Mail Reader Window}
+   7.2 \k{Edit Button^^Edit ButtonR}
+       7.2.3 Select All
+
+The Select All menu option selects all lines in the body of the mail
+message in the Mail Reader window.
+^3^Unselect All=Unselect AllR
+^$750
+7. \k{Mail Reader Window}
+   7.2 \k{Edit Button^^Edit ButtonR}
+       7.2.4 Unselect All
+
+The Unselect All menu option unselects any selected mail text in the
+Mail Reader window.
+^2^View Button=View ButtonR
+^$760
+7. \k{Mail Reader Window}
+   7.3 View Button
+
+The View button lets you select the next or previous mail message to
+read. Clicking on the Edit button displays a menu with the following
+options:
+
+        \k(Next Ctrl++^^NextR)
+        \k(Prev Ctrl+-^^PrevR)
+^3^Next Ctrl++=NextR
+^$770
+7. \k{Mail Reader Window}
+   7.3 \k{View Button^^View ButtonR}
+       7.3.1 Next Ctrl++
+
+The Next menu option selects the next mail message and displays it in
+the Mail Reader window. You also can use the keyboard to view the next
+mail message: press and hold the Ctrl key and then press the + key.
+Release both keys. If you're on the last mail mes- sage, the Next menu
+option is inactive (dimmed).
+^3^Prev Ctrl+-=PrevR
+^$780
+7. \k{Mail Reader Window}
+   7.3 \k{View Button^^View ButtonR}
+       7.3.2 Prev Ctrl+-
+
+The Prev menu option selects the previous mail message and displays it
+in the Mail Reader window. You also can use the keyboard to view the
+previous mail message: press and hold the Ctrl key and then press the
+- key. Release both keys. If you're on the first mail message, the
+Prev menu option is inactive (dimmed).
+^2^Message Button=Message ButtonR
+^$790
+7. \k{Mail Reader Window}
+   7.4 Message Button
+
+The Message button lets you read, send, and reply to mail messages. It
+also lets you forward messages to others. Clicking on the Message but-
+ton displays a menu with the following options:
+
+        \k(Mail Manager^^Mail ManagerR)
+        \k(Reply to Sender^^Reply to SenderR)
+        \k{Reply to Sender (Att.)^^Reply to Sender (Att.)R}
+        \k(Reply to All^^Reply to AllR)
+        \k{Reply to All (Att.)^^Reply to All (Att.)R}
+        \k(Forward^^ForwardR)
+
+More information: \k(Mail Reader Window)
+^3^Mail Manager=Mail ManagerR
+^$800
+7. \k{Mail Reader Window}
+   7.4 \k{Message Button^^Message ButtonR}
+       7.4.1 Mail Manager
+
+The Mail Manager menu option lets you open, save, and print specific
+mail files (files on your computer's hard disk containing mail mes-
+sages) as well as delete, read, reply to, and forward mail messages.
+Clicking on the Mail Manager menu option displays the Mail Manager
+window.
+
+More information: \k(Mail Manager Window)
+^3^Reply to Sender=Reply to SenderR
+^$810
+7. \k{Mail Reader Window}
+   7.4 \k{Message Button^^Message ButtonR}
+       7.4.2 Reply to Sender
+
+The Reply to Sender menu option lets you send a mail message to the
+person who sent you the message you're reading. Clicking on the Reply
+to Sender menu option displays the Mail Sender window. When the Mail
+Sender window appears, the To text box is already filled in with the
+electronic mail address of the person who sent you the selected mail
+message in the Mail Reader window.
+
+In addition, if the current message has the Subject text box filled
+in, the Mail Sender window has its Subject text box filled in
+with the text "Re:" plus the subject of the selected message.
+
+More information: \k(Mail Sender Window)
+^3^Reply to Sender (Att.)=Reply to Sender (Att.)R
+^$820
+7. \k{Mail Reader Window}
+   7.4 \k{Message Button^^Message ButtonR}
+       7.4.3 Reply to Sender (Att.)
+
+The Reply to Sender (Att.) menu option is similar to the
+\k(Reply to Sender^^Reply to SenderR) menu option except that a copy
+of the mail to which you are replying is attached to the reply. The
+attached mail precedes the signature; each line of the original
+message begins with the greater-than symbol (>) so that it can be
+easily be distinguished from the reply.
+
+More information: \k(Mail Sender Window)
+^3^Reply to All=Reply to AllR
+^$830
+7. \k{Mail Reader Window}
+   7.4 \k{Message Button^^Message ButtonR}
+       7.4.4 Reply to All
+
+The Reply to All menu option is similar to the Reply to Sender menu
+option. Clicking on the Reply to All menu option displays the Mail
+Sender window. However, when the Mail Sender window appears, the To
+text box is already filled in with the electronic mail address of the
+person who sent you the mail message in the Mail Reader window. The Cc
+text box is filled in with the addresses of all others who were sent
+the message. In addition, if the selected message has the Subject text
+box filled in, the Mail Sender window has its Subject text box filled
+in with the text "Re:" plus the subject of the selected message.
+
+More information: \k(Mail Sender Window)
+^3^Reply to All (Att.)=Reply to All (Att.)R
+^$840
+7. \k{Mail Reader Window}
+   7.4 \k{Message Button^^Message ButtonR}
+       7.4.5 Reply to All (Att.)
+
+The Reply to All (Att.) menu option is similar to the \k(Reply to All^^Reply to AllR) menu
+option except that a copy of the mail being replied to is attached to
+the reply. The attached mail precedes the signature; each line of the
+original message begins with the greater-than symbol (>) so that it
+can be easily be distinguished from the reply.
+
+More information: \k(Mail Sender Window)
+^3^Forward=ForwardR
+^$850
+7. \k{Mail Reader Window}
+   7.4 \k{Message Button^^Message ButtonR}
+       7.4.6 Forward
+
+The Forward menu option lets you send a copy of the mail you're read-
+ing to someone else. Clicking on the Forward menu option displays the
+Mail Sender window. When the Mail Sender window appears, the contents
+of the message in the Mail Reader window is already in the message
+area of the Mail Sender window.
+
+More information: \k(Mail Sender Window)
+^2^Help Button=Help ButtonR
+^$860
+7. \k{Mail Reader Window}
+   7.5 Help Button
+
+The Help button provides on-line help for the Mail Reader window.
+Clicking on the Help button displays a menu with the following
+options:
+
+        \k(Mail Reader^^Mail ReaderR)
+        \k(Table of Contents^^Table of ContentsR)
+        \k(Help Desk^^Help DeskR)
+^3^Mail Reader=Mail ReaderR
+^$870
+7. \k{Mail Reader Window}
+   7.5 \k{Help Button^^Help ButtonR}
+       7.5.1 Mail Reader
+
+The Mail Reader menu option provides on-line help on the Mail Reader
+window.
+^3^Table of Contents=Table of ContentsR
+^$880
+7. \k{Mail Reader Window}
+   7.5 \k{Help Button^^Help ButtonR}
+       7.5.2 Table of Contents
+
+The Table of Contents menu option displays the list of help topics
+available for the Mail Reader window.
+^3^Help Desk=Help DeskR
+^$890
+7. \k{Mail Reader Window}
+   7.5 \k{Help Button^^Help ButtonR}
+       7.5.3 Help Desk
+
+he Help Desk menu option opens the Help Desk window. From there, you
+can select the icon for which you want on-line help.
+^1^Mail Sender Window
+^$900
+\k{Mail}
+8. Mail Sender Window
+
+Use the Mail Sender window to compose outgoing mail messages. This
+window includes full editing facilities for creating your messages.
+
+The buttons available from the Mail Sender window are:
+
+        \k(File Button^^File ButtonS)
+        \k(Edit Button^^Edit ButtonS)
+        \k(Message Button^^Message ButtonS)
+        \k(Help Button^^Help ButtonS)
+^2^File Button=File ButtonS
+^$910
+8. \k{Mail Sender Window}
+   8.1 File Button
+
+The File button lets you open and print mail files, save messages and
+exit from sending mail. Clicking on the File button displays a menu
+with the following options:
+
+        \k(New^^NewS)
+        \k(Open^^OpenS)
+        \k(Include^^IncludeS)
+        \k(Save^^SaveS)
+        \k(Save As^^Save AsS)
+        \k(Print^^PrintS)
+        \k(Sender Properties^^Sender PropertiesS)
+        \k(Exit^^ExitS)
+^3^New=NewS
+^$920
+8. \k{Mail Sender Window}
+   8.1 \k{File Button^^File ButtonS}
+       8.1.1 New
+
+The New menu option clears the Mail Sender window and lets you begin a
+new mail message. If you have a modified, unsent message in the Mail
+Sender window when you click on the New menu option, a window with a
+notice window appears indicating that the current message has not been
+sent. The notice window has three buttons: New, Cancel, and Help.
+
+   o New Button: This button clears the Mail Sender window and lets
+     you begin a new message.
+
+   o Cancel Button: This button cancels the request to create a
+     new message and returns to the current message.
+
+   o Help Button: This button provides on-line help for the New
+     menu option.
+^3^Open=OpenS
+^$930
+8. \k{Mail Sender Window}
+   8.1 \k{File Button^^File ButtonS}
+       8.1.2 Open
+
+The Open menu option lets you open another file containing mail mes-
+sages. Clicking on the Open menu option displays the Mail Sender:
+Open Mail File window, which is identical to the Mail Reader: Open
+Mail File window.
+
+More information: \k(Mail Reader: Open Mail File Window)
+^3^Include=IncludeS
+^$940
+8. \k{Mail Sender Window}
+   8.1 \k{File Button^^File ButtonS}
+       8.1.3 Include
+
+The Include menu option lets you include the most recent mail message
+selected or read into the mail message you're now composing. The last
+message is inserted at the current cursor location in your current
+message. You also can include the contents of other files into your
+mail message by \d(dragging-and-dropping^drag-and-drop) the file's icon into the Mail
+Sender window.
+^3^Save=SaveS
+^$950
+8. \k{Mail Sender Window}
+   8.1 \k{File Button^^File ButtonS}
+       8.1.4 Save
+
+The Save menu option lets you save the information in the Mail Sender
+window (only if a file name has already been provided). The Save menu
+option is only active if you have used the \k(Save As^^Save AsS) menu option to
+specify a file name to which you want to save messages.
+^3^Save As=Save AsS
+^$960
+8. \k{Mail Sender Window}
+   8.1 \k{File Button^^File ButtonS}
+       8.1.5 Save As
+
+The Save As menu option is similar to the Save menu option except that
+you specify the name of a file to which you want to save the informa-
+tion in the Mail Sender window. Clicking on the Save Messages As menu
+option displays the Mail Sender: Save Outgoing Message window.
+
+More information: \k(Mail Sender: Save Outgoing Message Window)
+^3^Print=PrintS
+^$970
+8. \k{Mail Sender Window}
+   8.1 \k{File Button^^File ButtonS}
+       8.1.7 Print
+
+The Print menu option sends the mail message you're composing to the
+\d(default) printer.
+
+More information: \k(Printer Setup^dtadmin/printer.hlp^Printer Setup)
+^3^Sender Properties=Sender PropertiesS
+^$980
+8. \k{Mail Sender Window}
+   8.1 \k{File Button^^File ButtonS}
+       8.1.8 Sender Properties
+
+The Sender Properties menu option lets you set which information lines
+are attached to the top of your outgoing mail messages. Clicking on
+the Sender Properties menu option displays the Mail Sender Properties
+window.
+
+More information: \k(Mail Sender Properties Window)
+^3^Exit=ExitS
+^$990
+8. \k{Mail Sender Window}
+   8.1 \k{File Button^^File ButtonS}
+       8.1.9 Exit
+
+The Exit menu option closes the Mail Sender window. If you attempt to
+exit before sending a mail message, a window with a notice window
+appears indicating that the current message has not been sent. The
+notice window has three buttons: Exit, Cancel, and Help.
+
+   o Exit Button: This button closes the Mail Sender window.
+
+   o Cancel Button: This button cancels the request to exit from
+     the Mail Sender window.
+
+   o Help Button: This button provides on-line help for the Exit
+     menu option.
+^2^Edit Button=Edit ButtonS
+^$1000
+8. \k{Mail Sender Window}
+   8.2 Edit Button
+
+The Edit button lets you select, delete, and move blocks of text
+around as you compose your mail message. It also lets you undo the
+last change you made. Before copying or moving a block of text, you
+must highlight or select the block of text.
+
+Clicking on the Edit Button displays a menu with the following
+options:
+
+        \k(Undo^^UndoS)
+        \k(Cut^^CutS)
+        \k(Copy^^CopyS)
+        \k(Paste^^PasteS)
+        \k(Delete^^DeleteS)
+        \k(Select All^^Select AllS)
+        \k(Unselect All^^Unselect AllS)
+
+More information: \k(Highlighting Text)
+^3^Highlighting Text
+^$1010
+8. \k{Mail Sender Window}
+   8.2 \k{Edit Button^^Edit ButtonS}
+       8.2.1 Highlighting Text
+
+There are three ways to highlight text in the Text Editor:
+
+   o Drag the mouse pointer across the desired text while holding
+     SELECT (the left mouse button). Release the mouse button when all
+     the text you want to copy or move is highlighted.
+
+   o \d(Double-click^double click) on a word to highlight the word. Triple-click
+     SELECT (the left mouse button) anywhere in a paragraph to
+     highlight an entire paragraph.
+
+   o Various combinations of keys highlight characters, words, and
+     lines:
+
+     - SHIFT ARROW: Press and hold the SHIFT key and use the left or
+       right arrow key to highlight one or more letters to the left or
+       right.
+
+     - SHIFT Ctrl ARROW: Press and hold the SHIFT and Ctrl key and use
+       the left or right arrow key to highlight one or more words to
+       the left or right.
+
+     - SHIFT END: Press and hold the SHIFT key and then press the END
+       key to highlight one or more lines going forward from the cur-
+       sor location.
+
+     - SHIFT HOME: Press and hold the SHIFT key and then press the
+       HOME key to highlight from the beginning of the current para-
+       graph to the cursor location.
+
+     - Ctrl Alt LEFT ARROW: Press and hold the Ctrl and Alt keys and
+       then press the LEFT ARROW key to highlight the entire paragraph
+       in which the cursor is located.
+^3^Undo=UndoS
+^$1020
+8. \k{Mail Sender Window}
+   8.2 \k{Edit Button^^Edit ButtonS}
+       8.2.2 Undo
+
+The Undo menu option restores the last change you made. For example,
+if you deleted some text and want to restore it, use this option. If
+you click on this option a second time, what you restored is undone.
+^3^Cut=CutS
+^$1030
+8. \k{Mail Sender Window}
+   8.2 \k{Edit Button^^Edit ButtonS}
+       8.2.3 Cut
+
+The Cut menu option lets you remove text from the text file you're
+editing. You can later retrieve the text with the Paste menu option,
+effectively moving the text within your mail message. To cut text,
+first \k(highlight^^Highlighting Text) it and then click on the Cut menu option. The
+highlighted text disappears. It's temporarily stored in an area called
+the \d(clipboard).
+
+Note: You only can store one block of text in the clipboard at a time.
+When a new block of text is stored in the clipboard, the previously
+stored text is replaced by the new text and cannot be retrieved.
+^3^Copy=CopyS
+^$1040
+8. \k{Mail Sender Window}
+   8.2 \k{Edit Button^^Edit ButtonS}
+       8.2.4 Copy
+
+The Copy menu option lets you duplicate text from the text file you're
+editing without retyping. It makes a copy of selected text in the
+\d(clipboard) that you can retrieve later using the Paste menu option.  To
+Copy text, first \k(highlight^^Highlighting Text) it, and then click on the Copy menu option.
+The highlighted text is copied to the clipboard, and also remains in
+its current position.
+^3^Paste=PasteS
+^$1050
+8. \k{Mail Sender Window}
+   8.2 \k{Edit Button^^Edit ButtonS}
+       8.2.5 Paste
+
+The Paste menu option copies text from the \d(clipboard) into your message
+at the location of the cursor. Text is written to the clipboard with
+either the \k(Cut^^CutS) or \k(Copy^^CopyS) menu options.
+^3^Delete=DeleteS
+^$1060
+8. \k{Mail Sender Window}
+   8.2 \k{Edit Button^^Edit ButtonS}
+       8.2.6 Delete
+
+The Delete menu option lets you delete text from the text file you're
+editing. To delete text, first highlight it and then click on the
+Delete menu option. The highlighted text disappears. Using the Delete
+menu option does not affect the \d(clipboard) in any way. If you previously
+used the Cut or Copy options, the text in the clipboard is still
+available after you use the Delete option.
+
+More information: \k(Mail Sender Window)
+^3^Select All=Select AllS
+^$1070
+8. \k{Mail Sender Window}
+   8.2 \k{Edit Button^^Edit ButtonS}
+       8.2.7 Select All
+
+The Select All menu option selects all lines in the body of the mail
+message in the Mail Sender window.
+^3^Unselect All=Unselect AllS
+^$1080
+8. \k{Mail Sender Window}
+   8.2 \k{Edit Button^^Edit ButtonS}
+       8.2.8 Unselect All
+
+The Unselect All menu option unselects any selected mail text in the
+Mail Sender window.
+^2^Message Button=Message ButtonS
+^$1090
+8. \k{Mail Sender Window}
+   8.3 Message Button
+
+The Message button lets you send the mail message just composed and
+use aliases from your alias file. Clicking on the Message button
+displays a menu with the following options:
+
+        \k(Send^^SendS)
+        \k(Aliases^^AliasesS)
+^3^Send=SendS
+^$1100
+8. \k{Mail Sender Window}
+   8.3 \k{Message Button^^Message ButtonS}
+       8.3.1 Send
+
+The Send menu option lets you send the mail message you composed in
+the Mail Sender window. If you attempt to send a message a second
+time, without modifying it, a notice window appears indicating that
+the message was already sent. You can then choose to send it again or
+cancel the request.
+^3^Aliases=AliasesS
+^$1110
+8. \k{Mail Sender Window}
+   8.3 \k{Message Button^^Message ButtonS}
+       8.3.2 Aliases
+
+The Aliases menu option lets you use aliases stored in your
+.mailrc file. Clicking on the Aliases menu option displays the Mail
+Aliases window. You can either type in the alias name(s) in the To, Cc
+(Copy to), or Bcc (Blind Copy to) text boxes, or, click on the aliases
+you want in the Mail Aliases window. Next, drag the selected alias to
+either the To, Cc or Bcc text box in the Mail Sender window. The
+selected aliases are inserted in the indicated text box. To close the
+Mail Alias window, click on the Cancel button. To get help on the Mail
+Aliases window, click on the Help button.
+^2^Help Button=Help ButtonS
+^$1120
+8. \k{Mail Sender Window}
+   8.4 Help Button
+
+The Help button provides on-line help for the Mail Sender window.
+Clicking on the Help button displays a menu with the following
+options:
+
+        \k(Mail Sender^^Mail SenderS)
+        \k(Table of Contents^^Table of ContentsS)
+        \k(Help Desk^^Help DeskS)
+^3^Mail Sender=Mail SenderS
+^$1130
+8. \k{Mail Sender Window}
+   8.4 \k{Help Button^^Help ButtonS}
+       8.4.1 Mail Sender
+
+The Mail Sender menu option provides on-line help on the Mail Sender
+window.
+^3^Table of Contents=Table of ContentsS
+^$1140
+8. \k{Mail Sender Window}
+   8.4 \k{Help Button^^Help ButtonS}
+       8.4.2 Table of Contents
+
+The Table of Contents menu option displays the list of help topics
+available for the Mail Sender window.
+^3^Help Desk=Help DeskS
+^$1150
+8. \k{Mail Sender Window}
+   8.4 \k{Help Button^^Help ButtonS}
+       8.4.3 Help Desk
+
+The Help Desk menu option opens the Help Desk window. From there, you
+can select the icon for which you want on-line help.
+^1^Mail Sender: Save Outgoing Message Window
+^$1160
+\k{Mail}
+9. Mail Sender: Save Outgoing Message Window
+
+Use the Mail Sender: Save Outgoing Message window to save your out-
+going mail messages to a file you specify.
+
+The current \d(path) is shown at the top of the window. Below that is the
+File text box, where you can enter the name of the file to which you
+want to save your messages. Alternatively, you can select a folder
+from the list in the Folder(s) box (as you do so, the path at the top
+of the window changes) and then type the name of the file on the File
+text box. Use the scrollbar (if present) to view additional folders
+and files.
+
+The buttons available from the Mail Sender: Save Outgoing Message
+window are:
+
+        \k(Save Button^^Save ButtonOG)
+        \k(Cancel Button^^Cancel ButtonOG)
+        \k(Help Button^^Help ButtonOG)
+^2^Save Button=Save ButtonOG
+^$1170
+9. \k{Mail Sender: Save Outgoing Message Window}
+   9.1 Save Button
+
+The Save button saves your outgoing mail message in the file name
+specified in the Folder(s) box and the File text box. After saving
+your message to a file, the Mail Sender: Save Outgoing Message window
+closes.
+^2^Cancel Button=Cancel ButtonOG
+^$1180
+9. \k{Mail Sender: Save Outgoing Message Window}
+   9.2 Cancel Button
+
+The Cancel button closes the Mail Sender: Save Outgoing Message window
+without saving your mail message.
+^2^Help Button=Help ButtonOG
+^$1190
+9. \k{Mail Sender: Save Outgoing Message Window}
+   9.3 Help Button
+
+The Help button provides on-line help for the Mail Sender: Save
+Outgoing Message window.
+^1^Mail Alias Manager Window
+^$1200
+\k{Mail}
+10. Mail Alias Manager Window
+
+The Mail Alias Manager window lets you create and maintain mail
+aliases, that is, shortcut names for people or groups of people you
+send mail to. For example, if you send mail to someone with the
+electronic address sfbop!zorb, you can give them an alias of, say
+larry. With larry as an alias, you don't have to remember their
+electronic address, just their name when sending them mail. Aliases
+are also convenient for groups of people. For example, you can create
+an alias for an entire project or organization. You might create an
+alias called docdept that contained everyone in the documentation
+department.
+
+When the Mail Alias Manager window appears, the first entry is
+selected and appears at the bottom of the window in the name and
+address text boxes. As you select other entries, the name and address
+at the bottom of the window changes. Edit the information shown to
+make changes to an entry.
+
+To create a new entry, use the New menu option under the \k(Edit button^^Edit ButtonAM).
+
+The buttons available from the Mail Alias Manager window are:
+
+        \k(File Button^^File ButtonAM)
+        \k(Edit Button^^Edit ButtonAM)
+        \k(Help Button^^Help ButtonAM)
+^2^File Button=File ButtonAM
+^$1210
+10. \k{Mail Alias Manager Window}
+   10.1 File Button
+
+The File button lets you save and print your alias file. It also lets
+you exit the Mail Alias Manager window. Clicking on the File button
+displays a menu with the following options:
+
+        \k(Save^^SaveAM)
+        \k(Print^^PrintAM)
+        \k(Exit^^ExitAM)
+^3^Save=SaveAM
+^$1220
+10. \k{Mail Alias Manager Window}
+   10.1 \k{File Button^^File ButtonAM}
+       10.1.1 Save
+
+The Save menu option lets you save your aliases to the .mailrc file in
+your UNIX Desktop window.
+^3^Print=PrintAM
+^$1230
+10. \k{Mail Alias Manager Window}
+   10.1 \k{File Button^^File ButtonAM}
+       10.1.2 Print
+
+The Print menu option lets you print your alias list. The list is sent
+to the \d(default) printer.
+
+More information: \k(Printer Setup^dtadmin/printer.hlp^Printer Setup)
+^3^Exit=ExitAM
+^$1240
+10. \k{Mail Alias Manager Window}
+   10.1 \k{File Button^^File ButtonAM}
+       10.1.3 Exit
+
+The Exit menu option closes the Mail Alias Manager window. If you
+attempt to exit without saving changes to the alias file, a notice
+window appears indicating that you have unsaved alias changes.
+
+More information: \k(Unsaved Aliases Notice Window)
+^4^Unsaved Aliases Notice Window
+^$1250
+10. \k{Mail Alias Manager Window}
+   10.1 \k{File Button^^File ButtonAM}
+       10.1.3 \k{Exit^^ExitAM}
+             10.1.3.1 Unsaved Aliases Notice Window
+
+The Unsaved Aliases Notice window has three buttons: OK, Cancel, and
+Help.
+
+   o OK Button: This button lets you exit from the Mail Alias Manager
+     window without saving your alias changes.
+
+   o Cancel Button: This button cancels your request to exit the Mail
+     Alias Manager window.
+
+   o Help Button: This button provides on-line help for this notice
+     window.
+
+^2^Edit Button=Edit ButtonAM
+^$1260
+10. \k{Mail Alias Manager Window}
+   10.2 Edit Button
+
+The Edit button lets you delete and make changes to your mail aliases.
+It also lets you undo the last change you made. Clicking on the Edit
+button displays a menu with the following options:
+
+        \k(Undo^^UndoAM)
+        \k(New^^NewAM)
+        \k(Apply^^ApplyAM)
+        \k(Delete^^DeleteAM)
+        \k(Undelete^^UndeleteAM)
+^3^Undo=UndoAM
+^$1270
+10. \k{Mail Alias Manager Window}
+   10.2 \k{Edit Button^^Edit ButtonAM}
+       10.2.1 Undo
+
+The Undo menu option restores the last modification, delete or
+undelete you did. It also deletes the last new entry you added. For
+example, if you deleted a mail alias, clicking on Undo restores the
+mail alias. If you click on this option a second time, the mail alias
+you restored is again deleted.
+^3^New=NewAM
+^$1280
+10. \k{Mail Alias Manager Window}
+   10.2 \k{Edit Button^^Edit ButtonAM}
+       10.2.2 New
+
+The New menu option lets you create a new alias. Clicking on the New
+menu option clears the Name and Address text boxes at the bottom of
+the Mail Alias Manager window. Enter the alias you want to use, press
+TAB to move to the Address text box, and enter the address or
+electronic addresses you want the alias to represent. Next use the
+\k(Apply^^ApplyAM) menu option to add the new entry to your alias list.
+^3^Apply=ApplyAM
+^$1290
+10. \k{Mail Alias Manager Window}
+   10.2 \k{Edit Button^^Edit ButtonAM}
+       10.2.3 Apply
+
+The Apply menu option applies changes and new adds entries to the
+alias list. After making a change to a selected alias or creating a
+new alias, click on the Apply menu option. Note that this does not
+permanently save the alias file; you must use the Save menu option
+under the File button to permanently save changes to your alias file.
+
+Note: If you make changes to an existing alias and click on Apply, a
+notice window appears indicating that the alias is already in use.
+
+More information: \k(Aliases Already in Use Notice Window)
+^4^Aliases Already in Use Notice Window
+^$1300
+10. \k{Mail Alias Manager Window}
+   10.2 \k{Edit Button^^Edit ButtonAM}
+       10.2.3 \k{Apply^^ApplyAM}
+             10.2.3.2 Aliases Already in Use Notice Window
+
+The Aliases Already in Use Notice window has three buttons: Overwrite,
+Cancel, and Help.
+
+   o Overwrite Button: This button lets you overwrite the existing
+     alias with the new information you just entered. The information
+     from the old entry is lost.
+
+   o Cancel Button: This button cancels your request to apply the
+     changes you just made.
+
+   o Help Button: This button provides on-line help for this notice
+     window.
+^3^Delete=DeleteAM
+^$1310
+10. \k{Mail Alias Manager Window}
+   10.2 \k{Edit Button^^Edit ButtonAM}
+       10.2.4 Delete
+
+The Delete menu option lets you delete a mail alias. To delete an
+alias, first select the alias you want deleted and then click on the
+Delete menu option. The selected alias disappears. You can retrieve
+the deleted alias by using the Undelete menu option.
+
+^3^Undelete=UndeleteAM
+^$1320
+10. \k{Mail Alias Manager Window}
+   10.2 \k{Edit Button^^Edit ButtonAM}
+       10.2.5 Undelete
+
+The Undelete menu option lets you restore previously deleted aliases.
+Clicking on the Undelete menu option displays the Mail Alias Manager:
+Undelete window. The Names box lists the deleted aliases. The Mail
+Alias Manager: Undelete window has three buttons: Undelete, Cancel,
+and Help.
+
+   o Undelete Button: This button restores the selected alias to the
+     Mail Alias Manager window. The Mail Alias Manager window closes.
+
+   o Cancel Button: This button closes the Mail Alias Manager:
+     Undelete window without undeleting any aliases.
+
+   o Help Button: This button provides on-line help for the Mail Alias
+     Manager: Undelete window.
+^2^Help Button=Help ButtonAM
+^$1330
+10. \k{Mail Alias Manager Window}
+   10.3 Help Button
+
+The Help button provides on-line help for the Mail Alias Manager
+window. Clicking on the Help button displays a menu with the following
+options:
+
+        \k(Alias Manager^^Alias ManagerAM)
+        \k(Table of Contents^^Table of ContentsAM)
+        \k(Help Desk^^Help DeskAM)
+^3^Alias Manager=Alias ManagerAM
+^$1340
+10. \k{Mail Alias Manager Window}
+   10.3 \k{Help Button^^Help ButtonAM}
+       10.3.1 Alias Manager
+
+The Alias Manager menu option provides on-line help for Mail Alias
+Manager.
+^3^Table of Contents=Table of ContentsAM
+^$1350
+10. \k{Mail Alias Manager Window}
+   10.3 \k{Help Button^^Help ButtonAM}
+       10.3.2 Table of Contents
+
+The Table of Contents menu option displays the list of help topics
+available for Mail Alias Manager.
+^3^Help Desk=Help DeskAM
+^$1360
+10. \k{Mail Alias Manager Window}
+   10.3 \k{Help Button^^Help ButtonAM}
+       10.3.3 Help Desk
+
+The Help Desk menu option opens the Help Desk window. From there, you
+can select the icon for which you want on-line help.

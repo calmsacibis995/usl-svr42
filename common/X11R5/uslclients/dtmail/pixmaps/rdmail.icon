@@ -1,0 +1,60 @@
+#define rdmail_format 1
+#define rdmail_width 48
+#define rdmail_height 48
+#define rdmail_ncolors 3
+#define rdmail_chars_per_pixel 1
+static char * rdmail_colors[] = {
+" " , "#E400E400E400",
+"." , "#000000000000",
+"X" , "#E7009E007900"
+} ;
+static char * rdmail_pixels[] = {
+"                                                ",
+"     ......................................     ",
+"     .XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.     ",
+"     .XXXXXXXXXXXXXXXXXXXXXX....X.......XX.     ",
+"     .XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.     ",
+"     .XXXXXXXXXXXXXXXXXXXXXX..X......X...X.     ",
+"     .XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.     ",
+"     .XXXXXXXXXXXXXXXXXXXXXX...X....X....X.     ",
+"     .XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.     ",
+"     .XXXXXXXXXXXXXXXXXXXXXXXXXXXX.....XXX.     ",
+"     .XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.     ",
+"     .XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.     ",
+"     .XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.     ",
+"     .X........X......XXXXXXXXXXXXXXXXXXXX.     ",
+"     .XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.     ",
+"     .X..X....X..XXXXXXXXXXXXXXXXXXXXXXXXX.     ",
+"     .XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.     ",
+"     .X..X..X......XXXXXXXXXXXXXXXXXXXXXXX.     ",
+"     .XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.     ",
+"     .X......XXXXXXXXXXXXXXXXXXXXXXXXXXXXX.     ",
+"     .XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.     ",
+"     .XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.     ",
+"     .XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.     ",
+"     .XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.     ",
+"     .X.....XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.     ",
+"     .XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.     ",
+"     .XXXX...X....X...X.....X.......X....X.     ",
+"     .XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.     ",
+"     .X.X.......X.........X..X....X......X.     ",
+"     .XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.     ",
+"     .X...X...X.....X.......X......X.....X.     ",
+"     .XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.     ",
+"     .X..........X........X.......X......X.     ",
+"     .XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.     ",
+"     .X........X........X.....X..........X.     ",
+"     .XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.     ",
+"     .X.....X......X..........X..........X.     ",
+"     .XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.     ",
+"     .X..X.......X......X......XXXXXXXXXXX.     ",
+"     .XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.     ",
+"     .XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.     ",
+"     .XXXXXXXXXXXXXXXXXXXXX.....X....XXXXX.     ",
+"     .XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.     ",
+"     .XXXXXXXXXXXXXXXXXXXXX......X.X.....X.     ",
+"     .XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.     ",
+"     .XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.     ",
+"     ......................................     ",
+"                                                "
+} ;

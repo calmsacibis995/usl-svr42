@@ -1,0 +1,53 @@
+#ifndef	NOIDENT
+#ident	"@(#)olwm:deficon2.xpm	1.2"
+#endif
+
+#define deficon2_format 1
+#define deficon2_width 57
+#define deficon2_height 35
+#define deficon2_ncolors 5
+#define deficon2_chars_per_pixel 1
+static OLconst char * deficon2_colors[] = {
+" " , "#FFFFFFFFFFFF",
+"." , "#AAAAAAAAAAAA",
+"X" , "#000000000000",
+"o" , "#0000AAAAFFFF",
+"O" , "#0000FFFFFFFF"
+} ;
+static OLconst char * deficon2_pixels[] = {
+"                                                         ",
+" .......................................................X",
+" ..    ....... ..  ..  .. ... .   .. ..   . .. .. . ....X",
+" .. ..X...... . . . . . . ... . ... . .. .. . . .   ....X",
+" .. ..X......   .  ..  .. ... . ...   .. .. . . .   ....X",
+" .. XXX...... . . ... ...   . .   . . .. .. .. .. . ....X",
+" .......................................................X",
+" .                                                    ..X",
+" .XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX..X",
+" .......................................................X",
+" ..      ....      ....      ...........................X",
+" . ......X.. ......X.. ......X..........................X",
+" ..XXXXXX....XXXXXX....XXXXXX...........................X",
+" .......................................................X",
+" .XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX ..    ..X",
+" .XoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoO .. XXX..X",
+" .XOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOo ....X...X",
+" .XoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoO ....X...X",
+" .XOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOo ..    ..X",
+" .XoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoO .. ..X..X",
+" .XOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOo .. ..X..X",
+" .XoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoO .. ..X..X",
+" .XOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOo ..   X..X",
+" .XoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoO .. ..X..X",
+" .XOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOo .. ..X..X",
+" .XoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoO .. ..X..X",
+" .XOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOo .. XXX..X",
+" .XoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoO ....X...X",
+" .XOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOo ....X...X",
+" .XoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoO ....X...X",
+" .XOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOo ..    ..X",
+" .                                              .. XXX..X",
+" .......................................................X",
+" .......................................................X",
+" XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+} ;

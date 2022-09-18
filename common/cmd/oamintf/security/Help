@@ -1,0 +1,8 @@
+#ident	"@(#)oamintf:common/cmd/oamintf/security/Help	1.3.3.2"
+#ident  "$Header: Help 2.0 91/07/12 $"
+ABSTRACT:
+	The items in the "security" menu provide functions for managing
+	security and auditing features on your machine.  They include 
+	the ability to manage auditing, database/roles, devices, 
+	filesystem privileges and classes, secure attention key for 
+	terminals, and levels.

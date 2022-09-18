@@ -1,0 +1,19 @@
+#define beige_format 1
+#define beige_width 8
+#define beige_height 8
+#define beige_ncolors 2
+#define beige_chars_per_pixel 1
+static char * beige_colors[] = {
+" " , "#FFFFAAAA0000",
+"." , "#FFFFFFFFFFFF"
+} ;
+static char * beige_pixels[] = {
+" . . . .",
+". . . . ",
+" . . . .",
+". . . . ",
+" . . . .",
+". . . . ",
+" . . . .",
+". . . . "
+} ;

@@ -1,0 +1,50 @@
+#ident	"@(#)pkg.eth:menu.err	1.6"
+#ident	"$Header: $"
+
+.optstring
+Your options are:
+.pageno
+Page %d of %d
+.ul
+Ethernet Hardware Support
+.hhelp_ban
+Instructions
+.helpbanner
+Help: Parameter Selection Error
+.ur
+Parameter Selection Error
+#.ll
+#Please make a selection.  Press F1 for Help.
+.lr
+F1=Help
+.top
+The `echo $DRV` adaptor could not be installed because the supported
+`[ "$ERR" = 1 ] && echo "interrupts listed below are in use already:"`
+`[ "$ERR" = 1 ] && cat $INTVFL`
+`[ "$ERR" = 2 ] && echo "$ADDR_TYPE addresses are in use already."`
+`[ "$ERR" = 2 ] && echo " Press 'F1' to see the supported $ADDR_TYPE addresses."`
+
+`[ $MULT_BOARDS -eq 1 ] && echo "If you have chosen to install other Ethernet network adaptors"`
+`[ $MULT_BOARDS -eq 1 ] && echo "you may continue to install them now."`
+.form
+`[ $MULT_BOARDS -ne 1 ] && echo "ENTER"`
+`[ $MULT_BOARDS -eq 1 ] && echo "2 2//N::No//Y::Yes//Do you wish to stop installation now?//REPLY//"`
+`[ $MULT_BOARDS -eq 1 ] && echo "//Right/Left arrow keys for new choice (2 choices)//"`
+.button
+Apply
+Reset
+.bottom
+`[ $MULT_BOARDS -eq 1 ] && echo "Press 'TAB' to move the cursor between fields.  When finished, move the"`
+`[ $MULT_BOARDS -eq 1 ] && echo "cursor to \"Apply\" and then press 'ENTER' to continue."`
+.selection
+`[ $MULT_BOARDS -eq 0 ] && echo "Press 'ENTER' now."`
+.help
+`[ "$ERR" = 1 ] && echo "No help available."`
+`[ "$ERR" = 2 ] && cat $LIST."`
+.helpinst
+ESC=Exit help  F1=Instructions  1=Forward  2=Backward
+.hhelpinst
+ESC=Exit instructions  1=Forward  2=Backward
+.working
+Working...
+.end

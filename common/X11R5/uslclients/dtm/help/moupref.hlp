@@ -1,0 +1,164 @@
+#ident	"@(#)dtm:help/moupref.hlp	1.10"
+^*version^1
+^*title^Mouse Preferences
+^*width^70
+^+DesktopMgr/help.defs
+^?Bind mouse buttons to Desktop functions.
+^0^Mouse Preferences
+^$10
+Mouse Preferences
+
+Use Mouse Preferences to change various aspects of how your mouse
+works, including how many mouse buttons your mouse has and which mouse
+buttons are used for SELECT, ADJUST, MENU and PASTE and the
+sensitivity of the mouse when it's clicked or dragged.
+
+The following window is provided for Mouse Preferences:
+
+        \k(Mouse Preferences Window)
+^1^Mouse Preferences Window
+^$20
+\k{Mouse Preferences}
+1. Mouse Preferences Window
+
+Use the Mouse Preferences window to change how many buttons your mouse
+has, how the buttons are used, and the sensitivity of the mouse when
+clicked and dragged. These settings are displayed in two categories:
+
+   o \k(Mouse Modifiers): enables you to associate key strokes with
+     mouse buttons to perform specific functions.
+
+   o \k(Mouse Settings): enables you to set Multi-click Timeout, Mouse
+     Damping, Drag-Right Distance, and Menu Mark Region mouse charac-
+     teristics.
+
+The first line of the Mouse Preferences window contains a CATEGORY
+button (arrow). This button lets you quickly switch Preferences
+categories (including preferences for Color, Desktop, Icons, Keyboard,
+Locale, Miscellaneous, and Mouse). When you click on the arrow, a menu
+appears with the Preferences categories listed. Click on the
+Preferences category you want or click on Next Page to get the next
+Preferences category in the list.
+
+The buttons available from the Mouse Preferences window are:
+
+        \k(Apply Button^^Apply ButtonMS)
+        \k(Reset Button^^Reset ButtonMS)
+        \k(Reset to Factory Button^^Reset to Factory ButtonMS)
+        \k(Cancel Button^^Cancel ButtonMS)
+        \k(Help Button^^Help ButtonMS)
+^2^Mouse Modifiers
+^$22
+1. \k{Mouse Preferences Window}
+   1.1 Mouse Modifiers
+
+Use Mouse Modifiers to change which keystrokes are associated with
+mouse buttons for performing mouse functions. For example, with a
+three-button mouse, the ADJUST function is performed with the Ctrl key
+plus left mouse button. Using Mouse Modifiers, you can change which
+key and mouse button are used for this function.
+
+To change the modifier (keystroke), click on the menu button (arrow)
+next to mouse function. A menu with Shift, Ctrl, and Alt options.
+Click on the desired modifier. The box next to the modifier indicates
+if the modifier is on or off. To use more than one modifier, display the
+menu again and select another modifier.
+
+To change the mouse button for SELECT, ADJUST, MENU, and PASTE,
+click on L, M, or R (Left, Middle, or Right mouse button).
+
+Note: The M option is present only if Number of Mouse Buttons is set
+to Three.
+^2^Mouse Settings
+^$24
+1. \k{Mouse Preferences Window}
+   1.2 Mouse Settings
+
+Use Mouse Settings to change the following mouse characteristics:
+
+   o Multi-click Timeout: This is the time interval used to group suc-
+     cessive mouse clicks as a single action. For example, if two
+     mouse clicks occur within this time interval and the mouse
+     pointer movement does not exceed the Mouse Damping, the mouse
+     click is considered a \d(double-click).
+
+   o Mouse Damping: This is the number of pixels you can move the
+     mouse pointer before the movement is considered a drag, that is,
+     pressing and releasing a mouse button before moving the mouse
+     pointer by this number of pixels results in the action being
+     interpreted as a single click.
+
+   o Drag-Right Distance: This setting applies to menus that have sub-
+     menus that let you press the SELECT mouse button over the menu
+     button, drag the mouse pointer down the list of menu options, and
+     release the mouse button to select the option the mouse pointer
+     is over ("Press-Drag-Release").
+
+     This setting determines how many pixels you need to move the
+     mouse pointer to the right to cause the submenu to display.
+
+   o Menu Mark Region: Each menu button has an active region associ-
+     ated with it that displays the submenu, regardless whether you
+     drag the pointer to the right. This region is located at the
+     extreme right of a menu button and its size (in pixels) is deter-
+     mined by this setting. The Menu Mark Region setting also deter-
+     mines how much mouse pointer movement is required to dismiss
+     menus. For example, if a submenu is displayed in "Press-Drag-
+     Release" mode and the mouse pointer is dragged in and then out
+     the left side of the last menu, that menu is dismissed if you
+     continue to move the pointer to the left by the amount of this
+     setting.
+
+Adjust the above characteristics by moving the sliders (move the mouse
+pointer over the slider, press and hold the left mouse button, move
+the slider, and release the mouse button).
+^2^Apply Button=Apply ButtonMS
+^$30
+1. \k{Mouse Preferences Window}
+   1.3 Apply Button
+
+The Apply button saves and applies all changes made in any preferences
+window. If you made any changes, they are immediately applied to all
+Desktop applications, including those currently open. After applying
+the changes, the Mouse Preferences window closes.
+^2^Reset Button=Reset ButtonMS
+^$40
+1. \k{Mouse Preferences Window}
+   1.4 Reset Button
+
+The Reset button reverses any changes you have not yet applied in the
+Mouse Preferences window. The setting for the number of mouse buttons
+is not affected by this button. The Mouse Preferences window remains
+open.
+
+Note: The Reset button does not affect the saved values, which are
+changed only when the \k(Apply button^^Apply ButtonMS) is used.
+^2^Reset to Factory Button=Reset to Factory ButtonMS
+^$50
+1. \k{Mouse Preferences Window}
+   1.5 Reset to Factory Button
+
+The Reset to Factory button resets all characteristics in the Mouse
+Preferences window to those originally set in the software. Use the
+\k(Apply button^^Apply ButtonMS) to have the changes take effect. The setting for the
+number of mouse buttons is not affected by this button. The values for
+the remaining characteristics are set to those appropriate for the
+number of mouse buttons selected. The Mouse Preferences window remains
+open.
+
+Note: The Reset to Factory button does not affect the saved values,
+which are changed only when the Apply button is used.
+^2^Cancel Button=Cancel ButtonMS
+^$60
+1. \k{Mouse Preferences Window}
+   1.6 Cancel Button
+
+The Cancel button closes the Mouse Preferences window without making
+any changes.
+^2^Help Button=Help ButtonMS
+^$70
+1. \k{Mouse Preferences Window}
+   1.7 Help Button
+
+The Help Button provides on-line help for the Mouse Preferences
+window.

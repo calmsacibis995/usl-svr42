@@ -1,0 +1,20 @@
+#ident	"@(#)face:src/oam/programs/Text.amail	1.6.4.3"
+#ident  "$Header: Text.amail 1.4 91/10/15 $"
+
+title=$$uxface:368:"Installation of Mail Services"
+
+init=false
+
+`indicator -w;
+fmlgrep '^vmsys:' /etc/passwd | fmlcut -f6 -d: |set -e VMSYS;
+if fmlgrep 'name="$$uxface:369:Mail Services"' $VMSYS/lib/services > /dev/null;
+then
+	message "$$uxface:370:Mail Services are already in the Programs Menu.";
+else
+	if $VMSYS/bin/addmenu '$$uxface:369:Mail Services' "OBJECTS/Menu.mail" > /dev/null;
+	then
+		message "$$uxface:371:Mail Services have been added.";
+	else
+		message "$$uxface:372:Mail Services have not been added.";
+	fi;
+fi`

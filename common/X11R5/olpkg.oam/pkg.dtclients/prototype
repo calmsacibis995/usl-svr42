@@ -1,0 +1,172 @@
+#ident	"@(#)olpkg.oam:pkg.dtclients/prototype	1.20"
+#	Copyright (c) 1990, 1991 UNIX System Laboratories, Inc.
+#	Copyright (c) 1988 AT&T
+#	  All Rights Reserved
+
+#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+#	UNIX System Laboratories, Inc.
+#	The copyright notice above does not evidence any
+#	actual or intended publication of such source code.
+
+
+i copyright
+i depend
+i pkginfo
+i postinstall
+i preremove
+
+!PKGINST=dtclients
+!SRCDIR=../usr/src/$WORK/X11R5
+
+!default 0755 bin bin
+
+d enduser /usr ? ? ?
+
+d enduser /usr/X
+d enduser /usr/X/bin
+d enduser /usr/X/lib
+d enduser /usr/X/lib/bitmaps
+d enduser /usr/X/lib/images
+d enduser /usr/X/lib/twm
+d enduser /usr/X/lib/app-defaults
+d enduser /usr/X/lib/spider
+d enduser /usr/X/lib/x11perfcomp
+d enduser /usr/X/include
+d enduser /usr/X/include/X11
+d enduser /usr/X/include/X11/bitmaps
+
+f enduser /usr/X/bin/x11perf
+f enduser /usr/X/bin/x11perfcomp
+f enduser /usr/X/bin/olpixmap
+f enduser /usr/X/bin/xclock
+f enduser /usr/X/bin/hexcalc
+f enduser /usr/X/bin/xeyes
+f enduser /usr/X/bin/xbiff
+f enduser /usr/X/bin/xmag
+f enduser /usr/X/bin/xplaces
+f enduser /usr/X/bin/twm
+f enduser /usr/X/bin/xrefresh
+f enduser /usr/X/bin/xloadimage
+f enduser /usr/X/bin/xsetbg
+f enduser /usr/X/bin/xrdb
+f enduser /usr/X/bin/xlogo
+f enduser /usr/X/bin/ico
+f enduser /usr/X/bin/muncher
+f enduser /usr/X/bin/plaid
+f enduser /usr/X/bin/oclock
+f enduser /usr/X/bin/bitmap
+f enduser /usr/X/bin/Xlock
+f enduser /usr/X/bin/.Xlock
+f enduser /usr/X/bin/xsol
+f enduser /usr/X/bin/spider
+f enduser /usr/X/bin/xtetris
+f enduser /usr/X/bin/breakout
+f enduser /usr/X/bin/xauth
+f enduser /usr/X/bin/xdemo
+
+f enduser /usr/X/lib/x11perfcomp/perfratio
+f enduser /usr/X/lib/x11perfcomp/perfboth
+f enduser /usr/X/lib/x11perfcomp/fillblnk
+
+!default 0644 bin bin
+
+f enduser /usr/X/lib/bitmaps/stripe4=/usr/X/include/X11/bitmaps/stripe4
+f enduser /usr/X/lib/bitmaps/box16=/usr/X/include/X11/bitmaps/box16
+f enduser /usr/X/lib/bitmaps/box19=/usr/X/include/X11/bitmaps/box19
+f enduser /usr/X/lib/bitmaps/skyscene
+f enduser /usr/X/lib/bitmaps/smallIn.h
+f enduser /usr/X/lib/bitmaps/smallOut.h
+f enduser /usr/X/lib/bitmaps/spin
+f enduser /usr/X/lib/bitmaps/stdcurs.h
+f enduser /usr/X/lib/bitmaps/stdmask.h
+f enduser /usr/X/lib/bitmaps/stones
+f enduser /usr/X/lib/bitmaps/targcurs.h
+f enduser /usr/X/lib/bitmaps/targmask.h
+f enduser /usr/X/lib/bitmaps/yuck
+f enduser /usr/X/lib/app-defaults/olpixmap
+f enduser /usr/X/lib/twm/system.twmrc
+f enduser /usr/X/lib/app-defaults/XClock
+f enduser /usr/X/lib/app-defaults/XLogo
+f enduser /usr/X/lib/app-defaults/Xloadimage
+f enduser /usr/X/lib/app-defaults/Bitmap
+f enduser /usr/X/lib/app-defaults/Bitmap-color
+f enduser /usr/X/lib/app-defaults/Xmag
+f enduser /usr/X/include/X11/bitmaps/1x1
+f enduser /usr/X/include/X11/bitmaps/2x2
+f enduser /usr/X/include/X11/bitmaps/black
+f enduser /usr/X/include/X11/bitmaps/boxes
+f enduser /usr/X/include/X11/bitmaps/calculator
+f enduser /usr/X/include/X11/bitmaps/cntr_ptr
+f enduser /usr/X/include/X11/bitmaps/cntr_ptrmsk
+f enduser /usr/X/include/X11/bitmaps/cross_weave
+f enduser /usr/X/include/X11/bitmaps/dimple1
+f enduser /usr/X/include/X11/bitmaps/dimple3
+f enduser /usr/X/include/X11/bitmaps/dot
+f enduser /usr/X/include/X11/bitmaps/dropbar7
+f enduser /usr/X/include/X11/bitmaps/dropbar8
+f enduser /usr/X/include/X11/bitmaps/escherknot
+f enduser /usr/X/include/X11/bitmaps/flagdown
+f enduser /usr/X/include/X11/bitmaps/flagup
+f enduser /usr/X/include/X11/bitmaps/flipped_gray
+f enduser /usr/X/include/X11/bitmaps/gray
+f enduser /usr/X/include/X11/bitmaps/gray1
+f enduser /usr/X/include/X11/bitmaps/gray3
+f enduser /usr/X/include/X11/bitmaps/hlines2
+f enduser /usr/X/include/X11/bitmaps/hlines3
+f enduser /usr/X/include/X11/bitmaps/icon
+f enduser /usr/X/include/X11/bitmaps/keyboard16
+f enduser /usr/X/include/X11/bitmaps/left_ptr
+f enduser /usr/X/include/X11/bitmaps/left_ptrmsk
+f enduser /usr/X/include/X11/bitmaps/letters
+f enduser /usr/X/include/X11/bitmaps/light_gray
+f enduser /usr/X/include/X11/bitmaps/mailempty
+f enduser /usr/X/include/X11/bitmaps/mailemptymsk
+f enduser /usr/X/include/X11/bitmaps/mailfull
+f enduser /usr/X/include/X11/bitmaps/mailfullmsk
+f enduser /usr/X/include/X11/bitmaps/mensetmanus
+f enduser /usr/X/include/X11/bitmaps/menu8
+f enduser /usr/X/include/X11/bitmaps/menu10
+f enduser /usr/X/include/X11/bitmaps/menu12
+f enduser /usr/X/include/X11/bitmaps/menu16
+f enduser /usr/X/include/X11/bitmaps/noletters
+f enduser /usr/X/include/X11/bitmaps/opendot
+f enduser /usr/X/include/X11/bitmaps/opendotMask
+f enduser /usr/X/include/X11/bitmaps/plaid
+f enduser /usr/X/include/X11/bitmaps/right_ptr
+f enduser /usr/X/include/X11/bitmaps/right_ptrmsk
+f enduser /usr/X/include/X11/bitmaps/root_weave
+f enduser /usr/X/include/X11/bitmaps/scales
+f enduser /usr/X/include/X11/bitmaps/sipb
+f enduser /usr/X/include/X11/bitmaps/star
+f enduser /usr/X/include/X11/bitmaps/starMask
+f enduser /usr/X/include/X11/bitmaps/stipple
+f enduser /usr/X/include/X11/bitmaps/target
+f enduser /usr/X/include/X11/bitmaps/terminal
+f enduser /usr/X/include/X11/bitmaps/tie_fighter
+f enduser /usr/X/include/X11/bitmaps/vlines2
+f enduser /usr/X/include/X11/bitmaps/vlines3
+f enduser /usr/X/include/X11/bitmaps/weird_size
+f enduser /usr/X/include/X11/bitmaps/wide_weave
+f enduser /usr/X/include/X11/bitmaps/wingdogs
+f enduser /usr/X/include/X11/bitmaps/woman
+f enduser /usr/X/include/X11/bitmaps/xfd_icon
+f enduser /usr/X/include/X11/bitmaps/xlogo11
+f enduser /usr/X/include/X11/bitmaps/xlogo16
+f enduser /usr/X/include/X11/bitmaps/xlogo32
+f enduser /usr/X/include/X11/bitmaps/xlogo64
+f enduser /usr/X/include/X11/bitmaps/stripe4
+f enduser /usr/X/include/X11/bitmaps/box16
+f enduser /usr/X/include/X11/bitmaps/box19
+
+f enduser /usr/X/lib/app-defaults/Xtetris
+f enduser /usr/X/lib/spider/doc.intro
+f enduser /usr/X/lib/spider/doc.rules
+f enduser /usr/X/lib/spider/doc.controls
+f enduser /usr/X/lib/spider/doc.examples
+f enduser /usr/X/lib/spider/doc.summary
+f enduser /usr/X/lib/spider/spider.man
+
+f enduser /usr/X/lib/images/boston.gif
+f enduser /usr/X/lib/images/rowhouse.gif
+f enduser /usr/X/lib/images/scotm.gif
+f enduser /usr/X/lib/images/tallship.gif

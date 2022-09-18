@@ -1,0 +1,59 @@
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+/**/#ident	"@(#)olam:listd/Imakefile	1.6"
+
+
+DEFINES = -DLIST_DOUBLE
+
+XINSTALLED      = $(DESTDIR)
+INCLUDES        =  -I$(SYS_INCLUDES) -I$(LISTDSRC) -I$(LIBSRC)  -I$(XINSTALLED)/include
+XLIB            = $(XINSTALLED)/lib/libX11.a
+LOCAL_LIBRARIES = $(LISTDLIB) $(XINSTALLED)/lib/libXol.a \
+                  $(XINSTALLED)/lib/libXt.a
+
+LINTLIBS =
+LIBNAME = listd
+LIB = lib$(LIBNAME).a
+
+HEADERS = \
+	list_priv.h \
+	list.h \
+	listd.h \
+
+SRCS = \
+	list_count.c \
+	list_del.c \
+	list_get.c \
+	list_head.c \
+	list_ins.c \
+	list_new.c \
+	list_next.c \
+	list_prev.c \
+	list_tail.c \
+	list_trav.c 
+
+OBJS = \
+	list_count.o \
+	list_del.o \
+	list_get.o \
+	list_head.o \
+	list_ins.o \
+	list_new.o \
+	list_next.o \
+	list_prev.o \
+	list_tail.o \
+	list_trav.o 
+
+
+NormalLibraryObjectRule()
+
+NormalLibraryTarget($(LIBNAME),$(OBJS))
+
+DependTarget()

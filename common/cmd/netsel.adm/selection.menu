@@ -1,0 +1,7 @@
+#ident	"@(#)netsel.adm:selection.menu	1.1.4.3"
+#ident  "$Header: selection.menu 2.0 91/07/12 $"
+#menu#Network Selection Management
+#life#permanent
+
+display^Display Network Selection Configuration^display/Text.ns_list^#nsu#
+modify^Modify Network Selection Configuration^modify/Menu.ns_nid^#nsu#

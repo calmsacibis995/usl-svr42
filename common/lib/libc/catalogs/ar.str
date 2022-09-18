@@ -1,0 +1,46 @@
+/*	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.	*/
+/*	Copyright (c) 1988, 1990 AT&T	*/
+/*	  All Rights Reserved  	*/
+
+/*	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF     	*/
+/*	UNIX System Laboratories, Inc.                     	*/
+/*	The copyright notice above does not evidence any   	*/
+/*	actual or intended publication of such source code.	*/
+
+#ident	"@(#)catalogs:ar.str	1.1"
+Posname, %s, not found\n
+Out of memory\n
+%s: malformed archive (at %ld)\n
+Cannot open %s: %s\n
+Cannot read %s: %s\n
+libelf error: %s\n
+%s cannot get string table space\n
+%s cannot grow string table\n
+Creating %s\n
+Cannot create %s: %s\n
+Incorrect usage\n
+The l option will be removed in the next release\n
+One of [drqtpmx] must be specified\n
+Archive, %s, not found\n
+Only one of [drqtpmx] allowed\n
+Cannot write %s: %s\n
+%b %d %H:%M %Y
+Not enough space to store the date\n
+abi not allowed with q\n
+libelf.a out of date\n
+%s not in archive format\n
+%s taken as mandatory 'posname' with keys 'abi'\n
+lseek() failed: %s\n
+Usage: ar [-V] key[vcs] [posname] archive file [name] ...\n\t where key is one of the following: r[uabi], m[abi], d, q, t, p, x\n
+%s not found\n
+Hit end of archive\n
+%s is in archive format - embedded archives are not allowed\n
+Internal error - cannot tell whether file is included in archive or not\n
+Trouble translating COFF file %s: %s\n
+Internal header generation error\n
+Cannot get space for number of symbols\n
+Cannot write archive: %s\n
+No string table for symbol names\n
+No data in string table\n
+No data in string table - size is 0\n
+A symbol table entry size of zero is invalid!\n

@@ -1,0 +1,4 @@
+#ident	"@(#)lp.admin:lp.mi	1.4.4.1"
+#ident  "$Header: lp.mi 2.0 91/07/12 $"
+#status#new
+main:printers^Printer Configuration and Services^Menu.lp

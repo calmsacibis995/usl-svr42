@@ -1,0 +1,39 @@
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+/**/#ident	"@(#)xevent:Imakefile	1.1"
+
+/**/#  Imakefile (Imakefile)
+/**/# 	Acc: 575570704 Mon Mar 28 11:45:04 1988
+/**/# 	Mod: 574626658 Thu Mar 17 13:30:58 1988
+/**/# 	Sta: 575570327 Mon Mar 28 11:38:47 1988
+/**/# 	Owner: 2011
+/**/# 	Group: 1985
+/**/# 	Permissions: 666
+
+
+/**/# 	START USER STAMP AREA
+
+
+/**/# 	END USER STAMP AREA
+
+#if Release5
+        LOCALLIB = ../oldattlib
+#endif
+
+        INCLUDES = -I$(LOCALLIB)
+
+ LOCAL_LIBRARIES = $(LOCALLIB)/liblocal.a $(XLIB)
+           
+   INSTALL_FLAGS = -m 777
+
+            SRCS = xevent.c matrix.c
+            OBJS = xevent.o matrix.o
+
+ComplexProgramTarget(xevent)

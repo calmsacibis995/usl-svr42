@@ -1,0 +1,17 @@
+.\"ident	"@(#)xterm:xterm.man	1.2.1.10"
+
+.\" xterm.man (Troff source file)
+.\"	Acc: 601052496 Tue Jan 17 10:01:36 1989
+.\"	Mod: 601054203 Tue Jan 17 10:30:03 1989
+.\"	Sta: 601054203 Tue Jan 17 10:30:03 1989
+.\"	Owner: 7007
+.\"	Group: 1985
+.\"	Permissions: 666
+
+
+.\"	START USER STAMP AREA
+
+
+.\"	END USER STAMP AREA
+
+This is a stub for xterm man page.  It is needed for the Makefile.

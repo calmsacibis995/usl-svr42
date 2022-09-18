@@ -1,0 +1,164 @@
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+#ident	"@(#)R5Xlib:Xsi/Imakefile	1.9"
+
+#define DoNormalLib NormalLibX
+#define DoSharedLib SharedLibX
+#define DoDebugLib DebugLibX
+#define DoProfileLib ProfileLibX
+#include <Library.tmpl>
+
+#ifndef MotifBC
+#define MotifBC NO
+#endif
+
+#define BuildLocalIM YES
+
+#if Malloc0ReturnsNull
+DEFINES = -DMALLOC_0_RETURNS_NULL
+#endif
+
+   CONN_DEFINES = ConnectionFlags
+#ifdef MITPATH
+     EDB_DEFINES = -DERRORDB=\"$(USRLIBDIR)/XErrorDB\"
+     KDB_DEFINES = -DKEYSYMDB=\"$(USRLIBDIR)/XKeysymDB\"
+     CMS_DEFINES = -DXCMSDB=\"$(USRLIBDIR)/Xcms.txt\"
+     NLS_DEFINES = -DXNLSPATHDEFAULT=\"$(NLSDIR)\"
+#else /* this needed due to USL's cross env */
+     EDB_DEFINES = -DERRORDB=\"$(XWINLIBDIR)/XErrorDB\"
+     KDB_DEFINES = -DKEYSYMDB=\"$(XWINLIBDIR)/XKeysymDB\"
+     CMS_DEFINES = -DXCMSDB=\"$(XWINLIBDIR)/Xcms.txt\"
+     NLS_DEFINES = -DXNLSPATHDEFAULT=\"$(XWINLIBDIR)/nls\"
+#endif
+#if MotifBC
+      BC_DEFINES = -DMOTIFBC
+#endif
+   INSTALLFLAGS = $(INSTINCFLAGS)
+       LINTLIBS =
+
+EXTRA_INCLUDES = -I../
+EXTRA_DEFINES = -DSTREAMSCONN
+LIBNAME = Xsi
+
+SRCS = \
+	ProtoFlt.c \
+	XCnvCTToWC.c \
+	XCnvMBToCT.c \
+	XCnvWCToMB.c \
+	XCnvToStr.c \
+	XConnIM.c \
+	XCrFntSet.c \
+	XCrIC.c \
+	XGetIMVal.c \
+	XICFocus.c \
+	XICGetVal.c \
+	XICSetVal.c \
+	XIMKeyBind.c \
+	XIMProto.c \
+	XIMQueue.c \
+	XInitCT.c \
+	$(LIMSRCS) \
+	XOpenIM.c \
+	XParseCT.c \
+	XlcAccess.c \
+	XlcDefLd.c \
+	XlcLoad.c \
+	XmbDeGlyph.c \
+	XmbPrpText.c \
+	XmbText.c \
+	XmbTextExt.c \
+	XmbTextPer.c \
+	XmbTextPrp.c \
+	XwcDeGlyph.c \
+	XwcPrpText.c \
+	XwcText.c \
+	XwcTextExt.c \
+	XwcTextPer.c \
+	XwcTextPrp.c \
+	XLocalIM.c \
+	XSetLocale.c
+
+OBJS = \
+	ProtoFlt.o \
+	XCnvCTToWC.o \
+	XCnvMBToCT.o \
+	XCnvWCToMB.o \
+	XCnvToStr.o \
+	XConnIM.o \
+	XCrFntSet.o \
+	XCrIC.o \
+	XGetIMVal.o \
+	XICFocus.o \
+	XICGetVal.o \
+	XICSetVal.o \
+	XIMKeyBind.o \
+	XIMProto.o \
+	XIMQueue.o \
+	XInitCT.o \
+	XOpenIM.o \
+	XParseCT.o \
+	XlcAccess.o \
+	XlcDefLd.o \
+	XlcLoad.o \
+	XmbDeGlyph.o \
+	XmbPrpText.o \
+	XmbText.o \
+	XmbTextExt.o \
+	XmbTextPer.o \
+	XmbTextPrp.o \
+	XwcDeGlyph.o \
+	XwcPrpText.o \
+	XwcText.o \
+	XwcTextExt.o \
+	XwcTextPer.o \
+	XwcTextPrp.o \
+	XLocalIM.o \
+	XSetLocale.o
+
+LibraryObjectRule()
+
+LinkSourceFile(XSetLocale.c,..)
+
+SpecialLibObjectRule(XConnIM.o,$(ICONFIGFILES),$(CONN_DEFINES))
+SpecialLibObjectRule(XlcLoad.o,$(ICONFIGFILES),$(NLS_DEFINES))
+SpecialLibObjectRule(XLocalIM.o,$(ICONFIGFILES),$(NLS_DEFINES))
+
+#if DoSharedLib
+#if DoNormalLib
+SpecialSharedLibraryTarget($(LIBNAME),$(SOXLIBREV),libXIM.so.1,$(OBJS),shared,..)
+#else
+SpecialSharedLibraryTarget($(LIBNAME),$(SOXLIBREV),libXIM.so.1,$(OBJS),.,.)
+#endif
+
+InstallSharedLibrary($(LIBNAME),$(SOXLIBREV),$(USRLIBDIR))
+
+all::
+	$(RM) ../libXIM.so*;
+	$(CP) ./libXsi.so.1 ../libXIM.so.1;
+	(cd ../; $(LN) libXIM.so.1 libXIM.so);
+
+install::
+	$(RM) ../libXIM.so*;
+	$(CP) ./libXsi.so.1 ../libXIM.so.1;
+	(cd ../; $(LN) libXIM.so.1 libXIM.so);
+	$(RM) $(USRLIBDIR)/libXIM.so*;
+	$(INSTALL) $(INSTLIBFLAGS) libXsi.so.1 $(USRLIBDIR)/libXIM.so.1;
+	(cd $(USRLIBDIR); $(LN) libXIM.so.1 libXIM.so);
+
+#endif /* DoSharedLib */
+
+#if DoNormalLib
+NormalLibraryTarget($(LIBNAME),$(OBJS))
+InstallLibrary($(LIBNAME),$(USRLIBDIR))
+#endif
+
+DependTarget()
+
+NormalLintTarget($(SRCS))

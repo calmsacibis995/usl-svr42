@@ -1,0 +1,5 @@
+#ident	"@(#)pkg.base:i386/pkg/base/ifiles/dummy.pkginfo	1.1"
+#ident	"$Header: $"
+
+NAME="BUILT INTO THE BASE, CANNOT BE REMOVED."
+CATEGORY=system

@@ -1,0 +1,25 @@
+#ident	"@(#)face:OBJECTS/Menu.mail	1.5.6.4"
+#ident  "$Header: Menu.mail 1.6 91/11/06 $"
+
+menu=$$uxface:369:"Mail Services"
+
+help=OPEN TEXT OBJECTS/Text.h "$$uxface:468:HELP on Mail Services" T.hmail
+
+framemsg=$$uxface:399:"Move to an item with arrow keys and press ENTER to select the item."
+
+name=$$uxface:469:"New Mail "
+description=$$uxface:579:"read newly arrived mail"
+action=`message $$uxface:470:"Checking mailbox. Please wait.";
+if /usr/bin/mailx -e;
+then
+	message $$uxface:471:"Retrieving mail message(s). Please wait.";
+	sleep 2;
+	run -t$$uxface:472:"Suspended Read New Mail" /usr/bin/mailx;
+	message $$uxface:399:"Move to an item with arrow keys and press ENTER to select the item.";
+else
+	message -b 1 $$uxface:411:"No mail available for \"$LOGNAME\".";
+fi`nop
+
+name=$$uxface:473:"Send Mail "
+description=$$uxface:580:"send mail"
+action=OPEN FORM OBJECTS/Form.send $$uxface:474:"Send"

@@ -1,0 +1,9 @@
+#ident	"@(#)curses:common/lib/xlibcurses/demo/menu.readme	1.2.2.1"
+#ident "$Header: /sms/sinixV5.4es/rcs/s19-full/usr/src/lib/xlibcurses/demo/menu.readme,v 1.1 91/02/28 21:06:59 ccs Exp $"
+menu.c is the C source for a demonstration program for libcurses
+and terminfo. It is a menu manager. Input is a file describing
+the menu to be displayed and the commands to be executed when specific
+option s are entered. 
+
+.menu.data is a sample input file. Look at the comments inthe source
+file menu.c

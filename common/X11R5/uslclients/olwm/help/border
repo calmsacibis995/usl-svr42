@@ -1,0 +1,10 @@
+The window border thickens to show that you have selected the window.
+
+Select a window for the following reasons:
+
+	To set the input area to that window, a process that activates an
+	inactive caret and brings the window to the front of the screen
+
+	To move it by dragging with SELECT, to select a window, move
+	the pointer onto the window background (header, footer, or
+	border edge without a scrollbar) and click SELECT.

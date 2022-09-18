@@ -1,0 +1,44 @@
+/**/#ident	"@(#)dtadmin:packager/Imakefile	1.5.1.7"
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+
+#define PassCDebugFlags 'CDEBUGFLAGS=$(CDEBUGFLAGS)'
+
+         SRCS = \
+		PackageMgr.c
+
+         OBJS = \
+		PackageMgr.o
+
+      HEADERS = \
+		packager.h\
+		pkg_msgs.h
+
+   DTCLIENTSLIB = $(USLCLIENTSRC)/libDtI
+       DTLIBSRC = $(LIBSRC)/Dt
+    GIZMOLIBSRC = $(LIBSRC)/Gizmo
+      DTILIBSRC = $(DTCLIENTSLIB)
+     DTAMLIBSRC = ../dtamlib
+         DTILIB = $(DTILIBSRC)/libDtI.so
+          DTLIB = $(DTLIBSRC)/libDt.so
+       GIZMOLIB = $(GIZMOLIBSRC)/libGizmo.so
+        DTAMLIB = $(DTAMLIBSRC)/libdtam.a
+
+       INCLUDES = -I$(LIBSRC) -I$(LIBSRC)/Xol -I$(DTILIBSRC) -I$(GIZMOLIBSRC) -I$(USLCLIENTSRC)
+LOCAL_LIBRARIES = $(DTAMLIB) $(DTILIB) $(DTLIB) $(GIZMOLIB) XolClientLibs
+        DEPLIBS = $(DTAMLIB) $(DTILIB) $(DTLIB) $(GIZMOLIB) XolClientDepLibs
+
+  SYS_LIBRARIES = -lgen -lm
+
+ComplexProgramTarget(PackageMgr)
+
+InstallMultiple(dtexec,$(DTADMDIR))
+
+InstallDesktopClient($(BINDIR)/PackageMgr,$(DESKTOPDIR)/System_Setup/Appl-n_Setup)

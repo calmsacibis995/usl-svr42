@@ -1,0 +1,16 @@
+#ident	"@(#)uts-x86:io/oxt/oxt.cf/Master	1.4"
+#ident	"$Header: $"
+#
+# version id
+#
+$version 1
+
+#
+# entry points
+#
+$entry  init open close read write ioctl
+
+#
+# Device  Prefix Characteristics Order	B-Major C-Major
+# -----------------------------------------------------
+oxt	xt	kco	0	0	13

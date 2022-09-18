@@ -1,0 +1,50 @@
+#ident	"@(#)pkg.kdb:menu.kdb	1.5"
+#ident	"$Header: $"
+.pageno
+Page %d of %d
+.ul
+Kernel Debugger
+.hhelp_ban
+Instructions
+.helpbanner
+Help: Configure Kernel Debugger
+.ur
+Configure Kernel Debugger
+.ll
+.lr
+F1=Help
+.top
+The KDB package provides optional security checks which will
+prohibit an unauthorized user from invoking the kernel debugger.
+If you don't turn on these security checks, the kernel debugger
+can be entered from a key sequence on the console, presenting a
+breach in security if your console is not physically secure.
+
+Do you want these security checks turned on?
+.form
+Turn security checks on
+Do not turn security checks on
+.selection
+Press '1' or '2' and press 'ENTER' to continue:
+.help
+For detailed instructions, press the 'F1' (or '?') keys at any time.
+
+The KDB package provides optional security checks which cause
+attempts to enter the kernel debugger from a console key sequence
+to be rejected.  In order to enter the debugger in this case, the
+user must log into the computer using the user account "root" and
+then type the "kdb" command.
+
+If the security check is not enabled a user can type a key
+sequence at the console without having to log into your computer
+and enter the kernel debugger.  Unless your console is in a room
+that is locked or accessible to only a controlled group of
+people, this security check should be enabled to prevent a breach
+in security.
+.helpinst
+ESC=Exit help  F1=Instructions  1=Forward  2=Backward
+.hhelpinst
+ESC=Exit instructions  1=Forward  2=Backward
+.working
+Working...
+.end

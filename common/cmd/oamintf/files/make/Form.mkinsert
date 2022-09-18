@@ -1,0 +1,24 @@
+#ident	"@(#)filemgmt:common/cmd/oamintf/files/make/Form.mkinsert	1.3.3.2"
+#ident  "$Header: Form.mkinsert 2.0 91/07/12 $"
+Form="Create a File System (make)"
+
+help=OPEN TEXT $INTFBASE/Text.itemhelp $LININFO
+lifetime=shortterm
+
+done=`message "Creating an s5 file system on $DEVICE. Please Wait...";
+       	$OAMBASE/bin/mkfs_s5 $PROTO $BLOCKSIZE $DEVICE $BLOCKS $INODES $LABEL $MNTPT 2>\&1 >/dev/null;
+	set -l CMD="OPEN TEXT $OBJ_DIR/Text.make";
+	`$CMD
+
+name="Has the diskette been inserted in the drive ?"
+nrow=1
+ncol=1
+frow=1
+fcol=48
+rows=1
+columns=10
+value=yes
+rmenu={ yes }
+menuonly=true
+choicemsg="Please insert diskette in drive, enter 'yes' and press SAVE."
+invalidmsg="Please insert diskette in drive, enter 'yes' and press SAVE."

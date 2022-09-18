@@ -1,0 +1,25 @@
+#ident	"@(#)oamintf:i386/cmd/oamintf/xx/FACE3.2/OBJECTS/dskopts/Menu.dskopts	1.2"
+#ident	"$Header: $"
+
+menu="Disk Operations"
+#help=open text $VMSYS/OBJECTS/Text.h "Disk Operations" dskopts/T.hdskopts
+
+name=Floppy-To-Floppy Copy
+action=nop
+show=false
+
+name=Format 1.2 MB UNIX Floppy Disk
+action=nop
+show=false
+
+name=Format 360 KB UNIX Floppy Disk
+action=nop
+show=false
+
+name=Format 1.44 MB UNIX Floppy Disk
+action=nop
+show=false
+
+name=Format 720 KB UNIX Floppy Disk
+action=nop
+show=false

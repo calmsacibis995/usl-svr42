@@ -1,0 +1,112 @@
+/**/#ident	"@(#)r5fontlib:font/Imakefile	1.12"
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+
+#if XWINServer
+#include <Server.tmpl>
+#endif
+
+#if Release5
+#define DoNormalLib     YES
+#define DoSharedLib     YES
+#include <Library.tmpl>
+#include <sv4Lib.tmpl>
+#endif
+
+LIBNAME = font
+
+FONTLIBS_TO_BUILD = libfont.so libfont.a
+
+SRCS = \
+        dynopenlib.c \
+	getfont.c \
+	fonttime.c \
+	fontfile.c \
+	fontxlfd.c \
+	fontutil.c \
+	patcache.c \
+	fontaccel.c \
+	fontscale.c \
+	defaults.c  \
+	fontdir.c \
+	renderers.c \
+	Xwincache.c \
+	dirfile.c  \
+	fontnames.c \
+  	confparse.c \
+	config.c \
+	fontdefs.c \
+	bitmaputil.c \
+	bitsource.c \
+	miscutil.c \
+	atom.c \
+	format.c  \
+	fontink.c \
+	private.c 
+
+
+OBJS = \
+        dynopenlib.o \
+	getfont.o \
+	fonttime.o \
+	fontfile.o \
+	fontxlfd.o \
+	fontutil.o \
+	patcache.o \
+	fontaccel.o \
+	fontscale.o \
+	defaults.o  \
+	fontdir.o \
+	renderers.o \
+	Xwincache.o \
+	dirfile.o  \
+	fontnames.o \
+	confparse.o \
+	config.o \
+	fontdefs.o \
+	bitmaputil.o \
+	bitsource.o \
+	miscutil.o  \
+	atom.o \
+	format.o \
+	fontink.o \
+	private.o 
+
+CDEBUGFLAGS = ServerCDebugFlags
+   INCLUDES = -I.  -I../../include  -I$(TOP)/X11 -I$(FONTSRC)/include -I$(FONTSRC)/lib//include -I$(SERVERSRC)/include
+     LFLAGS = -buxz
+
+
+SHAREDOBJS = $(OBJS)
+DEFAULT_LIB = libfont.so
+
+#if Release5
+LibraryObjectRule()
+
+SharedLibraryTarget2(font,$(SHAREDOBJS),shared,..)
+NormalLibraryTarget(font,$(OBJS))
+#else
+all:: $(FONTLIBS_TO_BUILD)
+MixedLibraryObjectRule()
+
+ArchiveLibraryTarget(font,$(OBJS))
+SharedLibraryTarget(font,$(SHAREDOBJS),,)
+#endif
+
+install::
+
+#if Release5
+InstallSharedLibrary1(libfont.so,$(USRLIBDIR))
+#endif
+
+InstallLibrary(font,$(USRLIBDIR))
+
+DependTarget()
+clean::

@@ -1,0 +1,37 @@
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+#ident	"@(#)xdm:config/Imakefile	1.20"
+XCOMM $XConsortium: Imakefile,v 1.13 91/09/11 19:23:18 rws Exp $
+
+#undef InstallXdmConfig
+#define InstallXdmConfig YES
+
+all:: Xservers.ws xdm-config Xservers
+
+CppFileTarget(Xservers.ws,Xserv.ws.cpp,-DBINDIR=$(XWINBINDIR),NullParameter)
+CppFileTarget(xdm-config,xdm-conf.cpp,-DXDMDIR=$(XWINLIBDIR)/xdm,NullParameter)
+
+LinkFile(Xservers,Xservers.XdmServersType)
+
+#if InstallXdmConfig
+InstallNonExecFile(S98xdm,$(DTADMDIR))
+InstallNonExecFile(xdm-config,$(USRLIBDIR)/xdm)
+InstallNonExecFile(Dtlogin,$(XAPPLOADDIR))
+InstallNonExecFile(Nondesktop,$(XAPPLOADDIR))
+InstallNonExecFile(Xservers,$(USRLIBDIR)/xdm)
+InstallNamedProg(Xsetup_0,Xsetup_0,$(USRLIBDIR)/xdm)
+InstallNamedProg(enable_glogin,enable_glogin,$(BINDIR))
+InstallNamedProg(disable_glogin,disable_glogin,$(BINDIR))
+#endif
+
+depend::
+
+clean::
+	$(RM) Xservers.ws xdm-config Xservers

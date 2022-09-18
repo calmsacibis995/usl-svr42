@@ -1,0 +1,24 @@
+#ident	"@(#)proto:mktape	1.1.1.8"
+#ident	"$Header: $"
+
+TAPE=/dev/rmt/c0s0
+export TAPE
+#
+# Location of packages
+#
+PACKAGES=/pkg
+
+LOC_TITLE="UNIX System V Release 4.2 Version 1"
+
+echo "Please insert the $LOC_TITLE"
+echo "Foundation Set cartridge tape into the tape drive."
+echo "\nStrike ENTER when ready: \c"
+read x
+/usr/lib/tape/tapecntl -w ${TAPE} >/dev/null 2>&1
+
+# The packages that will be transferred on to the tape should
+# follow the sequence listed in the setinfo file for the package.
+
+pkgtrans -s $PACKAGES /dev/rmt/c0s0n fnd base lp nsu dtxt dtolrun desktop acp 
+
+/usr/lib/tape/tapecntl -w ${TAPE} >/dev/null 2>&1

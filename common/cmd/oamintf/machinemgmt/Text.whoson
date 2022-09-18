@@ -1,0 +1,17 @@
+#ident	"@(#)oamintf:common/cmd/oamintf/machinemgmt/Text.whoson	1.4.4.2"
+#ident  "$Header: Text.whoson 2.0 91/07/12 $"
+
+################################################################################
+#	Module Name: Text.whoson
+################################################################################
+title="Users Currently On the System"
+
+framemsg=`readfile $INTFBASE/display.msg`
+
+text="
+ID    Terminal Number  Sign-on Date and Time
+
+`/usr/bin/who`"
+
+rows=10
+columns=60

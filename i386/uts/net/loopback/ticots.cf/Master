@@ -1,0 +1,5 @@
+#ident	"@(#)uts-x86:net/loopback/ticots.cf/Master	1.5"
+#ident	"$Header: $"
+$version 1
+$entry	init
+ticots	tco	Sco	0	0	0

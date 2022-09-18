@@ -1,0 +1,22 @@
+#ident	"@(#)oamintf:common/cmd/oamintf/usermgmt/Menu.mlvls	1.1.2.2"
+#ident  "$Header: Menu.mlvls 2.0 91/07/12 $"
+#	Module Name: Menu.mlvls
+#	Description: This menu provides the user with a multiselect pop-up
+#		     menu for selection of levels.
+
+menu="Valid Security Levels and Aliases"
+multiselect=TRUE
+framemsg=`readfile $INTFBASE/msmenu.msg`
+
+done=`getitems "," | set -l "Form_Choice"`CLOSE
+
+`cat /tmp/$VPID.levels |regex '^(.*)$0' 'name="$m0"'`
+
+name=
+button=1
+action=
+
+name=
+button=7
+action=
+

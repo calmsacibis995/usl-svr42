@@ -1,0 +1,46 @@
+#ident	"@(#)pkg4.i386:edebug/postremove	1.3"
+#
+#	input:	filename - pathname on target system
+#
+error() {
+	errflg=1
+}
+
+if [ "$DTINSTALL" = "n" ]
+then
+	exit 0
+fi
+
+errflg=0
+
+# undo desktop installation here
+# inverse of postinstall
+#
+CLASSDIR=/usr/X/lib/classdb
+
+# delete debug.cdb from $CLASSDIR/dtadmin
+cd $CLASSDIR
+if [ ! -f dtadmin ]
+then
+	# desktop not installed?
+	# can only happen in automatic mode
+        # this is ok since Appl-n_Setup will do the right thing should
+        # desktop be later installed
+	exit 0
+fi
+grep "INCLUDE debug.cdb" dtadmin >/dev/null 2>&1
+if [ $? = 0 ]
+then
+	ed dtadmin >/dev/null <<!
+/^INCLUDE debug.cdb/d
+w
+q
+!
+	if [ $? != 0 ]
+	then
+		echo "can't update file: $CLASSDIR/dtadmin"
+		error
+	fi
+fi
+
+exit $errflg

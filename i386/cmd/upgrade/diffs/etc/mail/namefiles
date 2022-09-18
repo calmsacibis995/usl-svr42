@@ -1,0 +1,8 @@
+*** namefiles.v4	Tue Feb 25 12:19:38 1992
+--- namefiles.dest	Tue Feb 25 12:20:04 1992
+***************
+*** 1 ****
+! #ident	"@(#)/etc/mail/namefiles.sl 1.1 4.0 05/29/91 26037 AT&T-USL"
+--- 1,2 ----
+! #ident	"@(#)/etc/mail/namefiles.sl 1.2 4.1dt 11/16/91 26037 AT&T-USL"
+! #ident "@(#)namefiles	1.2 'attmail mail(1) command'"

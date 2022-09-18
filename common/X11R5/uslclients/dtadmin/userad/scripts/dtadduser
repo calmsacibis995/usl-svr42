@@ -1,0 +1,294 @@
+#ident	"@(#)dtadmin:userad/scripts/dtadduser	1.12.2.39"
+#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+#	Copyright (c) 1988, 1989, 1990 AT&T
+#	  All Rights Reserved
+
+#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+#	UNIX System Laboratories, Inc.
+#	The copyright notice above does not evidence any
+#	actual or intended publication of such source code.
+
+
+Prefix=UX:`/usr/bin/basename $0`
+
+XDIR=${XWINHOME:-/usr/X}
+
+. $XDIR/adm/dtuser.msgs
+
+DESK=$XDIR/desktop
+#Toolbox=`$GETTXT $TXT_Toolbox`
+#DotWastebasket=`GETTXT $TXT_DotWastebasket`
+#HelpDesk=$Toolbox/`$GETTXT $HelpDesk`
+#FolderMap=$Toolbox/`$GETTXT $TXT_FolderMap`
+#Wastebasket=$Toolbox/`$GETTXT $TXT_Wastebasket`
+#Shutdown=$Toolbox/`$GETTXT $TXT_Shutdown`
+#InBox=`$GETTXT $TXT_InBox`
+#Mailbox=`$GETTXT $TXT_Mailbox`
+#D1=`$GETTXT $TXT_Applications` 
+#D2=`$GETTXT $TXT_Disks_etc` 
+#D3=`$GETTXT $TXT_Utilities` 
+#D4=`$GETTXT $TXT_Preferences` 
+#D5=`$GETTXT $TXT_SystemSetup`
+Toolbox=.	# where to install toolboxes; relative to $LOGINDIR
+DotWastebasket=.wastebasket
+HelpDesk=$Toolbox/Help_Desk
+FolderMap=$Toolbox/Folder_Map
+Wastebasket=$Toolbox/Wastebasket
+Shutdown=$Toolbox/Shutdown
+InBox=UUCP_Inbox
+Mailbox=mailbox
+D1=Applications
+D2=Disks-etc
+D3=Utilities
+D4=Preferences
+D5=System_Setup
+FOLDERS="$D1 $D2 $D3 $D4 $D5"
+
+ADMFILES=".olsetup .olinitrc"
+XGUI=OPEN_LOOK
+REMOTE=""
+WM=olwm
+
+if   [ -f $XDIR/adm/pre_adduser ]
+then
+	. $XDIR/adm/pre_adduser
+fi
+
+if [ $# -gt 0 ]
+then	if [ "$1" = "-m" ]
+	then XGUI=MOTIF; WM=mwm; shift
+	fi
+fi
+if [ $# -gt 0 ]
+then	if [ "$1" = "-r" ]
+	then REMOTE=$2; shift 2
+	fi
+fi
+if [ $# -eq 0 ]
+then	USER=$LOGNAME
+else	USER=$1
+fi
+VALIDATE=0
+PASS=`/usr/bin/grep $USER /etc/passwd | /usr/bin/cut -d: -f1,4,6`
+for ENTRY in $PASS
+do
+	FIRST=`echo $ENTRY | /usr/bin/cut -d: -f1`
+	if [ "$USER" = "$FIRST" ]
+	then
+		VALIDATE=1
+		GROUP=`echo $ENTRY | /usr/bin/cut -d: -f2`
+		LOGINDIR=`echo $ENTRY | /usr/bin/cut -d: -f3`
+		break
+	fi
+done
+if [ $VALIDATE = 0 ]
+then
+	$GETTXT $TXT_BadLoginId  >& 2
+	exit 1
+fi
+if [ "$LOGINDIR" = "" ]
+then
+	$GETTXT $TXT_MissingHome >& 2
+	exit 2
+fi
+if [ ! -r $LOGINDIR -o ! -w $LOGINDIR -o ! -x $LOGINDIR ]
+then
+	$GETTXT $TXT_AccessHome >& 2
+	exit 3
+fi
+cd $LOGINDIR
+if [ ! -f .profile ]
+then
+	echo > .profile
+	/usr/bin/chmod 644    .profile
+	/usr/bin/chgrp $GROUP .profile
+	/usr/bin/chown $USER  .profile
+
+else if [ ! -r .profile -o ! -w .profile ]
+	then
+		$GETTXT $TXT_AccessProfile >& 2
+		exit 4
+	fi
+fi
+cd $XDIR/adm
+/usr/bin/cp $ADMFILES $LOGINDIR
+if [ $? != 0 ]
+then
+	$GETTXT $TXT_AccessAdm >& 2
+	exit 5
+fi
+cd $LOGINDIR
+/usr/bin/grep '. $HOME/.olsetup' .profile  > /dev/null 2>&1
+if [ $? != 0 ]
+then
+/usr/bin/ed .profile >/dev/null <<!
+$
+a
+. \$HOME/.olsetup	 #!@ Do not edit this line !@
+.
+w
+q
+!
+fi
+
+if [ -f /etc/default/mouse -a ! -f $LOGINDIR/.Xdefaults ]
+then
+        MOUSEBUTTONS=`/usr/bin/grep MOUSEBUTTONS /etc/default/mouse | /usr/bin/cut -f2 -d'='`
+	if [ $MOUSEBUTTONS -gt 0 ] 2> /dev/null
+	then
+	        echo "*numMouseBtns: $MOUSEBUTTONS" > $LOGINDIR/.Xdefaults
+        	/usr/bin/chown $USER  $LOGINDIR/.Xdefaults
+        	/usr/bin/chgrp $GROUP $LOGINDIR/.Xdefaults
+        	/usr/bin/chmod 644    $LOGINDIR/.Xdefaults
+	fi
+fi
+
+
+#	$USER is now set up to run the GUI, at least in OPEN-LOOK mode.
+#	provide for MOTIF operation, and then go on to set up a desktop.
+
+if [ "$XGUI" = "MOTIF" ]
+then
+	$XDIR/adm/olsetvar XGUI $XGUI $USER
+fi
+if [ "$REMOTE" != "" ]
+then
+	$XDIR/adm/olsetvar REMOTE $REMOTE $USER
+fi
+
+#
+#	set up template files for standard user
+#
+if [ ! -d $Toolbox ]
+then
+	/usr/bin/mkdir $Toolbox 
+	# chown, chgrp, chmod later
+fi
+
+if [ ! -d $Toolbox/$DotWastebasket ]
+then
+	/usr/bin/mkdir  $Toolbox/$DotWastebasket
+        # chown, chgrp, chmod later
+fi
+
+cd $LOGINDIR
+/usr/bin/ln -s $DESK/Help_Desk     $HelpDesk
+/usr/bin/ln -s $DESK/Folder_Map    $FolderMap
+/usr/bin/ln -s $DESK/dtwastebasket $Wastebasket
+/usr/bin/ln -s $DESK/Shutdown	   $Shutdown
+/usr/bin/chgrp -h $GROUP $HelpDesk $FolderMap $Wastebasket $Shutdown
+/usr/bin/chown -h $USER  $HelpDesk $FolderMap $Wastebasket $Shutdown
+
+if [ ! -d /var/spool/uucppublic/receive ]
+then
+	/usr/bin/mkdir -p   /var/spool/uucppublic/receive
+	/usr/bin/chmod 1777 /var/spool/uucppublic /var/spool/uucppublic/receive
+	/usr/bin/chgrp uucp /var/spool/uucppublic /var/spool/uucppublic/receive
+	/usr/bin/chown uucp /var/spool/uucppublic /var/spool/uucppublic/receive
+fi
+if [ ! -d /var/spool/uucppublic/receive/$USER ]
+then
+	/usr/bin/mkdir       /var/spool/uucppublic/receive/$USER
+	/usr/bin/chmod 1775  /var/spool/uucppublic/receive/$USER
+	/usr/bin/chgrp uucp  /var/spool/uucppublic/receive/$USER
+	/usr/bin/chown $USER /var/spool/uucppublic/receive/$USER
+fi
+
+if [ ! -d $D3 ]
+then 
+	/usr/bin/mkdir $D3
+	/usr/bin/chown $USER  $D3
+	/usr/bin/chgrp $GROUP $D3
+fi
+/usr/bin/ln -s /var/spool/uucppublic/receive/$USER $D3/$InBox
+/usr/bin/chgrp -h $GROUP  $D3/$InBox 
+/usr/bin/chown -h $USER   $D3/$InBox 
+
+if [ ! -d $LOGINDIR/$Mailbox ]
+then
+	/usr/bin/mkdir $LOGINDIR/$Mailbox
+	/usr/bin/chmod 750    $LOGINDIR/$Mailbox
+	/usr/bin/chgrp $GROUP $LOGINDIR/$Mailbox
+	/usr/bin/chown $USER  $LOGINDIR/$Mailbox
+fi
+/usr/bin/cp $DESK/.dtfclass .
+/usr/bin/chmod 644    .dtfclass $ADMFILES
+/usr/bin/chgrp $GROUP .dtfclass $ADMFILES
+/usr/bin/chown $USER  .dtfclass $ADMFILES
+cd $DESK
+if [ -f .init_dtinfo ]
+then
+	FILES=".init_dtinfo $FOLDERS"
+else
+	FILES=$FOLDERS
+fi
+/usr/bin/find $FILES -print | /usr/bin/cpio -pd $LOGINDIR/$Toolbox 2> /dev/null
+if [ "$Toolbox" != "." ]
+then
+	/usr/bin/chmod 755    $LOGINDIR/$Toolbox
+	/usr/bin/chgrp $GROUP $LOGINDIR/$Toolbox
+	/usr/bin/chown $USER  $LOGINDIR/$Toolbox
+fi
+cd $LOGINDIR/$Toolbox
+/usr/bin/chown -Rh $USER  $FILES   $DotWastebasket
+/usr/bin/chgrp -Rh $GROUP $FILES   $DotWastebasket
+/usr/bin/chmod 755        $FOLDERS $DotWastebasket
+
+for D in . $FOLDERS
+do
+	if [ -f $D/.init_dtinfo ]
+	then
+		/usr/bin/mv     $D/.init_dtinfo  $D/.dtinfo
+		/usr/bin/chmod  644    $D/.dtinfo
+		/usr/bin/chgrp  $GROUP $D/.dtinfo
+		/usr/bin/chown  $USER  $D/.dtinfo
+	fi
+done
+
+#	create default privileges
+/usr/bin/grep $USER /usr/lib/cron/cron.allow > /dev/null 2>&1
+if [ $? -ne 0 ]
+then
+	echo $USER >> /usr/lib/cron/cron.allow
+fi
+
+/usr/bin/adminuser $USER > /dev/null 2>&1
+if [ $? != 0 ]
+then	/usr/bin/adminuser -n $USER
+	if [ $? != 0 ]
+	then	$GETTXT $TXT_AdminuserFailed >& 2
+		exit 6
+	fi
+fi
+if [ ! -d $DESK/LoginMgr/Users ]
+then
+	/usr/bin/mkdir $DESK/LoginMgr/Users
+fi
+
+if [ -f $DESK/LoginMgr/Users/$USER ]
+then
+	/usr/bin/rm -f $DESK/LoginMgr/Users/$USER
+fi
+
+saveIFS="$IFS"
+for DEFAULT in fmount rmount rdialup
+do
+	IFS="	"  # inter-field separator = tab
+	set X `/usr/bin/grep "$DEFAULT:/" $DESK/LoginMgr/PrivTable`
+	IFS="$saveIFS"
+	if [ "$3" != "" ]
+	then
+		/usr/bin/adminuser -a $3 $USER
+		if [ $? = 0 ]
+		then	echo $2 >> $DESK/LoginMgr/Users/$USER
+		fi
+	fi
+done
+chmod 444 $DESK/LoginMgr/Users/$USER
+
+if [ -f $XDIR/adm/post_adduser ]
+then
+	. $XDIR/adm/post_adduser
+else
+	exit 0
+fi

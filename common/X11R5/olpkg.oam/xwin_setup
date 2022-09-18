@@ -1,0 +1,311 @@
+#ident	"@(#)olpkg.oam:xwin_setup	1.3"
+#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+#	Copyright (c) 1988, 1989, 1990 AT&T
+#	  All Rights Reserved
+
+#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+#	UNIX System Laboratories, Inc.
+#	The copyright notice above does not evidence any
+#	actual or intended publication of such source code.
+
+
+#
+# Install/configure script for OPEN LOOK Release 4 Source Product
+# (based on pkg:xwin_setup2.0)
+#
+# 'if i386' added to skip portions if executed on 3b2
+#
+# Current directory must be olpkg in the source tree when
+# this script is executed.
+#
+
+echo "What is the root of your installed tree (default: /usr/X) ? \c"
+read TOP
+
+DESTDIR=${TOP:=/usr/X}
+
+if [ ! -d $DESTDIR ]
+then
+	echo Error: $DESTDIR does not exist
+	exit 1
+fi
+
+PKGROOT=`pwd`
+if [ `basename $PKGROOT` != olpkg ]
+then
+	echo "What is the root of your source tree (default: /usr/x) ? \c"
+	read TOP
+
+	PKGROOT=${TOP:=/usr/x}/olpkg
+fi
+
+#
+# If using 730X terminals with Starlan, we have to register
+# the Xmtg file server with the network listener.
+# Do the actual registering later.
+#
+#echo "\n\tWill one or more 730X terminals be connected to"
+#echo "\tthis machine using ISO Starlan (y/n) [y] ? \c"
+#read Xmtgans
+
+# Stuff extracted from pkg1.0/pkg.sh
+
+MODE=0755
+READMODE="+r"
+ADMDIR=$PKGROOT/adm
+ARCH=`uname -m`
+
+RELEASE=`uname -r | cut -d. -f1`
+
+if [ "$RELEASE" = "4" ]
+then
+	IDFLAG=-e	# because idspace currently doesn't work 7/30/89
+	CCDEFINE=-DSVR4_0
+fi
+
+cd $ADMDIR
+for i in .Xdefaults .olinitrc .olsetup
+do
+	egrep -v "^#|^$" $i > $DESTDIR/adm/$i
+	chmod $MODE $DESTDIR/adm/$i
+done
+cp Xunix_config oladduser olremuser olsetvar olunsetvar $DESTDIR/adm
+cd $DESTDIR/adm
+chmod 0755 Xunix_config oladduser olremuser olsetvar olunsetvar
+cd $PKGROOT
+#cp Xconn.tmpl $DESTDIR/adm
+
+#
+# Compile consem here, on this 386 machine
+#
+
+if [ "$ARCH" = "i386" ]
+then
+
+	CONFILES="Space.c consem.h Driver.o"
+	cd $PKGROOT/consem
+	mkdir sys 2> /dev/null
+	chmod 0755 sys
+	cp consem.h sys
+	cp consem.h /usr/include/sys
+	cc -O -c $CCDEFINE consem.c
+	mv consem.o Driver.o
+	chmod +r *
+	chmod 0755 Driver.o
+	egrep -v "^#|^$" Master > Master.tmp
+	mv Master.tmp Master
+	egrep -v "^#|^$" System > System.tmp
+	mv System.tmp System
+	cd $PKGROOT
+
+fi	# i386
+
+# Stuff extracted from pkg1.0/P1/Install
+
+TMP=/tmp/xwin.err
+
+
+#
+# Check and configure mouse driver
+#
+
+if [ "$ARCH" = "i386" ]
+then
+
+	y=`/etc/conf/bin/idinstall -gs mse | awk '{print $2}'`
+	if [ "$y" != "Y" ]
+	then
+		/etc/conf/bin/idinstall -gs mse | sed -e 's/N/Y/' > System
+		/etc/conf/bin/idinstall -us $IDFLAG mse 
+	fi
+
+	#
+	# Install console emulator consem
+	#
+
+	cd $PKGROOT/consem
+	CONNAME="Console Emulator"
+	/etc/conf/bin/idcheck -p consem >/dev/null 2>&1
+	if [ $? != 0 ]
+	then
+		echo "\n\tThe $CONNAME is already installed."
+	else
+		echo "\n\tInstalling $CONNAME"
+		cp consem.h /usr/include/sys
+		/etc/conf/bin/idinstall -ak $IDFLAG consem
+		if [ $? != 0 ]
+		then
+			echo "\n\tError in installing the $CONNAME"
+			/etc/conf/bin/idinstall -d $IDFLAG consem
+			rm -f /usr/include/sys/consem.h 
+			exit 1
+		fi
+	fi
+
+	cd $PKGROOT
+
+fi	# i386
+
+#
+# Kernel modifications
+#
+
+if [ "$ARCH" = "i386" ]		# verified by ali 7/28/89
+then
+
+	echo "\n\tThe number of streams buffers and pty devices allocated for your"
+	echo "\tUNIX System must be increased so that your AT&T X Window System may"
+	echo "\tfunction properly.  The UNIX System kernel will be rebuilt."
+
+	if [ ! -r /etc/conf/cf.d -o ! -w /etc/conf/cf.d -o ! -x /etc/conf/cf.d ]
+	then
+		echo "\n\tThe old stune file stune.noX is copied onto /tmp"
+		echo "\tPlease move it to /etc/conf/cf.d"
+		cp /etc/conf/cf.d/stune /tmp/stune.noX
+	else
+		cp /etc/conf/cf.d/stune /etc/conf/cf.d/stune.noX
+	fi
+
+	echo y | /etc/conf/bin/idtune -m NPROC 100 > /dev/null
+	echo y | /etc/conf/bin/idtune -m NREGION 300 > /dev/null
+	echo y | /etc/conf/bin/idtune -m NQUEUE 512 > /dev/null
+	echo y | /etc/conf/bin/idtune -m NSTREAM 64 > /dev/null
+	echo y | /etc/conf/bin/idtune -m NBLK4096 22 > /dev/null
+	echo y | /etc/conf/bin/idtune -m NBLK2048 20 > /dev/null
+	echo y | /etc/conf/bin/idtune -m NBLK1024 20 > /dev/null
+	echo y | /etc/conf/bin/idtune -m NBLK512 64 > /dev/null
+	echo y | /etc/conf/bin/idtune -m NBLK256 64 > /dev/null
+	echo y | /etc/conf/bin/idtune -m NBLK128 256 > /dev/null
+	echo y | /etc/conf/bin/idtune -m NBLK64 256 > /dev/null
+	echo y | /etc/conf/bin/idtune -m NBLK16 128 > /dev/null
+	echo y | /etc/conf/bin/idtune -m NBLK4 512 > /dev/null
+	echo y | /etc/conf/bin/idtune -m NUMTRW 100 > /dev/null
+	echo y | /etc/conf/bin/idtune -m SHLBMAX 6 > /dev/null
+if [ "$RELEASE" = "4" ]
+then
+	echo y | /etc/conf/bin/idtune -m STRMSGSZ 32767 > /dev/null
+fi
+
+	/etc/conf/bin/idbuild 2>> $TMP
+	if [ $? != 0 ]
+	then
+		# If an error occurs here, remove the driver components.
+		echo "\n\tAn error was encountered attempting to rebuild the UNIX System"
+		echo "\tkernel.  XWIN setup cancelled."
+		echo "\tThe kernel modifications were not installed, and the UNIX System"
+		echo "\thas not been modified."
+	#	echo "\tErrors have been written to the file $TMP."
+		mv /etc/conf/cf.d/stune.noX /etc/conf/cf.d/stune
+		exit 1
+	fi
+
+	rm -f $TMP
+
+fi	# i386
+
+#
+# mkdir /dev/X (make a phony /dev/null in /dev/X to bypass idmknod)
+#
+
+rm -rf /dev/X
+mkdir /dev/X
+chmod 0777 /dev/X
+chown root /dev/X
+mknod /dev/X/X.null c 2 2
+chmod 0666 /dev/X/X.null
+
+# Stuff extracted from pkg1.0/P2/Install
+
+XADMDIR=$DESTDIR/adm
+
+#
+# Add in some extra things
+#
+
+mkdir /usr/lib/terminfo 2> /dev/null
+chmod +rx /usr/lib/terminfo 2> /dev/null
+cd $DESTDIR/lib
+find terminfo -print | cpio -pdum /usr/lib 2> /dev/null
+
+cd $PKGROOT
+
+
+# Stuff extracted from pkg1.1/P1/Install
+
+Cat=/bin/cat
+Chgrp=/bin/chgrp
+Chmod=/bin/chmod
+Chown=/bin/chown
+Cp=/bin/cp
+Dirname=/bin/dirname
+Echo=/bin/echo
+Find=/bin/find
+Grep=/bin/grep
+Idbuild=/etc/conf/bin/idbuild
+Idtune=/etc/conf/bin/idtune
+Ln=/bin/ln
+Mkdir=/bin/mkdir
+Mv=/bin/mv
+Rm=/bin/rm
+Rmdir=/bin/rmdir
+
+ERRORS=/tmp/XW_ERR.$$
+ERRORMSG="\n\tAn error was encountered attempting to rebuild the UNIX System\n\
+\tkernel.  Installation cancelled.\n\
+\n\tThe kernel modifications were not installed, and the UNIX System\n\
+\thas not been modified.\n\
+\n\tErrors have been written to the file \"${ERRORS}\"."
+INIT_FILE=/etc/init.d/xwin
+RC0_FILE=/etc/rc0.d/K95xwin
+RC2_FILE=/etc/rc2.d/S95xwin
+#XDAEMON_RC=${XADMDIR}/xdaemon.rc
+#XCONN_TMPL=${DESTDIR}/adm/Xconn.tmpl
+#XCONNECTIONS=${DESTDIR}/lib/Xconnections
+
+
+shell()
+{
+  $* 2>/dev/null
+}
+
+#if [ ! "$RELEASE" = "4" ]
+#then
+#	shell ${Cp} ${XCONN_TMPL} ${XCONNECTIONS}
+#fi
+
+uname >/etc/X0.hosts
+#shell ${Cp} ${XDAEMON_RC} ${INIT_FILE}
+shell ${Chgrp} sys ${INIT_FILE}
+shell ${Chown} root ${INIT_FILE}
+shell ${Chmod} 744 ${INIT_FILE}
+shell ${Ln} ${INIT_FILE} ${RC0_FILE}
+shell ${Ln} ${INIT_FILE} ${RC2_FILE}
+
+#case ${Xmtgans} in
+#  n*|N*)
+#    ;;
+#  *)
+#    /usr/X/lib/startXmtg
+#    if [ $? != 0 ]; then
+#      echo "\nWarning:\tUnable to register Xmtg with network listener!"
+#      echo
+#      echo "\t\tPossible problems:"
+#      echo "\t\t1. STARLAN is not supported on this machine."
+#      echo "\t\t2. Xmtg is already registered with network listener."
+#      echo
+#      echo "\tIf you wish to use Xmtg, correct the problem and execute"
+#      echo "\t/usr/X/lib/startXmtg after XWIN setup completes.\n"
+#    fi
+#    ;;
+#esac
+
+
+#
+# Final Step
+#
+
+echo "\n\t        IMPORTANT IMPORTANT IMPORTANT\n"
+echo "\tIn order for the changes made during setup to"
+echo "\ttake effect, you need to reboot your system.\n"
+
+exit 0

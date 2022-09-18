@@ -1,0 +1,41 @@
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+/**/#ident	"@(#)r4xfed:Imakefile	1.3"
+LOCAL_LIBRARIES = $(XLIB)
+SRCS = parse.y scan.l output.c main.c
+OBJS = parse.o scan.o output.o main.o
+SYS_LIBRARIES = -ll
+DEFINES = -DCLEARBITS
+
+ComplexProgramTarget(xfed)
+
+
+scan.o:		y.tab.h defs.h scan.l
+		rm -f lex.yy.c
+		$(LEX) scan.l
+		$(CC) $(CFLAGS) -c lex.yy.c
+		mv lex.yy.o scan.o
+
+y.tab.h:	parse.y
+
+y.tab.c:	parse.y
+		-rm -f y.tab.c
+		$(YACC) -d parse.y
+
+parse.o:	defs.h y.tab.c
+		$(CC) $(CFLAGS) -c y.tab.c
+		mv y.tab.o parse.o
+
+main.o:		defs.h
+
+output.o:	defs.h
+
+clean::
+		rm -f lex.yy.c y.tab.c y.tab.h

@@ -1,0 +1,8 @@
+#ident	"@(#)proto:disk.elesm	1.2.6.8"
+#ident	"$Header: $"
+#	Small Disk information < 100 Meg
+#	Element	Name	     Req/Opt	Disk0	Disk1	SLICE	SZ	WFLAG	MINSZ	Valid Fst
+/stand	Boot File System     	R	Yes	No	10	5M	N	5	bfs
+/dev/swap	Swap Slice      	R	Yes	No	2	2m	N	8
+/	Root File System     	R	Yes	No	1	40	W	45	vxfs, sfs, s5, s52k, ufs
+/dev/dump	Dump Slice           	O	Yes	Yes	6	1m	N	4

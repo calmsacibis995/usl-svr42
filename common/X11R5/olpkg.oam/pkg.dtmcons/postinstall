@@ -1,0 +1,177 @@
+#ident	"@(#)olpkg.oam:pkg.dtmcons/postinstall	1.1"
+#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+#	Copyright (c) 1988, 1989, 1990 AT&T
+#	  All Rights Reserved
+
+#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+#	UNIX System Laboratories, Inc.
+#	The copyright notice above does not evidence any
+#	actual or intended publication of such source code.
+
+
+#
+#	USL DESTiny Desktop Metaphor
+#
+
+
+FAILURE=1	# fatal error
+
+CONFDIR=/etc/conf
+CONFBIN=${CONFDIR}/bin
+
+NOTOOLS="ERROR: The Installable Driver feature has been removed. \
+The ${NAME} cannot be installed."
+
+errflag=0
+
+#
+# make sure we're on V.4
+#
+if [ `uname -r`  -lt "4.0" ]
+then
+	echo "This package can only be installed on Release 4.0 or later systems"
+	exit 1
+fi
+
+# determine that ID/TP tools are available
+
+if [ ! -x ${CONFBIN}/idbuild -o ! -x ${CONFBIN}/idinstall ]
+then
+	message ${NOTOOLS}
+	exit $FAILURE
+fi
+
+if [ -f /etc/services ]
+then
+	NETPATH="${NETPATH}tcp"
+	if grep 'xserver0' /etc/services > /dev/null 2>&1
+	then
+		: "Already there"
+	else 
+		echo "xserver0 6000/tcp" >> /etc/services	
+	fi
+fi
+
+echo "NETPATH=$NETPATH">>/usr/X/adm/.Xprofile
+
+#Xhosts=n
+#if [ -f /etc/X0.hosts ]
+#then
+#		echo "\n\tThe file /etc/X0.hosts already exists."
+#		echo "\tDo you wish to overwrite (y/n) [n] ? \c"
+#		read Xhosts
+#		case $Xhosts in
+#			y*|Y*) uname >/etc/X0.hosts ;;
+#		esac
+#else
+	uname >/etc/X0.hosts
+#fi
+
+TMP=/tmp/desktop.err
+CONTMP=/tmp/pkg/desktop/consem
+
+TMPDIR=`pwd`
+XTOP=/usr/X
+XADMDIR=$XTOP/adm
+XINCDIR=$XTOP/include
+XLIBDIR=$XTOP/lib
+#
+# Install console emulator consem
+#
+cd $CONTMP
+CONNAME="Console Emulator"
+/etc/conf/bin/idcheck -p consem >/dev/null 2>&1
+if [ $? != 0 ]
+then
+	echo "\n\tThe $CONNAME is already installed."
+else
+	echo "\n\tInstalling $CONNAME"
+	/etc/conf/bin/idinstall -a consem
+	if [ $? != 0 ]
+	then
+		echo "\n\tError in installing the $CONNAME"
+		/etc/conf/bin/idinstall -d consem
+		rm -f /usr/include/sys/consem.h 
+		exit 1
+	fi
+fi
+
+# sp device 
+
+if [ -r /etc/conf/sdevice.d/sp ]	
+then
+
+    echo "\n\tThe number of streams pipes devices allocated for your"
+    echo "\tUNIX System will be increased so that your SCO X client may"
+    echo "\tfunction properly.  "
+
+    if [ -r /etc/conf/sdevice.d -o -w /etc/conf/sdevice.d \
+	-o -x /etc/conf/sdevice.d ]
+    then
+	DEF=60
+	numb=`grep sp /etc/conf/sdevice.d/sp | awk '{ print $3 }'`
+	max=`grep "sp	" /etc/conf/cf.d/mdevice |awk '$4 ~ /sp/ { print $8 }'`
+	if [ $max -le $numb ]
+	then
+		rep=`expr ${max}`
+	else
+	  if [ $max -le $DEF ]
+	  then
+		rep=`expr ${max}`
+	  else
+		if [ $numb -ge $DEF ]
+		then
+		   rep=`expr ${numb}`
+		else
+		   rep=`expr ${DEF}`
+		fi
+	  fi
+	fi
+	sed "/sp/s/$numb/$rep/p" /etc/conf/sdevice.d/sp> /usr/tmp/sp
+	cp /etc/conf/sdevice.d/sp /usr/tmp/sdevice.old
+	numb=`grep sp /usr/tmp/sp | awk '{ print $3 }'`
+	cp /etc/conf/node.d/sp /usr/tmp/node.old
+	sed "/X0[RS]/d" /etc/conf/node.d/sp>/usr/tmp/node.d
+	numb=`expr ${numb} - 1`
+	echo "sp        X0R     c       ${numb}" >>/usr/tmp/node.d 
+	numb=`expr ${numb} - 1`
+	echo "sp        X0S     c       ${numb}" >> /usr/tmp/node.d
+ 	numb=`expr ${numb} - 1`
+ 	echo "sp        X.isc     c       ${numb}" >>/usr/tmp/node.d 
+	cp /usr/tmp/sp  /etc/conf/sdevice.d/sp
+	cp /usr/tmp/node.d   /etc/conf/node.d/sp
+    fi
+fi
+
+${CONFBIN}/idbuild
+if [ "$?" -ne "0" ]
+then
+	echo "\n\tAn error was encountered attempting to rebuild the" 
+	echo "\tUNIX System kernel. Installation cancelled."
+	echo "\tThe kernel modifications were not installed, and the"
+	echo "\tUNIX System has not been modified."
+	echo "\tErrors have been written to the file $TMP."
+	mv /etc/conf/cf.d/stune.noX /etc/conf/cf.d/stune
+# sp stuff
+	mv /usr/tmp/node.old /etc/conf/node.d/sp
+	mv /usr/tmp/sdevice.old /etc/conf/sdevice.d/sp
+#	exit ${FAILURE}
+fi
+
+errflag=`expr ${errflag:=0} + 10`
+rm -f $TMP 2>/dev/null
+
+installf $PKGINST /usr/options/$PKG.name
+echo $NAME > /usr/options/$PKG.name
+installf -f $PKGINST
+#
+# Now clean up
+#
+removef $PKGINST /var/sadm/pkg/desktop/install/* >/dev/null 2>&1
+for i in Driver.o Master Space.c System
+do
+	removef $PKGINST $CONTMP/$i >/dev/null 2>&1
+done
+rm -rf $CONTMP 2>/dev/null
+removef -f $PKGINST >/dev/null 2>&1
+exit ${errflag}

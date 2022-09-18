@@ -1,0 +1,57 @@
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+/**/#ident	"@(#)olps:Imakefile	1.25"
+
+          SRCS = \
+		 callbacks.c \
+		 dsimple.c \
+		 dump.c \
+		 error.c \
+                 main.c \
+		 misc.c \
+		 prop.c \
+                 undump.c
+
+         OBJS = \
+		 callbacks.o \
+		 dsimple.o \
+		 dump.o \
+		 error.o \
+                 main.o \
+		 misc.o \
+		 prop.o \
+                 undump.o
+       
+       HEADERS = \
+		 olps.icon \
+		 window.curs \
+		 area.curs \
+		 externs.h \
+		 main.h
+
+     HELP_FILES = \
+		 help/olps_general \
+		 help/olps_props
+
+         INCLUDES = -I$(LIBSRC) -I$(LIBSRC)/Xol -I$(INCLUDE_EXTENSION)
+  LOCAL_LIBRARIES = XolClientLibs
+          DEPLIBS = XolClientDepLibs
+          DEFINES = 
+    SYS_LIBRARIES = -lm
+
+
+ComplexProgramTarget(olprintscreen)
+
+InstallMultipleHelpFiles($(HELP_FILES),$(USRLIBDIR)/locale/C/help/olprintscreen)
+InstallDesktopClient($(BINDIR)/olprintscreen,$(DESKTOPDIR)/Utilities/Screen_Dump)
+
+install:: olps.ad
+	$(INSTALL) $(INSTAPPFLAGS) olps.ad $(XAPPLOADDIR)
+	$(MV) $(XAPPLOADDIR)/olps.ad $(XAPPLOADDIR)/olprintscreen

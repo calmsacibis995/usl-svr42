@@ -1,0 +1,5 @@
+#ident	"@(#)uts-x86:proc/obj/i286x.cf/Master	1.5"
+#ident	"$Header: $"
+$version 1
+$entry exec core
+i286x	i286x_	eo	15	0	0

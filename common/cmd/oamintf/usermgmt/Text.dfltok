@@ -1,0 +1,31 @@
+#ident	"@(#)oamintf:common/cmd/oamintf/usermgmt/Text.dfltok	1.5.8.2"
+#ident  "$Header: Text.dfltok 2.0 91/07/12 $"
+
+################################################################################
+#	Module Name: Text.dfltok
+################################################################################
+Title="Define Defaults for Adding Users"
+
+lifetime=shortterm
+
+framemsg=`readfile $INTFBASE/trept.msg`
+
+rows=13
+columns=75
+
+text="
+The defaults have been defined as follows:
+
+ `/usr/sadm/sysadm/bin/getdefl >/tmp/$$.def;
+ /usr/bin/cat /tmp/$$.def`"
+  
+
+altslks
+
+name=CONT
+button=11
+action=update  $ARG1 true
+
+name=CANCEL
+button=14
+action=CLEANUP

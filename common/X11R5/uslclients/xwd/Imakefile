@@ -1,0 +1,30 @@
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+/**/#ident	"@(#)xwd:Imakefile	1.1"
+
+/**/#  Imakefile (Imakefile)
+/**/# 	Acc: 574010307 Thu Mar 10 10:18:27 1988
+/**/# 	Mod: 572850944 Fri Feb 26 00:15:44 1988
+/**/# 	Sta: 573774661 Mon Mar  7 16:51:01 1988
+/**/# 	Owner: 2011
+/**/# 	Group: 1985
+/**/# 	Permissions: 444
+
+
+/**/# 	START USER STAMP AREA
+
+
+/**/# 	END USER STAMP AREA
+
+LOCAL_LIBRARIES = $(XLIB)
+           SRCS = xwd.c dsimple.c
+           OBJS = xwd.o dsimple.o
+
+ComplexProgramTarget(xwd)

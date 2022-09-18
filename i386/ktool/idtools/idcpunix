@@ -1,0 +1,88 @@
+#!/sbin/sh
+#ident	"@(#)idtools:i386/ktool/idtools/idcpunix	1.3"
+#ident	"$Header:"
+
+PATH=/sbin:/usr/bin
+export PATH
+
+# set up environment to conform to the newly installed kernel
+env_setup()
+{
+	if [ -f /etc/conf/cf.d/stune ]
+	then
+		cp /etc/conf/cf.d/stune /etc/conf/cf.d/stune.current
+	else
+		echo "WARNING: cannot find /etc/conf/cf.d/stune"
+	fi
+	if [ -d /etc/conf/modnew.d ]
+	then
+		rm -rf /etc/conf/mod.d
+		mv /etc/conf/modnew.d /etc/conf/mod.d
+	else
+		echo "WARNING: cannot find /etc/conf/modnew.d"
+	fi
+	if [ -f /etc/conf/cf.d/mod_register ]
+	then
+		cp /etc/conf/cf.d/mod_register /etc/mod_register
+		chmod 444 /etc/mod_register
+	else
+		echo "WARNING: cannot find /etc/conf/cf.d/mod_register"
+	fi
+}
+
+copyunix()
+{
+	cp /etc/conf/cf.d/unix /stand/unix 
+	if [ $? -ne 0 ]
+	then
+		echo "\nFailed to install the new UNIX Operating System kernel in /stand."
+		echo "\nThe following is the contents of /stand:"
+		echo
+		ls -CF /stand
+		message -cu "Do you want to retry by removing some files from /stand ?"
+		case "$?" in
+		"1")
+			echo "The new UNIX Operating System kernel is not installed."
+			rm -f /etc/conf/.copy_unix
+			exit 1
+			;;
+		"0")
+			FILES=
+			while :
+			do
+				echo "\nPlease enter the file(s) to be removed: \c"
+				read FILES
+				[ ! "$FILES" ] || break
+			done
+			export FILES
+			(cd /stand; rm -rf $FILES)
+			copyunix
+			;;
+		esac
+	fi
+}
+
+if [ -f /etc/conf/.copy_unix -a -f /etc/conf/cf.d/unix ]
+then
+	mv /stand/unix /stand/unix.old 
+	if [ $? -eq 0 ]
+	then
+		echo "\nSaved the previous UNIX Operating System kernel as \"unix.old\"."
+	else
+		echo "\nCan not save the previous UNIX Operating System kernel."
+	fi
+	
+	cp /etc/conf/cf.d/unix /stand/unix 
+	if [ $? -ne 0 ]
+	then
+		echo "\nFailed to install the new UNIX Operating System kernel in /stand."
+		echo "Retrying after removing the previous UNIX Operating System kernel."
+		rm -f /stand/unix.old
+		copyunix
+	fi
+
+	echo "\nInstalled new UNIX Operating System kernel.\n"
+	rm -f /etc/conf/.copy_unix
+	> /etc/conf/.new_unix
+	env_setup
+fi

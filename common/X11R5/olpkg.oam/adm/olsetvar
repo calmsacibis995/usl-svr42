@@ -1,0 +1,87 @@
+#ident	"@(#)olpkg.oam:adm/olsetvar	1.3"
+#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+#	Copyright (c) 1988, 1989, 1990 AT&T
+#	  All Rights Reserved
+
+#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+#	UNIX System Laboratories, Inc.
+#	The copyright notice above does not evidence any
+#	actual or intended publication of such source code.
+
+
+if [ "$1" = "" -o "$2" = "" ]
+then
+	echo "\nUsage: olsetvar variable value [user]"
+	exit 1
+fi
+
+VAR=$1
+VALUE=$2
+if [ "$3" != "" ]
+then
+	LOGIN=$3
+elif [ "$LOGNAME" != "" ]
+then
+	LOGIN=$LOGNAME
+else
+	echo "\n\t\$LOGNAME variable not set." >& 2
+	exit 2
+fi
+
+#
+# Now will validate login
+#
+
+VALIDATE=0
+PASS=`grep $LOGIN /etc/passwd | cut -d: -f1,6`
+for ENTRY in $PASS
+do
+        FIRST=`echo $ENTRY | cut -d: -f1`
+        if [ "$LOGIN" = "$FIRST" ]
+    	then
+    	        VALIDATE=1
+                LOGINDIR=`echo $ENTRY | cut -d: -f2`
+             	break
+  	fi
+done
+if [ $VALIDATE = 0 ]
+then
+    	echo "\n\tInvalid user login ID."  >& 2
+	exit 1
+fi
+if [ "$LOGINDIR" = "" ]
+then
+	echo "\n\tUser's home directory not found."  >& 2
+	exit 1
+fi
+
+#
+# Found the home directory, now see if .olsetup there, then modify it
+#
+
+if [ ! -r $LOGINDIR -o ! -w $LOGINDIR -o ! -x $LOGINDIR ]
+then
+	echo "\n\t$LOGINDIR does not exist, or has invalid permissions."  >& 2
+	exit 1
+fi
+
+cd $LOGINDIR
+
+if [ ! -r .olsetup -o ! -w .olsetup ]
+then
+	echo "\n\t${LOGINDIR}/.olsetup does not exist, or has invalid permissions."  >& 2
+	exit 1
+fi
+
+ed .olsetup >/dev/null <<!
+g/^$VAR=/d
+1i
+$VAR=$VALUE export $VAR	#!@ Do not edit this line !@
+.
+w
+q
+!
+
+chmod 0644   .olsetup 2> /dev/null
+chown $LOGIN .olsetup 2> /dev/null
+exit 0

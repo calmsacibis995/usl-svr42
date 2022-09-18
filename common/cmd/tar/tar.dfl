@@ -1,0 +1,16 @@
+#ident	"@(#)tar:common/cmd/tar/tar.dfl	1.1.3.3"
+#ident "$Header: /sms/sinixV5.4es/rcs/s19-full/usr/src/cmd/tar/tar.dfl,v 1.1 91/02/28 20:11:52 ccs Exp $"
+#	   device     		block    size
+archive0=/dev/rdsk/f05dt	18	360
+archive1=/dev/rdsk/f15dt	18	360
+archive2=/dev/rdsk/f05ht	15	1200
+archive3=/dev/rdsk/f15ht	15	1200
+archive4=/dev/rdsk/f03dt	18	720
+archive5=/dev/rdsk/f13dt	18	720
+archive6=/dev/rdsk/f03ht	18	1440
+archive7=/dev/rdsk/f13ht	18	1440
+archive8=/dev/rmt/c0s0		20	0
+#archive9=/dev/null #reserved
+#
+# The default device in the absence of a numeric or "-f device" argument
+archive=/dev/rdsk/f05ht		15	1200

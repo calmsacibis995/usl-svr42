@@ -1,0 +1,12 @@
+#ident	"@(#)nadmin.rfs:local/rfs/bin/rf_list	1.2.5.1"
+#ident  "$Header: rf_list 2.0 91/07/12 $"
+$TFADMIN /usr/sbin/share -F rfs | /usr/bin/tr -s '\011' '\040' > /usr/tmp/s_list$$
+
+/usr/bin/sed "s/^#.*//g" /etc/dfs/dfstab | /usr/bin/tr -s '\011' '\040' | /usr/bin/grep "\-F rfs" |
+/usr/bin/nawk '{  for ( i = NF; i > 0; --i) printf "%s ", $i
+		 if ( i = 1) printf "\n" }' >> /usr/tmp/s_list$$
+
+echo "{" > /usr/tmp/s_list
+/usr/bin/cut -d" " -f1,2 /usr/tmp/s_list$$ | 
+		 /usr/bin/tr -s '\040' '\012' | /usr/bin/sort -u >> /usr/tmp/s_list
+echo "}" >> /usr/tmp/s_list

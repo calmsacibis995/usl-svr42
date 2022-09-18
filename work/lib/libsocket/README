@@ -1,0 +1,13 @@
+#ident	"@(#)libsocket:common/lib/libsocket/README	1.2.1.2"
+#ident "$Header: 1.1 91/02/28 $"
+
+We make 2 versions of libsocket: libsockhost.so uses /etc/hosts for
+gethostbyname() and gethostbyaddr; libsockdns.so uses domain name service.
+By default, the former is installed as /usr/lib/libsocket.so.
+If you run DNS, copy libsockdns.so into /usr/lib/libsocket.so.
+
+This code (inet, resolver and socket) also is in the nametoaddr
+"resolv.so" library (/usr/src/lib/nametoaddr/resolv) -- any changes
+here should be reflected there.
+
+libresolv.a now resides in libsocket/resolver, rather than in its own dir.

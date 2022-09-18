@@ -1,0 +1,5 @@
+#ident	"@(#)uts-x86:fs/bfs/bfs.cf/Master	1.5"
+#ident	"$Header: $"
+$version 1
+$entry init
+bfs	bfs	F	0	0	0

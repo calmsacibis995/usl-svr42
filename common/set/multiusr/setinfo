@@ -1,0 +1,8 @@
+#ident  "@(#)set:common/set/multiusr/setinfo	1.3"
+#ident  "$Header: $"
+
+# Format for the setinfo file.  	Field separator is: <tab>
+# pkg   parts   default category	pkg full-name
+# abbr          y/n
+
+license	1	y	system	User Upgrade

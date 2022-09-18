@@ -1,0 +1,5 @@
+#ident	"@(#)uts-x86:util/kdb/kdb-util/kdb-util.cf/Mtune	1.2"
+#ident	"$Header: $"
+* Kernel Debugger Parameters -------
+KDBSYMSIZE	100000	10000	200000
+KDBSECURITY	0	0	1

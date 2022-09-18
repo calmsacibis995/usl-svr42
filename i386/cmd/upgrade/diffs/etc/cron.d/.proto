@@ -1,0 +1,8 @@
+*** .proto.v4	Tue Jun  9 17:09:01 1992
+--- .proto.p14	Mon Jun  8 10:24:38 1992
+***************
+*** 1 ****
+! #ident	"@(#)/etc/cron.d/.proto.sl 1.1 4.0 05/29/91 60072 AT&T-USL"
+--- 1,2 ----
+! #ident	"@(#)adm:common/cmd/.adm/.proto	1.2.3.1"
+! #ident "$Header: /sms/sinixV5.4es/rcs/s19-full/usr/src/cmd/.adm/.proto,v 1.1 91/02/28 15:51:58 ccs Exp $"

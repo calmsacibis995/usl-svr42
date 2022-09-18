@@ -1,0 +1,64 @@
+#ident	"@(#)olpkg.oam:pkg.dtnetadm/prototype	1.3"
+#	Copyright (c) 1990, 1991 UNIX System Laboratories, Inc.
+#	Copyright (c) 1988 AT&T
+#	  All Rights Reserved
+
+#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+#	UNIX System Laboratories, Inc.
+#	The copyright notice above does not evidence any
+#	actual or intended publication of such source code.
+
+
+i pkginfo
+i postinstall
+
+!PKGINST=dtnetadm
+!default 0755 bin bin
+
+d enduser /usr ? ? ?
+d enduser /usr/X
+d enduser /usr/X/desktop
+d enduser /usr/X/desktop/System_Setup
+d enduser /usr/X/desktop/PackageMgr
+d enduser /usr/X/lib
+d enduser /usr/X/lib/classdb
+d enduser /usr/X/lib/bitmaps
+d enduser /usr/X/lib/pixmaps
+d enduser /usr/X/lib/locale
+d enduser /usr/X/lib/locale/C
+d enduser /usr/X/lib/locale/C/help
+d enduser /usr/X/lib/locale/C/help/dtadmin
+d enduser /usr/X/bin
+d enduser /usr/X/lib/pixmaps
+
+###############################
+##     Graphical admin objects
+
+!default 0755 root sys
+
+f enduser /usr/X/bin/InternetMgr
+s enduser /usr/X/desktop/System_Setup/InternetMgr=/usr/X/bin/InternetMgr
+f enduser /usr/X/desktop/PackageMgr/inet
+v enduser /usr/X/lib/classdb/inet.cdb
+f enduser /usr/X/lib/bitmaps/tcpadmm.mask
+f enduser /usr/X/lib/pixmaps/tcpadm.icon
+f enduser /usr/X/lib/locale/C/help/dtadmin/inet.hlp
+
+###############################
+##     Graphical admin objects
+
+!default 0755 root sys
+
+f enduser /usr/X/bin/File_Sharing
+s enduser /usr/X/desktop/System_Setup/File_Sharing=/usr/X/bin/File_Sharing
+f enduser /usr/X/desktop/PackageMgr/nfs
+v enduser /usr/X/lib/classdb/nfs.cdb
+f enduser /usr/X/lib/pixmaps/nfs.icon
+f enduser /usr/X/lib/pixmaps/nfsLocal
+f enduser /usr/X/lib/pixmaps/nfsMounted
+f enduser /usr/X/lib/pixmaps/nfsRemote
+f enduser /usr/X/lib/pixmaps/nfsShared
+
+# create in postinstall
+#f none	/etc/dfs/dtvfstab  0644	root  root
+

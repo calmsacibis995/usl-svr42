@@ -1,0 +1,8 @@
+#ident	"@(#)nadmin.nfs:other/nfs/Help	1.1.5.1"
+#ident  "$Header: Help 2.0 91/07/12 $"
+ABSTRACT:
+
+other:control:Remote File Sharing Control
+	The control menu allows you to start, monitor, and stop
+	Remote File Sharing operation.
+

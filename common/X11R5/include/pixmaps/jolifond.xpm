@@ -1,0 +1,60 @@
+#define jolifond_format 1
+#define jolifond_width 47
+#define jolifond_height 47
+#define jolifond_ncolors 4
+#define jolifond_chars_per_pixel 2
+static char * jolifond_colors[] = {
+"  " , "#A800A800A800",
+". " , "#000",
+"X " , "#FFFFFFFFFFFF",
+"o " , "#540054005400"
+} ;
+static char * jolifond_pixels[] = {
+"                                        . . X X X . .                                         ",
+"                                      .     . X .     .                                       ",
+"        .     o   o o o X o     .       .     .     .       .     o   o o o X o     .         ",
+"          .   o   o o o X o   .               .               .   o   o o o X o   .           ",
+"    .       o o o o o o o o o       .     . . X . .     .       o o o o o o o o o       .     ",
+"      .     o o o o o o o o o     .     . X X . X X .     .     o o o o o o o o o     .       ",
+"        o o X o o o o o o o X o o     . . . X . X . . .     o o X o o o o o o o X o o         ",
+"    o o o o o X o o o o o X o o o o o     . X . X .     o o o o o X o o o o o X o o o o o     ",
+"        o o o o X o o o X o o o o         . . X . .         o o o o X o o o X o o o o         ",
+"    o o o o o o o X o   o o o o o o o     . . X . .     o o o o o o o   o X o o o o o o o     ",
+"                  o o                     . . X . .                     o o                   ",
+"    o o o o o o o     o o o                 . . .                 o o o     o o o o o o o     ",
+"        o o o o X o   o o o o   .             .             . X o o o o   o X o o o o         ",
+"    o o o o o X o o   o o o o     .     . .   .   . .     . X X o o o o   o o X o o o o o     ",
+"        o o X o o o     o o o     .   .     . . .     .   . X X o o o     o o o X o o         ",
+"      .     o o o o           .   .     .     .     .     . X .           o o o o     .       ",
+"    .       o o o o     .       .             .             .       .     o o o o       .     ",
+"          .   o   .       . . . X .   o o o X .   o o o X .   . . .       o   .   .           ",
+"        .     o   .                 o o o o o X o o o o o                 o   .     .         ",
+"  .         .               .     o o o X o o o o o X o o o     .               .         .   ",
+".   .     . .             .   .   o o X X X o o o X X X o o   .   .             . .     .   . ",
+".       . X . . . . .     .       o o o X o o o o o X o o o       .     . . . . . X .       . ",
+"X .     . X X X . . . .     .       o o o o o X o o o o o       .     . . . . X X X .     .   ",
+"X X . . X . . . X X X . . . . . . . X o o o X . X o o o X . . . . . . . X X X . . . X . .     ",
+"X .     . X X X . . . .     .       o o o o o X o o o o o       .     . . . . X X X .     .   ",
+".       . X . . . . .     .       o o o X o o o o o X o o o       .     . . . . . X .       . ",
+".   .     . .             .   .   o o X X X o o o X X X o o   .   .             . .     .   . ",
+"  .         .               .     o o o X o o o o o X o o o     .               .         .   ",
+"        .     o   .                 o o o o o X o o o o o                 o   .     .         ",
+"          .   o   .       . . . X .   o o o X .   o o o X .   . . .       o   .   .           ",
+"    .       o o o o     .       .             .             .       .     o o o o       .     ",
+"      .     o o o o           .   .     .     .     .     .   .           o o o o     .       ",
+"        o o X o o o     o o o     .   .     . . .     .   .     o o o     o o o X o o         ",
+"    o o o o o X o o   o o o o     .     . .   .   . .     .     o o o o   o o X o o o o o     ",
+"        o o o o X o   o o o o   .             .             .   o o o o   o X o o o o         ",
+"    o o o o o o o     o o o                 . . .                 o o o     o o o o o o o     ",
+"                  o o                     . . X . .                     o o                   ",
+"    o o o o o o o X o   o o o o o o o     . . X . .     o o o o o o o   o X o o o o o o o     ",
+"        o o o o X o o o X o o o o         . . X . .         o o o o X o o o o o o o o         ",
+"    o o o o o X o o o o o X o o o o o     . X . X .     o o o o o X o o o o o X o o o o o     ",
+"        o o X o o o o o o o X o o     . . . X . X . . .     o o X o o o o o o o X o o         ",
+"      .     o o o o o o o o o     .     . X X . X X .     .     o o o o o o o o o     .       ",
+"    .       o o o o o o o o o       .     . . X . .     .       o o o o o o o o o       .     ",
+"          .   o   o o o X .   .               .               .   o   o o o   o   .           ",
+"        .     o   o o o X .     .       .     .     .       .     o   o o o   o     .         ",
+"                                      .     .   .     .                                       ",
+"                                        . .       . .                                         "
+} ;

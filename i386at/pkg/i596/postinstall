@@ -1,0 +1,166 @@
+#ident	"@(#)pkg.i596:postinstall	1.1"
+#ident  "$Header: $"
+#	Copyright (c) 1991  Intel Corporation
+#	All Rights Rreserved
+#
+#	INTEL CORPORATION PROPRIETARY INFORMATION
+#
+#	This software is supplied to AT & T under the terms of a license 
+#	agreement with Intel Corporation and may not be copied nor 
+#	disclosed except in accordance with the terms of that agreement.
+#
+
+FAILURE=1	# fatal error
+
+CONFDIR=/etc/conf
+CONFBIN=${CONFDIR}/bin
+BINDIR=/usr/bin
+TMP=/tmp/i596.err
+ERROR1=" Errors have been written to the file $TMP."
+
+BASE1="ERROR: The ${NAME} is not compatible with this release \
+of the AT&T UNIX System V operating system \
+and can not be used with this system."
+
+NOTOOLS="ERROR: The Installable Driver feature has been removed.\
+The ${NAME} cannot be installed."
+
+#this function edits the /etc/strcf to configure the network device
+#for this driver
+
+do_strcf() {
+if [ -f /etc/inet/strcf ]
+then 
+	cp /etc/inet/strcf /etc/inet/.strcf.old
+	ENTRY=`grep "# i386/$1" /etc/inet/.strcf.old`
+
+	if [ "$ENTRY" = "" ]
+	then
+		ed -s /etc/inet/.strcf.old << EOF > /dev/null
+/# i386\//
+a
+#	cenet ip /dev/$1_ emd 0		# i386/$1 (EtherExpress)
+.
+w
+q
+EOF
+	fi
+
+	sed -e "/\# i386\/$1/s/^#//" < /etc/inet/.strcf.old > /etc/inet/strcf
+fi
+}
+
+# determine that ID/TP tools are available
+
+if
+	[ -x ${CONFBIN}/idcheck -a -x ${CONFBIN}/idbuild -a -x ${CONFBIN}/idinstall ]
+then
+	:
+else
+	message ${NOTOOLS}
+	exit $FAILURE
+fi
+
+cd /tmp/i596
+
+OSVER=`uname -a | cut -d " " -f3`
+
+case ${OSVER} in
+
+	4.0*) ;;
+	4.1*) ;;
+	*) message ${BASE1};
+	   exit $FAILURE;;
+esac
+
+if [ "${I596_REQINTV}" = 2 ]
+then
+	IRQ=9
+else
+	IRQ=${I596_REQINTV}
+fi
+
+# Set the ethernet cable type
+#
+
+if [ "$I596_CABLETYPE" = "AUI" ]
+then
+	I596_CABLETYPE=1
+else
+	I596_CABLETYPE=0
+fi
+
+sed -e "s/#define.*CABLE_TYPE.*/#define CABLE_TYPE	${I596_CABLETYPE}/" \
+		< Space.c > Space.new
+mv Space.new Space.c
+
+# Create System file
+#
+
+# First get the current field values
+
+egrep "^i596" System  | { 
+	read Devname Config Unit Ipl Itype Vector Sioa Eioa Scma Ecma Dma
+
+	# Then change the Interrupt Vector, Start and End I/O addresses
+	# to the values provided by the user via the request script.
+
+	ed - System <<!
+/^i596/c
+${Devname}	${Config}	${Unit}	${Ipl}	${Itype}	${IRQ}	${I596_REQLADD}	${I596_REQHADD}	${Scma}	${Ecma}	${Dma}
+.
+w
+!
+}
+
+#
+# Now install if that is to be done
+#
+
+${CONFBIN}/idinstall -a i596 2> ${TMP}
+if [ "$?" != "0" ]
+then
+	${CONFBIN}/idinstall -u i596 2> ${TMP}
+	if [ "$?" != "0" ]
+	then
+		message "The installation cannot be completed due to an error \
+in the driver installation.  $ERROR1"
+		exit ${FAILURE}
+	fi
+fi
+
+do_strcf  i596
+
+#
+# now build
+#
+${CONFBIN}/idbuild 2>> $TMP
+if [ $? != 0 ]
+then
+        message "The installation cannot be completed due to an error in the \
+kernel reconfiguration. $ERROR1  Please try the installation again.  If the \
+error occurs again, contact your Service Representative." 
+	exit $FAILURE
+fi
+
+errflag=`expr ${errflag:=0} + 10`
+#installf $PKGINST /usr/options/$PKG.name
+
+#this is no longer needed - now being done in pkginfo 
+#echo $NAME > /usr/options/$PKG.name
+
+installf -f $PKGINST
+
+#
+# Now clean up
+#
+removef $PKGINST /tmp/i596/* >/dev/null 2>&1
+for i in Driver.o Master Space.c System Node
+do
+	removef $PKGINST /tmp/i596/$i >/dev/null 2>&1
+done
+removef $PKGINST /tmp/i596 >/dev/null 2>&1
+removef -f $PKGINST >/dev/null 2>&1
+rm -f $TMP 1>/dev/null 2>&1
+exit ${errflag} 
+

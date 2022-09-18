@@ -1,0 +1,26 @@
+#ident	"@(#)pkg.base:common/pkg/base/ifiles/pkginfo	1.2.6.9"
+#ident  "$Header: $"
+
+PKG="base"
+NAME="Base System"
+CATEGORY=system
+VENDOR="UNIX System Laboratories"
+CLASSES=sysdir kernel sysutil inst vtool intrfc config term sysinst need upnover none
+ORDER=sysdir kernel sysutil inst vtool intrfc config term sysinst need upnover none
+MAXINST=1
+VERSION="1"
+RELEASE="4.2"
+
+# parameter definitions used in prototype files
+PKGOLD=/usr/options
+PKGLOC=/var/sadm/pkg
+PKGADM=/var/sadm/install
+PKGBIN=/usr/sadm/install/bin
+PKGSCR=/usr/sadm/install/scripts
+
+MENU=/usr/sadm/sysadm/menu
+EDMENU=/usr/sadm/sysadm/edmenu
+EDBIN=/usr/sadm/sysadm/edbin
+INTFBIN=/usr/sadm/sysadm/bin
+
+TERMINFO=/usr/share/lib/terminfo

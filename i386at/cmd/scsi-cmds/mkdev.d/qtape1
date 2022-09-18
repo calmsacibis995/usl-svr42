@@ -1,0 +1,21 @@
+#ident	"@(#)scsi-cmds:i386at/cmd/scsi-cmds/mkdev.d/qtape1	1.9"
+#ident  "$Header: miked 5/3/92 $"
+QUERY	-
+POSTMSG	-
+ALIAS	ctape
+DGRP	scsiqtape
+ATTR	type="qtape" scsi="true" volume="cartridge" removable="true" pdimkdtab="true" bklib="SCSI" bufsize="65536" copy="/bin/dd if=CDEVICE1 of=CDEVICE2 bs=10240" desc="Tape Drive $N$" norewind="$CDEVICE$n" erasecmd="/usr/lib/tape/tapecntl -e $CDEVICE$n" rewind="/usr/lib/tape/tapecntl -w $CDEVICE$n" retension="/usr/lib/tape/tapecntl -t $CDEVICE$n" display="true"
+DATA
+key	minor	mode	-	/dev/			-		/dev/rmt/
+MO	0+D*S	0666	-	rmt/cCtTdLs0	-		ctapeN
+M	1+D*S	0666	-	rmt/cCtTdLs0n	-		ntapeN
+M	2+D*S	0666	-	rmt/cCtTdLs0r	-		-
+M	3+D*S	0666	-	rmt/cCtTdLs0nr	-		-
+M	0+D*S	0666	-	rmt/cCs0		-		-
+M	1+D*S	0666	-	rmt/cCs0n		-		-
+M	2+D*S	0666	-	rmt/cCs0r		-		-
+M	3+D*S	0666	-	rmt/cCs0nr		-		-
+M	0+D*S	0666	-	rctC			-		-
+M	1+D*S	0666	-	nrctC			-		-
+M	2+D*S	0666	-	erctC			-		-
+M	0+D*S	0666	-	xctC			-		-

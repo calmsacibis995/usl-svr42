@@ -1,0 +1,50 @@
+#ident	"@(#)face:OBJECTS/Text.exit	1.4.5.2"
+#ident  "$Header: Text.exit 1.5 91/10/15 $"
+
+title=$$uxface:351:"Confirm Exit"
+lifetime=shortterm
+
+altslks=true
+
+begrow=any
+begcol=any
+
+framemsg=const $$uxface:352:"Press CONT to exit or CANCEL to cancel the exit."
+
+text=$$uxface:353:"
+        You are about to exit FACE.
+"
+rows=3
+columns=44
+
+name=""
+button=9
+action=nop
+
+name=""
+button=10
+action=nop
+
+name=$$uxface:319:"CONT"
+button=11
+action=exit_now
+
+name=""
+button=12
+action=nop
+
+name=""
+button=13
+action=nop
+
+name=$$uxface:149:"CANCEL"
+button=14
+action=cancel
+
+name=$$uxface:150:"CMD-MENU"
+button=15
+action=cmd-menu
+
+name=""
+button=16
+action=nop

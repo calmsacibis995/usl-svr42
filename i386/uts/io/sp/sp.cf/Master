@@ -1,0 +1,4 @@
+#ident	"@(#)uts-x86:io/sp/sp.cf/Master	1.3"
+#ident	"$Header: $"
+$version 1
+sp	sp	kSc	0	0	41

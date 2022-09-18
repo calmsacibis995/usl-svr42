@@ -1,0 +1,45 @@
+#!/bin/sh
+#ident	"@(#)dtadmin:packager/dtexec	1.3"
+#
+#	usage: dtexec [-Z] cmd args ...
+#
+#	execute cmd (using xterm-acs for line-drawing characters),
+#	on non-zero exit (or any exit, if -Z is the first argument)
+#	post a message to require the user to click to terminate --
+#	the idea being to keep a final screen on the xterm through
+#	which dtexec is being called (out of a dtm class, or a client)
+#
+if [ $# -eq 0 ]
+then
+	exit 1
+fi
+if [ $1 = "-Z" ]
+then
+	if [ $# -eq 1 ]
+	then
+		exit 1
+	fi
+	Z=0
+	shift
+	
+else
+	Z=1
+fi
+XDIR=${XWINHOME:-/usr/X}
+if [ $TERM = "xterm" -o $TERM = "xtermm" ]
+then
+	/usr/bin/infocmp ${TERM}-acs >/dev/null 2>&1
+	if [ $? = 0 ]
+	then
+		TERM=${TERM}-acs
+		export TERM
+	fi
+fi
+PATH=/sbin:/usr/sbin:/etc:$PATH
+export PATH
+T1=`gettxt dtexec.sh:1  "Click Exit to terminate\n"`
+T2=`basename $1`
+$*
+if [ $? -ne 0 -o $Z = 0 ]
+then	$XDIR/desktop/rft/dtmsg "$T1 $T2\n"
+fi

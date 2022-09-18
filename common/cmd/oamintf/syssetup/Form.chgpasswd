@@ -1,0 +1,176 @@
+#ident	"@(#)oamintf:common/cmd/oamintf/syssetup/Form.chgpasswd	1.6.10.2"
+#ident  "$Header: Form.chgpasswd 2.0 91/07/12 $"
+################################################################################
+#	Module Name:  Form.chgpasswd (from Form.addpswd in usermgmt)
+################################################################################
+Form="Defining Administrative and System Login(s) Password Information"
+
+framemsg=`readfile $INTFBASE/form.msg`
+
+`set -l LIFE=longterm`
+lifetime=$LIFE
+
+help=OPEN TEXT $INTFBASE/Text.itemhelp $LININFO
+
+begrow=distinct
+begcol=distinct
+
+done=`message -w "Defining Password Information";
+if [ "$F2" = "$PSTAT" -a "$F3" = "$MAXVAL" -a "$F4" = "$MINVAL" -a "$F5" = "$WARNVAL" ];
+then
+   set -l SETCMD="OPEN TEXT $OBJ_DIR/Text.nochgs $ARG1";
+else
+	if [ "$F2" = "lock" -o "$F2" = "no password" ];
+	then
+		/usr/sadm/sysadm/bin/pswdchk $ARG1 $F2 $MAX $MIN $WARN;
+
+		if [ $RET -eq 0 ];
+		then
+			set -l LIFE=shortterm;
+			set -l SETCMD="OPEN TEXT $OBJ_DIR/Text.apswdok $ARG1";
+		else
+	    		set -l SETCMD="OPEN TEXT $OBJ_DIR/Text.apswdnok";
+		fi;
+
+	elif [ "$F2" = "password" ];
+	then
+		run -n /usr/sadm/sysadm/bin/pswddef $ARG1;
+
+		if [ $RET -eq 0 ];
+		then
+			/usr/sadm/sysadm/bin/pswdchk $ARG1 $F2 $MAX $MIN $WARN ;
+
+			if [ $RET -eq 0 ];
+			then
+				set -l LIFE=shortterm;
+				set -l SETCMD="OPEN TEXT $OBJ_DIR/Text.apswdok $ARG1";
+			else
+	    			set -l SETCMD="OPEN TEXT $OBJ_DIR/Text.apswdnok";
+			fi;
+		else
+	    		set -l SETCMD="OPEN TEXT $OBJ_DIR/Text.apswdnok";
+		fi;
+
+	fi;
+fi`$SETCMD
+
+# F1
+name=""
+nrow=1
+ncol=1
+frow=1
+fcol=1
+rows=1
+columns=50
+value="Password information for the $ARG1 login"
+inactive=true
+
+# F2
+name=Password status:
+lininfo=Form.chgpasswd:pwstat
+nrow=3
+ncol=3
+frow=3
+fcol=20
+rows=1
+columns=12
+rmenu={ "lock" "no password" "password" }
+menuonly=true
+`shell "$TFADMIN passwd -s \"$ARG1\"" | /usr/bin/sed -n -e "s/^[^ ]*[ ]*\([^ ]*\)[ ].*/\1/p" | regex 'PS' 'password' 'LK' 'lock' 'NP' 'no password' | set -l PSTAT`
+value=$PSTAT
+invalidmsg=const 'Status available: lock, no password, password.'
+choicemsg=const "Select password status for login." 
+#fieldmsg=const 'Warning: Password Status has certain dangers & conditions. Use "HELP".'
+
+# F3
+`/usr/sadm/sysadm/bin/getval -x "$ARG1" | set -l MAXVAL;
+[ "$MAXVAL" = "-1" ] && set -l MAXVAL=""`
+
+name=Maximum number of days the password is valid:
+lininfo=Form.chgpasswd:maximum
+nrow=4
+ncol=3
+frow=4
+fcol=49
+rows=1
+columns=8
+value=$MAXVAL
+valid=`if [ "$F3" = "" ];
+       then
+	  set -l MAX="-1";
+       else
+	  set -l MAX="$F3";
+       fi;
+       [ "$MAX" = "-1" ] || /usr/sadm/bin/valint "$MAX" || regex -v "$MAX" '^[ ]*$'`
+invalidmsg=const `/usr/sadm/bin/errint -e "A blank will turn off aging."`
+choicemsg=const `/usr/sadm/bin/helpint -h "A blank will turn off aging."`
+
+# F4
+`/usr/sadm/sysadm/bin/getval -n "$ARG1" | set -l MINVAL;
+[ "$MINVAL" = "-1" ] && set -l MINVAL=""`
+
+name=Minimum number of days allowed between password changes:
+lininfo=Form.chgpasswd:minimum
+nrow=5
+ncol=3
+frow=5
+fcol=60
+rows=1
+columns=8
+value=$MINVAL
+valid=`if [ "$F4" = "" ];
+       then
+	  set -l MIN="-1";
+       else
+	  set -l MIN="$F4";
+       fi;
+       [ "$MIN" = "-1" ] || /usr/sadm/bin/valint "$MIN" || regex -v "$MIN" '^[ ]*$' && shell " if [ \"$MIN\" -gt \"$F3\" ]
+	  then
+		exit 1;
+	  else
+		exit 0;
+	  fi"`
+
+invalidmsg=const "Invalid number or the number is greater than the maximum number of days."
+choicemsg=const `/usr/sadm/bin/helpint`
+
+
+# F5
+`shell "$TFADMIN logins -oxl$ARG1" | fmlcut -f12 -d: | set -l WARNVAL;
+[ "$WARNVAL" = "-1" ] && set -l WARNVAL=""`
+
+name=Number of days for warning message:
+lininfo=Form.chgpasswd:warn
+nrow=6
+ncol=3
+frow=6
+fcol=39
+rows=1
+columns=8
+value=$WARNVAL
+valid=`if [ "$F5" = "-1" -o "$F5" = "" ];
+       then
+	  set -l WARN=" ";
+       else
+	  set -l WARN="$F5";
+       fi;
+       if [ "$WARN" = " " ];
+       then
+       	  echo TRUE;
+       else
+	  /usr/sadm/bin/valint "$WARN" && shell "if [ \"$WARN\" -gt \"$MAX\" ]
+					  then
+						exit 1
+					  else
+						exit 0
+					  fi";
+       fi` 
+invalidmsg=const "Invalid number or the number is greater than the maximum number of days."
+
+#for a form object
+
+
+name=RESET
+button=8
+action=reset
+

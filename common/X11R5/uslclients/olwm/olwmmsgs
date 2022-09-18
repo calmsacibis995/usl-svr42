@@ -1,0 +1,224 @@
+#ifndef	NOIDENT
+#ident	"@(#)olwm:olwmmsgs	1.17"
+#endif
+
+/*
+ * This file contains strings that are used as default messages for
+ * OlVaDisplayErrorMsg(), OlVaDisplayWarningMsg(), and OlGetMessag().
+ */
+
+/* Menu.c */
+String OleMspace_exit = "No Space, exiting...";
+
+/* All the titles... */
+String helpTitles[] = {
+"All Pop-ups Help",
+"Quit Window Help",
+"Move Window Help",
+"Back Help",
+"Full (Restore) Size Help",
+"Open (Close) Window Help",
+"This Window Help",
+"Close (Open) Window Help",
+"Owner Help",
+"Cancel Window Help",
+"Resize Window Help",
+"Dismiss Window Help",
+"Restore (Full) Size Help",
+"Refresh Window Help",
+};
+
+/* All the menu button labels */
+String olwmMenuLabels[] = {
+"All Popups",
+"Quit",
+"Move",
+"Back",
+"Full",
+"Open",
+"This Window",
+"Close",
+"Owner?",
+"Cancel",
+"Resize",
+"Dismiss",
+"Restore",
+"Refresh",
+};
+
+/* All the menu button mnemonics */
+String menuMnemonics[] = {
+"A",
+"Q",
+"M",
+"B",
+"F",
+"O",
+"T",
+"C",
+"w",
+"C",
+"s",
+"D",
+"R",
+"e",
+};
+
+/* Menu Labels in Motif mode */
+String motMenuLabels[] = {
+"Close",
+"Move",
+"Lower",
+"Maximize",
+"Minimize",
+"Size",
+"Restore",
+"Maximize",
+};
+
+String motMenuMnemonics[] = {
+"C",
+"M",
+"L",
+"x",
+"n",
+"S",
+"R",
+"x",
+};
+/* motif mode help titles */
+String mothelpTitles[] = {
+	"Close Help",
+	"Move Help",
+	"Lower",
+	"Maximize",
+	"Minimize",
+	"Size",
+	"Restore",
+	"Maximize",
+};
+
+/* Menu title */
+String OleMtitle_popupWindowMenu = "Window";
+
+String OleMtitle_window = "Window";
+
+/* Misc.c */
+String OleMcolormap_truncate = "WM_COLORMAP_WINDOWS list too long - being truncated";
+
+String OleMspace_memory = "No Space";
+
+String OleMbadWindowAttr_notFound = "Can't get window attributes for WM_COLORMAP_WINDOWS subwindow %lu";
+
+String OleMbadBitmap_badRead= "Can't read bitmap file!";
+
+String OleMnoTitle_noTitle = "(Untitled)";
+
+String OleMcolor_winColors = "Can't set client %s color from _OL_WIN_COLORS";
+
+String OleMcolor_foreground = "foreground";
+String OleMcolor_background = "background";
+String OleMcolor_border= "border";
+
+String OleMdimension_border= "Border Color of _OL_WIN_COLORS is not used";
+
+String OleMshowFeedback_badResSpec = "Bad Resource Specification: showFeedback";
+String OleMiconDecor_badResSpec = "Bad Resource Specification: iconDecoration";
+/* Window.c */
+
+String OleMmove_move = "Move";
+String OleMresize_resize = "Resize";
+String OleMbadKeyboard_noGrab = "Can't Grab Keyboard, Window %s Operation failed";
+
+/* wm.c */
+
+String OleMcolor_windowFrameColor = "windowFrameColor";
+String OleMbadAtom_internAtom = "Can't XInternAtom  WM_COLORMAP_WINDOWS";
+String OleMcolor_duplicate = "Same %s and %s colors given, now resolving";
+String OleMcolor_inputWindowHeader = "inputWindowHeader";
+String OleMolwm_running = "Another window manager is already running!!";
+
+String OleMdupColor_foregroundBackground = "Same foreground and background colors, now resolving";
+String OleMdupColor_foregroundInputWindowHeader = "Same foreground and inputWindowHeader colors, now resolving";
+String OleMdupColor_backgroundInputWindowHeader = "Same background and inputWindowHeader colors, now resolving";
+
+/* Event.c  - mainly help for titles in ClientNonMaskable() */
+String OleMtitle_winMgr = "Window Manager";
+String OleMtitle_menu = "Menu Help";
+String OleMtitle_resizeCorner = "Resize Corner Help";
+String OleMtitle_resizeHandles = "Resize Handle Help";
+String OleMtitle_title = "Title Help";
+String OleMtitle_border = "Border Help";
+String OleMtitle_pushpin = "Pushpin Help";
+String OleMtitle_menuButton = "Menu Button Help";
+String OleMtitle_icon = "Icon Help";
+String OleMtitle_help = "Help Window";
+
+/* Specific motif mode help */
+String OleMtitle_motifMaximizeButton = "Maximize Button Help";
+String OleMtitle_motifMinimizeButton = "Minimize Button Help";
+
+String OleMfocus_focusNever = "ClientFocusChange() for frame, skip";
+
+/* wmm.c - for window manager restart failure */
+String OleMbadExec_execvp = "Bad restart of olwm:  execvp() failed";
+
+/* parse.c */
+String OleMmnemonic_badSpec = "Bad mnemonic specification in MWM_MENU";
+String OleMaccelerator_badSpec = "Bad accelerator specification in MWM_MENU";
+String OleMgroup_badSpec = "Bad group specification in MWM_MENU";
+
+String OleMclientDecorations_badResSpec =
+		"Bad Resource specification: clientDecoration";
+String OleMclientFunctions_badResSpec =
+		"Bad Resource specification: clientFunctions";
+
+/* xpw.c, error.h */
+String OleMfileDecorate_badFont = "Could not find the default OPEN LOOK font" ;
+
+String OleMfileExpand_msg1 = "directory" ;
+String OleMfileExpand_msg2 = "cannot open for reading" ;
+String OleMfileExpand_msg3 = "block special" ;
+String OleMfileExpand_msg4 = "character special" ;
+String OleMfileExpand_msg5 = "fifo" ;
+String OleMfileExpand_msg6 = "cannot open, No such file or directory" ;
+String OleMfileExpand_msg7 = "file" ;
+
+String OleMfileRegex_stackOverflow = "stack overflow" ;
+
+String OleMbadCixels_notPrintable = "bad cixel value : must be printable";
+String OleMbadColormap_badCixel1 = "cixel \"%c\" not in previous colormap";
+String OleMbadColormap_badCixel2 = "cixel \"%c%c\" not in previous colormap";
+String OleMbadColormap_entry1 = "bad colormap entry : must be '\"c\" , \"colordef\",'";
+String OleMbadColormap_entry2 = "bad colormap entry : must be '\"cC\" , \"colordef\",'";
+String OleMbadColors_colorDefSpec = "bad colordef specification : #RGB or colorname";
+String OleMbadColors_notDefined = "colors not defined";
+String OleMbadColors_tooMany = "Too many different colors, version 1";
+String OleMbadDefine_nameCharsPerPixel = "bad '#define NAME_chars_per_pixel n' [1][2]";
+String OleMbadDefine_nameHeight = "bad '#define NAME_height n'";
+String OleMbadDefine_nameNcolors = "bad '#define NAME_ncolors n'";
+String OleMbadDefine_nameWidth = "bad '#define NAME_width n'";
+String OleMbadPixels_charsPerPixel = "version 1.1 handles only 1 or 2 chars_per_pixel";
+String OleMbadPixels_notDefined = "pixels not defined";
+String OleMbadPixmap_lineLength1 = "pixmap line length %d exceeds maximum of %d";
+String OleMbadPixmap_lineLength2 = "bad pixmap line length %d (widths out of sync)"; 
+String OleMbadPixmap_tooFewLines = "%d too few pixmap lines";
+String OleMbadSyntax_closeBracket = "bracket missing '} ;'";
+String OleMbadSyntax_nameColors = "bad 'static char * NAME_colors[] = {'";
+String OleMbadSyntax_nameMono = "missing '} ;' in NAME_mono[]";
+String OleMbadSyntax_namePixels = "bad 'static char * NAME_pixels[] = {'"; 
+
+String OleMfileOlutil_captionName = "Caption" ;
+String OleMfileOlutil_inputName = "Input" ;
+String OleMfileOlutil_choiceName = "Choice" ;
+String OleMfileOlutil_stackName = "Stack" ;
+
+String OleMstorage_free = "freeing storage -> NULL in %s at %d!!!\n" ;
+String OleMstorage_badCalloc = "couldn't calloc %d elements of\
+ size %d in %s at %d!!!\n" ;
+String OleMstorage_badMalloc = "couldn't malloc %d bytes in %s at %d!!!\n" ;
+String OleMbadRealloc_nullPointer = "couldn't realloc given a\
+ NULL pointer in %s at %d!!!\n" ;
+String OleMbadRealloc_failed = "couldn't realloc to %d bytes in\
+ %s at %d!!!\n" ;
+

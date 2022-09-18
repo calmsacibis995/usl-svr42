@@ -1,0 +1,444 @@
+#ident	"@(#)pkg.acp:prototype	1.2.6.30"
+#ident	"$Header: $"
+
+
+# packaging files
+i acp/menu.acp=menu.acp
+i pkginfo
+i request
+i preinstall
+i postinstall
+i preremove
+i copyright
+i depend
+
+# directory references
+!default 775 root sys
+s none /bin=/usr/bin		?	?	?
+d none /usr		?	?	?
+d none /sbin	?	?	?
+d none /dev	? ? ?
+d none /dev/dsk	? ? ?
+d none /dev/rdsk	? ? ?
+d none /etc/default	? ? ?
+d none /etc/fs	? ? ?
+d none /usr/bin	?	?	?
+d none /usr/sbin	?	?	?
+d none /usr/share	?	?	?
+d none /usr/share/lib	?	?	?
+d none /usr/lib	?	?	?
+d none /usr/lib/custom	775	bin	bin
+d none /usr/include	? ? ?
+d none /usr/include/sys	? ? ?
+d none /usr/include/sys/fs	? ? ?
+d none /usr/lib	? ? ?
+d none /usr/lib/fs	? ? ?
+d none /usr/lib/libp	775 bin bin
+d none /usr/lib/mapchan	755 bin bin
+d none /usr/lib/lang	755 bin bin
+d none /usr/lib/lang/english	755 bin bin
+d none /usr/lib/lang/english/us	755 bin bin
+d none /usr/lib/lang/english/us/88591	755 bin bin
+d none /usr/lib/uucp	775 bin bin
+
+
+!default 775 root sys
+d none	/etc	?	?	?
+d none  /etc/conf	?	?	?
+d none  /etc/conf/pack.d	?	?	?
+
+d none  /etc/conf/pack.d/clist	775	root	sys
+d none  /etc/conf/pack.d/clist_gd	775	root	sys
+d none  /etc/conf/pack.d/devadp	775	root	sys
+d none  /etc/conf/pack.d/i286x 775	root	sys
+d none  /etc/conf/pack.d/isocket	775	root	sys
+d none  /etc/conf/pack.d/mpt	775	root	sys
+d none  /etc/conf/pack.d/osocket	775	root	sys
+d none  /etc/conf/pack.d/sp	775	root	sys
+d none  /etc/conf/pack.d/spt	775	root	sys
+d none  /etc/conf/pack.d/osxt	775	root	sys
+d none  /etc/conf/pack.d/vx	775	root	sys
+d none  /etc/conf/pack.d/v3compat	775	root	sys
+d none  /etc/conf/pack.d/xout	775	root	sys
+d none  /etc/conf/pack.d/xnamfs	775	root	sys
+d none  /etc/conf/pack.d/XENIX	775	root	sys
+d none  /etc/conf/pack.d/consem	775	root	sys
+
+d none  /etc/conf/mdevice.d	?	?	?
+d none  /etc/conf/sdevice.d	?	?	?
+d none	/tmp	?	?	?
+
+d none  /tmp/XENIX	775	root 	sys
+d none  /tmp/isocket	775	root 	sys
+d none  /tmp/osocket	775	root 	sys
+d none  /tmp/devadp	775	root 	sys
+d none  /tmp/sp		775	root 	sys
+d none  /tmp/spt	775	root 	sys
+d none  /tmp/mpt	775	root 	sys
+d none  /tmp/i286x	775	root 	sys
+d none  /tmp/clist	775	root 	sys
+d none  /tmp/clist_gd	775	root 	sys
+d none  /tmp/osxt	775	root 	sys
+d none  /tmp/vx		775	root 	sys
+d none  /tmp/v3compat	775	root 	sys
+d none  /tmp/xout	775	root 	sys
+d none  /tmp/xnamfs	775	root 	sys
+d none  /tmp/consem	775	root 	sys
+
+# package objects:
+
+# driver object files: default owner=root group=root mode=500
+!default 0644 root sys
+
+v	none	/tmp/xnamfs/xnamfs.Dr=/etc/conf/pack.d/xnamfs/Driver.o
+v	none	/tmp/xnamfs/xnamfs.Sp=/etc/conf/pack.d/xnamfs/space.c
+v	none	/tmp/xnamfs/xnamfs.Mo=/etc/conf/pack.d/xnamfs/Modstub.o
+v	none	/tmp/xnamfs/xnamfs.Sy=/etc/conf/sdevice.d/xnamfs
+v	none	/tmp/xnamfs/xnamfs.Mt=/etc/conf/mtune.d/xnamfs
+
+v	none	/tmp/XENIX/XENIX.Dr=/etc/conf/pack.d/XENIX/Driver.o
+v	none	/tmp/XENIX/XENIX.Sp=/etc/conf/pack.d/XENIX/space.c
+v	none	/tmp/XENIX/XENIX.Ma=/etc/conf/mdevice.d/XENIX
+v	none	/tmp/XENIX/XENIX.Sy=/etc/conf/sdevice.d/XENIX
+
+v	none	/tmp/v3compat/v3compat.Dr=/etc/conf/pack.d/v3compat/Driver.o
+v	none	/tmp/v3compat/v3compat.Ma=/etc/conf/mdevice.d/v3compat
+v	none	/tmp/v3compat/v3compat.Sy=/etc/conf/sdevice.d/v3compat
+
+# Enhanced Application Compatibility Support
+
+v	none	/tmp/osocket/osocket.Dr=/etc/conf/pack.d/osocket/Driver.o
+v	none	/tmp/osocket/osocket.Sp=/etc/conf/pack.d/osocket/space.c
+v	none	/tmp/osocket/osocket.Ma=/etc/conf/mdevice.d/osocket
+v	none	/tmp/osocket/osocket.Sy=/etc/conf/sdevice.d/osocket
+v	none	/tmp/osocket/osocket.No=/etc/conf/node.d/osocket
+
+v	none	/tmp/isocket/isocket.Dr=/etc/conf/pack.d/isocket/Driver.o
+v	none	/tmp/isocket/isocket.Sp=/etc/conf/pack.d/isocket/space.c
+v	none	/tmp/isocket/isocket.Ma=/etc/conf/mdevice.d/isocket
+v	none	/tmp/isocket/isocket.Sy=/etc/conf/sdevice.d/isocket
+f	none	/etc/socket.conf
+
+v	none	/tmp/devadp/devadp.Dr=/etc/conf/pack.d/devadp/Driver.o
+v	none	/tmp/devadp/devadp.Ma=/etc/conf/mdevice.d/devadp
+v	none	/tmp/devadp/devadp.Sy=/etc/conf/sdevice.d/devadp
+v	none	/tmp/devadp/devadp.No=/etc/conf/node.d/devadp
+
+v	none	/tmp/sp/sp.Dr=/etc/conf/pack.d/sp/Driver.o
+v	none	/tmp/sp/sp.Sp=/etc/conf/pack.d/sp/space.c
+v	none	/tmp/sp/sp.Ma=/etc/conf/mdevice.d/sp
+v	none	/tmp/sp/sp.Sy=/etc/conf/sdevice.d/sp
+v	none	/tmp/sp/sp.No=/etc/conf/node.d/sp
+
+v	none	/tmp/spt/spt.Dr=/etc/conf/pack.d/spt/Driver.o
+v	none	/tmp/spt/spt.Sp=/etc/conf/pack.d/spt/space.c
+v	none	/tmp/spt/spt.Ma=/etc/conf/mdevice.d/spt
+v	none	/tmp/spt/spt.Sy=/etc/conf/sdevice.d/spt
+
+v	none	/tmp/mpt/mpt.Dr=/etc/conf/pack.d/mpt/Driver.o
+v	none	/tmp/mpt/mpt.Ma=/etc/conf/mdevice.d/mpt
+v	none	/tmp/mpt/mpt.Sy=/etc/conf/sdevice.d/mpt
+
+############################################################
+v	none	/tmp/i286x/i286x.Dr=/etc/conf/pack.d/i286x/Driver.o
+v	none	/tmp/i286x/i286x.Ma=/etc/conf/mdevice.d/i286x
+v	none	/tmp/i286x/i286x.Sy=/etc/conf/sdevice.d/i286x
+
+############################################################
+v	none	/tmp/clist/clist.Dr=/etc/conf/pack.d/clist/Driver.o
+v	none	/tmp/clist/clist.Mo=/etc/conf/pack.d/clist/Modstub.o
+v	none	/tmp/clist/clist.Sy=/etc/conf/sdevice.d/clist
+
+############################################################
+v	none	/tmp/clist_gd/clist_gd.Dr=/etc/conf/pack.d/clist_gd/Driver.o
+v	none	/tmp/clist_gd/clist_gd.Ma=/etc/conf/mdevice.d/clist_gd
+v	none	/tmp/clist_gd/clist_gd.Sy=/etc/conf/sdevice.d/clist_gd
+
+############################################################
+v	none	/tmp/osxt/osxt.Dr=/etc/conf/pack.d/osxt/Driver.o
+v	none	/tmp/osxt/osxt.Sp=/etc/conf/pack.d/osxt/space.c
+v	none	/tmp/osxt/osxt.Ma=/etc/conf/mdevice.d/osxt
+v	none	/tmp/osxt/osxt.Sy=/etc/conf/sdevice.d/osxt
+v	none	/tmp/osxt/osxt.No=/etc/conf/node.d/osxt
+v	none	/tmp/osxt/osxt.Mt=/etc/conf/mtune.d/osxt
+
+############################################################
+v	none	/tmp/vx/vx.Dr=/etc/conf/pack.d/vx/Driver.o
+v	none	/tmp/vx/vx.Sp=/etc/conf/pack.d/vx/space.c
+v	none	/tmp/vx/vx.Sy=/etc/conf/sdevice.d/vx
+
+############################################################
+v	none	/tmp/xout/xout.Dr=/etc/conf/pack.d/xout/Driver.o
+v	none	/tmp/xout/xout.Ma=/etc/conf/mdevice.d/xout
+v	none	/tmp/xout/xout.Sy=/etc/conf/sdevice.d/xout
+
+v	none	/tmp/consem/consem.Dr=/etc/conf/pack.d/consem/Driver.o
+v	none	/tmp/consem/consem.Sp=/etc/conf/pack.d/consem/space.c
+v	none	/tmp/consem/consem.Ma=/etc/conf/mdevice.d/consem
+v	none	/tmp/consem/consem.Sy=/etc/conf/sdevice.d/consem
+
+# End Enhanced Application Compatibility Support
+
+# commands and library
+!default 555 bin bin
+f none	/sbin/xinstall  
+f none	/sbin/custom    
+f none	/usr/sbin/fixperm
+
+f none	/usr/bin/copy
+f none	/usr/bin/hd
+f none	/usr/bin/tset
+f none	/usr/bin/yes
+
+f none	/usr/bin/random
+
+#linked files
+l none	/usr/bin/lc=/usr/bin/ls
+l none	/usr/bin/settime=/usr/bin/touch
+s none /usr/sbin/xinstall=/sbin/xinstall
+s none /usr/sbin/custom=/sbin/custom
+
+f none	/usr/bin/i286emul	755	bin	bin
+
+## not in the reqts doc
+d none	/usr/lib/console	755	bin	bin
+d none	/usr/lib/keyboard	755	bin	bin
+
+d none	/usr/lib/vidi	755	bin	bin
+
+# Enhanced Application Compatibility Support
+d none	/usr/eac	755	bin	bin
+d none	/usr/eac/bin	755	bin	bin
+d none	/usr/eac/lib	755	bin	bin
+d none	/usr/lib/coff	755	bin	bin
+d none	/usr/lib/xout	755	bin	bin
+# End Enhanced Application Compatibility Support
+
+# package objects:
+d none	/etc/fs/XENIX	755	root	sys
+d none	/usr/lib/fs/XENIX	755	root	sys
+f none	/etc/perms/inst	644	bin	bin
+f none	/usr/lib/custom/help	644	bin	bin
+
+d none	/usr/lib/event	755	root	sys
+f none	/usr/lib/event/ttys	644	bin	bin
+f none	/usr/lib/event/devices	644	bin	bin
+
+f none	/etc/fs/XENIX/fsck	555	bin	bin
+f none	/etc/fs/XENIX/mount	555	bin	bin
+f none	/usr/include/xcurses.h	444	bin	bin
+f none	/usr/include/sys/fs/xxfblk.h	444	bin	bin
+f none	/usr/include/sys/fs/xxfilsys.h	444	bin	bin
+
+# Enhanced Application Compatibility Support
+f none	/sbin/fdinit	555	bin	bin
+f none	/usr/sbin/fixshlib
+
+# comment these out because base package already has them
+#f none	/usr/include/sys/osocket.h	444	bin	bin
+#f none	/usr/include/sys/spt.h		444	bin	bin
+# End Enhanced Application Compatibility Support
+
+f none	/usr/lib/console/screens	644	bin	bin
+f none	/usr/lib/keyboard/keys	644	bin	bin
+f none	/usr/lib/keyboard/scomap	644	bin	bin
+f none	/usr/lib/keyboard/scostrings	644	bin	bin
+f none	/usr/lib/keyboard/strings	644	bin	bin
+f none	/usr/lib/vidi/font8x8	644	bin	bin
+f none	/usr/lib/vidi/font8x14	644	bin	bin
+f none	/usr/lib/vidi/font8x16	644	bin	bin
+f none	/usr/bin/xrestor
+f none	/usr/bin/x286emul	555	root	bin
+f none	/usr/bin/setcolor	511	bin	bin
+f none	/usr/bin/scompat	511	bin	bin
+f none	/usr/bin/vidi	511	bin	bin
+f none	/usr/bin/mapstr		511	bin	bin
+f none	/usr/bin/mapscrn	511	bin	bin
+f none	/usr/bin/mapkey		511	bin	bin
+f none	/usr/bin/mapchan		511	bin	bin
+f none	/usr/bin/pcfont		511	bin	bin
+f none	/usr/bin/trchan		511	bin	bin
+
+f none	/usr/bin/doscat	2511	bin	dos
+f none	/usr/bin/doscp	2511	bin	dos
+f none	/usr/bin/dosdir	2511	bin	dos
+f none	/usr/bin/dosformat	511	bin	bin
+f none	/usr/bin/dosslice	511	bin	bin
+f none	/usr/bin/dosmkdir	2511	bin	dos
+f none	/usr/bin/dosrm	2511	bin	dos
+
+# Enhanced Application Compatibility Support
+f none	/usr/bin/setkey		511	bin	bin
+f none	/usr/eac/rename		511	bin	bin
+f none	/usr/bin/maplocale	511	bin	bin
+f none	/usr/eac/lib/ar	511	bin	bin
+ 
+f none	/usr/bin/cvtomf	511	bin	bin
+f none	/usr/bin/cvtomflib	555	bin	bin
+
+f none	/usr/lib/coff/ar	511	bin	bin
+f none	/usr/lib/xout/ar	511	bin	bin
+f none	/usr/lib/fltused.o	644	bin	bin
+f none	/usr/lib/libNSL_s	555	bin	bin
+f none  /usr/bin/tape           555     bin     bin
+f none  /usr/eac/bin/cc		555     bin     bin
+f none  /usr/eac/bin/initsock	555     bin     bin
+# End Enhanced Application Compatibility Support
+
+f none	/usr/lib/libp/libx.a	644	bin	bin
+v none	/etc/default/mapchan	644	bin	bin
+v none	/etc/default/msdos	644	bin	bin
+v none	/etc/default/xrestor	644	bin	bin
+f none	/usr/lib/mapchan/ascii	644	bin	bin
+f none	/usr/lib/mapchan/deadcomp	644	bin	bin
+f none	/usr/lib/mapchan/dec	644	bin	bin
+f none	/usr/lib/mapchan/hp.roman8	644	bin	bin
+f none	/usr/lib/mapchan/iso	644	bin	bin
+f none	/usr/lib/mapchan/ibm	644	bin	bin
+f none	/usr/lib/mapchan/nrc.can	644	bin	bin
+f none	/usr/lib/mapchan/tvi.usa	644	bin	bin
+
+## should these be removed? 	not in the reqts doc
+v none	/etc/default/lang	644	bin	bin
+f none /usr/lib/lang/english/us/88591/collate	644	bin	bin
+f none /usr/lib/lang/english/us/88591/ctype	644	bin	bin
+f none /usr/lib/lang/english/us/88591/currency	644	bin	bin
+f none /usr/lib/lang/english/us/88591/messages	644	bin	bin
+f none /usr/lib/lang/english/us/88591/numeric	644	bin	bin
+f none /usr/lib/lang/english/us/88591/time	644	bin	bin
+
+# linked files
+s none	/usr/lib/fs/XENIX/fsck=/etc/fs/XENIX/fsck
+s none	/usr/lib/fs/XENIX/mount=/etc/fs/XENIX/mount
+s none  /etc/xinstall=/sbin/xinstall
+s none  /etc/custom=/sbin/custom
+s none  /etc/fixperm=/usr/sbin/fixperm
+# Enhanced Application Compatibility Support
+s none  /etc/rename=/usr/eac/rename
+s none  /usr/bin/dosls=/usr/bin/dosdir
+s none  /usr/bin/dosrmdir=/usr/bin/dosrm
+# End Enhanced Application Compatibility Support
+l none	/usr/bin/xrestore=/usr/bin/xrestor
+l none	/usr/bin/setcolour=/usr/bin/setcolor
+# Enhanced Application Compatibility Support
+s none  /usr/eac/bin/awk=/usr/bin/nawk
+s none  /bin/chroot=/usr/sbin/chroot
+s none  /bin/printenv=/usr/bin/env
+s none  /bin/rcc=/usr/bin/cc
+s none  /bin/rksh=/usr/bin/ksh
+s none  /bin/sulogin=/etc/sulogin
+s none  /bin/whodo=/usr/sbin/whodo
+s none  /etc/fscmd.d=/etc/fs
+s none  /etc/fscmd.d/AFS=/etc/fs/s5
+s none  /usr/bin/uptime=/usr/ucb/uptime
+s none  /usr/bin/lpr=/usr/bin/lp
+s none  /usr/bin/w=/usr/ucb/w
+s none  /usr/lib/uucp/uutry=/usr/lib/uucp/Uutry
+# End Enhanced Application Compatibility Support
+
+# linked nodes
+s none	/dev/hd00=/dev/dsk/0s0
+s none	/dev/hd01=/dev/dsk/0s3
+s none	/dev/hd02=/dev/dsk/0s4
+s none	/dev/hd03=/dev/dsk/0s5
+s none	/dev/hd04=/dev/dsk/0s6
+# Enhanced Application Compatibility Support
+l none	/dev/sctfdl128=/dev/dsk/f05d9
+l none	/dev/sctfdl0=/dev/fd048
+l none	/dev/sctfdm0=/dev/fd096
+l none	/dev/sctfdm128=/dev/dsk/f05h
+
+s none	/dev/hd0a=/dev/dsk/0s0
+s none	/dev/hd0d=/dev/dsk/0s5
+s none	/dev/hd1d=/dev/dsk/1s5
+s none	/dev/usr=/dev/dsk/0s4
+# End Enhanced Application Compatibility Support
+
+s none	/dev/rhd00=/dev/rdsk/0s0
+s none	/dev/rhd01=/dev/rdsk/0s3
+s none	/dev/rhd02=/dev/rdsk/0s4
+s none	/dev/rhd03=/dev/rdsk/0s5
+s none	/dev/rhd04=/dev/rdsk/0s6
+# Enhanced Application Compatibility Support
+s none	/dev/rhd0a=/dev/rdsk/0s0
+s none	/dev/rhd0d=/dev/rdsk/0s5
+s none	/dev/rhd1d=/dev/rdsk/1s5
+# End Enhanced Application Compatibility Support
+
+l none	/dev/install=/dev/dsk/f0t
+l none	/dev/fd048ds8=/dev/dsk/f0d8dt
+l none	/dev/fd048ds9=/dev/dsk/f0d9dt
+l none	/dev/fd048=/dev/dsk/f0d9dt
+l none	/dev/fd096ds15=/dev/dsk/f0q15dt
+l none	/dev/fd096=/dev/dsk/f0q15dt
+l none	/dev/fd0135ds18=/dev/dsk/f03ht
+l none	/dev/fd096ds18=/dev/dsk/f03ht
+l none	/dev/dsk/f0q18d=/dev/dsk/f03h
+l none	/dev/dsk/f0q18dt=/dev/dsk/f03ht
+l none	/dev/fd0135ds9=/dev/dsk/f03dt
+l none	/dev/fd096ds9=/dev/dsk/f03dt
+l none	/dev/dsk/f0q9dt=/dev/dsk/f03dt
+l none	/dev/dsk/f0d8t=/dev/dsk/f0d8dt
+l none	/dev/dsk/f0d9t=/dev/dsk/f0d9dt
+
+l none	/dev/rinstall=/dev/rdsk/f0t
+l none	/dev/rfd048ds8=/dev/rdsk/f0d8dt
+l none	/dev/rfd048ds9=/dev/rdsk/f0d9dt
+l none	/dev/rfd048=/dev/rdsk/f0d9dt
+l none	/dev/rfd096ds15=/dev/rdsk/f0q15dt
+l none	/dev/rfd096=/dev/rdsk/f0q15dt
+l none	/dev/rfd0135ds18=/dev/rdsk/f03ht
+l none	/dev/rfd096ds18=/dev/rdsk/f03ht
+l none	/dev/rdsk/f0q18d=/dev/rdsk/f03h
+l none	/dev/rdsk/f0q18dt=/dev/rdsk/f03ht
+l none	/dev/rfd0135ds9=/dev/rdsk/f03dt
+l none	/dev/rfd096ds9=/dev/rdsk/f03dt
+l none	/dev/rdsk/f0q9dt=/dev/rdsk/f03dt
+l none	/dev/rdsk/f0d8t=/dev/rdsk/f0d8dt
+l none	/dev/rdsk/f0d9t=/dev/rdsk/f0d9dt
+
+f none	/usr/lib/libnsl_s	755	bin	bin
+
+l none	/shlib/libBCSnsl_s=/shlib/libnsl_s
+
+f none	/usr/X/lib/libX11_s=../usr/src/$WORK/X11R5/lib/3.2Xlib/libX11_s  555 bin bin
+f none	/usr/lib/libXR4sco_s=../usr/src/$WORK/X11R5/lib/scoXlib/libXR4sco_s  555 bin bin
+
+f none	/sbin/mkpart	0500	root	bin
+s none	/usr/sbin/mkpart=/sbin/mkpart
+
+##################################
+## remove getty from the base
+f none /usr/sbin/getty 0544 root sys
+s none /etc/getty=/usr/sbin/getty
+
+## ungetty is missing; no objects found 
+#f none /sbin/ungetty 0544 root sys
+
+f none /usr/share/lib/termcap 444 root bin 1 NULL NULL
+s none /etc/termcap=/usr/share/lib/termcap
+
+f none /usr/bin/captoinfo=/usr/ccs/bin/captoinfo 555 root bin 1 NULL NULL
+f none /usr/bin/installpkg 0555 bin bin
+f none /usr/lbin/installpkg.r 0550 bin bin
+f none /usr/lbin/removepkg.r 0550 bin bin
+f none /usr/bin/removepkg 0555 bin bin
+f none /usr/bin/displaypkg 0555 bin bin
+f none /usr/sbin/.cpiopc 0555 bin bin
+
+f none /usr/lib/libc_s 0555 bin bin
+
+# for compatibility with Solaris
+f none /usr/lib/libc.so.1.1 0555 bin bin
+
+# from OSF for SCO apps
+f none /usr/lib/XKeysymDB=/usr/X/lib/XKeysymDB 0555 bin bin
+
+f none /usr/include/sys/consem.h
+
+f none /usr/bin/uugetty 0544 root sys 1 NULL NULL
+s none /usr/lib/uucp/uugetty=/usr/bin/uugetty 
+
+f none /sbin/adduser  0555  root  sys
+f none /sbin/deluser  0555  root  sys
+

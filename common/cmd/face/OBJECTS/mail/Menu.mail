@@ -1,0 +1,37 @@
+#ident	"@(#)face:OBJECTS/mail/Menu.mail	1.1.4.2"
+#ident  "$Header: Menu.mail 1.5 91/10/29 $"
+
+menu=$$uxface:369:"Mail Services"
+help=OPEN TEXT OBJECTS/Text.h "$$uxface:468:HELP on Mail Services" mail/T.hmail
+framemsg=$$uxface:399:"Move to an item with arrow keys and press ENTER to select the item."
+
+`set -l MNEWTMP=/usr/tmp/$VPID-nwmail -l MSAVETMP=/usr/tmp/$VPID-svmail;
+echo > ${MNEWTMP};
+echo > ${MSAVETMP}`
+
+close=`rm -f $MNEWTMP $MSAVETMP;
+unset -l MNEWTMP -l MSAVETMP -l MFIRST -l SFIRST`
+
+
+name=$$uxface:410:"Read New Mail"
+action=`if mail -e > /dev/null 2>/dev/null;
+then
+	set -l MFIRST=true;
+	echo "OPEN MENU OBJECTS/mail/Menu.nlist New $MNEWTMP %";
+else
+	message -b 1 $$uxface:411:"No mail available for \"$LOGNAME\".";
+	echo nop;
+fi`
+
+name=$$uxface:412:"Read Saved Mail"
+action=`if mail -f $HOME/mbox -e > /dev/null 2>/dev/null;
+then
+	set -l SFIRST=true;
+	echo "OPEN MENU OBJECTS/mail/Menu.slist Saved $MSAVETMP &";
+else
+	message -b 1 $$uxface:413:"No mail is currently saved for \"$LOGNAME\".";
+	echo nop;
+fi`
+
+name=$$uxface:276:"Send Mail"
+action=OPEN FORM OBJECTS/mail/Form.send Send "" ""

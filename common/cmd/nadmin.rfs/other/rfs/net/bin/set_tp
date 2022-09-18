@@ -1,0 +1,28 @@
+#ident	"@(#)nadmin.rfs:other/rfs/net/bin/set_tp	1.3.5.1"
+#ident  "$Header: set_tp 2.0 91/07/12 $"
+
+# Called by Menu.set to set transport providers for RFS
+
+/usr/bin/rm /var/tmp/nspec$$ /var/tmp/err$$ 2>/dev/null
+
+$TFADMIN /usr/sbin/dname -N $NSPECS 2> /var/tmp/err$$
+if [ $? -eq 0 ]
+then
+	echo "The following transport providers now support Remote File Sharing:\n\n$NSPECS">/var/tmp/nspec$$;
+	MDIRS=`echo $NSPECS | /usr/bin/tr '\054' '\040'`
+	for i in `echo $MDIRS`; do
+		if [ ! -d /etc/rfs/$i ]
+		then
+			$TFADMIN /usr/bin/mkdir /etc/rfs/$i
+			if [ $? -eq 0 ]
+			then
+				$TFADMIN /usr/bin/chmod 755 /etc/rfs/$i
+			else
+				echo "WARNING: Could not make directory '/etc/rfs/$i'.  Consult System Administrators Guide for details.\n" >>/var/tmp/nspec$$
+			fi
+		fi
+	done
+else
+	/usr/bin/sed "s/^.*:/ERROR:/" /var/tmp/err$$ >/var/tmp/nspec$$
+fi
+echo $$

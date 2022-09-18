@@ -1,0 +1,5 @@
+Use the Reset button to reset the properties window settings to
+reflect the values for the original selection. Drag MENU onto
+the button and release MENU to apply the changes to the original
+selection. When the properties window is not pinned up, it is
+dismissed after the changes are applied.

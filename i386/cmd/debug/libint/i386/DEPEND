@@ -1,0 +1,69 @@
+#ident	"@(#)debugger:libint/i386/DEPEND	1.1"
+
+GManager.o:	../../catalog.d/common/Msg.awk
+GManager.o:	../../catalog.d/common/Msg.awk.in
+GManager.o:	../common/GManager.C
+	$(CPLUS_CMD) -c ../common/GManager.C
+
+Interface.o:	../common/Interface.C
+	$(CPLUS_CMD) -c ../common/Interface.C
+
+Manager.o:	../../catalog.d/common/Msg.awk
+Manager.o:	../../catalog.d/common/Msg.awk.in
+Manager.o:	../common/Manager.C
+	$(CPLUS_CMD) -c ../common/Manager.C
+
+SrcFile.o:	../common/SrcFile.C
+	$(CPLUS_CMD) -c ../common/SrcFile.C
+
+Output.o:	../common/Output.C
+	$(CPLUS_CMD) -c ../common/Output.C
+
+print.o:	print.C
+	$(CPLUS_CMD) -c print.C
+
+Msgtab.o:	../common/Msgtab.C
+	$(CPLUS_CMD) -c ../common/Msgtab.C
+
+Msgtypes.o:	Msgtypes.C
+	$(CPLUS_CMD) -c Msgtypes.C
+
+Transport.o:	../common/Transport.C
+	$(CPLUS_CMD) -c ../common/Transport.C
+
+Message.o:	../common/Message.C
+	$(CPLUS_CMD) -c ../common/Message.C
+
+Unbundle.o:	Unbundle.C
+	$(CPLUS_CMD) -c Unbundle.C
+
+Mformat.o:	../../catalog.d/common/Msg.awk
+Mformat.o:	../../catalog.d/common/Msg.awk.in
+Mformat.o:	../../inc/common/Signature.h
+Mformat.o:	../common/Mformat.C
+	$(CPLUS_CMD) -c ../common/Mformat.C
+
+UIutil.o:	../common/UIutil.C
+	$(CPLUS_CMD) -c ../common/UIutil.C
+
+Mtable.o:	../../catalog.d/common/Msg.awk
+Mtable.o:	../../catalog.d/common/Msg.awk.in
+Mtable.o:	../../inc/common/Signature.h
+Mtable.o:	Mtable.c
+	$(CC_CMD) -c Mtable.c
+
+OBJECTS	=  \
+	Interface.o \
+	Manager.o \
+	GManager.o \
+	SrcFile.o \
+	Output.o \
+	print.o \
+	Msgtab.o \
+	Msgtypes.o \
+	Mtable.o \
+	Message.o \
+	Mformat.o \
+	Unbundle.o \
+	Transport.o \
+	UIutil.o

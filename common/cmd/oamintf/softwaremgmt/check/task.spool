@@ -1,0 +1,19 @@
+#ident	"@(#)oamintf:common/cmd/oamintf/softwaremgmt/check/task.spool	1.2.4.2"
+#ident  "$Header: task.spool 2.0 91/07/12 $"
+
+[ -n "$TRACE" ] && set -x
+
+pkginst=
+paths=
+opts=
+
+[ -n "$2" ] &&
+	pkginst="`echo \"$2\" | sed 's/,/ /g'`"
+
+[ -n "$3" -a "$3" != all ] &&
+	paths="-p'`echo \"$3\" | sed 's/ /,/g'` '"
+
+[ "$5" = yes ] &&
+	opts="-v"
+
+eval pkgchk -d $1 $opts $paths $pkginst 2>&1 | tee $4

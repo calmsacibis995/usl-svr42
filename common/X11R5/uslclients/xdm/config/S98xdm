@@ -1,0 +1,36 @@
+#!/bin/sh
+#ident	"@(#)xdm:config/S98xdm	1.1"
+#Tag 0x00000f00
+#
+# Start X Display Manager
+#
+# $Revision: 1.2 $
+#
+XNETACCESS=on			#!@ Do not edit this line !@
+XWINHOME=/usr/X	export XWINHOME	#!@ (or your mount point) !@
+PATH=$PATH:$XWINHOME/bin export PATH	#!@ Do not edit this line !@
+LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$XWINHOME/lib export LD_LIBRARY_PATH	#!@ Do not edit this line !@
+CONSEM=no export CONSEM
+XGUI=MOTIF export XGUI
+
+XUSL=/usr/X/bin/X
+XDM=/usr/X/bin/xdm
+
+case "$1" in
+  'start')
+	if test -x $XDM; then
+		if test -x $XUSL; then
+			exec $XDM
+		fi
+	fi
+        ;;
+
+  'stop')
+	/etc/killall -TERM xdm
+        ;;
+
+  *)
+        echo "usage: /etc/init.d/xdm {start|stop}"
+        ;;
+esac
+

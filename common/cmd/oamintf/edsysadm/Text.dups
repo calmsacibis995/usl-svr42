@@ -1,0 +1,32 @@
+#ident	"@(#)oamintf:common/cmd/oamintf/edsysadm/Text.dups	1.2.3.4"
+#ident  "$Header: Text.dups 2.0 91/07/12 $"
+
+################################################################################
+#	Module Name: Text.exit3
+#	Date: August 1987
+################################################################################
+title="Duplicate Entries In Protoype File"
+
+framemsg=`readfile $INTFBASE/conf.msg`
+
+close=`rm -f ${TESTBASE}/${VPID}.dpf ${TESTBASE}/${VPID}.adup`
+
+text="
+The following duplicate entries were detected:
+
+`readfile ${TESTBASE}/${VPID}.dpf | cut -d" " -f3 | cut -d"=" -f1`
+
+If CONT is pressed then ALL entries will be over-written."
+
+rows=15
+columns=75
+
+altslks
+
+name=CONT
+button=11
+action=`shell "mv ${TESTBASE}/${VPID}.adup prototype 2>/dev/null"`
+
+name=CANCEL
+button=14
+action=CLEANUP

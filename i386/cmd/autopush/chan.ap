@@ -1,0 +1,8 @@
+#ident	"@(#)autopush:i386/cmd/autopush/chan.ap	1.1"
+
+# /dev/console and /dev/contty autopush setup
+#
+# major minor   lastminor       modules
+
+    5     -1       0            char ansi ldterm ttcompat
+    3     0        131          ldterm ttcompat

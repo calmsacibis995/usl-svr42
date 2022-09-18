@@ -1,0 +1,26 @@
+#ident	"@(#)set:common/set/gdev/setsize	1.2"
+#ident	"$Header:$"
+dtxtdev:/usr/X/include/X11/Xaw	407	69
+dtxtdev:/usr/X/include/X11	957	44
+dtxtdev:/usr/X/include/X11/Xmu	97	20
+dtxtdev:/usr/X/lib/config	260	12
+dtxtdev:/usr/X/lib/app-defaults	27	6
+dtxtdev:/usr/X/include/X11/extensions	177	9
+dtxtdev:/usr/X/lib	3034	10
+dtxtdev:/usr/X/bin	1066	25
+dtoldev:/usr/X/lib/bitmasks	14	7
+dtoldev:/usr/X/lib/bitmaps	14	7
+dtoldev:/usr/X/lib/tutorial/widgetTree	511	48
+dtoldev:/usr/X/include/Xol	1019	151
+dtoldev:/usr/X/desktop/PackageMgr	1	1
+dtoldev:/usr/X/lib/pixmasks	14	7
+dtoldev:/usr/X/lib/tutorial/Xol	11	3
+dtoldev:/usr/X/lib/pixmaps	21	7
+dtoldev:/usr/X/include/Xol/bitmaps	205	41
+dtoldev:/usr/X/include/Gizmo	60	13
+dtoldev:/usr/X/lib/classdb	2	1
+dtoldev:/usr/X/lib	2958	1
+dtoldev:/usr/X/bin	215	4
+desksup:/usr/X/include/Dt	42	6
+desksup:/usr/X/include/DnD	130	5
+desksup:/usr/X/lib	104	1

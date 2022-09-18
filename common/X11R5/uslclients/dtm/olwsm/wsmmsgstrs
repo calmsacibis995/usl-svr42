@@ -1,0 +1,269 @@
+#pragma ident	"@(#)dtm:olwsm/wsmmsgstrs	1.29"
+
+/*
+ * This file contains all the message
+ * strings for the OPEN LOOK Workspace Manager client.
+ * 
+ */
+
+String OleMdupMsg_follow = "\n\nPress the \"Abort\" button if you want to \
+fix the duplicate bindings;\notherwise, press \"Continue\" to keep the \
+duplicates." ;
+String OleMdupMsg_mneFollow = "\n\nPress the \"Abort\" button when you \
+are ready to go back\nand fix the mnemonics." ;
+
+String OleMdupMsg_preface = "WARNING: Duplicate bindings were found:\n\n\
+\tBinding:\tDefined as:\tAnd also as:\n" ;
+String OleMdupMsg_mnePreface = "ERROR: Duplicate mnemonics were found:\n";
+
+String OleMdupMsg_total = "\n     ...\n     (%d duplicates in all)" ;
+String OleMdupMsg_mneUnspec = "Name or Invocation String unspecified." ;
+
+String OleMerrorMsg_badAssert		= "Assertion failed at line %d in \
+file %s." ;
+String OleMerrorMsg_distinct		= "Mouse button assignments must be distinct." ;
+String OleMerrorMsg_dupModifier		= "Modifiers must be distinct for each mouse button";
+String OleMerrorMsg_needOladduser	= "Can't start OPEN LOOK at \
+login -- must run oladduser first." ;
+String OleMerrorMsg_noWidget		= "Widget not found on ROOT." ;
+String OleMerrorMsg_otherControl	= "Another application already \
+controls the workspace!" ;
+
+String OleMfixedString_2D		= "2D" ;
+String OleMfixedString_3D		= "3D" ;
+String OleMfixedString_abort		= "Abort" ;
+String OleMfixedString_accel		= "Accelerators:" ;
+String OleMfixedString_accepted		= "Accepted Remote Hosts..." ;
+String OleMfixedString_adjust		= "ADJUST:" ;
+String OleMfixedString_after		= "After" ;
+String OleMfixedString_alternate	= "Alternate\nKey Sequence" ;
+String OleMfixedString_always		= "Always" ;
+String OleMfixedString_apply		= "Apply" ;
+String OleMfixedString_applyall		= "Apply All" ;
+String OleMfixedString_applyEdits	= "Apply Edits" ;
+String OleMfixedString_asAGroup		= "As a Group" ;
+String OleMfixedString_basicSet		= "Basic settings:" ;
+String OleMfixedString_beep		= "Beep:" ;
+String OleMfixedString_before		= "Before" ;
+String OleMfixedString_blackOnWhite	= "Black on White" ;
+String OleMfixedString_blue		= "Blue:" ;
+String OleMfixedString_border		= "Border:" ;
+String OleMfixedString_bottom		= "Bottom";
+String OleMfixedString_calculator	= "Calculator..." ;
+String OleMfixedString_clickSelect	= "Click SELECT" ;
+String OleMfixedString_clock		= "Clock..." ;
+String OleMfixedString_color	 	= "Color..." ;
+String OleMfixedString_colorChoices 	= "Color Choices:" ;
+String OleMfixedString_colorCombo 	= "Color Combinations:" ;
+String OleMfixedString_colorSample 	= "Color Sample" ;
+String OleMfixedString_constrain	= "Constrain:" ;
+String OleMfixedString_continue		= "Continue" ;
+String OleMfixedString_copy		= "Copy" ;
+String OleMfixedString_custom		= "Custom" ;
+String OleMfixedString_cut		= "Cut" ;
+String OleMfixedString_damping		= "Mouse Damping:" ;
+String OleMfixedString_dateTime		= "Date and time format:" ;
+String OleMfixedString_delete		= "Delete" ;
+String OleMfixedString_desktop		= "Desktop..." ;
+String OleMfixedString_dispDefault	= "Displays Default" ;
+String OleMfixedString_dispLang		= "Display language:" ;
+String OleMfixedString_dispMenu		= "Displays Menu" ;
+String OleMfixedString_dragRight	= "Drag-Right Distance:" ;
+String OleMfixedString_duplicate	= "Duplicate:" ;
+String OleMfixedString_edit		= "Edit" ;
+String OleMfixedString_exit		= "Exit" ;
+String OleMfixedString_factory		= "Reset to Factory" ;
+String OleMfixedString_file		= "File" ;
+String OleMfixedString_fontGroup	= "Font group:" ;
+String OleMfixedString_function		= "Function" ;
+String OleMfixedString_gray		= "Shades of Gray:" ;
+String OleMfixedString_green		= "Green:" ;
+String OleMfixedString_help		= "Help" ;
+String OleMfixedString_helpKeyClr 	= "Help Highlighting" ;
+String OleMfixedString_helpModel	= "Help Model:" ;
+String OleMfixedString_icons		= "Icons..." ;
+String OleMfixedString_individually	= "Individually" ;
+String OleMfixedString_inputArea	= "Input Area:" ;
+String OleMfixedString_inputFocus	= "Input Focus" ;
+String OleMfixedString_inputLang 	= "Input language:" ;
+String OleMfixedString_inputMethod 	= "Input method:" ;
+String OleMfixedString_inputWindow 	= "Input Window" ;
+String OleMfixedString_insert	 	= "Insert" ;
+String OleMfixedString_interface 	= "Interface Appearance:" ;
+String OleMfixedString_invocation 	= "Invocation String:" ;
+String OleMfixedString_kbdProps		= "Keyboard Properties" ;
+String OleMfixedString_layering		= "Window Layering:" ;
+String OleMfixedString_left		= "Left" ;
+String OleMfixedString_lmr		= "L M R" ;
+String OleMfixedString_location		= "Location:" ;
+String OleMfixedString_login		= "Start Desktop at login:" ;
+String OleMfixedString_menu		= "MENU:" ;
+String OleMfixedString_menuLabels	= "Menu Labels:" ;
+String OleMfixedString_menuMarkR	= "Menu Mark Region:" ;
+String OleMfixedString_misc		= "Miscellaneous..." ;
+String OleMfixedString_mneSetting	= "Mnemonics:" ;
+String OleMfixedString_mnemonic		= "Mnemonic:" ;
+String OleMfixedString_modifier		= "Modifier" ;
+String OleMfixedString_mouseAcc		= "Mouse Acceleration:" ;
+String OleMfixedString_mouseBtn		= "Mouse Button" ;
+String OleMfixedString_mouseEq		= "Mouse Equivalents" ;
+String OleMfixedString_mouseM		= "Mouse Modifiers..." ;
+String OleMfixedString_mouseMod		= "\nMouse Modifiers" ;
+String OleMfixedString_mouseS		= "Mouse Settings..." ;
+String OleMfixedString_mouseSelect	= "SELECT Mouse Press:" ;
+String OleMfixedString_movePointer	= "Move Pointer" ;
+String OleMfixedString_multiClick	= "Multi-click Timeout:" ;
+String OleMfixedString_name		= "Name:" ;
+String OleMfixedString_never		= "Never" ;
+String OleMfixedString_nextChoice 	= "Next choice" ;
+String OleMfixedString_no		= "No" ;
+String OleMfixedString_noShow		= "Don't Show" ;
+String OleMfixedString_none		= "(None)" ;
+String OleMfixedString_notices		= "Notices Only" ;
+String OleMfixedString_numFormat	= "Numeric format:" ;
+String OleMfixedString_off		= "Off" ;
+String OleMfixedString_olam		= "Network Administration" ;
+String OleMfixedString_olfm		= "File Manager..." ;
+String OleMfixedString_olps		= "Print Screen..." ;
+String OleMfixedString_onHighlight	= "On- Highlight" ;
+String OleMfixedString_onNoShow		= "On- Don't Show" ;
+String OleMfixedString_onShow		= "On- Show" ;
+String OleMfixedString_onUnderline	= "On- Underline" ;
+String OleMfixedString_outgoing		= "Outgoing Remote Displays..." ;
+String OleMfixedString_paste		= "PASTE:";
+String OleMfixedString_pixeditor	= "Pixmap Editor..." ;
+String OleMfixedString_pointer		= "Pointer" ;
+String OleMfixedString_primary		= "Primary\nKey Sequence" ;
+String OleMfixedString_progMenu		= "Programs Submenu..." ;
+String OleMfixedString_programs		= "Programs" ;
+String OleMfixedString_properties	= "Properties" ;
+String OleMfixedString_propsTitle	= "Preferences";
+String OleMfixedString_red		= "Red:" ;
+String OleMfixedString_refresh		= "Refresh" ;
+String OleMfixedString_reset		= "Reset" ;
+String OleMfixedString_right		= "Right" ;
+String OleMfixedString_scrollPan	= "Scroll by Panning:" ;
+String OleMfixedString_setLocale	= "Set Locale..." ;
+String OleMfixedString_setMenuDef	= "Set Menu Default:" ;
+String OleMfixedString_select		= "SELECT:" ;
+String OleMfixedString_settings		= "Settings" ;
+String OleMfixedString_show		= "Show" ;
+String OleMfixedString_specSetting	= "Specific settings" ;
+String OleMfixedString_suppSetting	= "Supplementary settings" ;
+String OleMfixedString_term		= "Terminal Emulator..." ;
+String OleMfixedString_textBG	 	= "Text Background" ;
+String OleMfixedString_textFG	 	= "Text Foreground" ;
+String OleMfixedString_top		= "Top";
+String OleMfixedString_utils		= "Utilities" ;
+String OleMfixedString_video		= "Video Choice:" ;
+String OleMfixedString_view		= "View" ;
+String OleMfixedString_whiteOnBlack	= "White on Black" ;
+String OleMfixedString_windowBG 	= "Window Background" ;
+String OleMfixedString_workspace 	= "Workspace" ;
+String OleMfixedString_wsm		= "Workspace Manager" ;
+String OleMfixedString_yes		= "Yes" ;
+
+String OleMfooterMsg_changeGUI = "GUI change will take effect at next Login";
+String OleMfooterMsg_chooseColor = "Now choose a color at the top" ;
+String OleMfooterMsg_colorStart = "Click on the part of the sample window \
+you want to change" ;
+String OleMfooterMsg_colorError = "Unable to allocate color cells" ;
+String OleMfooterMsg_deletePrime = "Cannot delete a primary key sequence" ;
+String OleMfooterMsg_initKeyHelp = "Move to desired key-cap, then press \\ \
+and enter new key" ;
+String OleMfooterMsg_nowPress = "Now press new key combination" ;
+String OleMfooterMsg_quoting = "Quoting..." ;
+String OleMfooterMsg_sameColors = "%s and %s colors cannot be the same" ;
+String OleMfooterMsg_useThisArea = "Use this area to dynamically \
+preview your color scheme.  Any choices you make from this property window \
+are immediately reflected here.  Colors are not applied until you click on \
+the Apply button." ;
+String OleMfooterMsg_wantExit = "Do you want to exit all running \
+programs and the workspace?" ;
+
+String OleMhelpTag_wProps = "Workspace Properties" ;
+String OleMhelpTag_workspace = "Workspace" ;
+String OleMhelpTag_wMenu = "Workspace Menu" ;
+String OleMhelpTag_pushpin = "Pushpin" ;
+String OleMhelpTag_programs = "Programs Menu Button" ;
+String OleMhelpTag_utils = "Utilities Menu Button" ;
+String OleMhelpTag_refresh = "Refresh" ;
+String OleMhelpTag_properties = "Properties Menu Button" ;
+String OleMhelpTag_exit = "Exit Button" ;
+String OleMhelpTag_progMenu = "Programs Submenu" ;
+
+String OleMinternal_cacheExceed = "Internal Error: Propagate cache \
+exceeded!" ;
+
+String OleMinvalidResource_flatKeys = "widget \"%s\" (class \"%s\"): item \
+#%d %s" ;
+String OleMinvalidResource_noStepParent = "Widget %s: No step-parent \
+widget" ;
+String OleMinvalidResource_stepParentNotComposite = "Widget %s: Parent \
+widget is not a composite" ;
+
+String OleMmaxLabel_damping = "20 pixels" ;
+String OleMmaxLabel_dragRight = "40 pixels" ;
+String OleMmaxLabel_menuMarkR = "40 pixels" ;
+String OleMmaxLabel_mouseAcc = "Max" ;
+String OleMmaxLabel_multiClick = "1.0 sec" ;
+String OleMminLabel_damping = "1 pixel" ;
+String OleMminLabel_dragRight = "1 pixel" ;
+String OleMminLabel_menuMarkR = "1 pixel" ;
+String OleMminLabel_mouseAcc = "Min" ;
+String OleMminLabel_multiClick = "0.1 sec" ;
+
+String OleMmnemonic_abort	= "A" ;
+String OleMmnemonic_accepted	= "A" ;
+String OleMmnemonic_after	= "A" ;
+String OleMmnemonic_apply	= "A" ;
+String OleMmnemonic_applyEdits	= "E" ;
+String OleMmnemonic_before	= "B" ;
+String OleMmnemonic_color	= "C" ;
+String OleMmnemonic_continue	= "C" ;
+String OleMmnemonic_delete	= "D" ;
+String OleMmnemonic_desktop	= "D" ;
+String OleMmnemonic_exit	= "X" ;
+String OleMmnemonic_factory	= "F" ;
+String OleMmnemonic_icons	= "I" ;
+String OleMmnemonic_insert	= "I" ;
+String OleMmnemonic_kbdProps	= "K" ;
+String OleMmnemonic_left	= "L" ;
+String OleMmnemonic_middle	= "M" ;
+String OleMmnemonic_misc	= "M" ;
+String OleMmnemonic_mouseM	= "O" ;
+String OleMmnemonic_mouseS	= "S" ;
+String OleMmnemonic_no		= "N" ;
+String OleMmnemonic_olam	= "N" ;
+String OleMmnemonic_olfm	= "F" ;
+String OleMmnemonic_olps	= "P" ;
+String OleMmnemonic_outgoing	= "O" ;
+String OleMmnemonic_progMenu	= "P" ;
+String OleMmnemonic_programs	= "P" ;
+String OleMmnemonic_properties	= "O" ;
+String OleMmnemonic_refresh	= "R" ;
+String OleMmnemonic_reset	= "R" ;
+String OleMmnemonic_right	= "R" ;
+String OleMmnemonic_setLocale	= "L" ;
+String OleMmnemonic_utils	= "U" ;
+String OleMmnemonic_yes		= "Y" ;
+
+String OleMpageLabel_color	= "Color" ;
+String OleMpageLabel_desktop	= "Desktop" ;
+String OleMpageLabel_icons	= "Icons" ;
+String OleMpageLabel_misc	= "Miscellaneous" ;
+String OleMpageLabel_mouseM	= "Mouse Modifiers" ;
+String OleMpageLabel_progMenu	= "Program Submenu" ;
+String OleMpageLabel_setLocale	= "Set Locale" ;
+String OleMpageLabel_settings	= "Mouse Settings" ;
+
+String OleMwarningMsg_badKeyMatch = "keysym resource doesn't match label" ;
+String OleMwarningMsg_badModMatch = "modifiers resource doesn't match label" ;
+String OleMwarningMsg_cannotWrite = "Couldn't write \"%s\"." ;
+String OleMwarningMsg_forkFailed = "ExecCommand: fork() failed." ;
+String OleMwarningMsg_noDefaults = "\"%s\" does not exist or is not \
+readable;\n\tcreating default version." ;
+String OleMwarningMsg_noFile	= "\"%s\" does not exist or is not \
+readable." ;
+String OleMwarningMsg_poorColors = "Poor color combinations found, using \
+factory settings." ;

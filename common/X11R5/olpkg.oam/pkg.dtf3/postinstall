@@ -1,0 +1,58 @@
+#ident	"@(#)olpkg.oam:pkg.dtf3/postinstall	1.5"
+#	Copyright (c) 1990, 1991 UNIX System Laboratories, Inc.
+#	Copyright (c) 1988 AT&T
+#	  All Rights Reserved
+
+#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+#	UNIX System Laboratories, Inc.
+#	The copyright notice above does not evidence any
+#	actual or intended publication of such source code.
+
+
+#
+#	USL Typescaler/F3 Outline Font Technology
+#
+
+
+#
+# make sure we're on V.4
+#
+if [ `uname -r`  -lt "4.0" ]
+then
+	echo "This package can only be installed on Release 4.0 or later systems"
+	exit 1
+fi
+
+#
+# now make sure fonts.dir is up-to-date
+#
+
+/usr/X/bin/mkfontdir /usr/X/lib/fonts/folio
+
+#
+# Let's add various info to /usr/X/lib/Xwinfont file
+#
+sed -e '/^fontpath=/s;$;,lib/fonts/folio;p' < /usr/X/defaults/Xwinfont > /tmp/Xwinfont
+echo "startrenderer=f3b" >> /tmp/Xwinfont
+echo "sharedlib-filename=libfolio.so" >> /tmp/Xwinfont
+cp /tmp/Xwinfont /usr/X/defaults/Xwinfont
+rm /tmp/Xwinfont
+
+TTY=`/bin/tty`
+echo "$TTY" | grep "/dev/pts" > /dev/null 2>&1
+RET_VAL=$?
+[ "$RET_VAL" = "0" ] && LD_LIBRARY_PATH=/usr/X/lib /usr/X/bin/xset -display unix:0 fp rehash >/dev/null 2>&1
+
+#
+# let them know that the Typescale/F3 package is installed
+#
+
+installf $PKGINST /usr/options/$PKG.name
+echo $NAME > /usr/options/$PKG.name
+installf -f $PKGINST
+
+#
+# Now clean up
+#
+rm -rf /tmp/pkg > /dev/null 2>&1
+exit ${errflag}

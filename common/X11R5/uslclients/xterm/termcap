@@ -1,0 +1,36 @@
+#ident	"@(#)xterm:termcap	1.4.1.14"
+
+#
+# The values for ks & ke are not included, because they will put the keypad in
+# DEC application mode, which is not appropriate for termcap applications.
+#
+xterm|xtermm|xterms|vs100|vs100_att|AT&T xterm terminal emulator:\
+	:am:km:mi:ms:xn:pt:\
+	:co#80:li#25:\
+	:AL=\E[%dL:DC=\E[%dP:DL=\E[%dM:DO=\E[%dB:IC=\E[%d@:\
+	:LE=\E[%dD:RI=\E[%dC:UP=\E[%dA:al=\E[L:\
+	:cd=\E[J:ce=\E[K:cl=\E[H\E[2J:cm=\E[%i%d;%dH:\
+	:cs=\E[%i%d;%dr:ct=\E[3g:dc=\E[P:dl=\E[M:ho=\E[H:\
+	:ic=\E[@:k0=\EOy:k1=\EOP:k2=\EOQ:k3=\EOR:k4=\EOS:\
+	:k5=\EOT:k6=\EOU:k7=\EOV:k8=\EOW:k9=\EOX:kb=\b:\
+	:kd=\E[B:kl=\E[D:kr=\E[C:\
+	:ku=\E[A:nd=\E[C:\
+	:r1=\E>\E[1;3;4;5;6l\E[?7h\E[m\E[r\E[2J\E[H:\
+	:r2=\E>\E[?3l\E[?4l\E[?5l\E[?7h\E[?8h:rc=\E8:sc=\E7:\
+	:se=\E[m:so=\E[7m:sr=\EM:st=\EH:te=\E@0\E[?4r:\
+	:ti=\E@0\E[?4s\E[?4h\E@1:up=\E[A:bc=\E[1D:
+xterm-acs|xtermm-acs|xterms-acs|AT&T xterm terminal emulator with acs:\
+	:am:km:mi:ms:xn:pt:\
+	:co#80:li#25:\
+	:AL=\E[%dL:DC=\E[%dP:DL=\E[%dM:DO=\E[%dB:IC=\E[%d@:\
+	:LE=\E[%dD:RI=\E[%dC:UP=\E[%dA:ae=^O:al=\E[L:as=^N:\
+	:cd=\E[J:ce=\E[K:cl=\E[H\E[2J:cm=\E[%i%d;%dH:\
+	:cs=\E[%i%d;%dr:ct=\E[3g:dc=\E[P:dl=\E[M:ho=\E[H:\
+	:ic=\E[@:k0=\EOy:k1=\EOP:k2=\EOQ:k3=\EOR:k4=\EOS:\
+	:k5=\EOT:k6=\EOU:k7=\EOV:k8=\EOW:k9=\EOX:kb=\b:\
+	:kd=\E[B:kl=\E[D:kr=\E[C:\
+	:ku=\E[A:nd=\E[C:\
+	:r1=\E>\E[1;3;4;5;6l\E[?7h\E[m\E[r\E[2J\E[H:\
+	:r2=\E>\E[?3l\E[?4l\E[?5l\E[?7h\E[?8h:rc=\E8:sc=\E7:\
+	:se=\E[m:so=\E[7m:sr=\EM:st=\EH:te=\E@0\E[?4r:\
+	:ti=\E@0\E[?4s\E[?4h\E@1:up=\E[A:bc=\E[1D:

@@ -1,0 +1,55 @@
+/**/#ident	"@(#)libfolio1.2:folio/Imakefile	1.4"
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+
+/**/#TEMP until optimization problems fixed. 11/6/91
+
+CCOPTIONS =  -Xa -K PIC -DFUNCPROTO=15
+CDEBUGFLAGS =
+
+ /* USL, SVR4 SPECIAL RULES: add new rules as needed.
+ */
+#ifndef FolioSharedLibraryObjectRule
+#define FolioSharedLibraryObjectRule()                                 @@\
+.c.o:                                                                  @@\
+        $(CC) -c $(CCOPTIONS) $(INCLUDES)  $<
+#endif
+
+HEADERS = \
+	f3font.h 
+
+SRCS = \
+	foliofuncs.c \
+	foliofont.c \
+	foliofam.c  \
+	folioinfo.c 
+
+OBJS = \
+	foliofuncs.o \
+	foliofont.o \
+	foliofam.o  \
+	folioinfo.o
+  FOLIOINCSRC = ../include
+
+   INCLUDES = -I$(FOLIOINCSRC) -I. -I../include -I$(TOP)  -I$(TOP)/X11 -I$(FONTSRC)/include -I$(FONTINCSRC) -I$(FONTLIBINCSRC) -I$(SERVERSRC)/include -I$(FOLIOINCSRC)
+     LFLAGS = -buxz
+
+EXTRA_DEFINES = -DFUNCPROTO=15
+
+SubdirLibraryRule($(OBJS))
+FolioSharedLibraryObjectRule()
+SHAREDOBJS = $(OBJS)
+
+
+install::
+
+DependTarget()
+clean::
+

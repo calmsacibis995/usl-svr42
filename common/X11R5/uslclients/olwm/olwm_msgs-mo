@@ -1,0 +1,93 @@
+#ifndef	NOIDENT
+#ident	"@(#)olwm:./olwm_msgs-mo	1.1"
+#endif
+
+*space.exit: JNo Space, exiting...
+
+*title.dismiss: JDismiss Window Help
+*title.cancel: JCancel Window Help
+*title.open: JOpen (Close) Window Help
+*title.close: JClose (Open) Window Help
+*title.full: JFull (Restore) Size Help
+*title.restore: JRestore (Full) Size Help
+*title.back: JBack Help
+*title.refresh: JRefresh Window Help
+*title.move: JMove Window Help
+*title.resize: JResize Window Help
+*title.quit: JQuit Window Help
+*title.this: JThis Window Help
+*title.allpopups: JAll Pop-ups Help
+*title.owner: JOwner Help
+
+*colormap.truncate: JWM_COLORMAP_WINDOWS list too long - being truncated
+
+*space.memory: JNo Space
+
+*badWindowAttr.notFound: JCan't get window attributes for WM_COLORMAP_WINDOWS subwindow %lu
+
+*badBitmap.badRead: JCan't read bitmap file!
+
+*noTitle.noTitle: J(Untitled)
+
+*color.winColors: JCan't set client %s color from _OL_WIN_COLORS
+
+*color.foreground: Jforeground
+*color.background: Jbackground
+*color.border: Jborder
+
+*dimension.border: JBorder Color of _OL_WIN_COLORS is not used
+
+
+*move.move: JMove
+*resize.resize: JResize
+*badKeyboard.noGrab: JCan't Grab Keyboard, Window %s Operation failed
+
+*color.windowFrameColor: JwindowFrameColor
+*badAtom.internAtom: JCan't XInternAtom  WM_COLORMAP_WINDOWS
+*color.duplicate: JSame %s and %s colors given, now resolving
+*color.inputWindowHeader: JinputWindowHeader
+
+*dupColor.foregroundBackground:	JSame foreground and background colors, now resolving
+*dupColor.foregroundInputWindowHeader: JSame foreground and inputWindowHeader colors, now resolving
+*dupColor.backgroundInputWindowHeader:	JSame background and inputWindowHeader colors, now resolving
+
+
+*title.winMgr: JWindow Manager
+*title.menu: JMenu Help
+*title.resizeCorner: JResize Corner Help
+*title.title: JTitle Help
+*title.border: JBorder Help
+*title.pushpin: JPushpin Help
+*title.menuButton: JMenu Button Help
+
+*title.resizeHandles: JResize Handle Help
+*title.icon: JIcon Help
+*title.help: JHelp Window
+*title.motifMaximizeButton: JMaximize Button Help
+*title.motifMinimizeButton: JMinimize Button Help
+
+
+# Default Window menu title
+*title.popupWindowMenu:	JWindow
+
+*focus.focusNever: JClientFocusChange() for frame, skip
+
+*badExec.execve: JBad restart of olwm:  execvp() failed
+
+# The following labels and mnemonics are for Motif mode menu items
+*mlabel.quit: JClose
+*mlabel.move: JMove
+*mlabel.back: JLower
+*mlabel.minimize: JMinimize
+*mlabel.resize: JSize
+*mlabel.motifrestore: JRestore
+*mlabel.maximize: JMaximize
+
+
+*mnemonic.quit: C
+*mnemonic.move: M
+*mnemonic.back: L
+*mnemonic.minimize: n
+*mnemonic.resize:  S
+*mnemonic.motifrestore: R
+*mnemonic.maximize: x

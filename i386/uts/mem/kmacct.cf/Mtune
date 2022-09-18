@@ -1,0 +1,18 @@
+#ident	"@(#)uts-x86:mem/kmacct.cf/Mtune	1.2"
+#ident	"$Header: $"
+
+* KMACCT Tuneables -------------------------------
+
+* KMARRAY is the number of entries in the symbol table
+
+KMARRAY	150	50	500
+
+* SDEPTH is the depth of stack to trace back (no larger than MAXDEPTH 
+* from sys/kmacct.h)
+
+SDEPTH	5	3	10
+
+* NKMABUF is the number of buffer headers to allocate (one for each
+* buffer that has been allocated and not yet returned).
+
+NKMABUF	1000	100	10000

@@ -1,0 +1,39 @@
+#ident	"@(#)wksh:xksrc/objmk.DYN	1.1"
+
+#	Copyright (c) 1990, 1991 AT&T and UNIX System Laboratories, Inc. 
+#	All Rights Reserved     
+
+#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF AT&T    
+#	and UNIX System Laboratories, Inc.			
+#	The copyright notice above does not evidence any       
+#	actual or intended publication of such source code.    
+#
+#
+allDYN: GENSYM $(TARGET) $(TARGET).o
+
+DYNFLAG = -DDYNLIB
+GENSYM_ARGS = kshall.o $(XKSH_OBJS) $(MALLOCOBJ)
+
+$(TARGET): nu$(TARGET)
+	@-rm -f O$@; mv -f $@ O$@ 2>/dev/null; rm -f O$@ $@; ln -f nu$@ $@
+
+nu$(TARGET): $(TARGET).o libforce.so $(MALLOCOBJ)
+	$(CC) $(UFLAGS) $(ULDFLAGS) -o nu$(TARGET) $(TARGET).o $(MALLOCOBJ) -L . -l force $(LIBDL)
+
+$(TARGET).o: kshall.o $(XKSH_OBJS)
+	$(LD) -r $(ULDFLAGS) -o $(TARGET).o kshall.o $(XKSH_OBJS)
+
+link:
+	$(CC) $(UFLAGS) $(ULDFLAGS) $(SUBCFLAGS) -o nu$(TARGET) kshall.o $(XKSH_OBJS) -L . -l force $(LIBDL)
+
+linkback:
+	$(LINKBACK)
+
+libforce.so: gensym.o
+	$(CC) -h /usr/lib/libc.so.1 -G -o $@ gensym.o
+
+GENSYM: gensym kshall.o $(XKSH_OBJS) $(MALLOCOBJ)
+	@gensym gensym.c $(GENSYM_ARGS)
+
+gensym.o: gensym.c
+	./readonly -c $(CFLAGS) gensym.c

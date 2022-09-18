@@ -1,0 +1,13 @@
+DtInitialize
+DtSetAppId
+DtCreateProcessIcon
+SetIconInfo
+DtGetProperty
+DtPutData
+DtSetProperty
+DtAddProperty
+cache_name
+DtGetData
+Dt__FindScreen
+Dt__FindType
+Dt__FindId

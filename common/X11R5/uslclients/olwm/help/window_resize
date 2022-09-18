@@ -1,0 +1,120 @@
+You can use the window manager to resize any window on the workspace
+that has resize corners. The window can be resized within the
+constraints set by the application. A window can be resized with
+the mouse, keyboard, or a combination of the two. Resize a window
+by pressing SELECT on the mouse with the pointer on a resize corner
+and dragging it, or by selecting the Resize button on the Window
+menu and using a combination of the keyboard and mouse to resize
+the window.
+
+Mouse Operation Only:
+
+	Press SELECT on the resize corner of a window. When the
+	pointer is dragged, a bounding box is displayed showing
+	the outline of the window, and the pointer changes to
+	the PAN pointer. The bounding box will shrink or expand
+	depending on the overall direction of mouse movement,
+	and the size constraints placed on the window by the
+	client application. When the bounding box is at the size
+	you want the window to be, release SELECT. The window will
+	resize to the exact size and location of the bounding box
+	and the pointer will revert back to the default
+	OPEN LOOK cursor.
+
+Keyboard (and Mouse) Operation:
+
+	Enter the window manager "Resize Window" mode in any of
+	the following ways:
+
+		Press MENU over the window header or
+		border of any window with resize corners,
+		displaying the Window menu. Drag the pointer
+		to the Resize button on the Window menu and
+		release MENU.
+	OR
+		Press SELECT over the window menu button of
+		a window's header, depressing the Window Menu
+		Button and displaying the Window Menu. Drag the
+		pointer to the Resize button such that the
+		Resize button is depressed, and release SELECT.
+	OR
+		If the SelectDoesPreview feature is set to TRUE
+		and the default window menu item for a window is
+		the Resize button on the Window menu, click SELECT
+		on the Window menu button.
+	OR
+		If the SelectDoesPreview feature is set to FALSE,
+		click SELECT on the Window menu button, and
+		proceed to click SELECT on the Resize button of
+		the Window menu.
+	OR
+		Select the window either by clicking SELECT on
+		the window header, or by traversing to the window
+		with the keyboard using the NEXTAPP, PREVAPP,
+		NEXTWIN or PREVWIN keys. When the window is
+		selected, it becomes the window where all window
+		manager keyboard operations are directed to.
+		A selected window is evident by the thickened
+		black border present around the window frame.
+
+	Once selected, use the Resize Window keyboard accelerator
+	(default is Alt+F8) to activate the Window Menu Resize button.
+
+	Once in "Resize Window" mode, the pointer changes to the PAN
+	curosr, and you can use the mouse or the arrow keys on the
+	keyboard to expand or compress a bounding box that represents
+	the window. When the bounding box is at the size you want the
+	window to be, either click SELECT, or press the DROP or
+	DEFAULTACTION keys on the keyboard.
+
+	Once started, the Resize Window operation can be aborted at
+	any time by pressing the CANCEL key on the keyboard. If the
+	CANCEL key is pressed during the Resize operation, the
+	bounding box will disappear and the window will remain in
+	its original position. Also, the pointer will revert back
+	to the default OPEN LOOK cursor.
+
+Resize Window: Using the keyboard:
+
+	When entering "Resize Window" mode, the pointer warps to
+	the center of the window. To resize a window larger: To make
+	the window larger in the vertical (up or down) or horizontal
+	(left or right) direction, use the arrow keys.  For example,
+	to enlarge the window downward, use the DOWN key. The first
+	time the DOWN key is pressed, the pointer will warp to the
+	lower border and the bounding box will start expanding
+	downward. To enlarge the window upward, left, or right,
+	use the appropriate arrow key to start the operation.
+	Only two borders can be moved during any single Resize
+	operation, one in each of the vertical or horizontal
+	direction. Therefore, if the first horizontal direction
+	key used is the LEFT arrow key, then the left border
+	(and not the right) can be expanded out or compressed
+	in with the LEFT and RIGHT keys during this operation.
+	During the same operation if the UP arrow is the first
+	vertical direction key used, then the upper border
+	(and not the lower border) can be expanded upward or
+	compressed downward with the UP and DOWN arrow keys.
+	To resize a window smaller:  To make a window smaller
+	in the vertical (ip or down) or horizontal (left or right)
+	direction, use the arrow keys. For example, to resize the
+	window smaller from the left border inward, start the Resize
+	operation by pressing the LEFT arrow key, temporarily
+	expanding the left border outward and enlarging the window.
+	Follow this action by repeatedly pressing the RIGHT arrow
+	key, thus dragging the left border inward.  The same
+	principal applies to resizing a window smaller in the
+	vertical direction: to resize the window from the upper
+	border downward, make your first vertical key used the
+	UP key, and follow this by repeatedly pressing
+	the DOWN key.
+
+Resize Window Mode "Timeout" Feature:
+
+	Once in the Resize Window mode as entered through the
+	Window menu's Resize button, if neither the keyboard
+	nor the mouse are used to affect the size of the
+	bounding box for an extended period of time, the
+	operation will be terminated by the window manager,
+	with the same action as when the user presses
+	the DROP key.

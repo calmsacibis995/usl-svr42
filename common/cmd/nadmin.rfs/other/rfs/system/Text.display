@@ -1,0 +1,10 @@
+#ident	"@(#)nadmin.rfs:other/rfs/system/Text.display	1.2.6.1"
+#ident  "$Header: Text.display 2.0 91/07/12 $"
+title="Displays the RFS Domain of the Local System"
+
+`readfile $INTFBASE/display.msg | message -p`
+
+`$TFADMIN /usr/sbin/dname -d | set -l DOMAIN`
+
+text="The RFS Domain Is: 
+${DOMAIN}"

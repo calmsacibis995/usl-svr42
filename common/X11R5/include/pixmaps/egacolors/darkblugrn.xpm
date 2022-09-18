@@ -1,0 +1,19 @@
+#define darkbluegreen_format 1
+#define darkbluegreen_width 8
+#define darkbluegreen_height 8
+#define darkbluegreen_ncolors 2
+#define darkbluegreen_chars_per_pixel 1
+static char * darkbluegreen_colors[] = {
+" " , "#0000AAAA0000",
+"." , "#00000000AAAA"
+} ;
+static char * darkbluegreen_pixels[] = {
+" . . . .",
+". . . . ",
+" . . . .",
+". . . . ",
+" . . . .",
+". . . . ",
+" . . . .",
+". . . . "
+} ;

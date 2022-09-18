@@ -1,0 +1,44 @@
+.\"ident	"@(#)dtclock:dtclock.man	1.1"
+.TH DTCLOCK 1 "7 November 1991" "X Version 11"
+.SH NAME
+dtclock - Desktop UNIX(r) System Alarm Clock
+.SH SYNOPSIS
+.B dtclock
+[-display \fIdisplay\fR] [-geometry \fIgemoetry\fR] [options]
+.SH DESCRIPTION
+\fIdtclock\fP is an OPEN LOOK client which simulates an alarm clock.
+.SH RESOURCES
+\fIdtclock\fR can be tuned using the following resources:
+dtclock.mode
+.sp
+Can be set to either \fIdigital\fR or \fIanalog\fR.
+.sp
+dtclock.tick
+.sp
+Can be either \fIsecond\fR or \fIminute\fR.
+.sp
+dtclock.chime
+.sp
+Cane be \fInone\fR, \fItraditional\fR, or \fIshipsbells\fR.
+.sp
+dtclock.BackColor the background color
+.br
+dtclock.LineColor the color of the hand outline and clock dial (analog mode)
+.br
+dtclock.LogoColor the color of the logo (analog mode)
+.br
+dtclock.HandColor the color of the hands (analog mode)
+.br
+dtclock.TextColor the color of the digital clock text (digital mode)
+.PP
+.SH EXAMPLES
+dtclock -geometry =100x100-1-1 -xrm "dtclock.HandColor:white"
+.sp
+dtclock -geometry =100x100-1-1 -xrm "dtclock.mode:digital"
+.PP
+.SH "SEE ALSO"
+X(1)
+.SH COPYRIGHT
+Copyright 1991, USL
+.br
+See \fIX(1)\fP for a full statement of rights and permissions.

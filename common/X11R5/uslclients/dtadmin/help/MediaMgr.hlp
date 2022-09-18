@@ -1,0 +1,198 @@
+#ident	"@(#)dtadmin:help/MediaMgr.hlp	1.5"
+^*version^1
+^*title^Folder
+^*width^70
+^+DesktopMgr/help.defs
+^?Cartridge tape and diskette managing
+^1^The Media Manager
+^$10
+1. The Media Manager
+
+The MediaMgr lets you perform basic operations to the media, including
+Open, Properties, Delete, Backup, Restore, Install, and Format.
+
+There is one main Media Manager window:
+
+   o \k(Media Manager Window)
+^1^Media Manager Window
+^$20
+1. \k{The Media Manager}
+2. Media Manager Window
+
+The Media Manager window lets you perform basic operations to the
+media, including Open, Properties, Delete, Backup, Restore, Install,
+and Format.
+
+The following \d(buttons^button) are available from the Media Manager
+Window:
+
+        \k(File Button)\t\t\k(Type Button)
+        \k(Help Button)\t\t\k(Backup Button)
+        \k(Restore Button)\t\k(Reset Button)
+        \k(Schedule Button)\t\k(Format Button)
+^2^File Button
+^$30
+2. \k{Media Manager Window}
+   2.1 File Button
+
+The File button lets you choose the source of the files (if you're
+doing a backup or restore) or the media (if you're doing a format).
+Clicking SELECT on the File button brings up a menu with the following
+options:
+
+        \k(diskette1)
+        \k(diskette2)
+        \k(ctape1)
+^3^diskette1
+^$40
+2. \k{Media Manager Window}
+   2.1 \k{File Button}
+       2.1.1 diskette1
+
+The diskette1 menu item lets you backup or restore files from floppy
+diskette drive number one or format a diskette in floppy diskette
+drive number 1.
+^3^diskette2
+^$50
+2. \k{Media Manager Window}
+   2.1 \k{File Button}
+       2.1.2 diskette2
+
+The diskette2 menu item lets you backup or restore files from floppy
+diskette drive number two or format a diskette in floppy diskette
+drive number 2
+^3^ctape1
+^$60
+2. \k{Media Manager Window}
+   2.1 \k{File Button}
+       2.1.3 ctape1
+
+The ctape1 menu item lets you backup or restore files from cartridge
+tape.
+^2^Type Button
+^$70
+2. \k{Media Manager Window}
+   2.2 Type Button
+
+The Type button lets you choose between backing up or restoring all
+files on the diskette or tape, or selected files on the diskette or
+tape. Clicking SELECT on the Help button brings up a menu with the
+following options:
+
+        \k(Complete)
+        \k(Incremental)
+        \k(Select Files)
+^3^Complete
+^$80
+2. \k{Media Manager Window}
+   2.2 \k{Type Button}
+       2.2.1 Complete
+
+The Complete menu item , when selected from the Backup window, will
+backup all file in your home directory. The Complete menu item, when
+selected from the Restore windowm will restore all files from the
+media chosen.
+^3^Incremental
+^$90
+2. \k{Media Manager Window}
+   2.2 \k{Type Button}
+       2.2.2 Incremental
+
+The Incremental menu item , which is available from the Backup window,
+only backs up files that have changed since the last backup.
+^3^Select Files
+^$100
+2. \k{Media Manager Window}
+   2.2 \k{Type Button}
+       2.2.3 Select Files
+
+The Select Files menu item , when selected from the Backup window,
+lets you choose which files to backup. The Select Files menu item,
+when selected from the Restore window, lets you choose from a list of
+files that appears in the center part of the window. The list takes
+several moments to appear while the floppy diskette or tape is read by
+your computer.
+
+Once the media is read, you can click on the specific files you want
+to restore. Unselect a file by clicking on it a second time. To
+unselect all the files at once, click on the Reset button located at
+the bottom of the window.
+^2^Help Button
+^$110
+2. \k{Media Manager Window}
+   2.3 Help Button
+
+The Help button provides online help for the Media Manager window.
+Clicking SELECT on the Help button brings up a menu with the following
+options:
+
+        \k(Media Manager)
+        \k(Table of Contents)
+        \k(Help Desk)
+^3^Media Manager
+^$120
+2. \k{Media Manager Window}
+   2.3 \k{Help Button}
+       2.3.1 Media Manager
+
+The Media Manager menu option provides help on the Media Manager win-
+dow.
+^3^Table of Contents
+^$130
+2. \k{Media Manager Window}
+   2.3 \k{Help Button}
+       2.3.2 Table of Contents
+
+The Table of Contents menu selection under the Help button displays a
+list of topics covered under the help facility for this current win-
+dow.
+^3^Help Desk
+^$140
+2. \k{Media Manager Window}
+   2.3 \k{Help Button}
+       2.3.3 Help Desk
+
+The Help Desk menu selection under the Help button opens the Help Desk
+window. From there, you can click SELECT on the icon you want to find
+out more about.
+^2^Backup Button
+^$150
+2. \k{Media Manager Window}
+   2.4 Backup Button
+
+Backup begins the process of backing up your files onto the selected
+media. The Backup button is available on the Backup window.
+^2^Restore Button
+^$160
+2. \k{Media Manager Window}
+   2.5 Restore Button
+
+The Restore button copies the files from the diskette or tape to your
+computer. If you selected specific files to restore, only those files
+will be copied. Otherwise, all the files on the diskette or tape will
+be copied. The Restore button is available on the Restore window.
+^2^Reset Button
+^$170
+2. \k{Media Manager Window}
+   2.6 Reset Button
+
+The Reset button unselects all files specifically chosen to backup or
+restore. After using Reset you can again select the specific files to
+backup or restore. If at this point you decide to backup or restore
+all files, click on the Type button and select All Files. The Reset
+button is available on the Backup and Restore windows.
+^2^Schedule Button
+^$180
+2. \k{Media Manager Window}
+   2.7 Schedule Button
+
+The Schedule button allows you set the time for doing an automatic,
+unattended backup. The Schedule button is available on the Backup win-
+dow.
+^2^Format Button
+^$190
+2. \k{Media Manager Window}
+   2.8 Format Button
+
+The Format button begins the process of formatting the selected
+diskette The Format button is only available on the Format window.

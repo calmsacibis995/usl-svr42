@@ -1,0 +1,29 @@
+/**/#ident	"@(#)r5misc:fonts/bdf/Imakefile	1.3"
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+
+#define IHaveSubdirs
+#define PassCDebugFlags /* as nothing */
+
+#ifdef BuildOnlyXWIN
+        SUBDIRS = misc 75dpi 100dpi 
+    ALLFONTDIRS = $(FONTDIR)/misc $(FONTDIR)/75dpi $(FONTDIR)/100dpi 
+#else
+#   ifdef BuildOnlyOpenLook
+        SUBDIRS = Xol
+    ALLFONTDIRS = $(FONTDIR)/Xol
+#   else
+        SUBDIRS = Xol misc 75dpi 100dpi 
+    ALLFONTDIRS = $(FONTDIR)/Xol $(FONTDIR)/misc $(FONTDIR)/75dpi $(FONTDIR)/100dpi 
+#   endif
+#endif
+MakeSubdirs($(SUBDIRS))
+DependSubdirs($(SUBDIRS))
+MakeDirectories(install,$(ALLFONTDIRS))

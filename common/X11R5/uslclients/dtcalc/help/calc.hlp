@@ -1,0 +1,46 @@
+This is a simple calculator application that mimics a common
+hand-held electronic calculator.
+
+You use this calculator much the same way you would use a
+regular calculator, except you need to use the mouse to "press"
+this calculator's buttons. Move the mouse pointer to a calculator
+"button" and click SELECT.
+
+The keyboard can be used, instead of the mouse, for many of the
+calculator functions:
+
+        Key     Function
+
+        q           (quit)
+        <space> CE  (clear entry)
+        0-9     0-9 (enter the digit 0 through 9)
+        .       .   (enter a decimal point)
+        +       +   (add)
+        -       -   (subtract)
+        *       *   (multiply)
+        /       /   (divide)
+        =       =   (equals)
+        n       +/- (negate)
+        (       (   (begin a parenthesized expression)
+        )       )   (end a parenthesized expression)
+        !       !   (factorial)
+        e       e
+        ^       y^x (power)
+        p       pi
+        i       INV (inverse function)
+        s       sin (sine)
+        c       cos (cosine)
+        t       tan (tangent)
+        l       ln  (natural log)
+        r       SQR (square root)
+        d       DRG (degree,radians,grads)
+
+OPEN LOOK mode only:
+You can select all or part of the numeric result (displayed at
+the top of the window) and use normal cut-and-paste functions
+to copy the value to another window. Drag and drop can also
+be used to copy the value to another window. Press SELECT over
+the numeric result and move the mouse pointer to sweep out the
+part you wish to select. Double clicking will select the entire
+value.
+

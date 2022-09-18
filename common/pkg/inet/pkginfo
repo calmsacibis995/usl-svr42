@@ -1,0 +1,17 @@
+#ident	"@(#)pkg.inet:common/pkg/inet/pkginfo	1.1.5.5"
+#ident  "$Header: $"
+#
+# 	INET pkginfo
+#
+PKG="inet"
+NAME="Internet Utilities"
+VERSION="1"
+RELEASE="4.2"
+CATEGORY="system,utilities"
+#BASEDIR=""
+CLASSES="none build"
+PREDEPEND="inet"
+MAXINST="1"
+ISTATES="2"
+RSTATES="2"
+VENDOR="UNIX System Laboratories"

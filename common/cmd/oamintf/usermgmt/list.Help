@@ -1,0 +1,107 @@
+#ident	"@(#)oamintf:common/cmd/oamintf/usermgmt/list.Help	1.2.8.2"
+#ident  "$Header: list.Help 2.0 91/07/12 $"
+ABSTRACT:
+	The "list" task allows you to list either user definitions or
+	group definitions on your system.
+
+Form.list:list:User or Group
+	Enter either "user" or "group".  The default is "user".
+
+Form.lsusr:list:User
+	Enter either a valid login or "ALL" to list all logins.
+
+Text.lsgrp:ABSTRACT:Groups Currently Defined
+	You are looking at a listing of all groups currently defined
+	in the system.  This list is updated automatically whenever
+	a group is added, modified or deleted.  The list includes
+	the group name, numeric group ID and lists of the primary
+	and supplementary group members.  Primary members have this
+	as their group when they log in.  Supplementary members may
+	do a "newgrp" to this group after they have logged in, but
+	have some other group at login.
+
+Text.lsusr:ABSTRACT:Users Currently Defined
+	The "list" task displays information about the user logins on
+	the system.  Administrative logins (e.g., "root") are
+	excluded from the displayed information.
+
+	For each user login, the task displays multiple lines of data
+	in this format:
+
+	   Login:	   	   	           User ID:
+	   Primary group:	          Primary group ID:
+	   Comments:
+	   Password status:
+	   Home directory:
+	   Shell:
+	   Minimum number of days allowed between password changes:
+	   Maximum number of days the password is valid:
+	   Number of days for password warning message:
+	   Number of days of login inactivity allowed:
+	   Login expiration date:
+	
+	The first line shows the login name and numeric user
+	identification or UID.
+
+	The second line shows the primary group name and numeric
+	group identification or GID.
+
+	The third line shows comments (e.g., the user's name and
+	telephone number).
+
+	The fourth line contains the login's password status
+	information.  The status can be "password", "no password" or
+	"lock".
+
+	The fifth line shows the login's home directory
+		(e.g., /home/$LOGNAME).
+	
+	The sixth line shows the login's default shell program
+		(e.g., /usr/bin/sh).
+	
+	The seventh line shows the number of days required between
+	password changes.  This is the number of days that must
+	elapse from the last time the password was changed before
+	users are once again allowed to change their passwords.  A
+	value of "undefined" indicates that this not set for the
+	login.
+
+	The eighth line shows the maximum number of days the password
+	is valid.  A value of "undefined" indicates that no limit is
+	in effect for the login.
+
+	The ninth line displays the number of days during which the
+	user will receive a password expiration warning message (when
+	logging on) before the password expires.  A value of
+	"undefined" indicates that no warning will be received.
+
+	The tenth line shows the number of days the login may be
+	inactive before the password is locked.  This is the maximum
+	number of days that the login can be unused before it is
+	disabled.  A value of "undefined" indicates that no limit is
+	in effect for the login.
+
+	The eleventh line displays the date upon which the login will
+	expire.  The expiration date is the date after which the
+	login is disabled.  A value of "Never" indicates that no
+	expiration date is in effect for the login.
+
+	If the audit security package is installed the following
+	information will also be displayed.
+
+	   Default audit event(s)
+
+	This shows the default audit mask set for the users.
+
+	If the enhanced security package is installed the following
+	information will also be displayed.
+
+	   Valid security level(s)
+	   Default login security level
+
+	The first line shows the security level(s) the user can
+	access.
+
+	The second line shows the level the user will login in at if
+	the user does not explicitly request a different level when
+	logging in.

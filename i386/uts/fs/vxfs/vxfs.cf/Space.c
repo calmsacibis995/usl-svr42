@@ -1,0 +1,37 @@
+/*	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.	*/
+/*	Copyright (c) 1984, 1985, 1986, 1987, 1988, 1989, 1990 AT&T	*/
+/*	  All Rights Reserved  	*/
+
+/*	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF     	*/
+/*	UNIX System Laboratories, Inc.                     	*/
+/*	The copyright notice above does not evidence any   	*/
+/*	actual or intended publication of such source code.	*/
+
+/* @(#)usr/src/i386/uts/fs/vxfs/vxfs.cf/Space.c	1.1 01 Mar 1992 16:18:27 -  */
+#ident	"@(#)uts-x86:fs/vxfs/vxfs.cf/Space.c	1.2"
+#ident	"$Header: $"
+
+/*
+ * Copyright (c) 1991, 1992 VERITAS Software Corporation.  ALL RIGHTS RESERVED.
+ * UNPUBLISHED -- RIGHTS RESERVED UNDER THE COPYRIGHT
+ * LAWS OF THE UNITED STATES.  USE OF A COPYRIGHT NOTICE
+ * IS PRECAUTIONARY ONLY AND DOES NOT IMPLY PUBLICATION
+ * OR DISCLOSURE.
+ * 
+ * THIS SOFTWARE CONTAINS CONFIDENTIAL INFORMATION AND
+ * TRADE SECRETS OF VERITAS SOFTWARE.  USE, DISCLOSURE,
+ * OR REPRODUCTION IS PROHIBITED WITHOUT THE PRIOR
+ * EXPRESS WRITTEN PERMISSION OF VERITAS SOFTWARE.
+ * 
+ *               RESTRICTED RIGHTS LEGEND
+ * USE, DUPLICATION, OR DISCLOSURE BY THE GOVERNMENT IS
+ * SUBJECT TO RESTRICTIONS AS SET FORTH IN SUBPARAGRAPH
+ * (C) (1) (ii) OF THE RIGHTS IN TECHNICAL DATA AND
+ * COMPUTER SOFTWARE CLAUSE AT DFARS 252.227-7013.
+ *               VERITAS SOFTWARE
+ * 4800 GREAT AMERICA PARKWAY, SUITE 420, SANTA CLARA, CA 95054
+ */
+
+#include <config.h>
+
+int vxfs_ninode = VXFSNINODE;

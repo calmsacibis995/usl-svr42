@@ -1,0 +1,23 @@
+#ident	"@(#)oamintf:common/cmd/oamintf/softwaremgmt/list/Text.list	1.1.6.2"
+#ident "$Header: Text.list 2.1 91/08/20 $"
+
+title="$TITLE"
+framemsg=`readfile $INTFBASE/trept.msg`
+wrap=true
+
+text="`readfile $ARG1`"
+
+rows=17
+columns=75
+
+#	(This is for confirmation, warning and repetition text screens
+
+altslks
+
+name=CONT
+button=11
+action=CLOSE
+
+name=CANCEL
+button=14
+action=CLEANUP

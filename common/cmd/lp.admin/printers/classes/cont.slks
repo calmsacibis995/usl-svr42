@@ -1,0 +1,9 @@
+#ident	"@(#)lp.admin:printers/classes/cont.slks	1.1.2.1"
+#ident "$Header: /sms/sinixV5.4es/rcs/s19-full/usr/src/cmd/lp.admin/printers/classes/cont.slks,v 1.1 91/02/28 18:13:31 ccs Exp $"
+name=CANCEL
+button=14
+action=CLOSE
+
+name=CONTINUE
+button=11
+action=UPDATE

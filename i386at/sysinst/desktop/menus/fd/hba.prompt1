@@ -1,0 +1,15 @@
+#ident	"@(#)proto:desktop/menus/fd/hba.prompt1	1.5"
+
+ Remove the diskette labeled "Boot Floppy 1 of 3".
+
+ If you have a diskette labeled "Host Bus Adapter Drivers", insert that
+ diskette now.
+
+ For more information on Host Bus Adapter diskettes, see the Installation
+ Guide.
+
+ Otherwise, if you do not have (or do not need to use) a Host Bus Adapter
+ diskette, insert the diskette labeled "Boot Floppy 2 of 3".
+
+
+ Press 'ENTER' to continue.

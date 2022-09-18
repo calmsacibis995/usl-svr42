@@ -1,0 +1,11 @@
+*ident	"@(#)uts-x86at:io/hba/mcesdi.cf/Master	1.4"
+*ident	"$Header: $"
+*
+* NOTE that the D flag below is wrong but must be used so all
+*      bootable devices may be configured into the boot kernel.
+*
+*      it is used because the default DMA channel of 5 on the
+*      mcesdi board conflicts with the ad1542 default of 5.
+*
+$version 1
+mcesdi	mces_	oD	0	0	0

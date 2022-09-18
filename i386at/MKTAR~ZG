@@ -1,0 +1,46 @@
+#ident	"@(#)mk:i386at/:mktarget	1.1"
+#ident "$Header: $"
+
+Root=$1
+Mach=$2
+TargDir=${Root}/${Mach}
+
+UID_NAME=`id|sed 's/[()]/ /gp'|awk '{print $2}'`
+
+# Check for the existance of target directories
+[ -d ${TargDir} ] || mkdir -p ${TargDir}
+
+cat -s target.dirs	|	# print contents of the target directory list
+egrep -v "^$|^#"	|	# get rid of blank lines and comments
+while read TARGETDIR MODE OWNER GROUP SYMDIRS
+do
+	echo "Creating ${TargDir}/${TARGETDIR}"
+	[ -d ${TargDir}/${TARGETDIR} ] || mkdir ${TargDir}/${TARGETDIR}
+
+	if [ "$UID_NAME" = "root" ]
+	then
+		if [ -n "$MODE" -a "$MODE" != "-" ]
+		then
+			chmod ${MODE} ${TargDir}/${TARGETDIR}
+		fi
+		if [ -n "$OWNER" -a "$OWNER" != "-" ]
+		then
+			chown ${OWNER} ${TargDir}/${TARGETDIR}
+		fi
+		if [ -n "$GROUP" -a "$GROUP" != "-" ]
+		then
+			chgrp ${GROUP} ${TargDir}/${TARGETDIR}
+		fi
+	fi
+
+#	Create directories of symbolic links
+#	(don't make symbolic links)
+
+	if [ -n "$SYMDIR" -a "$SYMDIR" != "-" ]
+	then
+		echo "Creating ${TargDir}/${SYMDIR}"
+		mkdir ${TargDir}/${SYMDIR}
+	fi
+done
+
+exit 0

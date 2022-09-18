@@ -1,0 +1,15 @@
+#ident	"@(#)nadmin.nfs:local/nfs/bin/nf_unshare	1.1.5.1"
+#ident  "$Header: nf_unshare 2.0 91/07/12 $"
+#to remove resources from the automatic share list
+
+/usr/bin/grep -v "^[^#].*share[ 	]*-F[ 	]*nfs.*[ 	]$DIR$" /etc/dfs/dfstab >/var/tmp/$$.dfstab
+
+if [ $? -lt 2 ]
+then
+	$TFADMIN /usr/bin/cp /var/tmp/$$.dfstab /etc/dfs/dfstab
+	/usr/bin/rm /var/tmp/$$.dfstab
+	echo "$DIR has been removed from the Automatic Share List.">/var/tmp/a_share$$
+else
+	echo "$DIR has NOT been removed from the Automatic Share List.">/var/tmp/a_share$$
+fi
+echo $$

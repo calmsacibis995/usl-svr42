@@ -1,0 +1,24 @@
+#ident	"@(#)oamintf:common/cmd/oamintf/syssetup/Text.mok	1.1.1.2"
+#ident  "$Header: Text.mok 2.0 91/07/12 $"
+#	Module Name: Text.mok
+
+title="Confirmation of Changing File: $ARG1"
+
+framemsg=`readfile $INTFBASE/trept.msg`
+lifetime=shortterm
+
+rows=4
+columns=45
+
+text="
+File - $ARG1 - was modified as requested."
+
+
+altslks
+name=CONT
+button=11
+action=update $FRAMEID true
+
+name=CANCEL
+button=14
+action=CLEANUP

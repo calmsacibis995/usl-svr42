@@ -1,0 +1,6 @@
+#ident	"@(#)uts-x86:fs/xnamfs/xnamfs.cf/Mtune	1.2"
+#ident	"$Header: $"
+* XNAMFS Parameters -----------------
+XSEMMAX		60	0	60	
+XSDSEGS		25	0	100
+XSDSLOTS	3	0	5

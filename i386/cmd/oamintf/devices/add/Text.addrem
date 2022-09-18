@@ -1,0 +1,37 @@
+#ident	"@(#)oamintf:i386/cmd/oamintf/devices/add/Text.addrem	1.2"
+#ident  "$Header: Text.addrem 1.1 91/08/29 $"
+
+################################################################################
+#	Module Name:  Text.addrem
+################################################################################
+title="Add Removable Storege Device"
+
+framemsg=`readfile $INTFBASE/conf.msg`
+
+help=OPEN TEXT $INTFBASE/Text.itemhelp ABSTRACT
+
+lifetime=shortterm
+
+rows=3
+cols=45
+
+text="`/usr/bin/devattr $ARG1 desc | set -l DESC;
+       echo "Insert the volume to be added into $DESC."`"
+
+altslks
+
+name=
+button=9
+action=nop
+
+name=
+button=10
+action=nop
+
+name=CONT
+button=11
+action=`run /usr/sadm/sysadm/bin/devtabcmd $ARG1 addcmd`
+
+name=CANCEL
+button=14
+action=CLEANUP

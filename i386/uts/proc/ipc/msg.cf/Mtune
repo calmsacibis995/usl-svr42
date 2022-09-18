@@ -1,0 +1,10 @@
+#ident	"@(#)uts-x86:proc/ipc/msg.cf/Mtune	1.3"
+#ident	"$Header: $"
+* Message Parameters ---------------
+MSGMAP		100	10	500
+MSGMAX		2048	512	262144
+MSGMNB		4096	4096	1048576
+MSGMNI		50	50	50
+MSGSSZ		8	8	4096
+MSGTQL		40	40	400
+MSGSEG		1024	1024	16384

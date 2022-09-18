@@ -1,0 +1,59 @@
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+/**/#ident	"@(#)olexamples:text/Imakefile	1.17"
+
+       INCLUDES = -I$(LIBSRC) 
+
+all:	unit_test1 \
+        unit_test2 \
+        unit_test3 \
+        unit_test4 \
+        unit_test5 \
+        unit_test6 \
+        unit_test7 \
+        unit_test8 \
+        unit_test9 \
+        unittest10 \
+        unittest11 \
+        unittest12 \
+        unittest13 \
+        unittest14 \
+        unittest15 \
+        unittest16 \
+        unittest18 \
+        unittest19 \
+        unittest20 \
+        unittest21 \
+        unittest22 \
+        unittest23
+
+NormalProgramTarget(unit_test1, unit_test1.o, XolClientDepLibs, XolClientLibs, $(SYS_LIBRARIES))
+NormalProgramTarget(unit_test2, unit_test2.o, XolClientDepLibs, XolClientLibs, $(SYS_LIBRARIES))
+NormalProgramTarget(unit_test3, unit_test3.o, XolClientDepLibs, XolClientLibs, $(SYS_LIBRARIES))
+NormalProgramTarget(unit_test4, unit_test4.o, XolClientDepLibs, XolClientLibs, $(SYS_LIBRARIES))
+NormalProgramTarget(unit_test5, unit_test5.o, XolClientDepLibs, XolClientLibs, $(SYS_LIBRARIES))
+NormalProgramTarget(unit_test6, unit_test6.o, XolClientDepLibs, XolClientLibs, $(SYS_LIBRARIES))
+NormalProgramTarget(unit_test7, unit_test7.o, XolClientDepLibs, XolClientLibs, $(SYS_LIBRARIES))
+NormalProgramTarget(unit_test8, unit_test8.o, XolClientDepLibs, XolClientLibs, $(SYS_LIBRARIES))
+NormalProgramTarget(unit_test9, unit_test9.o, XolClientDepLibs, XolClientLibs, $(SYS_LIBRARIES))
+NormalProgramTarget(unittest10, unittest10.o, XolClientDepLibs, XolClientLibs, $(SYS_LIBRARIES))
+NormalProgramTarget(unittest11, unittest11.o, XolClientDepLibs, XolClientLibs, $(SYS_LIBRARIES))
+NormalProgramTarget(unittest12, unittest12.o, XolClientDepLibs, XolClientLibs, $(SYS_LIBRARIES))
+NormalProgramTarget(unittest13, unittest13.o, XolClientDepLibs, XolClientLibs, $(SYS_LIBRARIES))
+NormalProgramTarget(unittest14, unittest14.o, XolClientDepLibs, XolClientLibs, $(SYS_LIBRARIES))
+NormalProgramTarget(unittest15, unittest15.o, XolClientDepLibs, XolClientLibs, $(SYS_LIBRARIES))
+NormalProgramTarget(unittest16, unittest16.o, XolClientDepLibs, XolClientLibs, $(SYS_LIBRARIES))
+NormalProgramTarget(unittest17, unittest17.o, XolClientDepLibs, XolClientLibs, $(SYS_LIBRARIES))
+NormalProgramTarget(unittest18, unittest18.o, XolClientDepLibs, XolClientLibs, $(SYS_LIBRARIES))
+NormalProgramTarget(unittest19, unittest19.o, XolClientDepLibs, XolClientLibs, $(SYS_LIBRARIES))
+NormalProgramTarget(unittest20, unittest20.o, XolClientDepLibs, XolClientLibs, $(SYS_LIBRARIES))
+NormalProgramTarget(unittest21, unittest21.o, XolClientDepLibs, XolClientLibs, $(SYS_LIBRARIES))
+NormalProgramTarget(unittest22, unittest22.o, XolClientDepLibs, XolClientLibs, $(SYS_LIBRARIES))
+NormalProgramTarget(unittest23, unittest23.o, XolClientDepLibs, XolClientLibs, $(SYS_LIBRARIES))

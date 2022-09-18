@@ -1,0 +1,108 @@
+#ident	"@(#)dtm:help/shutdown.hlp	1.10"
+^*version^1
+^*title^Shutdown
+^:Shutdown
+^*width^70
+^+DesktopMgr/help.defs
+^?Prepare system to be turned off.
+^0^Shutdown
+^$10
+Shutdown
+
+Use the Shutdown window to reboot (restart) or turn off the power to
+your computer. You are given the opportunity to save your current
+session. If you save your current session, open windows and
+\d(active icons^Active Icon) on your Desktop reappear next time you start your system.
+
+After you click on the buttons to shutdown your system, your system
+goes through a shutdown process. At the end of this process, the
+message, "The system is down. Press Ctrl-Alt-Del to reboot your
+computer." appears. At this point, you can do one of the following:
+
+   o Turn off your computer's power switch
+
+   o Reboot (restart your computer) with one of these methods:
+
+     - Simultaneously press Ctrl, Alt and Delete
+
+     - Press the RESET button if your computer has one
+
+     - Turn the power switch off and back on
+
+The following message windows are used for Shutdown:
+
+        \k(Shutdown Notice)
+        \k(Exit Notice)
+^1^Shutdown Notice
+^$20
+\k{Shutdown}
+1. Shutdown Notice
+
+The Shutdown notice asks you to confirm that you want to shut
+down your system.
+
+The buttons available for the Shutdown notice are:
+
+        \k(Shutdown Button^^Shutdown ButtonSN)
+        \k(Cancel Button^^Cancel ButtonSN)
+        \k(Help Button^^Help ButtonSN)
+^2^Shutdown Button=Shutdown ButtonSN
+^$30
+1. \k{Shutdown Notice}
+   1.1 Shutdown Button
+
+The Shutdown button continues the shutdown process.
+^2^Cancel Button=Cancel ButtonSN
+^$40
+1. \k{Shutdown Notice}
+   1.2 Cancel Button
+
+The Cancel button closes the Shutdown notice without shutting down
+your system.
+^2^Help Button=Help ButtonSN
+^$50
+1. \k{Shutdown Notice}
+   1.3 Help Button
+
+The Help button provides on-line help for the Shutdown notice.
+^1^Exit Notice
+^$60
+\k{Shutdown}
+2. Exit Notice
+
+The Exit notice lets you exit from the Desktop with or without saving
+your current session.
+
+The buttons available for the Exit notice are:
+
+        \k(Save Session & Exit^^Save Session & Exit ButtonEN)
+        \k(Exit Button^^Exit ButtonEN)
+        \k(Cancel Button^^Cancel ButtonEN)
+        \k(Help Button^^Help ButtonEN)
+^2^Save Session & Exit Button=Save Session & Exit ButtonEN
+^$70
+2. \k{Exit Notice}
+   2.1 Save Session & Exit Button
+
+The Save Session & Exit button lets you exit the Desktop and save the
+current session so that the active windows on your screen appear the
+next time you log in.
+^2^Exit Button=Exit ButtonEN
+^$80
+2. \k{Exit Notice}
+   2.2 Exit Button
+
+The Exit button lets you exit the Desktop without saving the current
+session.
+^2^Cancel Button=Cancel ButtonEN
+^$90
+2. \k{Exit Notice}
+   2.3 Cancel Button
+
+The Cancel button cancels your request to exit the Desktop.
+^2^Help Button=Help ButtonEN
+^$100
+2. \k{Exit Notice}
+   2.4 Help Button
+
+The Help button provides on-line help for the Exit notice.

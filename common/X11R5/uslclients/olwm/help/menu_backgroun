@@ -1,0 +1,54 @@
+You can view and choose from any menu in three ways using the menu
+mouse button:
+		Press-drag-release
+		Click-move-click
+		Pin-the-menu
+
+Using Press-Drag-Release:
+
+	To use press-drag release, press MENU, drag the pointer to
+	the control you want, and release MENU. If you do not want
+	to choose an item, move the pointer off the menu and release
+	the mouse button.
+
+Using Click-Move-Click:
+
+	To use click-move-click, click MENU. The menu is displayed
+	and stays on the screen. Move the pointer to the control you
+	want and click SELECT or MENU. The control is executed and
+	the menu is dismissed. If you do not want to choose a control,
+	move the pointer off the menu and click SELECT or MENU to
+	dismiss the menu.
+
+Using the Pushpin:
+
+	To pin up any menu that has a pushpin, press MENU and drag
+	the pointer to the pushpin. When the pin pops into the hole,
+	release MENU. The menu becomes a pop-up window, and you
+	choose from it in the same way you use controls in the
+	control area of a window:
+		Click SELECT to choose a control. The pinned menu
+		remains on the screen until you dismiss it. To
+		dismiss a pinned menu, move the pointer to the
+		pushpin and click SELECT. 
+
+Changing the Default Setting:
+
+	Each menu in a menu group has a default setting, which is
+	shown by a default ring. You can change the default setting
+	for any menu using the steps below:
+		1) Press MENU to display the menu. To change the
+		   default for a submenu, drag the pointer into
+		   the submenu.
+		2) Press the default modifier key (continue pressing
+		   MENU).
+		3) Drag the pointer from control to control. The default
+		   ring follows the pointer.
+		4) When the default ring is on the control you want to
+		   use as the default, release MENU and then release
+		   the modifier key.
+
+You can press and release the DEFAULT modifier key at any time, either
+before or after you press MENU. If you release the modifier key first
+and then release MENU, in addition to setting the default, the command
+is executed.

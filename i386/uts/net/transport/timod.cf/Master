@@ -1,0 +1,4 @@
+#ident	"@(#)uts-x86:net/transport/timod.cf/Master	1.3"
+#ident	"$Header: $"
+$version 1
+timod	tim	S	0	0	0

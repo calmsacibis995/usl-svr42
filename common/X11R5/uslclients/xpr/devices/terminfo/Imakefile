@@ -1,0 +1,89 @@
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+/**/#ident	"@(#)xpr:devices/terminfo/Imakefile	1.5"
+         INCLUDES = -I../.. $(STD_INCLUDES)
+
+              LIB = libti.a
+
+FONTSRCS= \
+		R_10.c \
+		R_12.c \
+		R_14.c \
+		R_16.c \
+		R_18.c \
+		R_20.c \
+		R_22.c \
+		R_24.c
+
+SRCS	= \
+		bitblt.c \
+		colors.c \
+		fontref.c \
+		hex.c \
+		image_bits.c \
+		image_cells.c \
+		models.c \
+		output.c \
+		parse_porder.c \
+		readterminfo.c \
+		strfld.c \
+		text.c \
+		ti_prologue.c \
+		ti_map.c \
+		ti_motion.c \
+		tidbit.c \
+		tinames.c \
+		makepath.c \
+		wherelist.c \
+		parse_color.y
+OBJS = \
+		bitblt.o \
+		colors.o \
+		fontref.o \
+		hex.o \
+		image_bits.o \
+		image_cells.o \
+		models.o \
+		output.o \
+		parse_porder.o \
+		readterminfo.o \
+		strfld.o \
+		text.o \
+		ti_prologue.o \
+		ti_map.o \
+		ti_motion.o \
+		tidbit.o \
+		tinames.o \
+		makepath.o \
+		wherelist.o \
+		R_10.o \
+		R_12.o \
+		R_14.o \
+		R_16.o \
+		R_18.o \
+		R_20.o \
+		R_22.o \
+		R_24.o \
+		parse_color.o
+
+install:: fontref.c \
+	parse_color.c $(OBJS)
+NormalLibraryObjectRule()
+
+NormalLibraryTarget(ti,$(OBJS))
+
+fontref.c:	$(FONTSRCS)
+	sh genfontref $(FONTSRCS) >fontref.c
+
+parse_color.c:	parse_color.y
+	$(YACC) parse_color.y
+	mv y.tab.c parse_color.c
+
+DependTarget()

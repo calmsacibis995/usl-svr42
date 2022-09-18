@@ -1,0 +1,58 @@
+#ident	"@(#)proto:desktop/menus/hd/setinst.3	1.7"
+#ident	"$Header: $"
+.optstring
+Your choices are:
+.pageno
+Page %d of %d
+.ul
+UNIX System Installation
+.hhelp_ban
+Help on the Help facility and the Installation program
+.helpbanner
+Help on  Mount Failure
+.ur
+Previous Installation Detected
+.lr
+Del=Cancel  F1=Help
+.top
+WARNING: Existing `echo "$os_str"` already detected.
+         Mount Failure for one or more of / /stand, /usr, /var
+
+An existing UNIX operating system has been detected on your hard
+disk.  However, a there has been a mount failure as shown below:
+`[ "$ROOTERR" ] && echo "Mount of root with filesystem type <$ROOTFS> failed with error $ROOTERR"`
+`[ "$STANDERR" ] && echo "Mount of /stand with filesystem type <$STANDFS> failed with error $STANDERR"`
+`[ "$VARERR" ] && echo "Mount of /var with filesystem type <$VARFS> failed with error $VARERR"`
+`[ "$USRERR" ] && echo "Mount of /usr with filesystem type <$USRFS> failed with error $USRERR"`
+
+You have the option of preserving your applications and data files
+during installation.  To save your personal data files, cancel the
+installation.
+If you continue the installation now, all files will be destroyed.  
+
+It is also recommended that you back up your data before continuing.
+
+.form
+Cancel the installation and power down your computer.
+Continue the installation.  This will destroy all files.
+.selection
+Press '1' or '2' followed by 'ENTER' (or 'RETURN'):
+.help
+For further instructions on using this help facility and on using the UNIX
+System installation program, press the 'F1' key (or the '?' key) at any
+time while you are reading help.
+
+If you need more information than is available through this help facility,
+refer to the Installation Guide.
+
+
+Mount Failure
+
+When the active partition(s) of your hard disk(s) were examined, a UNIX
+System was detected.   One of the file systems failed to mount.
+
+.helpinst
+Del=Cancel  F1=Help  ESC=Exit help  1=Forward  2=Back
+.working
+Working...
+.end

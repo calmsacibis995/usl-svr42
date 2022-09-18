@@ -1,0 +1,33 @@
+#ident	"@(#)proto:desktop/menus/fd/unexpdisk2	1.1"
+
+# This file is appended to error.1 to make an error screen
+.ur
+ERROR: Fatal Error On Second Hard Disk
+.helpbanner
+Help: Fatal Error On Second Hard Disk
+.top
+
+An error occurred while attempting to write data to the second hard disk.
+The UNIX System Installation cannot continue.
+
+After you press 'ENTER' the system will be shut down.  If you wish to retry
+installing the UNIX System, put the Boot Diskette 1 of 3 in the boot
+floppy drive and reboot your computer.
+.help
+For detailed instructions, press the 'F1' (or '?') key at any time.
+
+An error occurred while attempting to write data to the second hard disk.
+The UNIX System Installation cannot continue.
+
+Your options include:
+
+-- retry installation of the UNIX System. Changing the location of the
+UNIX System partition on the hard disk may solve the problem.
+
+-- run diagnostic programs supplied by your computer vendor to determine
+the cause of the problem.
+
+-- contact the customer support of your computer vendor
+
+Refer to the "Troubleshooting" section of the Installation Guide for
+more information.

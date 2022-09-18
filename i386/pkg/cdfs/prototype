@@ -1,0 +1,88 @@
+#	Copyright (c) 1991, 1992  Intel Corporation
+#	All Rights Reserved
+#
+#	INTEL CORPORATION CONFIDENTIAL INFORMATION
+#
+#	This software is supplied to USL under the terms of a license 
+#	agreement with Intel Corporation and may not be copied nor 
+#	disclosed except in accordance with the terms of that agreement.
+
+#ident	"@(#)pkg.cdfs:i386/pkg/cdfs/prototype	1.10"
+#ident	"$Header: $"
+
+#
+# Information files.
+#
+
+i	pkginfo
+i	postinstall
+i	preremove
+i	copyright
+
+!PKGINST=cdfs
+!default	755	root	sys
+
+d	none	/tmp	?	?	?
+d	none	/tmp/cdfs	775	bin	bin
+
+v	none	/tmp/cdfs/cdfs.Dr=/etc/conf/pack.d/cdfs/Driver.o
+v	none	/tmp/cdfs/cdfs.Sp=/etc/conf/pack.d/cdfs/space.c
+v	none	/tmp/cdfs/cdfs.Ma=/etc/conf/mdevice.d/cdfs
+v	none	/tmp/cdfs/cdfs.Sy=/etc/conf/sdevice.d/cdfs
+
+#
+# Package object files and directories.
+#
+!default	775	root	sys
+d	none	/etc		?	?	?
+d	none	/etc/fs			?	?	?
+d	none	/etc/fs/cdfs
+d	none	/usr			?	?	?
+d	none	/usr/lib		?	?	?
+d	none	/usr/lib/fs		?	?	?
+d	none	/usr/lib/fs/cdfs
+d	none	/usr/sbin	?	?	?
+d	none	/usr/include	?	?	?
+d	none	/usr/include/sys	?	?	?
+d	none	/usr/include/sys/fs	?	?	?
+
+#
+# Libraries.
+#
+f	none	/usr/lib/libcdfs.a	444	bin	bin
+f	none	/usr/lib/libcdfs.so	444	bin	bin
+
+#
+# Utilities.
+#
+!	default	555	bin	bin
+f	none	/usr/lib/fs/cdfs/cddevsuppl
+l	none	/usr/sbin/cddevsuppl=/usr/lib/fs/cdfs/cddevsuppl
+f	none	/usr/lib/fs/cdfs/cddrec
+l	none	/usr/sbin/cddrec=/usr/lib/fs/cdfs/cddrec
+f	none	/usr/lib/fs/cdfs/cdmntsuppl
+l	none	/usr/sbin/cdmntsuppl=/usr/lib/fs/cdfs/cdmntsuppl
+f	none	/usr/lib/fs/cdfs/cdptrec
+l	none	/usr/sbin/cdptrec=/usr/lib/fs/cdfs/cdptrec
+f	none	/usr/lib/fs/cdfs/cdsuf
+l	none	/usr/sbin/cdsuf=/usr/lib/fs/cdfs/cdsuf
+f	none	/usr/lib/fs/cdfs/cdvd
+l	none	/usr/sbin/cdvd=/usr/lib/fs/cdfs/cdvd
+f	none	/usr/lib/fs/cdfs/cdxar
+l	none	/usr/sbin/cdxar=/usr/lib/fs/cdfs/cdxar
+f	none	/usr/lib/fs/cdfs/fstyp
+f	none	/etc/fs/cdfs/fstyp
+f	none	/usr/lib/fs/cdfs/mount
+f	none	/etc/fs/cdfs/mount
+
+#
+# Headers.
+#
+!default	0444	bin	bin
+f	none	/usr/include/sys/fs/cdfs_fs.h
+f	none	/usr/include/sys/fs/cdfs_inode.h
+f	none	/usr/include/sys/fs/cdfs_ioctl.h
+f	none	/usr/include/sys/fs/cdfs_susp.h
+f	none	/usr/include/sys/fs/iso9660.h
+f	none    /usr/include/sys/cdrom.h
+

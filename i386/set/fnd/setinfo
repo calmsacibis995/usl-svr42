@@ -1,0 +1,14 @@
+#ident	"@(#)set:i386/set/fnd/setinfo	1.11"
+#ident	"$Header: $"
+
+# Format for the setinfo file.  	Field separator is: <tab>
+# pkg   parts   default category	pkg full-name
+# abbr          y/n
+
+base	12	y	system	Base System
+lp	1	y	system	Printer Support
+nsu	1	y	system	Network Support Utilities
+acp	2	y	system	Enhanced Application Compatibility
+dtxt	2	y	graphics	Graphics Utilities
+atm	1	y	graphics	Adobe Type Manager
+desktop	5	y	graphics	Desktop Manager

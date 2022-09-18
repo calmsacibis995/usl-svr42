@@ -1,0 +1,38 @@
+#ident	"@(#)olpkg.oam:pkg.wksh/postinstall	1.1"
+#	Copyright (c) 1990, 1991 UNIX System Laboratories, Inc.
+#	Copyright (c) 1988 AT&T
+#	  All Rights Reserved
+
+#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+#	UNIX System Laboratories, Inc.
+#	The copyright notice above does not evidence any
+#	actual or intended publication of such source code.
+
+
+#
+#	USL Windowing Korn Shell
+#
+
+
+#
+# make sure we're on V.4
+#
+if [ `uname -r`  -lt "4.0" ]
+then
+	echo "This package can only be installed on Release 4.0 or later systems"
+	exit 1
+fi
+
+#
+# let them know that the Windowing Korn Shell package is installed
+#
+
+installf $PKGINST /usr/options/$PKG.name
+echo $NAME > /usr/options/$PKG.name
+installf -f $PKGINST
+
+#
+# Now clean up
+#
+rm -rf /tmp/pkg > /dev/null 2>&1
+exit ${errflag}

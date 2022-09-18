@@ -1,0 +1,117 @@
+.\"ident	"@(#)xinfo:xinfo.man	1.1"
+
+.\" xinfo.man (Troff source file)
+.\"	Acc: 575578487 Mon Mar 28 13:54:47 1988
+.\"	Mod: 575578487 Mon Mar 28 13:54:47 1988
+.\"	Sta: 575578487 Mon Mar 28 13:54:47 1988
+.\"	Owner: 2011
+.\"	Group: 1985
+.\"	Permissions: 666
+
+
+.\"	START USER STAMP AREA
+
+
+.\"	END USER STAMP AREA
+
+.TH XINFO 1 "local" "X Version 11"
+.SH NAME
+xinfo \- print information about X window system
+
+.SH SYNOPSIS
+
+.B xinfo
+[-v | -t] [-d] [-w] [-f | -fp pattern] [-c columns] [-fn fontname]
+[-display host:display]
+
+.SH DESCRIPTION
+
+\fIxinfo\fP
+prints information about a display, window, or font.
+
+.SH OPTIONS
+
+.I xinfo
+understands to following options:
+.PP
+.TP 8
+.B \-v
+Print verbose information.
+This is the default.
+.PP
+.TP 8
+.B \-t
+Print terse information.
+The default is verbose.
+.PP
+.TP 8
+.B \-d
+\fIxinfo\fP
+prints information about the display and screen structures.
+.PP
+.TP 8
+.B \-w
+\fIxinfo\fP
+prompts you to select a window and prints the attributes of
+the selected window.
+.PP
+.TP 8
+.B \-f
+\fIxinfo\fP
+prints the entire list of available fonts.
+By default these are printed 1 per line.
+Multiple columns are obtained using the \fB-c\fP option.
+.PP
+.TP 8
+.B \-fp \fIpattern\fP
+\fIxinfo\fP
+prints the list of all fonts matching the given pattern.
+See \fIXListFonts\fP for details.
+.PP
+.TP 8
+.B \-fn \fIfontname\fP
+\fIxinfo\fP
+prints information about the given font.
+.PP
+.TP 8
+.B \-c \fIcolumns\fP
+This option specifies the number of columns
+used to list font names (see \fB-f\fP and \fB-fp\fP options).
+The default is 1 column.
+.PP
+.TP 8
+.B \-display \[\fIhost\fP]:\[\fIdisplay\fP]
+Normally,
+.I xinfo
+gets the host and display number to use from the environment
+variable ``DISPLAY''.  Either or both can be specified with this option.
+.I host
+specifies which machine to create the
+.I xinfo
+window on, and
+.I display
+specifies the display number.
+
+.SH X DEFAULTS
+.PP
+.TP 8
+.B Verbose
+Print verbose information.
+This is the default.
+.PP
+.TP 8
+.B Terse
+Print terse information.
+The default is verbose.
+.PP
+.TP 8
+.B Columns
+This specifies the number of columns
+used to list font names (see \fB-f\fP and \fB-fp\fP options).
+The default is 1 column.
+
+.SH AUTHOR
+
+Copyright (c) 1987, AT&T
+.br
+Ross Hilbert - AT&T

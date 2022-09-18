@@ -1,0 +1,45 @@
+#define ovals_format 1
+#define ovals_width 32
+#define ovals_height 32
+#define ovals_ncolors 4
+#define ovals_chars_per_pixel 1
+static char * ovals_colors[] = {
+" " , "#FFFFFFFFFFFF",
+"." , "#00000000AAAA",
+"X" , "#0000FFFFFFFF",
+"o" , "#AAAA0000AAAA"
+} ;
+static char * ovals_pixels[] = {
+"                                ",
+"       ......     XXXX   oooo   ",
+"     ..........  XXXXXX  oooo   ",
+"    ............XXXXXXXXoooooo  ",
+"    ............XXXXXXXXoooooo  ",
+"   ............XXXXXXXXXoooooo  ",
+"  .............XXXXXXXXoooooooo ",
+"  .............XXXXXXXXoooooooo ",
+"  ............XXXXXXXXXoooooooo ",
+" .............XXXXXXXXXoooooooo ",
+" .............XXXXXXXXXoooooooo ",
+" .............XXXXXXXXXoooooooo ",
+" .............XXXXXXXXXoooooooo ",
+" .............XXXXXXXXXoooooooo ",
+" .............XXXXXXXXXoooooooo ",
+" .............XXXXXXXXXoooooooo ",
+" .............XXXXXXXXXoooooooo ",
+" .............XXXXXXXXXoooooooo ",
+" .............XXXXXXXXXoooooooo ",
+" .............XXXXXXXXXoooooooo ",
+" .............XXXXXXXXXoooooooo ",
+" .............XXXXXXXXXoooooooo ",
+" .............XXXXXXXXXoooooooo ",
+"  ............XXXXXXXXXoooooooo ",
+"  .............XXXXXXXXoooooooo ",
+"  .............XXXXXXXXoooooooo ",
+"   ............XXXXXXXXXoooooo  ",
+"    ............XXXXXXXXoooooo  ",
+"    ............XXXXXXXXoooooo  ",
+"     ..........  XXXXXX  oooo   ",
+"       ......     XXXX   oooo   ",
+"                                "
+} ;

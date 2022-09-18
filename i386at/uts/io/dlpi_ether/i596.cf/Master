@@ -1,0 +1,5 @@
+#ident	"@(#)uts-x86at:io/dlpi_ether/i596.cf/Master	1.3"
+#ident	"$Header: $"
+$version 1
+$entry init start intr
+i596	i596	Sc	0	0	0

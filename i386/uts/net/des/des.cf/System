@@ -1,0 +1,4 @@
+#ident	"@(#)uts-x86:net/des/des.cf/System	1.4"
+#ident	"$Header: $"
+$version 1
+des	N	1	0	0	0	0	0	0	0	-1

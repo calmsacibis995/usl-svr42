@@ -1,0 +1,247 @@
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+/**/#ident	"@(#)r4spider:Imakefile	1.4"
+
+/**/# Run imake -DUseInstalled -I/usr/lib/X11/config to make a Makefile.
+/**/# This is an R4 style Imakefile, so will need the R4 config files to
+/**/# to make a Makefile.  It also assume that X11 is installed in /usr/lib.
+
+SHAR = shar -a
+RM = rm -f
+COMPRESS = compress
+BTOA = btoa
+SPLIT = split
+CAT = cat
+DATE="\"`date`\""
+
+HELPDIR = $(LIBDIR)/spider 
+
+/***** Note:  only need XViewNeedsOlgx when using XView 2.0 or greater *****/
+#ifndef XViewNeedsOlgx
+#define XViewNeedsOlgx YES
+#endif
+
+/***** Note:  cannot have CompileXlibOnly, CompileXView, and CompileXAW 
+              all be true.  Need to pick one *****/
+#ifndef CompileXlibOnly
+#define CompileXlibOnly NO
+#endif
+
+#ifndef CompileXView
+#define CompileXView NO
+#endif
+
+#ifndef CompileXAW
+#define CompileXAW  YES
+#endif
+
+#if CompileXlibOnly
+# if CompileXView
+#  undef CompileXView
+# endif
+# if CompileXAW
+#  undef CompileXAW
+# endif
+#elif CompileXView
+# if CompileXAW
+#  undef CompileXAW
+# endif
+#endif
+
+/***** Note:  cannot have both Round Cards and Small Cards be true *****/
+#ifndef RoundCards
+#define RoundCards YES
+#endif
+
+
+#ifndef SmallCards
+#define SmallCards YES
+#endif
+
+#if SmallCards
+# if RoundCards
+#  undef RoundCards
+# endif
+#endif
+
+/**/# If these are not defined in the site.def file, define them now.
+/**/# set up compile time dependencies for XView clients.
+/**/#	XVTOP = $(XVIEWHOME)
+/**/#	XVLIBSRC = $(XVTOP)/lib
+/**/##if UseInstalled
+/**/#	DEPXVIEWLIB =
+/**/#	DEPOLGXLIB =
+/**/##else
+/**/#	DEPXVIEWLIB = $(XVLIBSRC)/libxview.a
+/**/## if XViewNeedsOlgx
+/**/#	DEPOLGXLIB = $(XVLIBSRC)/libolgx.a
+/**/## else
+/**/#	DEPOLGXLIB =
+/**/## endif
+/**/##endif
+/**/#	XVIEWLIB = -L$(XVLIBSRC) -lxview
+/**/##if XViewNeedsOlgx
+/**/#	OLGXLIB = -L$(XVLIBSRC) -lolgx
+/**/##else
+/**/#	OLGXLIB =
+/**/##endif
+
+KL_DIST = main.c
+#if CompileXlibOnly
+# if RoundCards
+DEPLIBS = $(DEPXMULIB) $(DEPXLIB)
+LOCAL_LIBRARIES = $(XMULIB) $(XLIB)
+# else
+DEPLIBS = $(DEPXLIB)
+LOCAL_LIBRARIES = $(XLIB)
+# endif
+SYSTEM_LIBRARIES =
+DEPEXTENSIONLIB =
+EXTENSIONLIB =
+
+TKOBJS = main.o
+ 
+TKSRCS = main.c
+ 
+TKHEADERS = 
+ 
+TKBITMAPS = 
+ 
+TKDOCS = 
+
+TKDEFINES = -DKITLESS
+ 
+TKINCLUDES = 
+
+TARGET = spider
+#endif
+
+XVIEW_DIST = xv_ui.c xv_stubs.c xv_ui.h spider.info
+#if CompileXView
+# if RoundCards
+DEPLIBS = $(DEPXVIEWLIB) $(DEPOLGXLIB) $(DEPXMULIB) $(DEPXLIB)
+LOCAL_LIBRARIES = $(XVIEWLIB) $(OLGXLIB) $(XMULIB) $(XLIB)
+# else
+DEPLIBS = $(DEPXVIEWLIB) $(DEPOLGXLIB) $(DEPXLIB)
+LOCAL_LIBRARIES = $(XVIEWLIB) $(OLGXLIB) $(XLIB)
+# endif
+SYSTEM_LIBRARIES = 
+DEPEXTENSIONLIB =
+EXTENSIONLIB =
+
+TKOBJS = xv_ui.o xv_stubs.o 
+
+TKSRCS = xv_ui.c xv_stubs.c
+
+TKHEADERS = xv_ui.h
+
+TKBITMAPS = 
+
+TKDOCS = spider.info 
+
+TKDEFINES = -DXVIEW
+
+TKINCLUDES = -I$(XVTOP)/include 
+
+TARGET = spider
+#endif
+
+XAW_DIST = xaw_ui.c xaw_stubs.c xaw_ui.h
+#if CompileXAW
+DEPLIBS = $(DEPXAWLIB) $(DEPXTOOLLIB) $(DEPXMULIB) $(DEPXLIB)
+LOCAL_LIBRARIES = $(XAWLIB) $(XTOOLLIB) $(XMULIB) $(XLIB) $ -L$(EXTENSIONSRC)/lib -lXext
+SYSTEM_LIBRARIES =
+DEPEXTENSIONLIB =
+EXTENSIONLIB =
+
+TKOBJS = xaw_ui.o xaw_stubs.o
+
+TKSRCS = xaw_ui.c xaw_stubs.c
+
+TKHEADERS = xaw_ui.h
+
+TKBITMAPS = 
+
+TKDOCS =
+
+TKDEFINES = -DXAW 
+
+TKINCLUDES = 
+
+TARGET = spider
+#endif
+
+BASE_OBJS = gfx.o spider.o events.o windows.o movelog.o util.o version.o
+OBJS =	$(BASE_OBJS)  $(TKOBJS)
+
+BASE_SRCS = gfx.c spider.c events.c windows.c movelog.c util.c  version.c
+SRCS =  $(BASE_SRCS) $(TKSRCS)
+
+BASE_HEADERS = globals.h defs.h assert.h
+HEADERS = $(BASE_HEADERS) $(TKHEADERS)
+
+BASE_BITMAPS = rank.bm suit.bm face.bm spider.bm cards.bm.aa cards.bm.ab
+BITMAPS = $(BASE_BITMAPS) $(TKBITMAPS)
+
+BASE_DOCS = doc.intro doc.rules doc.controls doc.examples doc.summary spider.man doc.misc
+DOCS =	$(BASE_DOCS) $(TKDOCS)
+
+MISC = Imakefile Makefile.sunpro README
+
+ALL_SRCS = $(MISC) $(BASE_SRCS) $(BASE_HEADERS) $(BASE_BITMAPS) $(BASE_DOCS) \
+	$(XVIEW_DIST) $(XAW_DIST) $(KL_DIST)
+
+#if SmallCards
+DEFINES = $(TKDEFINES) -DSMALL_CARDS -DDATE="\"`date`\"" -DHELPDIR="\"$(HELPDIR)\""
+#else 
+# if RoundCards
+DEFINES = $(TKDEFINES) -DROUND_CARDS -DDATE="\"`date`\"" -DHELPDIR="\"$(HELPDIR)\""
+# else
+DEFINES = $(TKDEFINES) -DDATE="\"`date`\"" -DHELPDIR="\"$(HELPDIR)\""
+# endif
+#endif
+
+INCLUDES = -I. $(TKINCLUDES)
+
+CPPFLAGS = 
+
+#if SmallCards
+all:: 
+	-@if [ ! -f cards.bm ]; then cat cards.bm.aa cards.bm.ab > cards.bm; fi
+#endif
+
+ComplexProgramTarget($(TARGET))
+
+#ifdef SparcArchitecture
+/**/# SunOS4.0.3 sparc optimizer slimes this file
+util.o:	util.c
+	$(CC) $(CPPFLAGS) $(DEFINES) $(INCLUDES) -c $<
+#endif
+
+
+#if Release5
+InstallMultipleDest(install,$(DOCS),$(USRLIBDIR)/spider)
+#else
+MakeDirectories(install,$(HELPDIR))
+InstallMultipleDest(install,$(DOCS),$(HELPDIR))
+#endif
+	
+clean::
+	$(RM) spider.shar spider.a spider.a.a?
+
+shar::
+	$(SHAR) $(ALL_SRCS) > spider.shar
+
+dist::	shar
+	$(RM) spider.shar.Z
+	$(COMPRESS) spider.shar
+	$(CAT) spider.shar.Z | $(BTOA) > spider.a
+	$(SPLIT) spider.a spider.a.
+

@@ -1,0 +1,12 @@
+#ident	"@(#)pkg.oam:pkginfo	1.9"
+#ident	"$Header: $"
+
+PKG="oam"
+PREDEPEND="oam"
+NAME="OA&M"
+RELEASE="4.1ES"
+VERSION="1"
+VENDOR="UNIX System Laboratories"
+CLASSES=""
+ORDER="none OAM_basic OAM_extended OAMmif OAMadmin OAM_bhelp OAM_ehelp"
+CATEGORY="system"

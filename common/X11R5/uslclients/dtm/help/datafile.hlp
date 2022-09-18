@@ -1,0 +1,39 @@
+#ident	"@(#)dtm:help/datafile.hlp	1.7"
+^*version^1
+^*title^Datafiles
+^:Datafile
+^*width^70
+^+DesktopMgr/help.defs
+^?Introduction to Datafiles.
+^0^Datafiles
+^$10
+Datafiles
+
+A datafile is a \d(file) that contains information stored by an application.
+This may be text from a word processor or spreadsheet, graphics
+from a drawing program or a business graphics package, or information
+that is stored in a database.
+
+Datafiles are usually represented as an icon that is a "dogeared"
+(upper right corner is folded in) document. The document icon may
+have an additional image on it that indicates what type of data is
+stored in the datafile.
+
+A datafile is typically linked to the application with which it is associated.
+This means that whenever you \d(double-click) on the datafile icon
+to open it, the associated application is started up and the datafile
+is loaded into the application. For example, double-clicking on a
+document datafile called "report" starts up the associated word
+processor and then loads it with the "report" datafile causing the
+text in that document to be displayed.
+
+When you install new applications on your system that create datafiles,
+you can create new types of datafile icons for these by using the
+"Icon Setup" tool located in the "System Setup" folder.
+
+More information:
+
+        \k(Icons^DesktopMgr/desktop.hlp^Icons)
+        \k(Application Setup^dtadmin/pkgset.hlp^Application Setup)
+        \k(Icon Setup^DesktopMgr/iconset.hlp^Icon Setup)
+        \k(System Setup Folder^DesktopMgr/folder.hlp^System Setup Folder)

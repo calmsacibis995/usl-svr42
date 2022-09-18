@@ -1,0 +1,37 @@
+#display VGA256 PsuedoColor "T8900C MULTISYNC 1024x768 9.75x7.32" 0 /dev/console lib/libvga256.so
+# /* T8900C, 1024x768 entry for multisync monitors ;  ex: NEC 4d, 5d etc */
+
+#display VGA256 PsuedoColor "T8900C INTERLACED 1024x768 9.75x7.32" 0 /dev/console lib/libvga256.so
+# /* T8900C, 1024x768 entry for interlaced monitors, ex: NEC 3d */
+
+#display VGA256 PsuedoColor "T8900C MULTISYNC 800x600 9.75x7.32" 0 /dev/console lib/libvga256.so
+# /* T8900C, entry for 800x600 and multisync monitors */
+
+#display VGA256 PsuedoColor "T8900C INTERLACED 800x600 9.75x7.32" 0 /dev/console lib/libvga256.so
+# /* T8900C, entry for 800x600 and interlaced monitors */
+
+#display VGA256 PsuedoColor "T8900C STDVGA 640x480 9.75x7.32" 0 /dev/console lib/libvga256.so
+# /* VGA 256 colors: entry for 4 & 8 DRAM configurations */
+
+#display VGA256 PsuedoColor "T8900Ca STDVGA 640x480 9.75x7.32" 0 /dev/console lib/libvga256.so
+# /* VGA 256 colors: entry for 8 DRAM configurations */
+
+
+#
+# NOTE: A valid entry is the first line that does not have a '#' 
+#	sign as the first char is taken as 'THE ENTRY'; So, to use
+#	an entry just comment (#) the lines before the required line.
+#	Try to keep the required entry at the top of the file; this
+# 	saves start up time especially with huge config files.
+#
+#	To use your own config file, you can run the server with:
+#
+#		X -config $HOME/mycfg &
+#		OR
+#		olinit -- -config $HOME/mycfg
+#
+# If you want to know the valid entries for the installed init 
+# driver (/lib/libv256i.so.1), make a fake entry in the 2nd field (ex: replace
+# VGA with FOO) and try to run the server; all the valid entries
+# with the supported resolutions are printed on stdout.
+#

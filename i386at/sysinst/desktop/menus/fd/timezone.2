@@ -1,0 +1,70 @@
+#ident	"@(#)proto:desktop/menus/fd/timezone.2	1.3"
+#ident	"$Header: $"
+.ul
+UNIX System Installation
+.ur
+Customize Timezone
+.lr
+Del=Cancel  F1=Help
+.top
+On this screen you describe the timezone in which you live.  Enter your
+three character timezone code, the number of hours west of UTC (or GMT) that
+your timezone uses, and a daylight savings time timezone code if applicable.
+
+.form
+`[ ${DAYLIGHT} ] && echo "6//${TIMEZONE}//Timezone://FOO//"`
+`[ ${DAYLIGHT} ] && echo "//Your timezone//"`
+`[ ${DAYLIGHT} ] || echo "5 3 3//[A-Z][A-Z][A-Z]//Enter timezone://TIMEZONE//"`
+`[ ${DAYLIGHT} ] || echo "//Enter the 3-Letter abbreviation for timezone//"`
+
+3 1 -12 12//Enter hours west of GMT://WESTGMT//
+//Enter hours west of GMT (negative for east)//
+
+5 0 3//[A-Z][A-Z][A-Z]//Enter daylight savings code://DAYLIGHT//
+//Enter your daylight savings time code//
+.button
+Apply
+Reset
+.bottom
+Press 'TAB' to move the cursor between fields.  When finished, move the
+cursor to "Apply" and then press 'ENTER' to continue.
+.pageno
+Page %d of %d
+.helpbanner
+Help: Customize Timezone
+.hhelp_ban
+Instructions
+.help
+For detailed information, press the 'F1' (or '?') key at any time.
+
+This form allows you to provide customized information about your timezone.
+Enter information in the following fields:
+
+TIMEZONE
+
+This field accepts a 3-letter timezone abbreviation, such as "EST".  The 3
+letters must all be upper case.
+
+HOURS WEST OF GMT
+
+Enter the number of hours west of UTC (Universal Coordinated Time), or GMT
+(Greenwich Mean Time) that your timezone is.  Enter a negative number for
+hours east of GMT.  For example US Eastern Standard time is five hours
+west of UTC, so the correct entry for someone in this timezone would be 5.
+
+DAYLIGHT SAVINGS CODE
+
+This field accepts a 3-letter timezone abbreviation, such as "EDT".
+If you enter text in this field, the 3 letters must all be upper case.
+Leave this field blank to indicate that your timezone does not use Daylight
+Savings Time.
+
+When you have finished filling out this form, move the cursor to "Apply"
+and then press 'ENTER' to continue.
+.helpinst
+ESC=Exit help  F1=Instructions  Del=Cancel  1=Forward  2=Backward
+.hhelpinst
+ESC=Exit instructions  Del=Cancel  1=Forward  2=Backward
+.working
+Working...
+.end

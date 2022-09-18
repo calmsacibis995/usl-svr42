@@ -1,0 +1,118 @@
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+/**/#ident	"@(#)widgetTree:Imakefile	1.3"
+
+LOCAL_LIBRARIES = XolCompatClientLibs
+
+       INCLUDES = -I$(LIBSRC) -I$(LIBSRC)/Xol -I$(LIBSRC)/Xmu
+
+        DEPLIBS = XolCompatClientDepLibs
+
+SRCS	= \
+	AbbrevButt.c \
+	AbbrevMenu.c \
+	BulletinBo.c \
+	Button.c \
+	Caption.c \
+	Category.c \
+	Checkbox.c \
+	ControlAre.c \
+	Exclusives.c \
+	FButtons.c \
+	FCheckBox.c \
+	FExclusive.c \
+	FList.c \
+	FNonexclus.c \
+	Footer.c \
+	FooterPane.c \
+	Form.c \
+	Gauge.c \
+	Help.c \
+	IntegerFie.c \
+	Menu.c \
+	MenuButtG.c \
+	MenuButtW.c \
+	Modal.c \
+	Nonexclusi.c \
+	Notice.c \
+	OblongGad.c \
+	OblongWid.c \
+	Panes.c \
+	PopupMenu.c \
+	PopupWindo.c \
+	RectButtW.c \
+	RubberTile.c \
+	Scrollbar.c \
+	ScrolledWi.c \
+	ScrollingL.c \
+	Slider.c \
+	StaticText.c \
+	StepField.c \
+	Stub.c \
+	Text.c \
+	TextEdit.c \
+	TextField.c \
+	WidgetTree.c
+
+OBJS	= \
+	AbbrevButt.o \
+	AbbrevMenu.o \
+	BulletinBo.o \
+	Button.o \
+	Caption.o \
+	Category.o \
+	Checkbox.o \
+	ControlAre.o \
+	Exclusives.o \
+	FButtons.o \
+	FCheckBox.o \
+	FExclusive.o \
+	FList.o \
+	FNonexclus.o \
+	Footer.o \
+	FooterPane.o \
+	Form.o \
+	Gauge.o \
+	Help.o \
+	IntegerFie.o \
+	Menu.o \
+	MenuButtG.o \
+	MenuButtW.o \
+	Modal.o \
+	Nonexclusi.o \
+	Notice.o \
+	OblongGad.o \
+	OblongWid.o \
+	Panes.o \
+	PopupMenu.o \
+	PopupWindo.o \
+	RectButtW.o \
+	RubberTile.o \
+	Scrollbar.o \
+	ScrolledWi.o \
+	ScrollingL.o \
+	Slider.o \
+	StaticText.o \
+	StepField.o \
+	Stub.o \
+	Text.o \
+	TextEdit.o \
+	TextField.o \
+	WidgetTree.o
+
+ComplexProgramTarget(widgetTree)
+
+INSTALLABLES = Imakefile README $(SRCS) widgetTree WidgetTree.h
+
+SOURCEDIR =	$(USRLIBDIR)/tutorial
+
+InstallMultiple($(INSTALLABLES),$(SOURCEDIR)/widgetTree)
+
+DependTarget()

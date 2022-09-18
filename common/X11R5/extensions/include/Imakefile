@@ -1,0 +1,40 @@
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+/**/#ident	"@(#)r5extensions:include/Imakefile	1.4"
+
+#if BuildPexClients || BuildPexExt
+#define IHaveSubdirs
+      PEXDIRS = PEX
+#endif
+#if BuildXTrapExt || BuildXTrapLib
+#define IHaveSubdirs
+    XTRAPDIRS = xtrap
+#endif
+
+#ifdef IHaveSubdirs
+#define PassCDebugFlags 'CDEBUGFLAGS=$(CDEBUGFLAGS)'
+#endif
+SUBDIRS = $(PEXDIRS) $(XTRAPDIRS)
+
+HEADERS = Xext.h multibuf.h shape.h XShm.h MITMisc.h XI.h XInput.h XIproto.h \
+	XTest.h xtestext1.h
+INSTALLFLAGS = $(INSTINCFLAGS)
+
+all::
+
+BuildIncludes($(HEADERS),extensions,..)
+InstallMultiple($(HEADERS),$(INCDIR)/extensions)
+
+depend::
+
+#ifdef IHaveSubdirs
+MakeSubdirs($(SUBDIRS))
+DependSubdirs($(SUBDIRS))
+#endif

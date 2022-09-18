@@ -1,0 +1,52 @@
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+/**/#ident	"@(#)r5misc:uslclients/Imakefile	1.15"
+
+#define IHaveSubdirs
+#define PassCDebugFlags 'CDEBUGFLAGS=$(CDEBUGFLAGS)'
+
+#if defined(SystemV4) || defined(USL)
+OTHERSUBDIRS = xhost
+USLGAMES = train breakout
+#   else
+OTHERSUBDIRS = xhost
+#endif
+
+XWINSUBDIRS = \
+	$(OTHERSUBDIRS) xinit xpr xwd xwud xlswins oldattlib xevent xinfo \
+        xhints xsetroot xauth xdemo
+
+OPENLOOKSUBDIRS = libDtI olwm olam olprintscreen olpixmap \
+		  xterm dsdm dtm dtmail dtedit dtclock dtadmin dtsched \
+		  dtcalc $(USLGAMES) wksh xdm
+
+#ifdef BuildOnlyXWIN
+SUBDIRS = $(XWINSUBDIRS)
+#else
+#   ifdef BuildOnlyOpenLook
+SUBDIRS = $(OPENLOOKSUBDIRS)
+#   else
+SUBDIRS = $(XWINSUBDIRS) $(OPENLOOKSUBDIRS)
+#   endif
+#endif
+
+MakeSubdirs($(SUBDIRS))
+DependSubdirs($(SUBDIRS))
+
+all:: wksh_client
+
+wksh_client:
+	(cd wksh ;\
+	$(MAKE) -i ;\
+	)
+
+install::
+	(set -x; $(MKDIRHIER) $(DESKTOPDIR)/Applications;\
+	$(MKDIRHIER) $(DESKTOPDIR)/Utilities);

@@ -1,0 +1,100 @@
+#ident	"@(#)pkg.eth:menu.eth	1.11"
+#ident	"$Header: $"
+
+.optstring
+Your options are:
+.pageno
+Page %d of %d
+.ul
+Ethernet Hardware Support
+.hhelp_ban
+Instructions
+.helpbanner
+Help: Adaptor Selection Menu
+.ur
+Adaptor Selection Menu
+#.ll
+#Please make a selection.  Press F1 for Help.
+.lr
+F1=Help
+.top
+Following is a list of the supported network adaptor boards.  You may select
+`[ "$PKGINSTALL_TYPE" = NEWINSTALL ] && echo "one (or more) of each kind of adaptor."`
+`[ "$PKGINSTALL_TYPE" != NEWINSTALL ] && echo "one (or more) of each kind of adaptor.  The adaptors selected below"`
+`[ "$PKGINSTALL_TYPE" != NEWINSTALL ] && echo "represent a previous Ethernet hardware configuration on this computer; if"`
+`[ "$PKGINSTALL_TYPE" != NEWINSTALL ] && echo "your hardware has not changed you should accept these defaults."`
+.form
+#TYPE_INTEGER <min length> <max length>//field label//
+3 1 0 6//Intel iMX-LAN/586://IMXLAN586_NUM//
+#field options
+//How many IMXLAN586 adaptors do you wish to use (0-6)?//
+#TYPE_INTEGER <min length> <max length>//field label//
+3 1 0 6//3Com EtherLink II (3C503)://IE6_NUM//
+#field options
+//How many IE6 adaptors do you wish to use (0-6)?//
+#TYPE_INTEGER <min length> <max length>//field label//
+3 1 0 1//3Com EtherLink 16 (3C507)://EL16_AT_NUM//
+#field options
+//How many EL16_AT adaptors do you wish to use (0-1)?//
+#TYPE_INTEGER <min length> <max length>//field label//
+3 1 0 1//Intel EtherExpress16://EE16_NUM//
+#field options
+//How many EE16 adaptors do you wish to use (0-1)?//
+#TYPE_INTEGER <min length> <max length>//field label//
+3 1 0 6//Western Digital EtherCard Plus://WD_AT_NUM//
+#field options
+//How many WD_AT adaptors do you wish to use (0-6)?//
+#TYPE_INTEGER <min length> <max length>//field label//
+3 1 0 6//3Com EtherLink/MC (3C523)://EL16_MCA_NUM//
+#field options
+//How many EL16_MCA adaptors do you wish to use (0-6)?//
+#TYPE_INTEGER <min length> <max length>//field label//
+3 1 0 6//Western Digital EtherCard Plus/A://WD_MCA_NUM//
+#field options
+//How many WD_MCA adaptors do you wish to use (0-6)?//
+.button
+Apply
+Reset
+# field options
+.help
+For detailed instructions, press the 'F1' (or '?') key at any time.
+
+SUPPORTED ETHERNET NETWORK ADAPTOR BOARDS:
+
+Intel iMX-LAN/586 (or the older PC586)
+Intel EtherExpress16
+3Com EtherLink II (3C503)
+3Com EtherLink 16 for AT architectures (3C507)
+3Com EtherLink/MC for MCA architectures (3C523)
+SMC (formerly Western Digital) family of 8-bit network adaptor boards:
+	AT architectures:	WD8003E, WD8003EBT, WD8003EP, WD8003EPC
+	MCA architectures:	WD8003EP/A
+
+If you are not sure which kind of adaptor you have, you should refer to the
+hardware documentation that came with your adaptor.
+
+MULTIPLE ADAPTOR BOARD SETUPS:
+
+With two exceptions, you have the option of installing multiple boards
+of each kind. The exceptions to this rule are the 3Com EtherLink 16 and the
+Intel EtherExpress16 boards. Should you want to install more than one of
+these two adaptors, you must install and configure them manually. This will
+require installing the boards into your machine one at a time and configuring
+each one separately using the tools provided with the adaptors. Please refer
+to the Installation Guide and the documentation provided with your boards
+for more information.
+
+When installing multiple adaptors you must be careful when making your
+selections for I/O and RAM addresses (where appropriate). Specifically, make
+sure that the I/O (or RAM) addresses for one board do not overlap those of
+the other board or boards.
+.bottom
+Press 'TAB' to move the cursor between fields. When finished, move the
+cursor to "Apply" and then press 'ENTER' to continue.
+.helpinst
+ESC=Exit help  F1=Instructions  1=Forward  2=Backward
+.hhelpinst
+ESC=Exit instructions  1=Forward  2=Backward
+.working
+Working...
+.end

@@ -1,0 +1,3 @@
+#ident	"@(#)uts-x86:io/prf/prf.cf/Mtune	1.2"
+#ident	"$Header: $"
+PRFMAX		4096	2048	10240

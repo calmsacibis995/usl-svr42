@@ -1,0 +1,10 @@
+#ident  "@(#)set:common/set/admin/setinfo	1.3"
+#ident  "$Header: $"
+
+# Format for the setinfo file.  	Field separator is: <tab>
+# pkg   parts   default category	pkg full-name
+# abbr          y/n
+
+oam	6	y	application	OA&M
+bkrs	2	y	system	Extended Backup and Restore
+face	1	y	application	FACE

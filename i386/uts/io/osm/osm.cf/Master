@@ -1,0 +1,7 @@
+#ident	"@(#)uts-x86:io/osm/osm.cf/Master	1.2"
+#ident	"$Header: $"
+$version 1
+$entry open
+$entry read
+$entry write
+osm	osm	co	0	0	0

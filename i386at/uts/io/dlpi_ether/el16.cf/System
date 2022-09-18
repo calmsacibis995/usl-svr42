@@ -1,0 +1,5 @@
+#ident	"@(#)uts-x86at:io/dlpi_ether/el16.cf/System	1.2"
+#ident  "$Header: $"
+$version 1
+$loadable el16
+el16	N	4	6	1	0	0	0	0	0	-1

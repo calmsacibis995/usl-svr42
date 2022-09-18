@@ -1,0 +1,22 @@
+#ident	"@(#)proto:desktop/PKG_INFO	1.8.1.1"
+#ident	"$Header: $"
+#
+#	Copyright (c) 1990  Intel Corporation
+#	All Rights Rreserved
+#
+#	INTEL CORPORATION PROPRIETARY INFORMATION
+#
+#	This software is supplied to AT & T under the terms of a license 
+#	agreement with Intel Corporation and may not be copied nor 
+#	disclosed except in accordance with the terms of that agreement.
+#
+
+# some basic variables
+
+RELEASE="4.1"
+VERSION="1"
+SIZE="2360"
+TITLE=\
+"UNIX System V/386 Release $RELEASE Version $VERSION"
+
+export TITLE RELEASE VERSION

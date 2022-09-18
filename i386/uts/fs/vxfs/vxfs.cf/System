@@ -1,0 +1,6 @@
+# @(#)usr/src/i386/uts/fs/vxfs/vxfs.cf/System	1.1 01 Mar 1992 16:18:31 - 
+#ident	"@(#)uts-x86:fs/vxfs/vxfs.cf/System	1.2"
+#ident	"$Header: $"
+$version 1
+$loadable vxfs
+vxfs	Y	0	0	0	0	0	0	0	0	-1

@@ -1,0 +1,25 @@
+#ident	"@(#)proto:desktop/proto.flop.3	1.1.2.6"
+#ident	"$Header: $"
+/dev/null
+2440 100
+d--775 0 3
+PKG_INFO	---555 2 2 desktop/PKG_INFO
+INSTALL		---555 2 2 desktop/hdscripts/INSTALL
+etc	d--755 0 3
+	loadmods	---444 0 3 loadmods
+	$
+usr	d--775 0 3
+	lib	d--775 0 2
+		tape	d--775 0 2
+			$
+		$
+	bin	d--775 2 2
+		uncompress	---555 2 2 $ROOT/$MACH/usr/bin/uncompress
+		$
+	sbin	d--755 0 3
+		$
+	$
+sbin	d--777 2 2
+	df		---755 2 2 $ROOT/$MACH/sbin/df
+	$
+$

@@ -1,0 +1,36 @@
+#ident	"@(#)face:OBJECTS/Text.merror	1.5.5.3"
+#ident  "$Header: Text.merror 1.10 91/10/29 $"
+
+title=$$uxface:357:"Invalid Mail Destinations"
+help=OPEN TEXT OBJECTS/Text.h "$$uxface:570:HELP on: Invalid Mail Destinations" T.hmerror
+framemsg=const $$uxface:321:"Press the CANCEL function key to cancel."
+lifetime=longterm
+
+header=$$uxface:358:"No mail was sent to the
+following mail destinations:
+"
+
+`set -l EFRAME=true;
+set -l I18N_TM1="$$uxface:330:bad system name:";
+set -l I18N_TM2="$$uxface:359:Can\'t send to"`
+
+begrow=any
+begcol=any
+
+close=`set -l EFRAME=false;rm -f /tmp/f.my.${VPID}`
+
+`readfile /tmp/f.mx.${VPID} | regex "^$I18N_TM1 (.+)\$0\$" '$m0!'
+	"^(.+) $I18N_TM2 (.+)\$0\$" '$m0' | xargs -l5 > /tmp/f.my.${VPID}`
+
+text="`readfile /tmp/f.my.${VPID}`"
+columns=`longline | set -l LL;
+if [ "${LL}" -gt "72" ];
+then
+	echo 72;
+elif [ "${LL}" -lt "30" ];
+then
+	echo 30;
+else
+	echo ${LL};
+fi`
+rows=8

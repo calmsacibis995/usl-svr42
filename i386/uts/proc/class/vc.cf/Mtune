@@ -1,0 +1,3 @@
+#ident	"@(#)uts-x86:proc/class/vc.cf/Mtune	1.2"
+#ident	"$Header: $"
+VCMAXUPRI	20	10	30

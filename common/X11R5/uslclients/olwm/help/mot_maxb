@@ -1,0 +1,15 @@
+Maximize:
+
+	Use the Maximize button to expand the dimensions of the
+	window or icon at the pointer location to a larger format
+	(specified by the application).
+
+To Maximize, click SELECT:
+
+	Move the mouse pointer onto the maximize button and click
+	SELECT to increase the size of the window to the maximum
+	size allowed by the application, or to size of the screen.
+	The window will expand in size, and the maximize button
+	will invert to indicate that the state of the window is
+	"maximized". To restore a maximized window, click SELECT
+	on the inverted maximize button.

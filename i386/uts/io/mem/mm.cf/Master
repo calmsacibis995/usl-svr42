@@ -1,0 +1,16 @@
+#ident	"@(#)uts-x86:io/mem/mm.cf/Master	1.5"
+#ident	"$Header: $"
+#
+# version id
+#
+$version 1
+
+#
+# entry points
+#
+$entry  read write open close ioctl mmap
+
+#
+# Device  Prefix Characteristics Order	B-Major C-Major
+# -----------------------------------------------------
+mm	mm	krco	0	0	2

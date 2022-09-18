@@ -1,0 +1,277 @@
+#ident	"@(#)dtm:help/iconset.hlp	1.12"
+^*version^1
+^*title^Folder
+^:Icon_Setup
+^*width^70
+^+DesktopMgr/help.defs
+^?Manage file classes.
+^0^Icon Setup
+^$10
+Icon Setup
+
+The Icon Setup window lets you display and define information relating
+to classes of icons. When you open the Icon Setup window, you see a
+scrolling display of icons representing file classes on the system.
+
+Associated with each icon is information that describes how a file in
+that class acts when you use the New, Open, or Print menu items (under
+the File button in a folder window), or when you \d(drag-and-drop) a file
+onto it. It also describes other information about the class, such as
+the file type and the name of the icon file that represents the class.
+
+After you add a class, files that meet the class criteria (location,
+name, or type of file) show up in a folder window.
+
+The following window is provided for Icon Setup:
+
+        \k(Icon Setup Window)
+^1^Icon Setup Window
+^$20
+\k{Icon Setup}
+1. Icon Setup Window
+
+Use the Icon Setup window to display, modify, and add information
+about a class of files. Information for each class includes the class
+name; the icon representing the class; the file (Name/Pattern), folder
+(Path), or file type identifying the class; the actions taken when the
+files in that class are opened, dropped on, or printed; and, if
+applicable, a template to open for a new file of that class.
+
+The file classes defined on your system are represented by icons shown
+on the top of the Icon Setup window. Use the scrollbar to view
+additional icons. Click on the icon about which you want to display
+information.
+
+If you select an icon that cannot be modified (for example, a system
+icon like Wastebasket) the window buttons are not selectable. Click on
+an icon that you have permission to modify, and the window buttons
+become available for changing the icon's information or adding a new
+icon class.
+
+The \d(buttons^button) available from the Icon Setup window are:
+
+        \k(Add Button)\t\t\k(Apply Changes Button)
+        \k(Reset Button)\t\t\k(Delete Button)
+        \k(Undelete Button)\t\k(Save New Setup Button)
+        \k(Exit Button)\t\t\k(Help Button)
+
+More information: \k(Icon Class Information)
+^2^Icon Class Information
+^$30
+1. \k{Icon Setup Window}
+   1.1 Icon Class Information
+
+The following information is displayed in the Icon Setup window:
+
+   o The box at the top of the window displays a scrolling list of
+     icons. Use the scrollbar to view additional icons. Click on the
+     icon you want. The system interprets the icons from left to
+     right. So, specific icons (like a type of graphics file class)
+     come before general icons (such as the data file class).
+
+   o The Class text box displays the file class name of the selected
+     icon.
+
+   o The Icon File text box displays the name of the file that
+     contains the icon associated with the selected class.
+
+     More information: \k(Available Icons)
+
+   o The Alternate text box displays the name of the general icon for
+     a class of files. If the icon specified in the Icon File text box
+     is not found, the icon listed here is used.
+
+     For example, if a class consists of all files in the Path /dev,
+     the icon file is %f.icon (any file in the /dev directory is
+     assigned an icon name consisting of its file name plus the .icon
+     suffix). When a file /dev/junk is added to the directory, no
+     junk.icon icon exists so the specified Alternate icon is used.
+
+   o The Name/Pattern text box displays the pattern used to identify
+     the file class. For example, a header-file class icon is used to
+     represent any file that ends in a .h pattern.
+
+   o The Path text box displays the path to a directory. Any files in
+     that directory not assigned to another class are represented by
+     the icon shown for the assigned icon class.
+
+   o The File Type text box displays the type of file represented by
+     the class. Types included Folder, Executable, Datafile, Pipe,
+     Char Device, Block Device, Semaphore, and Shared Memory. Click on
+     the appropriate file type to associate it with the file class.
+
+   o The To Open - Execute text box displays the command to be
+     executed when a file of this class is opened.
+
+   o On Drop - Execute: The Drop text box displays the command
+     executed when a file of this class has another file dropped on
+     it.
+
+   o The On Print - Execute text box displays the command to be
+     executed when a file of this class is printed.
+
+   o The Template File(s) text box displays the name of a template
+     file for the class. When a new file is created using the New
+     option from a folder window, and a template is defined, that
+     template is used to create a file for that class. The file
+     specified in this text box is usually a blank data file defined
+     for a particular application.
+
+Note: For the To Open - Execute, On Drop - Execute, and On Print -
+Execute text boxes, you can use the following variables:
+
+   o %F Substitutes the full path name of the file associated with the
+        file class.
+
+   o %f	Substitutes the name of the file associated with the file class.
+
+   o %S Substitutes the full path name of the file dropped on the icon
+        associated with the file class.
+
+   o %s Substitutes the name of the file dropped on the icon
+        associated with the file class.
+^3^Available Icons
+^$35
+1. \k{Icon Setup Window}
+   1.1 \k(Icon Class Information)
+       1.1.1 Available Icons
+The following icon files can be used when you have installed a new
+application and are using Icon Setup to add a new file class for the
+application or its datafiles. These files are located in
+/usr/X/lib/pixmaps.
+
+   o Word processors: wordp1.icon, wordp2.icon
+
+   o Document files: docfile1.icon, docfile2.icon, docfile3.icon
+
+   o Spreadsheet application: spread1.icon, spread2.icon
+
+   o Spreadsheet datafile: spreadf1.icon, spreadf2.icon
+
+   o Drawing package: draw1.icon, draw2.icon
+
+   o Drawing file: drawfile1.icon, drawfile2.icon
+
+   o Database package: datab.icon
+
+   o Database file: databfile.icon
+
+   o Accounting package: acctg.icon
+
+   o Business graphics package: bizgraph.icon
+
+   o Business graphics datafile: bizdata.icon
+
+   o Desktop publishing package: dtp.icon
+
+   o Desktop publishing datafile: dtpfile.icon
+
+   o Diagnostics tool: diagnose.icon
+
+   o Calendar management tool: calmgr.icon
+
+   o Image management tool: image.icon
+
+   o Image datafile: imagefile.icon
+
+   o Personal information manager (address book): infomgr.icon
+^2^Add Button
+^$40
+1. \k{Icon Setup Window}
+   1.2 Add Button
+
+The Add button lets you insert one of three file classes into the Icon
+Setup window. Clicking on the Insert button brings up a menu with the
+following options:
+
+        \k(Datafile)
+        \k(Graphics Appl'n)
+        \k(Character Appl'n)
+^3^Datafile
+^$50
+1. \k{Icon Setup Window}
+   1.2 \k{Add Button}
+       1.2.1 Datafile
+
+The Datafile menu option inserts a newly created data-type file class
+entry in front of the file class currently selected. Information in
+the text boxes is appropriate for a data-type file class and should be
+modified for the new class. (You then must use the \k(Apply Changes button^^Apply Changes Button)
+and the \k(Save New Setup button^^Save New Setup Button) to make the changes permanent.)
+^3^Graphics Appl'n
+^$60
+1. \k{Icon Setup Window}
+   1.2 \k{Add Button}
+       1.2.2 Graphics Appl'n
+
+The Graphics Appl'n menu option inserts a newly created graphics-type
+file class entry in front of the file class currently selected.
+Information in the text boxes is appropriate for an X-windows-
+executable type of file class and should be modified for the new
+class. (You then must use the \k(Apply Changes button^^Apply Changes Button) and the
+\k(Save New Setup button^^Save New Setup Button) to make the changes permanent.)
+^3^Character Appl'n
+^$70
+1. \k{Icon Setup Window}
+   1.2 \k{Add Button}
+       1.2.3 Character Appl'n
+
+The Character Appl'n menu option inserts a newly created application-
+type file class entry in front of the file class currently selected.
+Information in the text boxes is appropriate for an executable type of
+file class and should be modified for the new class. (You then must
+use the \k(Apply Changes button^^Apply Changes Button) and the \k(Save New Setup button^^Save New Setup Button) to make
+the changes permanent.)
+^2^Apply Changes Button
+^$80
+1. \k{Icon Setup Window}
+   1.3 Apply Changes Button
+
+The Apply Changes button associates any changes you make in the Icon
+Setup window with the file class. (You then must use the
+\k(Save New Setup button^^Save New Setup Button) to make the changes permanent.)
+^2^Reset Button
+^$90
+1. \k{Icon Setup Window}
+   1.4 Reset Button
+
+The Reset button reverses any changes you have not yet applied.
+^2^Delete Button
+^$100
+1. \k{Icon Setup Window}
+   1.5 Delete Button
+
+The Delete button lets you remove a file class icon from the system.
+Click on the icon for the file class you want to delete, then click on
+the Delete button. (You then must use the \k(Save New Setup button^^Save New Setup Button),
+to make the deletion permanent.)
+^2^Undelete Button
+^$110
+1. \k{Icon Setup Window}
+   1.6 Undelete Button
+
+The Undelete button lets you restore a file class you just deleted
+with the Delete button. The Undelete button is only available after
+you use the Delete button to delete a file class and before you use
+the Save New Setup button.
+^2^Save New Setup Button
+^$120
+1. \k{Icon Setup Window}
+   1.7 Save New Setup Button
+
+The Save New Setup button applies any changes you make in the Icon
+Setup window to the selected file class. After applying the changes,
+the Icon Setup window closes.
+^2^Exit Button
+^$130
+1. \k{Icon Setup Window}
+   1.8 Exit Button
+
+The Exit button closes the Icon Setup window without applying any
+changes.
+^2^Help Button
+^$140
+1. \k{Icon Setup Window}
+   1.9 Help Button
+
+The Help button provides on-line help for the Icon Setup window.

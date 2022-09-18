@@ -1,0 +1,83 @@
+		      II.   R U L E S   F O R   S P I D E R
+
+THE INITIAL TABLEAU.  Shuffle together two decks of cards (104 cards in all)
+and deal ten cards face down in a row.  Deal three more rows face down on the
+first.  Next deal one card face down on each of four piles (traditionally the
+leftmost four, but it doesn't matter; for aesthetic reasons some people
+prefer the first, fourth, seventh, and tenth piles), for a total of 44
+face-down cards.  Finally, deal one card face up on each pile.  These 54
+cards constitute the initial tableau.  NOTE: In the description below, the
+card at the "bottom" of a pile is taken to be the last one dealt or played
+onto that pile, as opposed to the card that is underneath all the others in
+the pile.  Thus the "bottom" card is the one displayed bottommost on the
+screen by the Spider program.
+
+BUILDING.  All building is done in the tableau, there being no separate
+foundations.  On the bottom card of a pile may be placed any card of
+next-lower rank, regardless of suit.  (Cards rank King (highest), Queen,
+Jack, 10, 9, . . . , 3, 2, Ace.)  The bottom card of a pile is always
+available to be moved, as is any sequence of cards at the bottom of a pile
+that are consecutive and ascending in rank and of the same suit.
+
+For example, suppose the 6, 5, and 4 of hearts are together at the bottom of
+a pile, with the 4 bottommost.  They may be moved as a unit, or the 4 can be
+moved by itself, or the 5 and 4 can be moved without moving the 6.  If the 6,
+5, and 4 were moved onto a 7 of hearts at the bottom of some other pile, the
+four cards could then be moved as a unit onto any 8; if the 7 were not a
+heart, however, then once the hearts were placed upon it it would not be
+available to be moved until the hearts had been moved from it (to another 7
+or into a space; see below).
+
+When all face-up cards have been removed from a pile, the bottom face-down
+card is turned up and becomes available for play.
+
+SPACES.  When all cards have been moved away from some pile, the resulting
+empty pile is called a "space" or "hole".  Any card or sequence of cards
+available for moving may be moved into a space.  A King, or sequence headed
+by a King, can be moved ONLY into a space, and once moved there can never be
+moved out (except into another space, which doesn't accomplish anything)
+unless it is being removed entirely as described below.
+
+THE HAND.  The 50 cards not dealt initially form the "hand".  Whenever you
+wish (typically, whenever you get stuck), you may deal a new row of ten cards
+from the hand face-up upon the piles.  NOTE: You are not allowed to do this
+if you have any spaces.  You must first fill them in.  Notice that these
+additional deals tend to introduce discontinuities in the piles; that is, you
+can get cards covering others that are not next-higher in rank.  If you get
+stuck after having dealt the last of the five additional deals, you have
+lost.
+
+OBJECT OF PLAY.  When you have assembled a complete suit of thirteen cards,
+in sequence from King down to Ace, at the bottom of a pile, you may remove
+the thirteen cards from the tableau entirely.  Cards so removed are never
+brought back into play; thus it is not always desirable to remove a suit when
+you have the opportunity (though it usually is), since it may pay to keep it
+around to aid in manipulating the other cards of that suit (recall that there
+are 26 cards in each suit).  The game is won if you manage to remove all
+eight suits.
+
+If you find that a game is going so well that you're sure you're going to
+win, you can spice things up by trying to finish with as many completed suits
+as possible still in the tableau.  Hardest of all is to finish the game with
+each of the eight suits brought together in sequence from King down to Ace,
+with all of the cards still in the tableau.  Note that, once you start
+striving toward such a goal, you may make such a mess of the position that
+you won't be able to win at all!
+
+SCORING.  Spider is a difficult game to master, and some players like to be
+able to evaluate their progress by scoring unsuccessful games.  No rules for
+scoring are in the literature, but the program implements the following
+rather arbitrary formula:  10 points for each initially face down card that
+gets turned over; 15 additional points for each column where all the face
+down cards have been turned over (even if you don't manage to get a space);
+2 points for each card that is sitting atop the next higher card of the same
+suit; 50 points for each completed suit removed from the tableau (in which
+case you do not also score for the 12 cards sitting atop next higher cards).
+This yields a maximum score of 990.  If you win the game with 4 or more
+completed suits still in the tableau, add 2 points for each suit after the
+first three.  Thus winning with all eight suits still in the tableau yields
+a score of 1000.
+
+===========================================================================
+[Copyright (c) 1989, Donald R. Woods and Sun Microsystems, Inc.]
+

@@ -1,0 +1,173 @@
+CLASS dtColorProps
+BEGIN
+	_SYSTEM		Y;
+	_CLASSNAME	'Color Props';
+	_FILETYPE	EXEC;
+	_LPATTERN	DtColorProps;
+	_LFILEPATH	$XWINHOME/desktop;
+	_ICONFILE	color.icon;
+	MENU _Open	'##COMMAND(_DT_QUEUE, @DISPLAY_PROP_SHEET: PROP_NAME=Color)';
+END
+
+CLASS dtKeybdProps
+BEGIN
+	_SYSTEM		Y;
+	_CLASSNAME	'Keyboard Props';
+	_FILETYPE	EXEC;
+	_LPATTERN	DtKeybdProps;
+	_LFILEPATH	$XWINHOME/desktop;
+	_ICONFILE	keybd.icon;
+	MENU _Open	'##COMMAND(_DT_QUEUE, @DISPLAY_PROP_SHEET: PROP_NAME=Core)';
+END
+
+CLASS dtDesktopProps
+BEGIN
+	_SYSTEM		Y;
+	_CLASSNAME 	'Desktop Props';
+	_FILETYPE	EXEC;
+	_LPATTERN	DtDesktopProps;
+	_LFILEPATH	$XWINHOME/desktop;
+	_ICONFILE	dtprop.icon;
+	MENU _Open	'##COMMAND(_DT_QUEUE, @DISPLAY_PROP_SHEET: PROP_NAME=Desktop)';
+END
+
+CLASS dtIconProps
+BEGIN
+	_SYSTEM		Y;
+	_CLASSNAME	'Icon Props';
+	_FILETYPE	EXEC;
+	_LPATTERN	DtIconProps;
+	_LFILEPATH	$XWINHOME/desktop;
+	_ICONFILE	dticon.icon;
+	MENU _Open	'##COMMAND(_DT_QUEUE, @DISPLAY_PROP_SHEET: PROP_NAME=Icons)';
+END
+
+CLASS dtMiscProps
+BEGIN
+	_SYSTEM		Y;
+	_CLASSNAME	'Misc Props';
+	_FILETYPE	EXEC;
+	_LPATTERN	DtMiscProps;
+	_LFILEPATH	$XWINHOME/desktop;
+	_ICONFILE	dtmisc.icon;
+	MENU _Open	'##COMMAND(_DT_QUEUE, @DISPLAY_PROP_SHEET: PROP_NAME=Miscellaneous)';
+END
+
+CLASS dtMouseProps
+BEGIN
+	_SYSTEM		Y;
+	_CLASSNAME	'Mouse Props';
+	_FILETYPE	EXEC;
+	_LPATTERN	DtMouseProps;
+	_LFILEPATH	$XWINHOME/desktop;
+	_ICONFILE	mouse.icon;
+	MENU _Open	'##COMMAND(_DT_QUEUE, @DISPLAY_PROP_SHEET: PROP_NAME="Mouse Modifiers")';
+END
+
+CLASS dtLocaleProps
+BEGIN
+	_SYSTEM		Y;
+	_CLASSNAME	'Locale Props';
+	_FILETYPE	EXEC;
+	_LPATTERN	DtLocaleProps;
+	_LFILEPATH	$XWINHOME/desktop;
+	_ICONFILE	dtloc.icon;
+	MENU _Open	'##COMMAND(_DT_QUEUE, @DISPLAY_PROP_SHEET: PROP_NAME="Set Locale")';
+END
+
+CLASS dtbinder
+BEGIN
+	_SYSTEM		Y;
+	_CLASSNAME	'Icon Setup';
+	_FILETYPE	EXEC;
+	_LPATTERN	dtbinder;
+	_ICONFILE	binder.icon;
+	MENU _Open	'##COMMAND(_DT_QUEUE, @DISPLAY_BINDER:)';
+END
+
+CLASS dthelpdesk
+BEGIN
+	_SYSTEM		Y;
+	_CLASSNAME	'Help Desk';
+	_FILETYPE	EXEC;
+	_LPATTERN	Help_Desk;
+	_ICONFILE	hdesk32.icon;
+	MENU _Open	'##COMMAND(_HELP_QUEUE, @DISPLAY_HELP: HELPTYPE=3)';
+END
+
+CLASS dtwastebasket
+BEGIN
+	_SYSTEM		Y;
+	_CLASSNAME	'Wastebasket';
+	_FILETYPE	EXEC;
+	_LFILEPATH	$XWINHOME/desktop;
+	_LPATTERN	dtwastebasket;
+	_ICONFILE	wb32.icon;
+	MENU _Open	'##COMMAND(_WB_QUEUE, @DISPLAY_WB:)';
+	_DROP           '##DELETE()';
+END
+
+CLASS Folder_Map
+BEGIN
+	_SYSTEM		Y;
+	_CLASSNAME	'Folder Map';
+        _FILETYPE       EXEC;
+        _LPATTERN       Folder_Map;
+        _ICONFILE       fmap.icon;
+	MENU _Open      '##COMMAND(_DT_QUEUE, @OPEN_FMAP:)';
+END
+
+CLASS Shutdown
+BEGIN
+	_SYSTEM		Y;
+	_CLASSNAME	'Shutdown';
+        _FILETYPE       EXEC;
+        _LPATTERN       Shutdown;
+        _ICONFILE       shut.icon;
+	MENU _Open      '##COMMAND(_DT_QUEUE, @SHUTDOWN:)';
+END
+
+CLASS Application
+BEGIN
+	_SYSTEM		Y;
+	_CLASSNAME	'Applications Folder';
+        _FILETYPE       DIR;
+        _PATTERN        Applications;
+        _ICONFILE       appfldr.icon;
+END
+
+CLASS System_Setup
+BEGIN
+	_SYSTEM		Y;
+	_CLASSNAME	'System Setup Folder';
+        _FILETYPE       DIR;
+        _PATTERN        System_Setup;
+        _ICONFILE       sysfldr.icon;
+END
+
+CLASS Preferences
+BEGIN
+	_SYSTEM		Y;
+	_CLASSNAME	'Preferences Folder';
+        _FILETYPE       DIR;
+        _PATTERN        Preferences;
+        _ICONFILE       prefldr.icon;
+END
+
+CLASS Disks-etc
+BEGIN
+	_SYSTEM		Y;
+	_CLASSNAME	'Disks-etc Folder';
+        _FILETYPE       DIR;
+        _PATTERN        Disks-etc;
+        _ICONFILE       recfldr.icon;
+END
+
+CLASS Utilities
+BEGIN
+	_SYSTEM		Y;
+	_CLASSNAME	'Utilities Folder';
+        _FILETYPE       DIR;
+        _PATTERN        Utilities;
+        _ICONFILE       utlfldr.icon;
+END

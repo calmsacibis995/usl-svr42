@@ -1,0 +1,6 @@
+#ident	"@(#)pkg.netcmds:common/pkg/netcmds/depend	1.4"
+#ident	"$Header: $"
+
+P  base         Base System
+P  lp		Printer Support
+P  inet  	Internet Utilities

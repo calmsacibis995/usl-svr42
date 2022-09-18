@@ -1,0 +1,41 @@
+#ident	"@(#)nadmin.rfs:local/rfs/bin/auto_mod	1.3.6.1"
+#ident  "$Header: auto_mod 2.0 91/07/12 $"
+#NOTE: TFADMIN not needed as this will be written to dfstab..not executed here.
+if [ "$DESC" ]
+then
+	CMD1="/usr/sbin/share -F rfs -d \"$DESC\" "
+else
+	CMD1="/usr/sbin/share -F rfs "
+fi
+
+if [ "$ACC" = "read-only" ]
+then
+	NACC="ro"
+else
+	NACC="rw"
+fi
+
+if [ ! -d "$NDIR" ]
+then
+	$TFADMIN /usr/bin/mkdir -p $NDIR 2>/dev/null
+fi
+
+# if the CLIENT is equal to unrestricted or its null, then there is no client
+# list
+
+if [   ! "$CLIENT"  -o \( "$CLIENT" = "unrestricted" \) ]
+then
+	CMD2="-o $NACC $NDIR $NRES"
+else
+	CLIST=`echo "$CLIENT" | /usr/bin/tr -s '\012' ':'`
+	CMD2="-o $NACC=$CLIST $NDIR $NRES"
+fi
+
+$TFADMIN /usr/bin/cp /etc/dfs/dfstab /etc/dfs/o.dfstab
+/usr/bin/egrep -v ".*[	 ]+$DIR[ 	]+$RES$" /etc/dfs/dfstab >/usr/tmp/dfstab$$
+
+echo "$CMD1" "$CMD2" >>/usr/tmp/dfstab$$
+$TFADMIN /usr/bin/cp /usr/tmp/dfstab$$ /etc/dfs/dfstab
+$TFADMIN /usr/bin/chmod 644 /etc/dfs/dfstab
+$TFADMIN /usr/bin/chown root /etc/dfs/dfstab
+

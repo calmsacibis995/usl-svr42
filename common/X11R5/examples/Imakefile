@@ -1,0 +1,39 @@
+/**/#ident	"@(#)r5misc:examples/Imakefile	1.4"
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+
+#define IHaveSubdirs
+#define PassCDebugFlags 'CDEBUGFLAGS=$(CDEBUGFLAGS)'
+
+/* Shouldn't be in this directory if BuildExamples is NO */
+
+#if Release5
+       SUBDIRS = Xol widgetTree
+#else
+
+#ifdef BuildOnlyXWIN
+	SUBDIRS = Xaw text
+#else
+#   ifdef BuildOnlyOpenLook
+/*  Then we shouldn't be here if BuildXolExamples is NO */
+	SUBDIRS = Xol widgetTree
+/* the make World case follows: */
+#   elif BuildXolExamples
+	SUBDIRS = Xol Xaw text widgetTree
+#   else
+	SUBDIRS = Xaw text
+#   endif
+#endif
+#endif
+
+MakeSubdirs($(SUBDIRS))
+DependSubdirs($(SUBDIRS))
+MakeLintLibSubdirs($(SUBDIRS))
+MakeLintSubdirs($(SUBDIRS),install.ln,install.ln)

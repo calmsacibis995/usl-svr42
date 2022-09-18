@@ -1,0 +1,22 @@
+#ident	"@(#)debugger:debug.d/i386/DEPEND	1.1"
+docommands.o:	../common/docommands.C
+	$(CPLUS_CMD) -c ../common/docommands.C
+
+do_assoc.o:	../common/do_assoc.C
+	$(CPLUS_CMD) -c ../common/do_assoc.C
+
+main.o:	../common/main.C
+	$(CPLUS_CMD) -c ../common/main.C
+
+handlers.o:	../common/handlers.C
+	$(CPLUS_CMD) -c ../common/handlers.C
+
+sig_handle.o:	../common/sig_handle.c
+	$(CC_CMD) -c ../common/sig_handle.c
+
+OBJECTS	=  \
+	main.o \
+	do_assoc.o \
+	docommands.o \
+	handlers.o \
+	sig_handle.o

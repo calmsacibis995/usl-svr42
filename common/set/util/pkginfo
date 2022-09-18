@@ -1,0 +1,11 @@
+#ident  "@(#)set:common/set/util/pkginfo	1.3"
+#ident  "$Header: $"
+
+PKG=util
+PREDEPEND=
+VERSION="1"
+RELEASE="4.2"
+NAME=Utilities Set
+CATEGORY=set
+VENDOR="UNIX System Laboratories"
+CLASSES=none

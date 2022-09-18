@@ -1,0 +1,4 @@
+#ident	"@(#)uts-x86:io/intmap/intmap.cf/Mtune	1.1"
+#ident	"$Header: $"
+
+NEMAP	10	10	10

@@ -1,0 +1,96 @@
+
+
+#ident	"@(#)initpkg:common/cmd/initpkg/init.d/rpc	1.1.13.5"
+#ident  "$Header: rpc 1.2 91/06/28 $"
+
+if [ ! -d /usr/bin ]
+then			# /usr not mounted
+	exit
+fi
+case "$1" in
+'start')
+	set `who -r`
+	if [ $9 = "S" -o $9 = "1" -o $9 = "?" ]
+	then
+		if [ ! -f /var/yp/ypbuild -a -f /usr/ccs/bin/make ]
+		then
+			cp /usr/ccs/bin/make /var/yp/ypbuild
+			chmod 500 /var/yp/ypbuild
+			chown root /var/yp/ypbuild
+			chgrp sys /var/yp/ypbuild
+			if [ -x /sbin/chlvl ]
+			then
+				chlvl SYS_PRIVATE /var/yp/ypbuild
+			fi
+# only difference between make and ypbuild is 
+# that ypbuild inherits privileges
+			filepriv -i dev,macread,macwrite,sysops,owner,setflevel /var/yp/ypbuild > /dev/null 2>&1
+			privs=dev:macread:macwrite:sysops:owner:setflevel
+			adminrole -a ypbuild:/var/yp/ypbuild:$privs NET >/dev/null 2>&1
+		fi
+		if [ -x /usr/sbin/rpcbind ]
+		then
+			/sbin/sh /etc/init.d/rpc rpcstart&
+		else
+			exit # nothing else can do anything
+		fi
+	fi
+	;;
+'rpcstart')
+		/usr/sbin/rpcbind > /dev/console 2>&1
+	
+		if [ -x /usr/lib/netsvc/rwall/rpc.rwalld ]
+		then
+			/usr/lib/netsvc/rwall/rpc.rwalld > /dev/console 2>&1
+		fi
+		if [ -x /usr/lib/netsvc/rusers/rpc.rusersd ]
+		then
+			/usr/lib/netsvc/rusers/rpc.rusersd  > /dev/console 2>&1
+		fi
+		if [ -x /usr/lib/netsvc/spray/rpc.sprayd ]
+		then
+			/usr/lib/netsvc/spray/rpc.sprayd > /dev/console 2>&1
+		fi
+
+#		uncomment for secure RPC
+
+#		if [ -x /usr/sbin/keyserv ]
+#		then
+#			/usr/sbin/keyserv > /dev/console 2>&1
+#		fi
+#		if [ -x /usr/lib/netsvc/yp/ypbind ]
+#		then
+#			/usr/lib/netsvc/yp/ypbind > /dev/console 2>&1
+#		fi
+#		if [ -x /usr/lib/netsvc/yp/ypupdated ]
+#		then
+#			/usr/lib/netsvc/yp/ypupdated > /dev/console 2>&1
+#		fi
+#		if [ -x /usr/lib/netsvc/yp/ypserv ]
+#		then
+#			/usr/lib/netsvc/yp/ypserv > /dev/console 2>&1
+#		fi
+
+		;;
+'stop')
+	# rc0 and rc1 take care of killing when going down to states 0,1,5,6
+	set `who -r`
+	if [ "$3" = "2" -o "$3" = "3" ]	
+	then
+		kill -9 `/usr/bin/ps -e \
+		|/usr/bin/egrep ' rpc.spra$| rpc.ruse$| rpc.rwal$| rpcbind$' \
+		|/usr/bin/awk '{print $1}'` 2>/dev/null
+
+	fi
+
+	# stop all the daemons that will not be killed by rc0 or rc1
+#	uncomment for secure RPC
+
+#	kill -9 `/usr/bin/ps -e \
+#		|/usr/bin/egrep ' keyserv$| ypbind$| ypupdate$| ypserv$' \
+#		|/usr/bin/awk '{print $1}'` 2>/dev/null
+	;;
+*)
+	echo "Usage: /etc/init.d/rpc { start | stop }"
+	;;
+esac

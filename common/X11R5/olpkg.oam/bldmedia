@@ -1,0 +1,58 @@
+#ident	"@(#)olpkg.oam:bldmedia	1.6"
+#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+#	Copyright (c) 1988, 1989, 1990 AT&T
+#	  All Rights Reserved
+
+#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+#	UNIX System Laboratories, Inc.
+#	The copyright notice above does not evidence any
+#	actual or intended publication of such source code.
+
+
+#
+# Assume current dir is "olpkg.oam"
+#
+
+if [ $# != 1 ]
+then
+	echo "Syntax: bldmedia floppy1|floppy2|tape";exit
+fi
+
+PACKDIR=`pwd`
+[ `basename $PACKDIR` != olpkg.oam ] && {
+	echo "This script must be executed from the olpkg.oam directory"
+	exit 1
+}
+ROOT=`cd ../../../..;pwd`	
+
+#PKGS="oleus olxt gcontrib"
+PKGS="oleus olxt "
+
+export ROOT
+
+case $1 in
+    t*)	DRIVE=/dev/rmt/c0s0
+   	TAPECNTL=/usr/lib/tape/tapecntl
+   	REWIND="$TAPECNTL -w"
+   	PKGNAME=ctape1
+   	DEVICEN=""
+	;;
+    f*1) DRIVE=/dev/rdsk/f0t
+   	TAPECNTL=" "
+   	REWIND="$TAPECNTL "
+   	PKGNAME=diskette1
+	;;
+    f*2) DRIVE=/dev/rdsk/f1t
+   	TAPECNTL=" "
+   	REWIND="$TAPECNTL "
+   	PKGNAME=diskette2
+	;;
+     *)	echo "Syntax: bldmedia floppy1|floppy2|tape";exit
+	;;
+esac
+
+cd $ROOT/tmp/pkg
+$REWIND
+pkgtrans -s `pwd` ${PKGNAME} $PKGS 
+$REWIND
+echo "Graphics Add-on Tape is complete on device $PKGNAME"

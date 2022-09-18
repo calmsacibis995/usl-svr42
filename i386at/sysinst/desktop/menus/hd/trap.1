@@ -1,0 +1,62 @@
+#ident	"@(#)proto:desktop/menus/hd/trap.1	1.9"
+#ident	"$Header: $"
+.pageno
+Page %d of %d
+.ul
+UNIX System Installation
+.hhelp_ban
+Instructions
+.helpbanner
+Help: Interruption
+.ur
+Interruption
+#.ll
+#Please make a selection.
+.lr
+F1=Help
+.top
+WARNING:  You have interrupted the installation process by pressing
+the 'Del' key.
+
+`[ "$DELKEY" != OFF ] && echo "You may either cancel the installation (in which case your computer"`
+`[ "$DELKEY" != OFF ] && echo "will be automatically shut down), or you may continue the installation"`
+`[ "$DELKEY" != OFF ] && echo "process from the point at which you interrupted it."`
+
+`[ "$DELKEY" = OFF ] && echo "Non-destructive installation is in progress."`
+`[ "$DELKEY" = OFF ] && echo "You can not cancel the installation at this point."`
+.optstring
+`[ "$DELKEY" != OFF ] && echo "Your choices are:"`
+.form
+`[ "$DELKEY" != OFF ] && echo "Cancel the installation (this will shut down the computer)."`
+`[ "$DELKEY" != OFF ] && echo "Do not cancel the installation."`
+.selection
+`[ "$DELKEY" != OFF ] && echo "Press '1' or '2' followed by 'ENTER':"`
+.bottom
+`[ "$DELKEY" = OFF ] && echo "Press 'ENTER' to continue."`
+.help
+For detailed instructions, press the 'F1' (or '?') key at any time.
+
+`[ "$DELKEY" != OFF ] && echo "By pressing the 'Del' key, you have interrupted the UNIX System installation"`
+`[ "$DELKEY" != OFF ] && echo "process.  If you choose to cancel the installation, your computer will"`
+`[ "$DELKEY" != OFF ] && echo "be automatically shut down.  In order to finish the installation of"`
+`[ "$DELKEY" != OFF ] && echo "the UNIX System, you will have to either start a new installation or"`
+`[ "$DELKEY" != OFF ] && echo "resume the interrupted installation by inserting the diskette labeled"`
+`[ "$DELKEY" != OFF ] && echo "\"Boot Floppy 1\" into the first drive and booting your computer.  Your"`
+`[ "$DELKEY" != OFF ] && echo "copy of the UNIX System will not work properly until you have completed"`
+`[ "$DELKEY" != OFF ] && echo "the UNIX System installation process."`
+`[ "$DELKEY" = OFF ] && echo "You have pressed the 'Del' key, requesting that the UNIX System installation"`
+`[ "$DELKEY" = OFF ] && echo "be interrupted.  You are currently at a point in the installation where"`
+`[ "$DELKEY" = OFF ] && echo "an interruption would result in the loss of some of your files.  Because of"`
+`[ "$DELKEY" = OFF ] && echo "this you are not allowed to cancel the installation at this time."`
+
+`[ "$DELKEY" != OFF ] && echo "If you choose to resume the interrupted installation, the installation"`
+`[ "$DELKEY" != OFF ] && echo "process will restart at the point where you pressed the 'Del' key."`
+`[ "$DELKEY" = OFF ] && echo "When you press 'ENTER', the installation process will restart at the point"`
+`[ "$DELKEY" = OFF ] && echo "where you pressed the 'Del' key."`
+.helpinst
+ESC=Exit help  F1=Instructions  Del=Cancel  1=Forward  2=Backward
+.hhelpinst
+ESC=Exit instructions  Del=Cancel  1=Forward  2=Backward
+.working
+Working...
+.end

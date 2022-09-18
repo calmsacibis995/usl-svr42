@@ -1,0 +1,43 @@
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+/**/#ident	"@(#)libfolio1.2:Imakefile	1.6"
+
+#define PassCDebugFlags 
+
+#ifndef SharedLibraryTarget7
+#define SharedLibraryTarget7(libname,objs1,objs2,objs3,objs4,objs5,objs6,objs7)            @@\
+AllTarget(Concat(lib,libname.so))                                       @@\
+                                                                        @@\
+Concat(lib,libname.so):  objs1 objs2 objs3 objs4 objs5 objs6 objs7      @@\
+        $(RM) $@                                                       @@\
+        ($(CC) $(YFLAGS) -G objs1 objs2 objs3 objs4 objs5 objs6 objs7 -o $@ -h $@ -lm -lc $(SHLIBFLAGS))           @@\
+                                                                        @@\
+clean::                                                                 @@\
+        $(RM) Concat(lib,libname.so)
+
+#endif
+
+#define IHaveSubdirs
+SUBDIRS = folio  common arc f3 segment tile typesclr 
+DONES = folio/DONE arc/DONE common/DONE f3/DONE segment/DONE tile/DONE typesclr/DONE 
+SHAREDOBJS = folio/?*.o arc/shared/?*.o common/?*.o f3/?*.o segment/?*.o tile/?*.o typesclr/?*.o 
+MakeSubdirs($(SUBDIRS))
+
+SOBJS1 = folio/?*.o
+SOBJS7 = arc/?*.o 
+SOBJS2 = common/?*.o 
+SOBJS3 = f3/?*.o
+SOBJS4 = segment/?*.o
+SOBJS5 = tile/?*.o
+SOBJS6 = typesclr/?*.o
+SharedLibraryTarget7(folio,$(SOBJS1),$(SOBJS7) ,$(SOBJS2),$(SOBJS3),$(SOBJS4),$(SOBJS5),$(SOBJS6))
+ForceSubdirs($(SUBDIRS))
+DependSubdirs($(SUBDIRS))
+InstallSharedLibrary1(libfolio.so,$(USRLIBDIR))

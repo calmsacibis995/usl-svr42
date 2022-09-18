@@ -1,0 +1,28 @@
+*** ./usr/lib/uucp/uudemon.admin	Wed Feb  5 18:29:26 1992
+--- ../p8.save/./usr/lib/uucp/uudemon.admin	Wed Feb  5 18:29:13 1992
+***************
+*** 1,11 ****
+! #!/usr/bin/sh
+! #ident	"@(#)/usr/lib/uucp/uudemon.adm.sl 1.1 4.0 05/29/91 6249 AT&T-USL"
+  #
+  #	This shell sends uucp status information to an administrator.
+! #	It should started by a line in /var/spool/cron/crontabs/root.
+  #	e.g.
+  #
+! # 48 8,12,16 * * * /usr/bin/su uucp -c "/usr/lib/uucp/uudemon.admin" > /dev/null
+  #
+  set +e
+  
+--- 1,12 ----
+! #!/usr/lib/uucp/permld /var/spool/uucp
+! #ident	"@(#)/usr/lib/uucp/uudemon.adm.sl 1.2 4.1dt 05/28/92 56599 AT&T-USL"
+! #ident "$Header: uudemon.admin 1.1 91/02/28 $"
+  #
+  #	This shell sends uucp status information to an administrator.
+! #	It should started by an entry in uucp's crontab
+  #	e.g.
+  #
+! # 48 8,12,16 * * * /usr/lib/uucp/uudemon.admin > /dev/null
+  #
+  set +e
+  

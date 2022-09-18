@@ -1,0 +1,31 @@
+Authors:
+
+	Donald Woods wrote the original computer Spider on Stanford
+	Artificial Intelligence Lab system (SAIL).  It was later ported
+	to the Xerox Development Environment.  The card images are
+	loosely based on scanned-in images but were largely redrawn by
+	the author with help from Larry Rosenberg.  His next port was
+	written entirely in NeWS running under Open Windows 1.0.  Most
+	of the documentation was written by him.
+
+	Dave Lemke ported the NeWS spider to C and X11 and wrote
+	the Athena widget toolkit interface.
+
+	Bruce Martin and Heather Rose wrote the XView toolkit
+	interface.  Heather also provided the icon and cardback
+	images.
+
+
+Hints:
+	Make the window as tall as possible when playing.  Otherwise
+	the game will be forced to resize the card stacks whenever
+	is can to make them more visible.
+
+	Use the '?' command for movement suggestions until you learn
+	the game.
+
+	Use the keyboard accelerators.
+
+	Don't let the complexity of the Examples scare you away
+	from playing.
+

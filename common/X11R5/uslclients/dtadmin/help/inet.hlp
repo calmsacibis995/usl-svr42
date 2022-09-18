@@ -1,0 +1,394 @@
+#ident	"@(#)dtadmin:help/inet.hlp	1.16"
+^*version^1
+^*title^Folder
+^:Internet_Setup
+^*width^70
+^+DesktopMgr/help.defs
+^?Setup and maintain network connections.
+^0^Internet Setup
+^$10
+Internet Setup
+
+Use the Internet Setup window to setup and maintain network connec-
+tions to other systems.
+
+Note: If your system's internet address was not entered at the time of
+installation, a properties window is displayed for entering your
+internet address before the Internet Setup window appears. Depending
+upon whether or not your system has been rebooted since the initial
+installation, you may be required to reboot your system.
+
+The following windows are provided for Internet Setup:
+
+        \k(Internet Setup Window)
+        \k(Internet Setup: Remote System Properties Window)
+        \k(Internet Setup: Find Window)
+^1^Internet Setup Window
+^$20
+\k{Internet Setup}
+1. Internet Setup Window
+
+Use the Internet Setup window to display the list of systems currently
+accessible by your system (this information is stored in the
+/etc/hosts file). If you intend to delete, change the properties of,
+or install a system as an icon in a folder, you must first click on
+one of the system names shown in this window.
+
+The \d(buttons^button) available from the Internet Setup window are:
+
+        \k(Actions Button)\t\t\k(System Button)
+        \k(Search Button)\t\t\k(Help Button)
+^2^Actions Button
+^$30
+1. \k{Internet Setup Window}
+   1.1 Actions Button
+
+The Actions button lets you save changes and exit from the Internet
+Setup window. Clicking on the Actions button displays a menu with the
+following options:
+
+        \k(Save System List)
+        \k(Install)
+        \k(Exit)
+^3^Save System List
+^$40
+1. \k{Internet Setup Window}
+   1.1 \k{Actions Button}
+       1.1.1 Save System List
+
+The Save System List menu option writes any changes you make from
+the Internet Setup window to the /etc/hosts file on your hard disk.
+^3^Install
+^$50
+1. \k{Internet Setup Window}
+   1.1 \k{Actions Button}
+       1.1.2 Install
+
+The Install menu option installs the system selected from the Internet
+Setup window as an icon in another folder. Selecting the Install menu
+optino displays the Internet Setup: Install Remote System Icon window.
+In the Location text box, enter the name of the folder in which you
+want the icon you are creating installed. Unless you indicate
+otherwise, it is installed in your UNIX Desktop window.
+
+The buttons available Internet Setup: Install Remote System Icon
+window are Install, Cancel, and Help.
+
+   o Install Button: The Install button installs the selected system
+     in the folder entered in the Location text box.
+
+   o Cancel Button: The Cancel button closes the Internet Setup:
+     Install Remote System Icon window.
+
+   o Help Button: The Help button provides on-line help for Internet
+     Setup: Install Remote System Icon.
+
+Note: You also can install a system icon in another folder with the
+\d(drag-and-drop) technique.  From the Internet Setup window, select the
+system you want to install. Click and hold SELECT (the left mouse
+button) and move the mouse pointer to the folder in which you want the
+system installed. Release the mouse button.
+^3^Exit
+^$60
+1. \k{Internet Setup Window}
+   1.1 \k{Actions Button}
+       1.1.3 Exit
+
+The Exit menu option closes the Internet Setup window. If you make
+changes and attempt to exit before you save your changes, a notice
+window appears indicating that the current changes have not been
+saved. This notice window has three buttons: Save Systems List,
+Discard, and Cancel.
+
+   o Save Systems List Button: This button writes your changes to the
+     /etc/hosts file and closes the Internet Setup window.
+
+   o Discard Button: This button ignores your changes and closes the
+     Internet Setup window (the file /etc/hosts is not changed).
+
+   o Cancel Button: This button closes the notice window and leaves
+     the Internet Setup window open.
+^2^System Button
+^$70
+1. \k{Internet Setup Window}
+   1.2 System Button
+
+The System button allows you to add, delete, and change properties of
+systems listed in the Internet Setup window. Clicking on the System
+button displays a menu with the following options:
+
+        \k(New)
+        \k(Delete)
+        \k(Get Systems List)
+        \k(Properties)
+^3^New
+^$80
+1. \k{Internet Setup Window}
+   1.2 \k{System Button}
+       1.2.1 New
+
+The New menu option lets you add a new system entry to your /etc/hosts
+file. Clicking on the New menu option displays the Internet Setup:
+Remote System Properties window.
+
+More Information: \k(Internet Setup: Remote System Properties Window)
+^3^Delete
+^$90
+1. \k{Internet Setup Window}
+   1.2 \k{System Button}
+       1.2.2 Delete
+
+The Delete menu option lets you remove entries from the Internet Setup
+window. First select the system you want to delete in Internet Setup
+window. Next, click on the System button and select the Delete menu
+option; a notice window appears prompting you to confirm that you want
+to delete the entry. This notice window has two buttons: Cancel and
+Delete.
+
+   o Cancel Button: This button closes the notice window without
+     deleting anything.
+
+   o Delete Button: This button deletes the selected entry in the
+     Internet Setup window.
+^3^Get Systems List
+^$100
+1. \k{Internet Setup Window}
+   1.2 \k{System Button}
+       1.2.3 Get Systems List
+
+The Get Systems List menu option allows you to copy the /etc/hosts
+file from another system. You must click on the system from which you
+want to copy the file before choosing the Get Systems List menu option.
+
+Note: You can only use this feature if you have an account on the
+remote system with the same login ID as on your system. Also, the root
+login cannot use this feature unless root has been added to the remote
+system's /.rhosts file.
+
+Clicking on the Get Systems List menu option button displays the Get
+Systems List notice.
+
+This notice window has four buttons: Append, Replace, Cancel, and Help.
+
+   o Append Button: This button lets you add the selected system's
+     /etc/hosts file to your existing /etc/hosts file.
+
+   o Replace Button: This button lets you replace your existing
+     /etc/hosts file with the /etc/hosts file from the selected
+     system.
+
+   o Cancel Button: This button cancels your request to get a systems
+     list from another system.
+
+   o Help Button: This button provides on-line help for the Get
+     Systems List notice.
+^3^Properties
+^$110
+1. \k{Internet Setup Window}
+   1.2 \k{System Button}
+       1.2.4 Properties
+
+The Properties menu option lets you make changes to an entry in the
+Internet Setup window. Clicking on the Properties menu option brings
+up the Internet Setup: Remote System Properties window.
+
+More Information: \k(Internet Setup: Remote System Properties Window)
+^2^Search Button
+^$120
+1. \k{Internet Setup Window}
+   1.3 Search Button
+
+The Search button lets you quickly select the first, last, or a
+specific entry from the list presented in the Internet Setup window.
+You also can click on an entry if it is already displayed in the window.
+Clicking on the Search button displays a menu with the following
+options:
+
+        \k(First)
+        \k(Last)
+        \k(Find)
+^3^First
+^$130
+1. \k{Internet Setup Window}
+   1.3 \k{Search Button}
+       1.3.1 First
+
+The First menu option selects the first entry displayed in the Internet
+Setup window.
+^3^Last
+^$140
+1. \k{Internet Setup Window}
+   1.3 \k{Search Button}
+       1.3.2 Last
+
+The Last menu option selects the last entry displayed in the Internet
+Setup window.
+^3^Find
+^$150
+1. \k{Internet Setup Window}
+   1.3 \k{Search Button}
+       1.3.3 Find
+
+The Find menu option lets you search the displayed list for a specific
+system name. Clicking on the Find menu option displays the Internet
+Setup: Find window.
+
+More information: \k(Internet Setup: Find Window)
+^2^Help Button
+^$160
+1. \k{Internet Setup Window}
+   1.4 Help Button
+
+The Help button provides on-line help for the Internet Setup window.
+Clicking on the Help button displays a menu with the following
+options:
+
+        \k(Internet Setup^^Internet SetupIS)
+        \k(Table of Contents)
+        \k(Help Desk)
+^3^Internet Setup=Internet SetupIS
+^$170
+1. \k{Internet Setup Window}
+   1.4 \k{Help Button}
+       1.4.1 Internet Setup
+
+The Internet Setup menu option provides on-line help for the Internet
+Setup window.
+^3^Table of Contents
+^$180
+1. \k{Internet Setup Window}
+   1.4 \k{Help Button}
+       1.4.2 Table of Contents
+
+The Table of Contents menu option displays the list of help topics
+available for the Internet Setup window.
+^3^Help Desk
+^$190
+1. \k{Internet Setup Window}
+   1.4 \k{Help Button}
+       1.4.3 Help Desk
+
+The Help Desk menu option opens the Help Desk window. From there, you
+can click on the icon for which you want on-line help.
+^1^Internet Setup: Remote System Properties Window
+^$200
+\k{Internet Setup}
+2. Internet Setup: Remote System Properties Window
+
+Use the Internet Setup: Remote System Properties window to enter
+information about a new system entry to be added, and to change the
+information for existing system entries. The window is opened from
+either the New or Properties menu option under the System button.
+
+You can enter in the Internet Setup: Remote System Properties window
+the following information about a system you want to add.
+Alternatively, you can use the Internet Setup: Remote System
+Properties window to change information about an existing system.
+
+   o System Name: Enter the name of the remote system this text box.
+
+   o Show Full Address: Normally, only the last part of the network
+     address is shown in the Network Address text box. If you want to
+     see the full network address, click on the Show Full Address box.
+
+   o Network Address: Only the last part of the network address is
+     normally shown in this text box. If you click in the Show Full
+     Address box, four boxes appear to display the separate parts of
+     the network address.
+
+   o Comment: Enter an optional comment in the Comment text box. For
+     example, you might want to enter the name of the remote system's
+     owner.
+
+   o Permit local access to: This line has three options that let you
+     control who has access to the remote system.
+
+     - No One: prohibits access to the system by everyone
+
+     - All Users: lets all users have access to the system
+
+     - Specific Users: lets you enter the login ID of users you want
+       to have access to this system. When you click on this option, a
+       text box appears. Enter the name of a user in this text box, and
+       then click on Apply Edits. To add a second user, click twice in
+       the text box and enter the new user ID. Click on Insert, and
+       then click on Apply Edits. Repeat these steps for each user
+       that can access the system.
+
+       To delete a user from the list, click on the user ID in the
+       Allowed Users box. Click on Delete.
+
+The \d(buttons^button) available for the Internet Setup: Remote System Properties
+window are:
+
+        \k(Apply Button)\t\t\k(Reset Button)
+        \k(Cancel Button)\t\t\k(Help Button^^Help ButtonRSP)
+^2^Apply Button
+^$210
+2. \k{Internet Setup: Remote System Properties Window}
+   2.1 Apply Button
+
+The Apply button applies any changes you make in the Properties:
+Remote System Properties window to the selected entry in the Internet
+Setup window. After applying the changes, the Internet Setup: Remote
+System Properties window closes.
+^2^Reset Button
+^$220
+2. \k{Internet Setup: Remote System Properties Window}
+   2.2 Reset Button
+
+The Reset button reverses any changes you have not yet applied. The
+Internet Setup: Remote System Properties window remains open.
+^2^Cancel Button
+^$230
+2. \k{Internet Setup: Remote System Properties Window}
+   2.3 Cancel Button
+
+The Cancel button closes the Internet Setup: Remote System Properties
+window without making any changes.
+^2^Help Button=Help ButtonRSP
+^$240
+2. \k{Internet Setup: Remote System Properties Window}
+   2.4 Help Button
+
+The Help button provides on-line help for the Internet Setup: Remote
+System Properties window.
+^1^Internet Setup: Find Window
+^$250
+\k{Internet Setup}
+3. Internet Setup: Find Window
+
+Use the Internet Setup: Find window to search for a specific entry in
+the Internet Setup window. Enter the name or the first few letters of
+the entry you're searching for in the System Name text box and click
+on the Find button. The first entry in the Internet Setup window that
+matches the letters you entered is selected. The Internet Setup: Find
+window closes after the search.
+
+The \d(buttons^button) available for the Internet Setup: Find window
+are:
+
+        \k(Find Button)
+        \k(Cancel Button^^Cancel ButtonFW)
+        \k(Help Button^^Help ButtonFW)
+^2^Find Button
+^$260
+3. \k{Internet Setup: Find Window}
+   3.1 Find Button
+
+The Find button begins the search for the system name entered in the
+System Name text box.
+^2^Cancel Button=Cancel ButtonFW
+^$270
+3. \k{Internet Setup: Find Window}
+   3.2 Cancel Button
+
+The Cancel button closes the Internet Setup: Find window without
+searching for anything.
+^2^Help Button=Help ButtonFW
+^$280
+3. \k{Internet Setup: Find Window}
+   3.3 Help Button
+
+The Help button provides on-line help for the Internet Setup: Find
+window.

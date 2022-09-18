@@ -1,0 +1,16 @@
+#ident	"@(#)initpkg:common/cmd/initpkg/init.d/ttymap	1.2.5.2"
+#ident	"$Header: ttymap 1.4 91/07/24 $"
+
+# create /etc/ttymap - a map of /dev for ttyname(3) to use.
+
+/usr/sbin/ttymap
+
+# change level of /etc/ttymap to SYS_PUBLIC for ES
+if [ -x /sbin/chlvl ]
+then
+	/sbin/chlvl SYS_PUBLIC /etc/ttymap
+fi
+
+chmod 644 /etc/ttymap
+chown sys /etc/ttymap
+chgrp sys /etc/ttymap

@@ -1,0 +1,1103 @@
+#ident	"@(#)dtm:help/desktop.hlp	1.13"
+^*version^1
+^*title^UNIX Desktop Help
+^:UNIX Desktop
+^*width^70
+^+DesktopMgr/help.defs
+^?Introduction to the UNIX Desktop
+^0^UNIX SVR4.2
+^$10
+UNIX SVR4.2
+
+UNIX SVR4.2 is a new version of UNIX System V which supports an
+easy-to-use graphical user interface, known as the \k(UNIX Desktop).
+With UNIX SVR4.2 you simply click the mouse to do tasks that invoke
+UNIX System commands.
+
+Related Documents:
+
+   o Reference Cards: A set of quick reference cards are located at the
+     back of Mastering the UNIX Desktop. They provide a quick reminder
+     on how to use the mouse, keyboard, windows, and other components
+     of the UNIX Desktop.
+
+   o UNIX Desktop Quick Startup: If you have never used a graphical
+     product such as the UNIX Desktop, we suggest you go through the
+     UNIX Desktop Quick Startup. It provides simple tasks to help fam-
+     iliarize you with the UNIX Desktop.
+^1^UNIX Desktop
+^$20
+\k{UNIX SVR4.2}
+1. UNIX Desktop
+
+The UNIX Desktop is where you do your work. It comprises your entire
+screen and contains \k(windows^^Windows), \k(icons^^Icons), and \k(menus^^Menus). To use the Desktop
+effectively a \k(mouse^^Using the Mouse) should be used.
+
+The \k(UNIX Desktop window^^UNIX Desktop Window) appears when you first start UNIX SVR4.2.
+It provides access to the files, applications, and other features that
+make up the Desktop.
+
+To open one of the icons, position the mouse pointer over the icon and
+\d(Double-click^double-click) the SELECT (left) mouse button.
+^2^Using the Mouse
+^$30
+1. \k{UNIX Desktop}
+   1.1 Using the Mouse
+
+A mouse is a hand-held pointing device used to:
+
+   o manipulate icons and windows
+
+   o display and select items from UNIX Desktop menus.
+
+By moving the mouse across the Desktop and pressing the mouse buttons
+you can open folders, run applications, move files, and more. To use
+your mouse:
+
+  1. Hold the mouse in the palm of your hand with your fingers near
+     the mouse buttons. The cord connecting the mouse to your computer
+     should point away from you.
+
+  2. Move your mouse around on a mouse pad or a clear desk top. The
+     mouse pointer move on the screen as you move the mouse.
+
+  3. When the mouse pointer is over items on the desktop, such as
+     icons or windows, you use the mouse buttons to act on the items.
+
+The SELECT (left) mouse button is used most often. With it you can
+\d(drag-and-drop) and open icons.
+
+Note that you do not need a mouse to use UNIX Desktop but it is highly
+recommended. See the Advanced Navigation Reference Cards at the back
+of the Mastering the UNIX Desktop for more information on
+keyboard navigation.
+
+More information:
+
+        \k(Mouse Types)
+        \k(Mouse Buttons)
+        \k(Starting Applications with the Mouse)
+^3^Mouse Types
+^$40
+1. \k{UNIX Desktop}
+   1.1 \k{Using the Mouse}
+       1.1.1 Mouse Types
+
+There are several different types of mice supported by UNIX SVR4.2.
+They are distinguished by:
+
+   o Type of Mouse: With the UNIX Desktop, you can use either a Bus,
+     PS2, or Serial mouse.
+
+   o Number of mouse buttons: The UNIX Desktop works with both two-
+     and three-button mice.
+^3^Mouse Buttons
+^$50
+1. \k{UNIX Desktop}
+   1.1 \k{Using the Mouse}
+       1.1.2 Mouse Buttons
+
+Different functions are attached to each mouse button. To get some
+functions you have to hold down keys from the keyboard while you press
+mouse buttons.
+
+There are several major functions associated clicking your mouse buttons:
+
+   o \k(SELECT)
+
+   o \k(ADJUST/Toggle)
+
+   o \k(PASTE)
+
+   o \k(MENU)
+
+   o \k(Other Mouse Functions)
+
+Some of these functions are activated differently for two- and three-
+button mice. For some functions you must use the Control (Ctrl) and/or
+the Shift keys:
+
+\tTwo-button mouse\t\t\tThree-button mouse
+\t==================\t\t\t===================
+
+SELECT\tLeft mouse button\t\t\tLeft mouse button
+
+ADJUST\tShift-Left mouse button\t\tCtrl-Left mouse button
+
+PASTE\tRight mouse button\t\t\tMiddle mouse button
+
+MENU\tShift-Ctrl-Left mouse button\t\tRight mouse button
+
+To use the Ctrl and Shift keys with a mouse button, first press and
+hold the indicated key(s) and then click the appropriate mouse button.
+
+The UNIX Desktop help uses shorthand conventions to indicate which
+mouse buttons you should to press. For example, you might be instructed
+to click on a window button or menu item. This means use the Left
+mouse button (both two- and three-button mice). Or, you might be
+instructed to click MENU on an object. You would use Shift-Ctrl-Left
+mouse button (as shown above) with a two-button mouse or use the
+Right mouse button on a three-button mouse.
+^4^SELECT
+^$60
+1. \k{UNIX Desktop}
+   1.1 \k{Using the Mouse}
+       1.1.2 \k{Mouse Buttons}
+             1.1.2.1 SELECT
+
+The SELECT mouse function is used for most UNIX Desktop operations.
+With the SELECT mouse button, you can:
+
+   o Change the active input focus from one window to another:
+
+     Active input focus refers to the area of the screen that accepts
+     input from the keyboard. To give a window active input focus,
+     click on either the header or one of the window's borders (move
+     the pointer to the header or border and click the SELECT mouse
+     button). When a window has active input focus, any characters you
+     type automatically go to the application running in the window.
+
+     Example: \k(Changing Active Input Focus)
+
+   o Operate a menu bar or menu item:
+
+     When you click on a menu bar item, a menu appears. When you click
+     on an item in the menu, one of several things may happen:
+
+     - If the menu item is followed by three dots (...) then a popup
+       window opens.
+
+     - If the menu item is followed by an arrow, then a submenu
+       appears.
+
+     - If the menu item is not followed by anything, then the action
+       indicated by the menu item is performed.
+
+     Example: \k(Operating a Menu Button and Menu Item)
+
+   o Select controls:
+
+     Clicking on a control, such as a button, causes the control to
+     perform its designated function.
+
+     Example: \k(Selecting Controls)
+
+   o Increase or decrease the size of a window:
+
+     To change the size of a window, drag a window's resize corner or
+     border until the window is the desired size (that is, point to a
+     resize corner or border and press the SELECT mouse button while
+     dragging the resize corner or border, then release the SELECT mouse
+     button).
+
+     Example: \k(Increasing and Decreasing the Size of a Window)
+
+   o Move a window or an icon:
+
+     To move a window, drag the window's title bar until the window is
+     at the desired location (that is, press the SELECT mouse button
+     on the window's title bar, drag the window to the new location
+     and release the SELECT mouse button. Press the SELECT mouse but-
+     ton on any part of an icon to drag it to a new location.
+
+     Example: \k(Moving a Window)
+
+   o Selecting an Object
+
+     Click on an icon inside a Folder Window on which you want to per-
+     form file management commands.
+
+     Example: \k(Selecting an Object)
+
+   o Selecting Multiple Files:
+
+     With the mouse pointer in a Folder Window, press and hold SELECT
+     and drag the mouse pointer across several icons. This creates a
+     bounding box that stretches around the icons. All icons that are
+     completely enclosed in the bounding box are selected. Once
+     selected, you can act on all the icons together. You can also
+     select multiple files by using the \k(ADJUST^^ADJUST/Toggle) button.
+
+     Example: \k(Selecting Multiple Files)
+^4^Changing Active Input Focus
+^$70
+1. \k{UNIX Desktop}
+   1.1 \k{Using the Mouse}
+       1.1.2 \k{Mouse Buttons}
+             1.1.2.2 Changing Active Input Focus
+
+Here is an example of changing the active input focus:
+
+  1. \d(Double-click^double-click) on the Applications icon in the UNIX Desktop Window.
+     The Applications window is now active and the header and borders
+     are highlighted differently than the UNIX Desktop window.
+
+  2. In the Applications window \d(double-click^double-click) SELECT on the Text
+     Editor icon. The Text Editor window opens and is now active. The
+     header and borders are highlighted differently than the
+     Application and UNIX Desktop windows. While the Text Editor
+     window is active you can type in it.
+
+  3. Click on the Applications or UNIX Desktop window header and
+     type. You can no longer type in the Text Editor Window.
+
+  4. Click on the Text Editor window header and once again you can
+     type in it.
+
+  5. To close the Text Editor window, click on the File button and
+     then click on the Exit menu item.
+^4^Operating a Menu Button and Menu Item
+^$80
+1. \k{UNIX Desktop}
+   1.1 \k{Using the Mouse}
+       1.1.2 \k{Mouse Buttons}
+             1.1.2.3 Operating a Menu Button and Menu Item
+
+Here is an example of operating the menu bar and menu items:
+
+  1. If the Applications window is not already open, \d(double-click^double-click) on the
+     Applications icon in the UNIX Desktop Window.
+
+  2. Click on View in the menu bar, that is, place the mouse pointer
+     on View in the Applications window menu bar and click the SELECT
+     mouse button. A menu appears.
+
+  3. Click on the Sort menu item. A submenu appears.
+
+  4. Click on Name. The menus disappear and the icons in the window
+     are sorted by their name.
+^4^Selecting Controls
+^$90
+1. \k{UNIX Desktop}
+   1.1 \k{Using the Mouse}
+       1.1.2 \k{Mouse Buttons}
+             1.1.2.4 Selecting Controls
+
+Here is an example of Selecting controls:
+
+  1. If the Applications window is not already open, \d(double-click^double-click) on the
+     Applications icon in the UNIX Desktop Window.
+
+  2. In the Applications window \d(double-click^double-click) on the Text Editor icon.
+     The Text Editor window opens.
+
+  3. Click on File in the menu bar. A menu appears.
+
+  4. Click on Exit from the menu. You have just selected a control
+     from a menu. This causes a function to be carried out. The Editor
+     window closes.
+^4^Increasing and Decreasing the Size of a Window
+^$100
+1. \k{UNIX Desktop}
+   1.1 \k{Using the Mouse}
+       1.1.2 \k{Mouse Buttons}
+             1.1.2.5 Increasing and Decreasing the Size of a Window
+
+Here is an example of increasing and decreasing the size of a window:
+
+  1. You can use any of the windows open on the Desktop for this
+     example. Move the mouse pointer over any corner of a window and
+     note how the mouse pointer changes to an arrow and right angle
+     symbol. Move the pointer over any side and note how the mouse
+     pointer changes to an arrow and straight line.
+
+  2. With the mouse pointer over a side or a corner, press and hold
+     the SELECT mouse button.
+
+  3. Move the mouse and note how the boundary of the window moves.
+     You can make the window either smaller or larger.
+
+  4. Release the mouse button when the window is the size you want.
+^4^Moving a Window
+^$110
+1. \k{UNIX Desktop}
+   1.1 \k{Using the Mouse}
+       1.1.2 \k{Mouse Buttons}
+             1.1.2.6 Moving a Window
+
+Here is an Example of moving a window around the Desktop:
+
+  1. You can use any of the windows open on the Desktop for this
+     example. Place the pointer on the title area of a window.
+
+  2. Press and hold the SELECT mouse button.
+
+  3. Move your mouse and note that the frame of the window moves
+     with it.
+
+  4. Release the SELECT mouse button and the window is moved to the
+     new location of the Desktop.
+^4^Selecting an Object
+^$120
+1. \k{UNIX Desktop}
+   1.1 \k{Using the Mouse}
+       1.1.2 \k{Mouse Buttons}
+             1.1.2.7 Selecting an Object
+
+Here is an Example of Selecting an object:
+
+  1. If the Applications window is not already open, \d(double-click^double-click) on the
+     Applications icon in the UNIX Desktop Window.
+
+  2. In the Applications window, click on the clock.
+
+  3. The word clock icon becomes highlighted and is now selected.
+^4^Selecting Multiple Files
+^$130
+1. \k{UNIX Desktop}
+   1.1 \k{Using the Mouse}
+       1.1.2 \k{Mouse Buttons}
+             1.1.2.8 Selecting Multiple Files
+
+Here is an Example of Selecting multiple files:
+
+  1. To select all the icons in the Applications window, place the mouse
+     pointer in the upper left corner of the window, but not on an icon.
+
+  2. Press and hold the SELECT mouse button.
+
+  3. Drag the mouse pointer and a dotted frame (bounding box)
+     appears. Enclose all the icons in this frame and release the
+     SELECT button.
+
+  4. All the icons that were completely enclosed by the bounding
+     box are selected.
+
+  5. To return to only one selected icon, click on an icon.
+^4^ADJUST/Toggle
+^$140
+1. \k{UNIX Desktop}
+   1.1 \k{Using the Mouse}
+       1.1.2 \k{Mouse Buttons}
+             1.1.2.9 ADJUST/Toggle
+
+ADJUST is used to make multiple selections and is useful when you want
+to select two or more icon that are not located next to each other.
+For example, you can use the ADJUST function to select three file
+icons in a Folder window, then open all three files (using the Open
+selection under the File button).
+
+Example: \k(Using the ADJUST Function)
+^4^Using the ADJUST Function
+^$150
+1. \k{UNIX Desktop}
+   1.1 \k{Using the Mouse}
+       1.1.2 \k{Mouse Buttons}
+             1.1.2.10 Using the ADJUST Function
+
+  1. In the UNIX Desktop window, click on any icon.
+
+  2. Click ADJUST (Ctrl + SELECT for both two- and three-button
+     mice) on any other icon and note that both icons are selected.
+
+  3. Repeat Step 2 on any number of icons.
+
+  4. To unselect the icons, click on any one icon. All the icons
+     except the one just selected are now unselected.
+^4^PASTE
+^$160
+1. \k{UNIX Desktop}
+   1.1 \k{Using the Mouse}
+       1.1.2 \k{Mouse Buttons}
+             1.1.2.11 PASTE
+
+Paste is used for text only. It lets you quickly copy a section of
+text from one window to another, or from one location to another
+inside the same window. To use Paste:
+
+  1. Select text in one window (move the mouse pointer over the
+     text while pressing SELECT).
+
+  2. Move the mouse pointer to another window or different location
+     in the same window.
+
+  3. Click PASTE (Right button on two-button mice and Middle button
+     on three-button mice). The selected text is copied to the mouse
+     pointer location.
+^4^MENU
+^$170
+1. \k{UNIX Desktop}
+   1.1 \k{Using the Mouse}
+       1.1.2 \k{Mouse Buttons}
+             1.1.2.12 MENU
+
+MENU is used to bring up a menu for an item. With the mouse pointer on
+a window menu button, a window button or an icon, click MENU to bring
+up a menu of functions for that item. You can then click on one of the
+menu items.
+
+Example: \k(Using the MENU Function)
+^4^Using the MENU Function
+^$180
+1. \k{UNIX Desktop}
+   1.1 \k{Using the Mouse}
+       1.1.2 \k{Mouse Buttons}
+             1.1.2.13 Using the MENU Function
+
+Here is an example of using the Menu function:
+
+  1. If the Applications window is not already open, \d(double-click^double-click) on the
+     Applications icon in the UNIX Desktop Window.
+
+  2. Click MENU (Shift + Ctrl + SELECT on two-button mice and the
+     Right button on three-button mice) with the mouse pointer on the
+     Clock icon. A popup menu appears.
+
+  3. Click on Open.
+
+  4. The Clock opens.
+
+  5. To remove the clock click the MENU button on the Window menu
+     button (upper left-hand corner). The window menu appears. Click
+     on Close.
+^4^Other Mouse Functions
+^$190
+1. \k{UNIX Desktop}
+   1.1 \k{Using the Mouse}
+       1.1.2 \k{Mouse Buttons}
+             1.1.2.14 Other Mouse Functions
+
+Using different mouse modifiers (keystrokes along with mouse buttons)
+you can perform other functions with your mouse, such as Copy, Link,
+and Move (see below), as well as several others. Not all of these
+functions are available in all windows.
+
+   o Copy: To copy an icon from one window to another, hold down the
+     ALT key and SELECT mouse button while dragging the icon.
+
+   o Link: To link an icon from one window to another, hold down the
+     Ctrl and Alt keys and SELECT mouse button while dragging the
+     icon.
+
+   o Move: To move an icon from one window to another, just use the
+     SELECT mouse button while dragging the icon.
+
+See the Basic Navigation Reference Cards at the back of the Mastering
+the UNIX Desktop for information on additional mouse functions.
+^3^Starting Applications with the Mouse
+^$200
+1. \k{UNIX Desktop}
+   1.1 \k{Using the Mouse}
+       1.1.3 Starting Applications with the Mouse
+
+Starting Applications with the Mouse
+
+To start an application with the mouse, first locate the application's
+icon in a window. Next, move the mouse pointer over the icon and
+\d(double-click^double-click) the SELECT mouse button. The following example
+shows how to start up the Puzzle application.
+
+  1. If the Applications window is not already open, \d(double-click^double-click) on the
+     Applications icon in the UNIX Desktop Window.
+
+  2. Move the mouse pointer to the Puzzle icon and \d(double-click^double-click) the
+     SELECT mouse button. The Puzzle window appears.
+
+  3. Click SELECT on a numbered square adjacent to the blank square
+     to move it to the blank position. You can click on the Solve but-
+     ton to let the system solve the puzzle for you.
+
+  4. When you are done playing, click on the Window Menu button and
+     then click on Close.
+^2^UNIX Desktop Window
+^$210
+1. \k{UNIX Desktop}
+   1.2 UNIX Desktop Window
+
+The UNIX Desktop window provides access to the major system features,
+including:
+
+        \k(Applications Folder)
+        \k(Disks-etc Folder)
+        \k(Folder Map)
+        \k(Help Desk)
+        \k(Mailbox Folder)
+        \k(Preferences Folder)
+        \k(Shutdown)
+        \k(System Setup Folder)
+        \k(Utilities Folder)
+        \k(UUCP Inbox Folder)
+        \k(Wastebasket)
+^3^Applications Folder
+^$220
+1. \k{UNIX Desktop}
+   1.2 \k{UNIX Desktop Window}
+       1.2.1 Applications Folder
+
+The Applications Folder contains the applications that come with UNIX
+SVE4.2. They include: Calculator, Clock, Text Editor, Mail, Terminal,
+and Puzzle. This would be a good place to store your own applications
+so they would be grouped in one convenient location.
+^3^Disks-etc Folder
+^$230
+1. \k{UNIX Desktop}
+   1.2 \k{UNIX Desktop Window}
+       1.2.2 Disks-etc Folder
+
+The Disks-etc Folder is where you access your cartridge tape and
+floppy disk drives. These would be used for backing up and restoring
+files or loading new software or files onto your system.
+^3^Folder Map
+^$240
+1. \k{UNIX Desktop}
+   1.2 \k{UNIX Desktop Window}
+       1.2.3 Folder Map
+
+The Folder Map shows a graphical representation of your folders.
+Folder are connected by lines to show their relationships, that is,
+which folders are contained in other folders.
+^3^Help Desk
+^$250
+1. \k{UNIX Desktop}
+   1.2 \k{UNIX Desktop Window}
+       1.2.4 Help Desk
+
+The Help Desk contains icons that provide access to on-line help for
+all of the facilities available in the UNIX Desktop.
+^3^Mailbox Folder
+^$260
+1. \k{UNIX Desktop}
+   1.2 \k{UNIX Desktop Window}
+       1.2.5 Mailbox Folder
+
+The Mailbox Folder is where your incoming mail messages are kept.
+Also, when you save mail, it is saved to a file in this folder unless
+you specify a different folder at the time you save the message.
+^3^Preferences Folder
+^$270
+1. \k{UNIX Desktop}
+   1.2 \k{UNIX Desktop Window}
+       1.2.6 Preferences Folder
+
+The Preferences Folder provides access to icons that let you change
+the characteristics of your Desktop. For example, you can change the
+colors, icon definitions, mouse usage, keyboard mappings, and various
+other characteristics.
+^3^Shutdown
+^$280
+1. \k{UNIX Desktop}
+   1.2 \k{UNIX Desktop Window}
+       1.2.7 Shutdown
+
+Shutdown must be used when you want to restart or turn off your system.
+^3^System Setup Folder
+^$290
+1. \k{UNIX Desktop}
+   1.2 \k{UNIX Desktop Window}
+       1.2.8 System Setup Folder
+
+The System Setup folder contains applications for setting up basic
+system services. These include Application Setup, Dialup Setup, Font
+Setup, File Sharing, Icon Setup, Internet Setup, Password Setup,
+Printer Setup, User Setup, and Advanced Administration.
+^3^Utilities Folder
+^$300
+1. \k{UNIX Desktop}
+   1.2 \k{UNIX Desktop Window}
+       1.2.9 Utilities Folder
+
+The Utilities Folder contains utilities for maintaining your system,
+such as Backup Restore, Pixmap Editor, System Status, and Task
+Scheduler.
+^3^UUCP Inbox Folder
+^$310
+1. \k{UNIX Desktop}
+   1.2 \k{UNIX Desktop Window}
+       1.2.10 UUCP Folder
+
+The UUCP Folder contains files sent to you, using the UUCP facility,
+from remote systems.
+^3^Wastebasket
+^$320
+1. \k{UNIX Desktop}
+   1.2 \k{UNIX Desktop Window}
+       1.2.11 Wastebasket
+
+The Wastebasket is where deleted files go temporarily before they are
+permanently deleted. You can retrieve deleted files from the
+Wastebasket until a set time is reached or until they are explicitly
+deleted by you.
+^2^Windows
+^$330
+1. \k{UNIX Desktop}
+   1.3 Windows
+
+A Window is a rectangle on the Desktop that is associated with a par-
+ticular application. The parts of a window are:
+
+        \k(Title Bar)
+        \k(Window Menu Button)
+        \k(Minimize Button)
+        \k(Maximize Button)
+        \k(Menu Bar)
+        \k(Pane)
+        \k(Footer)
+        \k(Scrollbar)
+        \k(Resize Corners^^Resize Corners and Edges)
+        \k(Borders)
+^3^Title Bar
+^$340
+1. \k{UNIX Desktop}
+   1.3 \k{Windows}
+       1.3.1 Title Bar
+
+The Title Bar spans the top of a window and contains the window's
+title. For example, the Title Area of the UNIX Desktop window says
+"UNIX Desktop - your_login_ID." Click on the Title Bar to make a
+window active.
+^3^Window Menu Button
+^$350
+1. \k{UNIX Desktop}
+   1.3 \k{Windows}
+       1.3.2 Window Menu Button
+
+To the left of the Title Bar is a box, containing a horizontal bar, called
+the Window Menu button. Clicking on this button brings up the window
+menu containing basic window functions, such as \k(Restore), \k(Move),
+\k(Size), \k(Minimize), \k(Maximize), \k(Lower), and \k(Close). Note that not all menu
+functions are always active and some windows do not have the Minimize,
+Maximize, Size, or Restore functions.
+^3^Minimize Button
+^$360
+1. \k{UNIX Desktop}
+   1.3 \k{Windows}
+       1.3.3 Minimize Button
+
+To the right of the Title Bar is a box, containing a small square, called
+the Minimize button. Clicking on this box reduces the window to
+an \d(Active Icon).
+^3^Maximize Button
+^$370
+1. \k{UNIX Desktop}
+   1.3 \k{Windows}
+       1.3.4 Maximize Button
+
+To the right of the Minimize button is the Maximize Button. Clicking
+on this button causes the window to expand and occupy your entire
+screen. If a window is already Maximized when you click on this but-
+ton, the window reverts back to the size it was before it was Maxim-
+ized.
+^3^Menu Bar
+^$380
+1. \k{UNIX Desktop}
+   1.3 \k{Windows}
+       1.3.5 Menu Bar
+
+Below the Title Area is the menu bar. This is used for initiating actions
+either on the window or its contents. For example, in the UNIX Desktop
+window, the menu bar provides access to the File, View, Edit, Folders,
+and Help menus.
+^3^Pane
+^$390
+1. \k{UNIX Desktop}
+   1.3 \k{Windows}
+       1.3.6 Pane
+
+The central part of the window, where you perform your work, is the Pane.
+The UNIX Desktop window pane contains icons such as Preferences, System
+Setup, Applications, and so on.
+^3^Footer
+^$400
+1. \k{UNIX Desktop}
+   1.3 \k{Windows}
+       1.3.7 Footer
+
+Below the Pane is the Footer area. Information and error messages are
+displayed in this area. For example, the UNIX Desktop window shows the
+total number of items in the window and how many are selected.
+^3^Scrollbar
+^$410
+1. \k{UNIX Desktop}
+   1.3 \k{Windows}
+       1.3.8 Scrollbar
+
+When a window is too small to show all of its contents, a scrollbar
+appears. It could be a horizontal scrollbar, vertical scrollbar, or both.
+They are used to move the view of the pane so you can see the rest
+of the contents of the window. To use the scrollbar, press the SELECT
+(left) button when the mouse pointer is over the slider (the box in
+the center of the scrollbar) and drag it until what you want is in
+view. You can also click on the arrows on either end of the scrollbar
+to make the pane move in small steps.
+^3^Resize Corners and Edges
+^$420
+1. \k{UNIX Desktop}
+   1.3 \k{Windows}
+       1.3.9 Resize Corners
+
+At each corner of a main window is a resize corner.  You can expand
+and shrink a window by dragging the resize corners (while pressing the
+SELECT mouse button). Note that some windows do not have resize
+corners.
+
+^3^Borders
+^$430
+1. \k{UNIX Desktop}
+   1.3 \k{Windows}
+       1.3.10 Borders
+
+On the four sides of a window are borders.
+
+In main windows, these borders can be dragged to resize the window
+(like \k(resize corners^^Resize Corners and Edges)). Some windows, known as pop-up windows,
+typically have borders that cannot be used for resizing.
+^2^Icons
+^$440
+1. \k{UNIX Desktop}
+   1.4 Icons
+
+Icons are pictorial representations of applications, files, or folders
+and are located either inside windows or on the Desktop. Icons inside
+windows represent files and folders that are closed or applications
+you have not yet started. Icons on the Desktop are known as Active
+Icons. Active Icons represent files and folders that are open or
+applications that are running. Active Icons are usually located at the
+bottom of the Desktop.
+
+More information:
+
+        \k(Icons in a Window)
+        \k(Active Icons)
+^3^Icons in a Window
+^$450
+1. \k{UNIX Desktop}
+   1.4 \k{Icons}
+       1.4.1 Icons in a Window
+
+Icons inside windows are used to represent many different elements.
+For example, an icon can represent:
+
+   o a data file.
+
+   o a folder containing files and other folders.
+
+   o a device such as a printer, tape drive or floppy diskette drive.
+
+   o a remote system, to which you can send files or share resources.
+
+There are several ways to use the icons inside windows. You can
+\d(double-click^double-click) SELECT on an icon to open it. What happens depends
+on the type of icon:
+
+   o Text File - The text editor application is started with the file
+     ready for editing.
+
+   o Other Data File - If the data file is known by the system to be
+     associated with a particular application, that application starts
+     with this file open in the application.
+
+   o Application - The application is started.
+
+   o Folder - The folder is opened, displaying its contents.
+
+You can find out more about an icon by looking at its properties. To
+view the properties of an icon:
+
+  1. Click MENU on the icon. Its menu appears.
+
+     For a two-button mouse press Ctrl + Shift + left mouse button.
+     For A three-button mouse press the right mouse button.
+
+  2. Click on Properties from the menu (move the mouse pointer to
+     the Properties and click the SELECT mouse button).
+
+     The Properties sheet shows who owns the file, the read/write
+     /execute permission of the file, and when it was last modified.
+^3^Active Icons
+^$460
+1. \k{UNIX Desktop}
+   1.4 \k{Icons}
+       1.4.2 Active Icons
+
+To avoid having many widows cluttering your desktop, you can close
+windows temporarily without stopping what's going on in the window.
+The effect is to reduce the window to a small icon, know as an Active
+Icon, that aligns itself neatly along the bottom of the Desktop.
+
+To reduce a window to an Active Icon, do the following:
+
+  1. Move the mouse pointer to the minimize button (the box con-
+     taining the small square in the upper right-hand corner of the
+     window.
+
+  2. Click the SELECT mouse button.
+
+To restore an Active Icon to a window, do the following:
+
+  1. Move the mouse pointer to the icon.
+
+  2. Click the SELECT mouse button to make the menu appear. Click
+     on Restore from the menu (click the SELECT mouse button on it).
+     You can also \d(double-click) on an Active Icon as a quick way to
+     open it.
+
+More information: \k(Menus)
+^2^Menus
+^$470
+1. \k{UNIX Desktop}
+   1.5 Menus
+
+A menu is a list of items that pops up when you select an item from
+the menu bar. The menu gives you a choice of actions or settings. For
+example, every folder window has a Window Menu button in the corner to
+the left of the window title bar. Clicking on this button brings up a
+menu with the following options (also, selecting an \k(Active Icon^^Icons) brings
+up this menu):
+
+   o \k(Restore)
+
+   o \k(Move)
+
+   o \k(Size)
+
+   o \k(Minimize)
+
+   o \k(Maximize)
+
+   o \k(Lower)
+
+   o \k(Close)
+
+These are the actions you can perform on a window (or Active Icon).
+Note that some menu items may be dimmed. Only the menu items that
+are not dimmed can be selected. Clicking on a dimmed menu item has
+no effect.
+^3^Restore
+^$480
+1. \k{UNIX Desktop}
+   1.5 \k{Menus}
+       1.5.1 Restore
+
+Restore has two functions. First, it restores Active Icons to windows.
+Second, it reduces a \k(maximized^^Maximize) window to its original window size.
+^3^Move
+^$490
+1. \k{UNIX Desktop}
+   1.5 \k{Menus}
+       1.5.2 Move
+
+Move lets you move a window or \k(Active Icon^^Icons) around the Desktop. Clicking
+on Move changes the mouse pointer into four arrows, pointing up, down,
+left, and right. When you move the mouse, the window or icon moves
+with it. Click SELECT to place the window or icon in its new
+location.
+^3^Size
+^$500
+1. \k{UNIX Desktop}
+   1.5 \k{Menus}
+       1.5.3 Size
+
+Size is only active for main windows. It lets you resize a window.
+Clicking on Size changes the mouse pointer into four arrows, pointing
+up, down, left, and right. When you move the mouse pointer past either
+a corner or border (including the top and bottom) that part expands or
+shrinks as you move the mouse. Click SELECT when the window is the
+size you want.
+^3^Minimize
+^$510
+1. \k{UNIX Desktop}
+   1.5 \k{Menus}
+       1.5.4 Minimize
+
+Minimize is only active for main windows. Minimize reduces a window to
+an \k(Active Icon^^Icons).
+^3^Maximize
+^$520
+1. \k{UNIX Desktop}
+   1.5 \k{Menus}
+       1.5.5 Maximize
+
+Maximize creates a full screen size window from either a smaller main
+window or \k(Active Icon^^Icons). Use \k(Restore) to reduce a maximized window to
+its original size.
+^3^Lower
+^$530
+1. \k{UNIX Desktop}
+   1.5 \k{Menus}
+       1.5.6 Lower
+
+Lower moves either a window or \k(Active Icon^^Icons) below (sometimes referred to
+as behind) other windows and icons on the Desktop. To bring a window
+to the surface (on top of other windows and Active Icons), click on its
+border or title area. To bring an Active Icon to the surface, click
+anywhere on the icon.
+^3^Close
+^$540
+1. \k{UNIX Desktop}
+   1.5 \k{Menus}
+       1.5.7 Close
+
+Close "removes" the window or \k(Active Icon^^Icons) from the Desktop. The application
+associated with the window may be re-started by double-clicking on its
+icon (either in the UNIX Desktop window or other folder window). If
+you try to Close the UNIX Desktop window, a Notice window appears
+warning your that this ends your Desktop session.
+^1^Help
+^$550
+\k{UNIX SVR4.2}
+2. Help
+
+On-line help is available for the windows and applications that come
+with UNIX SVR4.2. The on-line help is a hypertext-based system that
+provides detailed information and lets you navigate the various help
+topics by selecting special words, called links. When you click on a link,
+the current text in the help window is replaced by text describing
+the topic associated with the link.
+
+There are four ways to access on-line help:
+
+        \k(Help Menu)
+        \k(Help Button)
+        \k(Help Desk)
+        \k(Help Key)
+^2^Help Menu
+^$560
+2. \k{Help}
+   2.1 Help Menu
+
+Clicking on Help in a window's menu bar pops up the help menu. Click-
+ing on the first item on the help menu brings up on-line help for that
+window.
+^2^Help Button
+^$570
+2. \k{Help}
+   2.2 Help Button
+
+Some windows contain a Help button. Clicking on the Help button brings
+up on-line help for that window.
+^2^Help Desk
+^$580
+2. \k{Help}
+
+   2.3 Help Desk
+
+The Help Desk contains icons for UNIX SVR4.2 Applications. Click on an
+icon to see a short description of that application at the bottom of
+the window. Double-click on the icon to bring up the application's
+on-line help.
+
+The Help Desk is accessed either from the menu brought up by the Help
+button or from the Help Desk icon in the UNIX Desktop window.
+^2^Help Key
+^$590
+2. \k{Help}
+   2.4 Help Key
+
+Move the mouse pointer over the object you want help on. Now press the
+Help key (the F1 key).
+
+More information: \k(Help Window^DesktopMgr/help.hlp^Help)
+^1^Using the UNIX Desktop
+^$600
+\k{UNIX SVR4.2}
+3. Using the UNIX Desktop
+
+To use the UNIX Desktop you must know how to perform some basic
+operations, like starting and stopping your system and using the mouse
+and keyboard.
+
+        \k(Starting Up)
+        \k(Shutting Down)
+        \k(Using the Mouse)
+^2^Starting Up
+^$610
+3. \k{Using the UNIX Desktop}
+   3.1 Starting Up
+
+This procedure details how to start your UNIX SVR4.2 system.
+
+  1. Turn on the Power:
+
+     Turn on the power switch to your computer and monitor. If UNIX
+     SVR4.2 has been properly installed, after a short time you should
+     see the login window.
+
+  2. Enter your login ID:
+
+     Type in your login ID and press Enter. (A login should have been
+     created for you when your system was installed.) You are prompted
+     for a password
+
+      Password:
+
+  3. Enter your password:
+
+     If this is not the first time you are logging to your system, go
+     to Step 4.
+
+     If this is your first time logging in to your system after load-
+     ing UNIX SVR4.2, you have no password; press Enter for
+     your password. You are now prompted for a new password.
+
+     Type in a word or phrase containing more then 6 characters and
+     press Enter. There must be at least two alphabetic and one
+     numeric or special character included in your password and it
+     must differ with your login. Your password is not displayed as
+     you type. You are prompted to re-enter you new password to
+     confirm that you have entered it correctly.
+
+     Type in exactly what you typed in for your new password and press
+     Enter. Your password is not displayed on your monitor as you
+     type.
+
+  4. Enter your password:
+
+     If this is your first time logging in, go back to step 3. Otherwise,
+     type in your password and press Enter. Your password is not
+     displayed as you type. If you do not enter your login or password
+     correctly, you are not logged into the system. The login prompt
+     appears again. Try Entering you login ID and password again,
+     until you successfully log in.
+
+Once you have successfully logged in, the UNIX Desktop appears and is
+ready for use. You can use the mouse and keyboard to run applications
+or maintain your system.
+^2^Shutting Down
+^$620
+3. \k{Using the UNIX Desktop}
+   3.2 Shutting Down
+
+Never just turn off your computer! Unlike less powerful computer
+operating systems, there is always something happening on a UNIX
+SVR4.2 system. Processes are running to monitor your computer, check
+for programs waiting to run, and listen for incoming calls from the
+network.
+
+If you just turn off your system, you could lose data or damage some
+of your system files so that the system doesn't work properly next
+time you start it. Instead, when ever you want to turn off your com-
+puter, do the following.
+
+  1. Save all files you have been working on. Quit all applications
+     properly.
+
+  2. \d(Double-click^double-click) the SELECT (left) mouse button on the Shutdown
+     icon from the UNIX Desktop window.(If the Shutdown icon is not
+     available, go to Step 4.)
+
+  3. Click on one of the following buttons from the Exit Notice
+     window:
+
+     - Save Session and Exit Button - The Save Session and Exit button
+       remembers the position of the windows and icons on your desktop.
+       The next time you log in, they are returned to their positions.
+
+     - Exit Button - The Exit button lets you exit the desktop without
+       saving the current session.
+
+     - Cancel Button- The Cancel button cancels your request to exit
+       the Desktop. After selecting Cancel, you can continue working
+       on the Desktop.
+
+     - Help Button - The Help button provides on-line help for the
+       Exit Notice.
+
+     If you select the Save Session and Exit or Exit button, the system
+     stops after a few moments. When you see the message, "Reboot the
+     computer now," you can safely turn off the power.
+
+  4. If the Shutdown icon is not available, open the UNIX Desktop
+     window if it's not already opened. Click on the File button.
+     A pop-up menu appears. Click on Exit Desktop. Continue with
+     Step 3.

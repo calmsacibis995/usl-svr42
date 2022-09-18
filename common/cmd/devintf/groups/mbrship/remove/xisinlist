@@ -1,0 +1,15 @@
+#ident	"@(#)devintf:common/cmd/devintf/groups/mbrship/remove/xisinlist	1.1.4.1"
+#ident  "$Header: xisinlist 2.0 91/07/11 $"
+look=$1
+shift
+if [ "$*" ]
+then
+    for i in $@
+    do
+	if [ "$look" = "$i" ] 
+	then 
+	    exit 0
+	fi
+    done
+fi
+exit 1

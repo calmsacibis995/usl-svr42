@@ -1,0 +1,19 @@
+#ident	"@(#)oamintf:common/cmd/oamintf/restore_serv/Prototype	1.1.1.2"
+#ident  "$Header: Prototype 2.0 91/07/12 $"
+!MENU=/usr/sadm/sysadm/menu 
+##############################################################
+#		Top Level Directories 
+############################################################## 
+d intf /usr 755 root sys
+d intf /usr/sadm 555 bin bin
+d intf /usr/sadm/sysadm 555 bin bin
+d intf $MENU 555 bin bin
+
+############################################################## 
+#		Interface File Placeholders
+############################################################## 
+
+d intf $MENU/restores 0755 bin bin
+v intf $MENU/restores/restore.menu 0644 bin bin
+f intf $MENU/restores/Help 0644 bin bin
+

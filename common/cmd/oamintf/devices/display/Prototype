@@ -1,0 +1,13 @@
+#ident	"@(#)oamintf:common/cmd/oamintf/devices/display/Prototype	1.3.7.2"
+#ident  "$Header: Prototype 2.0 91/07/12 $"
+!MENU=/usr/sadm/sysadm/menu
+!INTFBIN=/usr/sadm/sysadm/bin
+
+f intf $INTFBIN/dispdisk 0755 bin bin
+d intf $MENU/devices/display 0755 bin bin
+v intf $MENU/devices/display/Menu.display 0644 bin bin
+f intf $MENU/devices/display/Form.display 0644 bin bin
+f intf $MENU/devices/display/Text.display 0644 bin bin
+f intf $MENU/devices/display/Text.disperr 0644 bin bin
+f intf $MENU/devices/display/Text.disprem 0644 bin bin
+f intf $MENU/devices/display/Help 0644 bin bin

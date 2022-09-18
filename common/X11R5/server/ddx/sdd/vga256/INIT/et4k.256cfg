@@ -1,0 +1,64 @@
+#display VGA256 PseudoColor "SPEEDSTAR NEC5D 1024x768 9.75x7.32" 0 /dev/console lib/libvga256.so
+# /* SPEEDSTAR, 1024x768 and multisync monitors ;  ex: NEC 4d or 5d */
+
+#display VGA256 PseudoColor "SPEEDSTAR INTERLACED 1024x768 9.75x7.32" 0 /dev/console lib/libvga256.so
+# /* SPEEDSTAR, 1024x768 and interlaced monitors, ex: NEC 3d */
+
+#display VGA256 PseudoColor "SPEEDSTAR NEC5D 800x600 9.75x7.32" 0 /dev/console lib/libvga256.so
+# /* SPEEDSTAR, 800x600 for NEC5D  monitor */
+
+#display VGA256 PseudoColor "SPEEDSTAR MULTISYNC 800x600 9.75x7.32" 0 /dev/console lib/libvga256.so
+# /* SPEEDSTAR alternate entry: 800x600 with a multisync monitor */
+
+#display VGA256 PseudoColor "SPEEDSTAR CRYSTALSCAN 800x600 9.75x7.32" 0 /dev/console lib/libvga256.so
+# /* SPEEDSTAR entry: 800x600 with Gateway's crystal scan 1024NI monitor */
+
+#display VGA256 PseudoColor "SPEEDSTAR INTERLACED 800x600 9.75x7.32" 0 /dev/console lib/libvga256.so
+# /* SPEEDSTAR 800x600 for interlaced monitor */
+
+#display VGA256 PseudoColor "SPEEDSTAR STDVGA 640x480 9.75x7.32" 0 /dev/console lib/libvga256.so
+# /*  SPEEDSTAR, 640x480 mode */
+
+#
+# ORCHID PRODESIGNER II and IIs
+#
+
+#display VGA256 PseudoColor "PRODESII NEC5D 1024x768 9.75x7.32" 0 /dev/console lib/libvga256.so
+# /* PRODESII, 1024x768 and multisync monitors ;  ex: NEC 4d or 5d */
+
+#display VGA256 PseudoColor "PRODESII INTERLACED 1024x768 9.75x7.32" 0 /dev/console lib/libvga256.so
+# /* PRODESII, 1024x768 and interlaced monitors, ex: NEC 3d */
+
+#display VGA256 PseudoColor "PRODESII NEC5D 800x600 9.75x7.32" 0 /dev/console lib/libvga256.so
+# /* PRODESII, 800x600 any multisync monitor */
+
+#display VGA256 PseudoColor "PRODESII MULTISYNC 800x600 9.75x7.32" 0 /dev/console lib/libvga256.so
+# /* PRODESII alternate entry: 800x600 with a multisync monitor */
+
+#display VGA256 PseudoColor "PRODESII CRYSTALSCAN 800x600 9.75x7.32" 0 /dev/console lib/libvga256.so
+# /* PRODESII entry: 800x600 with Gateway's crystal scan 1024NI monitor */
+
+#display VGA256 PseudoColor "PRODESII INTERLACED 800x600 9.75x7.32" 0 /dev/console lib/libvga256.so
+# /* PRODESII 800x600 for interlaced monitor */
+
+#display VGA256 PseudoColor "PRODESII STDVGA 640x480 9.75x7.32" 0 /dev/console lib/libvga256.so
+# /* PRODESII, 640x480 mode */
+
+#
+# NOTE: A valid entry is the first line that does not have a '#' 
+#	sign as the first char is taken as 'THE ENTRY'; So, to use
+#	an entry just comment (#) the lines before the required line.
+#	Try to keep the required entry at the top of the file; this
+# 	saves start up time especially with huge config files.
+#
+#	To use your own config file, you can run the server with:
+#
+#		X -config $HOME/mycfg &
+#		OR
+#		olinit -- -config $HOME/mycfg
+#
+# If you want to know the valid entries for the installed init 
+# driver (/lib/libv256i.so.1), make a fake entry in the 2nd field (ex: replace
+# VGA with FOO) and try to run the server; all the valid entries
+# with the supported resolutions are printed on stderr.
+#

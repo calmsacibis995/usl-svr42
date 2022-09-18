@@ -1,0 +1,22 @@
+#ident	"@(#)pkg.ihvhba:i386/pkg/ihvhba/prototype	1.5"
+#ident	"$Header: $"
+
+i pkginfo
+i postinstall
+i preremove
+i copyright
+
+!default 775 root sys
+d none  /tmp	?	?	?
+d none  /tmp/mcis
+f none	/tmp/mcis/Driver.o
+f none	/tmp/mcis/Space.c
+f none	/tmp/mcis/Master
+f none	/tmp/mcis/System
+f none	/tmp/mcis/loadmods
+f none	/tmp/mcis/disk.cfg
+
+# the following objects will not be installed though packaged here
+
+f ihv	/tmp/mcis/mcis
+

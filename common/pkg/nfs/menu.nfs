@@ -1,0 +1,79 @@
+#ident	"@(#)pkg.nfs:common/pkg/nfs/menu.nfs	1.14"
+#ident	"$Header: $"
+.ul
+NFS Installation
+.ur
+Administer NFS Package
+.lr
+F1=Help
+.top
+`[ "${PKGINSTALL_TYPE}" = "OVERLAY" ] && echo "As the NFS package is already installed on your computer, you have the"`
+`[ "${PKGINSTALL_TYPE}" = "OVERLAY" ] && echo "option of re-installing the software if you choose."`
+`[ "${PKGINSTALL_TYPE}" = "OVERLAY" ] && echo ""`
+You have the option of installing a graphical interface for administering
+`[ ! "$OAM" ] && echo "this package."`
+`[ "$OAM" ] && echo "this package.  You may also optionally install the OA&M menus for"`
+`[ "$OAM" ] && echo "administering this package."`
+.button
+Apply
+Reset
+.bottom
+Press 'TAB' to move the cursor between fields.  When finished, move the
+cursor to "Apply" and then press 'ENTER' to continue.
+.form
+#
+#
+#TYPE_ENUM <# of choices> //choice 1//choice 2//..//choice n//field label//
+`[ "${PKGINSTALL_TYPE}" = "OVERLAY" ] && echo "2 2//YES::Yes//NO::No//Reinstall the NFS package?://REINSTALL//"`
+# field options
+`[ "${PKGINSTALL_TYPE}" = "OVERLAY" ] && echo "// Left/Right arrow keys for next choice (2 choices)//"`
+#
+#TYPE_ENUM <# of choices> //choice 1//choice 2//..//choice n//field label//
+2 2//YES::Yes//NO::No//Install graphical interface?://DTM//
+#//field options//
+// Left/Right arrow keys for next choice (2 choices)//
+#
+#TYPE_ENUM <# of choices> //choice 1//choice 2//..//choice n//field label//
+`[ "$OAM" ] && echo "2 2//YES::Yes//NO::No//Install OA&M menu interface?://OAM//"`
+`[ "$OAM" ] && echo "// Left/Right arrow keys for next choice (2 choices)//"`
+#
+#
+#
+
+.hhelp_ban
+Instructions
+.helpbanner
+Help: Administer NFS Package
+.help
+For detailed instructions, press the 'F1' (or '?') key at any time.
+
+`[ "${PKGINSTALL_TYPE}" = "OVERLAY" ] && echo "REINSTALL NFS PACKAGE"`
+`[ "${PKGINSTALL_TYPE}" = "OVERLAY" ] && echo ""`
+`[ "${PKGINSTALL_TYPE}" = "OVERLAY" ] && echo "You have the option of reinstalling the NFS software in addition to"`
+`[ "${PKGINSTALL_TYPE}" = "OVERLAY" ] && echo "installing the administrative interface to NFS.  If you wish to reinstall"`
+`[ "${PKGINSTALL_TYPE}" = "OVERLAY" ] && echo "NFS, answer Yes to this question."`
+GRAPHICAL INTERFACE
+
+The NFS package allows you to administer the NFS facility by using
+the Desktop Manager.  If you install this interface, a new icon will be
+added to your "System Setup" folder.  You will be able to share your
+files with other machines and allow your machine to use files from other
+machines.
+
+For this feature to work correctly, you must have the Desktop Manager
+package installed on your computer.
+`[ "$OAM" ] && echo ""`
+`[ "$OAM" ] && echo "OA&M MENU INTERFACE"`
+`[ "$OAM" ] && echo ""`
+`[ "$OAM" ] && echo "The OA&M character based administration interface is installed on your"`
+`[ "$OAM" ] && echo "computer.  You have the option to install an additional set of OA&M menus to"`
+`[ "$OAM" ] && echo "provide administration of the NFS facilities through the OA&M package."`
+.pageno
+Page %d of %d
+.optstring
+Your options are:
+.helpinst
+ESC=Exit help  F1=Instructions  1=Forward  2=Backward
+.hhelpinst
+ESC=Exit instructions  1=Forward  2=Backward
+.end

@@ -1,0 +1,73 @@
+#ident	"@(#)mail:common/cmd/mail/llib-lmail	1.9.2.4"
+/* @(#)llib-lmail	1.12 'attmail mail(1) command' */
+/* LINTLIBRARY */
+/* PROTOLIB1 */
+
+#include <libmail.h>
+#include <maillock.h>
+#include <lpriv.h>
+#include <s_string.h>
+
+#ifdef SVR3
+/* <libmail.h> */
+string *abspath(path, dot, to) char *path; char *dot; string *to; { return 0; }
+char *basename(path) char *path; { return 0; }
+int cascmp(s1, s2) char *s1; char *s2; { return 0; }
+int casncmp(s1, s2, n) char *s1, *s2; int n; { return 0; }
+void closeallfiles(firstfd) int firstfd; { return; }
+int copystream(infp, outfp) FILE *infp, *outfp; { return 0; }
+int delempty(m, f) mode_t m; char *f; { return 0; }
+/* VARARGS3 PRINTFLIKE3 */
+void errexit(exitval, sverrno, fmt) int exitval; int sverrno; char *fmt; { /* NOTREACHED */ }
+int expand_argvec(pargvec, chunksize, _argvec, pargcnt)
+	char ***pargvec; int chunksize; char **_argvec; int *pargcnt; { return 0; }
+int	islocal(user, puid) char *user; uid_t *puid; { return 0; }
+pid_t loopfork() { return 0; }
+char *maildomain() { return 0; }
+char *mailsystem(which) int which; { return 0; }
+char *Mgetenv(env) char *env; { return 0; }
+char *mgetenv(env) char *env; { return 0; }
+int newer(file1, file2) char *file1; char *file2; { return 0; }
+void notify(user, msg, check_mesg_y, etcdir) char *user; char *msg; int check_mesg_y; char *etcdir; { }
+int parse_execarg(p, i, pargcnt, argvec, chunksize, _argvec)
+	char *p; int i; int *pargcnt; char ***argvec; int chunksize; char **_argvec; { return 0; }
+int pclosevp(fp) FILE *fp; { return 0; }
+FILE *popenvp(file, argv, mode, resetid) char *file, **argv, *mode; int resetid; { return 0; }
+int rename(old, new) char *old; char *new; { return 0; }
+char **setup_exec(s) char *s; { return 0; }
+char *skipspace(p) char *p; { return 0; }
+char *skiptospace(p) char *p; { return 0; }
+int sortafile(infile, outfile) char *infile; char *outfile; { return 0; }
+void strmove(to, from) char *to; char *from; { }
+int substr(string1, string2) char *string1, *string2; { return 0; }
+int systemvp(file, argv, resetid) char *file, **argv; { return 0; }
+void trimnl(s) char *s; { }
+char *Xgetenv(env) char *env; { return 0; }
+char *xgetenv(env) char *env; { return 0; }
+int xsetenv(file) char *file; { return 0; }
+
+/* <maillock.h> */
+int maillock(user, retrycnt) char *user; int retrycnt; { return 0; }
+int maildlock(user, retrycnt, dir, showerrs) char *user; int retrycnt; char *dir; int showerrs; { return 0; }
+int mailunlock() { return 0; }
+
+/* <lpriv.h> */
+int check4mld(dir) char *dir; { return 0; }
+DIR *realmode_opendir(dir) char *dir; { return 0; }
+FILE *realmode_fopen(f, mode) char *f; char *mode; { return 0; }
+
+/* <s_string.h> */
+string *s_append(to, from) string *to; char *from; { return 0; }
+string *s_array(x, len) char *x; int len; { return 0; }
+string *s_copy(x) char *x; { return 0; }
+void s_free(s) string *s; { }
+int s_grow(sp, c) string *sp; int c; { return 0; }
+string *s_new() { return 0; }
+string *s_parse(from, to) string *from; string *to; { return 0; }
+char *s_read_line(fp, to) FILE *fp; string *to; { return 0; }
+int s_read_to_eof(fp, to) FILE *fp; string *to; { return 0; }
+string *s_seq_read(fp, to, lineortoken) FILE *fp; string *to; int lineortoken; { return 0; }
+void s_skipwhite(from) string *from; { }
+string *s_tok(from, split) string *from; char *split; { return 0; }
+
+#endif

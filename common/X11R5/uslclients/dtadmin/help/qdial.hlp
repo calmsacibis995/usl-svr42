@@ -1,0 +1,100 @@
+#ident	"@(#)dtadmin:help/qdial.hlp	1.11"
+^*version^1
+^*title^Quick Dial
+^*width^70
+^+DesktopMgr/help.defs
+^?Dial out to a remote computer system.
+^0^Quick Dial
+^$10
+Quick Dial
+
+Use the Quick Dial window to dial out to remote UNIX or non-UNIX
+systems, or directly connect to remote UNIX or non-UNIX systems. When
+the connection is made, a Terminal window opens in which you
+communicate with the remote system.
+
+The following window is provided for Quick Dial:
+
+        \k(Quick Dial Window)
+
+More information:
+	\k(Remote System Icons^dtadmin/remotsys.hlp^Remote System)
+	\k(Terminal Window^xterm/term.hlp^Terminal Window)
+^1^Quick Dial Window
+^$20
+\k{Quick Dial}
+1. Quick Dial Window
+
+Use the Quick Dial window to connect to a remote system, either
+through a modem or by a direct connection (cable):
+
+   o Dial Out: If both your system and the remote system are set up
+     for dialing out (both systems have modems), you can call the
+     remote system if you have the remote system's phone number in the
+     Phone Number text box in the Quick Dial window and click on
+     the \k(Dial button^^Dial ButtonQD).
+
+   o Direct Connect: If both your system and the remote system are set
+     up for direct connection (a cable connects the two systems), you
+     can access that system. Just click on the Dial button in the
+     Quick Dial window to make the connection.
+
+If you dial out with a modem, you also can change the Speed, Parity,
+Character Size, and Duplex Mode if you need values different than
+those shown by clicking on the appropriate options.
+
+Note: The settings are preset for connecting to a UNIX system.
+
+   o The Speed is determined by the modem you are using. For example,
+     if you are using a 2400 baud modem, select 2400 for the speed.
+
+   o The Parity is determined by the system you are calling. You
+     should have this information before attempting to dial the
+     remote system. Click on None, Even or Odd.
+
+   o The Character Size is determined by the system you are calling.
+     You should have this information before attempting to dial the
+     remote system. Click on either 7 or 8.
+
+   o The Duplex Mode is determined by the communication software. You
+     should have this information before attempting to dial the remote
+     system. Most modern software works in full duplex mode. Unless
+     you know that the remote system works only in half duplex mode,
+     leave this setting on Full.
+
+The buttons available for the Quick Dial window are:
+
+        \k(Dial Button^^Dial ButtonQD)
+        \k(Reset Button^^Reset ButtonQD)
+        \k(Cancel Button^^Cancel ButtonQD)
+        \k(Help Button^^Help ButtonQD)
+^2^Dial Button=Dial ButtonQD
+^$30
+1. \k{Quick Dial Window}
+   1.1 Dial Button
+
+The Dial button uses either the modem connected to the selected device
+to dial the number entered in the Phone Number text box or completes
+the connection when a system is directly connected with a cable.
+^2^Reset Button=Reset ButtonQD
+^$40
+1. \k{Quick Dial Window}
+   1.2 Reset Button
+
+The Reset button reverses any changes you have not yet applied to Par-
+ity, Character Size, and Duplex Mode. The values after clicking on the
+Reset button are Any, None, 7, and Full, respectively. The Quick Dial
+window stays open.
+^2^Cancel Button=Cancel ButtonQD
+^$50
+1. \k{Quick Dial Window}
+   1.3 Cancel Button
+
+The Cancel button closes the Quick Dial window without taking any
+action.
+^2^Help Button=Help ButtonQD
+^$60
+1. \k{Quick Dial Window}
+   1.4 Help Button
+
+The Help button provides on-line help for the Quick Dial window.

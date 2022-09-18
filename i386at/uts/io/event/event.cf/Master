@@ -1,0 +1,4 @@
+#ident	"@(#)uts-x86at:io/event/event.cf/Master	1.2"
+#ident	"$Header: $"
+$version 1
+event	event	Scok	0	0	80

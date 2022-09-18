@@ -1,0 +1,17 @@
+*** inet.v4/shells	Mon Jun 15 11:40:58 1992
+--- inet.p13/shells	Mon Jun 15 11:53:21 1992
+***************
+*** 1,2 ****
+! #ident	"@(#)cmd-inet:etc/shells	1.1"
+  /usr/bin/sh
+--- 1,5 ----
+! #ident	"@(#)/etc/inet/shells.sl 1.2 4.1dt 05/28/92 1562 AT&T-USL"
+! #ident "$Header: /sms/sinixV5.4es/rcs/s19-full/usr/src/cmd/cmd-inet/etc/shells,v 1.1 91/02/28 16:30:49 ccs Exp $"
+! #Un-comment these shells that inherit privilege at your own risk.
+! #/sbin/sh
+! #/sbin/jsh
+***************
+*** 6,7 ****
+- /sbin/sh
+- /sbin/jsh
+--- 9,10 ----

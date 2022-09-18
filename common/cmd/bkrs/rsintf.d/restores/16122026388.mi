@@ -1,0 +1,11 @@
+#ident	"@(#)bkrs:common/cmd/bkrs/rsintf.d/restores/16122026388.mi	1.5.6.1"
+#ident  "$Header: 16122026388.mi 1.2 91/06/21 $"
+#status#new
+main:restore_service:extended^Extended Restore Service^
+main:restore_service:extended:operator^Set/Display the Restore Operator^Form.setup
+main:restore_service:extended:respond^Respond to Restore Job Prompts^Form.rsoper
+main:restore_service:extended:restore^Restore from Backup Archives^Form.restore
+main:restore_service:extended:status^Modify/Report Pending Restore Request Status^
+main:restore_service:extended:status:full^Display a Full Report of Pending Restore Requests^Text.full
+main:restore_service:extended:status:modify^Modify the Status of Pending Requests^Form.modify
+main:restore_service:extended:status:selective^Display a Selective Report of Pending Restore Requests^Form.select

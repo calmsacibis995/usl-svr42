@@ -1,0 +1,44 @@
+#ident	"@(#)portmgmt:common/cmd/portmgmt/port_services/Form.ps_adduk	1.4.7.1"
+#ident  "$Header: Form.ps_adduk 2.0 91/07/13 $"
+
+form= Add Port Services 
+`set -l LIFE=longterm`
+lifetime=$LIFE
+help=OPEN TEXT $INTFBASE/Text.itemhelp $LININFO
+close=`rm -f /var/tmp/cmd$PID /var/tmp/err$PID;
+	unset -l LIFE`
+done=`message -w "Adding service <$ARG1> to the system.";
+	echo -m \"\`\$TFADMIN "$F1" \`\" >> /var/tmp/cmd$PID;
+	set -l LIFE=shortterm;
+	sh /var/tmp/cmd$PID >/var/tmp/err$PID 2>/var/tmp/err$PID;
+	`OPEN TEXT $OBJ_DIR/Text.ps_msg $RET $ARG1 "Adding" "added" $ARG2 `getfrm`
+
+# $F1
+name=Full command line to generate port specific information on stdout:
+nrow=1
+ncol=2
+frow=3
+fcol=5
+rows=1
+columns=60
+lininfo=pspmspec
+choicemsg=const "Enter the full command line."
+fieldmsg=const "Enter the full command line."
+scroll=TRUE
+
+# $F2
+name=Fill in the form and then press [SAVE].
+nrow=5
+ncol=4
+inactive=TRUE
+
+name=" "
+nrow=6
+ncol=2
+inactive=TRUE
+show=FALSE
+
+name=Page 2 of 2
+nrow=0
+ncol=50
+inactive=TRUE

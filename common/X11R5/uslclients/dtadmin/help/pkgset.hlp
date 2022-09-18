@@ -1,0 +1,450 @@
+#ident	"@(#)dtadmin:help/pkgset.hlp	1.12"
+^*version^1
+^*title^Application Setup
+^:Appl-n_Setup
+^*width^70
+^+DesktopMgr/help.defs
+^?Install and remove applications.
+^0^Application Setup
+^$10
+Application Setup
+
+Use Application Setup to see the applications installed on your system
+and view information about those applications. You can also delete or
+add applications to your system from spool files (files on your hard
+disk), floppy disk, or tape.
+
+The following windows are provided for Application Setup:
+
+        \k(Application Setup Window)
+
+        \k(Application Setup: set_name Window)
+
+        \k(Application Setup: application_name Window)
+
+        \k(Application Setup: Properties Window)
+
+        \k(View Folder Window)
+^1^Application Setup Window
+^$20
+\k{Application Setup}
+1. Application Setup Window
+
+Use the Application Setup window to display an icon for each applica-
+tion and application set (which includes a number of distinct applica-
+tions) currently installed on your system. You can check the
+properties of an application as well as add and delete applications.
+
+To view the contents of an application set, either select the set and
+click on the Show Contents menu item under the Actions button, or
+double-click on the application set's icon. This causes the Applica-
+tion Setup: set_name window to appear.
+
+Note: When applications are installed or removed from your system,
+mail is sent to the owner account and to root indicating whether the
+installation or removal of the application was successful. If the
+installation of the application failed, the mail indicates the
+problem(s) encountered.
+
+The \d(buttons^button) available for the Application Setup window are:
+
+        \k(Actions Button^^Actions ButtonAS)
+        \k(Application Button^^Application ButtonAS)
+        \k(View Button^^View ButtonAS)
+        \k(Help Button^^Help ButtonAS)
+
+More information: \k(Application Setup: set_name Window)
+^2^Actions Button=Actions ButtonAS
+^$30
+1. \k{Application Setup Window}
+   1.1 Actions Button
+
+The Actions button enables you to display icons associated with an
+application or application set (group of applications) or to exit the
+Application Setup window.  Clicking on the Actions button displays a
+menu with the following options:
+
+        \k(Show Contents)
+        \k(Exit)
+^3^Show Contents
+^$40
+1. \k{Application Setup Window}
+   1.1 \k{Actions Button^^Actions ButtonAS}
+       1.1.1 Show Contents
+
+The Show Contents menu option lets you view the icons associated with
+an application or application set. These icons typically are used to
+start the application but may also represent configuration and other
+files that are part of the application. Clicking on the Show Contents
+menu option displays the Application Setup: set_name window if an
+application set is selected or the Application Setup: application_name
+window if an application is selected.
+
+More information:
+
+	\k(Application Setup: set_name Window)
+	\k(Application Setup: application_name Window)
+^3^Exit
+^$50
+1. \k{Application Setup Window}
+   1.1 \k{Actions Button^^Actions ButtonAS}
+       1.1.2 Exit
+
+The Exit menu option lets you exit from Application Setup.
+^2^Application Button=Application ButtonAS
+^$60
+1. \k{Application Setup Window}
+   1.2 Application Button
+
+The Application button lets you add, delete, and check the properties
+of applications. Clicking on the Application button displays a menu
+with the following options:
+
+        \k(Install)
+        \k(Remove)
+        \k(Properties)
+^3^Install
+^$70
+1. \k{Application Setup Window}
+   1.2 \k{Application Button^^Application ButtonAS}
+       1.2.1 Install
+
+The Install menu option lets you install new software applications
+onto your system. This option is active only when you use the
+\k(View button^^View ButtonAS) to specify Uninstalled Applications.
+^3^Remove
+^$80
+1. \k{Application Setup Window}
+   1.2 \k{Application Button^^Application ButtonAS}
+       1.2.2 Remove
+
+The Remove menu option lets you remove software applications from your
+system. This option is active only when you use the \k(View button^^View ButtonAS) to
+specify Installed Applications.
+^3^Properties
+^$90
+1. \k{Application Setup Window}
+   1.2 \k{Application Button^^Application ButtonAS}
+       1.2.3 Properties
+
+The Properties menu option lets you check the properties of software
+applications on your system. Clicking on the Properties menu option
+displays the Application Setup: Properties window.
+
+More information: \k(Application Setup: Properties Window)
+^2^View Button=View ButtonAS
+^$100
+1. \k{Application Setup Window}
+   1.3 View Button
+
+The View button lets you select whether icons representing installed
+or uninstalled applications are displayed in the Application Setup
+window. Clicking on the View button displays a menu with the
+following options:
+
+        \k(Installed Appl'ns)
+        \k(Uninstalled Appl'ns)
+^3^Installed Appl'ns
+^$110
+1. \k{Application Setup Window}
+   1.3 \k{View Button^^View ButtonAS}
+       1.3.1 Installed Appl'ns
+
+When you click on the Installed Appl'ns menu option, icons
+representing applications already installed on your system are
+displayed in the Application Setup window. Once these icons are
+displayed, \d(double-clicking^double-click) on an icon provides information about
+the application it represents.
+
+Clicking on Installed Appl'ns displays a menu with the following
+options: Add-On, System, All.
+
+   o The Add-On menu option displays icons in the Application Setup
+     window representing each application installed on your system,
+     such as spreadsheet or word processing applications.
+
+   o The System menu option displays icons in the Application Setup
+     window representing each "system" application (applications
+     associated with the operating system) installed on your system.
+
+   o The All menu option displays icons in the Application Setup
+     window representing every application and application set
+     installed on your system.
+^3^Uninstalled Appl'ns
+^$120
+1. \k{Application Setup Window}
+   1.3 \k{View Button^^View ButtonAS}
+       1.3.2 Uninstalled Appl'ns
+
+When you click on the Uninstalled Appl'ns menu option, icons
+representing applications either on floppy disk or tape are displayed
+in the Application Setup window.
+
+Clicking on Uninstalled Appl'ns displays a menu with the Cartridge
+Tape, Disk A, Disk B, and Other options. Note that Cartridge Tape,
+Disk A, and Disk B appear only if they are available on your system.
+
+Note: Other types of removable media, such as CD-ROM, may also be
+installed on your system and therefore available from the menu.
+
+   o The Cartridge Tape menu option lets you view icons representing
+     applications on a cartridge tape. First insert the cartridge tape
+     with the applications you want to add into the cartridge tape
+     drive.  Then click on this option to display icons representing
+     the applications on the cartridge tape (this takes several
+     moments while the tape is read). Once the icons are displayed, you
+     can select and install applications using the \k(Application button^^Application ButtonAS).
+
+   o The Disk A and Disk B menu options let you display icons
+     representing applications on the floppy disk in either disk drive
+     A or disk drive B. Insert the floppy disk with the applications
+     you want to install into an appropriate disk drive and click on
+     the appropriate option. When you click on Disk A (or Disk B),
+     icons representing the applications on the floppy disk are
+     displayed in the Application Setup window. Once the icons are
+     displayed, you can select and install applications using the
+     \k(Application button^^Application ButtonAS).
+
+   o The Other menu option lets you install applications whose files
+     have been copied to your system, but not yet installed or are
+     available from a remote system that is accessible from your
+     system. Clicking on the Other menu option displays the View
+     Folder window.
+
+More information: \k(View Folder Window)
+^2^Help Button=Help ButtonAS
+^$130
+1. \k{Application Setup Window}
+   1.4 Help Button
+
+The Help button provides on-line help for Application Setup. Clicking
+on the Help button displays a menu with the following options:
+
+	\k(Appl'n Setup^^Appl'n SetupAS)
+	\k(Table of Contents^^Table of ContentsAS)
+	\k(Help Desk^^Help DeskAS)
+^3^Appl'n Setup=Appl'n SetupAS
+^$135
+1. \k{Application Setup Window}
+   1.4 \k{Help Button^^Help ButtonAS}
+       1.4.1 Appl'n Setup
+
+The Appl'n Setup menu option provides on-line help for the Application
+Setup window.
+^3^Table of Contents=Table of ContentsAS
+^$140
+1. \k{Application Setup Window}
+   1.4 \k{Help Button^^Help ButtonAS}
+       1.4.2 Table of Contents
+
+The Table of Contents menu option displays the list of help topics
+available for the Application Setup window.
+^3^Help Desk=Help DeskAS
+^$150
+1. \k{Application Setup Window}
+   1.4 \k{Help Button^^Help ButtonAS}
+       1.4.3 Help Desk
+
+The Help Desk menu option opens the Help Desk window. From there, you
+can select the icon for which you want on-line help.
+^1^Application Setup: set_name Window
+^$160
+\k{Application Setup}
+2. Application Setup: set_name Window
+
+Use the Application Setup: set_name window to display icons repre-
+senting the individual applications that make up an application set
+(set_name is replaced by the name of the application set). Once
+displayed, you can check properties and contents of the applications
+as well as remove them from your system.
+
+The \d(buttons^button) available for the Application Setup: set_name window are:
+
+        \k(Show Contents Button^^Show Contents ButtonPK)
+        \k(Properties Button^^Properties ButtonPK)
+        \k(Remove Button^^Remove ButtonPK)
+        \k(Cancel Button^^Cancel ButtonPK)
+        \k(Help Button^^Help ButtonPK)
+^2^Show Contents Button=Show Contents ButtonPK
+^$170
+2. \k{Application Setup: set_name Window}
+   2.1 Show Contents Button
+
+The Show Contents button lets you view icons representing the actual
+programs associated with the selected application set. Clicking on the
+Show Contents menu option displays the Application Setup: Icons win-
+dow.
+
+More information: \k(Application Setup: application_name Window)
+^2^Properties Button=Properties ButtonPK
+^$180
+2. \k{Application Setup: set_name Window}
+   2.2 Properties Button
+
+The Properties button lets you check the properties of selected appli-
+cations. Clicking on the Properties menu option displays the Applica-
+tion Setup: Properties window.
+
+More information: \k(Application Setup: Properties Window)
+^2^Remove Button=Remove ButtonPK
+^$190
+2. \k{Application Setup: set_name Window}
+   2.3 Remove Button
+
+The Remove button lets you remove selected applications from your sys-
+tem. Click on the icon for the application you want to remove and then
+click on the Remove menu option.
+
+Note: If you remove all the displayed icons, the icon representing the
+application set in the Application Setup window is also removed.
+^2^Cancel Button=Cancel ButtonPK
+^$200
+2. \k{Application Setup: set_name Window}
+   2.4 Cancel Button
+
+The Cancel button closes the Application Setup: set_name window without
+removing any applications.
+^2^Help Button=Help ButtonPK
+^$210
+2. \k{Application Setup: set_name Window}
+   2.5 Help Button
+
+The Help button provides on-line help for the Application Setup:
+set_name window.
+^1^Application Setup: application_name Window
+^$220
+\k{Application Setup}
+3. Application Setup: application_name Window
+
+Use the Application Setup: application_name window to display icons
+representing the applications available from the application or
+application set selected in the Application Setup window. Once
+displayed, the icons can be installed in a folder so that you can
+conveniently access them. Install icons in a folder by
+\d(dragging-and-dropping^drag-and-drop) them to any open folder window or by clicking on
+the Install to Desktop button, which typically installs a copy of the
+selected icon in the Applications folder.
+
+Note: Depending on the way the vendor has configured an application's
+installation files, you may see either one icon representing the
+application or many icons representing all the files that make up the
+application. If you see many icons for an application, install in a
+folder only the executable file that starts the application (usually
+the file with the same name as the command you enter at the command
+line to start the application; see the application's user manual for
+more information about the name of the executable file).
+
+The \d(buttons^button) available for the Application Setup: application_name
+window are:
+
+        \k(Install to Desktop Button^^Install to Desktop ButtonIW)
+        \k(Cancel Button^^Cancel ButtonIW)
+        \k(Help Button^^Help ButtonIW)
+^2^Install to Desktop Button=Install to Desktop ButtonIW
+^$230
+3. \k{Application Setup: application_name Window}
+   3.1 Install to Desktop Button
+
+The Install to Desktop button lets you install executable files
+associated with an application into the Applications folder. Click on
+the icon you want to install, then click on the Install to Desktop
+button. Once installed, you can start the application by
+\d(double-clicking^double-click) on its icon.
+
+Note: You also can install an icon into any folder by \d(dragging-and-dropping^drag-and-drop)
+it from the Application Setup: application_name window.
+^2^Cancel Button=Cancel ButtonIW
+^$240
+3. \k{Application Setup: application_name Window}
+   3.2 Cancel Button
+
+The Cancel button closes the Application Setup: application_name window.
+^2^Help Button=Help ButtonIW
+^$250
+3. \k{Application Setup: application_name Window}
+   3.3 Help Button
+
+The Help button provides on-line help for the Application Setup: Icons
+window.
+^1^Application Setup: Properties Window
+^$260
+\k{Application Setup}
+4. Application Setup: Properties Window
+
+Use the Application Setup: Properties window to display the basic
+information about the selected application. This information includes
+the following:
+
+   o Application Name: abbreviation for the application name
+
+   o Description: name of the application
+
+   o Category: type of application (set, system, or application)
+
+   o Vendor: company that produced the application
+
+   o Version: version of the application
+
+   o Architecture: type of CPU (for example, 386, SPARC, etc.) the
+     application was compiled for
+
+   o Date Installed: date the application was installed on your system
+
+   o Size: size of the application (in blocks).
+
+The \d(buttons^button) available for the Application Setup window are:
+
+        \k(Cancel Button^^Cancel ButtonPW)
+        \k(Help Button^^Help ButtonPW)
+^2^Cancel Button=Cancel ButtonPW
+^$270
+4. \k{Application Setup: Properties Window}
+   4.1 Cancel Button
+
+The Cancel button closes the Application Setup: Properties window.
+^2^Help Button=Help ButtonPW
+^$280
+4. \k{Application Setup: Properties Window}
+   4.2 Help Button
+
+The Help button provides on-line help for the Application Setup:
+Properties window.
+^1^View Folder Window
+^$290
+\k{Application Setup}
+5. View Folder Window
+
+Use the View Folder window to choose a folder from which to install
+applications. Note that applications must already be copied to a
+folder before you can install them from a folder.
+
+The Path line in the View Folder window shows the folder from which
+applications are to be installed from. You can change the folder by
+clicking on a different folder name in the Folder(s) box. As you
+select folders, the Path line changes to indicate the location of the
+newly selected folder.
+
+The \d(buttons^button) available for the View Folder window are:
+
+        \k(Select Button^^Select ButtonVF)
+        \k(Cancel Button^^Cancel ButtonVF)
+        \k(Help Button^^Help ButtonVF)
+^2^Select Button=Select ButtonVF
+^$300
+5. \k{View Folder Window}
+   5.1 Select Button
+
+The Select button chooses the indicated folder as the source for installing
+applications.
+^2^Cancel Button=Cancel ButtonVF
+^$310
+5. \k{View Folder Window}
+   5.2 Cancel Button
+
+The Cancel button closes the View Folder window.
+^2^Help Button=Help ButtonVF
+^$320
+5. \k{View Folder Window}
+   5.3 Help Button
+
+The Help button provides on-line help for the View Folder window.

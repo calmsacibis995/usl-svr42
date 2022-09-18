@@ -1,0 +1,574 @@
+#ident	"@(#)olmisc:xol_msgs	1.12"
+
+*badVisual.noVisual : JAPAN No visual associated with %s
+
+*badVisual.copyFromParent : JAPAN Visual should never be CopyFromParent
+
+*badConversion.invalidVisual: JAPAN Visual to colormap converter failed
+
+*badConversion.badQueryFont: JAPAN XQueryFont failed on good font ID
+
+*badConversion.illegalString: JAPAN %s to %s given illegal string \"%s\"
+
+*badConversion.illegalSyntax: JAPAN %s to %s: found multiple keys: %s
+
+*badConversion.invalidFont: JAPAN Unable to load specified font
+
+*badConversion.invalidFormat: JAPAN FontGroupDef string has invalid \
+format
+
+*badConversion.missingParameter: JAPAN %s to %s: conversion needs \
+Screen* argument
+
+*badConversion.missing2Parms: JAPAN %s to %s: conversion needs Screen* and \
+Colormap arguments
+
+*badConversion.noColormap: JAPAN Cannot allocate colormap entry for \
+\"%s\"
+
+*badConversion.noFont: JAPAN Unable to load any usable ISO 8859-1 \
+font
+
+*badConversion.nullString: JAPAN %s to %s given null string
+
+*badConversion.tooManyParams: JAPAN %s to %s: conversion needs no \
+arguments
+
+*badDestruction.missingParameter: JAPAN Free %s needs Screen* argument
+
+*badDestruction.missing2Parms: JAPAN Free %s needs Screen* and Colormap \
+arguments
+
+*badFlatSubclass.flatState: JAPAN Procedure %s: Widget \"%s\"\
+ (class \"%s\") is not a FlatWidget subclass
+
+*goodParent.noChild: JAPAN InsertChild: widget \"%s\" (class \"%s\"):\
+ attempt to insert a widget child - not allowed
+
+*badFile.fileOpen: JAPAN Could not open file \"%s\" in\
+ file: \"%s\" and function: \"%s\"
+
+*badFile.badBitmap: JAPAN Bitmap file %s has invalid contents in\
+ file: \"%s\" and function: \"%s\"
+
+*badFont.defaultOLFont: JAPAN widget \"%s\" (class \"%s\"):\
+ could not find the default OPEN LOOK font
+
+*badFunction.insertChild: JAPAN widget \"%s\" (class \"%s\"):\
+ bad/no insertChild function
+
+*badItemAddress.flatState: JAPAN widget \"%s\" (class \"%s\"):\
+ \"%s\" called with NULL expanded item address for item_index %d
+
+*badItemIndex.flatState: JAPAN widget \"%s\" (class\
+ \"%s\"): \"%s\" called with invalid index value of %u
+
+*badItemResource.Convert: JAPAN %s: widget \"%s\" (class \"%s\") \
+ does have resource \"%s\"
+
+*badParent.noMenuParent: JAPAN Widget \"%s\" (class\
+\"%s\"): AbbrevMenuButton submenu has no parent widget
+
+*badParent.nullParent: JAPAN %s: %s: Widget \"%s\" has NULL parent!!
+
+*badReference.badMatch: JAPAN %s \"%s\": refWidget \"%s\" and refName \
+\"%s\" don't match.
+
+*badReference.unknownWidget: JAPAN %s \"%s\": refName \"%s\" is not a \
+known widget.
+
+*badScreen.nullScreen: JAPAN NULL screen pointer in\
+ file: \"%s\" and function: \"%s\"
+
+*olComposeArgList.noSourceList: JAPAN _OlComposeArgList: NULL source\
+ list for non-zero count
+
+*olComposeArgList.noMaskList: JAPAN _OlComposeArgList: NULL mask\
+ list for non-zero count
+
+*olComposeArgList.nullListPtr: JAPAN _OlComposeArgList: NULL composed\
+ list pointer or NULL composed count pointer
+
+*olComposeArgList.invalidParameters: JAPAN _OlComposeArgList:\
+ OL_COPY_SIZE must specify size greater than zero
+
+*olComposeArgList.wrongParameters: JAPAN _OlComposeArgList: must\
+ specify OL_COPY_SIZE as next field when using rule %s on resource \"%s\"
+
+*olComposeArgList.nullDestination: JAPAN _OlComposeArgList: Attempt\
+ to write to NULL memory location for resource \"%s\" with rule %s
+
+*olComposeArgList.unknownRule: JAPAN _OlComposeArgList:\
+ unknown rule used for resource \"%s\"
+
+*goodParent.badChild: JAPAN Widget \"%s\" (class\
+\"%s\"): wrong type of child for this parent \"%s\"
+
+*goodParent.diffChild: JAPAN Widget \"%s\" (class\
+\"%s\"): cannot mix types of children with this parent \"%s\"
+
+*goodParent.oneChild: JAPAN InsertChild: widget \"%s\" (class\
+ \"%s\"): widget can have only one child 
+
+*inconsistentNumItemFields.Convert: JAPAN %s: Widget \"%s\" (class\
+ \"%s\") programmatic XtNnumItemFields (%d) conflicts with fields read from \
+ the database (%d)
+
+*internal.badNodeReference: JAPAN Widget \"%s\" (class\
+ \"%s\"): internal error when referencing node in \"%s\" list
+
+*internal.badVersion: JAPAN Widget Class\
+ \"%s\" version mismatch: class %d vs. OPEN LOOK Toolkit %d
+
+*internal.corruptedList: JAPAN Widget \"%s\" (class\
+ \"%s\"): widget's internal \"%s\" list is corrupted
+
+*invalidArgCount.flatState: JAPAN Argument count = %u for NULL\
+ Arg list in %s when operating on widget \"%s\" (class: \"%s\").  Sub-object\
+ was %u
+
+*invalidData.dataType: JAPAN Invalid data type passed in \
+ file: \"%s\" and function: \"%s\"
+
+*invalidItemRecord.flatState: JAPAN Widget Class \"%s\": full item\
+ record size of %u is smaller than superclass's record size of %u
+
+*invalidParameters.olDoGravity: JAPAN Unknown gravity value\
+ %d in _OlDoGravity
+
+*invalidProcedure.inheritanceProc: JAPAN Widget Class \"%s\"\
+ has unresolved inheritance for class field %s
+
+*invalidProcedure.setValuesAlmost: JAPAN Widget Class \"%s\"\
+ has NULL SetValuesAlmost procedure
+
+*invalidRequiredResource.badDefaultType: JAPAN WidgetClass \"%s\": \
+ required resource \"%s\" cannot have NULL or XtRImmediate default_type
+
+*invalidRequiredResource.badValue: JAPAN WidgetClass \"%s\": \
+ resource \"%s\" is not a valid sub-object resource
+
+*invalidRequiredResource.nullList: JAPAN WidgetClass \"%s\": has null\
+ %s field with non-zero %s field
+
+*invalidResource.duplicateDefault: JAPAN Default has been set already\
+ - ignored
+
+*invalidResource.flatState: JAPAN widget \"%s\" (class\
+ \"%s\"): resource \"%s\" has invalid value for sub-object %d, setting to default.
+
+*invalidResource.initialize: JAPAN Initialize: widget \"%s\" (class\
+ \"%s\"): resource \"%s\" has invalid value, setting to %s
+
+*invalidResource.initializeDefault: JAPAN Initialize: widget \"%s\"\
+ (class \"%s\"): resource \"%s\" has invalid value, setting to default
+
+*invalidResource.setToDefault: JAPAN widget \"%s\"\
+ (class \"%s\"): resource \"%s\" has invalid value, setting to default
+
+*invalidResource.setToSomething: JAPAN widget \"%s\" (class\
+ \"%s\"): resource \"%s\" has invalid value, setting to %s
+
+*invalidResource.textEdit: JAPAN TextEdit: resource \"%s\" has \
+invalid value %d, setting to %d
+
+*invalidResource.badItemResource: JAPAN Widget \"%s\" (class\
+ \"%s\"): skipping resource \"%s\" since it's not a valid flat item resource
+
+*invalidResource.nullList: JAPAN Widget \"%s\" (class \"%s\"):\
+ list resource \"%s\" has NULL value for non-zero \"%s\" count
+
+*invalidResource.setValues: JAPAN SetValues: widget \"%s\" (class\
+ \"%s\"): resource \"%s\" has invalid value, setting to %s
+
+*invalidResource.setValuesNC: JAPAN SetValues: widget \"%s\" (class\
+ \"%s\"): resource \"%s\" has invalid value, no change
+
+*invalidResource.setValuesRO: JAPAN SetValues: widget \"%s\" (class\
+ \"%s\"): cannot set read-only resources
+
+*invalidDimension.badHeight: JAPAN widget \"%s\" (class \"%s\") \
+has internal_height of less than zero.  Set to zero.
+
+*invalidDimension.badMenuChildHeight: JAPAN Menu \"%s\" has child \"%s\"\
+ with zero height, forcing to 1
+
+*invalidDimension.badMenuChildWidth: JAPAN Menu \"%s\" has child \"%s\"\
+ with zero width, forcing to 1
+
+*invalidDimension.badWidth: JAPAN widget \"%s\" (class \"%s\") \
+has internal.width of less than zero.  Set to zero.
+
+*invalidDimension.widgetSize: JAPAN widget \"%s\" (class\
+ \"%s\"): widget's width or height is too narrow, resetting bad\
+ dimension to minimum value
+
+*invalidDimension.badGeometry: JAPAN widget \"%s\" (class\
+ \"%s\"): widget's width or height request is zero, request refused
+
+*itemsAndNumItemFieldsConflict.Convert: JAPAN %s: Widget \"%s\" \
+ (class \"%s\") number of XtnumItemFields (%d) conflicts with \
+ \nXtNitems fields per record (%d)
+
+*noInputContext.textEdit: JAPAN TextEdit: Widget failed to create \
+input context with input method %s
+
+*noMemory.calloc: JAPAN couldn't calloc %d elements of size %d in %s \
+at %d!!!
+
+*noMemory.free: JAPAN freeing storage -> NULL in %s at %d!!!
+
+*noMemory.general: JAPAN %s: out of memory
+
+*noMemory.malloc: JAPAN malloc() failed in file \"%s\"\
+ function \"%s\"
+
+*noMemory.malloc2: JAPAN couldn't malloc %d bytes in %s at %d!!!
+
+*noMemory.readFile: JAPAN Not enough memory for file \"%s\"\
+ in file: \"%s\" and function \"%s\"
+
+*noMemory.realloc: JAPAN couldn't realloc %d bytes in %s at %d!!!
+
+*noMemory.xtRealloc: JAPAN XtRealloc() failed in file \"%s\"\
+ function \"%s\"
+
+*notRealized.pointerGrab: JAPAN \"%s\": widget \"%s\" (class\
+ \"%s\") must be realized to grab pointer
+
+*nullItemField.Convert: JAPAN %s: widget \"%s\" (class\
+ \"%s\") cannot have NULL itemField name 
+
+*nullWidget.classPointer: JAPAN NULL WidgetClass pointer passed to \
+%s
+
+*nullWidget.flatState: JAPAN NULL widget id passed to %s
+
+*OlInitialize.badDisplay: JAPAN Cannot open display
+
+*OlInitialize.badInitialize: JAPAN \"%s\": aleady initialized !!!
+
+*OlInitialize.inputMethod: JAPAN Cannot contact input method server: %s
+
+*setLocale.category: JAPAN Failed to set %s category with setlocale()
+
+*tooManyDefaults.flatState: JAPAN widget \"%s\" (class\
+ \"%s\"): unselecting item %u because item %u is already the default item
+
+*tooManyRecords.Convert: JAPAN %s: Widget \"%s\" (class\
+ \"%s\") database XtNnumItemFields value has more than 1 record\
+ specification, %d { }'s
+
+*tooManySet.flatState: JAPAN widget \"%s\" (class\
+ \"%s\"): unselecting item %u because item %u is already set
+
+*fileAction.msg1: JAPAN OlAssociateWidget: NULL leader or follower
+*fileAction.msg2: JAPAN OlAssociateWidget: bad follower widget
+*fileAction.msg3: JAPAN OlAssociateWidget: cycle not allowed
+
+*fileApplic.msg1: JAPAN Failed to read locale definition file
+
+*fileButton.msg1: JAPAN Button widget/gadget \"%s\" : no XtNlabelImage\
+ XtNlabelType set to OL_STRING
+*fileButton.msg2: JAPAN Button widget/gadget \"%s\" : XtNlabelImage must\
+ be set when XtNlabelTile is True
+
+*fileCategory.msg1: JAPAN OlCategorySetPage: \"%s\" is not the parent of\
+ \"%s\"
+*fileCategory.msg2: JAPAN CATEGORY:
+
+*fileColorChip.msg1: JAPAN ColorChip: _OlDestroyColorChip called too\
+ many times!
+
+*fileControlArea.msg1: JAPAN Control: Can't have change bars when\
+ layout type is OL_FIXEDHEIGHT or OL_FIXEDWIDTH
+
+*fileConverters.msg1: JAPAN Cannot convert \"%s\" to type Boolean
+*fileConverters.msg2: JAPAN Cannot convert \"%s\" to type Font
+*fileConverters.msg3: JString
+*fileConverters.msg4: JBoolean
+*fileConverters.msg5: JDimension
+*fileConverters.msg6: JPosition
+*fileConverters.msg7: JGravity
+*fileConverters.msg8: JCardinal
+*fileConverters.msg9: JOlDefine
+*fileConverters.msg10: JModifiers
+*fileConverters.msg11: JFont
+*fileConverters.msg12: JFontStruct
+*fileConverters.msg13: JFontGroup
+*fileConverters.msg14: JFontStructList
+
+*fileDisplay.msg1: JAPAN Text window too small to display a single\
+ line of text
+
+*fileDynResProc.msg1: JAPAN Recursive use of DynResProc()
+
+*fileDynamic.msg1: JAPAN UpdateIEDB: internal stack too small, \
+maximum is 100
+
+*fileDynamic.msg2: JAPAN IsComposeBtnOrKey: no definition for \
+\"%s\" yet
+
+*fileDynamic.msg3: JAPAN %s found illegal syntax: %s
+
+*fileDynamic.msg4: JAPAN failed to update per display language
+
+*fileEventObj.msg1: JAPAN Gadget to be destroyed not found
+*fileEventObj.msg2: JAPAN Gadgets have different parents:\
+ current = \"%s\", previous = \"%s\"
+
+*flatIllegalMnemonic.duplicateKey: JAPAN Widget \"%s\" (class %s): can't add duplicate mnemonic \"%c\" to item %d
+*flatIllegalMnemonic.badKey: JAPAN Widget \"%s\" (class %s): can't add illegal mnemonic \"%c\" to item %d
+*flatIllegalAccelerator.duplicateKey: JAPAN Widget \"%s\" (class %s): can't add duplicate accelerator \"%s\" to item %d
+*flatIllegalAccelerator.badKey: JAPAN Widget \"%s\" (class %s): can't add illegal accelerator \"%s\" to item %d
+*fileFlat.msg2: JAPAN CalcItemSize: Rule COLUMN_ITEMS can't be called \
+ for height calculations
+*fileFlat.msg3: JAPAN CalcItemSize: Rule ROW_ITEMS can't be called \
+ for width calculations
+*fileFlat.msg4: JAPAN CalcItemSize: unknown Rule 
+
+*fileFlatCvt.msg1: JAPAN %s: NULL widget id
+*fileFlatCvt.msg2: JAPAN %s: widget \"%s\" (class \"%s\") is not a\
+ FlatWidget Subclass.
+*fileFlatCvt.msg3: JAPAN Converter %s: flat widget \"%s\" \
+(class \"%s\"): Missing record leader '{'
+*fileFlatCvt.msg4: JAPAN Converter %s: flat widget \"%s\" \
+(class \"%s\"): Missing field separator or record trailer '}'
+*fileFlatCvt.msg5: JAPAN Converter %s: flat widget \"%s\" \
+(class \"%s\"): Missing Trailer
+*fileFlatCvt.msg6: JAPAN Converter %s: flat widget \"%s\" \
+(class \"%s\"): records within list can't have different number of elements
+
+*fileFlatExpand.msg1: JAPAN screenCache
+
+*fileForm.msg1: JAPAN Form \"%s\": refWidget \"%s\" and refName \"%s\"\
+ don't match
+*fileForm.msg2: JAPAN Form \"%s\": refWidget \"%s\" is neither a child\
+ of the form nor the form itself
+*fileForm.msg3:JAPAN Form \"%s\": refName \"%s\" is not a known widget
+
+*fileHelp.msg1: JAPAN Attempt to destroy non-existent help item
+
+*fileHelp.msg2: JAPAN OlRegisterHelp: widget id must be a subclass of\
+ flatWidgetClass to use id type OL_FLAT_HELP
+
+*fileHelp.msg3: JAPAN Unknown id_type found while registering help
+
+*fileHelp.msg4: JAPAN Invalid help source found at popup of help
+
+*fileHelp.msg5: JAPAN There is no help available for this object.
+*fileHelp.msg6: JAPAN Application '
+*fileHelp.msg7: JAPAN creating more than one help widget
+*fileHelp.msg8: JAPAN %s: %s Help
+
+*fileExclusives.msg1: JAPAN Exclusives: one button set already - ignored
+
+*fileExclusives.msg2: JAPAN Exclusives: no button or no default currently set
+
+*fileExclusives.msg3: JAPAN Exclusives: one button must be set if noneset==FALSE
+
+*fileExclusives.msg4: JAPAN Exclusives: no child to set as default
+
+*fileExclusives.msg5: JAPAN Exclusives: no default button to preview
+
+*fileFButton.msg1: JAPAN \"%s\"'s ItemActivate procedure not implemented
+
+*fileFExclusive.msg1: JAPAN Widget \"%s\" (class \"%s\"):\
+ cannot change resource XtNexclusives without XtNitemsTouched == True
+
+*fileListPane.msg1: JAPAN ScrollingList: \"%s\" widget\
+ is not scrollingListWidget
+*fileListPane.msg2: JAPAN ScrollingList: \"%s\" - NULL token
+*fileListPane.msg3: JAPAN ScrollingList: addItem- label_type\
+ OL_IMAGE unsupported
+*fileListPane.msg4: JAPAN ScrollingList: addItem- illegal label_type
+*fileListPane.msg5: JAPAN ScrollingList: editOpen- NULL reference
+*fileListPane.msg6: JAPAN ScrollingList: editOpen- widget is not realized
+*fileListPane.msg7: JAPAN ScrollingList: editOpen- 'insert'\
+ currently not supported
+*fileListPane.msg8: JAPAN ScrollingList: failed to gain ownership\
+ of Clipboard
+*fileListPane.msg9: JAPAN ScrollingList: Can't convert PRIMARY
+*fileListPane.msg10: JAPAN ScrollingList: Can't convert CLIPBOARD
+*fileListPane.msg11: JAPAN ScrollingList: Unknown selection target ignored
+*fileListPane.msg12: JAPAN Scrolling List: OlListItemPointer- bad\
+ token value
+*fileListPane.msg13: JAPAN _OlPrintList- NULL widget passed in
+*fileListPane.msg14: JAPAN _OlPrintList- Empty list
+
+*fileMenu.msg1: JAPAN Widget \"%s\" (class name \"%s\") refused Menu\
+ attachment !!
+*fileMenu.msg2: JAPAN Menu Initialize: cannot modify menu's attach flag
+*fileMenu.msg3: JAPAN Menu: pushpin args exceed allocated size
+*fileMenu.msg4: JAPAN Menu: Title Widget args exceed allocated size
+*fileMenu.msg5: JAPAN Menu: pane args exceed allocated size
+*fileMenu.msg6: JAPAN Menu SetValues: cannot modify XtNmenuPane
+*fileMenu.msg7: JAPAN Menu SetValues: cannot modify menu's attach flag
+*fileMenu.msg8: JAPAN ApplMenuPost: Null parent Widget
+*fileMenu.msg9: JAPAN ApplMenuPost: Null menu id
+*fileMenu.msg10: JAPAN \"%s\": null widget or widget not menu
+*fileMenu.msg11: JAPAN \"%s\" requires a subclass of\
+ menushellWidgetClass
+
+*fileMenuButton.msg1: JAPAN reached unhandled event in MenuButtonEH
+*fileMenuButton.msg2: JAPAN PositionSubmenu: popup has no parent widget
+*fileMenuButton.msg3: JAPAN Menu parent is not a MenuButton Widget
+
+*fileOblongButton.msg1: JAPAN received unhandled event in OblongButtonEH
+
+*fileOlCursors.msg1: JAPAN Can't read \"%s\" for cursor
+
+*fileOlDraw.msg1: JAPAN OlDrawString() received a string with character \
+width more than 2 bytes
+*fileOlDraw.msg2: JAPAN A NULL string or bad length specified with text \
+drawing utility
+*fileOlDraw.msg3: JAPAN A NULL value specified for display or fontlist \
+argument with text drawing utitlity 
+
+*fileOlGetFont.msg1: JAPAN NULL name passed to _OlGetImage
+
+*fileOlGetRes.msg1: JAPAN OlGetRes: Resolution map error: missing \
+\",\"? %.*s [%s]
+*fileOlGetRes.msg2: JAPAN OlGetRes: Resolution map error: missing \
+character? %.*s [%s]
+*fileOlGetRes.msg3: JAPAN OlGetRes: Resolution map error: missing \
+\"=\"? %.*s [%s]
+*fileOlGetRes.msg4: JAPAN OlGetRes: Resolution map error: bad number? \
+%.*s [%s]
+*fileOlGetRes.msg5: JAPAN OlGetRes: Resolution map error: missing \
+\"x\"? %.*s [%s]
+*fileOlGetRes.msg6: JAPAN OlGetRes: Internal Error: No resolution map \
+to parse!
+*fileOlGetRes.msg7: JAPAN OlGetRes: Internal Error: Resolution map \
+search failed!
+*fileOlGetRes.msg8: JAPAN OlGetRes: bad screen resolution map - \
+using default
+*fileOlGetRes.msg9: JAPAN OlGetRes: Internal error - no screen \
+resolution map found
+
+*fileOlgAttr.msg1: JAPAN OlgAttr: Can't allocate background tile GC
+*fileOlgAttr.msg2: JAPAN OlgAttr: Can't create foreground GC
+*fileOlgAttr.msg3: JAPAN OlgAttr: Can't create background GC
+*fileOlgAttr.msg4: JAPAN OlgAttr: Invalid attributes pointer
+
+*fileOlgInit.msg1: JAPAN OlgInit: Could not open scale mapping file:\
+  \"%s\"
+*fileOlgInit.msg2: JAPAN OlgInit: Scale mapping file is corrupted:\
+  \"%s\"
+*fileOlgInit.msg3: JAPAN OlgInit: Arc description file is corrupted:\
+  \"%s\"
+*fileOlgInit.msg4: JAPAN OlgInit: Could not open arc description\
+ file: \"%s\"
+*fileOlgInit.msg5: JAPAN OlgInit: _OlgGetDeviceData:  Can't create\
+ stipple bitmaps
+*fileOlgInit.msg6: JAPAN OlgInit: Can't allocate gray pixel
+*fileOlgInit.msg7: JAPAN OlgInit: _OlgGetDeviceData:  Can't create GCs
+
+*fileOlgLines.msg1: JAPAN OlgLines: function OlgDrawBox: box too small
+
+*filePacked.msg1: JAPAN OlCreatePackedWidget: NULL class !!
+*filePacked.msg2: JAPAN OlCreatePackedWidgetList: NULL list for count \
+> 0 !!
+
+*filePopupWindo.msg1: JAPAN Popup window can't pop down!
+*filePopupWindo.msg2: J Apply
+*filePopupWindo.msg3: J Set Defaults
+*filePopupWindo.msg4: J Reset
+*filePopupWindo.msg5: J Reset To Factory
+*filePopupWindo.msg6: J Settings
+*filePopupWindo.msg7: J Ok
+*filePopupWindo.msg8: J Cancel
+
+*filePushpin.msg1: JAPAN Preview: Pushpin trying to de-reference \
+non-existent XImages
+*filePushpin.msg2: JAPAN Pushpin: Cannot Preview between different \
+Screens !!
+
+*fileRubberTile.msg1: JAPAN RubberTile: \"%s\": refWidget \"%s\" is \
+neither a sibling nor the parent.
+
+*fileScrollbar.msg1: JAPAN Scrollbar: Bad \"%s\" resource value, \
+set to default
+*fileScrollbar.msg2: JAPAN Scrollbar: unable to create page indicator \
+popup shell, set showPage
+*fileScrollbar.msg3: JAPAN Scrollbar
+*fileScrollbar.msg4: JAPAN Here to Left
+*fileScrollbar.msg5: JAPAN Here to Top
+*fileScrollbar.msg6: JAPAN Left to Here
+*fileScrollbar.msg7: JAPAN Top to Here
+*fileScrollbar.msg8: JAPAN Previous
+
+*fileSlider.msg1: JAPAN OlSetGaugeValue: slider value %d out of range \
+for widget \"%s\" (class \"%s\")
+*fileSlider.msg2: JAPAN OlSetGaugeValue: widget \"%s\" is not a gauge \
+widget
+
+*fileSourceDsk.msg1: JAPAN OlDiskSourceCreate can't open source file \
+\"%s\".
+*fileSourceDsk.msg2: JAPAN Invalid XtNeditType. Defaulting to \
+to OL_TEXT_READ.
+
+*fileSourceStr.msg1: JAPAN SourceStr: Initial string size larger than \
+XtNmaximumSize.
+*fileSourceStr.msg2: JAPAN SourceStr: Invalid XtNeditType. Defaulting to \
+to OL_TEXT_READ.
+
+*fileStaticText.msg1: JAPAN StaticText: Request for unknown selection \
+ignored.
+*fileStaticText.msg2: JAPAN StaticText: Not allowed to cut from static \
+text.
+*fileStaticText.msg3: JAPAN StaticText: Request for unknown target \
+ignored.
+*fileStaticText.msg4: JAPAN StaticText: %s: we didn't get the \
+selection!
+*fileStaticText.msg5: JAPAN StaticText: StGetOffset: An Unknown \
+Alignment has crept into the code
+
+*fileStub.msg1: JAPAN StubWidget Realize: Widget \"%s\" already \
+owns window %lu (hex %lx)
+*fileStub.msg2: JAPAN StubWidget: No Realize Proc. for widget \"%s\"
+
+*fileText.msg1: JAPAN Text: %s must be non-positive - using 0
+*fileText.msg2: JAPAN Text:  No more that one widget in window
+
+*fileTextEPos.msg1: JAPAN TextEdit: Didn't get the primary \
+selection for widget \"%s\"!
+*fileTextEPos.msg2: JAPAN TextEdit: Can't convert PRIMARY
+
+*fileTextEdit.msg1: JAPAN TextEdit: %s: we didn't get the selection!
+*fileTextEdit.msg2: JAPAN TextEdit: Can't convert CLIPBOARD
+*fileTextEdit.msg3: JAPAN TextEdit: Undefined highlight_type!
+
+*fileTextPane.msg1: JAPAN Text:  we didn't get the selection!
+*fileTextPane.msg2: JAPAN Text:  Undefined highlight type
+*fileTextPane.msg3: JAPAN Invalid \"%s\": %ld
+*fileTextPane.msg4: JAPAN Invalid \"%s\": %ld or invalid \"%s\": %d
+*fileTextPane.msg5: JAPAN SourceType not recognized. Using \
+ OL_STRING_SOURCE.
+*fileTextPane.msg6: JAPAN Cannot set %s 
+*fileTextPane.msg7: JAPAN Widget passed to %s is not a text widget
+ 
+*fileTraversal.msg1: JAPAN Traversal: Reference widget \"%s\" (class \
+\"%s\") not found in traversal list.
+*fileTraversal.msg2: JAPAN _OlRegisterFocusWidget: widget is not \
+descendant of VendorShell
+*fileTraversal.msg3: JAPAN OlGetCurrentFocusWidget: shell is not \
+descendant of VendorShell
+*fileTraversal.msg4: JAPAN OlMoveFocus: Invalid direction specified
+
+*fileVendor.msg1: JAPAN VendorShell: TraversalHandler - invalid \
+direction.  Using OL_NEXTFIELD instead
+*fileVendor.msg2: JAPAN VendorShell \"%s\": widget \"%s\" (class \
+\"%s\") not found in traversal list
+*fileVendor.msg3: JAPAN Traversal: failed to get traversal list from \
+shell
+*fileVendor.msg4: JAPAN VendorShell's superclass has no Realize Proc.
+*fileVendor.msg5: JAPAN Traversal: Reference name \"%s\" \
+not found in traversal list.
+*fileVendor.msg6: JAPAN Could not find class extension for a Vendor \
+subclass 
+*fileError.msg1: J Error
+*fileError.msg2: J Warning
+*fileError.msg3: J ??Unknown??
+*fileError.msg4: J \"%s\" OPEN LOOK Toolkit %s:
+*fileError.msg5: J \"%s\" OPEN LOOK Client %s:

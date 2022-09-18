@@ -1,0 +1,42 @@
+#ident	"@(#)face:OBJECTS/lp/Text.nlp	1.3.4.2"
+#ident  "$Header: Text.nlp 1.4 91/10/15 $"
+
+title=$$uxface:324:"Warning"
+lifetime=shortterm
+
+framemsg=$$uxface:325:"Press the CANCEL function key to continue."
+
+begrow=any
+begcol=any
+
+rows=4
+columns=60
+
+text=$$uxface:326:"
+     I can't find the lpstat command.  Please contact
+     your system administrator for assistance.
+"
+
+name=""
+button=1
+action=badchar
+
+name=""
+button=2
+action=badchar
+
+name=""
+button=3
+action=badchar
+
+name=""
+button=4
+action=badchar
+
+name=""
+button=5
+action=badchar
+
+name=""
+button=8
+action=badchar

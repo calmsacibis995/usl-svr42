@@ -1,0 +1,152 @@
+#ident	"@(#)face:OBJECTS/Form.sec	1.4.4.2"
+#ident  "$Header: Form.sec 1.10 92/01/17 $"
+form=`pathconv -t -v $ARG1 | set -l PATHname`$$uxface:76:"Security on $PATHname for $LOGNAME"
+
+help=OPEN TEXT OBJECTS/Text.h "$$uxface:78:'HELP on' $TITLE" T.hsec"$ITEM"
+autolayout=true
+
+`set -l YES="$$uxface:61:yes" -l NO="$$uxface:56:no";
+set -l I18N_O="$$uxface:80:Owner";
+set -l I18N_ORP="$$uxface:81:Owner Read Permissions";
+set -l I18N_OWP="$$uxface:82:Owner Write Permissions";
+set -l I18N_OSP="$$uxface:83:Owner Run/Search Permissions";
+set -l I18N_GRP="$$uxface:85:Group Read Permissions";
+set -l I18N_GWP="$$uxface:86:Group Write Permissions";
+set -l I18N_GSP="$$uxface:87:Group Run/Search Permissions";
+set -l I18N_ARP="$$uxface:89:All Read Permissions";
+set -l I18N_AWP="$$uxface:90:All Write Permissions";
+set -l I18N_ASP="$$uxface:91:All Run/Search Permissions";
+fmlmax -c 3 "$I18N_O" "$I18N_ORP" "$I18N_OWP" "$I18N_OSP" "$I18N_GRP" "$I18N_GWP" "$I18N_GSP" "$I18N_ARP" "$I18N_AWP" "$I18N_ASP" | set -l FCOL;
+fmlmax -l $YES $NO | set -l YESCOL`
+
+framemsg=$$uxface:79:"Press CHOICES to select, then press SAVE when you complete the form."
+
+close=`unset -l I18N_O -l I18N_ORP -l I18N_OWP -l I18N_OSP -l I18N_GRP -l I18N_GWP -l I18N_GSP -l I18N_ARP -l I18N_AWP -l I18N_ASP -l FCOL`
+
+done=`indicator -w;setmod $ARG1 $F2 $F3 $F4 $F5 $F6 $F7 $F8 $F9 $F10 && chown "$F1" "$ARG1" >/dev/null;
+unset -l I18N_O -l I18N_ORP -l I18N_OWP -l I18N_OSP -l I18N_GRP -l I18N_GWP -l I18N_GSP -l I18N_ARP -l I18N_AWP -l I18N_ASP -l FCOL`
+
+name=$I18N_O
+nrow=1
+ncol=1
+rows=1
+columns=8
+fcol=$FCOL
+# frow=1
+# fcol=32
+rmenu={ `regex '^([^:]*)$0:.*$' '$m0' < /etc/passwd` }
+lininfo=`set -l TITLE="$$uxface:80:Owner" -l ITEM=1`
+menuonly=true
+value=const `ls -ld $ARG1 | regex '^[^ ]* *[^ ]* *([^ ]*)$0' '$m0'`
+
+name=$I18N_ORP
+nrow=3
+ncol=1
+rows=1
+columns=$YESCOL
+# frow=3
+# fcol=32
+rmenu={ $YES $NO }
+lininfo=`set -l TITLE="$$uxface:81:Owner Read Permissions" -l ITEM=2`
+menuonly=true
+value=const `getmod $ARG1 400`
+
+name=$I18N_OWP
+nrow=4
+ncol=1
+rows=1
+columns=$YESCOL
+# frow=4
+# fcol=32
+rmenu={ $YES $NO }
+lininfo=`set -l TITLE="$$uxface:82:Owner Write Permissions" -l ITEM=3`
+menuonly=true
+value=const `getmod $ARG1 200`
+
+name=$I18N_OSP
+nrow=5
+ncol=1
+rows=1
+columns=$YESCOL
+# frow=5
+# fcol=32
+rmenu={ $YES $NO }
+lininfo=`set -l TITLE="$$uxface:84:Owner Run or Search Permissions" -l ITEM=4`
+menuonly=true
+value=const `getmod $ARG1 100`
+
+name=$I18N_GRP
+rmenu={ $YES $NO }
+lininfo=`set -l TITLE="$$uxface:85:Group Read Permissions" -l ITEM=5`
+menuonly=true
+nrow=7
+ncol=1
+rows=1
+columns=$YESCOL
+# frow=7
+# fcol=32
+value=const `getmod $ARG1 040`
+
+name=$I18N_GWP
+rmenu={ $YES $NO }
+lininfo=`set -l TITLE="$$uxface:86:Group Write Permissions" -l ITEM=6`
+menuonly=true
+nrow=8
+ncol=1
+rows=1
+columns=$YESCOL
+# frow=8
+# fcol=32
+value=const `getmod $ARG1 020`
+
+name=$I18N_GSP
+rmenu={ $YES $NO }
+lininfo=`set -l TITLE="$$uxface:88:Group Run or Search Permissions" -l ITEM=7`
+menuonly=true
+nrow=9
+ncol=1
+rows=1
+columns=$YESCOL
+# frow=9
+# fcol=32
+value=const `getmod $ARG1 010`
+
+name=$I18N_ARP
+rmenu={ $YES $NO }
+lininfo=`set -l TITLE="$$uxface:89:All Read Permissions" -l ITEM=8`
+menuonly=true
+nrow=11
+ncol=1
+rows=1
+columns=$YESCOL
+# frow=11
+# fcol=32
+value=const `getmod $ARG1 004`
+
+name=$I18N_AWP
+rmenu={ $YES $NO }
+lininfo=`set -l TITLE="$$uxface:90:All Write Permissions" -l ITEM=9`
+menuonly=true
+nrow=12
+ncol=1
+rows=1
+columns=$YESCOL
+# frow=12
+# fcol=32
+value=const `getmod $ARG1 002`
+
+name=$I18N_ASP
+rmenu={ $YES $NO }
+lininfo=`set -l TITLE="$$uxface:92:All Run or Search Permissions" -l ITEM=10`
+menuonly=true
+nrow=13
+ncol=1
+rows=1
+columns=$YESCOL
+# frow=13
+# fcol=32
+value=const `getmod $ARG1 001`
+
+name=$$uxface:93:"RESET"
+button=8
+action=reset

@@ -1,0 +1,2 @@
+#ident	"@(#)uts-x86:io/sp/sp.cf/Node	1.1"
+clone	spx		c	sp

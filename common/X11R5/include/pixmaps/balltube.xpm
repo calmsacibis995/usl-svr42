@@ -1,0 +1,63 @@
+#define balltube_format 1
+#define balltube_width 48
+#define balltube_height 48
+#define balltube_ncolors 6
+#define balltube_chars_per_pixel 1
+static char * balltube_colors[] = {
+" " , "#000000000000",
+"." , "#FFFFFFFFFFFF",
+"X" , "#0000FFFFFFFF",
+"o" , "#0000AAAAFFFF",
+"O" , "#00000000FFFF",
+"+" , "#00000000AAAA"
+} ;
+static char * balltube_pixels[] = {
+"                                          .XoO+.",
+"                  ++++++++                .XoO+.",
+"               +++  +O++++++++           .XoOO+.",
+"            + ++++OO+OOO++++++++        .XoOO+. ",
+"          ++OOXOOOOOOXOOO++O++++++     .XoOO++. ",
+"         ++ OOXOOoXXo+o+O+++++++++++  .XoOO++.  ",
+"       ++OOOXOOXXOOOoOoOOO+O+O++++O+..XoOO++.   ",
+"       +OOXOXXXXOXXOOOOoOoOoO+OO++..XXoOO++.    ",
+"       ++OO.+ooooXOXoXoOOoXooOOO...XooOO++.     ",
+"     + O.....+XXXXXXoXooooOOOo..XXooOO++..      ",
+"    +OOX.....oX+oo.oOoOXO.....XXooOO++..        ",
+"     OXXO......XXXXX.XOoo.XXXoooOO++..  +       ",
+"     OXX......X.XXoooOOOX.oooOO+++..+O++++      ",
+"   O+++......X.o.o.XoooOX..OO+++..++O++O +      ",
+"  +O+OXo...XX.X.o.XOXOooo...+...++OO+O++++      ",
+"  +O+XoOX...o.oXX..XoOO+o+.+.+++++OOO+O+O++     ",
+"  +O+XXXoX.X..X.oX.OOooXOo+OO.oooooOO+O O++     ",
+"  +OX+ooXXoXo..XoX..ooXOoOoXo+oOOoO++ ++OO      ",
+" ++OOXXooXXoX..     oooOoX     OoOOO+OO+O+++    ",
+" +OOoOOXOXoXoX XXoO+ OoXO Oooo+ oO+++OOO++ +    ",
+" ++O+OXOXOXOXX  oXo. XooO OoO++ OoOo++O  ++     ",
+" OOoooOXOooXOo XooO. ooOo .+O++ OoOOOOO+O+ +    ",
+" O+O+OOooOXOO XXoOo+ O++O .++OX oOoOOOO+ O+     ",
+" ++OOoOOOoOoO.XoOO++ oooO  .+OXX+o+O+O +OO++    ",
+" ++OoOoXOOXO XooO++.ooOooO+.+++X+O+O+OO O+ +    ",
+" +++OOOOoO..XXoO++.OoOO+O+o..++X..O+O O OO+     ",
+"  +OO+Oo.  XoOOO+.++Ooo+ooOO.++OXX. O +O O++    ",
+"  ++O. . XXoOO++.OOoo+ooo+oo+.+++XX... ++ +     ",
+" . . XXXXXooO++.ooO+OO++O+o++o.+++XXXX...++    .",
+"XXXXXXooooO++..O+OoooOOOoooOoOO..++++XXXX......X",
+"oooooooOOOO+.Oo+O+oO+O+++oOOO+OOO..+++O XXXXXXXo",
+"OOOOOOOO++..OOOOoooOoo++OOOOOOOO OO..+OOOOOOOOOO",
+"+++++++...OOOOOOOO+OOOOO+OO OOoOO+O++....+++++XO",
+"+......++++OOoOOOOOOOO+OO+O O+O O +++ +++....XXO",
+"+.   ++++O+O+O ooOO OOOO  OOO+++ O+O + +    .XoO",
+"+.    +++OO++OO++oOOOOOOOOO++OOO O ++++     .XoO",
+"+.     ++++O++OO+O++oO OO ++O O + +  ++     .XoO",
+"+.      + ++ ++O++OOOOOO++OOO  ++++ +       .XoO",
+"+.       ++  +OOO+OOO++++O  +++OO+ ++       .XoO",
+"+.        +++++ OO+++ +O+ + OO+   +         .XoO",
+"+.          +   +   O OOO+++++ +++          .XoO",
+"+.           +  ++ +++++ ++ ++  +          .XoO+",
+".              ++ +++  ++ + ++             .XoO+",
+".                   +  ++                  .XoO+",
+".                                          .XoO+",
+".                                          .XoO+",
+".                                          .XoO+",
+".                                         .XXO++"
+} ;

@@ -1,0 +1,68 @@
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+/**/#ident	"@(#)olexamples:Imakefile	1.8"
+
+/**/#  Imakefile (Imakefile)
+/**/# 	Acc: 575569656 Mon Mar 28 11:27:36 1988
+/**/# 	Mod: 575569945 Mon Mar 28 11:32:25 1988
+/**/# 	Sta: 575569945 Mon Mar 28 11:32:25 1988
+/**/# 	Owner: 2011
+/**/# 	Group: 1985
+/**/# 	Permissions: 664
+
+
+/**/# 	START USER STAMP AREA
+
+
+/**/# 	END USER STAMP AREA
+
+#define IHaveSubdirs
+#define PassCDebugFlags 'CDEBUGFLAGS=$(CDEBUGFLAGS)'
+
+/*
+
+ SUBDIRS = \
+		abbrevstack \
+		basewindow \
+		bboard \
+		button \
+		buttonstack \
+		caption \
+		checkbox \
+		control \
+		exclusives \
+		flat \
+		form \
+		gadgets \
+		help \
+		keytrav \
+		list \
+		menu \
+		nonexclus \
+		notice \
+		panel \
+		popupwindo \
+		pushpin \
+		scrollbar \
+		scrollwin \
+		slider \
+		statictext \
+		text \
+		textfield \
+		tutorial \
+		virtual
+*/
+
+ SUBDIRS = \
+		tutorial
+
+NoDepend()
+
+MakeSubdirs ($(SUBDIRS))

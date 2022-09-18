@@ -1,0 +1,46 @@
+.\"ident	"@(#)r4xlswins:xlswins.man	1.1"
+.TH XLSWINS 1 "Release 4" "X Version 11"
+.SH NAME
+xlswins - server window list displayer for X
+.SH SYNOPSIS
+.B xlswins
+[-options ...] [windowid ...]
+.SH DESCRIPTION
+.I Xlswins
+lists the window tree.  By default, the root window is used as the starting
+point, although a specific window may be specified using the \fI-id\fP option.
+If no specific windows are given on the command line, the root window will be
+used.
+.SH "OPTIONS"
+.PP
+.TP 8
+.B \-display \fIdisplayname\fP
+This option specifies the X server to contact.
+.TP 8
+.B \-l
+This option indicates that a long listing should be generated for each window.
+This includes a number indicating the depth, the geometry relative to the 
+parent as well as the location relative to the root window.
+.TP 8
+.B \-format \fIradix\fP
+This option specifies the radix to use when printing out window ids.  Allowable
+values are:  \fIhex\fP, \fIoctal\fP, and \fIdecimal\fP.  The default is hex.
+.TP 8
+.B \-indent \fInumber\fP
+This option specifies the number of spaces that should be indented for each
+level in the window tree.  The default is 2.
+.PP
+.SH "SEE ALSO"
+X(1), Xserver(1), xwininfo(1), xprop(1)
+.SH ENVIRONMENT
+.TP 8
+.B DISPLAY
+to get the default host and display to use.
+.SH BUGS
+This should be integrated with xwininfo somehow.
+.SH COPYRIGHT
+Copyright 1988, Massachusetts Institute of Technology.
+.br
+See \fIX(1)\fP for a full statement of rights and permissions.
+.SH AUTHOR
+Jim Fulton, MIT X Consortium

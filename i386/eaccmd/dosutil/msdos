@@ -1,0 +1,44 @@
+#ident	"@(#)eac:i386/eaccmd/dosutil/msdos	1.5.1.1"
+#ident  "$Header: msdos 1.1 91/07/03 $"
+#
+# This file controls the mapping of UNIX 
+# devices to MS-DOS drive letters and types. 
+#
+#	These are fine for a 6386 WGS Running SVR3.2:
+#
+#		A=/dev/rdsk/f0t
+#		B=/dev/rdsk/f1t
+#	Remember that only MS-DOS files may have colons in them.
+#
+#	Only one colon per MS-DOS filename.
+#
+#	MS-DOS filenames are either:
+#
+#		[ABCD...]:filename
+#
+#			or
+#
+#		DEVICE:filename
+#
+#	Where DEVICE is any UNIX file capable of seeking.
+#	This means you can use regular unix files for MS-DOS
+#	filesystems. Just say FILE: and all is well.
+#
+#
+# Floppy device names
+A=/dev/rdsk/f0t
+B=/dev/rdsk/f1t
+X=/dev/rdsk/f0t
+Y=/dev/rdsk/f1t
+#
+# MS-DOS partition of hard disk 0.
+# If an application expects C: to be the MS-DOS partition of hard disk 0,
+# then uncomment the C line and comment the D line below.
+#C=/dev/rdsk/0s5
+D=/dev/rdsk/0s5
+#
+# MS-DOS partition of hard disk 1.
+# If an application expects D: to be the MS-DOS partition of hard disk 1,
+# then uncomment the following line.
+#D=/dev/rdsk/1s5
+

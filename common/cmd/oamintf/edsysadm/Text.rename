@@ -1,0 +1,35 @@
+#ident	"@(#)oamintf:common/cmd/oamintf/edsysadm/Text.rename	1.1.3.2"
+#ident  "$Header: Text.rename 2.0 91/07/12 $"
+
+################################################################################
+#	Module Name: Text.rename
+#	Date: November 1990
+################################################################################
+title="Confirming Online Menu Rename"
+
+framemsg=`readfile $INTFBASE/conf.msg`
+
+begrow=any
+begcol=any
+
+`echo $ARG3 | /usr/bin/sed "s/\/${ARG1}$//" | set -l PARENT`
+`echo $PARENT | /usr/bin/awk -F'/' '{ print $NF }' | set -l MNAME`
+text="
+  The menu:
+    $ARG1 in $ARG3 
+  has been moved to
+    $ARG2 in $ARG4 
+"
+
+rows=6
+columns=75
+
+altslks
+
+name=CONT
+button=11
+action=CLOSE
+
+name=CANCEL
+button=14
+action=CLEANUP

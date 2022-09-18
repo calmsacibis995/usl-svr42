@@ -1,0 +1,5 @@
+#ident	"@(#)uts-x86:io/log/log.cf/Master	1.7"
+#ident	"$Header: $"
+$version 1
+$entry	init 
+log	log	Skco	0	0	9

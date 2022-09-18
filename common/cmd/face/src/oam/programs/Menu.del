@@ -1,0 +1,11 @@
+#ident	"@(#)face:src/oam/programs/Menu.del	1.2.4.2"
+#ident  "$Header: Menu.del 1.4 91/10/15 $"
+
+menu=$$uxface:537:"Remove Global Programs"
+
+framemsg=$$uxface:529:"Move the cursor to the item you want and press ENTER to select it."
+
+help=open TEXT $INTFBASE/Text.itemhelp F1
+
+`fmlgrep '^vmsys:' /etc/passwd | fmlcut -f6 -d: | set -e VMSYS;
+$VMSYS/bin/listserv -d VMSYS`

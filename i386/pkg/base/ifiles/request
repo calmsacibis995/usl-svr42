@@ -1,0 +1,323 @@
+#ident	"@(#)pkg.base:i386/pkg/base/ifiles/request	1.50"
+#ident	"$Header: $"
+
+#	Portions Copyright (C) 1990, 1991 Intel Corporation.
+# 	Portions Copyright (C) 1990 Interactive Systems Corporation.
+# 	All Rights Reserved
+
+## request script for the base system
+## need to add request info for lp, mouse, 
+## and any other stuff that was put into the base pkg.
+
+trap 'exit 3' 15
+
+#################################################
+## prompt for system name - only for NEWINSTALL or if /etc/nodename missing
+#################################################
+
+prompt_system_name ()
+{
+   menu_colors regular
+   menu -f $BASE_MENUS/chknode.1 -o /tmp/node.$$ 2>/dev/null
+
+   . /tmp/node.$$			# sets NODE in environment
+   rm -f /tmp/node.$$ >/dev/null 2>&1
+}
+
+# main ()
+
+TAB="	"
+
+POST_FILE=$1
+
+#
+#  Make sure LANG environment variable is set.  If it's not set
+#  coming in to this request script, then default to the C-locale.
+#
+[ ${LANG} ] || LANG="C"
+export LANG
+
+BASE_MENUS=/etc/inst/locale/${LANG}/menus/base
+
+[ -d $BASE_MENUS ] || mkdir -p $BASE_MENUS
+
+cp $REQDIR/base/* $BASE_MENUS
+
+#
+#  Set up to use menu_colors; default to C-locale if ${LANG}'s dir has
+#  no menu_colors.sh
+#
+if [ -f /etc/inst/locale/${LANG}/menus/menu_colors.sh ]
+then
+	. /etc/inst/locale/${LANG}/menus/menu_colors.sh
+else
+	. /etc/inst/locale/C/menus/menu_colors.sh
+fi
+
+############### Begin UPGRADE AND OVERLAY #################
+
+ETCINST=/etc/inst
+UPINSTALL=$ETCINST/up
+SBINPKGINST=/usr/sbin/pkginst
+
+#
+# I need to move my menus into pkg.base and set components
+#  If ${LANG} dirs not there, fall back to C-locale.
+#
+if [ -d /etc/inst/locale/${LANG}/menus/hd ]
+then
+	UP_MENUS=/etc/inst/locale/${LANG}/menus/hd
+else
+	UP_MENUS=/etc/inst/locale/C/menus/hd
+fi
+
+if [ -d /etc/inst/locale/${LANG}/menus/upgrade ]
+then
+	UPGRADE_MENUS=/etc/inst/locale/${LANG}/menus/upgrade
+else
+	UPGRADE_MENUS=/etc/inst/locale/C/menus/upgrade
+fi
+
+UPGRADE_STORE=/var/sadm/upgrade
+
+. $SBINPKGINST/updebug
+
+[ "$UPDEBUG" = YES ] && set -x
+
+#
+# The only time this file will exist is if we're going through the install
+# via the boot floppies.  If the file does NOT exist, then we call
+# chkpkgrel just like any other package.
+#
+
+if [ -f /tmp/upgrade.sh ]
+then
+	. /tmp/upgrade.sh
+
+	# We need to do this because we're NOT calling chkpkgrel
+
+ 	[ "$PKGINSTALL_TYPE" = "OVERLAY" ] && echo 2 >$UPGRADE_STORE/base.env
+ 
+ 	#
+ 	# If we're UPGRADE'ing, we have to come through here and we
+ 	# need to update CLASSES to install files required for upgrade.
+ 	#
+ 
+ 	[ "$PKGINSTALL_TYPE" = "UPGRADE" ] && {
+ 	
+ 		CLASSES="$CLASSES upgrade"
+ 		echo "CLASSES=$CLASSES" >>$POST_FILE
+ 	}
+else
+	#
+	# For now, we're NOT going to allow an upgrade or overlay of the
+	# base system package without going through the boot floppies.
+	# This may change for future releases.
+	#
+
+	menu_colors warn
+	menu -f ${BASE_MENUS}/warn.noboot -o /dev/null </dev/tty
+	exit 3
+
+
+	# The rest of this block is designed to support overlay without
+	# going through the boot floppies.  More work is needed to add
+	# that support.
+
+	# PKGINSTALL_TYPE=NEWINSTALL
+
+	#
+	# We need to revisit the issue of CUSTOM vs AUTOMATIC. Currently
+	# there is NO defined notion of this beyond installing via the
+	# boot floppies, however it's currently in the requirements that
+	# we behave differently for each case.  For now, I'm going to
+	# default to CUSTOM here, sine I have no information to help me
+	# decide.
+	#
+
+	# INSTALL_MODE=CUSTOM
+	# VIA_PKGADD=YES
+
+	# $SBINPKGINST/chkpkgrel base
+
+	# [ $? = 2 ] && PKGINSTALL_TYPE=OVERLAY
+fi
+
+#
+# If this is an Upgrade/Overlay installation, then use the existing
+# nodename, if the file exists.
+#
+
+[ "$PKGINSTALL_TYPE" != NEWINSTALL -a -f /etc/nodename ] &&
+	read NODE </etc/nodename
+
+[ "$NODE" ] || prompt_system_name 
+
+############### Begin UPGRADE AND OVERLAY #################
+
+AUTOMERGE=NULL		# if destructive installation
+
+[ "$PKGINSTALL_TYPE" != "NEWINSTALL"  ] && {
+
+	#
+	#  First thing we'll do is stash anything that was under /etc/saf
+	#  so that we can restore all the services configured in the SAC
+	#  before this installation.
+	#
+
+	SAVE=${UPGRADE_STORE}
+	[ "$PKGINSTALL_TYPE" = "OVERLAY"  ] && SAVE=${UPGRADE_STORE}/SVR4.2
+
+	[ ! -d "${SAVE}" ] && mkdir -p ${SAVE}
+
+	find /etc/saf \( -type f -o -type d \) -print |
+		cpio -pdum ${SAVE} 2>>${UPERR}
+
+	[ "$UPDEBUG" = "YES" ] && goany
+
+	AUTOMERGE=Yes           # default
+
+	#
+	#  Make sure we stash the correct backup and restore commands.
+	#    1) 4.2 bkrs version stashed, else
+	#    2) V4 OA&M version stashed, else
+	#    3) base package version already stashed in base postinstall.
+	#
+	[ "${UPDEBUG}" = "YES" ] && goany
+	${SBINPKGINST}/chkpkgrel bkrs
+	if [ "$?" = "2" ] 
+	then
+		ln /usr/bin/backup /usr/bin/.backup.4.2 2>/dev/null
+		ln /usr/bin/restore /usr/bin/.restore.4.2 2>/dev/null
+	else
+		${SBINPKGINST}/chkpkgrel oam
+		[ "$?" = "4" ] && {
+			grep OAM_extended /var/sadm/pkg/oam/pkginfo \
+				> /dev/null 2>&1
+			[ "$?" = "0" ] && {
+				ln /usr/bin/backup /usr/bin/.backup.V4 \
+					2>/dev/null
+				ln /usr/sbin/restore /usr/sbin/.restore.V4 \
+					2>/dev/null
+				ln /sbin/restore /sbin/.restore.V4 \
+					2>/dev/null
+			}
+		}
+	fi
+	[ "${UPDEBUG}" = "YES" ] && goany
+
+	[ "$INSTALL_MODE" = "CUSTOM" ] && {
+
+		[ "$UPDEBUG" = "YES" ] && goany && set +x
+
+		unset RETURN_VALUE
+
+		menu_colors regular
+		menu -f ${UPGRADE_MENUS}/mergefiles.3 -o /tmp/$$ </dev/tty
+
+		[ "$UPDEBUG" = "YES" ] && set -x
+
+		. /tmp/$$
+
+		[ $RETURN_VALUE = 2 ] && AUTOMERGE=No
+
+		[ "$PKGINSTALL_TYPE" = "UPGRADE" -a -f /tmp/kdb.obs ] && {
+
+			[ "$UPDEBUG" = "YES" ] && goany && set +x
+
+			menu_colors regular
+			menu -f $UP_MENUS/kdb.obsol -o /dev/null
+
+			[ "$UPDEBUG" = "YES" ] && set -x
+		}
+	}		# End of CUSTOM install requirements
+
+	#
+	# Now I need to use a generic tool to create the list of
+	# volatile files as declared in the contents file.  This
+	# script will create a file called base.sav that is used
+	# in the postinstall script.
+	#
+	# For most packages, this is used for either upgrade or
+	# overlay, but the base package requires special handling
+	# for upgrade.  See chk_up_over.sh on the boot floppies
+	# for details.
+	#
+
+	[ "$PKGINSTALL_TYPE" = "OVERLAY" ] && {
+
+		#
+		# If it's an OVERLAY, and the Version 4 ip driver is
+		# still installed, we need to save the Master file
+		# or else the base pkg will overwrite it.  The base
+		# pkg has a Master file for ip becasue there is a
+		# stubs.c file that needs to get picked up.  If we
+		# don't do this, the kernel will not build.
+
+		$SBINPKGINST/chkpkgrel inet
+
+		[ "$?" = "4" ] &&
+			cp /etc/conf/mdevice.d/ip /etc/conf/mdevice.d/ip.v4
+
+		# We need to special case "merge" also.
+
+		/usr/bin/pkginfo merge >>$UPERR 2>&1
+
+		[ "$?" = "0" ] &&
+			cp /etc/conf/mdevice.d/merge \
+				/etc/conf/mdevice.d/merge.save 2>>$UPERR
+
+		#
+		# This generic script will overwrite what was saved
+		# during the initial scripts on the boot floppies, so
+		# if we're overlaying via the boot floppies, I need
+		# to save them and them restore them.
+		#
+		# If we're overlaying via pkgadd from the shell, then
+		# "base" should behave as if it were just another package.
+		#
+
+		[ "$VIA_PKGADD" != "YES" ] && {
+
+			mkdir /tmp/boot.$$
+			cd $UPGRADE_STORE
+	
+			cat $ETCINST/scripts/boot.LIST |
+				grep -v '^[ 	]*#' |
+				grep -v '^[ 	]*$' |
+				cpio -pdmu /tmp/boot.$$ >>$UPERR 2>&1
+		}
+
+		export PKGINSTALL_TYPE		# required by pkgsavfiles
+
+		$SBINPKGINST/pkgsavfiles base
+
+		[ "$VIA_PKGADD" != "YES" ] && {
+
+			cd /tmp/boot.$$
+			find * -print | cpio -pdmu $UPGRADE_STORE >>$UPERR 2>&1
+			rm -f $UPGRADE_STORE/etc/vfstab >/dev/null 2>&1
+		}
+	}
+
+	[ "$UPDEBUG" = "YES" ] && goany && set +x
+}
+
+echo "PKGINSTALL_TYPE=$PKGINSTALL_TYPE" >>$POST_FILE
+echo "AUTOMERGE=$AUTOMERGE" >>$POST_FILE
+
+#
+# I need to make AUTOMERGE available for the rc script that
+# we execute to set up user accounts.
+#
+
+echo "AUTOMERGE=$AUTOMERGE" >>/tmp/globals.sh
+
+
+################ End UPGRADE AND OVERLAY ##################
+
+echo "NODE=$NODE" >>$POST_FILE || exit 1
+
+rm -rf $BASE_MENUS >/dev/null 2>&1
+
+

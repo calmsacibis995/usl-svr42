@@ -1,0 +1,17 @@
+#ident	"@(#)pkg.netcmds:common/pkg/netcmds/pkginfo	1.4"
+#ident  "$Header: $"
+#
+NAME="Commands Networking Extension"
+PKG="netcmds"
+#BASEDIR=""
+CLASSES="none"
+CATEGORY="system"
+VERSION="1"
+RELEASE="4.2"
+ETC=/etc
+USRLIB=/usr/lib
+USRSBIN=/usr/sbin
+ISTATES="2 3"
+PREDEPEND="netcmds"
+RSTATES="S 1 2 3"
+VENDOR="UNIX System Laboratories"

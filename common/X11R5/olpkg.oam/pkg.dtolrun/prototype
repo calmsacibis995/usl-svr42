@@ -1,0 +1,227 @@
+#ident	"@(#)olpkg.oam:pkg.dtolrun/prototype	1.11"
+#	Copyright (c) 1990, 1991 UNIX System Laboratories, Inc.
+#	Copyright (c) 1988 AT&T
+#	  All Rights Reserved
+
+#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+#	UNIX System Laboratories, Inc.
+#	The copyright notice above does not evidence any
+#	actual or intended publication of such source code.
+
+
+i copyright
+i depend
+i pkginfo
+i postinstall
+i preremove
+
+!PACKDIR=../usr/src/$WORK/X11R5/olpkg.oam
+!PKGINST=dtolrun
+
+!default 0755 bin bin
+
+d enduser /tmp ? ? ?
+d enduser /tmp/pkg 0755 root sys
+d enduser /usr ? ? ?
+d enduser /usr/bin ? ? ?
+d enduser /usr/lib ? ? ?
+
+d enduser /usr/X
+d enduser /usr/X/adm
+d enduser /usr/X/bin
+s enduser /usr/bin/X11=/usr/X/bin
+d enduser /usr/X/lib
+d enduser /usr/X/lib/app-defaults
+s enduser /usr/lib/X11=/usr/X/lib
+d enduser /usr/X/lib/fonts
+d enduser /usr/X/lib/fonts/75dpi
+d enduser /usr/X/lib/fonts/100dpi
+d enduser /usr/X/lib/fonts/Xol
+d enduser /usr/X/lib/Xol
+d enduser /usr/X/lib/locale
+d enduser /usr/X/lib/locale/C
+d enduser /usr/X/lib/locale/C/help
+d enduser /usr/X/lib/locale/C/help/olwm
+
+f enduser /usr/X/bin/olinit
+f enduser /usr/X/bin/olwm
+
+f enduser /tmp/pkg/mkfontdir=/usr/X/bin/mkfontdir
+
+!default 0644 bin bin
+
+f enduser /usr/X/lib/libXol.so.1
+f enduser /usr/X/lib/libXol.so
+f enduser /usr/X/lib/libOlit.so.1
+f enduser /usr/X/lib/libOlit.so
+f enduser /usr/X/lib/libOlitO.so.1
+f enduser /usr/X/lib/libOlitO.so
+f enduser /usr/X/lib/libOlitM.so.1
+f enduser /usr/X/lib/libOlitM.so
+
+f enduser /usr/X/lib/locale/C/help/olwm/all_popups
+f enduser /usr/X/lib/locale/C/help/olwm/border
+f enduser /usr/X/lib/locale/C/help/olwm/icon
+f enduser /usr/X/lib/locale/C/help/olwm/menu_backgroun
+f enduser /usr/X/lib/locale/C/help/olwm/ok_apply
+f enduser /usr/X/lib/locale/C/help/olwm/ok_button
+f enduser /usr/X/lib/locale/C/help/olwm/ok_menu
+f enduser /usr/X/lib/locale/C/help/olwm/ok_reset
+f enduser /usr/X/lib/locale/C/help/olwm/popup_cancel
+f enduser /usr/X/lib/locale/C/help/olwm/popup_dismiss
+f enduser /usr/X/lib/locale/C/help/olwm/popup_menu
+f enduser /usr/X/lib/locale/C/help/olwm/popup_owner
+f enduser /usr/X/lib/locale/C/help/olwm/pushpin
+f enduser /usr/X/lib/locale/C/help/olwm/resize_corner
+f enduser /usr/X/lib/locale/C/help/olwm/this_window
+f enduser /usr/X/lib/locale/C/help/olwm/window_back
+f enduser /usr/X/lib/locale/C/help/olwm/window_close
+f enduser /usr/X/lib/locale/C/help/olwm/window_full
+f enduser /usr/X/lib/locale/C/help/olwm/window_menu
+f enduser /usr/X/lib/locale/C/help/olwm/window_menu_bu
+f enduser /usr/X/lib/locale/C/help/olwm/window_move
+f enduser /usr/X/lib/locale/C/help/olwm/window_open
+f enduser /usr/X/lib/locale/C/help/olwm/window_prop
+f enduser /usr/X/lib/locale/C/help/olwm/window_quit
+f enduser /usr/X/lib/locale/C/help/olwm/window_refresh
+f enduser /usr/X/lib/locale/C/help/olwm/window_resize
+f enduser /usr/X/lib/locale/C/help/olwm/window_restore
+
+f enduser /usr/X/lib/locale/C/ol_locale_def
+
+f enduser /usr/X/lib/app-defaults/olwm
+
+f enduser /usr/X/lib/fonts/75dpi/helvB08.snf
+f enduser /usr/X/lib/fonts/75dpi/helvB10.snf
+f enduser /usr/X/lib/fonts/75dpi/helvB12.snf
+f enduser /usr/X/lib/fonts/75dpi/helvB14.snf
+f enduser /usr/X/lib/fonts/75dpi/helvB18.snf
+f enduser /usr/X/lib/fonts/75dpi/helvB24.snf
+f enduser /usr/X/lib/fonts/75dpi/helvBO08.snf
+f enduser /usr/X/lib/fonts/75dpi/helvBO10.snf
+f enduser /usr/X/lib/fonts/75dpi/helvBO12.snf
+f enduser /usr/X/lib/fonts/75dpi/helvBO14.snf
+f enduser /usr/X/lib/fonts/75dpi/helvBO18.snf
+f enduser /usr/X/lib/fonts/75dpi/helvBO24.snf
+f enduser /usr/X/lib/fonts/75dpi/helvO08.snf
+f enduser /usr/X/lib/fonts/75dpi/helvO10.snf
+f enduser /usr/X/lib/fonts/75dpi/helvO12.snf
+f enduser /usr/X/lib/fonts/75dpi/helvO14.snf
+f enduser /usr/X/lib/fonts/75dpi/helvO18.snf
+f enduser /usr/X/lib/fonts/75dpi/helvO24.snf
+f enduser /usr/X/lib/fonts/75dpi/helvR08.snf
+f enduser /usr/X/lib/fonts/75dpi/helvR10.snf
+f enduser /usr/X/lib/fonts/75dpi/helvR12.snf
+f enduser /usr/X/lib/fonts/75dpi/helvR14.snf
+f enduser /usr/X/lib/fonts/75dpi/helvR18.snf
+f enduser /usr/X/lib/fonts/75dpi/helvR24.snf
+f enduser /usr/X/lib/fonts/75dpi/luBIS10.snf
+f enduser /usr/X/lib/fonts/75dpi/luBIS12.snf
+f enduser /usr/X/lib/fonts/75dpi/luBIS14.snf
+f enduser /usr/X/lib/fonts/75dpi/luBS10.snf
+f enduser /usr/X/lib/fonts/75dpi/luBS12.snf
+f enduser /usr/X/lib/fonts/75dpi/luBS14.snf
+f enduser /usr/X/lib/fonts/75dpi/luIS10.snf
+f enduser /usr/X/lib/fonts/75dpi/luIS12.snf
+f enduser /usr/X/lib/fonts/75dpi/luIS14.snf
+f enduser /usr/X/lib/fonts/75dpi/luRS10.snf
+f enduser /usr/X/lib/fonts/75dpi/luRS12.snf
+f enduser /usr/X/lib/fonts/75dpi/luRS14.snf
+f enduser /usr/X/lib/fonts/75dpi/lutBS12.snf
+f enduser /usr/X/lib/fonts/75dpi/lutRS12.snf
+f enduser /usr/X/lib/fonts/Xol/a12biluc.snf
+f enduser /usr/X/lib/fonts/Xol/a12bluci.snf
+f enduser /usr/X/lib/fonts/Xol/a12butto.snf
+f enduser /usr/X/lib/fonts/Xol/a12iluci.snf
+f enduser /usr/X/lib/fonts/Xol/a12lucid.snf
+f enduser /usr/X/lib/fonts/Xol/a12sbarh.snf
+f enduser /usr/X/lib/fonts/Xol/a12sbarv.snf
+f enduser /usr/X/lib/fonts/Xol/a12sldrh.snf
+f enduser /usr/X/lib/fonts/Xol/a12sldrv.snf
+f enduser /usr/X/lib/fonts/Xol/b12butto.snf
+f enduser /usr/X/lib/fonts/Xol/b12sbarh.snf
+f enduser /usr/X/lib/fonts/Xol/b12sbarv.snf
+f enduser /usr/X/lib/fonts/Xol/b12sldrh.snf
+f enduser /usr/X/lib/fonts/Xol/b12sldrv.snf
+f enduser /usr/X/lib/fonts/Xol/c12butto.snf
+f enduser /usr/X/lib/fonts/Xol/c12sbarh.snf
+f enduser /usr/X/lib/fonts/Xol/c12sbarv.snf
+f enduser /usr/X/lib/fonts/Xol/c12sldrh.snf
+f enduser /usr/X/lib/fonts/Xol/c12sldrv.snf
+f enduser /usr/X/lib/fonts/Xol/d12butto.snf
+f enduser /usr/X/lib/fonts/Xol/d12sbarh.snf
+f enduser /usr/X/lib/fonts/Xol/d12sbarv.snf
+f enduser /usr/X/lib/fonts/Xol/d12sldrh.snf
+f enduser /usr/X/lib/fonts/Xol/d12sldrv.snf
+f enduser /usr/X/lib/fonts/Xol/e12biluc.snf
+f enduser /usr/X/lib/fonts/Xol/e12bluci.snf
+f enduser /usr/X/lib/fonts/Xol/e12butto.snf
+f enduser /usr/X/lib/fonts/Xol/e12iluci.snf
+f enduser /usr/X/lib/fonts/Xol/e12lucid.snf
+f enduser /usr/X/lib/fonts/Xol/e12sbarh.snf
+f enduser /usr/X/lib/fonts/Xol/e12sbarv.snf
+f enduser /usr/X/lib/fonts/Xol/e12sldrh.snf
+f enduser /usr/X/lib/fonts/Xol/e12sldrv.snf
+f enduser /usr/X/lib/fonts/Xol/f12butto.snf
+f enduser /usr/X/lib/fonts/Xol/f12sbarh.snf
+f enduser /usr/X/lib/fonts/Xol/f12sbarv.snf
+f enduser /usr/X/lib/fonts/Xol/f12sldrh.snf
+f enduser /usr/X/lib/fonts/Xol/f12sldrv.snf
+f enduser /usr/X/lib/fonts/Xol/fonts.alias
+f enduser /usr/X/lib/fonts/Xol/fonts.dir
+f enduser /usr/X/lib/fonts/Xol/g12butto.snf
+f enduser /usr/X/lib/fonts/Xol/g12sbarh.snf
+f enduser /usr/X/lib/fonts/Xol/g12sbarv.snf
+f enduser /usr/X/lib/fonts/Xol/g12sldrh.snf
+f enduser /usr/X/lib/fonts/Xol/g12sldrv.snf
+f enduser /usr/X/lib/fonts/Xol/h12butto.snf
+f enduser /usr/X/lib/fonts/Xol/h12sbarh.snf
+f enduser /usr/X/lib/fonts/Xol/h12sbarv.snf
+f enduser /usr/X/lib/fonts/Xol/h12sldrh.snf
+f enduser /usr/X/lib/fonts/Xol/h12sldrv.snf
+f enduser /usr/X/lib/fonts/100dpi/helvB08.snf
+f enduser /usr/X/lib/fonts/100dpi/helvB10.snf
+f enduser /usr/X/lib/fonts/100dpi/helvB12.snf
+f enduser /usr/X/lib/fonts/100dpi/helvB14.snf
+f enduser /usr/X/lib/fonts/100dpi/helvB18.snf
+f enduser /usr/X/lib/fonts/100dpi/helvB24.snf
+f enduser /usr/X/lib/fonts/100dpi/helvBO08.snf
+f enduser /usr/X/lib/fonts/100dpi/helvBO10.snf
+f enduser /usr/X/lib/fonts/100dpi/helvBO12.snf
+f enduser /usr/X/lib/fonts/100dpi/helvBO14.snf
+f enduser /usr/X/lib/fonts/100dpi/helvBO18.snf
+f enduser /usr/X/lib/fonts/100dpi/helvBO24.snf
+f enduser /usr/X/lib/fonts/100dpi/helvO08.snf
+f enduser /usr/X/lib/fonts/100dpi/helvO10.snf
+f enduser /usr/X/lib/fonts/100dpi/helvO12.snf
+f enduser /usr/X/lib/fonts/100dpi/helvO14.snf
+f enduser /usr/X/lib/fonts/100dpi/helvO18.snf
+f enduser /usr/X/lib/fonts/100dpi/helvO24.snf
+f enduser /usr/X/lib/fonts/100dpi/helvR08.snf
+f enduser /usr/X/lib/fonts/100dpi/helvR10.snf
+f enduser /usr/X/lib/fonts/100dpi/helvR12.snf
+f enduser /usr/X/lib/fonts/100dpi/helvR14.snf
+f enduser /usr/X/lib/fonts/100dpi/helvR18.snf
+f enduser /usr/X/lib/fonts/100dpi/helvR24.snf
+f enduser /usr/X/lib/fonts/100dpi/luBIS10.snf
+f enduser /usr/X/lib/fonts/100dpi/luBIS12.snf
+f enduser /usr/X/lib/fonts/100dpi/luBIS14.snf
+f enduser /usr/X/lib/fonts/100dpi/luBS10.snf
+f enduser /usr/X/lib/fonts/100dpi/luBS12.snf
+f enduser /usr/X/lib/fonts/100dpi/luBS14.snf
+f enduser /usr/X/lib/fonts/100dpi/luIS10.snf
+f enduser /usr/X/lib/fonts/100dpi/luIS12.snf
+f enduser /usr/X/lib/fonts/100dpi/luIS14.snf
+f enduser /usr/X/lib/fonts/100dpi/luRS10.snf
+f enduser /usr/X/lib/fonts/100dpi/luRS12.snf
+f enduser /usr/X/lib/fonts/100dpi/luRS14.snf
+f enduser /usr/X/lib/fonts/100dpi/lutBS12.snf
+f enduser /usr/X/lib/fonts/100dpi/lutRS12.snf
+
+f enduser /usr/X/adm/.olinitrc=$PACKDIR/adm/.olinitrc 0755 root sys
+f enduser /usr/X/adm/.olsetup=$PACKDIR/adm/.olsetup 0755 root sys
+f enduser /usr/X/adm/.olvars=$PACKDIR/adm/.olvars 0755 root sys
+f enduser /usr/X/adm/oladduser=$PACKDIR/adm/oladduser 0755 root sys
+f enduser /usr/X/adm/olremuser=$PACKDIR/adm/olremuser 0755 root sys
+f enduser /usr/X/adm/olsetvar=$PACKDIR/adm/olsetvar 0755 root sys
+f enduser /usr/X/adm/olunsetvar=$PACKDIR/adm/olunsetvar 0755 root sys

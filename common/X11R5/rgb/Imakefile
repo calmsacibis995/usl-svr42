@@ -1,0 +1,33 @@
+/**/#ident	"@(#)r4rgb:Imakefile	1.7"
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+
+     INCLUDES = -I$(SERVERSRC)/include
+         OBJS = rgb.o
+         SRCS = rgb.c
+
+all:: rgb.base
+
+rgb.base: rgb rgb.txt
+	$(SED) "s/[ 	][ 	]*/ /g" < rgb.txt | sort -f +3 | ./rgb rgb.base
+
+rgb:	rgb.c
+	$(CC) $(INCLUDES) rgb.c -o rgb
+
+clobber::
+	$(RM) rgb.txt rgb.base rgb
+
+InstallNonExec(rgb.base,$(USRLIBDIR))
+InstallNonExec(rgb.txt,$(USRLIBDIR))
+InstallProgram(rgb,$(BINDIR))
+DependTarget()
+
+clean::
+	$(RM) rgb

@@ -1,0 +1,14 @@
+#ident	"@(#)pkg.acp:pkginfo	1.2.1.5"
+#ident  "$Header: $"
+
+#
+# "must" parameters
+#
+
+PKG="acp"
+CLASSES="none"
+NAME="Enhanced Application Compatibility"
+VERSION="1"
+VENDOR="UNIX System Laboratories"
+CATEGORY=system
+CLASSES=none

@@ -1,0 +1,20 @@
+#ident	"@(#)oamintf:common/cmd/oamintf/backup_serv/Prototype	1.3"
+#ident  "$Header: Prototype 2.0 91/07/12 $"
+
+!MENU=/usr/sadm/sysadm/menu 
+##############################################################
+#		Top Level Directories 
+############################################################## 
+d intf /usr 755 root sys
+d intf /usr/sadm 555 bin bin
+d intf /usr/sadm/sysadm 555 bin bin
+d intf $MENU 555 bin bin
+
+############################################################## 
+#		Interface File Placeholders
+############################################################## 
+
+d intf $MENU/backup_service 0755 bin bin
+v intf $MENU/backup_service/backup.menu 0644 bin bin
+f intf $MENU/backup_service/Help 0644 bin bin
+

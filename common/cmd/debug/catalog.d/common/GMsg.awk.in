@@ -1,0 +1,93 @@
+#ident	"@(#)debugger:catalog.d/common/GMsg.awk.in	1.12"
+
+# This file is the input to GMsg.awk, the awk script that creates gui_msg.h,
+# GMcatalog, and GMtable.c.
+
+# gui_msg.h
+#	defines the enum Gui_msg_id, that lists the types of message used
+#	by the graphical user interface
+
+# GMtable.c
+#	contains the initialization code for the message table
+
+# GMcatalog
+#	contains the format strings, one per line, and is the input
+#	to mkmsgs to create a message database.
+
+# ------ WARNING -------
+# Messages in an existing catalog cannot be modified or removed,
+# because we have no control over the translated catalogs,
+# also, calls to gettxt have hard-coded numbers in them.
+# Messages MUST stay in the same order - after the first release
+# the catalog probably should not be machine generated
+
+# The format of each non-comment line in this file is:
+# msg_id	format_string
+# 
+# Messages may span multiple lines.
+# Unlike the awk script for the debug engine's messages,
+# GMsg.awk assumes all messages should be translated and
+# should appear in the catalog.  (Some of debug's messages
+# are only relevant to the user interface and produce no output,
+# all of the messages here are for human consumption).
+
+	# informational messages
+GM_output		Controlled process generated output.\nOutput is displayed in the Command window.
+GM_assoc_cmd		Associated commands are executing.\nOutput is displayed in the Command window.
+
+	# error messages
+	# GE_fatal and GE_bad_state are printed by interface_error on stderr,
+	# and must be the first two entries in the catalog
+GE_fatal		Fatal error: Internal error in\n%s at line %d\n
+GE_bad_state		Internal error in %s at line %d,\ndisplayed information may be suspect\n
+
+	# remaining messages are displayed in windows, and don't need newlines
+GE_internal		Internal error: Inconsistent state in\n%s at line %d
+GE_no_cmd_line		Command line must be specified
+GE_bad_selection	Invalid selection
+GE_no_file		File name must be specified
+GE_no_stop_expr		Stop expression must be specified
+GE_no_signals		Signal selection is required
+GE_no_sys_calls		System call selection is required
+GE_no_cmd_list		Command list must be specified
+GE_cant_close		Cannot close this window set;\none or more processes still active.
+GE_file_needed		File selection is required
+GE_only_one		Only 1 PID selectable if Object File is specified
+GE_no_location		Location must be specified
+GE_no_core_file		Core file name must be specified
+GE_no_expression	Expression must be specified
+GE_no_number		Number required
+GE_out_of_bounds	Line number out of bounds
+GE_no_proc_no_source	No source available without current process
+GE_no_source		No source available for %s
+GE_no_function		Function selection is required
+GE_no_reg_expr		Regular expression is required
+GE_expr_not_found	Expression not found
+GE_bad_expr		Invalid expression
+GE_no_process		No current process
+GE_no_current_file	No current file
+GE_no_process_selection	Process selection is required
+GE_syntax_error		Syntax error
+GE_no_format		Format string required if Other selected
+GE_bad_process		Process %s no longer valid for this dialog
+GE_selection_gone	Selected process died or was released
+GE_count_required	Count required when Step Count Times selected
+GE_entry_exit		One or both of Entry and Exit must be selected
+GE_stripped_file	No functions available for %s
+
+	# messages used in confirmation notices
+GE_ok_to_quit		One or more processes still active.\nQuit anyway?
+GE_multiple_events	Multiple events affect this line.\nDelete all?
+GE_multiple_breaks	This event affects multiple lines.\nDelete anyway?
+
+	# message for Disassembly window
+GE_invalid_addr		Invalid address, input a hexadecimal number.
+GE_drop_to_disasm	Function must be dropped onto the Disassembly Window
+GE_no_disasm_win	The disassembly window must be displayed
+GE_no_source_win	The source window must be displayed
+
+	# message for DragNDrop
+GE_bad_drop		Invalid drop file
+
+	# message for FlatList overflow
+GE_list_overflow	List too long, truncated

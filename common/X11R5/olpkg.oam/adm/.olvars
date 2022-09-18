@@ -1,0 +1,14 @@
+#ident	"@(#)olpkg.oam:adm/.olvars	1.1"
+#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+#	Copyright (c) 1988, 1989, 1990 AT&T
+#	  All Rights Reserved
+
+#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+#	UNIX System Laboratories, Inc.
+#	The copyright notice above does not evidence any
+#	actual or intended publication of such source code.
+
+
+DISPLAY=unix:0 export DISPLAY	#!@ Do not edit this line !@
+OLINVOKE=no export OLINVOKE	#!@ Do not edit this line !@
+PATH=$PATH:/usr/X/bin export PATH	#!@ Do not edit this line !@

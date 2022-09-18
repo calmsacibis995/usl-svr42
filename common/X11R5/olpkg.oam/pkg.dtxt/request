@@ -1,0 +1,224 @@
+#ident	"@(#)olpkg.oam:pkg.dtxt/request	1.8"
+############# Begin UPGRADE AND OVERLAY #######################
+
+old_pkgs()
+{
+	#
+	#  This script is invoked from the request script of a package
+	#
+	#  It checks if the pkg being installed exists on the system
+	#  If so, it checks the VERSION of the INSTALLED pkg.
+	#  It  exits with code:
+	#	6, if V4 and no olxt/oleus packages
+	#	5, if V4 and olxt/oleus packages
+	#	4, if DESTINY and oleus/olxt packages
+	#       2, if DESTiny and no oleus/olxt packages
+	#       1, the installed pkg is any other ver
+	#       0, if pkg not installed or  other problems
+	#
+	#
+	export PKGVERSION 
+	PKGVERSION=0		#pkg in not installed
+	unset OLEUS OLXT
+	[ -d /var/sadm/pkg/oleus ] && {
+		OLEUS="YES"
+		echo "oleus	Open Look End User System" > /tmp/oleus.xx
+	}
+	[ -d /var/sadm/pkg/olxt ] && {
+		OLXT="YES"
+		echo "olxt	Open Look  X Toolkit" > /tmp/olxt.xx
+	}
+	[ "$OLEUS" ] || [ "$OLXT" ] && return 1
+	return 0
+}
+UPGRADE_MSGS=/etc/inst/locale/C/menus/upgrade
+Color_Console () {
+   TERM=AT386-M
+   /usr/sbin/adpt_type >/dev/null
+   DISPLAY=$?
+   case $DISPLAY in
+      0)  TERM=ANSI ;; #non-intergal console
+      1|4)          ;; #1=MONO 4=VGA_MONO
+      2|5|9|10)   #2=CGA 5=VGA_? 9=EGA 10=unknown controller
+         TERM=AT386 
+	 ;;
+      3) #VGA_COLOR
+         TERM=AT386   ;;
+   esac
+}
+menu_screen()
+{
+	### main ()
+	#  interim script to display the screen:
+	#  
+	#  Do you want to auto merge config files or not
+	#
+	#  this will not be needed once the new menu tool is in place
+	#  The 1st arg is the name of the pkg
+	#  This script is invoked from  the request script of a pkg
+	
+	SCRIPTS=/usr/sbin/pkginst
+	UPGRADE_MSGS=/etc/inst/locale/C/menus/upgrade
+	Color_Console
+	export TERM
+#
+# First, we need to create the menu program 
+############	
+cat >/tmp/menufile.xx << !
+.optstring
+Your choices are:
+.pageno
+Page %d of %d
+.ul
+UNIX System `echo "${NAME}"` 
+.hhelp_ban
+Help on Help and How to Use the Menu Tool
+.helpbanner
+Help on Removing Old Packages
+.ur
+Package Removal
+.ll
+.lr
+Del=Cancel 
+.top
+!
+echo >>/tmp/menufile.xx
+echo "The following packages are installed:" >> /tmp/menufile.xx
+echo "" >> /tmp/menufile.xx
+[ -s "/tmp/oleus.xx" ] && cat /tmp/oleus.xx  >>/tmp/menufile.xx
+[ -s "/tmp/olxt.xx" ] && cat /tmp/olxt.xx  >>/tmp/menufile.xx
+echo "" >>/tmp/menufile.xx
+cat >> /tmp/menufile.xx << !
+.form
+Remove the existing packages.  Install the new packages.
+Do not remove the existing packages.  New versions will not be installed.
+.selection
+Press '1' or '2' followed by ENTER/CONTINUE:
+.help
+No help for this step.
+.helpinst
+Del=Cancel  F1=Help  ESC=Exit Help  
+.working
+Working...
+.end
+!
+############	
+	#
+	#  Now invoke the menu program with everything we just extracted.
+	#
+		unset RETURN_VALUE
+		menu  -f /tmp/menufile.xx -o /tmp/response
+		. /tmp/response
+		rm -f /tmp/response
+		
+	#	exits 1 for Yes. Remove the packages.
+	#	exits 2 for No. Do not remove packages.
+	rc=`expr $RETURN_VALUE - 1`
+	unset RETURN_VALUE
+	rm -f /tmp/menufile.xx
+	return $rc
+}
+remove_screen()
+{
+	### main ()
+	#  interim script to display the screen:
+	#  
+	#  Do you want to auto merge config files or not
+	#
+	#  this will not be needed once the new menu tool is in place
+	#  The 1st arg is the name of the pkg
+	#  This script is invoked from  the request script of a pkg
+	
+	SCRIPTS=/usr/sbin/pkginst
+	UPGRADE_MSGS=/etc/inst/locale/C/menus/upgrade
+	Color_Console
+	export TERM
+#
+# First, we need to create the menu program 
+############	
+cat >/tmp/menufile.yy << !
+.pageno
+Page %d of %d
+.ul
+UNIX System `echo "${NAME}"` 
+.hhelp_ban
+Help on Help and How to Use the Menu Tool
+.helpbanner
+Help on Removing Old Packages
+.ur
+Package Removal
+.ll
+.lr
+Del=Cancel 
+.top
+
+You have chosen not to remove the old Graphics package(s).
+The new Graphics packages will not be installed.
+
+.form
+ENTER
+.selection
+Press 'ENTER' (or 'RETURN') to continue:
+.help
+No help for this step.
+.helpinst
+Del=Cancel  F1=Help  ESC=Exit Help  
+.working
+Working...
+.end
+!
+############	
+	#
+	#  Now invoke the menu program with everything we just extracted.
+	#
+		unset RETURN_VALUE
+		menu  -f /tmp/menufile.yy -o /tmp/response
+		
+}
+[ "$INSTALL_MODE" ] || INSTALL_MODE=CUSTOM
+SCRIPTS=/usr/sbin/pkginst
+OLD_PKGS=NO
+REMOVE=No
+PKGINSTALL_TYPE=NEWINSTALL
+PKGNAME=$PKGINST
+
+[ -d /var/sadm/pkg/$PKGNAME ] && PKGINSTALL_TYPE=OVERLAY
+old_pkgs
+OLD_RET=$?
+[ "$OLD_RET" = "1" ] && OLD_PKGS="YES"
+[ "$OLD_PKGS" = "YES" ] && PKGINSTALL_TYPE=UPGRADE
+[ "$INSTALL_MODE" = CUSTOM ] && [ "$OLD_PKGS" = "YES" ] && {
+	menu_screen
+	[ $? = 0 ] && REMOVE=Yes
+	[ "$REMOVE" = "No" ] && {
+		remove_screen
+		exit 3
+	}
+}
+
+[ "$PKGINSTALL_TYPE" = NEWINSTALL ] || {
+
+	AUTOMERGE=Yes
+	[ "$INSTALL_MODE" = CUSTOM ] && {
+		# do this till the new menu tool is in place
+		# this scripts exits 0 for mergefiles, 1 for donot merge
+		${SCRIPTS}/chkmrgfiles "${NAME}"
+		[ $? = 1 ] && AUTOMERGE=No
+	}
+
+}
+
+[ "$AUTOMERGE" ] || AUTOMERGE=NULL
+[ "$REMOVE" ] || REMOVE=NULL
+
+export INSTALL_MODE PKGINSTALL_TYPE AUTOMERGE REMOVE OLD_PKGS
+############# End  UPGRADE AND OVERLAY #######################
+
+cat >$1 << !
+AUTOMERGE='$AUTOMERGE'
+REMOVE='$REMOVE'
+PKGINSTALL_TYPE='$PKGINSTALL_TYPE'
+INSTALL_MODE='$INSTALL_MODE'
+OLD_PKGS='$OLD_PKGS'
+!
+exit 0

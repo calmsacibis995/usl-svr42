@@ -1,0 +1,55 @@
+/**/#ident	"@(#)r4xhw:Imakefile	1.1"
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+/**/#  Imakefile (Imakefile)
+/**/# 	Acc: 581626648 Mon Jun  6 14:57:28 1988
+/**/# 	Mod: 574649359 Thu Mar 17 19:49:19 1988
+/**/# 	Sta: 581622141 Mon Jun  6 13:42:21 1988
+/**/# 	Owner: 5815
+/**/# 	Group: 1985
+/**/# 	Permissions: 644
+
+
+/**/# 	START USER STAMP AREA
+
+
+/**/# 	END USER STAMP AREA
+
+#if defined(SystemV4) || defined(SVR4)
+  SYS_LIBRARIES = -lm
+#endif
+
+          SRCS1 = xhw.c
+          SRCS2 = hw.c
+          SRCS3 = xhwTK.c
+          SRCS4 = hwA.c
+          OBJS1 = xhw.o
+          OBJS2 = hw.o
+          OBJS3 = xhwTK.o
+          OBJS4 = hwA.o
+
+           SRCS = $(SRCS1) $(SRCS2) $(SRCS3) $(SRCS4)
+           OBJS = $(OBJS1) $(OBJS2) $(OBJS3) $(OBJS4)
+
+all: hw hwA xhw xhwTK
+
+SingleProgramTarget(xhw,$(OBJS1),$(XLIB),)
+
+SingleProgramTarget(hw,$(OBJS2),$(XLIB),)
+
+SingleProgramTarget(xhwTK,$(OBJS3),$(XAWLIB) $(XMULIB) $(XTOOLLIB) $(XLIB) ,)
+
+SingleProgramTarget(hwA,$(OBJS4),$(XLIB) ,)
+
+InstallProgram(xhw,$(BINDIR))
+InstallProgram(xhwTK,$(BINDIR))
+InstallProgram(hw,$(BINDIR))
+InstallProgram(hwA,$(BINDIR))
+DependTarget()

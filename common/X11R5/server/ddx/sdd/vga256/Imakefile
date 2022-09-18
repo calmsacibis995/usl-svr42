@@ -1,0 +1,148 @@
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+/**/#ident	"@(#)vga256:vga256/Imakefile	1.13"
+
+#include <Server.tmpl>
+#if Release5
+#include <sv4Lib.rules>
+
+/*
+ * Debugging the server with dynamically linked library is sometimes painful
+ * To statically link libvga256.a into the server:
+ *
+ * #undef XWINSharedDisplayLibrary
+ *
+ * and do:
+ *	make clean
+ *	make Makefile
+ *	make
+ *	cd ../../.. (ie: to the server dir)
+ *	make Xwin_a (make sure SDD=.....libvga256.a in the server/Makefile)
+ */
+/* #undef XWINSharedDisplayLibrary */
+
+/*
+ *  	compilation option forced to -Xa, since -Xc does not recognize "asm"
+ *	keyword, which is called by "sys/inline.h" and used in all the files in
+ *	this directory
+ *
+ *  The reason to define .c.o: here is that the $(CCOPTIONS) is passed on 
+ *  command line from server dir, so there is no easy way to overwrite the default
+ *  option (-Xc). Eventhough CFLAGS has -Xc, since we are forcing -Xa after CFLAGS,
+ *  all other previously defined -X options are ignored.
+ */
+.c.o:
+	$(RM) $@
+	${CC} -KPIC -DVGA_PAGE_SIZE="(64*1024)" $(CFLAGS) -Xa -c $*.c
+#endif /* Release5 */
+
+NONPROFTMP=cat
+PROFTMP=m4 m4.def mcount.def 
+ASMTMP=$(NONPROFTMP)
+
+SRCS =	v256.c v256config.c v256data.c \
+	v256gs.c \
+	v256color.c \
+	v256bitblt.c \
+	v256spreq.c \
+	v256rop.c \
+	v256dlfont.c \
+	v256curs.c \
+	v256points.c \
+	v256fill.c v256tile.c v256stpl.c v256bstpl.c \
+	v256sl.c \
+	v256line.c v256lnclip.c \
+	vtio.c vtio_dyn.c \
+	newfill.c \
+	cfbrrop.c \
+	fFillCopy.s \
+	fFillXor.s \
+	v256asm.s
+
+OBJS =  v256.o v256config.o v256data.o \
+	v256gs.o \
+	v256color.o \
+	v256bitblt.o \
+	v256spreq.o \
+	v256rop.o \
+	v256dlfont.o \
+	v256curs.o \
+	v256points.o \
+	v256fill.o v256tile.o v256stpl.o v256bstpl.o \
+	v256sl.o \
+	v256line.o v256lnclip.o \
+	newfill.o \
+	cfbrrop.o \
+	fFillCopy.o \
+	fFillXor.o \
+	v256asm.o
+
+#ifdef SDDKIT
+   INCLUDES = -I.  -I../server/include -I/usr/X/include/X11
+#else
+   INCLUDES = -I.  -I../../si -I../../../../X11 -I../../../include
+#endif
+     LFLAGS = -buxz
+
+#if XWINSharedDisplayLibrary
+#define IHaveSubdirs
+SUBDIRS = INIT
+MakeSubdirs($(SUBDIRS))
+DependSubdirs($(SUBDIRS))
+
+INIT_OBJ = vtio_dyn.o
+
+#if Release5
+SHLIBLDFLAGS = ./INIT/libv256i.so
+SharedLibraryTarget1(vga256,1,$(OBJS) $(INIT_OBJ),.,.)
+#else
+SHAREDOBJS = $(OBJS) $(INIT_OBJ)
+SHLIBFLAGS = ./INIT/libv256i.so
+SharedLibraryObjectRule()
+all:: libvga256.so
+SharedLibraryTarget1(vga256,$(SHAREDOBJS))
+SpecialObjectRule(.c.o,,-KPIC)
+#endif  /*Release5*/
+
+#else /* XWINSharedDisplayLibrary */
+
+INIT_OBJ = vtio.o
+CDEBUGFLAGS = -O -DNO_ALLOCA -DVGA_PAGE_SIZE="(64*1024)"
+NormalLibraryObjectRule()
+all:: libvga256.a
+NormalLibraryTarget(vga256,$(OBJS) $(INIT_OBJ))
+
+#endif /* XWINSharedDisplayLibrary */
+
+#if XWINSharedDisplayLibrary
+SFLAGS = -KPIC
+#endif
+
+.s.o:
+	$(ASMTMP) $*.s > tmp.c
+	$(CC) -P $(INCLUDES) tmp.c
+	sed -e "/^\#ident/d" -e "s/\% /\%/g" tmp.i > tmp.s
+	$(CC) -c $(SFLAGS) tmp.s
+	mv tmp.o $*.o
+	@if [ -d shared ]; then \
+		$(CC) -c -O -KPIC tmp.s; \
+		$(MV) tmp.o ./shared/$*.o; \
+	fi
+	/bin/rm -f tmp.s tmp.c
+
+DependTarget()
+
+#if XWINSharedDisplayLibrary
+install:: all
+	$(INSTALL) $(INSTALLFLAGS) libvga256.so $(USRLIBDIR)
+#endif
+
+lint: ${CFILES} ${LIBCFILES}
+	$(LINT) $(LFLAGS) -Clibsmart $(INCLUDES) $(SRCS) >lint.out 2>&1

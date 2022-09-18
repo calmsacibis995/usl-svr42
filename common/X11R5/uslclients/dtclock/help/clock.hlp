@@ -1,0 +1,221 @@
+#ident	"@(#)dtclock:help/clock.hlp	1.10"
+^*version^1
+^*title^Clock
+^:Clock
+^*width^70
+^+DesktopMgr/help.defs
+^?Display and set time and alarm
+^0^The Clock
+^$10
+The Clock
+
+Use the Clock window to display the current time in either an analog
+or a digital display. Menu selections let you set an alarm, change the
+clock chime, change the mode (analog or digital), and specify whether
+the clock ticks second or minute.
+
+The following windows are provided for the Clock:
+
+        \k(Clock Window)
+
+        \k(Clock: Set Alarm Window)
+
+        \k(Clock: Properties Window)
+^1^Clock Window
+^$20
+\k{The Clock}
+1. Clock Window
+
+Use the Clock window to display the current date and a running clock.
+Clicking MENU anywhere in the clock area displays a menu with the
+following options:
+
+        \k(Set Alarm)
+        \k(Properties)
+        \k(Help)
+^2^Set Alarm
+^$30
+1. \k{Clock Window}
+   1.1 Set Alarm
+
+The Set Alarm menu option enables you to specify when an alarm goes
+off and the message it sends to the screen. Clicking on the Set Alarm
+menu option displays the Clock: Set Alarm window.
+
+More information: \k(Clock: Set Alarm Window)
+^2^Properties
+^$40
+1. \k{Clock Window}
+   1.2 Properties
+
+The Properties menu option lets you define properties for the clock,
+such as the alarm chime, the mode (analog or digital) and how often
+the clock ticks (seconds or minutes). Clicking on the Properties menu
+option displays the Clock: Properties window.
+
+More information: \k(Clock: Properties Window)
+^2^Help
+^$50
+1. \k{Clock Window}
+   1.3 Help
+
+The Help menu option provides on-line help for the Clock. The Help
+menu option displays a menu with the following options:
+
+        \k(Clock Help)
+        \k(Table of Contents)
+        \k(Help Desk)
+^3^Clock Help
+^$60
+1. \k{Clock Window}
+   1.3 \k{Help}
+       1.3.1 Clock Help
+
+The Clock Help menu option provides on-line help for the Clock window.
+^3^Table of Contents
+^$70
+1. \k{Clock Window}
+   1.3 \k{Help}
+       1.3.2 Table of Contents
+
+The Table of Contents menu option displays the list of help topics
+available for the Clock window.
+^3^Help Desk
+^$80
+1. \k{Clock Window}
+   1.3 \k{Help}
+       1.3.3 Help Desk
+
+The Help Desk menu option opens the Help Desk window. From there, you
+can select the icon for which you want on-line help.
+^1^Clock: Set Alarm Window
+^$90
+\k{The Clock}
+2. Clock: Set Alarm Window
+
+The Clock: Set Alarm window is accessed by clicking MENU with the
+mouse pointer in the Clock window and selecting the Set Alarm menu
+option.
+
+The Clock: Set Alarm window displays the following information:
+
+   o Message: This text box displays the message that appears on your
+     display when the alarm goes off. Click on the text box and you
+     can enter your own message.
+
+   o Time: This text box specifies when fhe alarm sounds. The format
+     is 24 hour time (for example, 1:00 PM is entered as 13:00). You
+     can type the time on the text box or use the arrow buttons to
+     increase and decrease the setting.
+
+The button available from the Clock: Set Alarm window are:
+
+        \k(Set Alarm Button)
+        \k(Reset Alarm Button)
+        \k(Cancel Button)
+        \k(Help Button)
+^2^Set Alarm Button
+^$100
+2. \k{Clock: Set Alarm Window}
+   2.1 Set Alarm Button
+
+The Set Alarm button sets the alarm to the time specified in the Time
+text box. When that time comes, the message specified in the Message
+text box is displayed on your screen. You can only set one alarm at a
+time. If you set a new alarm, any existing alarm setting is
+canceled.
+
+^2^Reset Alarm Button
+^$110
+2. \k{Clock: Set Alarm Window}
+   2.2 Reset Alarm Button
+
+The Reset Alarm button cancels any existing alarm setting.
+^2^Cancel Button
+^$120
+2. \k{Clock: Set Alarm Window}
+   2.3 Cancel Button
+
+The Cancel Alarm button closes the Clock: Set Alarm window. This does
+not affect any existing alarm setting.
+^2^Help Button
+^$130
+2. \k{Clock: Set Alarm Window}
+   2.4 Help Button
+
+The Help button provides on-line help for the Clock: Set Alarm window.
+^1^Clock: Properties Window
+^$140
+\k{The Clock}
+3. Clock: Properties Window
+
+Use the Clock: Properties window to set information for the clock and
+its alarm. The following properties can be modified:
+
+   o Chime: You can set the chime to None, Traditional, or Ship's
+     Bells. Unless you change it, the chime is set to None.
+
+     - None: No chime is sounded
+
+     - Traditional: One chime on the half-hour, the time in chimes on
+       the hour
+
+     - Ship's Bells: Ship's Bells was used historically to mark half
+       hour periods of a sailor's watch.
+
+   o Mode: You can set the display to Analog or Digital mode.
+
+   o Tick: You can change the clock so that it updates every Second or
+     every Minute.
+
+The buttons available from the Clock: Properties window are:
+
+        \k(Apply Button^^Apply ButtonPW)
+        \k(Set Defaults Button^^Set Defaults ButtonPW)
+        \k(Reset Button^^Reset ButtonPW)
+        \k(Reset to Factory Button^^Reset to Factory ButtonPW)
+        \k(Cancel Button^^Cancel ButtonPW)
+        \k(Help Button^^Help ButtonPW)
+^2^Apply Button=Apply ButtonPW
+^$150
+3. \k{Clock: Properties Window}
+   3.1 Apply Button
+
+The Apply button immediately applies any changes made in the Clock:
+Properties window. After applying the changes, the Clock: Properties
+window closes.
+^2^Set Defaults Button=Set Defaults ButtonPW
+^$160
+3. \k{Clock: Properties Window}
+   3.2 Set Defaults Button
+
+The Set Defaults button stores all values currently displayed in the
+Clock: Properties Window as the default values.
+^2^Reset Button=Reset ButtonPW
+^$170
+3. \k{Clock: Properties Window}
+   3.3 Reset Button
+
+The Reset button reverses any changes you have not yet applied. The
+Clock: Properties window remains open.
+^2^Reset to Factory Button=Reset to Factory ButtonPW
+^$180
+3. \k{Clock: Properties Window}
+   3.4 Reset to Factory Button
+
+The Reset to Factory button resets any changes you have made to the
+values originally set in the software. The Clock: Properties window
+remains open.
+^2^Cancel Button=Cancel ButtonPW
+^$190
+3. \k{Clock: Properties Window}
+   3.5 Cancel Button
+
+The Cancel button closes the Clock: Properties window without making
+any changes.
+^2^Help Button=Help ButtonPW
+^$200
+3. \k{Clock: Properties Window}
+   3.6 Help Button
+
+The Help button provides on-line help for the Clock: Properties window.

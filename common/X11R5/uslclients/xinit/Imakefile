@@ -1,0 +1,28 @@
+/**/#ident	"@(#)r4xinit:Imakefile	1.13"
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+
+ LOCAL_LIBRARIES = -L../.././lib/X -lX11
+            SRCS = xinit.c proctimeout.c
+            OBJS = xinit.o proctimeout.o
+
+ComplexProgramTarget(xinit)
+
+all:: xinit
+	$(CHMOD) u+s ./xinit
+
+install::
+	$(RM) $(BINDIR)/olinit
+	-$(LN) $(BINDIR)/xinit $(BINDIR)/olinit
+	$(RM) $(BINDIR)/desktop
+	-$(LN) $(BINDIR)/xinit $(BINDIR)/desktop
+	$(CHMOD) u+s $(BINDIR)/xinit
+	$(CHMOD) u+s $(BINDIR)/olinit
+	$(CHMOD) u+s $(BINDIR)/desktop

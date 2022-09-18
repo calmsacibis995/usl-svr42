@@ -1,0 +1,12 @@
+CLASS tcpadm
+BEGIN
+	_SYSTEM		Y;
+	_LPATTERN	InternetMgr;
+        _ICONFILE	tcpadm.icon;
+	MENU _Open	'(if /sbin/tfadmin -t inet 2>/dev/null;\
+			then\
+				/sbin/tfadmin inet;\
+			else\
+				"%F";\
+			fi)&';
+END

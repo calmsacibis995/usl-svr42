@@ -1,0 +1,18 @@
+.\"ident	"@(#)dtclock:dtalarm.man	1.1"
+.TH DTALARM 1 "7 November 1991" "X Version 11"
+.SH NAME
+dtalarm - Desktop UNIX(r) System Alarm
+.SH SYNOPSIS
+.B dtalarm
+[-display \fIdisplay\fR] [-geometry \fIgemoetry\fR] <"message"> [options]
+.SH DESCRIPTION
+\fIdtalarm\fP is an OPEN LOOK client which acts as an alarm facility.
+.SH EXAMPLES
+dtalarm "Meeting in room 222"
+.PP
+.SH "SEE ALSO"
+X(1)
+.SH COPYRIGHT
+Copyright 1991, USL
+.br
+See \fIX(1)\fP for a full statement of rights and permissions.

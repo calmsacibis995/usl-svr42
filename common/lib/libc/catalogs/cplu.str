@@ -1,0 +1,119 @@
+/*	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.	*/
+/*	Copyright (c) 1988, 1990 AT&T	*/
+/*	  All Rights Reserved  	*/
+
+/*	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF     	*/
+/*	UNIX System Laboratories, Inc.                     	*/
+/*	The copyright notice above does not evidence any   	*/
+/*	actual or intended publication of such source code.	*/
+
+#ident	"@(#)catalogs:cplu.str	1.1"
+Cannot open %s: %s
+Not enough memory for lookset array
+Not enough memory for initial table
+Not enough memory for tables in mktbls()
+Cannot find parser %s
+Not enough memory for output string array
+Not enough memory to expand sarr arrays
+\n%d/%d terminals, %d/%d nonterminals\n
+%d/%d grammar rules, %d/%d states\n
+%d shift/reduce, %d reduce/reduce conflicts reported\n
+%d/%d working sets used\n
+memory: states,etc. %d/%d, parser %d/%d\n
+%d/%d distinct lookahead sets\n
+%d extra closures\n
+%d shift entries, %d exceptions\n
+%d goto entries\n
+%d entries saved by goto default\n
+\nconflicts: 
+%d shift/reduce
+%d reduce/reduce
+ (in command line)
+, line %d
+Not enough memory for pyield array
+Undefined nonterminal: %s
+Internal error: pyield %d
+state/nolook error
+Nonterminal %s never derives any token string
+Not enough memory to expand lookset array
+Not enough memory to expand lookahead sets
+Not enough memory to expand working sets
+Not enough memory to expand table of states
+Not enough memory to expand pstate memory
+Missing tokens or illegal tokens
+%s, %s\n
+yacc: -Q should be followed by [y/n]
+Usage: yacc [-wvVdlt] [-Q(y/n)] [-p driver_file] file\n
+Bad %%start construction
+bad syntax in %%type
+Type redeclaration of token %s
+Type redeclaration of nonterminal %s
+Redeclaration of precedence of %s
+Redeclaration of precedence of %s, line %d\n
+Redeclaration of type of %s
+Type number of %s should be defined earlier
+Token numbers must be less than %d
+Unexpected EOF before %%%%
+Bad syntax on first rule
+Illegal nonterminal in grammar rule
+Illegal rule: missing semicolon or | ?
+Illegal %%prec syntax
+Nonterminal %s illegal after %%prec
+Must return a value, since LHS has a type
+Default action causes potential type clash
+Not enough memory to expand string dump
+Invalid escape
+\\a is ANSI C \"alert\" character, line %d\n
+Illegal octal number
+Illegal \\nnn construction
+ \\nnn exceed \\377
+'\\000' is illegal
+\\x is ANSI C hex escape, line %d\n
+Illegal hexadecimal number
+Illegal \\xnn construction
+ \\xnn exceed \\xff
+'\\x00' is illegal
+Unterminated < ... > clause
+Missing type name in < ... > clause
+Illegal or missing ' or \"
+Invalid escape, or illegal reserved word: %s
+Must specify type for %s
+%s should have been defined earlier
+EOF encountered while processing %%union
+EOF before %%}
+EOF inside comment
+Illegal comment
+Bad syntax on $<ident> clause
+Bad action format
+Illegal character \"#\"
+Illegal action argument no.
+Illegal action arguments
+Illegal use of $%d
+Must specify type of $%d
+Newline in string or char. const.
+EOF in string or character constant
+Action does not terminate
+Not enough memory to expand LHS length
+Not enough memory to expand RHS length
+Not enough memory to expand productions
+Not enough memory to expand NTERMS
+Not enough memory to expand NNONTERM
+Not enough memory to expand mem table
+\n%d: reduce/reduce conflict (red'ns %d and %d ) on %s
+\n%d: shift/reduce conflict (shift %d, red'n %d) on %s
+accept
+error
+shift %d
+reduce %d
+\n\t.  reduce %d\n\n
+\n\t.  error\n\n
+\t%s  goto %d\n
+Rule not reduced:   %s\n
+%d rules never reduced\n
+Bad tempfile
+Clobber of amem array, pos'n %d, by %d
+Optimizer space used: input %d/%d, output %d/%d\n
+%d table entries, %d zero\n
+Maximum spread: %d, maximum offset: %d\n
+Not enough memory to expand action table
+%s is declared as nonterminal already

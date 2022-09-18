@@ -1,0 +1,3 @@
+#ident	"@(#)sdb:util/i386/mach.defs	1.2"
+
+DEFLIST	= -D$(CPU) -DWEITEK

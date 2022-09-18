@@ -1,0 +1,64 @@
+#ident	"@(#)xpr:terminfo/postscript.ti	1.2"
+#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+#	Copyright (c) 1988, 1989, 1990 AT&T
+#	  All Rights Reserved
+
+#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+#	UNIX System Laboratories, Inc.
+#	The copyright notice above does not evidence any
+#	actual or intended publication of such source code.
+
+
+#
+# Don't use "ps" as an alias--that refers to a different device
+postscript|lw|laserwriter|PostScript (TM) printer (FOR GRAPHICS ONLY),
+
+#
+# This Terminfo entry for the PostScript language is only useful for
+# printing graphics, not text.
+
+#
+# The only way to identify the page size in the Terminfo database is
+# by lines and columns. Thus the following, although clearly they don't
+# make much sense otherwise.
+	cols#80,
+	lines#66,
+	orc#30,
+	orhi#300,
+	orl#50,
+	orvi#300,
+
+#
+# Use newline for carriage return, so that "tput init" doesn't
+# put out a \r which screws up the PostScript program.
+	cr=\n,
+
+#
+# The %%Trailer and %%BoundingBox are the responsibility of the
+# application--sorry!
+	ff=showpage\ngrestore\n,
+
+	if=/usr/lib/terminfo/if/postscript.if,
+
+	npins#8,
+	spinv#300,
+	spinh#300,
+
+	porder=H-1\,-2\,-3\,-4\,-5\,-6\,-7\,-8;0,
+
+	sbim=d%p1%04X,
+
+#   bitwin#,
+	u1=1,
+#   bitype#
+	u2=2,
+#   birep=
+	u4=r%p2%04X%p3%c%p4%c,
+#   binel=
+	u5=\n,
+
+#   defbi=
+	u6=gsave\n%p1%p5%*%PX%gX%d %{3300}%p2%p4%+%p5%*%-%PY%gY%d translate\n%p3%d %p4%d %p5%d bitdump\n%p3%p5%*%PW%p4%p5%*%PH,
+
+#   endbi=
+	u7=,

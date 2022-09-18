@@ -1,0 +1,15 @@
+#ident	"@(#)set:common/set/graphics/setsize	1.4"
+#ident	"$Header:$"
+dtclients:/usr/X/lib/bitmaps	79	13
+dtclients:/usr/X/lib/x11perfcomp	7	3
+dtclients:/usr/X/lib/images	1072	4
+dtclients:/usr/X/lib/twm	5	1
+dtclients:/usr/X/include/X11/bitmaps	190	66
+dtclients:/usr/X/lib/spider	124	6
+dtclients:/usr/X/lib/app-defaults	30	8
+dtclients:/usr/X/bin	2031	28
+dtxtfonts:/usr/X/lib/fonts/src/bdf/75dpi	9237	172
+dtxtfonts:/usr/X/lib/fonts/src/bdf/misc	2059	56
+dtxtfonts:/usr/X/adm	68	1
+dtxtfonts:/usr/X/lib/fonts/src/bdf/100dpi	11938	187
+dtxtfonts:/usr/X/bin	37	1

@@ -1,0 +1,36 @@
+#ident	"@(#)pkg.bkrs:i386/pkg/bkrs/preinstall	1.3.2.4"
+#ident	"$Header: $"
+
+#
+#  If there's an older (than 4.2) version of OA&M installed, inform
+#  the user to pkgrm it and start again.
+#
+SCRIPTS=/usr/sbin/pkginst
+${SCRIPTS}/chkpkgrel oam
+PKGVERSION=$?
+[ $PKGVERSION != 2 -a $PKGVERSION != 0 ] && {
+
+	#
+	#  Set up to use menu_colors; default to C-locale if ${LANG}'s dir has
+	#  no menu_colors.sh
+	#
+	if [ -f /etc/inst/locale/${LANG}/menus/menu_colors.sh ]
+	then
+		. /etc/inst/locale/${LANG}/menus/menu_colors.sh
+	else
+		. /etc/inst/locale/C/menus/menu_colors.sh
+	fi
+
+	#
+	#  Send the menus out to the correct directory
+	#
+	DIR=/etc/inst/locale/${LANG}/menus/bkrs
+	[ -d ${DIR} ] || mkdir -p ${DIR}
+	cp ${REQDIR}/bkrs/* ${DIR}
+
+	menu_colors regular
+	menu -f ${DIR}/menu.remove -o /dev/null >/dev/tty 2>/dev/null < /dev/tty
+	exit 3
+}
+
+exit 0

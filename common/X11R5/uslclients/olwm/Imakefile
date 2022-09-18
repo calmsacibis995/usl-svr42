@@ -1,0 +1,105 @@
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+/**/#ident	"@(#)olwm:Imakefile	1.37"
+
+           STAR = *
+      XOLLIBSRC = $(TOP)/lib/Xol
+
+          DEBUG = 
+
+          SRCS = \
+		 Window.c \
+		 Menu.c \
+		 Event.c \
+		 Icon.c \
+		 Misc.c \
+		 Strings.c \
+		 Help.c \
+		 Display.c \
+		 Extern.c \
+                 wm.c \
+		 WMStep.c \
+		 MotifDecor.c \
+		 MotifMetrics.c \
+		 MotifIDec.c \
+		 MotifIPos.c \
+		 MotifRes.c \
+		 Parse.c \
+                 wmm.c
+
+         OBJS = \
+		 Window.o \
+		 Menu.o \
+		 Event.o \
+		 Icon.o \
+		 Misc.o \
+		 Strings.o \
+		 Help.o \
+		 Display.o \
+		 Extern.o \
+                 wm.o \
+		 WMStep.o \
+		 MotifDecor.o \
+		 MotifMetrics.o \
+		 MotifIDec.o \
+		 MotifIPos.o \
+		 MotifRes.o \
+		 Parse.o \
+                 wmm.o
+       
+       HEADERS = \
+                 WMStepP.h \
+                 WMStep.h \
+		 Strings.h \
+		 Extern.h \
+		 ProcDeclar.h \
+                 wm.h \
+		 deficon.xpm
+
+       INCLUDES = -I$(LIBSRC) -I$(LIBSRC)/Xol
+LOCAL_LIBRARIES = XolClientLibs
+        DEPLIBS = XolClientDepLibs
+      CCOPTIONS = $(FURCCOPTIONS)
+
+#ifndef SystemV4
+SYSAUX_LIBRARIES = -lc_s -lm
+#endif
+
+HELP_FILES =	help/all_popups help/border help/icon help/ok_apply \
+		help/ok_button help/ok_menu help/ok_reset \
+		help/menu_backgroun help/popup_cancel help/popup_dismiss \
+		help/popup_menu help/popup_owner help/pushpin \
+		help/resize_corner help/this_window help/window_back \
+		help/window_close help/window_full help/window_menu \
+		help/window_menu_bu help/window_open help/window_prop \
+		help/window_quit help/window_refresh help/window_restore \
+		help/window_move help/window_resize help/help_window \
+		help/win_title help/mot_close help/mot_icon help/mot_lower \
+		help/mot_max help/mot_maxb help/mot_min help/mot_minb \
+		help/mot_restore help/mot_rszcnr help/mot_rszhndl
+
+ComplexProgramTarget(olwm)
+
+#if UslLocalityTuning
+FurComplexProgramTarget(olwm)
+
+install:: olwm
+	$(INSTALL) -c $(INSTPGMFLAGS) olwm.F $(DESTDIR)$(BINDIR)
+	$(MV) $(DESTDIR)$(BINDIR)/olwm $(DESTDIR)$(BINDIR)/olwm.nf
+	$(MV) $(DESTDIR)$(BINDIR)/olwm.F $(DESTDIR)$(BINDIR)/olwm
+#endif
+
+#if defined(SYSV) || defined(SystemV4)
+InstallMultipleHelpFiles($(HELP_FILES),$(USRLIBDIR)/locale/C/help/olwm)
+#else /* SYSV */
+InstallMultipleHelpFiles($(HELP_FILES),$(USRLIBDIR)/C/help/olwm)
+#endif /* SYSV */
+
+InstallAppDefaults(olwm)

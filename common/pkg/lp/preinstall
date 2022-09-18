@@ -1,0 +1,181 @@
+#ident	"@(#)pkg.lp:lp/preinstall	1.16.2.14"
+#ident  "$Header: $"
+
+
+##########
+##
+## Make sure the user "lp" and group "lp" exist and are
+## consistent.
+##
+##########
+
+echo "##checking that user \"lp\" and group \"lp\" exist. . ."
+
+PATH=${PATH}:/usr/sadm/bin
+export PATH
+
+#chgflag=0
+if valgid lp
+then
+	entry=`grep '^lp:' /etc/group`
+	gid=`expr "${entry}" : "^lp:[^:]*:\([^:]*\):"`
+else
+	gid=7
+	until groupadd -g ${gid} lp >/dev/null 2>&1
+	do
+		gid=`expr ${gid} + 1`
+	done
+	#chgflag=1
+	echo "
+The group \"lp\" has been created with ID ${gid}.
+"
+fi
+
+if valuid lp
+then
+	entry=`grep '^lp:' /etc/passwd`
+	cgid=`expr "${entry}" : "lp:[^:]*:[^:]*:\([^:]*\):"`
+	if [ ${cgid} -ne ${gid} ]
+	then
+		echo "##Moving the login \"lp\" from group ID ${cgid} to ${gid} . . ."
+		usermod -g ${gid} lp
+		#chgflag=1
+	fi
+else
+	uid=7
+	until useradd -g ${gid} -u ${uid} -d /var/spool/lp lp >/dev/null 2>&1
+	do
+		uid=`expr ${uid} + 1`
+	done
+	#chgflag=1
+	echo "
+The login \"lp\" has been created with ID ${uid}.
+"
+fi
+
+##########
+##
+## Ensure that "lp" can use cron:
+##
+##########
+
+CRONALLOW=/etc/cron.d/cron.allow
+CRONDENY=/etc/cron.d/cron.deny
+
+if [ -f "${CRONDENY}" ] && grep '^lp$' ${CRONDENY} 1>/dev/null 2>&1
+then
+	ed -s ${CRONDENY} <<-'EOF'
+		/^lp$/d
+		w
+		q
+	EOF
+	echo "
+The login \"lp\" has been removed from the list of logins
+      denied access to the cron service.
+"
+fi
+
+if [ -f "${CRONALLOW}" ]
+then
+	if grep '^lp$' ${CRONALLOW} 1>/dev/null 2>&1
+	then
+		:
+	else
+		echo "lp" >>${CRONALLOW}
+		echo "
+The login \"lp\" has been added to the list of logins
+      allowed to use the cron service.
+"
+	fi
+fi
+
+############# Begin UPGRADE AND OVERLAY #######################
+
+SCRIPTS=/usr/sbin/pkginst
+. ${SCRIPTS}/updebug
+
+[ "$UPDEBUG" = YES ] && set -x
+
+#  The volatile files saved for ${PKGINST} will be listed in 
+#  /var/sadm/upgrade/${PKGINST}.sav
+
+#  The initial V4 volatile files list for ${PKGINST} should be in 
+#  /etc/inst/up/patch/${PKGINST}.LIST
+
+[ "$PKGINSTALL_TYPE" = NEWINSTALL ] || {
+
+	#
+	# For an AUTOMATIC installation, PKGINSTALL_TYPE will not
+	# be set here.  Normally we could let pkgsavfiles deal with
+	# this case, but lp is special because for an upgrade, the
+	# the volatile files had to be saved before we installed
+	# the base.  So we need to determine the install type here
+	# using the generic tool chkpkgrel.  We're relying on the
+	# original pkginfo file (if any) to still be in place.
+	#
+
+	UPGFILE=/var/sadm/upgrade/lp.env
+
+	[ ! "$PKGINSTALL_TYPE" ] && {
+
+		#This code is run in automatic mode.
+		#For overlay we must remember to rm /var/sadm/upgrade/lp.env 
+		#created by chkpkgrel being run here.  Therefore, set rm_lp_env.
+		#This must be done for pkgsavfiles to work correctly.
+
+		rm_lp_env=1	
+
+		PKGINSTALL_TYPE=NEWINSTALL
+
+		${SCRIPTS}/chkpkgrel
+		PKGVERSION=$?
+
+		case $PKGVERSION in
+			2)	PKGINSTALL_TYPE=OVERLAY ;;
+			4)	PKGINSTALL_TYPE=UPGRADE ;;
+			*)	;;
+		esac
+
+		[ "$PKGINSTALL_TYPE" = NEWINSTALL ] && {
+
+			echo AUTOMERGE=NULL > $UPGFILE
+			echo PKGINSTALL_TYPE=NEWINSTALL >> $UPGFILE
+			# I want CUSTOM here !
+			echo INSTALL_MODE=CUSTOM >> $UPGFILE
+			exit 0
+		}
+	}
+
+	[ "$PKGINSTALL_TYPE" = UPGRADE ] && {
+
+        	# for upgrade the files have been saved already
+
+		cp /etc/inst/up/patch/lp.LIST /var/sadm/upgrade/lp.sav
+
+		echo AUTOMERGE=Yes > $UPGFILE
+		echo PKGINSTALL_TYPE=UPGRADE >> $UPGFILE
+		# I want CUSTOM here !
+		echo INSTALL_MODE=CUSTOM >> $UPGFILE
+
+		[ "$UPDEBUG" = YES ] && goany
+
+		exit 0
+	}
+
+	#The following line of code is run in automatic mode.
+	#For overlay we must rm /var/sadm/upgrade/lp.env 
+	#created by chkpkgrel run in preinstall.  rm_lp_env was set earlier.
+	#This must be done for pkgsavfiles to work correctly.
+
+	[ "$rm_lp_env" = "1" ] && rm -f /var/sadm/upgrade/lp.env
+
+	[ "$UPDEBUG" = YES ] && goany
+
+	${SCRIPTS}/pkgsavfiles ${PKGINST}
+
+	[ "$UPDEBUG" = YES ] && goany
+}
+
+############# End  UPGRADE AND OVERLAY #######################
+
+exit 0

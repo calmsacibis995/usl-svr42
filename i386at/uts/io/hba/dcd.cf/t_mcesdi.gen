@@ -1,0 +1,33 @@
+	{
+	/*
+	 * Config entry structure initialization
+	 * for primary PS/2 ESDI controllers.
+	 */
+	"%s %s", /* Controller Name */
+	/* capabilities */
+	(CCAP_RETRY | CCAP_ERRCOR | CCAP_NOSEEK | CCAP_DMA),
+	0L,			/* No memory address */
+	0L,			/* No memory address */
+	0x%lx,			/* Primary I/O space address (task file) */
+	0x%lx,                 	/* Secondary I/O address(Fixed Disk Register)*/
+	0x5,			/* No DMA */
+	0,                      /* No DMA */
+	255,                    /* Max sector count */
+	2,                  	/* Up to 2 drives */
+	10,                     /* 100us drive switch delay */
+	%u,                      /* Start at minormap entry 0 (minor dev 0) */
+	512,                    /* Default sector size (all you get on AT) */
+	mces_bdinit,            /* init board function */
+	mces_drvinit,           /* init drive function */
+	mces_cmd,               /* command function */
+	NULL,                   /* no open function */
+	NULL,                   /* no close function */
+	NULL,                   /* No Master Interrupt */
+		{               /* Interrupt entries */
+		%u, 
+		mces_int,   /* First Hardware Interrupt */
+		},
+		{               /* Special IOCTL handlers */
+		0,              /* None present */
+		},
+	},

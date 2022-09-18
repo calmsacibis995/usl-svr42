@@ -1,0 +1,22 @@
+#!/sbin/sh
+#ident	"@(#)bnu.admin:common/cmd/bnu.admin/validhour	1.2.4.3"
+#ident "$Header: validhour 2.1 91/09/12 $"
+
+
+################################################################################
+#	Module Name: valhour.sh
+#	
+#	Inputs:
+#		$1 - pollhour string 
+#	
+#	Description: Verify a valid poll hour was entered.
+################################################################################
+hourlist=` echo $1 | /usr/bin/tr ',' ' ' `
+for i in $hourlist
+do [ $i -lt 0 -o $i -gt 23 ] && exit 1
+done
+hourlist=` echo $hourlist | /usr/bin/tr '-' ' ' `
+for i in $hourlist
+do [ $i -lt 0 -o $i -gt 23 ] && exit 1
+done
+exit 0

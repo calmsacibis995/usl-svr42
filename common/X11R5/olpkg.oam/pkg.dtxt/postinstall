@@ -1,0 +1,122 @@
+#ident	"@(#)olpkg.oam:pkg.dtxt/postinstall	1.16"
+#	Copyright (c) 1990, 1991 UNIX System Laboratories, Inc.
+#	Copyright (c) 1988 AT&T
+#	  All Rights Reserved
+
+#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+#	UNIX System Laboratories, Inc.
+#	The copyright notice above does not evidence any
+#	actual or intended publication of such source code.
+
+
+#
+#	USL Basic Graphics Utilities
+#
+
+#
+# make sure we're on V.4
+#
+if [ `uname -r`  -lt "4.0" ]
+then
+	echo "This package can only be installed on Release 4.0 or later systems"
+	exit 1
+fi
+
+#
+# update Xwinfont file
+#
+
+[ -f /usr/X/defaults/Xwinfont ] && {
+    cp /usr/X/defaults/Xwinfont /tmp/Xwinfont.tmp
+}
+echo "derived-instance-pointsizes=10,12,14" > /usr/X/defaults/Xwinfont
+echo "# DO NOT REMOVE THIS LINE" >> /usr/X/defaults/Xwinfont
+[ -f /tmp/Xwinfont.tmp ] && {
+    cat /tmp/Xwinfont.tmp >> /usr/X/defaults/Xwinfont
+}
+rm /tmp/Xwinfont.tmp
+
+#
+# now make sure fonts.dir is up-to-date
+#
+
+/usr/X/bin/mkfontdir /usr/X/lib/fonts/misc
+
+############# Begin UPGRADE AND OVERLAY #######################
+
+SCRIPTS=/usr/sbin/pkginst
+
+[ "$AUTOMERGE" = NULL ] || {
+#	If AUTOMERGE=Yes, ${SCRIPTS}/olscripts will 
+#	merge the config files listed in $UPGRADE_STORE/${PKGINST}.sav.
+#	If merge failed, it informs user which files the merge failed.
+
+#	If AUTOMERGE=No, ${SCRIPTS}/olscripts will 
+#	inform user where there old config files live and that
+#	the system will use new versions of the config. files
+
+	${SCRIPTS}/pkgmrgconf "${PKGINST}" "$AUTOMERGE" "$NAME"
+}
+
+[ -s /tmp/oleus.xx ] && {
+	PACKAGE=oleus
+	echo > /tmp/list.$$
+	STRING_LENGTH=0
+	for i in `cat /tmp/oleusfiles`
+	do
+		FILE_LENGTH=`expr length $i + 1`
+		TMP_LENGTH=`expr $STRING_LENGTH + $FILE_LENGTH`
+		if [ $TMP_LENGTH -ge 4500 ]
+		then
+			removef $PACKAGE `cat /tmp/list.$$`  >/dev/null 2>&1
+			STRING_LENGTH=$FILE_LENGTH
+			echo $i >/tmp/list.$$
+		else
+			STRING_LENGTH=$TMP_LENGTH
+			echo $i >> /tmp/list.$$
+		fi
+	done
+	[ -s /tmp/list.$$ ] && removef $PACKAGE `cat /tmp/list.$$` >/dev/null 2>&1
+	/usr/sbin/removef -f $PACKAGE
+	[ -d /var/sadm/pkg/$PACKAGE ] && rm -rf /var/sadm/pkg/$PACKAGE
+	rm -f /tmp/oleusfiles /tmp/oleus.xx /tmp/list.$$
+}
+[ -s /tmp/olxt.xx ] && {
+	PACKAGE=olxt
+	echo > /tmp/list.$$
+	STRING_LENGTH=0
+	for i in `cat /tmp/olxtfiles`
+	do
+		FILE_LENGTH=`expr length $i + 1`
+		TMP_LENGTH=`expr $STRING_LENGTH + $FILE_LENGTH`
+		if [ $TMP_LENGTH -ge 4500 ]
+		then
+			removef $PACKAGE `cat /tmp/list.$$`  >/dev/null 2>&1
+			STRING_LENGTH=$FILE_LENGTH
+			echo $i >/tmp/list.$$
+		else
+			STRING_LENGTH=$TMP_LENGTH
+			echo $i >> /tmp/list.$$
+		fi
+	done
+	[ -s /tmp/list.$$ ] && removef $PACKAGE `cat /tmp/list.$$` >/dev/null 2>&1
+	/usr/sbin/removef -f $PACKAGE
+	[ -d /var/sadm/pkg/$PACKAGE ] && rm -rf /var/sadm/pkg/$PACKAGE
+	rm -f /tmp/olxtfiles /tmp/olxt.xx /tmp/list.$$
+}
+
+${SCRIPTS}/up_cleanup "${PKGINST}"
+############# End   UPGRADE AND OVERLAY #######################
+#
+# let them know that the Basic Graphics package is installed
+#
+
+installf $PKGINST /usr/options/$PKG.name
+echo $NAME > /usr/options/$PKG.name
+installf -f $PKGINST
+
+#
+# Now clean up
+#
+rm -rf /tmp/pkg > /dev/null 2>&1
+exit ${errflag}

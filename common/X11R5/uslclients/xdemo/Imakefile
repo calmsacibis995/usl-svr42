@@ -1,0 +1,35 @@
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+/**/#ident	"@(#)xdemo:Imakefile	1.6"
+
+/**/#  Imakefile (Imakefile)
+/**/# 	Acc: 575570691 Mon Mar 28 11:44:51 1988
+/**/# 	Mod: 574626630 Thu Mar 17 13:30:30 1988
+/**/# 	Sta: 575570317 Mon Mar 28 11:38:37 1988
+/**/# 	Owner: 2011
+/**/# 	Group: 1985
+/**/# 	Permissions: 664
+
+
+/**/# 	START USER STAMP AREA
+
+
+/**/# 	END USER STAMP AREA
+
+#
+# Xdemo core dumps if we use -O, but if we define CDEBUGFLAGS= nothing here
+# this works only if you do a "make" locally, else a global make passes the
+# CDEBUGFLAGS (which is set to -O)
+#
+     CFLAGS = $(CCOPTIONS) $(ALLDEFINES)
+   SYS_LIBRARIES = -lm
+   INSTALL_FLAGS = -m 777
+
+SimpleProgramTarget(xdemo)

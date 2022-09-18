@@ -1,0 +1,121 @@
+.\"ident	"@(#)r4xtetris:xtetris.man	1.2"
+
+.TH "XTETRIS" 1 "12 July 1990"
+.SH NAME
+xtetris \- X Window block dropping game
+.SH SYNOPSIS
+.B xtetris
+[
+.B "X options"
+]
+.SH DESCRIPTION
+.I Xtetris
+is a game involving dropping blocks. As they drop you can move them to
+the left or to the right by clicking the left or right mouse buttons
+respectively. Pressing the shift key while clicking the button causes
+the falling shape to rotate anti-clockwise (left mouse button) or
+clockwise (right mouse button). Pressing the middle mouse button causes
+the shape to quickly drop. Note that the mouse must be in the window in
+which the shapes are dropping for these actions to work correctly.
+.PP
+You can also use the keyboard: h for moving to the left, l for moving to 
+the right, j to rotate clockwise, k to rotate counter-clockwise and space 
+for dropping quickly..
+.PP
+You can also use the direction pad, if your keyboard has one: (Left) to
+move left, (Down) to rotate clockwise, (Up) to rotate counter clockwise,
+and (Right) to move right.
+.PP
+Points are scored for each block that comes to rest on the gradually
+building up pile of blocks. Different blocks in different orientations
+have different point values. When the pile reaches the top of the
+screen and no further blocks can be dropped the game ends. When a
+row of blocks across the screen is completely filled, that
+row is removed and all the blocks above it drop down.
+As more rows are deleted the blocks drop faster.
+.PP
+A high score table is kept which is retained between separate executions
+of the game.  You can avoid recording your score, by using the
+.I -noscore
+option.
+.PP
+.I Xtetris
+requires the installation of an application defaults file, probably in the
+file 
+.I /usr/lib/X11/app-defaults/Xtetris.
+If that file does not exist, 
+.I xtetris
+cannot run.  (It will probably print out something like "Width zero.
+Terminating.")  Almost everything about
+.I xtetris
+can be configured in your .X11defaults file.  You can use the application
+defaults file as a guide.
+.SH OPTIONS
+.I Xtetris
+takes standard
+.I X
+options (see 
+.I X(1)).
+It adds the following:
+.IP -noscore
+This runs 
+.I xtetris
+without recording your score, or showing you the score file when you
+have finished the game.
+.IP "-speed value"
+This sets the game's speed.  By default the speed is 10.  20 causes
+the game to be 2 times faster, 5 makes it 2 times slower.  "-speed 50"
+makes for an extremely fast game, however you will need the equivalent
+of a IBM RS-6000 (a must-have, at 27+ VAX MIPS in its slowest model)
+in order to have the screen updated rapidly.  Keep in mind that as you
+knock out rows, the game's speed increases.  
+.SH "WIDGET HIERARCHY"
+The resource tree is as shown below. The resources of  each widget can be set
+in the client's application default file for customization. 
+.nf
+
+Xtetris  xtetris
+	Form  Frame
+		Label  TitleBar
+		Form  Status
+			Label  Score
+			Label  Level
+			Label  Rows
+			Label  Game
+		Form  Buttons
+			Command  Start
+			Command  Pause
+			Command  NewGame
+			Command  Quit
+			Command  Scores
+		Simple  Canvas
+		Simple  Shadow
+		Label  NextObjectLabel
+		Simple  NextObject
+	TransientShell  Score_frame
+		Box  Score_panel
+			Label  Score_item
+			Label  Score_item
+			Label  Score_item
+			Label  Score_item
+			Label  Score_item
+			Label  Score_item
+			Label  Score_item
+			Label  Score_item
+			Label  Score_item
+			Label  Score_item
+			Label  Score_item
+			Command  Done
+.fi
+.SH FILES
+.IP /usr/games/lib/tetris_scores
+Top 10 high scores.
+.SH "ENVIRONMENT VARIABLES"
+.IP TETRIS
+If set, your desired name for the high score table.
+.SH "SEE ALSO"
+.BI X (1)
+.SH AUTHORS
+Dan Greening wrote most of xtetris 2.0-2.3, based on
+earlier work by Didier Tallot, Phill Everson, Martyn Shortley, and Adam
+Marguilies.

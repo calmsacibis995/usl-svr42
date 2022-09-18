@@ -1,0 +1,30 @@
+#ident	"@(#)devintf:common/cmd/devintf/groups/list/Text.list	1.4.5.1"
+#ident  "$Header: Text.list 2.0 91/07/11 $"
+
+title="Groups List"
+begrow=any
+begcol=any
+framemsg=`readfile $INTFBASE/display.msg`
+help=OPEN TEXT $INTFBASE/Text.itemhelp "LISTING"
+lifetime=longterm
+wrap=FALSE
+
+init=`
+    /usr/bin/getdgrp -l | set -l LIST ;
+    if [ "$LIST" ] ;
+    then
+	set -l OK=TRUE ;
+	echo "$LIST" | /usr/bin/wc -l | set -l NROWS ;
+    	if [ $NROWS -gt 15 ] ;
+	then 
+	    set -l NROWS=15 ;
+	fi ;
+    else
+	set -l OK=FALSE ;
+	message "There are no device groups currently administered on this system." ;
+    fi ;
+`$OK
+
+rows=$NROWS
+columns=14
+text="$LIST"

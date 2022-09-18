@@ -1,0 +1,48 @@
+#define tcpadm_format 1
+#define tcpadm_width 32
+#define tcpadm_height 32
+#define tcpadm_ncolors 7
+#define tcpadm_chars_per_pixel 1
+static char * tcpadm_colors[] = {
+" " , "#E400E400E400",
+"." , "#000000000000",
+"X" , "#E00000000000",
+"o" , "#0000E000E000",
+"O" , "#AA00AA00AA00",
+"+" , "#00000000E000",
+"@" , "#8A00AE00DB00"
+} ;
+static char * tcpadm_pixels[] = {
+"  ............................  ",
+"  .                         X.  ",
+"  .  .... ...        ......X .  ",
+"  .                  .ooooXX .  ",
+"  .   .......        .oooXX. .  ",
+"  .                  XXoXXo. .  ",
+"  .     ... .        .XXXoo. .  ",
+"  .                  .oXooo. .  ",
+"  .                  ....... .  ",
+"  .                          .  ",
+"  .  .....            .....  .  ",
+"  .  .OOO.            .OOO.  .  ",
+"  .  .OOO.            .OOO.  .  ",
+"  .  .OOO.            .OOO.  .  ",
+"  .  .....   +++++++++.....  .  ",
+"  . .......   +@@@@@@....... .  ",
+"  . .OOOOO.+++++@    .OOOOO. .  ",
+"  . .OOOOO.@@@@@@@   .OOOOO. .  ",
+"  . .......          ....... .  ",
+"  .                          .  ",
+"  .                          .  ",
+"  .                          .  ",
+"  .                         X.  ",
+"  .  ........        ......X .  ",
+"  .                  .ooooXX .  ",
+"  .   . .....        .oooXX. .  ",
+"  .                  XXoXXo. .  ",
+"  .    ... ..        .XXXoo. .  ",
+"  .                  .oXooo. .  ",
+"  .                  ....... .  ",
+"  .                          .  ",
+"  ............................  "
+} ;

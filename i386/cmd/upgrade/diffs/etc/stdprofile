@@ -1,0 +1,15 @@
+*** ./etc/stdprofile	Wed Feb  5 18:29:16 1992
+--- ../p8.save/./etc/stdprofile	Wed Feb  5 18:29:08 1992
+***************
+*** 1,5 ****
+! #ident	"@(#)/etc/stdprofile.sl 1.1 4.0 05/29/91 4828 AT&T-USL"
+! 
+  #	This is the default, standard profile provided to users.
+  #	Users are expected to edit it to meet their own needs.
+  
+--- 1,5 ----
+! #ident	"@(#)/etc/stdprofile.sl 1.1 4.1dt 10/05/91 48432 AT&T-USL"
+! #ident	"$Header: stdprofile 1.1 91/04/29 $"
+  #	This is the default, standard profile provided to users.
+  #	Users are expected to edit it to meet their own needs.
+  

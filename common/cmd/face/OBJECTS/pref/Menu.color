@@ -1,0 +1,59 @@
+#ident	"@(#)face:OBJECTS/pref/Menu.color	1.2.4.2"
+#ident  "$Header: Menu.color 1.5 92/01/17 $"
+
+menu=$$uxface:432:"Choices"
+lifetime=shortterm
+
+framemsg=$$uxface:399:"Move to an item with arrow keys and press ENTER to select the item."
+
+name=$$uxface:63:"black"
+action=`set -l Form_Choice=$$uxface:63:black`close
+show=`test "black" != "${ARG1}" -a "$$uxface:63:black" != "${ARG2}"`
+
+name=$$uxface:64:"blue"
+action=`set -l Form_Choice=$$uxface:64:blue`close
+show=`test "blue" != "${ARG1}" -a "$$uxface:64:blue" != "${ARG2}"`
+
+name=$$uxface:65:"cyan"
+action=`set -l Form_Choice=$$uxface:65:cyan`close
+show=`test "cyan" != "${ARG1}" -a "$$uxface:65:cyan" != "${ARG2}"`
+
+name=$$uxface:66:"green"
+action=`set -l Form_Choice=$$uxface:66:green`close
+show=`test "green" != "${ARG1}" -a "$$uxface:66:green" != "${ARG2}"`
+
+name=$$uxface:67:"magenta"
+action=`set -l Form_Choice=$$uxface:67:magenta`close
+show=`test "magenta" != "${ARG1}" -a "$$uxface:67:magenta" != "${ARG2}"`
+
+name=$$uxface:68:"red"
+action=`set -l Form_Choice=$$uxface:68:red`close
+show=`test "red" != "${ARG1}" -a "$$uxface:68:red" != "${ARG2}"`
+
+name=$$uxface:69:"white"
+action=`set -l Form_Choice=$$uxface:69:white`close
+show=`test "white" != "${ARG1}" -a "$$uxface:69:white" != "${ARG2}"`
+
+name=$$uxface:70:"yellow"
+action=`set -l Form_Choice=$$uxface:70:yellow`close
+show=`test "yellow" != "${ARG1}" -a "$$uxface:70:yellow" != "${ARG2}"`
+
+name=""
+button=1
+action=nop
+
+name=""
+button=4
+action=nop
+
+name=""
+button=5
+action=nop
+
+name=""
+button=7
+action=nop
+
+name=""
+button=8
+action=nop

@@ -1,0 +1,91 @@
+#!/sbin/sh 
+#ident	"@(#)idtools:i386/ktool/idtools/idrebuild	1.11"
+#ident	"$Header:"
+
+TMPFILE=/tmp/.idbuild.$$
+export TMPFILE
+bootup=
+wait=30
+if [ "$1" = reboot ]
+then
+	bootup=YES
+fi
+
+if [ -f /etc/conf/.rebuild ]
+then
+	if [ ! -d /usr/bin ]
+	then
+		while read bdevice rdevice mntp fstype fsckpass automnt mntopts
+		do
+			# check for comments
+			case ${bdevice} in
+			'#'*)	continue
+			esac
+
+			if [ "${mntp}" = "/usr" ]
+			then
+				/sbin/fsck -F ${fstype} -m  ${rdevice}  >/dev/null 2>&1
+				if [ $? -ne 0 ]
+				then
+					echo "The $mntp file system (${rdevice}) is being checked."
+					/sbin/fsck -F ${fstype} -y  ${rdevice}
+				fi
+				/sbin/mount ${mntp} > /dev/null 2>/dev/null
+				break
+			fi
+		done < /etc/vfstab
+	fi
+
+	auto=`/usr/bin/defadm idtools AUTOREBLD | /usr/bin/sed 's/AUTOREBLD=//'`
+	if [ $auto = "NO" -o "$bootup" ]
+	then
+		if [ "$auto" = "NO" ]
+		then
+			wait=0
+		fi
+		while :
+		do
+			/usr/bin/message -cu -w $wait "The UNIX Operating System \
+kernel will now be rebuilt to incorporate recent configuration changes." 
+			case "$?" in
+			"1") 
+				/sbin/umount /usr > /dev/null 2>&1
+				echo "\nThe rebuild of the UNIX Operating \
+System kernel has been aborted."
+				echo "A rebuild will be attempted at next reboot.\n"
+				exit 0;;
+			"0") 
+				break;;
+			esac
+		done
+	fi
+	/etc/conf/bin/idbuild -B 2> $TMPFILE
+	if [ $? -ne 0 ]
+	then
+		/usr/bin/cat $TMPFILE
+		echo "\nA new UNIX Operating System kernel, to include \c"
+		echo "recent software\nconfiguration changes, could \c"
+		echo "not be successfully built."
+		/sbin/rm /etc/conf/.rebuild
+		(echo "Subject: UNIX Operating System kernel rebuild failed";
+		echo "Last UNIX Operating System kernel rebuild failed";
+		echo "with the following output:";
+		/usr/bin/cat $TMPFILE) | /usr/bin/mail root
+		/sbin/umount /usr > /dev/null 2>&1
+		/sbin/rm -f $TMPFILE
+		exit 1
+	fi
+	/sbin/rm -f $TMPFILE
+	/etc/conf/bin/idcpunix
+	/sbin/umount /usr > /dev/null 2>&1
+
+	if [ "$bootup" ]
+	then
+		/sbin/sync;/sbin/sync;/sbin/sync
+		/sbin/rm -rf /tmp/*
+		/sbin/umountall
+		/sbin/sync;/sbin/sync;/sbin/sync
+		echo "\nThe system is being rebooted."
+		/sbin/uadmin 2 1
+	fi
+fi

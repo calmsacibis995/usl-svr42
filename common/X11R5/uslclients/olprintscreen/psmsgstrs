@@ -1,0 +1,169 @@
+#ifndef NOIDENT
+#ident	"@(#)olps:psmsgstrs	1.12"
+#endif
+
+/*
+ * This file contains all the string declarations for olprintscreen
+ * 
+ */
+
+String OleMbadFilename_blankDefault = "Default filename field cannot be blank" ;
+String OleMbadFormat_blankValue =  "Output format field cannot be blank" ;
+String OleMbadPages_notPositive = "Pages field should be positive integer." ;
+String OleMbadScale_notPositive = "Scale field should be positive integer." ;
+String OleMbadLeftOffset_notPositive = "Left offset field should be nonnegative decimal number";
+String OleMbadTopOffset_notPositive = "Top offset field should be nonnegative decimal number";
+String OleMbadFieldWidth_notPositive = "Max width field should be positive decimal number";
+String OleMbadFieldHeight_notPositive = "Max height field should be positive decimal number";
+String OleMbadCommand_blankValue = "Print command field cannot be blank";
+
+String OleMbutton_labelCapture = "Capture";
+String OleMbutton_labelCaptureImage = "Capture Image";
+String OleMbutton_labelFile = "File";
+String OleMbutton_labelOff = "off";
+String OleMbutton_labelOn = "on";
+String OleMbutton_labelOpen = "Open";
+String OleMbutton_labelPrint = "Print";
+String OleMbutton_labelSave = "Save";
+String OleMbutton_labelCancel = "Cancel";
+String OleMbutton_labelLandscape = "landscape";
+String OleMbutton_labelPortrait = "portrait";
+String OleMbutton_labelZpixmap = "zpixmap";
+String OleMbutton_labelXYpixmap = "xypixmap";
+
+String OleMbutton_overwrite =  "Overwrite";
+String OleMbutton_saveCancelled = "Cancel" ;
+String OleMbutton_labelOpen2 = "Open..." ;
+String OleMbutton_labelSave2 = "Save As..." ;
+String OleMbutton_labelContents = "Contents" ;
+String OleMbutton_labelArea = "Area" ;
+String OleMbutton_labelWindow = "Window" ;
+String OleMbutton_labelScreen = "Screen" ;
+String OleMbutton_labelImageFile = "Image File..." ;
+String OleMbutton_labelProperties = "Properties...";
+String OleMbutton_labelOptions = "Options...";
+
+/* mnemonics */
+String OleMmnemonic_overwrite =  "O";
+String OleMmnemonic_saveCancelled = "C" ;
+
+String OleMmnemonic_labelOpen = "O";
+String OleMmnemonic_labelSave = "S";
+String OleMmnemonic_labelCancel = "C";
+
+String OleMmnemonic_labelOpen2 = "O" ;
+String OleMmnemonic_labelSave2 = "A" ;
+
+String OleMmnemonic_labelContents = "C" ;
+String OleMmnemonic_labelArea = "A" ;
+String OleMmnemonic_labelWindow = "W" ;
+String OleMmnemonic_labelScreen = "S" ;
+String OleMmnemonic_labelImageFile = "I";
+
+String OleMmnemonic_labelProperties = "P";
+String OleMmnemonic_labelOptions = "O";
+String OleMmnemonic_labelCaptureImage = "C";
+String OleMmnemonic_labelFile = "F";
+String OleMmnemonic_labelPrint = "r";
+
+String OleMcaption_labelDefaultPath =  "Default Pathname:"; 
+String OleMcaption_labelOutputFormat =  "Output Format:" ;
+String OleMcaption_labelPrintCmd =  "Print Command:" ;
+String OleMcaption_labelOrientation =  "Orientation:" ;
+String OleMcaption_labelPixformat =  "Pixmap Format:" ;
+String OleMcaption_labelReverseVideo =  "Reverse Video:" ;
+String OleMcaption_labelHeader =  "Header:" ;
+String OleMcaption_labelFooter =  "Footer:" ;
+String OleMcaption_labelPages =  "Pages:" ;
+String OleMcaption_labelScale =  "Scale" ;
+String OleMcaption_labelLeftOffset =  "Left Offset:" ;
+String OleMcaption_labelTopOffset =  "Top Offset:" ;
+String OleMcaption_labelMaxHt = "Max height:" ;
+String OleMcaption_labelMaxWidth =  "Max width:" ;
+
+String OleMmnemonic_labelDefaultPath =  "D"; 
+String OleMmnemonic_labelOutputFormat =  "u" ;
+String OleMmnemonic_labelPrintCmd =  "C" ;
+String OleMmnemonic_labelOrientation =  "i" ;
+String OleMmnemonic_labelPixformat =  "P" ;
+String OleMmnemonic_labelReverseVideo =  "V" ;
+String OleMmnemonic_labelHeader =  "H" ;
+String OleMmnemonic_labelFooter =  "t:" ;
+String OleMmnemonic_labelPages =  "P:" ;
+String OleMmnemonic_labelScale =  "e" ;
+String OleMmnemonic_labelLeftOffset =  "L" ;
+String OleMmnemonic_labelTopOffset =  "O" ;
+String OleMmnemonic_labelMaxHt = "M" ;
+String OleMmnemonic_labelMaxWidth =  "w" ;
+
+String OleMerrorMsg_cantAllocateColors = "Can't allocate colors." ;
+String OleMerrorMsg_cantCallocBuffer = "Can't calloc data buffer." ;
+String OleMerrorMsg_cantCallocName  = "Can't calloc window name storage." ;
+String OleMerrorMsg_cantFindVisual  = "could not find matching visual.\n" ;
+String OleMerrorMsg_cantReadHeader  = "Unable to read dump file header" ;
+String OleMerrorMsg_cantReadName = "Unable to read window name from dump file.";
+String OleMerrorMsg_cantReadMap   = "Unable to read color map from dump file.";
+String OleMerrorMsg_cantReadPixmap  = "Unable to read pixmap from dump file.";
+String OleMerrorMsg_cantQueryMap  = "Can't query the color map.";
+String OleMerrorMsg_exiting         = "exiting." ;
+String OleMerrorMsg_headerTooSmall   = "XWD header size is too small.";
+String OleMerrorMsg_formatMissMatch   = "XWD file format version missmatch." ;
+String OleMerrorMsg_newColorsNeeded   = "New colors needed\n" ;
+String OleMerrorMsg_oldColorsMatch   = "Old colors match!\n" ;
+String OleMerrorMsg_noMemory	   = "Out of memory!" ;
+String OleMerrorMsg_noWinAttrs	   = "Can't get target window attributes.";
+String OleMerrorMsg_tooManyPlanes   = "Unable to handle more than 16 planes \
+ at this time" ;
+
+String OleMfooterMsg_screenSpooled = "Screen image spooled for printer." ;
+String OleMfooterMsg_windowSpooled = "Window image spooled for printer." ;
+String OleMfooterMsg_areaSpooled   = "Area image spooled for printer." ;
+String OleMfooterMsg_buffer      = "FileToImage: buffer";
+String OleMfooterMsg_doneCreate    = "Contents created." ;
+String OleMfooterMsg_errorCreatingFile    = "error in creating file" ;
+String OleMfooterMsg_errorOpeningFile    = "error in opening file" ;
+String OleMfooterMsg_contentsSpooled = "Contents spooled for printer." ;
+String OleMfooterMsg_colorsTest  = "FileToImage: colors_test";
+String OleMfooterMsg_colors      = "FileToImage: colors";
+String OleMfooterMsg_prepareContents = "Preparing contents for printer, \
+please wait..." ;
+String OleMfooterMsg_noContents = "No contents." ;
+String OleMfooterMsg_noContentsPrint = "No contents to print." ;
+String OleMfooterMsg_noContentsSave  = "No contents to save." ;
+String OleMfooterMsg_nonexistentFile  = "file does not exist" ;
+String OleMfooterMsg_noPathAccess     = "path's access permission denied" ;
+String OleMfooterMsg_notDumpFile     = "is not a dump file." ;
+String OleMfooterMsg_overwrite        = "exists. Overwrite?" ;
+String OleMfooterMsg_pathInvalid     = "pathname invalid" ;
+String OleMfooterMsg_pathUnaccessible   = "cannot access path" ;
+String OleMfooterMsg_prepareFile   = "Preparing file for printer, please \
+wait..." ;
+String OleMfooterMsg_printFailed   = "Print execution failed." ;
+String OleMfooterMsg_fileSpooled   = "%s spooled for printer." ;
+
+String OleMfooterMsg_tooManyFiles  = "Multiple Matches.  Choose one";
+String OleMfooterMsg_saveCancelled = "Save cancelled." ;
+String OleMfooterMsg_openCancelled = "Open cancelled." ;
+String OleMfooterMsg_operCancelled = "Operation cancelled." ;
+String OleMfooterMsg_printCancelled = "Print cancelled." ;
+String OleMfooterMsg_saveContents  = "Saving contents, please wait..." ;
+String OleMfooterMsg_fileLoaded    = "%s loaded." ;
+String OleMfooterMsg_fileNotOrdinary   = "is not an ordinary file" ;
+String OleMfooterMsg_fileUnaccessible  = "cannot access file" ;
+String OleMfooterMsg_fileWritten   = "%s written." ;
+String OleMfooterMsg_loading	   = "Loading, please wait..." ;
+String OleMfooterMsg_isAdirectory  = "is a directory";
+String OleMfooterMsg_winNameTest  = "FileToImage: win_name_test";
+String OleMfooterMsg_winName      = "FileToImage: win_name";
+String OleMfileMain_badShmimage = "XShmCreateImage failed" ;
+String OleMfileMain_badShmget = "Value of shmid is less than 0";
+String OleMfileMain_badShmat  = "Value of shmat is bad";
+String OleMfileMain_fileTitle = "File:" ;
+String OleMfileMain_printScreen = "Print Screen: ";
+String OleMfileMain_general = "General";
+String OleMfileMain_save = "Save";
+
+String OleMtitle_labelProperties = "Print Screen: Properties";
+String OleMtitle_labelSave = "Print Screen: Save File";
+String OleMtitle_labelPrint = "Print Screen: Print File";
+String OleMtitle_labelOpen = "Print Screen: Open File";

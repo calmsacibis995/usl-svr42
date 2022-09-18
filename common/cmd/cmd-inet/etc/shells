@@ -1,0 +1,13 @@
+#ident	"@(#)cmd-inet:common/cmd/cmd-inet/etc/shells	1.1.3.1"
+#ident "$Header: /sms/sinixV5.4es/rcs/s19-full/usr/src/cmd/cmd-inet/etc/shells,v 1.1 91/02/28 16:30:49 ccs Exp $"
+#Un-comment these shells that inherit privilege at your own risk.
+#/sbin/sh
+#/sbin/jsh
+/usr/bin/sh
+/usr/bin/ksh
+/usr/bin/csh
+/usr/bin/jsh
+/bin/sh
+/bin/ksh
+/bin/csh
+/bin/jsh

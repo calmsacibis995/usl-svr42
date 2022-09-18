@@ -1,0 +1,6 @@
+#ident	"@(#)uts-x86:svc/hrt.cf/Mtune	1.2"
+#ident	"$Header: $"
+
+*  Timer Parameters ------------------
+HRTIME		50	50	50
+HRVTIME		50	50	50

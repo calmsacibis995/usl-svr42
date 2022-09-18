@@ -1,0 +1,255 @@
+#!/bin/sh
+#
+# command to build packages
+#
+
+CMD=$0
+DESCRIPTION="Script to build SVR4.2 packages and SIPS"
+GREP()
+{
+	cat <<-!  | grep "$1"
+base	2840	pkg
+lp	2840	pkg
+nsu	2840	pkg
+acp	2840	pkg
+pkg.desk	2840	Xpkg
+pkg.atm	2840	Xpkg
+pkg.dtxt	2840	Xpkg
+fnd	2840	set
+terminf	2840	pkg
+cmds	2840	pkg
+bsdcompat	2840	pkg
+util	2840	set
+dfs	2840	pkg
+rpc	2840	pkg
+inet	2840	pkg
+eth	2840	pkg
+nfs	2840	pkg
+netcmds	2840	pkg
+rfs	2840	pkg
+pkg.dtnet	2840	Xpkg
+network	2840	set
+softint	2840	pkg
+ccs	2840	pkg
+pkg.dtxtdev	2840	Xpkg
+pkg.dtoldev	2840	Xpkg
+pkg.desksup	2840	Xpkg
+kdb	2840	pkg
+edebug	2840	pkg
+bdev	2840	set
+gdev	2840	set
+oam	2840	pkg
+bkrs	2840	pkg
+face	2840	pkg
+admin	2840	set
+pkg.dtclients	2840	Xpkg
+pkg.dtxtfonts	2840	Xpkg
+graphics	2840	set
+license	2840	pkg
+multiusr	2840	set
+audit	2366	pkg
+c2	2366	set
+cdfs	2366	pkg
+crypt	2366	pkg
+pci	2366	pkg
+pkg.dtf3	2366	Xpkg
+pkg.wksh	2366	Xpkg
+pkg.mdev	2366	Xpkg
+pkg.mrun	2366	Xpkg
+tok	2366	pkg
+vxfs	2366	pkg
+	!
+}
+
+Usage(){
+	echo "Usage: ${CMD} [ -c | -n ] [ -a | -p -x -s | pkg(s) ]"
+	echo "Usage: ${CMD} -h #for help info"
+	test "$1" = "help" && {
+		echo "Usage: If -a or any of -xsp are set, explicit pkgs are ignored."
+		echo "Usage: If -a is set, -xsp are ignored."
+		echo
+		echo ${CMD} - ${DESCRIPTION}
+		echo
+		test -f ${2:-Not-Set} && {
+			grep '##USAGE##' $2 | 
+			while read opt xxx descript
+			do
+				case ${opt} in
+				-*)	
+					opt=`echo $opt | sed 's/)//p'`
+					echo "$opt	# $descript"
+					;;
+				esac
+			done
+		}
+		echo
+	}
+	exit 1
+}
+#
+# start of script
+#
+test -z "$ROOT" && {
+	echo "ROOT not set"
+	exit 1
+}
+test -z "$MACH" && {
+	echo "MACH not set"
+	exit 1
+}
+test -z "$WORK" && {
+	echo "WORK not set"
+	exit 1
+}
+test -z "$SPOOL" && {
+	echo "SPOOL not set"
+	exit 1
+}
+SRC=$ROOT/usr/src/$WORK
+REL=SVR4.2
+D=`date '+%D'`
+ARCH=386
+Binroot=$ROOT/$MACH
+Pkgdest=$ROOT/$SPOOL
+# default blocks = 2366
+BLOCKS=2366
+rel=`uname -r`
+if [ "$rel" = "4.0" ]
+then
+	PKGMK_BIN=$ROOT/usr/src/$WORK/cmd/pkgtools/oampkg/pkgmk
+elif [ "$rel" = "4.2" ]
+then
+	PKGMK_BIN=/usr/bin
+else 
+	echo "Not on 4.0 or 4.2 system, exiting"
+	exit 2
+fi
+aflag=0
+sflag=0
+xflag=0
+pflag=0
+flag=0
+
+set -- `getopt hncaxsp? $*` || Usage
+
+for i in $*
+do
+	case $i in
+		-h)	##USAGE## This extended usage information
+			Usage help `type ${CMD}|awk '{print $3}'`
+			shift;;
+		-c)	##USAGE## Use compression to build pkgs
+			ARG=$i; shift;;
+		-n)	##USAGE## Verify only
+			ARG=$i; shift;;
+		-a)	##USAGE## Build all pkgs & sets (ignores -xsp flags)
+			aflag=1; flag=1; shift;;
+		-x)	##USAGE## Build graphics pkgs only
+			xflag=1; flag=1; shift;;
+		-s)	##USAGE## Build SIPS only (not member pkgs)
+			sflag=1; flag=1; shift;;
+		-p)	##USAGE## Build OS pkgs only
+			pflag=1; flag=1; shift;;
+		--)	shift; break;;
+	esac
+done
+
+if [ $flag -eq 0 -a $# -lt 1 ]
+then
+	echo "${CMD}: No pkg[s]/set[s] specified"
+	Usage
+fi
+
+if [ $flag -eq 1 ]
+then
+	shift $#
+fi
+
+if [ $aflag = 1 ]
+then
+	alist=`GREP "^" | cut -f1`
+	set $alist
+fi
+
+
+if [ $pflag = 1 -a $aflag = 0 ]
+then
+	plist=`GREP "	pkg$" | cut -f1`
+	set $plist
+fi
+if [ $xflag = 1 -a $aflag = 0 ]
+then
+	xlist=`GREP "	Xpkg$" | cut -f1`
+	set $* $xlist
+fi
+if [ $sflag = 1 -a $aflag = 0 ]
+then
+	slist=`GREP "	set$" | cut -f1`
+	set $* $slist
+fi
+
+if [ ! -d $Pkgdest ]
+then
+	echo "$Pkgdest does not exist"
+	echo "Making $Pkgdest"
+	mkdir $Pkgdest
+	if [ $? -ne 0 ]
+	then
+		"mkdir of $Pkgdest failed, exiting"
+		exit 2
+	fi
+fi
+for PkgDir in $*
+do
+	BLOCKS=`GREP "^$PkgDir	" | cut -f2`
+	
+	cd $ROOT/usr/src/$WORK
+
+	if [ -d $ROOT/usr/src/$WORK/pkg/$PkgDir ]
+	then
+		cd pkg/$PkgDir
+		echo == pkg  ${PkgDir}
+	elif [ -d $ROOT/usr/src/$WORK/X11R5/olpkg.oam/$PkgDir ]
+	then
+		cd X11R5/olpkg.oam/$PkgDir
+		echo == Xpkg ${PkgDir}
+	elif [ -d $ROOT/usr/src/$WORK/set/$PkgDir ]
+		then
+			cd set/$PkgDir
+			bad=0
+			Setpkgs=`cat setinfo | sed -n '/^[a-z]/p'| cut -f1`
+			for i in ${Setpkgs}
+			do
+				if [ ! -d $Pkgdest/$i ]
+				then
+					echo "Error: Can't find pkg image for <$i>"
+					bad=1
+				fi
+			done
+			if [ $bad = 1 ]
+			then
+				echo "Warning: Not pkgmk'ing set <$PkgDir> due to missing pkg image(s)"
+				continue
+			fi
+
+			for i in $Setpkgs
+			do
+				Parts=`head -1 $Pkgdest/$i/pkgmap | cut -d" " -f2`
+				ed setinfo >/dev/null 2>&1 <<-DONE
+				1,\$s/^$i	[0-9]*	/$i	$Parts	/
+				w
+				q
+				DONE
+			done
+			echo == set  ${PkgDir}
+		else
+			echo "Warning: pkg/set scripts for <$PkgDir> not found"
+			continue
+	fi
+
+
+	echo "$PKGMK_BIN/pkgmk $ARG -p"$REL $D" -r $Binroot -d $Pkgdest -fprototype -l$BLOCKS -o -a$ARCH WORK=$WORK" > ${Pkgdest}/${PkgDir}.out 2>&1
+	$PKGMK_BIN/pkgmk $ARG -p"$REL $D" -r $Binroot -d $Pkgdest -fprototype -l$BLOCKS -o -a$ARCH WORK=$WORK >> ${Pkgdest}/${PkgDir}.out 2>&1
+
+done
+

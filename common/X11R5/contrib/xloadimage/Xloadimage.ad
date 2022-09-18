@@ -1,0 +1,6 @@
+path=/usr/X/include/X11/pixmaps
+/usr/X/lib/images
+/usr/X/lib/images/raster
+/usr/X/lib/images/gif
+/usr/X/include/X11/bitmaps
+extension= .xpm 

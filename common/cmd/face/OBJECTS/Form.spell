@@ -1,0 +1,88 @@
+#ident	"@(#)face:OBJECTS/Form.spell	1.1.4.2"
+#ident  "$Header: Form.spell 1.6 92/01/24 $"
+
+form=$$uxface:277:"Spell Services"
+
+help=open text OBJECTS/Text.h "$$uxface:278:HELP on Spell Services" "T.hspell1"
+autolayout=true
+
+`set -l I18N_F="$$uxface:279:Filename:";
+fmlmax -c 2 "$I18N_F" | set -l FCOL`
+
+framemsg=$$uxface:239:"Enter the full pathname of a file, then press SAVE when you complete the form."
+
+`if [ ! -x /usr/bin/spell -o -d /usr/bin/spell ];
+then
+	message $$uxface:240:"I can't find /usr/bin/spell. Perhaps the SPELL Utilities are not installed.";
+	echo "init=false";
+fi`
+
+altslks=true
+
+close=`unset -l IMSG;
+unset -l I18N_F -l FCOL`
+
+done=`unset -l I18N_F -l FCOL`open TEXT OBJECTS/Text.spell "${F1}"
+
+name=$I18N_F
+nrow=0
+ncol=1
+fcol=$FCOL
+# frow=0
+# fcol=12
+rows=1
+columns=48
+scroll=true
+rmenu=const { `ls -F|fmlgrep -v [/*]` }
+valid=`indicator -w;
+if [ -z "${F1}" ];
+then
+	set -l IMSG=$$uxface:137:"This is a mandatory field.";
+	echo false;
+elif [ ! -f "${F1}" ];
+then
+	set -l IMSG=$$uxface:242:"${F1} is not a regular file or does not exist.";
+	echo false;
+elif [ ! -r "${F1}" ];
+then
+	set -l IMSG=$$uxface:243:"You do not have permission to read ${F1}.";
+	echo false;
+elif [ ! -s "${F1}" ];
+then
+	set -l IMSG=$$uxface:244:"${F1} is empty.";
+	echo false;
+else
+	echo true;
+fi`
+invalidmsg="${IMSG}"
+
+name=$$uxface:144:"HELP"
+button=9
+action=help
+
+name=$$uxface:145:"CHOICES"
+button=10
+action=choices
+
+name=$$uxface:146:"SAVE"
+button=11
+action=done
+
+name=$$uxface:147:"PREV-FRM"
+button=12
+action=prev-frm
+
+name=$$uxface:148:"NEXT-FRM"
+button=13
+action=next-frm
+
+name=$$uxface:149:"CANCEL"
+button=14
+action=close
+
+name=$$uxface:150:"CMD-MENU"
+button=15
+action=cmd-menu
+
+name=""
+button=16

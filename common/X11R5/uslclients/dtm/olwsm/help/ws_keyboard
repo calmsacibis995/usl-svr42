@@ -1,0 +1,27 @@
+Use the Keyboard Settings property window to customize \
+the key mappings used for the core OPEN LOOK keyboard functions.  \
+To change the modifier for a function, \
+move the pointer into the square menu button next to that function, \
+press MENU, drag the pointer to the modifier you want, and release MENU.  \
+If you decide not to choose a new modifier, \
+move the pointer off the menu and release the mouse button.  \
+To change the primary key for a function, click SELECT \
+in the text field corresponding to that function and modify \
+the text to reflect the new key.  \
+Valid primary function keys are "a"-"z", "F1"-"F12", "Tab", or "Esc", \
+where the modifier for "a"-"z" must be Ctrl or Alt.
+
+Click SELECT on the Apply button to save all changes \
+made to the property window settings.  \
+The Reset button can be used to reset the property window settings \
+to reflect the currently saved values.  \
+The Reset To Factory button can be used to reset \
+the property window settings to the factory defaults.  \
+Note that Reset and Reset To Factory do not affect the saved property values; \
+the saved values are changed only when Apply is SELECTed.  \
+The property window is automatically dismissed if not pinned \
+when Apply is chosen.
+
+Applied changes go into effect immediately, and are reflected \
+in new OPEN LOOK applications that you run.  Applications that are \
+already running may not use all of the new key settings.

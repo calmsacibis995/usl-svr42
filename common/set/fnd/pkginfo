@@ -1,0 +1,11 @@
+#ident	"@(#)set:common/set/fnd/pkginfo	1.3"
+#ident	"$Header: $"
+
+PKG="fnd"
+PREDEPEND=""
+VERSION="1"
+RELEASE="4.2"
+NAME="Foundation Set"
+CATEGORY="set"
+VENDOR="UNIX System Laboratories"
+CLASSES="none"

@@ -1,0 +1,33 @@
+#ident	"@(#)lp.admin:printers/filters/Menu.filters	1.5.3.2"
+#ident  "$Header: Menu.filters 2.0 91/07/12 $"
+menu=Manage Filters for Special Processing
+
+help=OPEN TEXT $INTFBASE/Text.itemhelp $LININFO
+
+framemsg=`readfile $INTFBASE/ssmenu.msg`
+
+name=add
+description=Add New Filters
+lininfo="menu:L1"
+action=OPEN FORM /usr/sadm/sysadm/add-ons/lp/printers/filters/Form.add
+
+name=list
+description=Display Filter Information
+lininfo="menu:L2"
+action=OPEN FORM $OBJ_DIR/Form.list
+
+
+name=modify
+description=Modify a Filter
+lininfo="menu:L3"
+action=OPEN FORM /usr/sadm/sysadm/add-ons/lp/printers/filters/Form.modify
+
+name=remove
+description=Remove Filters
+lininfo="menu:L4"
+action=OPEN FORM $OBJ_DIR/Form.remove
+
+name=restore
+description=Restore Filters to Factory Settings
+lininfo="menu:L5"
+action=OPEN FORM $OBJ_DIR/Form.restore

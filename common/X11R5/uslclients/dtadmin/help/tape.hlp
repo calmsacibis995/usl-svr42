@@ -1,0 +1,57 @@
+#ident	"@(#)dtadmin:help/tape.hlp	1.10"
+^*version^1
+^*title^Cartridge Tape
+^:Cartridge_Tape
+^*width^70
+^+DesktopMgr/help.defs
+^?Using Cartridge Tapes
+^0^Cartridge Tape
+^$10
+Cartridge Tape
+
+Use Cartridge Tape to perform these basic operations to cartridge tapes:
+
+   o backing up \d(files^file) and \d(folders^folder)
+
+   o restoring files and folders
+
+   o installing applications
+
+   o rewinding the cartridge tape
+
+   o erasing the cartridge tape
+
+When you \d(double-click) on the Cartridge Tape icon, an attempt is made
+to determine what operation you want to perform. For example, if the
+cartridge tape contains a backup from a previous session, the Restore
+window appears. Use the Icon menu to choose an operation instead of
+having it automatically selected. For example, to reuse a tape that
+already contains a backup, choose Backup from the Icon menu.
+
+All Cartridge Tape operations are accessible from the Icon menu.
+Besides the three menu options common to all Icon menus (Open, Proper-
+ties, and Delete), the Cartridge Tape Icon menu includes these
+operations:
+
+   o Backup: displays the Backup window
+
+   o Restore: displays the Restore window
+
+   o Install: displays the Application Setup window
+
+   o Rewind: rewinds the cartridge tape
+
+   o Erase: erases the cartridge tape
+
+     Cartridge tapes have an advantage over floppy disks because they
+     typically hold 60, 120 or more megabytes of data. If you have
+     large amounts of data to back up, use a cartridge tape instead of
+     high density floppy disks; floppy disks hold only 1.2 or 1.4 MB
+     of data. For detailed information about backing up to and restore
+     from cartridge tape, refer to the Backup-Restore reference page
+     earlier in the Reference section..
+
+     More information:
+
+             \k(Backup-Restore^dtadmin/backup.hlp^Backup-Restore)
+             \k(Application Setup^dtadmin/pkgset.hlp^Application Setup)

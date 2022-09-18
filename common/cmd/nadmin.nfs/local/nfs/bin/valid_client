@@ -1,0 +1,16 @@
+#ident	"@(#)nadmin.nfs:local/nfs/bin/valid_client	1.1.6.1"
+#ident  "$Header: valid_client 2.0 91/07/12 $"
+
+echo "$RW_CLIENTS" >/var/tmp/rw_$$
+if [ "$RO_CLIENTS" ]
+then
+	/usr/bin/grep "$RO_CLIENTS"  /var/tmp/rw_$$ >/dev/null
+	if [ $? -eq 0 ]
+	then
+		echo "0"
+	else
+		echo "1"
+	fi
+else
+	echo "1"
+fi

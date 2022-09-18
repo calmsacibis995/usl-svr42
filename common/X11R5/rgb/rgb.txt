@@ -1,0 +1,388 @@
+80 255 175		aquamarine
+80 255 175		Aquamarine
+50 204 153		medium aquamarine
+50 204 153		MediumAquamarine
+0 0 0			black
+0 0 0			Black
+0 0 255			blue
+0 0 255			Blue
+45 170 210		cadet blue
+45 170 210		CadetBlue
+0 0 90			cornflower blue
+0 0 90			CornflowerBlue
+0 85 170		dark slate blue
+0 85 170		DarkSlateBlue
+120 255 255		light blue
+120 255 255		LightBlue
+188 216 255		powder blue
+188 216 255		PowderBlue
+85 85 170		light steel blue
+85 85 170		LightSteelBlue
+50 50 204		medium blue
+50 50 204		MediumBlue
+108 80 255		medium slate blue
+108 80 255		MediumSlateBlue
+16 16 108		midnight blue
+16 16 108		MidnightBlue
+35 35 142		navy blue
+35 35 142		NavyBlue
+35 35 142		navy
+35 35 142		Navy
+80 152 255		sky blue
+80 152 255		SkyBlue
+96 124 255		slate blue
+96 124 255		SlateBlue
+35 107 142		steel blue
+35 107 142		SteelBlue
+255 127 0		coral
+255 127 0		Coral
+0 255 255		cyan
+0 255 255		Cyan
+175 0 0			firebrick
+175 0 0			Firebrick
+170 85 0		brown
+170 85 0		Brown
+255 170 0		gold
+255 170 0		Gold
+255 255 80		goldenrod
+255 255 80		Goldenrod
+255 255 80		medium goldenrod
+255 255 80		MediumGoldenrod
+0 255 0			green
+0 255 0			Green
+0 90 0			dark green
+0 90 0			DarkGreen
+45 90 0			dark olive green
+45 90 0			DarkOliveGreen
+35 142 35		forest green
+35 142 35		ForestGreen
+0 170 0			lime green
+0 170 0			LimeGreen
+45 210 0		medium forest green
+45 210 0		MediumForestGreen
+0 90 0			medium sea green
+0 90 0			MediumSeaGreen
+127 255 0		medium spring green
+127 255 0		MediumSpringGreen
+170 255 165		pale green
+170 255 165		PaleGreen
+35 142 107		sea green
+35 142 107		SeaGreen
+0 255 127		spring green
+0 255 127		SpringGreen
+170 255 85		yellow green
+170 255 85		YellowGreen
+47 79 79		dark slate grey
+47 79 79		DarkSlateGrey
+47 79 79		dark slate gray
+47 79 79		DarkSlateGray
+86 86 86                DarkGray
+86 86 86                DarkGrey
+86 86 86                dark gray
+86 86 86                dark grey
+126 126 126		dim grey
+126 126 126		DimGrey
+126 126 126		dim gray
+126 126 126		DimGray
+168 168 168		light grey
+168 168 168		LightGrey
+168 168 168		light gray
+168 168 168		LightGray
+192 192 192		gray
+192 192 192		grey
+192 192 192		Gray
+192 192 192		Grey
+210 170 45		khaki
+210 170 45		Khaki
+255 0 255		magenta
+255 0 255		Magenta
+142 35 107		maroon
+142 35 107		Maroon
+255 90 0		orange
+255 90 0		Orange
+255 80 255		orchid
+255 80 255		Orchid
+153 50 204		dark orchid
+153 50 204		DarkOrchid
+147 80 219		medium orchid
+147 80 219		MediumOrchid
+255 208 208		light pink
+255 208 208		LightPink
+255 80 80		pink
+255 80 80		Pink
+144 0 112		plum
+144 0 112		Plum
+255 0 0			red
+255 0 0			Red
+125 40 0		indian red
+125 40 0		IndianRed
+255 80 210		medium violet red
+255 80 210		MediumVioletRed
+255 90 0		orange red
+255 90 0		OrangeRed
+204 50 153		violet red
+204 50 153		VioletRed
+255 90 80		salmon
+255 90 80		Salmon
+142 107 35		sienna
+142 107 35		Sienna
+255 170 80		tan
+255 170 80		Tan
+255 85 255		thistle
+255 85 255		Thistle
+80 255 255		turquoise
+80 255 255		Turquoise
+84 170 255		dark turquoise
+84 170 255		DarkTurquoise
+85 255 255		medium turquoise
+85 255 255		MediumTurquoise
+90 0 90			violet
+90 0 90			Violet
+159 80 159		blue violet
+159 80 159		BlueViolet
+255 255 80		wheat
+255 255 80		Wheat
+252 252 252		white
+252 252 252		White
+255 255 0		yellow
+255 255 0		Yellow
+147 219 112		green yellow
+147 219 112		GreenYellow
+0 0 90			dark blue
+0 0 90			DarkBlue
+153 255 136		light green
+153 255 136		LightGreen
+255 80 80		light red
+255 80 80		LightRed
+170 0 0			dark red
+170 0 0			DarkRed
+255 0 255		purple
+255 0 255		Purple
+255 85 255		light purple
+255 85 255		LightPurple
+170 0 170		dark purple
+170 0 170		DarkPurple
+170 0 170		dark magenta
+170 0 170		DarkMagenta
+255 85 255		light magenta
+255 85 255		LightMagenta
+0 170 170		dark cyan
+0 170 170		DarkCyan
+25 255 255		light cyan
+25 255 255		LightCyan
+175 175 0		dark yellow
+175 175 0		DarkYellow
+255 255 80		light yellow
+255 255 80		LightYellow
+244 164 96		sandy brown
+244 164 96		SandyBrown
+0 0 0 			gray0
+3 3 3 			gray1
+5 5 5 			gray2
+8 8 8 			gray3
+10 10 10 		gray4
+13 13 13 		gray5
+15 15 15 		gray6
+18 18 18 		gray7
+20 20 20 		gray8
+23 23 23 		gray9
+26 26 26 		gray10
+28 28 28 		gray11
+31 31 31 		gray12
+33 33 33 		gray13
+36 36 36 		gray14
+38 38 38 		gray15
+41 41 41 		gray16
+43 43 43 		gray17
+46 46 46 		gray18
+48 48 48 		gray19
+51 51 51 		gray20
+54 54 54 		gray21
+56 56 56 		gray22
+59 59 59 		gray23
+61 61 61 		gray24
+64 64 64 		gray25
+66 66 66 		gray26
+69 69 69 		gray27
+71 71 71 		gray28
+74 74 74 		gray29
+77 77 77 		gray30
+79 79 79 		gray31
+82 82 82 		gray32
+84 84 84 		gray33
+87 87 87 		gray34
+89 89 89 		gray35
+92 92 92 		gray36
+94 94 94 		gray37
+97 97 97 		gray38
+99 99 99 		gray39
+102 102 102 		gray40
+105 105 105 		gray41
+107 107 107 		gray42
+110 110 110 		gray43
+112 112 112 		gray44
+115 115 115 		gray45
+117 117 117 		gray46
+120 120 120 		gray47
+122 122 122 		gray48
+125 125 125 		gray49
+127 127 127 		gray50
+130 130 130 		gray51
+133 133 133 		gray52
+135 135 135 		gray53
+138 138 138 		gray54
+140 140 140 		gray55
+143 143 143 		gray56
+145 145 145 		gray57
+148 148 148 		gray58
+150 150 150 		gray59
+153 153 153 		gray60
+156 156 156 		gray61
+158 158 158 		gray62
+161 161 161 		gray63
+163 163 163 		gray64
+166 166 166 		gray65
+168 168 168 		gray66
+171 171 171 		gray67
+173 173 173 		gray68
+176 176 176 		gray69
+179 179 179 		gray70
+181 181 181 		gray71
+184 184 184 		gray72
+186 186 186 		gray73
+189 189 189 		gray74
+191 191 191 		gray75
+194 194 194 		gray76
+196 196 196 		gray77
+199 199 199 		gray78
+201 201 201 		gray79
+204 204 204 		gray80
+207 207 207 		gray81
+209 209 209 		gray82
+212 212 212 		gray83
+214 214 214 		gray84
+217 217 217 		gray85
+219 219 219 		gray86
+222 222 222 		gray87
+224 224 224 		gray88
+227 227 227 		gray89
+229 229 229 		gray90
+232 232 232 		gray91
+235 235 235 		gray92
+237 237 237 		gray93
+240 240 240 		gray94
+242 242 242 		gray95
+245 245 245 		gray96
+247 247 247 		gray97
+250 250 250 		gray98
+252 252 252 		gray99
+255 255 255 		gray100
+0 0 0 			grey0
+3 3 3 			grey1
+5 5 5 			grey2
+8 8 8 			grey3
+10 10 10 		grey4
+13 13 13 		grey5
+15 15 15 		grey6
+18 18 18 		grey7
+20 20 20 		grey8
+23 23 23 		grey9
+26 26 26 		grey10
+28 28 28 		grey11
+31 31 31 		grey12
+33 33 33 		grey13
+36 36 36 		grey14
+38 38 38 		grey15
+41 41 41 		grey16
+43 43 43 		grey17
+46 46 46 		grey18
+48 48 48 		grey19
+51 51 51 		grey20
+54 54 54 		grey21
+56 56 56 		grey22
+59 59 59 		grey23
+61 61 61 		grey24
+64 64 64 		grey25
+66 66 66 		grey26
+69 69 69 		grey27
+71 71 71 		grey28
+74 74 74 		grey29
+77 77 77 		grey30
+79 79 79 		grey31
+82 82 82 		grey32
+84 84 84 		grey33
+87 87 87 		grey34
+89 89 89 		grey35
+92 92 92 		grey36
+94 94 94 		grey37
+97 97 97 		grey38
+99 99 99 		grey39
+102 102 102 		grey40
+105 105 105 		grey41
+107 107 107 		grey42
+110 110 110 		grey43
+112 112 112 		grey44
+115 115 115 		grey45
+117 117 117 		grey46
+120 120 120 		grey47
+122 122 122 		grey48
+125 125 125 		grey49
+127 127 127 		grey50
+130 130 130 		grey51
+133 133 133 		grey52
+135 135 135 		grey53
+138 138 138 		grey54
+140 140 140 		grey55
+143 143 143 		grey56
+145 145 145 		grey57
+148 148 148 		grey58
+150 150 150 		grey59
+153 153 153 		grey60
+156 156 156 		grey61
+158 158 158 		grey62
+161 161 161 		grey63
+163 163 163 		grey64
+166 166 166 		grey65
+168 168 168 		grey66
+171 171 171 		grey67
+173 173 173 		grey68
+176 176 176 		grey69
+179 179 179 		grey70
+181 181 181 		grey71
+184 184 184 		grey72
+186 186 186 		grey73
+189 189 189 		grey74
+191 191 191 		grey75
+194 194 194 		grey76
+196 196 196 		grey77
+199 199 199 		grey78
+201 201 201 		grey79
+204 204 204 		grey80
+207 207 207 		grey81
+209 209 209 		grey82
+212 212 212 		grey83
+214 214 214 		grey84
+217 217 217 		grey85
+219 219 219 		grey86
+222 222 222 		grey87
+224 224 224 		grey88
+227 227 227 		grey89
+229 229 229 		grey90
+232 232 232 		grey91
+235 235 235 		grey92
+237 237 237 		grey93
+240 240 240 		grey94
+242 242 242 		grey95
+245 245 245 		grey96
+247 247 247 		grey97
+250 250 250 		grey98
+252 252 252 		grey99
+255 255 255 		grey100
+203 203 192             scoBackground
+11   0 113              scoForeground
+255 240 248             scoTopShadow
+43  45  49              scoActiveForeground
+254 222 255             scoActiveTopShadow
+172 186 204             scoAltBackground
+141 178 215             scoHighlight
+255 206 137             scoActiveBackground

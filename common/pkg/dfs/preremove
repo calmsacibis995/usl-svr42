@@ -1,0 +1,53 @@
+#ident	"@(#)pkg.dfs:common/pkg/dfs/preremove	1.2.2.5"
+#ident  "$Header: preremove 1.2 91/06/28 $"
+#
+# Issue a warning message if RFS is running.
+# rfadmin may not exist if package rfs is not installed.
+#
+
+if [ -x /usr/sbin/rfadmin ]
+then
+	rfadmin >/dev/null 2>&1
+	if [ $? -eq 0 ]
+	then
+		echo "WARNING: RFS is still running."
+	fi
+fi
+
+# restore original level for these ..
+
+installf $PKGINST /usr/bin/oawk f \? \? \? 4 \? \?
+#installf $PKGINST /usr/bin/nawk f \? \? \? 4 \? \?
+installf $PKGINST /usr/bin/tr f \? \? \? 4 \? \?
+#installf $PKGINST /usr/bin/nl f \? \? \? 4 \? \?
+
+installf -f $PKGINST
+
+#  remove commands from NET role ...
+#	cp is needed by nsu and dfs, so neither preremoves remove it.
+#	The packages can then remain independent.
+
+#while read cmd
+#do
+#	base=`basename $cmd`
+#	adminrole -r $base NET
+#done <<!
+#/usr/sbin/dfshares
+#/usr/sbin/general
+#/usr/sbin/share
+#/usr/sbin/shareall
+#/usr/sbin/unshareall
+#/usr/sbin/lidload
+#/sbin/mountall
+#/sbin/umountall
+#/sbin/mount
+#/sbin/umount
+#/usr/sbin/unshare
+#/usr/sbin/dfmounts
+#/sbin/sh
+#/sbin/init
+#/usr/sbin/fuser
+#/usr/bin/kill
+#!
+
+exit 0

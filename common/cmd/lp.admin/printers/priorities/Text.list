@@ -1,0 +1,20 @@
+#ident	"@(#)lp.admin:printers/priorities/Text.list	1.4.3.1"
+#ident  "$Header: Text.list 2.0 91/07/12 $"
+
+#######################################################
+#
+#       Module Name: printer_service/priorities/Text.list
+#
+#######################################################
+
+title=Priority Limits for Users
+
+framemsg="Press CANCEL to continue."
+
+text="
+`indicator -w;
+if [ -n $TFADMIN ]; 
+then $TFADMIN lpusers -l;
+else lpusers -l;
+fi`"
+

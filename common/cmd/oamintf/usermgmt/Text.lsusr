@@ -1,0 +1,76 @@
+#ident	"@(#)oamintf:common/cmd/oamintf/usermgmt/Text.lsusr	1.4.7.2"
+#ident  "$Header: Text.lsusr 2.0 91/07/12 $"
+
+################################################################################
+# Module Name: Text.lsusr
+# cocreate spawns listuser 
+#   -e <expectstring>: end of data string (send msg via pipe and block until
+#		     all information is complete and ready to be read)
+#   -i <istring>: id for this process is known by istring
+#
+# cosend writes expectstring to the process identified by istring and reads
+# response from process blocking.  
+################################################################################
+
+title=`if [ "$ARG1" = "all" ];
+       then
+	echo "Users Currently Defined"; 
+       else
+	echo "User Definition for Login: $ARG1";
+       fi`
+
+framemsg=`if [ "$ARG1" = "all" ];
+	  then
+	     echo "Press CONT to list next user or CANCEL to return to previous frame.";
+	  else
+	     echo "Press CANCEL to return to previous frame.";
+	  fi`
+
+help=OPEN TEXT $INTFBASE/Text.itemhelp "Text.lsusr:ABSTRACT"
+
+init=`if [ "$ARG1" = "all" ];
+      then
+	cocreate -e ENDUSR -i lusr /usr/sadm/sysadm/bin/listuser all;
+	chmod 700 /tmp/rlusr.$VPID;
+      else
+	echo true;
+      fi`
+
+close=`if [ "$ARG1" = "all" ];
+       then
+	  codestroy lusr;
+       fi`
+
+text="`if [ "$ARG1" = "all" ];
+       then
+	  cosend lusr;
+       else
+	  /usr/sadm/sysadm/bin/listuser $ARG1;
+       fi`"
+
+rows=`
+    shell expr $DISPLAYH - 2 | set -l MAXROWS;
+    if [ 16 -gt $MAXROWS ];
+    then 
+	set -l NROWS=$MAXROWS;
+    else
+	set -l NROWS=16;
+    fi;
+`$NROWS
+
+columns=`
+    shell expr $DISPLAYW - 4 | set -l MAXCOLS;
+    if [ 76 -gt $MAXCOLS ];
+    then
+	set -l NCOLS=$MAXCOLS;
+    else
+	set -l NCOLS=76;
+    fi;
+`$NCOLS
+
+name=`if [ "$ARG1" = "all" ];
+      then
+	echo CONT;
+      fi`
+button=8
+action=update

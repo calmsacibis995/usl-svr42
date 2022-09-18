@@ -1,0 +1,110 @@
+#ident	"@(#)olpkg.oam:pkg.wksh/prototype	1.10"
+#	Copyright (c) 1990, 1991 UNIX System Laboratories, Inc.
+#	Copyright (c) 1988 AT&T
+#	  All Rights Reserved
+
+#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+#	UNIX System Laboratories, Inc.
+#	The copyright notice above does not evidence any
+#	actual or intended publication of such source code.
+
+
+i copyright
+i depend
+i pkginfo
+i postinstall
+i preremove
+
+!PKGINST=wksh
+
+!default 0755 bin bin
+
+d enduser /usr ? ? ?
+
+d enduser /usr/X ? ? ?
+d enduser /usr/X/bin ? ? ?
+d enduser /usr/X/lib ? ? ?
+d enduser /usr/X/lib/wksh
+d enduser /usr/X/lib/wksh/olexamples
+d enduser /usr/X/lib/wksh/olfuncs
+d enduser /usr/X/lib/wksh/pixmaps
+d enduser /usr/X/lib/wksh/icons
+
+f enduser /usr/X/bin/wksh
+s enduser /usr/bin/wksh=/usr/X/bin/wksh
+f enduser /usr/X/bin/olwksh
+f enduser /usr/X/lib/wksh/olwksh.rc
+
+f enduser /usr/X/lib/wksh/olexamples/ammort
+f enduser /usr/X/lib/wksh/olexamples/cardfile
+f enduser /usr/X/lib/wksh/olexamples/creation
+f enduser /usr/X/lib/wksh/olexamples/cut.opts
+f enduser /usr/X/lib/wksh/olexamples/docsamples
+f enduser /usr/X/lib/wksh/olexamples/goodbyworld
+f enduser /usr/X/lib/wksh/olexamples/flat
+f enduser /usr/X/lib/wksh/olexamples/grep.opts
+f enduser /usr/X/lib/wksh/olexamples/helloworld
+f enduser /usr/X/lib/wksh/olexamples/lander
+f enduser /usr/X/lib/wksh/olexamples/procs
+f enduser /usr/X/lib/wksh/olexamples/progguide1
+f enduser /usr/X/lib/wksh/olexamples/progguide2
+f enduser /usr/X/lib/wksh/olexamples/progguide3
+f enduser /usr/X/lib/wksh/olexamples/progguide4
+f enduser /usr/X/lib/wksh/olexamples/progguide5
+f enduser /usr/X/lib/wksh/olexamples/progguide6
+f enduser /usr/X/lib/wksh/olexamples/progguide7
+f enduser /usr/X/lib/wksh/olexamples/sampler
+f enduser /usr/X/lib/wksh/olexamples/sort.opts
+f enduser /usr/X/lib/wksh/olexamples/timer
+f enduser /usr/X/lib/wksh/olexamples/wc.opts
+f enduser /usr/X/lib/wksh/olexamples/wcalc
+f enduser /usr/X/lib/wksh/olexamples/wcalen
+f enduser /usr/X/lib/wksh/olexamples/wkcmd
+
+!default 0644 bin bin
+
+f enduser /usr/X/lib/wksh/olexamples/README
+
+f enduser /usr/X/lib/wksh/pixmaps/blend.xpm
+f enduser /usr/X/lib/wksh/pixmaps/blueblend.xpm
+f enduser /usr/X/lib/wksh/pixmaps/ckbook.xpm
+f enduser /usr/X/lib/wksh/pixmaps/expl.xpm
+f enduser /usr/X/lib/wksh/pixmaps/greenblend.xpm
+f enduser /usr/X/lib/wksh/pixmaps/lander.xpm
+f enduser /usr/X/lib/wksh/pixmaps/lander0.xpm
+f enduser /usr/X/lib/wksh/pixmaps/lander1.xpm
+f enduser /usr/X/lib/wksh/pixmaps/lander2.xpm
+f enduser /usr/X/lib/wksh/pixmaps/lander3.xpm
+f enduser /usr/X/lib/wksh/pixmaps/lander4.xpm
+f enduser /usr/X/lib/wksh/pixmaps/lander5.xpm
+f enduser /usr/X/lib/wksh/pixmaps/lander6.xpm
+f enduser /usr/X/lib/wksh/pixmaps/lander7.xpm
+f enduser /usr/X/lib/wksh/pixmaps/landerF0.xpm
+f enduser /usr/X/lib/wksh/pixmaps/landerF1.xpm
+f enduser /usr/X/lib/wksh/pixmaps/landerF2.xpm
+f enduser /usr/X/lib/wksh/pixmaps/landerF3.xpm
+f enduser /usr/X/lib/wksh/pixmaps/landerF4.xpm
+f enduser /usr/X/lib/wksh/pixmaps/landerF5.xpm
+f enduser /usr/X/lib/wksh/pixmaps/landerF6.xpm
+f enduser /usr/X/lib/wksh/pixmaps/landerF7.xpm
+f enduser /usr/X/lib/wksh/pixmaps/moonsurf.xpm
+f enduser /usr/X/lib/wksh/pixmaps/redblend.xpm
+f enduser /usr/X/lib/wksh/pixmaps/right.xpm
+f enduser /usr/X/lib/wksh/pixmaps/left.xpm
+f enduser /usr/X/lib/wksh/pixmaps/usllogo.xpm
+
+f enduser /usr/X/lib/wksh/olfuncs/olkfuncs.sh
+l enduser /usr/X/lib/wksh/olfuncs/addbuttons=/usr/X/lib/wksh/olfuncs/olkfuncs.sh
+l enduser /usr/X/lib/wksh/olfuncs/adddatefields=/usr/X/lib/wksh/olfuncs/olkfuncs.sh
+l enduser /usr/X/lib/wksh/olfuncs/addfields=/usr/X/lib/wksh/olfuncs/olkfuncs.sh
+l enduser /usr/X/lib/wksh/olfuncs/under=/usr/X/lib/wksh/olfuncs/olkfuncs.sh
+l enduser /usr/X/lib/wksh/olfuncs/rightof=/usr/X/lib/wksh/olfuncs/olkfuncs.sh
+l enduser /usr/X/lib/wksh/olfuncs/warn=/usr/X/lib/wksh/olfuncs/olkfuncs.sh
+l enduser /usr/X/lib/wksh/olfuncs/fatal=/usr/X/lib/wksh/olfuncs/olkfuncs.sh
+l enduser /usr/X/lib/wksh/olfuncs/confirm=/usr/X/lib/wksh/olfuncs/olkfuncs.sh
+l enduser /usr/X/lib/wksh/olfuncs/floatright=/usr/X/lib/wksh/olfuncs/olkfuncs.sh
+l enduser /usr/X/lib/wksh/olfuncs/floatbottom=/usr/X/lib/wksh/olfuncs/olkfuncs.sh
+l enduser /usr/X/lib/wksh/olfuncs/spanwidth=/usr/X/lib/wksh/olfuncs/olkfuncs.sh
+l enduser /usr/X/lib/wksh/olfuncs/spanheight=/usr/X/lib/wksh/olfuncs/olkfuncs.sh
+
+f enduser /usr/X/lib/wksh/icons/calendar.xpm

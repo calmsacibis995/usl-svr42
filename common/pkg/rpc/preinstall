@@ -1,0 +1,19 @@
+#ident	"@(#)pkg.rpc:common/pkg/rpc/preinstall	1.1"
+#ident	"$Header: $"
+
+#
+# This is required for an Upgrade install only, but it's safe
+# any time, so I don't need an "if I'm upgrading" statement.
+#
+# This is required in case there is NOT a Driver_d.o in the package
+# (which there is NOT in SVR4.2).  The is really designed to get
+# rid of the old Version 4 Driver_d.o.
+#
+# If I don't do this, the postinstall script will end up linking
+# the old Version 4 Driver_d.o to Driver.o and the new SVR4.2
+# driver ends being moved into oblivion as Driver_i.o.
+#
+
+rm -f /etc/conf/pack.d/des/Driver_d.o
+
+exit 0

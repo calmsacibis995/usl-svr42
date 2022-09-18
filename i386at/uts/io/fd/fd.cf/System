@@ -1,0 +1,5 @@
+#ident	"@(#)uts-x86at:io/fd/fd.cf/System	1.4"
+#ident	"$Header: $"
+$version 1
+$loadable fd
+fd	Y	1	4	2	6	3f0	3f7	0	0	2

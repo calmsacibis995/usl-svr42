@@ -1,0 +1,5 @@
+#ident	"@(#)bnu.admin:common/cmd/bnu.admin/bnudevices.mi	1.2.1.2"
+#ident "$Header: devices.mi 2.0 91/08/20 $"
+main:network_services:basic_networking:devices:add^Adds Devices for Use by Basic Networking^Form.adddev
+main:network_services:basic_networking:devices:list^Lists Devices Available to Basic Networking^Form.listdev
+main:network_services:basic_networking:devices:remove^Removes Devices from Use by Basic Networking^Form.rmdev

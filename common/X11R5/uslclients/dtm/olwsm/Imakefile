@@ -1,0 +1,55 @@
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+/**/#ident	"@(#)dtm:olwsm/Imakefile	1.68"
+
+#ifdef Release5
+#include <sv4Lib.tmpl>
+#endif
+
+#ifdef UslLocalityTuning
+      CCOPTIONS = $(FURCCOPTIONS)
+#endif
+
+           SRCS = FSelector.c FKeys.c WM.c misc.c list.c \
+		node.c dring.c menu.c notice.c exclusive.c nonexclu.c \
+		colormenu.c refresh.c wsmproperty.c \
+		resource.c slider.c icon.c mouse.c settings.c miscprop.c \
+		kbd.c color.c error.c locale.c xutil.c wsm.c dtprop.c
+
+OBJS = $(SRCS:.c=.o)
+
+     HELP_FILES = help/ws help/ws_menu help/ws_pushpin \
+		help/ws_utilities help/ws_refresh \
+		help/ws_property help/ws_exit \
+		help/ws_icons help/ws_color help/ws_mouse help/ws_mouse_setti \
+		help/ws_keyboard help/ws_misc help/ws_category \
+		help/ws_kbd_core help/ws_kbd_edit \
+		help/ws_kbd_mouse help/ws_inter_navig help/ws_intra_navig \
+		help/ws_kbd_scroll help/ws_kbd_select help/ws_kbd_system 
+
+       INCLUDES = -I./ -I../ -I$(LIBSRC) -I$(XOLLIBSRC) -I$(LIBSRC)/Dt -I$(USLCLIENTSRC)/libDtI -I$(LIBSRC)/Gizmo
+
+        DEFINES = $(ATT_DEFINES) -DFACTORY_LIST
+
+NormalLibraryObjectRule()
+NormalLibraryTarget(olwsm,$(OBJS))
+DependTarget()
+
+#ifdef sunArchitecture
+InstallScript(olinit,$(BINDIR))
+#endif
+
+#if defined(SYSV) || defined(SystemV4)
+InstallMultipleHelpFiles($(HELP_FILES),$(USRLIBDIR)/locale/C/help/DesktopMgr)
+#else /* SYSV */
+InstallMultipleHelpFiles($(HELP_FILES), $(LIBDIR)/locale/C/help/DesktopMgr)
+#endif /* SYSV */
+
+InstallAppDefaults(olwsm_keys)

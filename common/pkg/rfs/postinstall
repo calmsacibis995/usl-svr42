@@ -1,0 +1,254 @@
+#ident	"@(#)pkg.rfs:common/pkg/rfs/postinstall	1.15"
+#ident	"$Header: $"
+#
+# Initialize FAILURE to 1 (fatal error)
+#
+
+SCRIPTS=/usr/sbin/pkginst
+. ${SCRIPTS}/updebug
+[ "$UPDEBUG" = YES ] && set -x
+
+FAILURE=1
+
+# install a module.  $1 is the module name
+
+do_install() {
+	[ "$UPDEBUG" = YES ] && set -x
+	OPTS=""	# part of idinstall and -a -clop hack
+	ERR=/tmp/${1}.err
+	if
+		[ -f ${1}.Driver.o ]
+	then
+		mv ${1}.Driver.o Driver.o
+	fi
+	if
+		[ -f ${1}.Space.c ]
+	then
+		mv ${1}.Space.c Space.c
+	fi
+	if
+		[ -f ${1}.Stubs.c ]
+	then
+		mv ${1}.Stubs.c Stubs.c
+	fi
+	if
+		[ -f ${1}.Mtune ]
+	then
+		mv ${1}.Mtune Mtune
+	fi
+	if
+		[ -f ${1}.Master ]
+	then
+		mv ${1}.Master Master
+	fi
+	if
+		[ -f ${1}.System ]
+	then
+		sed "${SEDCMD1}" ${1}.System >System
+		rm -rf ${1}.System
+	fi
+	if
+		[ -f ${1}.Node ]
+	then
+		mv ${1}.Node Node
+	fi
+	${CONFBIN}/idcheck -p ${1} > ${ERR} 2>&1
+	if
+		[ "$?" = "0" ]
+	then
+		${CONFBIN}/idinstall -P ${PKGINST} -a ${1} > ${ERR} 2>&1
+		RET=$?
+	else
+		${CONFBIN}/idinstall -P ${PKGINST} -u ${1} > ${ERR} 2>&1
+		RET=$?
+	fi
+
+	if [ ${RET} != "0" ]
+	then
+			message "The installation cannot be completed due to \
+an error in the driver installation during the installation of the ${1} \
+module of the ${NAME}.  The file ${ERR} contains the errors."
+			exit ${FAILURE}
+	fi
+	rm -rf ${ERR}
+}
+
+FAILURE=1	# fatal error
+
+CONFDIR=/etc/conf
+CONFBIN=${CONFDIR}/bin
+
+NOTOOLS="ERROR: The Installable Driver feature has been removed. \
+The ${NAME} cannot be installed."
+
+SEDCMD1="s/[	 ]N[	 ]/	Y	/"
+SEDCMD2="s/[	 ]N/	Y/"
+
+cd /var/sadm/pkg/${PKG}/install
+
+# determine that ID/TP tools are available
+
+if
+	[ ! -x ${CONFBIN}/idbuild -o ! -x ${CONFBIN}/idinstall ]
+then
+	message ${NOTOOLS}
+	exit $FAILURE
+fi
+
+# install modules
+
+
+cd /tmp/rfs
+for module in rfs 
+do
+	
+	do_install ${module}
+done
+
+#be sure that /usr/sbin/cron has dacwrite privilege
+#cmd=/usr/sbin/cron
+#inher_privs=`
+#	egrep ":${cmd}$" /etc/security/tcb/privs |
+#	sed -n '/%inher,.*:/s/^.*%inher,\(.*\):.*/\1/p'
+#`
+#case "${inher_privs}" in
+#	*dacwrite*)	;;
+#	*)	if [ "${inher_privs}" ]
+#		then	inher_privs=${inher_privs},dacwrite
+#		else	inher_privs=dacwrite
+#		fi
+#		installf $PKGINST ${cmd} f  \? \? \? \? \? ${inher_privs}
+#		;;
+#esac
+#
+#setpgrp used by rfudaemon needs privilege
+#installf $PKGINST /usr/bin/setpgrp f \? \? \? 1 NULL allprivs
+
+rm -f /etc/rfs/nspip
+
+#
+#	rfuadmin have moved from /usr/bin to /etc/rfs
+#
+
+if [ -f /usr/bin/rfudaemon ]
+then
+	rm -f /usr/bin/rfudaemon
+fi
+
+if [ -f /usr/bin/rfuadmin ]
+then
+	mv /usr/bin/rfuadmin /etc/rfs/rfuadmin
+fi
+
+#
+#	Do the idload(1M) command if it needs to be done...
+#
+
+if [ -f /etc/rfs/auth.info/uid.rules -a ! -f /etc/rfs/auth.info/.\<uid.rules\> ]
+then
+	idload >/dev/null 2>&1
+fi
+
+
+#
+#	Initialize service codes for all installed transport providers
+#	but first remove any old, potentially obsolete entries (SVR3.X
+#	entries specify id listen - this should now be root).  Note:
+#	pmadm adds the entry to all currently defined listeners.
+#
+
+NLS=/usr/sbin/nlsadmin
+
+for n in `$NLS -x | sed 's/	.*$//'`
+do
+	$NLS -r 105 $n >/dev/null 2>&1
+done
+pmadm -a -t listen -s 105 -i root -v `$NLS -V` -y "RFS server" -m "`$NLS -c /usr/net/servers/rfs/rfsetup`" >/dev/null 2>&1
+
+#
+#	add entry in /etc/dfs/fstypes
+#
+if [ ! -d /etc/dfs ]
+then	mkdir /etc/dfs
+fi
+
+if [  -s /etc/dfs/fstypes ]
+then	if grep '^rfs' /etc/dfs/fstypes > /dev/null 2>&1
+	then :
+	else echo "rfs	Remote File Sharing Utilities: Version $VERSION" >> /etc/dfs/fstypes
+	fi
+else	echo "rfs	Remote File Sharing Utilities: Version $VERSION" > /etc/dfs/fstypes
+fi 
+
+installf $PKGINST /etc/dfs/fstypes v \? \? \? 1 NULL NULL
+
+#
+# add RFS commands to NET role
+#
+# create NET role if it doesn't exist (but ignore errors if it does)
+#/usr/bin/adminrole -n NET > /dev/null 2>&1
+#/usr/bin/adminrole -a adv:/usr/sbin/adv:allprivs		NET >/dev/null 2>&1
+#/usr/bin/adminrole -a dname:/usr/sbin/dname:allprivs		NET >/dev/null 2>&1
+#/usr/bin/adminrole -a fumount:/usr/sbin/fumount:allprivs	NET >/dev/null 2>&1
+#/usr/bin/adminrole -a fusage:/usr/sbin/fusage:allprivs		NET >/dev/null 2>&1
+#/usr/bin/adminrole -a idload:/usr/sbin/idload:allprivs		NET >/dev/null 2>&1
+## nsquery made SYS_PUBLIC, fixed allprivs in prototype file
+# /usr/bin/adminrole -a nsquery:/usr/sbin/nsquery:allprivs	NET >/dev/null 2>&1
+#/usr/bin/adminrole -a rfadmin:/usr/sbin/rfadmin:allprivs	NET >/dev/null 2>&1
+#/usr/bin/adminrole -a rfpasswd:/usr/sbin/rfpasswd:allprivs	NET >/dev/null 2>&1
+#/usr/bin/adminrole -a rfstart:/usr/sbin/rfstart:allprivs	NET >/dev/null 2>&1
+#/usr/bin/adminrole -a rfstop:/usr/sbin/rfstop:allprivs		NET >/dev/null 2>&1
+#/usr/bin/adminrole -a rmntstat:/usr/sbin/rmntstat:allprivs	NET >/dev/null 2>&1
+#/usr/bin/adminrole -a unadv:/usr/sbin/unadv:allprivs		NET >/dev/null 2>&1
+#/usr/bin/adminrole -a rfuadmin:/etc/rfs/rfuadmin:allprivs	NET >/dev/null 2>&1
+#/usr/bin/adminrole -a rmnttry:/etc/rfs/rmnttry:allprivs		NET >/dev/null 2>&1
+#/usr/bin/adminrole -a rmount:/etc/rfs/rmount:allprivs		NET >/dev/null 2>&1
+#/usr/bin/adminrole -a rumount:/etc/rfs/rumount:allprivs		NET >/dev/null 2>&1
+
+/usr/bin/adminuser -a rmnttry:/etc/rfs/rmnttry:allprivs root >/dev/null 2>&1
+if [ $? -ne 0 ]
+then
+  /usr/bin/adminuser -n -a rmnttry:/etc/rfs/rmnttry:allprivs root  >/dev/null 2>&1
+fi
+
+if [ -x /sbin/filepriv ]
+then
+	/sbin/filepriv -i macwrite,dacwrite,sysops /usr/sbin/wall >/dev/null 2>&1
+fi
+
+rm -f ${TMP} 1>/dev/null 2>/dev/null
+removef ${PKGINST} /tmp/rfs/rfs.Driver.o >/dev/null
+removef ${PKGINST} /tmp/rfs/rfs.Space.c >/dev/null
+removef ${PKGINST} /tmp/rfs/rfs.Master >/dev/null
+removef ${PKGINST} /tmp/rfs/rfs.System >/dev/null
+removef ${PKGINST} /tmp/rfs/rfs.Stubs.c >/dev/null
+removef ${PKGINST} /tmp/rfs/rfs.Mtune >/dev/null
+removef ${PKGINST} /tmp/rfs >/dev/null
+
+removef -f ${PKGINST}
+
+
+############# Begin UPGRADE AND OVERLAY #######################
+
+[ "$AUTOMERGE" != NULL -a "$REINSTALL" != NO ] && {
+
+#	If AUTOMERGE=Yes, ${SCRIPTS}/pkgmrgconf will 
+#	merge the config files listed in $UPGRADE_STORE/${PKGINST}.sav.
+#	If merge failed, it informs user which files the merge failed.
+
+#	If AUTOMERGE=No, ${SCRIPTS}/pkgmrgconf.sh will 
+#	inform user where there old config files live and that
+#	the system will use new versions of the config. files
+
+	${SCRIPTS}/pkgmrgconf "${PKGINST}" "$AUTOMERGE" "$NAME"
+}
+
+# clenup patch files from /var/sadm/install/contents and rm them
+
+${SCRIPTS}/up_cleanup "${PKGINST}"
+
+############# End   UPGRADE AND OVERLAY #######################
+
+installf -f $PKGINST
+
+exit 	10

@@ -1,0 +1,45 @@
+#ident	"@(#)olpkg.oam:pkg.dtnetadm/postinstall	1.1"
+######### 
+if [ -f /etc/saf/tcp/_pmtab ]
+then
+       grep  10103 /etc/saf/tcp/_pmtab  > /dev/null
+       if [ "$?" -ne 0 ]
+       then
+               nlsadmin -a 10103 -c "/usr/lib/uucp/uucico -r 0 -i TLI -u nuucp" -y "uucp" tcp 
+       fi
+fi
+ 
+echo "TcpCico10103,eg tcp - - TLI \D listencico10103" > /etc/uucp/Devices.tcp
+echo "listencico10103	\"\"	\"\" NLPS:000:001:10103\N\\\c" > /etc/uucp/Dialers.tcp
+ 
+echo "service=uucico  systems=Systems.tcp:Systems \
+		devices=Devices.tcp:Devices\
+		dialers=Dialers.tcp:Dialers
+service=cu	systems=Systems\
+		devices=Devices\
+		dialers=Dialers" >> /etc/uucp/Sysfiles
+ 
+installf ${PKGINST} /etc/uucp/Devices.tcp f 0644 uucp uucp 1 NULL NULL
+installf ${PKGINST} /etc/uucp/Dialers.tcp f 0644 uucp uucp 1 NULL NULL
+## for graphical admin
+> /etc/dfs/dtvfstab
+installf ${PKGINST} /etc/dfs/dtvfstab f 0644  root root 1 NULL NULL
+
+#
+# attach the desktop manager class definitions
+#
+if [ -d /usr/X/lib/classdb ]
+then
+	/bin/grep "INCLUDE nfs\.cdb;" /usr/X/lib/classdb/dtadmin >/dev/null 2>&1
+	if [ $? -ne 0 ]
+	then
+		echo "INCLUDE nfs.cdb;" >> /usr/X/lib/classdb/dtadmin
+	fi
+	/bin/grep "INCLUDE inet\.cdb;" /usr/X/lib/classdb/dtadmin >/dev/null 2>&1
+	/bin/grep "INCLUDE inet\.cdb;" /usr/X/lib/classdb/dtadmin >/dev/null 2>&1
+	if [ $? -ne 0 ]
+	then
+		echo "INCLUDE inet.cdb;" >> /usr/X/lib/classdb/dtadmin
+	fi
+fi
+

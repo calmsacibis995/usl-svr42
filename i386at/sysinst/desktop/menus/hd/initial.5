@@ -1,0 +1,92 @@
+#ident	"@(#)proto:desktop/menus/hd/initial.5	1.8"
+#ident	"$Header: $"
+.pageno
+Page %d of %d
+.ul
+UNIX System Installation
+.hhelp_ban
+Instructions
+.helpbanner
+Help: Choose Installation Type
+.ur
+Choose Installation Type
+#.ll
+#Please make a selection.
+.lr
+Del=Cancel F1=Help
+.top
+Pressing the Del key at any time cancels the installation.  Pressing
+the F1 or '?' key at any time displays more information or help.
+
+Would you like to do automatic or custom installation of the UNIX System?
+.optstring
+Your choices are:
+.form
+Automatic installation.
+Custom installation.
+.selection
+Press '1' or '2' followed by 'ENTER':
+.help
+For detailed instructions, press the 'F1' (or '?') key at any time.
+
+This help screen will provide you with information on the following topics:
+
+    SAVING FILES
+    INSTALLATION OVERVIEW
+    HARDWARE REQUIREMENTS
+
+SAVING FILES
+
+The UNIX System software must be installed (or copied) onto the hard disk of
+your computer.  This process may erase or alter any files on your hard disk.
+Therefore, before installation, you should make a copy of any files on the
+hard disk.  If you need to save files on the hard disk you should cancel the
+installation now and refer to the Installation Guide for more information.
+
+INSTALLATION OVERVIEW
+
+The installation program prepares your computer's hardware and copies the
+UNIX System software onto your computer's hard disk(s).  Briefly, this
+involves partitioning your hard disk(s), selecting file systems,
+transferring the UNIX System files to your hard disk(s).  More information
+on each of these terms and steps is given below.
+
+Partitioning a hard disk divides it into a number of parts called
+"partitions".  Each partition can be used for a different operating system.
+When the first or "primary" hard disk has multiple partitions, the partition
+labeled as "Active" is used to boot your computer.  During installation the
+UNIX System software will be copied to the Active partition of your primary
+hard disk.
+
+A file system is a collection of files and folders (also called directories)
+and the structure that organizes them.  The UNIX System uses a
+hierarchical (multi-level) folder structure that permits folders to contain
+files and folders, which themselves can contain files and folders, and so
+on.  More information on UNIX file systems can be found in the Installation
+Guide.
+
+HARDWARE REQUIREMENTS
+
+The general hardware requirements for installing the UNIX System are:
+
+   - You must have at least a 60 MB primary hard disk (for a computer with
+     more than one hard disk, the primary hard disk is the one that the
+     computer boots from).
+
+   - If you wish to create multiple partitions on your primary hard disk,
+     then at least one of them must be 60 MB or larger and made Active.
+
+If you wish to install the Foundation Set from a non-SCSI cartridge tape,
+you should refer to the documentation to make sure that the configuration
+of your tape drive is correct.
+
+For additional controller-specific setup requirements and more information
+on verifying that your computer meets the UNIX System hardware requirements,
+see the Installation Guide.
+.helpinst
+ESC=Exit help  F1=Instructions  Del=Cancel  1=Forward  2=Backward
+.hhelpinst
+ESC=Exit instructions  Del=Cancel  1=Forward  2=Backward
+.working
+Working...
+.end

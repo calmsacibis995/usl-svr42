@@ -1,0 +1,167 @@
+#ident	"@(#)pkg.base:i386/pkg/base/protos/upgrade	1.25"
+#ident	"$Header: $"
+
+#
+# There are two classes of files.  'upnover' are generic files that will
+# always be installed on the system.  'upgrade' are files specific to
+# upgrading a SVR4 Version 4 system--they will only be installed for
+# that case.
+#
+
+!TOOL_LOC=/usr/sbin/pkginst
+!UP_LOC=/etc/inst/up
+!PATCH_LOC=$UP_LOC/patch
+!MESSAGES=/etc/inst/locale/C/menus/upgrade
+!PATCHSRC_LOC=../usr/src/$WORK/cmd/upgrade/diffs
+
+##################################################
+
+# default for directories
+!default 0755 root sys 1 NULL NULL
+
+d upnover 	$TOOL_LOC
+#d upnover	/etc/inst
+d upnover	$MESSAGES
+
+d upgrade	$UP_LOC
+d upgrade	$PATCH_LOC
+
+d upgrade	$PATCH_LOC/etc
+d upgrade	$PATCH_LOC/etc/default
+d upgrade	$PATCH_LOC/etc/ap
+d upgrade	$PATCH_LOC/etc/cron.d
+d upgrade	$PATCH_LOC/etc/mail
+d upgrade	$PATCH_LOC/etc/saf
+d upgrade	$PATCH_LOC/etc/skel
+d upgrade	$PATCH_LOC/etc/uucp
+d upgrade	$PATCH_LOC/usr
+d upgrade	$PATCH_LOC/usr/lib
+d upgrade	$PATCH_LOC/usr/lib/uucp
+d upgrade	$PATCH_LOC/usr/share
+d upgrade	$PATCH_LOC/usr/share/lib
+d upgrade	$PATCH_LOC/usr/share/lib/mail
+d upgrade	$PATCH_LOC/var
+d upgrade	$PATCH_LOC/var/spool
+d upgrade	$PATCH_LOC/var/spool/cron
+d upgrade	$PATCH_LOC/var/spool/cron/crontabs
+
+##################################################
+# place generic tools and scripts related to upgrade work here.
+
+# default for tools
+!default 0755 root sys 1 NULL NULL
+
+f upgrade 	$TOOL_LOC/up_merge
+f upgrade 	$TOOL_LOC/patch
+
+f upnover 	$TOOL_LOC/up_cleanup
+f upnover 	$TOOL_LOC/updebug
+f upnover	$TOOL_LOC/chkmrgfiles
+f upnover	$TOOL_LOC/chkpkgrel
+f upnover	$TOOL_LOC/pkgmrgconf
+f upnover	$TOOL_LOC/pkgsavfiles
+f upnover	$TOOL_LOC/olscripts
+
+##################################################
+# message files used by generic scripts and driver reconfiguration script
+
+# default for menus
+!default 0644 root sys 1 NULL NULL
+
+f upnover	$MESSAGES/mergefiles.1
+f upnover	$MESSAGES/mergefiles.2
+f upnover	$MESSAGES/mergefiles.3
+f upnover	$MESSAGES/mergefiles.4
+f upgrade	$MESSAGES/idbuild.fail
+f upgrade	$MESSAGES/reconfig.aok
+f upgrade	$MESSAGES/reconfig.ask
+f upgrade	$MESSAGES/reconfig.reb
+f upgrade	$MESSAGES/reconfig.sel
+f upgrade	$MESSAGES/recon.working
+
+##################################################
+# lists of patch/diff files to be merged
+
+# default for files
+!default 0644 root sys 1 NULL NULL
+
+f upgrade	$PATCH_LOC/base.LIST
+f upgrade	$PATCH_LOC/boot.LIST
+f upgrade	$PATCH_LOC/lp.LIST
+f upgrade	$PATCH_LOC/nsu.LIST
+f upgrade	$PATCH_LOC/cmds.LIST
+f upgrade	$PATCH_LOC/rfs.LIST
+f upgrade	$PATCH_LOC/inet.LIST
+
+##################################################
+# patches/diffs 
+
+# boot patches
+
+f upgrade	$PATCH_LOC/etc/group=$PATCHSRC_LOC/etc/group
+f upgrade	$PATCH_LOC/etc/inittab=$PATCHSRC_LOC/etc/inittab
+f upgrade	$PATCH_LOC/etc/passwd=$PATCHSRC_LOC/etc/passwd
+f upgrade	$PATCH_LOC/etc/shadow=$PATCHSRC_LOC/etc/shadow
+f upgrade	$PATCH_LOC/etc/TIMEZONE=$PATCHSRC_LOC/etc/TIMEZONE
+f upgrade	$PATCH_LOC/etc/default/workstations=$PATCHSRC_LOC/etc/default/workstations
+f upgrade	$PATCH_LOC/etc/ap/chan.ap=$PATCHSRC_LOC/etc/ap/chan.ap
+
+# base patches
+
+#f upgrade	$PATCH_LOC/etc/mail/Cmailsurr=$PATCHSRC_LOC/etc/mail/Cmailsurr
+#f upgrade	$PATCH_LOC/etc/mail/names=$PATCHSRC_LOC/etc/mail/names
+#f upgrade	$PATCH_LOC/etc/saf/_sysconfig=$PATCHSRC_LOC/etc/saf/_sysconfig
+#f upgrade	$PATCH_LOC/etc/mail/mailx.rc=$PATCHSRC_LOC/etc/mail/mailx.rc
+f upgrade	$PATCH_LOC/etc/Backup=$PATCHSRC_LOC/etc/Backup
+f upgrade	$PATCH_LOC/etc/Ignore=$PATCHSRC_LOC/etc/Ignore
+f upgrade	$PATCH_LOC/etc/cron.d/.proto=$PATCHSRC_LOC/etc/cron.d/.proto
+f upgrade	$PATCH_LOC/etc/cron.d/at.allow=$PATCHSRC_LOC/etc/cron.d/at.allow
+f upgrade	$PATCH_LOC/etc/cron.d/cron.allow=$PATCHSRC_LOC/etc/cron.d/cron.allow
+f upgrade	$PATCH_LOC/etc/cron.d/queuedefs=$PATCHSRC_LOC/etc/cron.d/queuedefs
+f upgrade	$PATCH_LOC/etc/default/cron=$PATCHSRC_LOC/etc/default/cron
+f upgrade	$PATCH_LOC/etc/default/dump=$PATCHSRC_LOC/etc/default/dump
+f upgrade	$PATCH_LOC/etc/default/login=$PATCHSRC_LOC/etc/default/login
+f upgrade	$PATCH_LOC/etc/default/passwd=$PATCHSRC_LOC/etc/default/passwd
+f upgrade	$PATCH_LOC/etc/default/su=$PATCHSRC_LOC/etc/default/su
+f upgrade	$PATCH_LOC/etc/default/tar=$PATCHSRC_LOC/etc/default/tar
+f upgrade	$PATCH_LOC/etc/dgroup.tab=$PATCHSRC_LOC/etc/dgroup.tab
+f upgrade	$PATCH_LOC/etc/gettydefs=$PATCHSRC_LOC/etc/gettydefs
+f upgrade	$PATCH_LOC/etc/issue=$PATCHSRC_LOC/etc/issue
+f upgrade	$PATCH_LOC/etc/mail/binarsys=$PATCHSRC_LOC/etc/mail/binarsys
+f upgrade	$PATCH_LOC/etc/mail/mailsurr=$PATCHSRC_LOC/etc/mail/mailsurr
+f upgrade	$PATCH_LOC/etc/mail/namefiles=$PATCHSRC_LOC/etc/mail/namefiles
+f upgrade	$PATCH_LOC/etc/motd=$PATCHSRC_LOC/etc/motd
+f upgrade	$PATCH_LOC/etc/nodename=$PATCHSRC_LOC/etc/nodename
+f upgrade	$PATCH_LOC/etc/profile=$PATCHSRC_LOC/etc/profile
+f upgrade	$PATCH_LOC/etc/saf/_sactab=$PATCHSRC_LOC/etc/saf/_sactab
+f upgrade	$PATCH_LOC/etc/skel/.profile=$PATCHSRC_LOC/etc/skel/.profile
+f upgrade	$PATCH_LOC/etc/stdprofile=$PATCHSRC_LOC/etc/stdprofile
+f upgrade	$PATCH_LOC/etc/ttydefs=$PATCHSRC_LOC/etc/ttydefs
+f upgrade	$PATCH_LOC/etc/ttysrch=$PATCHSRC_LOC/etc/ttysrch
+f upgrade	$PATCH_LOC/etc/ttytype=$PATCHSRC_LOC/etc/ttytype
+f upgrade	$PATCH_LOC/etc/uucp/Config=$PATCHSRC_LOC/etc/uucp/Config
+f upgrade	$PATCH_LOC/etc/uucp/Devconfig=$PATCHSRC_LOC/etc/uucp/Devconfig
+f upgrade	$PATCH_LOC/etc/uucp/Devices=$PATCHSRC_LOC/etc/uucp/Devices
+f upgrade	$PATCH_LOC/etc/uucp/Dialcodes=$PATCHSRC_LOC/etc/uucp/Dialcodes
+f upgrade	$PATCH_LOC/etc/uucp/Dialers=$PATCHSRC_LOC/etc/uucp/Dialers
+f upgrade	$PATCH_LOC/etc/uucp/Grades=$PATCHSRC_LOC/etc/uucp/Grades
+f upgrade	$PATCH_LOC/etc/uucp/Limits=$PATCHSRC_LOC/etc/uucp/Limits
+f upgrade	$PATCH_LOC/etc/uucp/Permissions=$PATCHSRC_LOC/etc/uucp/Permissions
+f upgrade	$PATCH_LOC/etc/uucp/Poll=$PATCHSRC_LOC/etc/uucp/Poll
+f upgrade	$PATCH_LOC/etc/uucp/Sysfiles=$PATCHSRC_LOC/etc/uucp/Sysfiles
+f upgrade	$PATCH_LOC/etc/uucp/Systems=$PATCHSRC_LOC/etc/uucp/Systems
+f upgrade	$PATCH_LOC/usr/lib/uucp/SetUp=$PATCHSRC_LOC/usr/lib/uucp/SetUp
+f upgrade	$PATCH_LOC/usr/lib/uucp/Teardown=$PATCHSRC_LOC/usr/lib/uucp/Teardown
+f upgrade	$PATCH_LOC/usr/lib/uucp/Uutry=$PATCHSRC_LOC/usr/lib/uucp/Uutry
+f upgrade	$PATCH_LOC/usr/lib/uucp/uudemon.admin=$PATCHSRC_LOC/usr/lib/uucp/uudemon.admin
+f upgrade	$PATCH_LOC/usr/lib/uucp/uudemon.hour=$PATCHSRC_LOC/usr/lib/uucp/uudemon.hour
+f upgrade	$PATCH_LOC/usr/lib/uucp/uudemon.poll=$PATCHSRC_LOC/usr/lib/uucp/uudemon.poll
+f upgrade	$PATCH_LOC/usr/share/lib/mail/std_vac_msg=$PATCHSRC_LOC/usr/share/lib/mail/std_vac_msg
+f upgrade	$PATCH_LOC/var/spool/cron/crontabs/adm=$PATCHSRC_LOC/var/spool/cron/crontabs/adm
+f upgrade	$PATCH_LOC/var/spool/cron/crontabs/root=$PATCHSRC_LOC/var/spool/cron/crontabs/root
+f upgrade	$PATCH_LOC/var/spool/cron/crontabs/sys=$PATCHSRC_LOC/var/spool/cron/crontabs/sys
+
+# cmds patch
+d upgrade  $PATCH_LOC/etc/acct
+f upgrade  $PATCH_LOC/etc/acct/holidays=$PATCHSRC_LOC/etc/acct/holidays
+

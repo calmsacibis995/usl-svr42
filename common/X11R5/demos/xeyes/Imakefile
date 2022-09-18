@@ -1,0 +1,20 @@
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+/**/#ident	"@(#)r5xeyes:Imakefile	1.2"
+XCOMM $XConsortium: Imakefile,v 1.15 91/08/23 12:25:20 gildea Exp $
+
+SYS_LIBRARIES = -lm
+        DEPLIBS = $(DEPXMULIB) $(DEPXTOOLLIB) $(DEPEXTENSIONLIB) $(DEPXLIB)
+LOCAL_LIBRARIES = $(XMULIB) $(XTOOLLIB) $(XLIB)
+
+SRCS = xeyes.c Eyes.c transform.c
+OBJS = xeyes.o Eyes.o transform.o
+
+ComplexProgramTarget(xeyes)

@@ -1,0 +1,34 @@
+#ident  "@(#)set:common/set/graphics/prototype	1.15"
+#ident  "$Header: $"
+
+i pkginfo 
+i preinstall 
+i response
+i setinfo
+i set.1
+i set.2
+i set.3
+i set.4
+i set.5
+i set.6
+i postinstall
+#i preremove
+i setsize
+
+!PKGSRCLOC=../../pkg
+!XPKGSRCLOC=../../X11R5/olpkg.oam
+!SETSRCLOC=../../set
+
+i request=$SETSRCLOC/fnd/request
+i copyright=$SETSRCLOC/fnd/copyright
+
+i dtclients/depend=$XPKGSRCLOC/pkg.dtclients/depend
+i dtclients/copyright=$XPKGSRCLOC/pkg.dtclients/copyright
+i dtclients/pkginfo=$XPKGSRCLOC/pkg.dtclients/pkginfo
+
+i dtxtfonts/depend=$XPKGSRCLOC/pkg.dtxtfonts/depend
+i dtxtfonts/request=$XPKGSRCLOC/pkg.dtxtfonts/request
+i dtxtfonts/menu.dtxtfonts=$XPKGSRCLOC/pkg.dtxtfonts/menu.dtxtfonts
+i dtxtfonts/copyright=$XPKGSRCLOC/pkg.dtxtfonts/copyright
+i dtxtfonts/pkginfo=$XPKGSRCLOC/pkg.dtxtfonts/pkginfo
+

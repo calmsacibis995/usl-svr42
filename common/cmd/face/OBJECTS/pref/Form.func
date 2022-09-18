@@ -1,0 +1,172 @@
+#ident	"@(#)face:OBJECTS/pref/Form.func	1.8.4.4"
+
+form=$$uxface:178:"Office Functions Form"
+
+help=OPEN TEXT OBJECTS/Text.h "$$uxface:78:'HELP on' $TITLE" "$FILE"
+autolayout=true
+`set -l I18N_LF="$$uxface:179:long form";
+set -l I18N_NAD="$$uxface:180:name and description";
+set -l I18N_NAM="$$uxface:181:name and marks";
+set -l I18N_NO="$$uxface:182:name only";
+set -l I18N_A="$$uxface:183:alphabetical";
+set -l I18N_ABD="$$uxface:184:alphabetical by description";
+set -l I18N_LRF="$$uxface:185:least recent first";
+set -l I18N_MRF="$$uxface:186:most recent first";
+set -l YES="$$uxface:61:yes";
+set -l NO="$$uxface:56:no";
+set -l I18N_D="$$uxface:188:Delete objects from my Wastebasket after (# of days):";
+set -l I18N_P="$$uxface:191:Prompt before deleting objects from my Wastebasket:";
+set -l I18N_DE="$$uxface:193:Default Editor:";
+set -l I18N_FDF="$$uxface:196:Folder Display Format:";
+set -l I18N_FDO="$$uxface:198:Folder Display Order:";
+set -l I18N_CAE="$$uxface:200:Confirm at Exit:";
+set -l I18N_IFAL="$$uxface:202:Invoke FACE at login:";
+fmlmax -c 2 "$I18N_D" "$I18N_P" | set -l FCOL1;
+fmlmax -c 1 "$I18N_DE" "$I18N_FDF" "$I18N_FDO" "$I18N_CAE" "$I18N_IFAL" | set -l FCOL2;
+fmlmax -l "$I18N_LF" "$I18N_NAD" "$I18N_NAM" "$I18N_NO" | set -l FCOL3;
+fmlmax -l "$I18N_A" "$I18N_ABD" "$I18N_LRF" "$I18N_MRF" | set -l FCOL4;
+fmlmax -c -1 "$YES" "$NO" | set -l YESCOL`
+
+framemsg=$$uxface:79:"Press CHOICES to select, then press SAVE when you complete the form."
+
+close=`unset -l I18N_LF -l I18N_NAD -l I18N_NAM -l I18N_NO -l I18N_A -l YESCOL;
+unset -l I18N_ABD -l I18N_LRF -l I18N_MRF -l I18N_D -l I18N_P -l I18N_DE;
+unset -l I18N_FDF -l I18N_FDO -l I18N_CAE -l I18N_IFAL -l FCOL1 -l FCOL2;
+unset -l FCOL3 -l FCOL4`
+
+done=`indicator -w;
+set WASTEDAYS="$F1" -f$HOME/pref/.variables EDITOR="$F3" -e EDITOR="$F3";
+regex -v "$F2"
+	"^$YES\$" 'yes'
+	"^$NO\$"  'no' | set WASTEPROMPT;
+regex -v "$F4" 
+	"^$I18N_LF\$" 8 
+	"^$I18N_NO\$" 0 
+	"^$I18N_NAM\$" 2000 
+	'.*' 4 | set DISPLAYMODE; 
+regex -v "$F5" 
+	"^$I18N_A\$" 1 
+	"^$I18N_MRF\$" 2 
+	"^$I18N_LRF\$" 1002 
+	"^$I18N_ABD\$" 800 | set SORTMODE;
+regex -v "$F6" 
+	"^$YES\$" y
+	"^$NO\$" n | set -l QF6; $VMSYS/bin/chkperm -${QF6} exit -u ${LOGNAME};
+regex -v "$F7" 
+	"^$YES\$" y
+	"^$NO\$" n | set -l QF7; $VMSYS/bin/chkperm -${QF7} invoke -u ${LOGNAME};
+touch $HOME/pref;
+message $$uxface:187:"Office Functions have been updated.";sleep 3`close
+
+name=$I18N_D
+nrow=1
+ncol=1
+rows=1
+columns=2
+fcol=$FCOL1
+# frow=1
+# fcol=56
+value=const ${WASTEDAYS:-1}
+lininfo=`set -l TITLE="$$uxface:189:Delete Objects in Wastebasket" -l FILE="pref/T.hfunc1"`
+fieldmsg="`message -o -f '$$uxface:190:Enter a number of days, 1 - 30, then press SAVE when you complete the form.'`"
+valid=`regex -v "${F1}" '^[1-9]$' "true" '^[1-2][0-9]$' "true" '^30$'`
+
+name=$I18N_P
+nrow=3
+ncol=1
+rows=1
+columns=$YESCOL
+# frow=3
+# fcol=56
+rmenu={ $YES $NO }
+lininfo=`set -l TITLE="$$uxface:192:Prompt Before Deleting Objects" -l FILE="pref/T.hfunc2"`
+fieldmsg="`message -o -f $$uxface:79:'Press CHOICES to select, then press SAVE when you complete the form.'`"
+menuonly=true
+value=const `regex -v "${WASTEPROMPT}"
+	'^yes$'	"$YES"
+	'^no$'	"$NO"
+	'^(.+)$0$'  '$m0'
+	'^$'	"$YES"`
+
+name=$I18N_DE
+nrow=5
+ncol=1
+rows=1
+columns=14
+fcol=$FCOL2
+# frow=5
+# fcol=24
+value=const ${EDITOR:-ed}
+rmenu={ ed vi }
+fieldmsg="`message -o -f $$uxface:79:'Press CHOICES to select, then press SAVE when you complete the form.'`"
+lininfo=`set -l TITLE="$$uxface:194:Default Editor" -l FILE="pref/T.hfunc3"`
+valid=`indicator -w;$VMSYS/bin/chexec "${F3}"`
+invalidmsg=`regex -v "${F3}" '^$' "$$uxface:110:A value must be entered for this field."
+				'.*' "$$uxface:195:${F3} does not exist on your path or is not a valid command."`
+
+name=$I18N_FDF
+nrow=7
+ncol=1
+rows=1
+columns=$FCOL3
+# scroll=true
+# frow=7
+# fcol=24
+rmenu={ "$I18N_LF" "$I18N_NAD" "$I18N_NAM" "$I18N_NO" }
+lininfo=`set -l TITLE="$$uxface:197:Folder Display Format" -l FILE="pref/T.hfunc4"`
+fieldmsg="`message -o -f $$uxface:79:'Press CHOICES to select, then press SAVE when you complete the form.'`"
+menuonly=true
+value=const `regex -v "$DISPLAYMODE" 
+		'^0$' "$I18N_NO" 
+		'^8$' "$I18N_LF" 
+		'^2000$' "$I18N_NAM" 
+		'.*' "$I18N_NAD"` 
+
+name=$I18N_FDO
+nrow=9
+ncol=1
+rows=1
+columns=$FCOL4
+# scroll=true
+# frow=9
+# fcol=34
+rmenu={ "$I18N_A" "$I18N_ABD" "$I18N_LRF" "$I18N_MRF" }
+lininfo=`set -l TITLE="$$uxface:199:Folder Display Order" -l FILE="pref/T.hfunc5"`
+fieldmsg="`message -o -f $$uxface:79:'Press CHOICES to select, then press SAVE when you complete the form.'`"
+menuonly=true
+value=const `regex -v "$SORTMODE" 
+		'^2$' "$I18N_MRF" 
+		'^1002$' "$I18N_LRF" 
+		'^800$' "$I18N_ABD" 
+		'.*' "$I18N_A"`
+
+name=$I18N_CAE
+nrow=11
+ncol=1
+rows=1
+columns=$YESCOL
+# frow=11
+# fcol=24
+rmenu={ $YES $NO }
+menuonly=true
+lininfo=`set -l TITLE="$$uxface:201:Confirm at Exit" -l FILE="pref/T.hfunc7"`
+fieldmsg="`message -o -f $$uxface:79:'Press CHOICES to select, then press SAVE when you complete the form.'`"
+value=const `$VMSYS/bin/chkperm -e exit`
+
+name=$I18N_IFAL
+show=`$VMSYS/bin/chkperm -t unix`
+nrow=13
+ncol=1
+rows=1
+columns=$YESCOL
+# frow=13
+# fcol=24
+rmenu={ $YES $NO }
+menuonly=true
+lininfo=`set -l TITLE="$$uxface:203:Invoke FACE at login" -l FILE="pref/T.hfunc6"`
+fieldmsg="`message -o -f $$uxface:79:'Press CHOICES to select, then press SAVE when you complete the form.'`"
+value=const `$VMSYS/bin/chkperm -e invoke`
+
+name=$$uxface:93:"RESET"
+button=8
+action=reset

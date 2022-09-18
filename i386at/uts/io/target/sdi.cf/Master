@@ -1,0 +1,8 @@
+#ident	"@(#)uts-x86at:io/target/sdi.cf/Master	1.5"
+#ident  "$Header: $"
+$version 1
+$entry open
+$entry close
+$entry ioctl
+$entry init
+sdi	sdi_	cr	40	0	0

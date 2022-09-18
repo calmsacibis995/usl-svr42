@@ -1,0 +1,4 @@
+#ident	"@(#)oamintf:i386/cmd/oamintf/xx/FACE3.2/admin/useradm	1.2"
+#ident	"$Header: $"
+root base-adm
+install base-adm

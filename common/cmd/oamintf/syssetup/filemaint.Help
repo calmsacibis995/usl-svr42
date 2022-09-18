@@ -1,0 +1,36 @@
+#ident	"@(#)oamintf:common/cmd/oamintf/syssetup/filemaint.Help	1.1.2.2"
+#ident  "$Header: filemaint.Help 2.0 91/07/12 $"
+
+ABSTRACT:Maintain files in /etc/default
+	The "file_maintenance" task allows you to maintain the system
+	default values contained in the /etc/default files.  An
+	alternate absolute path may also be used to specify other
+	default files.
+
+Form.maint:filename
+	Enter a filename in /etc/default or press CHOICES or enter an
+	alternate absolute path of a default file.
+
+Form.maint:action
+	Enter one of the following keywords or press CHOICES.
+
+	add -	 Allows you to add names to the specified default file.
+	change - Allows you to change the values for names in the
+		 specified default file.
+	remove - Allows you to remove names in the specified default
+		 file.
+
+Form.maint:name
+	If a name is being added, enter a name that does not exist in
+	the specified default file.  Note, invalid settings are white
+	space, an equal sign and any nonprintable character.
+
+	If a name is being changed or removed you must enter an
+	existing name for the specified default file or press
+	CHOICES.
+
+Form.maint:value
+	Enter the value you wish to set the name specified in the
+	previous prompt.  Note, invalid settings are white space, an
+	equal sign and any nonprintable character.
+

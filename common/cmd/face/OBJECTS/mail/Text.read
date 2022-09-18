@@ -1,0 +1,48 @@
+#ident	"@(#)face:OBJECTS/mail/Text.read	1.1.4.2"
+#ident  "$Header: Text.read 1.4 91/10/15 $"
+
+`if [ "${ARG1}" = $$uxface:334:"new" ];
+then
+        set -l ttext=$$uxface:335:"Contents of New Mail Message";
+        set -l tname=SAVE;
+else
+        set -l ttext=$$uxface:336:"Contents of Saved Mail Message";
+        set -l tname="";
+fi`
+title="$ttext ${ARG2}"
+altslks=true
+help=OPEN TEXT OBJECTS/Text.h "${ttext}" mail/T.read
+lifetime=longterm
+framemsg=`message -o $$uxface:337:"Press CANCEL to cancel."`
+rows=10
+columns=72
+
+text="`cosend $ARG1 "t ${ARG2}"`"
+
+name=$$uxface:144:"HELP"
+button=9
+action=help
+
+name=$$uxface:338:"REPLY"
+button=10
+action=OPEN FORM OBJECTS/mail/Form.send $$uxface:339:"Reply to" "$ARG3" "Re: $ARG4"	
+ 
+
+name=$tname
+button=11
+action=`if [ "${ARG1}" = $$uxface:334:"new" ];
+	then
+		message -w $$uxface:340:"Saving message. Please wait...";
+		cosend $ARG1 "s ${ARG2} $HOME/mbox" > /dev/null;
+		message -w $$uxface:341:"Message has been saved.";
+	fi`nop
+
+name=$$uxface:342:"DELETE"
+button=12
+action=`message -w $$uxface:343:"Deleting message. Please wait...";
+	cosend $ARG1 "d ${ARG2}" > /dev/null;
+	message -w $$uxface:344:"Message has been deleted."`close 
+
+name=$$uxface:149:"CANCEL"
+button=14
+action=close

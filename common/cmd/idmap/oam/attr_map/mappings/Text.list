@@ -1,0 +1,24 @@
+#ident	"@(#)idmap:oam/attr_map/mappings/Text.list	1.1.3.1"
+#ident  "$Header: Text.list 2.0 91/07/12 $"
+
+################################################################################
+#
+#	Module Name: Text.list
+#
+#	Functional Description: This text reports status of list attribute map
+#			
+################################################################################
+
+title="List an Attribute Mapping"
+
+begrow=any
+begcol=any
+
+rows=10
+columns=50
+
+text="
+`$TFADMIN attradmin -A $ARG1 -l $ARG2`"
+
+`message "Press [CANCEL] to return to attribute mapping administration."`
+

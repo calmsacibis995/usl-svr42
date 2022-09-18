@@ -1,0 +1,29 @@
+[New Game], N or n:  Throws away the current game and start a new one.
+
+[Backup: One Move], U or u: Undo the last move.  
+
+[Backup: Start Over], A or a: Play the same hand again.  
+
+[Backup: Replay], R or r:  Show all the moves made so far.  
+
+[Expand], E or e: Expand column.  
+
+[Locate], F or f:  find a specified card or cards.
+
+[Score], S or s: Shows the current score.
+
+[File: Save in File], W or w:  writes the current position to a file
+specified by the current selection.
+
+[File: Resume from Selection], L or l: restores a position represented by 
+the current selection.  
+
+D or d: Deals a new round.
+
+?: Gives a move suggestion.  This isn't necessarily the best move, but
+may be helpful for beginners.
+
+#: Displays some game statatistics.
+
+Q: Quit.
+

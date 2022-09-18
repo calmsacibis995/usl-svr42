@@ -1,0 +1,91 @@
+XPM Pixmap File Convention Support
+==================================
+
+The XPM (X PixMap) file format is a convention for storing pixmaps
+on disk in a portable (ASCII), device-independent (no depth or color
+limitations), #include'able format, similar to MIT's standard X11
+bitmap file format.  The convention was developed out of need by
+the X community (GROUPE BULL in particular); it is our hope that
+it will soon become part of standard X11 from MIT.  This doesn't
+need to happen for you to start using the format today, though,
+as all the support you need can be found here.  Your application
+will, in a sense, live in a vacuum.
+
+The two source files xpm.c and xpm.h provide support for managing
+XPM-format files.  Link these into your application and call the
+routines below as appropriate:
+
+    Pixmap XCreatePixmapFromData(display, drawable, colormap,
+				 width, height, depth,
+				 ncolors, chars_per_pixel, colors, pixels)
+
+    int    XReadPixmapFile(display, drawable, colormap, filename,
+			   w_return, h_return, depth, pixmap_return)
+
+    int    XWritePixmapFile(display, colormap, filename,
+			    pixmap, width, height)
+
+
+The XPM file format looks like this:
+
+#define foo_format 1
+#define foo_width 16
+#define foo_height 16
+#define foo_ncolors 4
+#define foo_chars_per_pixel 1
+static char * foo_colors[] = {
+" " , "#FFFFFFFFFFFF",
+"." , "SkyBlue",
+"X" , "#000000",
+"o" , "ForestGreen"
+} ;
+static char * foo_pixels[] = {
+"X..X           X",
+" X..X          X",
+"  X..X        X ",
+"   X..X      X  ",
+"   X..X     X   ",
+"    X..X   X    ",
+"     X..X  X    ",
+"      X.. X     ",
+"      XX X      ",
+"      X ooX     ",
+"     X  XooX    ",
+"     X   XooX   ",
+"    X    XooX   ",
+"   X      XooX  ",
+"  X        XooX ",
+" X          XooX"
+} ;
+
+So, the most typical application usage of the XPM support routines
+is similar to how bitmap files are incorporated:
+
+	#include "foo.xpm"
+
+	...
+ 	Pixmap foo = XCreatePixmapFromData(DISPLAY, DRAWABLE, COLORMAP,
+					   foo_width, foo_height, DEPTH,
+					   foo_ncolors, foo_chars_per_pixel,
+					   foo_colors, foo_pixels);
+	...
+
+Colors will be allocated from the supplied colormap as necessary,
+and the pixmap foo (which will be created with the specified depth)
+could then be used like any normal X pixmap.
+
+
+The OPEN LOOK Pixmap Editor, olpixmap(1), reads and writes XPM
+format pixmap files.
+
+
+There exists a wonderful suite of image format conversion utilities
+called PBMPLUS (Extended Portable Bitmap Toolkit), available in the
+"contrib" portion of the MIT X11 distribution, or on export.lcs.mit.edu
+(192.20.239.129).  This package enables conversion between any two of a
+large number of different image formats (XPM, GIF, TIFF, XWD, PostScript,
+MacPaint, etc.) through the use of pipelined conversion filters.  Once
+an image has been converted to XPM, it can be manipulated using the
+OPEN LOOK pixmap editor, then converted back, or even turned into
+PostScript and printed if desired.
+

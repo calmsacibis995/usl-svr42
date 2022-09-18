@@ -1,0 +1,28 @@
+#ifndef	NOIDENT
+#ident	"@(#)xterm:waitmask.ic	1.3"
+#endif
+/*
+ waitmask.ic (Icon file)
+	Acc: 575779175 Wed Mar 30 21:39:35 1988
+	Mod: 575733444 Wed Mar 30 08:57:24 1988
+	Sta: 575778181 Wed Mar 30 21:23:01 1988
+	Owner: 1118
+	Group: 1985
+	Permissions: 644
+*/
+/*
+	START USER STAMP AREA
+*/
+/*
+	END USER STAMP AREA
+*/
+/* @(#)waitmask.ic	X10/6.6	11/3/86 */
+#define waitmask_width 16
+#define waitmask_height 16
+#define waitmask_x_hot 7
+#define waitmask_y_hot 7
+static unsigned char waitmask_bits[] = {
+   0xf0, 0x07, 0xf8, 0x0f, 0xfc, 0x1f, 0xfe, 0x3f,
+   0xff, 0x7f, 0xff, 0x7f, 0xff, 0x7f, 0xff, 0x7f,
+   0xff, 0x7f, 0xff, 0x7f, 0xff, 0x7f, 0xfe, 0x3f,
+   0xfc, 0x1f, 0xfe, 0x3f, 0xfe, 0x3f, 0xfe, 0x3f};

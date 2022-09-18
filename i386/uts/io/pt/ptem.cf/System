@@ -1,0 +1,5 @@
+#ident	"@(#)uts-x86:io/pt/ptem.cf/System	1.5"
+#ident	"$Header: $"
+$version 1
+$loadable ptem
+ptem	Y	16	0	0	0	0	0	0	0	-1

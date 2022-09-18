@@ -1,0 +1,11 @@
+#ident	"@(#)oamintf:common/cmd/oamintf/softwaremgmt/Help	1.1.4.4"
+#ident  "$Header: Help 2.0 91/07/12 $"
+
+ABSTRACT:
+	If security is installed, this task is only available in
+	Maintenance Mode.  These subcommands permit you to install
+	new software, remove software, and run software directly
+	from the removable disk it is delivered on.  The "remove"
+	and "run" capabilities depend upon the particular software
+	packages.  Refer to the instructions delivered with each
+	package.

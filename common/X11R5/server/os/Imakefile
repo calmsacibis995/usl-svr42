@@ -1,0 +1,120 @@
+/**/#ident	"@(#)siserver:os/Imakefile	1.7"
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+
+#include <Server.tmpl>
+
+/*
+ * do not modify the following two definitions
+ */
+
+#ifndef OtherSources
+#if HasScalableFonts
+#define OtherSources
+#else
+#define OtherSources fontdir.c
+#endif
+#endif
+
+#ifndef OtherObjects
+#if HasScalableFonts
+#define OtherObjects
+#else
+#define OtherObjects fontdir.o
+#endif
+#endif
+
+#if HasDESLibrary
+DESDEFS = -DHASDES
+DESOBJS = xdmauth.o
+DESSRCS = xdmauth.c
+#else
+DESDEFS = 
+DESOBJS =
+DESSCRS =
+#endif
+
+#if defined(SystemV4) || defined(SVR4)
+MALLOC_SRCS =
+MALLOC_OBJS =
+#else
+MALLOC_SRCS = malloc.c
+MALLOC_OBJS =  malloc.o
+#endif /* SystemV4 */
+
+           SRCS = WaitFor.c access.c connection.c io.c oscolor.c \
+                  osinit.c utils.c auth.c  \
+		  mitauth.c $(DESSRCS) $(MALLOC_SRCS) OtherSources
+           OBJS = WaitFor.o access.o connection.o io.o oscolor.o \
+                  osinit.o utils.o auth.o  \
+		  mitauth.o $(DESOBJS) $(MALLOC_OBJS) OtherObjects
+
+   FONT_DEFINES = FontDefines FontFilters
+#if SpecialMalloc
+     OS_DEFINES = -DSPECIAL_MALLOC
+#else
+     OS_DEFINES =
+#endif /* SpecialMalloc */
+    DBM_DEFINES = NdbmDefines
+        DEFINES = ConnectionFlags $(OS_DEFINES) $(DESDEFS)
+#if Release5
+#if HasScalableFonts
+       INCLUDES = -I../include -I$(INCLUDESRC) -I$(TOP)/lib/Xau
+#else
+       INCLUDES = -I../include -I../../fonts/include -I$(INCLUDESRC) -I$(TOP)/lib/Xau
+#endif
+#else
+       INCLUDES = -I.  -I../include -I$(INCLUDESRC) -I$(TOP)/lib/Xau
+#endif
+    EXT_DEFINES = ExtensionDefines
+       LINTLIBS = ../dix/llib-ldix.ln
+
+#ifdef NEED_ALLOCA_FROM_LIBPW
+          PWLIB = /lib/libPW.a
+#endif /* NEED_ALLOCA_FROM_LIBPW */
+
+NormalLibraryObjectRule()
+NormalLibraryTarget(os,$(OBJS))
+LintLibraryTarget(os,$(SRCS))
+NormalLintTarget($(SRCS))
+
+/**/# these depend on ConnectionFlags
+access.o: $(ICONFIGFILES)
+connection.o: $(ICONFIGFILES)
+
+#ifdef NEED_ALLOCA_FROM_LIBPW
+/**/#
+/**/# And this one is to get the version of alloca that lives in /lib/libPW.a
+/**/# without getting all of the rest of the stuff in there.
+/**/#
+alloca.o:  $(PWLIB)
+	rm -f alloca.o
+	ar x $(PWLIB) alloca.o
+#endif /* NEED_ALLOCA_FROM_LIBPW */
+
+SpecialObjectRule(osinit.o, $(ICONFIGFILES), -DADMPATH=\"$(ADMDIR)/X\%smsgs\" $(DBM_DEFINES))
+SpecialObjectRule(WaitFor.o, $(ICONFIGFILES), $(EXT_DEFINES))
+SpecialObjectRule(oscolor.o, $(ICONFIGFILES), $(DBM_DEFINES))
+
+#ifdef Release5
+DependTarget()
+#else
+DependTarget(-l)
+#endif
+
+/*
+ *	special rule for utils.c to be compared in -Xa
+ *	since in strict ANSI C conformance NSIG is not defined
+ */
+#if defined(ix86Architecture) || defined(i386Architecture)
+utils.o:	utils.c
+		$(RM) $@
+		$(CC) $(CFLAGS) -Xa -Dix86 -c utils.c
+#endif

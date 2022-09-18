@@ -1,0 +1,11 @@
+#ident	"@(#)set:common/set/bdev/setinfo	1.1"
+#ident	"$Header: $"
+
+# Format for the setinfo file.  	Field separator is: <tab>
+# pkg   parts   default category	pkg full-name
+# abbr          y/n
+
+softint	1	y	system	Software Packaging Tools
+ccs	4	y	system	C Optimized Compilation System
+kdb	1	n	system,utilities	Kernel Debugger
+edebug	1	y	system,utilities	Enhanced Debugger

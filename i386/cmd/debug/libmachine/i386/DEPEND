@@ -1,0 +1,10 @@
+#ident	"@(#)debugger:libmachine/i386/DEPEND	1.1"
+Instr.o:	Instr.C
+	$(CPLUS_CMD) -c Instr.C
+
+Tables.o:	Tables.c
+	$(CC_CMD) -c Tables.c
+
+OBJECTS	=  \
+	Instr.o \
+	Tables.o

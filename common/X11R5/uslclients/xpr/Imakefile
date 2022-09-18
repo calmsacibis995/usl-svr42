@@ -1,0 +1,53 @@
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+/**/#ident	"@(#)xpr:Imakefile	1.7"
+#define IHaveSubdirs
+#define PassCDebugFlags 'CDEBUGFLAGS=$(CDEBUGFLAGS)'
+
+         SUBDIRS = devices terminfo
+   LOCAL_LIBRARIES = devices/libdev.a devices/terminfo/libti.a devices/postscript/libps.a $(XLIB)
+   SYS_LIBRARIES = -lcurses -lm
+
+SRCS = \
+	colormap.c \
+	convert.c \
+	enlarge.c \
+	invert.c \
+	parse.c \
+	read_image.c \
+	swap.c \
+	sys_calls.c \
+	textures.c \
+	tparm.c \
+	tputs.c \
+	xgetopt.c \
+	xpr.c
+
+OBJS = \
+	colormap.o \
+	convert.o \
+	enlarge.o \
+	invert.o \
+	parse.o \
+	read_image.o \
+	swap.o \
+	sys_calls.o \
+	textures.o \
+	tparm.o \
+	tputs.o \
+	xgetopt.o \
+	xpr.o
+
+MakeSubdirs($(SUBDIRS))
+DependSubdirs($(SUBDIRS))
+
+ComplexProgramTarget(xpr)
+
+install:: $(SUBDIRS)

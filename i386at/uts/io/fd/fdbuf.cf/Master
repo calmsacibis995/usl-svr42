@@ -1,0 +1,5 @@
+#ident	"@(#)uts-x86at:io/fd/fdbuf.cf/Master	1.1"
+#ident	"$Header: $"
+$version 1
+$entry init
+fdbuf	fdbuf	r	0	0	0

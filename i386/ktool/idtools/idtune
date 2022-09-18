@@ -1,0 +1,268 @@
+#!/sbin/sh
+#ident	"@(#)idtools:i386/ktool/idtools/idtune	1.8"
+#ident	"$Header:"
+
+# idtune  [ -f | -m ]  [ -c ]	name  value
+#
+# Attempt to set the value of tunable parameter 'name' to 'value'.
+# If a value is already given to this parameter (via stune), the user will
+# be asked to confirm the change unless the -f option is used.
+# If the -m option is used, we silently accept existing values greater than
+# the new value.
+#
+# -or-
+#
+# idtune  -g  [ -c ]	name
+#
+# This form reports the current settings for tunable parameter 'name'.
+# A line is output to stdout with four whitespace-separated fields:
+#
+#	current_value  original_default_value  minimum_value  maximum_value
+#
+# -or-
+#
+# idtune  -d  [ -c ]	name
+#
+# This form restores the tunable parameter 'name' to its default value,
+# as given in the mtune file.
+#
+#
+# In any form, if the tunable parameter is not defined (in an mtune file),
+# idtune will exit with a non-zero status.
+#
+#
+# In any form, if the -c option is used, the work will done on stune.current
+# in addition to stune. stune.current will be used to preconfig all the new
+# loadable modules, so these changes will become effective on those loadable modules
+# immediately instead of at the next reboot. The -c option should be used with
+# caution, because it may cause inconsistent between the static kernel and
+# loadable modules.
+	
+
+usage()
+{
+	echo >&2 "Usage: idtune [ -f | -m ] [ -c ] name value"
+	echo >&2 "  -or- idtune -g [ -c ] name"
+	echo >&2 "  -or- idtune -d [ -c ] name"
+	exit 99
+}
+
+# If parameter already in stune, see if we're allowed to change it.
+# Otherwise, append the new value to the end.
+
+ed_stune()
+{
+	if [ "$sline" ]
+	then
+		if [ "$cur_value" = "$new_value" ]
+		then
+			return 0
+		fi
+		if [ "$min" ]
+		then
+			$IDVAL -g "$cur_value" "$new_value"  >/dev/null
+			if [ "$?" -eq "1" ]
+			then
+				return 0
+			fi
+		fi
+		if [ ! "$force" ]
+		then
+			echo "\nTunable Parameter \"$name\" is currently set to ${cur_value}."
+			echo "\tIs it OK to change it to $new_value? (y/n) \c"
+			read ans
+			case $ans in
+				y*|Y*)	;;
+				*)	echo "\n\"$name\" left at ${cur_value}."
+					exit 0;;
+			esac
+			echo
+		fi
+		ed - $STUNE >/dev/null 2>&1 <<-!
+			/^$name[ 	]/c
+			$name	$new_value
+			.
+			w
+		!
+		return $?
+	else
+		echo "$name\t$new_value" >>$STUNE
+		return $?
+	fi
+}
+
+_PFX=`basename $0 | sed -n 's/idtune$//p`
+_PFX=${_PFX:-$PFX}
+
+if [ "${ROOT:=/}" != "/" ]
+then
+	ROOT=${ROOT}${MACH:+"/$MACH"}
+fi
+
+NSTUNE=$ROOT/etc/conf/cf.d/stune
+CSTUNE=$ROOT/etc/conf/cf.d/stune.current
+MTUNE=$ROOT/etc/conf/cf.d/mtune
+P_IDVAL=/etc/conf/bin/${_PFX}idval
+IDVAL=$ROOT/$P_IDVAL
+[ -x $IDVAL -o ! -x $TOOLS/$P_IDVAL ] || IDVAL=$TOOLS/$P_IDVAL
+
+force=
+min=
+get=
+dflt=
+cflag=
+debug=
+
+while getopts fmgdc# op
+do
+	case "$op" in
+	f)
+		force=y;;
+	m)
+		min=y;;
+	g)
+		get=y;;
+	d)
+		dflt=y;;
+	c)
+		cflag=y;;
+	'#')
+		debug=y;;
+	\?)
+		usage;;
+	esac
+done
+shift `expr $OPTIND - 1`
+
+STUNE=$NSTUNE
+
+if [ "$force" -o "$dflt" ]
+then
+	if [ "$min" ]
+	then
+		usage
+	fi
+fi
+
+if [ "$get" ]
+then
+	if [ "$force" -o "$min" -o "$dflt" ]
+	then
+		usage
+	fi
+fi
+
+if [ "$get" -o "$dflt" ]
+then
+	if [ $# -ne 1 ]
+	then
+		usage
+	fi
+else
+	if [ $# -ne 2 ]
+	then
+		usage
+	fi
+fi
+
+if [ "$debug" ]
+then
+	echo "Root for this process is ${ROOT}"
+	echo "The stune file used:"
+	echo "\t$STUNE"
+	if [ "$cflag" ]
+	then
+		echo "and\t$CSTUNE"
+	fi
+	echo "\nThe mtune file used:"
+	echo "\t$MTUNE"
+fi
+
+name=$1
+
+if [ ! "$dflt" ]
+then
+	new_value=$2
+fi
+
+if [ ! -f $MTUNE ]
+then
+	echo >&2 "\nThe mtune file $MTUNE does not exist."
+	exit 1
+fi
+
+if mline=`grep "^$name[ 	]" $MTUNE 2>/dev/null`
+then
+	set - $mline
+	def_value=$2
+	lbound=$3
+	ubound=$4
+else
+	echo >&2 "\nThe Tunable Parameter \"$name\" does not exist."
+	exit 1
+fi
+
+if [ "$cflag" ]
+then
+	STUNE=$CSTUNE
+fi
+
+if sline=`grep "^$name[ 	]" $STUNE 2>/dev/null`
+then
+	set - $sline
+	cur_value=$2
+else
+	cur_value=$def_value
+fi
+
+if [ "$get" ]
+then
+	echo "$cur_value\t$def_value\t$lbound\t$ubound"
+	exit 0
+fi
+
+if [ "$dflt" ]
+then
+	new_value=$def_value
+fi
+
+# Check for upper and lower bound in mtune.
+
+$IDVAL -g "$new_value" "$ubound"  > /dev/null
+if [ "$?" -eq "1" ]
+then
+	echo "\nThe requested value for Tunable Parameter \"$name\", ${new_value},"
+	echo "is higher than the upper limit in mtune, $ubound."
+	echo "\n\"$name\" left unchanged.\n"
+	exit 1
+fi
+$IDVAL -l "$new_value" "$lbound"  > /dev/null
+if [ "$?" -eq "1" ]
+then
+	echo "\nThe requested value for Tunable Parameter \"$name\", ${new_value},"
+	echo "is lower than the lower limit in mtune, $lbound."
+	echo "\n\"$name\" left unchanged.\n"
+	exit 1
+fi
+
+if ed_stune
+then
+	:
+else
+	echo "\n\"$name\" left at ${cur_value}."
+	exit 1
+fi
+
+if [ "$cflag" ]
+then
+	STUNE=$NSTUNE
+	if sline=`grep "^$name[ 	]" $STUNE 2>/dev/null`
+	then
+		set - $sline
+		cur_value=$2
+	else
+		cur_value=$def_value
+	fi
+	force=y
+	ed_stune
+fi

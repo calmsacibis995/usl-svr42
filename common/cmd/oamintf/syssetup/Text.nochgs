@@ -1,0 +1,27 @@
+#ident	"@(#)oamintf:common/cmd/oamintf/syssetup/Text.nochgs	1.1.1.2"
+#ident  "$Header: Text.nochgs 2.0 91/07/12 $"
+################################################################################
+#	Module Name: Text.nochgs
+################################################################################
+Title="Defining Administrative and System Login(s) Password Information"
+
+framemsg=`readfile $INTFBASE/conf.msg`
+
+lifetime=shortterm
+
+rows=6
+columns=75
+
+text="	
+	No changes were specified for login '$ARG1'.
+"
+
+altslks
+
+name=CONT
+button=11
+action=CLOSE
+
+name=CANCEL
+button=14
+action=CLEANUP

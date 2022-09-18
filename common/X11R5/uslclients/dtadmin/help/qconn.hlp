@@ -1,0 +1,60 @@
+^*version^1
+^*title^Quick Connect
+^*width^70
+^+DesktopMgr/help.defs
+^?Quickly connect to a networked system.
+^0^Quick Connect
+^$10
+Quick Connect
+
+Quick Connect lets you connect to another computer on your network.
+The system information for the remote computer does not have to have
+been previously entered into your system. This allows you to connect
+to any system that allows you access without going through a setup
+procedure.
+
+There is one main Quick Connect window:
+
+        \k(Quick Connect Window)
+^1^Quick Connect Window
+^$20
+\k{Quick Connect}
+1. Quick Connect Window
+
+The Quick Connect window allows you to connect to a networked computer
+through the device selected in the Dialup Setup: Devices window. Enter
+the system's name on the System Name line.
+
+The buttons available for the Quick Connect window are:
+
+        \k(Connect Button^^Connect ButtonQC)
+        \k(Reset Button^^Reset ButtonQC)
+        \k(Cancel Button^^Cancel ButtonQC)
+        \k(Help Button^^Help ButtonQC)
+^2^Connect Button=Connect ButtonQC
+^$30
+1. \k{Quick Connect Window}
+   1.1 Connect Button
+
+The Connect button uses the selected device to connect to the system
+indicated on the System Name line.
+^2^Reset Button=Reset ButtonQC
+^$40
+1. \k{Quick Connect Window}
+   1.2 Reset Button
+
+The Reset button reverses any changes you have not yet applied. The
+Quick Connect window stays open.
+^2^Cancel Button=Cancel ButtonQC
+^$50
+1. \k{Quick Connect Window}
+   1.3 Cancel Button
+
+The Cancel button closes the Dialup Setup: Quick Connect window with
+no action taken.
+^2^Help Button=Help ButtonQC
+^$60
+1. \k{Quick Connect Window}
+   1.4 Help Button
+
+The Help button provides on-line help for Dialup Setup: Quick Connect.

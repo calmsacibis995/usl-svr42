@@ -1,0 +1,137 @@
+/**/#ident	"@(#)dtadmin:userad/Imakefile	1.13.2.41"
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+
+#define PassCDebugFlags 'CDEBUGFLAGS=$(CDEBUGFLAGS)'
+
+          SRCS = \
+		LoginMgr.c
+
+          OBJS = \
+		LoginMgr.o
+
+        HEADERS = \
+		login_msg.h
+
+           STAR = *
+
+   DTCLIENTSLIB = $(USLCLIENTSRC)/libDtI
+       DTLIBSRC = $(LIBSRC)/Dt
+    GIZMOLIBSRC = $(LIBSRC)/Gizmo
+      DTILIBSRC = $(DTCLIENTSLIB)
+     DTAMLIBSRC = ../dtamlib
+          DTLIB = $(DTLIBSRC)/libDt.so
+       GIZMOLIB = $(GIZMOLIBSRC)/libGizmo.so
+         DTILIB = $(DTILIBSRC)/libDtI.so
+        DTAMLIB = $(DTAMLIBSRC)/libdtam.a
+
+       INCLUDES = -I$(LIBSRC) -I$(LIBSRC)/Xol -I$(GIZMOLIBSRC) -I$(DTILIBSRC) -I$(USLCLIENTSRC)
+LOCAL_LIBRARIES = $(DTAMLIB) $(DTILIB) $(DTLIB) $(GIZMOLIB) XolClientLibs
+        DEPLIBS = $(DTAMLIB) $(DTILIB) $(DTLIB) $(GIZMOLIB) XolClientDepLibs
+
+  SYS_LIBRARIES = -lgen -lm
+
+ComplexProgramTarget(LoginMgr)
+
+InstallNonExecFile(scripts/.olinitrc,$(DTADMDIR))
+InstallNonExecFile(scripts/.olsetup,$(DTADMDIR))
+InstallNonExecFile(scripts/.xsession,$(DTADMDIR))
+InstallNonExecFile(scripts/dtuser.msgs,$(DTADMDIR))
+InstallNonExecFile(scripts/dtadduser,$(DTADMDIR))
+InstallNonExecFile(scripts/dtdeluser,$(DTADMDIR))
+InstallNonExecFile(scripts/dtprivilege,$(DTADMDIR))
+InstallNonExecFile(scripts/dttoolbox,$(DTADMDIR))
+InstallNonExecFile(scripts/make-owner,$(DTADMDIR))
+InstallNonExecFile(scripts/olremuser,$(DTADMDIR))
+InstallNonExecFile(scripts/olsetvar,$(DTADMDIR))
+InstallNonExecFile(scripts/olunsetvar,$(DTADMDIR))
+
+InstallNonExecFile(PrivTable,$(DESKTOPDIR)/LoginMgr)
+InstallNonExecFile(desktop/.init_dtinfo,$(DESKTOPDIR))
+/*
+InstallNonExecFile(desktop/.lastsession,$(DESKTOPDIR))
+*/
+InstallNonExecFile(desktop/Applications/.init_dtinfo,$(DESKTOPDIR)/Applications)
+InstallNonExecFile(desktop/Preferences/.init_dtinfo,$(DESKTOPDIR)/Preferences)
+InstallNonExecFile(desktop/System_Setup/.init_dtinfo,$(DESKTOPDIR)/System_Setup)
+InstallNonExecFile(desktop/Utilities/.init_dtinfo,$(DESKTOPDIR)/Utilities)
+
+install::
+	if [ -d $(DESKTOPDIR) -a -w $(DESKTOPDIR) ] ; 			\
+then	cd $(DESKTOPDIR); 						\
+else 									\
+	echo "cannot create toolboxes in $(DESKTOPDIR)" ; 		\
+	exit 2 ; 							\
+fi ; 									\
+									\
+if [ ! -x Shutdown ] ; 							\
+then									\
+	echo "Shutdown" > Shutdown ;					\
+	$(CHMOD) +x Shutdown ;						\
+fi ;									\
+if [ ! -x Folder_Map ] ;						\
+then									\
+	echo "Folder_Map" > Folder_Map ;				\
+	$(CHMOD) +x Folder_Map ;					\
+fi ;									\
+if [ ! -x dtbinder ] ;							\
+then									\ 
+	echo "dtbinder" > dtbinder ;					\
+	$(CHMOD) +x dtbinder ;						\
+fi ;									\
+if [ ! -x dtprop ] ;							\
+then									\
+	echo "dtprop" > dtprop ;					\
+	$(CHMOD) +x dtprop ;						\
+fi ;									\
+if [ ! -x dtwastebasket ] ;						\
+then									\
+	echo "dtwastebasket" > dtwastebasket ;				\
+	$(CHMOD) +x dtwastebasket ;					\
+fi ;									\
+$(CP) dtprop DtColorProps ;						\
+$(CP) dtprop DtDesktopProps ;						\
+$(CP) dtprop DtIconProps ;						\
+$(CP) dtprop DtKeybdProps ;						\
+$(CP) dtprop DtLocaleProps ;						\
+$(CP) dtprop DtMiscProps ;						\
+$(CP) dtprop DtMouseProps ;						\
+if [ ! -f System_Setup/Password_Setup ] ;				\
+then	touch System_Setup/Password_Setup ;				\
+fi ;
+									
+
+#ifndef UTSXENV
+InstallDesktopClient($(BINDIR)/LoginMgr,$(DESKTOPDIR)/System_Setup/User_Setup)
+InstallDesktopClient($(DESKTOPDIR)/dtbinder,$(DESKTOPDIR)/System_Setup/Icon_Setup)
+InstallDesktopClient($(DESKTOPDIR)/DtColorProps,$(DESKTOPDIR)/Preferences/Color)
+InstallDesktopClient($(DESKTOPDIR)/DtDesktopProps,$(DESKTOPDIR)/Preferences/Desktop)
+InstallDesktopClient($(DESKTOPDIR)/DtIconProps,$(DESKTOPDIR)/Preferences/Icons)
+InstallDesktopClient($(DESKTOPDIR)/DtKeybdProps,$(DESKTOPDIR)/Preferences/Keyboard)
+InstallDesktopClient($(DESKTOPDIR)/DtLocaleProps,$(DESKTOPDIR)/Preferences/Locale)
+InstallDesktopClient($(DESKTOPDIR)/DtMiscProps,$(DESKTOPDIR)/Preferences/Miscellaneous)
+InstallDesktopClient($(DESKTOPDIR)/DtMouseProps,$(DESKTOPDIR)/Preferences/Mouse)
+
+/* *****
+XCOMM#
+XCOMM# DO NOT change the following to InstallDesktopClient( )
+XCOMM# InstallDesktopClient() generates a dependency on /usr/sbin/sysadm
+XCOMM# and during the final builds, /usr/sbin/sysadm doesn't exist, so install
+XCOMM# will fail. By putting install:: directly, the link is created even
+XCOMM# the file, /usr/sbin/sysadm doesn't exist; later when the sysadm stuff
+XCOMM# is installed, everything will be OK
+XCOMM#
+* *****/
+
+install::
+	$(RM) $(DESKTOPDIR)/System_Setup/Extra_Admin
+	$(LN) /usr/sbin/sysadm $(DESKTOPDIR)/System_Setup/Extra_Admin
+#endif
+

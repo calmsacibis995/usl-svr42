@@ -1,0 +1,12 @@
+#ident	"@(#)terminfo:common/cmd/terminfo/ckout	1.6.2.1"
+#ident "$Header: /sms/sinixV5.4es/rcs/s19-full/usr/src/cmd/terminfo/ckout,v 1.1 91/02/28 20:12:36 ccs Exp $"
+echo "`2>/dev/null cat errs|wc -l` entries have been compiled"
+echo
+2>/dev/null cat errs|grep -iv "^mkdir"|grep -iv "^create"|grep -iv "^link"|grep -vi terminfo.src|grep -vi touch|grep -vi "working"
+if [ $? -ne 0 ] ;
+	then
+		echo "\tNo Errors"
+	else
+		echo "\tErrors can be found in /tmp/terminfo.errs"
+		cp errs /tmp/terminfo.errs
+fi

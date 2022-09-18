@@ -1,0 +1,200 @@
+'\" EMACS_MODES: fill, lnumb, !overwrite, !nodelete, !picture
+'\"============================================================
+'\"
+'\" Skeleton manual page
+'\"
+'\"============================================================
+.if t .po .75i
+.if t .ds EM \(em
+.if n .ds EM \-\-
+'\"============================================================
+.TH XPR 1 "17 May 1988" "X Version 11"
+'\"
+'\"------------------------------------------------------------
+.SH "\fBNAME\fP"
+xpr \- print an X window dump
+'\"
+'\"------------------------------------------------------------
+.SH "\fBSYNOPSIS\fP"
+.B xpr
+.RB [ "\-o"
+.IR "path-name" ]
+.RB [ "\-a"
+.IR "path-name\ " [
+.BR "\-n" "] ]"
+.RB [ "\-d"
+.IR "name" ]
+.RB [ "\-h"
+.IR "text" ]
+.RB [ "\-t"
+.IR "text" ]
+.RB [ "\-W"
+.IR "decimal-number" ]
+.RB [ "\-H"
+.IR "decimal-number" ]
+.RB [ "\-l" ]
+.RB [ "\-p" ]
+.RB [ "\-L"
+.IR "decimal-number" ]
+.RB [ "\-T"
+.IR "decimal-number" ]
+.RB [ "\-s"
+.IR "integer" ]
+.RB [ "\-S"
+.IR "integer" ]
+.RB [ "\-r" ]
+.RI [ path-name ]
+.fi
+'\"------------------------------------------------------------
+.SH "\fBDESCRIPTION\fP"
+The
+.I xpr
+program takes as input an X window dump file produced by
+.IR "xwd" "(1)"
+and formats it for output on one of several printers.
+If no
+.I "path-name"
+argument is given the standard output is used.
+.P
+By default the
+.I "xpr"
+program prints the largest possible representation of the window
+on the output page.
+Options allow the user to add a header and a trailer,
+specify margins,
+adjust the scale and orientation,
+and append multiple window dumps to a single output file.
+.SS "\fBOptions\fP"
+.TP 1i
+.BI "\-o\ " "path-name"
+The output is directed to the file named by
+.I "path-name."
+If the file doesn't exist it is created.
+If the file already exists its original contents are
+overwritten.
+.TP 1i
+.BI "\-a\ " "path-name"
+The output is appended to the file named by
+.I "path-name."
+If the file doesn't exist it is created.
+It is assumed that the original file already includes any
+necessary printer initialization sequences,
+so these are not added in the appended contents.
+.TP 1i
+.B "\-n"
+This option can be used only with the
+.B "\-a"
+option.
+It causes the removal of any formfeed or other page break
+control sequences from the end of the original content of the
+output file.
+This allows the new window image to be concatenated to the
+previous image.
+The default margins,
+or margins specified with the
+.B "\-L"
+and
+.B "\-T"
+options,
+are still applied to the new image,
+so you may want to give the
+.B "\-T\ 0"
+option to force the new image to follow immediately after the
+old image.
+.TP 1i
+.BI "\-d\ " "name"
+The image is converted into a printer-ready version for the
+device named in
+.I "name."
+.TP 1i
+.BI "\-h\ " "text"
+The header given in
+.I "text"
+is placed 1/4 inch above the image in approximately 15 point type.
+Any printable ASCII text plus spaces may be included in
+.I "text."
+.TP 1i
+.BI "\-t\ " "text"
+The trailer given in
+.I "text"
+is placed 1/4 inch below the image in approximately 15 point type.
+Any printable ASCII text plus spaces may be included in
+.I "text."
+.TP 1i
+.BI "\-W\ " "decimal-number"
+The image is scaled so that it will be at most
+.I "decimal-number"
+inches wide.
+For some devices the width may be significantly less than
+.I "decimal-number."
+This option overrides the
+.B "\-S"
+option.
+.TP 1i
+.BI "\-H\ " "decimal-number"
+The image is scaled so that it will be at most
+.I "decimal-number"
+inches tall.
+For some devices the height may be significantly less than
+.I "decimal-number."
+This option overrides the
+.B "\-S"
+option.
+.TP 1i
+.B "\-l"
+The image is rotated 90 degrees counter-clockwise,
+so that it is printed in ``landscape'' mode.
+By default the image is printed so that its longest side
+parallels the longest edge of the printed page.
+.TP 1i
+.B "\-p"
+The image is printed upright.
+By default the image is printed so that its longest side
+parallels the longest edge of the printed page.
+.TP 1i
+.BI "\-L\ " "decimal-number"
+The image is printed
+.I "decimal-number"
+inches in from the leftmost printable column of the paper.
+Due to differences in the alignment of the paper in the
+printer,
+the actual margin may differ.
+.TP 1i
+.BI "\-T\ " "decimal-number"
+The image is printed
+.I "decimal-number"
+inches down from the top-most printable row of the paper.
+Due to differences in the alignment of the paper in the
+printer,
+the actual margin may differ.
+.TP 1i
+.BI "\-s\ " "integer"
+The image,
+including any header and trailer,
+is split onto
+.I "integer"
+pages.
+The complete image can be pasted together by hand from the
+separate strips printed on each page.
+This option is typically only needed for printers that cannot
+handle a large image on one page,
+due to memory limitations.
+.TP 1i
+.BI "\-S\ " "integer"
+The image is scaled up by the factor
+.I "integer."
+By default the largest scale that still allows the full image
+to be printed on a page,
+while limiting the size of individual pixels to less than 1/4
+inch on a side,
+is used.
+.TP 1i
+.B "\-r"
+The printed image is ``intensity inverted,''
+that is,
+where ink would be applied in the printed image without the
+.B "\-r"
+option,
+ink is not applied,
+and vice versa.
+The inversion is limited to the area of the image.

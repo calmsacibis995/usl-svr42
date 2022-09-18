@@ -1,0 +1,147 @@
+#ident	"@(#)pkg.face:preinstall	1.4.2.4"
+#ident	"$Header: $"
+
+trap 'exit 3' 1 2 3 15
+
+############# Begin UPGRADE AND OVERLAY #######################
+
+export INSTALL_MODE PKGINSTALL_TYPE AUTOMERGE
+#  set INSTALL_MODE to CUSTOM, if not set
+[ "$INSTALL_MODE" ] || INSTALL_MODE=CUSTOM
+SCRIPTS=/usr/sbin/pkginst
+UPGRADE_STORE=/var/sadm/upgrade
+
+PKGINSTALL_TYPE=NEWINSTALL
+#is it upgrade or overlay?
+#	${SCRIPTS}/chkpkgrel returns 2 if installed pkg is DESTINY
+#					4 if installed pkg is V4
+#					1 if installed pkg if UNK version
+#					0 if pkg is not installed
+
+#
+#  If there's an older (than 4.2) version of OA&M installed, inform
+#  the user to pkgrm it and start again.
+#
+${SCRIPTS}/chkpkgrel oam
+PKGVERSION=$?
+[ $PKGVERSION != 2 -a $PKGVERSION != 0 ] && {
+
+	#
+	#  Set up to use menu_colors; default to C-locale if ${LANG}'s dir has
+	#  no menu_colors.sh
+	#
+	if [ -f /etc/inst/locale/${LANG}/menus/menu_colors.sh ]
+	then
+		. /etc/inst/locale/${LANG}/menus/menu_colors.sh
+	else
+		. /etc/inst/locale/C/menus/menu_colors.sh
+	fi
+
+	#
+	#  Send the menus out to the correct directory
+	#
+	DIR=/etc/inst/locale/${LANG}/menus/face
+	[ -d ${DIR} ] || mkdir -p ${DIR}
+	cp ${REQDIR}/face/* ${DIR}
+
+	menu_colors regular
+	menu -f ${DIR}/menu.remove -o /dev/null >/dev/tty 2>/dev/null < /dev/tty
+	exit 3
+}
+ 
+
+${SCRIPTS}/chkpkgrel
+PKGVERSION=$?
+case $PKGVERSION in
+	2)	PKGINSTALL_TYPE=OVERLAY	;;
+	4)	PKGINSTALL_TYPE=UPGRADE	;;
+	*)	;;
+esac
+
+rm -f $UPGRADE_STORE/${PKGINST}.env
+
+############# End UPGRADE AND OVERLAY #######################
+
+groupadd vm > /dev/null 2>&1
+ret=$?
+
+case $ret in
+	0)	;;
+	9)	[ $PKGINSTALL_TYPE = NEWINSTALL ] && {
+			echo >&2 "WARNING: group vm already exists."
+			echo >&2 "         FACE uses this group-id."
+			echo >&2 "         Installation continues."
+		}
+		;;
+	*)	echo >&2 "ERROR: unable to create group vm."
+		echo >&2 "       FACE must have this group-id"
+		echo >&2 "       available for installation."
+		echo >&2 "       Installation terminates."
+	  	echo >&2 "groupadd: return code $ret"
+		exit 1
+		;;
+esac
+
+useradd -g vm -d /home/vmsys -c "FACE executables" -m vmsys > /dev/null 2>&1
+ret=$?
+
+case $ret in
+	0)	;;
+	9)	[ $PKGINSTALL_TYPE = NEWINSTALL ] && {
+			echo >&2 "ERROR: login vmsys already exists."
+			echo >&2 "       This login must be available for"
+			echo >&2 "       FACE installation to continue."
+			echo >&2 "       Installation terminates."
+			exit 1
+		}
+		;;
+	10)	echo >&2 "WARNING: unable to update /etc/group for login vmsys."
+		echo >&2 "         Installation continues."
+		;;
+	12)	echo >&2 "ERROR: cannot create directory /home/vmsys."
+		echo >&2 "       This directory must not exist before"
+		echo >&2 "       FACE installation can succeed."
+		echo >&2 "       Installation terminates."
+		exit 1
+		;;
+	*)	echo >&2 "ERROR: cannot create login vmsys."
+		echo >&2 "       This login must be creatable before"
+		echo >&2 "       FACE installation can succeed."
+		echo >&2 "       Installation terminates."
+	  	echo >&2 "useradd: return code $ret"
+		exit 1
+		;;
+esac
+
+useradd -g other -d /home/oasys -c "Object Architecture Files" -m oasys > /dev/null 2>&1
+ret=$?
+
+case $ret in
+	0)	;;
+	9)	[ $PKGINSTALL_TYPE = NEWINSTALL ] && {
+			echo >&2 "ERROR: login oasys already exists."
+			echo >&2 "       This login must be available for"
+			echo >&2 "       FACE installation to continue."
+			echo >&2 "       Installation terminates."
+			exit 1
+		}
+		;;
+	10)	echo >&2 "WARNING: unable to update /etc/group for login oasys."
+		echo >&2 "         Installation continues."
+		;;
+	12)	echo >&2 "ERROR: cannot create directory /home/oasys."
+		echo >&2 "       This directory must not exist before"
+		echo >&2 "       FACE installation can succeed."
+		echo >&2 "       Installation terminates."
+		exit 1
+		;;
+	*)	echo >&2 "ERROR: cannot create login oasys."
+		echo >&2 "       This login must be creatable before"
+		echo >&2 "       FACE installation can succeed."
+		echo >&2 "       Installation terminates."
+	  	echo >&2 "useradd: return code $ret"
+		exit 1
+		;;
+esac
+
+exit 0

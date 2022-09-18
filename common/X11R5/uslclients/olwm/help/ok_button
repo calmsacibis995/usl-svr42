@@ -1,0 +1,61 @@
+Use the OK button stack to apply properties that you have changed to the
+selection in one of four possible ways:
+
+	Apply - To apply the settings in all categories to the selection.
+
+	Reset - To reset the settings for the properties window to the
+		values for the original selection in all categories.
+
+These same choices are also available on the Settings menu that you
+access from the properties window pane by pressing MENU. Click SELECT
+on the OK button stack to use the OK menu default. Click or press MENU
+on the OK button stack to display the OK menu. When the properties
+window is not pinned up, the properties window is dismissed after
+the changes are applied. You can view and choose from the OK menu
+in three ways using the MENU mouse button:
+
+		Press-Drag-Release
+		Click-Move-Click
+		Pinning the Window menu to the workspace
+
+Using Press-Drag-Release:
+
+	To use press-drag release, move the pointer to the OK button
+	stack, press MENU, drag the pointer to the control you want,
+	and release MENU. If you do not want to choose a control,
+	move the pointer off the menu and release the mouse button.
+
+Using Click-Move-Click:
+
+	To use click-move-click, move the pointer to the OK button
+	stack and click MENU. The OK menu is displayed and stays on
+	the screen. Move the pointer to the control you want and click
+	SELECT or MENU. The control is executed and the menu is
+	dismissed.  If you do not want to choose a control, move the
+	pointer off the menu and click SELECT or MENU to dismiss the
+	menu without choosing a control.
+
+Using the Pushpin:
+
+	To pin up the OK menu, move the pointer to the OK button
+	stack, press MENU, and drag the pointer to the pushpin.
+	When the pin pops into the hole, release MENU. The OK menu
+	becomes a pop-up window, and you choose from it in the same
+	way you use controls in the control area of a window: click
+	SELECT to use a button.
+
+Changing the Default Setting:
+
+	Each menu in a menu group has a default setting, which is
+	shown by a default ring. You can change the default setting
+	for any menu using the steps below:
+
+Press the default modifier key and MENU:
+
+	Drag the pointer from control to control. The default ring follows
+	the pointer. When the default ring is on the control you want to
+	use as the default, release MENU and then release the modifier
+	key.
+
+	If you release the modifier key first and then release MENU, in
+	addition to setting the default, the command is executed.

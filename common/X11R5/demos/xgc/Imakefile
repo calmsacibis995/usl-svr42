@@ -1,0 +1,36 @@
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+/**/#ident	"@(#)r5xgc:Imakefile	1.2"
+XCOMM $XConsortium: Imakefile,v 1.9 91/07/16 23:08:10 gildea Exp $
+        DEFINES = 
+           SRCS = dashlist.c planemask.c getfile.c tests.c text.c \
+                  choice.c main.c interpret.c record.c testfrac.c
+      OTHERSRCS = gram.y lex.l
+           OBJS = dashlist.o planemask.o getfile.o tests.o text.o \
+                  choice.o main.o interpret.o record.o testfrac.o \
+                  gram.o lex.o
+LOCAL_LIBRARIES = $(XAWLIB) $(XMULIB) $(XTOOLLIB) $(XLIB)
+        DEPLIBS = $(DEPXAWLIB) $(DEPXMULIB) $(DEPXTOOLLIB) $(DEPXLIB)
+  SYS_LIBRARIES = -lm
+         YFLAGS = -d
+
+ComplexProgramTarget(xgc)
+
+InstallAppDefaults(Xgc)
+
+gram.h gram.c: gram.y
+	$(YACC) -d gram.y
+	$(MV) y.tab.c gram.c
+	$(MV) y.tab.h gram.h
+
+clean::
+	$(RM) y.tab.h y.tab.c lex.yy.c gram.h gram.c lex.c
+
+depend:: lex.c gram.c

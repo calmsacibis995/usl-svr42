@@ -1,0 +1,4 @@
+#ident	"@(#)uts-x86at:io/kdvm/kdvm.cf/System	1.3"
+#ident	"$Header: $"
+$version 1
+kdvm	Y	1	0	0	0	0	0	0	0	-1

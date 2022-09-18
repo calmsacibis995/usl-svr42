@@ -1,0 +1,145 @@
+#ident	"@(#)dtm:help/locpref.hlp	1.8"
+^*version^1
+^*title^Locale Preferences
+^:Locale
+^*width^70
+^+DesktopMgr/help.defs
+^?Setting the language, number, and date formats.
+^0^Locale Preferences
+^$10
+Locale Preferences
+
+Use Locale Preferences to change the settings for how the language,
+numbers, date and time are displayed.
+
+The following window is provided for Locale Preferences:
+
+        \k(Locale Preferences Window)
+^1^Locale Preferences Window
+^$20
+\k{Locale Preferences}
+1. Locale Preferences Window
+
+Use the Locale Preferences window to display and change the settings
+for the following preferences: Display language, Input language,
+Numeric format, and Date and time format.
+
+The first line of the Locale Preferences window contains a CATEGORY
+button (arrow). This button lets you quickly switch Preferences
+categories (including preferences for Color, Desktop, Icons, Keyboard,
+Locale, Miscellaneous, and Mouse). When you click on the arrow, a menu
+appears with the Preferences categories listed. Click on the
+Preferences category you want or click on Next Page to get the next
+Preferences category in the list.
+
+The buttons available from the Locale Preferences window are:
+
+        \k(Apply Button^^Apply ButtonLoc)
+        \k(Reset Button^^Reset ButtonLoc)
+        \k(Reset to Factory Button^^Reset to Factory ButtonLoc)
+        \k(Cancel Button^^Cancel ButtonLoc)
+        \k(Help Button^^Help ButtonLoc)
+
+More information: \k(How to change Locale Preferences)
+^2^How to change Locale Preferences
+^$30
+1. \k{Locale Preferences Window}
+   1.1 How to change Locale Preferences
+
+The following preferences can be changed through the Locale Prefer-
+ences window:
+
+        \k(Basic settings)
+        \k(Display language)
+        \k(Input language)
+        \k(Numeric format)
+        \k(Date and time format)
+^3^Basic settings
+^$40
+1. \k{Locale Preferences Window}
+   1.1 \k{How to change Locale Preferences}
+       1.1.1 Basic settings
+
+The Basic settings box lets you set the locale for your system. In the
+USA, this is already set to American English. For other countries,
+change the locale by clicking SELECT on the correct locale. Use the
+scrollbar (if present) to view additional locales.
+^3^Display language
+^$50
+1. \k{Locale Preferences Window}
+   1.1 \k{How to change Locale Preferences}
+       1.1.2 Display language
+
+The Display language line lets you set the language to be displayed on
+your computer's screen.
+^3^Input language
+^$60
+ 1. \k{Locale Preferences Window}
+   1.1 \k{How to change Locale Preferences}
+       1.1.3 Input language
+
+The Input language line lets you set what language you input from your
+keyboard.
+^3^Numeric format
+^$70
+1. \k{Locale Preferences Window}
+   1.1 \k{How to change Locale Preferences}
+       1.1.4 Numeric format
+
+The Numeric format line lets you set the format in which numbers are
+displayed on your computer's screen.
+^3^Date and time format
+^$80
+1. \k{Locale Preferences Window}
+   1.1 \k{How to change Locale Preferences}
+       1.1.5 Date and time format
+
+The Date and time format line lets you set how the date and time are
+displayed on your computer's screen.
+^2^Apply Button=Apply ButtonLoc
+^$90
+1. \k{Locale Preferences Window}
+   1.2 Apply Button
+
+The Apply button saves and applies all changes made in any preferences
+window. If you made any changes, they are immediately applied to all
+Desktop applications, including those currently open. After applying
+the changes, the Locale Preferences window closes.
+^2^Reset Button=Reset ButtonLoc
+^$100
+1. \k{Locale Preferences Window}
+   1.3 Reset Button
+
+The Reset button reverses any changes you have not yet applied in the
+Locale Preferences window. The Locale Preferences window remains
+open.
+
+Note: The Reset button does not affect the saved values, which are
+changed only when the \k(Apply button^^Apply ButtonLoc) is used.
+
+^2^Reset to Factory Button=Reset to Factory ButtonLoc
+^$110
+1. \k{Locale Preferences Window}
+   1.4 Reset to Factory Button
+
+The Reset to Factory button resets all characteristics for the current
+category in the Locale Preferences window to those originally set in
+the software. Use the \k(Apply button^^Apply ButtonLoc) to have the original characteris-
+tics take effect. The Locale Preferences window remains open.
+
+Note: The Reset to Factory button does not affect the saved values,
+which are changed only when the Apply button is used.
+^2^Cancel Button=Cancel ButtonLoc
+^$120
+1. \k{Locale Preferences Window}
+   1.5 Cancel Button
+
+The Cancel button closes the Locale Preferences window without making
+any changes.
+^2^Help Button=Help ButtonLoc
+^$130
+1. \k{Locale Preferences Window}
+   1.6 Help Button
+
+The Help Button provides on-line help for the Locale Preferences
+window.

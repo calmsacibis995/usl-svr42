@@ -1,0 +1,19 @@
+#define autumn_format 1
+#define autumn_width 8
+#define autumn_height 8
+#define autumn_ncolors 2
+#define autumn_chars_per_pixel 1
+static char * autumn_colors[] = {
+" " , "#FFFF00000000",
+"." , "#FFFFAAAA0000"
+} ;
+static char * autumn_pixels[] = {
+" . . . .",
+". . . . ",
+" . . . .",
+". . . . ",
+" . . . .",
+". . . . ",
+" . . . .",
+". . . . "
+} ;

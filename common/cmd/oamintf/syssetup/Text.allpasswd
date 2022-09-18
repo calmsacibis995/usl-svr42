@@ -1,0 +1,41 @@
+#ident	"@(#)oamintf:common/cmd/oamintf/syssetup/Text.allpasswd	1.1.2.2"
+#ident  "$Header: Text.allpasswd 2.0 91/07/12 $"
+
+################################################################################
+#	Module Name: Text.allpasswd
+#	Calling Sequence:
+#	Functional Description: This Text object displays a screen
+#				informing that passwords exist for
+#				all administrative logins.
+#	How:
+#	Inputs:
+#	Functions Called:
+################################################################################
+
+Title="Error Obtaining Administrative Logins"
+
+#begrow=1
+#begcol=1
+
+framemsg=`readfile $INTFBASE/conf.msg`
+
+lifetime=shortterm
+
+rows=8
+columns=45
+wrap=true
+
+text="
+All administrative and system logins already have passwords.  To change passwords, use the user management task from the main menu."
+
+#	(This is for confirmation, warning and repetition text screens
+
+altslks
+
+name=CONT
+button=11
+action=CLOSE
+
+name=CANCEL
+button=14
+action=CLEANUP

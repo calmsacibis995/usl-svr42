@@ -1,0 +1,8 @@
+#ident	"@(#)uts-x86at:kernel.cf/Sassign	1.3"
+#ident	"$Header: $"
+
+* Device variable assignments for the base kernel.
+
+swap	sd01	2	/dev/swap
+dump	sd01	2
+root	sd01	1

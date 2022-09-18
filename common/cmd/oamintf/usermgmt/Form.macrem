@@ -1,0 +1,98 @@
+#ident	"@(#)oamintf:common/cmd/oamintf/usermgmt/Form.macrem	1.2.1.3"
+#ident  "$Header: Form.macrem 2.0 91/07/12 $"
+
+form="$!OP Security Levels"
+
+framemsg=`readfile $INTFBASE/form.msg`
+
+help=OPEN TEXT $INTFBASE/Text.itemhelp $LININFO
+	
+close=`/usr/bin/rm -f $UMODERR /tmp/$VPID.field /tmp/$VPID.valvls /tmp/$VPID.leves`
+
+done=` if [ "$F3" != "" ];
+	then
+		shell "echo '$F3' | sed 's/ / -h /g'" | set -l FLVLS;
+		set -l ALLARGS="$UMODARGS $UMODARGSAUD -h -$FLVLS";
+	fi;
+	[ "$F4" != "$OLL" ] && set -l ALLARGS="$ALLARGS -v $F4";
+	message -w -f "Modifying user $LOGIN.";
+	shell "$TFADMIN usermod $!ALLARGS $!LOGIN" >/dev/null 2>$UMODERR;
+	if [ "$RET" -eq "0" ];
+	then
+      		set -l MOD_LIFE=shortterm;
+		set -l CMD="OPEN TEXT $OBJ_DIR/Text.musrok $LOGIN";
+	else
+		set -l CMD="OPEN TEXT $OBJ_DIR/Text.musrnok $LOGIN";
+	fi;
+	unset -l ALLARGS -l UMODARGSAUD;
+`$CMD
+
+# Get current alias info (both ways - got to get lids and aliases)
+`lvlname |sed '/^Levels:/d;/^$/d;/^Classifications/,$ d;s/^[0-9]*:*//;s/::.*$//'>/tmp/$VPID.levels`
+
+
+#  $F1
+name="Current security level(s) or alias(es) in user's valid set:"
+lininfo=Form.mac1:seclvl
+nrow=1
+ncol=3
+#frow=1
+#fcol=35
+#rows=1
+#columns=40
+inactive=TRUE
+
+# F2
+name=""
+nrow=2
+ncol=3
+frow=2
+fcol=6
+columns=60
+rows=2
+`/usr/sadm/sysadm/bin/lvlget $LOGIN valid > /tmp/$VPID.valvls`
+value=`readfile /tmp/$VPID.field`
+scroll=true
+inactive=TRUE
+
+p
+ F3
+name=Level(s) to remove from valid set:
+lininfo=Form.mac2:rlevel
+nrow=4
+ncol=3
+frow=4
+fcol=38
+columns=26
+rows=1
+scroll=TRUE
+rmenu=OPEN MENU $OBJ_DIR/Menu.mlvls
+valid=`
+	message -w;
+	if [ -n "$F3" ];
+	then
+	    valforloop "$F3" "grep \"^\$i\$\" /tmp/$VPID.valvls" && valforloop "$F3" "grep \$i /tmp/$VPID.levels";
+	fi`
+fieldmsg="Enter level(s) or alias(es) already in valid set.  Press SAVE when you complete the form."
+invalidmsg=const "A level or alias you entered is not in user's set or it is invalid."
+
+
+#  $F4
+name=Default Login Level:
+lininfo=Form.mac2:loglvl
+nrow=5
+ncol=3
+frow=5
+fcol=24
+rows=1
+columns=40
+scroll=true
+`/usr/sadm/sysadm/bin/lvlget $LOGIN default | set -l OLL`
+value="$OLL"
+valid=vary `shell "echo $F3 | sed 's/ /\\
+/g' >/tmp/$VPID.remove";
+	valforloop "$F4" "grep \$i /tmp/$VPID.remove" "reverse" && valforloop "$F3" "grep \$i /tmp/$VPID.valvls"`
+
+invalidmsg=const "Level is not in or is currently being removed from user's valid set."
+fieldmsg=const "Enter a level or alias in valid set.  Press SAVE when you complete the form." 
+# EOF

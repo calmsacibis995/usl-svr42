@@ -1,0 +1,75 @@
+/**/#ident	"@(#)siserver:ddx/io/Imakefile	1.7"
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+
+#include <Server.tmpl>
+
+#if !Release5
+LIB = libio.a
+#endif
+
+ SRCS =\
+	init.c \
+	xwin_io.c \
+	kbd.c \
+	ioutils.c \
+	xtestext1dd.c
+
+SRCS1 =\
+	dyn.c \
+	arch.c
+
+OBJS =\
+	init.o \
+	xwin_io.o \
+	kbd.o \
+	ioutils.o \
+	xtestext1dd.o
+
+OBJS1 =\
+	dyn.o \
+	arch.o
+
+   INCLUDES = -I. -I./../../include -I$(INCLUDESRC) -I../mi -I../../os -I$(FONTINCSRC) -I$(FONTLIBINCSRC)
+   LINTLIBS = ../../dix/llib-ldix.ln ../../os/llib-los.ln \
+		../att/llib-lega.ln ../mi/llib-lmi.ln
+
+NormalLibraryObjectRule()
+NormalAssemblerObjectRule()
+NormalLibraryTarget(io,$(OBJS))
+
+#if XWINSharedDisplayLibrary
+all::	libio.a dyn.o arch.o
+#else
+all::	libio.a arch.o
+#endif
+
+LintLibraryTarget(io,$(SRCS))
+NormalLintTarget($(SRCS))
+
+DependTarget()
+
+arch.o: arch.c 
+	$(CC) $(CFLAGS) -c arch.c
+
+arch.c:
+	$(LN) dyn.c arch.c
+
+dyn.o: dyn.c
+	$(CC) $(CFLAGS) -DSHARED_DISPLIB -c dyn.c
+
+#if defined(ix86Architecture) || defined(i386Architecture)
+init.o:	init.c
+	$(RM) $@
+	${CC} $(CFLAGS) -Xa -Dix86 -c init.c
+#endif
+
+clean::
+	$(RM) arch.c

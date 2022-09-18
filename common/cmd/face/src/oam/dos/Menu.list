@@ -1,0 +1,16 @@
+#ident	"@(#)face:src/oam/dos/Menu.list	1.1.4.2"
+#ident  "$Header: Menu.list 1.4 91/10/15 $"
+
+menu=$$uxface:533:"List Global MS-DOS Programs"
+
+framemsg=$$uxface:387:"Press CANCEL to return to the previous frame."
+
+lifetime=shortterm
+
+help=open TEXT $INTFBASE/Text.itemhelp F1
+
+`fmlgrep '^vmsys:' /etc/passwd | fmlcut -f6 -d: | set -e VMSYS;
+$VMSYS/bin/listserv -p -l VMSYS|regex '^(init.*)$0$' '$m0'
+'^(.*)$0$' '
+name=$m0
+action=badchar'`

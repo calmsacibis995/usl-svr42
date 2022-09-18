@@ -1,0 +1,47 @@
+#ident	"@(#)oamintf:common/cmd/oamintf/usermgmt/remove.Help	1.1.7.2"
+#ident  "$Header: remove.Help 2.0 91/07/12 $"
+ABSTRACT:
+	The "remove" task allows you to remove either a user or a
+	group from your system.
+
+Form.remove:remove:User or Group
+	Enter either "user" or "group".  The default is "user".  If
+	you enter "user", you will see a form that asks you to
+	specify the user login to be removed.  If you select "group"
+	you will see a form that asks you to specify the group to be
+	removed.
+
+Form.rmgrp:rmgrp:Group
+	Enter a valid user group name or press CHOICES to select from
+	a list of all currently defined user groups.
+
+	After you press SAVE, a confirmation will be displayed
+	showing all values from the group's current definition.  At
+	this point, you may decide to go ahead and remove the group
+	or to back out of the task without removing the group.
+
+Form.rmusr1:rmusr:Login
+	Enter a valid user login or press CHOICES to select from a
+	list of all currently defined user logins.
+
+	After you press SAVE, a confirmation frame of information for
+	the user to be removed.  Verify that the user login is the
+	one you wish to remove.  The login definition will be removed
+	from the /etc/passwd file.
+
+Form.rmusr2:confirm:Remove Home Directory and All Files
+	Enter "yes" if you want the user's home directory and all
+	files and directories below that point to be removed.
+
+	Enter a "no" if you do not wish to remove the user's home
+	directory.
+
+Form.rmusr2:crontab:Remove Crontab Entries
+	Entering a "yes" will cause the crontab file(s) for this user
+	to be removed.  Note that this will only remove the file(s)
+	and not stop any currently scheduled cron jobs this user may
+	have.  To ensure that the jobs themselves are cancelled, you
+	will need to restart cron.
+
+	Enter "no" if you do not wish to remove the user's crontab(s)
+	files.

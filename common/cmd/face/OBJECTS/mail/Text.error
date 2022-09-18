@@ -1,0 +1,33 @@
+#ident	"@(#)face:OBJECTS/mail/Text.error	1.1.4.2"
+#ident  "$Header: Text.error 1.5 91/10/28 $"
+
+title=$$uxface:328:"Mail Errors"
+help=OPEN TEXT OBJECTS/Text.h "$$uxface:329:HELP on Mail Errors" mail/T.hmerror
+framemsg=const $$uxface:321:"Press the CANCEL function key to cancel."
+lifetime=longterm
+
+`set -l EFRAME=true`
+`set -l I18N_ME1="$$uxface:330:bad system name:"`
+`set -l I18N_ME2="$$uxface:331:rmail: Can\'t send to"`
+
+begrow=any
+begcol=any
+
+close=`set -l EFRAME=false;rm -f /tmp/f.my.${VPID}`
+
+`readfile /tmp/f.mx.${VPID} | regex '^$I18N_ME1 (.+)$0$' '$m0!'
+			'^$I18N_ME2 (.+)$0$' '$m0' | pr -5 -t > /tmp/f.my.${VPID};
+if [ -s /tmp/f.my.${VPID} ];
+then
+	echo 'header=$$uxface:332:"No mail was sent to the following invalid mail destinations:
+"';
+else
+	echo 'header=$$uxface:333:"Some error has occured while sending your message.
+What follows is the error output from mailx(1):
+"';
+	cp /tmp/f.mx.${VPID} /tmp/f.my.${VPID};
+fi`
+
+text="`readfile /tmp/f.my.${VPID}`"
+columns=72
+rows=8

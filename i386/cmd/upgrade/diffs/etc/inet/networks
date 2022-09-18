@@ -1,0 +1,10 @@
+*** inet.v4/networks	Mon Jun 15 11:40:57 1992
+--- inet.p13/networks	Mon Jun 15 11:53:20 1992
+***************
+*** 1,2 ****
+! #ident	"@(#)cmd-inet:etc/networks	1.1"
+  
+--- 1,3 ----
+! #ident	"@(#)/etc/inet/networks.sl 1.2 4.1dt 05/28/92 4344 AT&T-USL"
+! #ident "$Header: /sms/sinixV5.4es/rcs/s19-full/usr/src/cmd/cmd-inet/etc/networks,v 1.1 91/02/28 16:30:43 ccs Exp $"
+  

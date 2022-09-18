@@ -1,0 +1,18 @@
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+/**/#ident	"@(#)r5xmodmap:Imakefile	1.1"
+XCOMM $XConsortium: Imakefile,v 1.8 91/07/17 16:06:44 gildea Exp $
+        DEPLIBS = $(DEPXLIB)
+LOCAL_LIBRARIES = $(XLIB)
+       LINTLIBS = $(LINTXLIB)
+           SRCS = xmodmap.c pf.c handle.c exec.c 
+           OBJS = xmodmap.o pf.o handle.o exec.o 
+
+ComplexProgramTarget(xmodmap)

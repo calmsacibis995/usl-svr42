@@ -1,0 +1,4 @@
+#ident	"@(#)uts-x86at:io/ws/ws.cf/System	1.4"
+#ident	"$Header: $"
+$version 1
+ws	Y	1	0	0	0	0	0	0	0	-1

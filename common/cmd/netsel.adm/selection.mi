@@ -1,0 +1,6 @@
+#ident	"@(#)netsel.adm:selection.mi	1.1.4.3"
+#ident  "$Header: selection.mi 2.0 91/07/12 $"
+
+main:network_services:selection^Network Selection Management^
+main:network_services:selection:display^Displays Network Selection Configuration^Text.ns_list
+main:network_services:selection:modify^Modify Network Selection Configuration^Menu.ns_nid

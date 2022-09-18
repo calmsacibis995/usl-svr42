@@ -1,0 +1,86 @@
+#ident	"@(#)dtadmin:userad/scripts/olremuser	1.7"
+#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+#	Copyright (c) 1988, 1989, 1990 AT&T
+#	  All Rights Reserved
+
+#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+#	UNIX System Laboratories, Inc.
+#	The copyright notice above does not evidence any
+#	actual or intended publication of such source code.
+
+
+Prefix="UX:`/usr/bin/basename $0`"
+. ${XWINHOME:-/usr/X}/adm/dtuser.msgs
+
+if [ "$1" = "" ]
+then
+	$GETTXT $TXT_EnterLogin
+	read LOGIN
+        if [ "$LOGIN" = "" ]
+        then
+                exit 0
+        fi
+else
+	LOGIN=$1
+fi
+
+#
+# Now will validate login
+#
+
+VALIDATE=0
+PASS=`/usr/bin/grep $LOGIN /etc/passwd | /usr/bin/cut -d: -f1,6`
+for ENTRY in $PASS
+do
+        FIRST=`echo $ENTRY | /usr/bin/cut -d: -f1`
+        if [ "$LOGIN" = "$FIRST" ]
+    	then
+    	        VALIDATE=1
+                LOGINDIR=`echo $ENTRY | /usr/bin/cut -d: -f2`
+             	break
+  	fi
+done
+if [ $VALIDATE = 0 ]
+then
+    	$GETTXT $TXT_BadLoginId >& 2
+	exit 1
+fi
+if [ "$LOGINDIR" = "" ]
+then
+	$GETTXT $TXT_MissingHome >& 2
+	exit 1
+fi
+
+#
+# Found the home directory, remove as much OPEN LOOK stuff as possible
+#
+
+if [ ! -r $LOGINDIR -o ! -w $LOGINDIR -o ! -x $LOGINDIR ]
+then
+	$GETTXT $TXT_AccessHome >& 2
+	exit 1
+fi
+
+cd $LOGINDIR
+/usr/bin/rm -f  .olsetup   .olinitrc
+/usr/bin/rm -f  .oliniterr .olinitout .olprograms
+#if [ -f .Xdefaults-old ]
+#then
+#	echo "\n\tRenamed ${LOGIN}'s .Xdefaults-old file back to .Xdefaults"
+#	/usr/bin/mv .Xdefaults-old .Xdefaults
+#fi
+if [ ! -r .profile -o ! -w .profile ]
+then
+	$GETTXT $TXT_AccessProfile >& 2
+	exit 1
+else
+/usr/bin/ed .profile >/dev/null <<!
+g/. \$HOME\/.olsetup	 #!@ Do not edit this line !@/d
+w
+q
+!
+fi
+/usr/bin/chmod +r     .profile 2> /dev/null
+/usr/bin/chown $LOGIN .profile 2> /dev/null
+exit 0
+

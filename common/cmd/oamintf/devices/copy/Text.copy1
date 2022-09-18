@@ -1,0 +1,75 @@
+#ident	"@(#)oamintf:common/cmd/oamintf/devices/copy/Text.copy1	1.4.13.2"
+#ident  "$Header: Text.copy1 2.0 91/07/12 $"
+
+################################################################################
+#	Module Name: Text.copy1
+################################################################################
+title="Copy $ARG1 to Internal Disk"
+
+framemsg=`readfile $INTFBASE/conf.msg`
+
+help=OPEN TEXT $INTFBASE/Text.itemhelp Text.copy1:ABSTRACT
+
+init=`shell "$TFADMIN /usr/bin/devreserv ${VPID} $ARG1" > /dev/null 2>/tmp/$VPID.rsvrd; set -l RSVRD=$RET`
+close=`/usr/bin/rm -f /tmp/$VPID.rsvrd;
+       if [ "$RSVRD" = "0" ];
+       then
+          /usr/bin/devfree ${VPID} $ARG1;
+       fi`
+
+rows=3
+columns=70
+
+text="`/usr/bin/devattr $ARG1 desc | set -l DESC;
+ if [ "$RSVRD" != "0" ];
+ then
+	echo "\nReservation of $DESC failed.";
+	message "Press CONT for additional information or CANCEL to return to the menu.";
+ else
+	echo "\nInsert the ORIGINAL volume to be copied into $DESC.
+It is recommended that you write-protect the original.";
+ fi`"
+
+altslks
+
+name=
+button=9
+action=nop
+
+name=
+button=10
+action=nop
+
+name=CONT
+button=11
+action=`if [ "$RSVRD" != "0" ];
+ then
+	set -l CMD="OPEN TEXT $OBJ_DIR/../Text.rsvrd $ARG1 $RSVRD";
+ else
+	set -l A=a;
+
+	message -w "Copying from $DESC to the system.";
+
+	/usr/bin/devattr "$ARG1" cdevice | set -l DEV;
+
+	if [ "$TFADMIN" ];
+	then
+		/usr/bin/cat <$DEV >$CPFILE;
+	else
+		/usr/bin/dd if=$DEV of=$CPFILE;
+	fi;
+
+	if [ "$RET" -eq 0 ];
+	then
+	  message -w "Step 1 of copy is complete.";
+	  set -l CMD="OPEN TEXT $OBJ_DIR/Text.copy2 $CPFILE $ARG1 $A";
+	else
+	  message -w "";
+	  /usr/bin/devattr "$ARG1" capacity | set -l CAP;
+	  set -l CMD="OPEN TEXT $OBJ_DIR/Text.cperr1 $ARG1";
+	fi;
+ fi`$CMD
+
+name=CANCEL
+button=14
+action=CLEANUP

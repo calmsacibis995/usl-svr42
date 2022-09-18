@@ -1,0 +1,96 @@
+*** profile.v4	Tue Jun  9 17:36:12 1992
+--- profile.p14	Mon Jun  8 10:16:54 1992
+***************
+*** 1,2 ****
+! #ident	"@(#)/etc/profile.sl 1.1 4.0 05/29/91 14241 AT&T-USL"
+  trap "" 1 2 3
+--- 1,4 ----
+! #ident	"@(#)/etc/profile.sl 1.9 4.1dt 05/28/92 4821 AT&T-USL"
+! #ident	"$Header: profile 1.1 91/04/29 $"
+! 
+  trap "" 1 2 3
+***************
+*** 3,4 ****
+--- 5,8 ----
+  umask 022	# set default file creation mask
++ export LOGNAME
++ 
+  . /etc/TIMEZONE
+***************
+*** 22,26 ****
+  		then
+! 			/sbin/isat386
+  			if [ $? = 0 ]
+! 			then TERM=AT386-M
+  			fi
+--- 26,44 ----
+  		then
+! 			# check if it is an at386
+! 			/usr/sbin/isat386
+  			if [ $? = 0 ]
+! 			then
+! 				# it is an at386, check for color
+! 				/usr/sbin/adpt_type
+! 				if [ $? = 3 ]	# VGA color?
+! 				then
+! 					TERM=AT386	# color at386
+! 					# work around Dell Fastwrite VGA
+! 					# problem -- force text mode
+! 					# to color 80x25
+! 					stty VGA_C80x25 < /dev/console 1>/dev/null 2>/dev/null
+! 
+! 				else
+! 					TERM=AT386-M	# default to monochrome
+! 				fi
+  			fi
+***************
+*** 35,37 ****
+! 	if mail -e
+! 	then echo "\nyou have mail"
+! 	fi
+--- 52 ----
+! 	mailcheck 2>/dev/null
+***************
+*** 40,41 ****
+--- 56,74 ----
+  	fi
++ #	Uncomment this script if you wish to use secure RPC facility
++ #
++ #	ps -e | grep rpcbind 1>/dev/null
++ #	if [ $? = 0 ] 
++ #	then
++ #		ps -e | grep keyserv 1>/dev/null
++ #		if [ $? = 0 ] 
++ #		then
++ #			echo "Please login to the network"
++ #			/usr/bin/keylogin
++ #		else
++ #			echo `date`: "secure rpc nonfunctional; keyserv is down" >>/var/adm/log/rpc.log
++ #		fi
++ #	else
++ #		echo `date`: "secure rpc nonfunctional; rpcbind is down" >>/var/adm/log/rpc.log
++ #	fi
++ #	
+  	;;
+***************
+*** 43,44 ****
+--- 76,94 ----
+  	:
++ #	Uncomment this script if you wish to use secure RPC facility
++ #
++ #	ps -e | grep rpcbind 1>/dev/null
++ #	if [ $? = 0 ] 
++ #	then
++ #		ps -e | grep keyserv 1>/dev/null
++ #		if [ $? = 0 ] 
++ #		then
++ #			echo "Please login to the network"
++ #			/usr/bin/keylogin
++ #		else
++ #			echo `date`: "secure rpc nonfunctional; keyserv is down" >>/var/adm/log/rpc.log
++ #		fi
++ #	else
++ #		echo `date`: "secure rpc nonfunctional; rpcbind is down" >>/var/adm/log/rpc.log
++ #	fi
++ #	
+  	;;

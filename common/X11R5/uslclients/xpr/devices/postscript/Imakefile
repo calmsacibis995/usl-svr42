@@ -1,0 +1,33 @@
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+/**/#ident	"@(#)xpr:devices/postscript/Imakefile	1.3"
+         INCLUDES = -I../.. $(STD_INCLUDES)
+
+              LIB = libps.a
+
+SRCS	= \
+		dump_image.c \
+		map.c \
+		output.c \
+		prologue.c 
+
+OBJS = \
+		dump_image.o \
+		map.o \
+		output.o \
+		prologue.o
+
+install:: $(OBJS)
+
+NormalLibraryObjectRule()
+
+NormalLibraryTarget(ps,$(OBJS))
+
+DependTarget()

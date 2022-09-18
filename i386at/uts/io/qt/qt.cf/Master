@@ -1,0 +1,5 @@
+#ident	"@(#)uts-x86at:io/qt/qt.cf/Master	1.8"
+#ident	"$Header: $"
+$version 1
+$entry init ioctl open close read write
+qt	qt	koc	0	0	12

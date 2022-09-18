@@ -1,0 +1,18 @@
+#ifndef NOIDENT
+#ident	"@(#)widgetTree:README	1.2"
+#endif
+
+The widgetTree client is a sample MooLIT program that uses
+every widget, gadget, and flattened widget in the toolkit.
+The base window displays the Widget hierarchy of MoOLIT.
+The buttons in the Widget hierarchy will invoke a sample
+of a particular WidgetClass.  The Help key (typically F1)
+will display the C source code that generates the example.
+
+Try running widgetTree in both OPEN LOOK and Motif modes.
+In Motif mode, some of the widgets will be insensitive
+because they do not have a Motif look and feel available.
+
+To make the Makefile using the Imakefile do:
+
+imake -DUseInstalled -DTOPDIR=/usr/X -DCURDIR=. -I../../config

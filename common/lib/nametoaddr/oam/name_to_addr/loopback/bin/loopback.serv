@@ -1,0 +1,89 @@
+#ident	"@(#)nametoaddr:common/lib/nametoaddr/oam/name_to_addr/loopback/bin/loopback.serv	1.1.4.3"
+#ident	"$Header: loopback.serv 1.2 91/06/27 $"
+#
+#	Echo "1" if the name already exists (make sure the comments
+#	are stripped out of services files first)....
+#
+
+ticots=`/usr/bin/cat /etc/net/ticots/services 2>/dev/null | /usr/bin/sed 's/#.*$//' |
+       /usr/bin/egrep "^$1[ 	]"`
+
+ticlts=`/usr/bin/cat /etc/net/ticlts/services 2>/dev/null | /usr/bin/sed 's/#.*$//' |
+       /usr/bin/egrep "^$1[ 	]"`
+
+ticotsord=`/usr/bin/cat /etc/net/ticotsord/services 2>/dev/null | /usr/bin/sed 's/#.*$//' |
+       /usr/bin/egrep "^$1[ 	]"`
+
+if [ "$ticots" != "" -a "$ticotsord" != "" -a "$ticlts" != "" ]
+then
+	echo 1
+	exit
+fi
+
+#
+#	Check to make sure no spaces or dots are in the port string
+#
+
+ret=`echo $1 | /usr/bin/awk 'BEGIN       { error = 0 }
+		    NF != 1	{ error = 1 }
+		    /\./	{ error = 1 }
+		    END         { print error }'`
+
+if [ $ret -eq 1 ]
+then
+	echo 2
+	exit
+fi
+
+#
+#	Put entry in /etc/net/ticots/services, etc/net/ticlts/services,
+#	and /etc/net/ticotsord/services
+#
+
+$TFADMIN /usr/bin/mkdir /etc/net /etc/net/ticots /etc/net/ticotsord /etc/net/ticlts >/dev/null 2>&1
+
+if [ "$ticots" = "" ]
+then
+	$TFADMIN /usr/bin/cp /etc/net/ticots/services /var/tmp/serv_$$
+	echo "$1	$1" >> /var/tmp/serv_$$
+	$TFADMIN /usr/bin/cp /var/tmp/serv_$$ /etc/net/ticots/services
+	/usr/bin/rm /var/tmp/serv_$$
+fi
+
+if [ "$ticlts" = "" ]
+then
+	$TFADMIN /usr/bin/cp /etc/net/ticlts/services /var/tmp/serv_$$
+	echo "$1	$1" >> /var/tmp/serv_$$
+	$TFADMIN /usr/bin/cp /var/tmp/serv_$$ /etc/net/ticlts/services
+	/usr/bin/rm /var/tmp/serv_$$
+fi
+
+if [ "$ticotsord" = "" ]
+then
+	$TFADMIN /usr/bin/cp /etc/net/ticotsord/services /var/tmp/serv_$$
+	echo "$1	$1" >> /var/tmp/serv_$$
+	$TFADMIN /usr/bin/cp /var/tmp/serv_$$ /etc/net/ticotsord/services
+	/usr/bin/rm /var/tmp/serv_$$
+fi
+
+if [ "$ticots" = "" -a "$ticotsord" = "" -a "$ticlts" = "" ]
+then
+	echo 0
+elif [ "$ticots" = "" -a "$ticotsord" = "" ]
+then
+	echo 3
+elif [ "$ticots" = "" -a "$ticlts" = "" ]
+then
+	echo 4
+elif [ "$ticlts" = "" -a "$ticotsord" = "" ]
+then
+	echo 5
+elif [ "$ticlts" = "" ]
+then
+	echo 6
+elif [ "$ticots" = "" ]
+then
+	echo 7
+else
+	echo 8
+fi

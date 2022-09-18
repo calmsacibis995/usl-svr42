@@ -1,0 +1,30 @@
+*** /tmp/COPY/etc/acct/holidays/holidays	Thu May 14 09:11:58 1992
+--- /etc/acct/holidays	Fri May  8 21:36:46 1992
+***************
+*** 1,2 ****
+- *ident	"@(#)/etc/acct/holidays.sl 1.1 4.0 05/29/91 65127 AT&T-USL"
+  * Prime/Nonprime Table for UNIX Accounting System
+--- 1 ----
+***************
+*** 7 ****
+!   1990	0800	1800
+--- 6 ----
+!   1992	0800	1800
+***************
+*** 15,21 ****
+! 5/28		Memorial Day
+  7/4		Indep. Day
+! 9/3		Labor Day
+! 11/22		Thanksgiving
+! 11/23		day after
+! 12/24		PDO before Christmas
+  12/25		Christmas
+--- 14,21 ----
+! 1/20		Martin Luther King Day
+! 2/17		Presidents' Day
+! 5/25		Memorial Day
+  7/4		Indep. Day
+! 9/7		Labor Day
+! 11/26		Thanksgiving
+! 11/27		day after
+  12/25		Christmas

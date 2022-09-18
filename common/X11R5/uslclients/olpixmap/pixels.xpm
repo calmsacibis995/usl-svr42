@@ -1,0 +1,44 @@
+#define pixels_format 1
+#define pixels_width 32
+#define pixels_height 32
+#define pixels_ncolors 3
+#define pixels_chars_per_pixel 1
+static char * pixels_colors[] = {
+" " , "#FFFFFFFFFFFF",
+"." , "#000000000000",
+"X" , "#00000000FFFF"
+} ;
+static char * pixels_pixels[] = {
+"                                ",
+"                                ",
+"                                ",
+"                                ",
+"        . . . .                 ",
+"       . . .   ..       XX      ",
+"  . . . .   ..   .     X  X     ",
+"   . .        . .          X    ",
+"             .   .         X    ",
+"              . .    XX     X   ",
+"            .  .    X  X    X   ",
+"           .  .     X  X    X   ",
+"          . ..      X   X   X   ",
+"         ..          X  X  X    ",
+"      . .       X    X X  X     ",
+"     . .       X X    X XX      ",
+"    ..        X  X    X         ",
+"   .          X   X  X          ",
+"  ..           XX X X           ",
+"  .              X X            ",
+"   .      X  X XX               ",
+"  .        XX X                 ",
+"   .                            ",
+"    .. .        .   .  .  .  .  ",
+"     .    .  ..   .   .  . ..   ",
+"       . .  .  . .  .  .      . ",
+"           .  .                 ",
+"                                ",
+"                                ",
+"                                ",
+"                                ",
+"                                "
+} ;

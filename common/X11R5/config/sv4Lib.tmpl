@@ -1,0 +1,183 @@
+XCOMM $XConsortium: sv4Lib.tmpl,v 1.6 92/01/25 16:46:55 rws Exp $
+
+XCOMM
+XCOMM USL: BEGIN
+XCOMM	The default revision numbers from MIT is 5. But since USL has to be
+XCOMM	backward compatible, so force it to 1
+XCOMM
+
+#ifndef SharedLibXol
+#define SharedLibXol HasSharedLibraries
+#endif
+#ifndef NormalLibXol
+#define NormalLibXol (!SharedLibXol | ForceNormalLib)
+#endif
+#ifndef SharedLibDnD
+#define SharedLibDnD HasSharedLibraries
+#endif
+#ifndef NormalLibDnD
+#define NormalLibDnD (!SharedLibDnD | ForceNormalLib)
+#endif
+#ifndef SharedLibDt
+#define SharedLibDt HasSharedLibraries
+#endif
+#ifndef NormalLibDt
+#define NormalLibDt (!SharedLibDt | ForceNormalLib)
+#endif
+
+#ifndef SharedXolRev
+#define SharedXolRev 1
+#endif
+#ifndef SharedOlitRev
+#define SharedOlitRev 1
+#endif
+#ifndef SharedOlitMRev
+#define SharedOlitMRev 1
+#endif
+#ifndef SharedOlitORev
+#define SharedOlitORev 1
+#endif
+#ifndef SharedDtRev
+#define SharedDtRev 1
+#endif
+
+         SOXOLREV = SharedXolRev
+        SOOLITREV = SharedOlitRev
+       SOOLITMREV = SharedOlitMRev
+       SOOLITOREV = SharedOlitORev
+          SODTREV = SharedDtRev
+
+XCOMM USL: END
+
+/*
+ * SVR4 shared library template
+ */
+
+#ifndef SharedXlibRev
+#define SharedXlibRev 1
+#endif
+#ifndef SharedOldXRev
+#define SharedOldXRev 1
+#endif
+#ifndef SharedXtRev
+#define SharedXtRev 1
+#endif
+#ifndef SharedXawRev
+#define SharedXawRev 1
+#endif
+#ifndef SharedXmuRev
+#define SharedXmuRev 1
+#endif
+#ifndef SharedXextRev
+#define SharedXextRev 1
+#endif
+#ifndef SharedXinputRev
+#define SharedXinputRev 1
+#endif
+#ifndef SharedXTrapRev
+#define SharedXTrapRev 1
+#endif
+#ifndef SharedXTestRev
+#define SharedXTestRev 1
+#endif
+
+SHLIBLDFLAGS = SharedLibraryLoadFlags
+PICFLAGS = PositionIndependentCFlags
+
+/*
+ * and now a little bit of magic for using imake without source tree; if we
+ * are using shared libraries, we really do not need to depend on anything
+ */
+#if SharedLibXext
+  DEPEXTENSIONLIB = /* _UseCat($(USRLIBDIR),$(EXTENSIONSRC)/lib,/libXext.so.$(SOXEXTREV)) */
+     EXTENSIONLIB = _Use(-lXext,-L$(EXTENSIONSRC)/lib -lXext)
+#endif
+#if SharedLibX
+          DEPXLIB = $(DEPEXTENSIONLIB) /* _UseCat($(USRLIBDIR),$(XLIBSRC),/libX11.so.$(SOXLIBREV)) */
+             XLIB = $(EXTENSIONLIB) _Use(-lX11,-L$(XLIBSRC) -lX11)
+#endif
+#if SharedLibXmu
+/* SVR4 shared libraries are deficient in link semantics */
+        DEPXMULIB = _UseCat($(USRLIBDIR),$(XMUSRC),/libXmu.so.$(SOXMUREV))
+       /* XMULIBONLY = _Use(-lXmu,-L$(XMUSRC) -lXmu)
+            XMULIB = $(XMULIBONLY) */
+              XMULIB = _Use(-lXmu,-L$(XMUSRC) -lXmu)
+
+#ifndef XawClientLibs
+#define XawClientLibs $(XAWLIB) $(XMULIB) $(XTOOLLIB) $(XLIB)
+#endif
+#endif
+#if SharedOldLibX
+       DEPOLDXLIB = /* _UseCat($(USRLIBDIR),$(OLDXLIBSRC),/liboldX.so.$(SOOLDXREV)) */
+          OLDXLIB = _Use(-loldX,-L$(OLDXLIBSRC) -loldX)
+#endif
+#if SharedLibXt
+      DEPXTOOLLIB = /* _UseCat($(USRLIBDIR),$(TOOLKITSRC),/libXt.so.$(SOXTREV)) */
+         XTOOLLIB = _Use(-lXt,-L$(TOOLKITSRC) -lXt)
+#endif
+#if SharedLibXol
+DEPXOLCOMPATLIB = _UseCat($(USRLIBDIR),$(XOLSRC),/libXol.so.$(SOXOLREV))
+      DEPXOLLIB = _UseCat($(USRLIBDIR),$(XOLSRC),/libOlit.so.$(SOXOLREV))
+         XOLLIB = _Use(-lOlit,-L$(XOLSRC) -lOlit)
+#endif
+#if SharedLibXaw
+        DEPXAWLIB = /* _UseCat($(USRLIBDIR),$(AWIDGETSRC),/libXaw.so.$(SOXAWREV)) */
+           XAWLIB = _Use(-lXaw,-L$(AWIDGETSRC) -lXaw)
+#endif
+#if SharedLibXinput
+        DEPXILIB = /* _UseCat($(USRLIBDIR),$(XILIBSRC),/libXi.so.$(SOXINPUTREV)) */
+           XILIB = _Use(-lXi,-L$(XILIBSRC) -lXi)
+#endif
+#if SharedLibXTest
+        DEPXTESTLIB = /* _UseCat($(USRLIBDIR),$(XTESTLIBSRC),/libXtst.so.$(SOXTESTREV)) */
+           XTESTLIB = _Use(-lXtst,-L$(XTESTLIBSRC) -lXtst)
+#endif
+
+XCOMM 
+XCOMM USL: BEGIN
+XCOMM
+
+#ifndef SharedLibXol
+      DEPXTOOLLIB = _UseCat($(USRLIBDIR),$(TOOLKITSRC),/libXol.a)
+         XTOOLLIB = LoaderLibPrefix _Use(-lXol,$(DEPXTOOLLIB))
+#endif
+#ifndef XolClientDepLibs
+#define XolClientDepLibs $(DEPXOLLIB) $(DEPXTOOLLIB) $(DEPXMULIB) $(DEPXLIB)
+#endif
+#ifndef XolClientLibs
+#ifdef I18NDefines
+#define XolClientLibs $(XOLLIB) $(XTOOLLIB) $(XMULIB) $(XLIB) -lw
+#else
+#define XolClientLibs $(XOLLIB) $(XTOOLLIB) $(XMULIB) $(XLIB)
+#endif
+#endif
+
+#ifndef XolCompatClientDepLibs
+#define XolCompatClientDepLibs $(DEPXOLLIB) $(DEPXOLCOMPATLIB) $(DEPXTOOLLIB) $(DEPXMULIB) $(DEPXLIB)
+#endif
+#ifndef XolCompatClientLibs
+#ifdef I18NDefines
+#define XolCompatClientLibs $(XOLLIB) -lXol $(XTOOLLIB) $(XMULIB) $(XLIB) -lw
+#else
+#define XolCompatClientLibs $(XOLLIB) -lXol $(XTOOLLIB) $(XMULIB) $(XLIB)
+#endif
+#endif
+
+  /*
+   * If you will be building static shared libs with XLIB in a source
+   * tree referenced by an absolute $(TOP), you will have to 
+   * set XHOSTLOC to XLIBSRC in your Imakefile.  Since mkshlib is run
+   * in a 'shared' subdirectory, it can't find a relative $(TOP) from
+   * there.
+   */
+
+#ifndef ShLibFlags
+#define ShLibFlags
+#endif
+
+XHOSTLOC = _Use($(DESTDIR)/$(LIBDIR),../../X)
+SHLIBFLAGS = ShLibFlags -L $(XHOSTLOC)
+
+XCOMM
+XCOMM USL: END
+XCOMM

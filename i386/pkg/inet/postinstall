@@ -1,0 +1,600 @@
+#ident	"@(#)pkg.inet:i386/pkg/inet/postinstall	1.25.12.43"
+#ident	"$Header: $"
+
+#
+# Initialize FAILURE to 1 (fatal error)
+#
+
+SCRIPTS=/usr/sbin/pkginst
+UPGRADE_STORE=/var/sadm/upgrade
+
+. ${SCRIPTS}/updebug
+[ "$UPDEBUG" = YES ] && set -x
+
+FAILURE=1
+#
+# Install INET drivers
+#
+CONF=/etc/conf
+TMP=/tmp/tcp.err
+
+cd /tmp/inet
+NOTOOLS="ERROR: The Installable Driver feature has been removed.  The ${NAME} cannot be installed."
+
+#########################################
+## Make sure ID/TP tools are available ##
+#########################################
+if [ -x ${CONF}/bin/idbuild -a -x ${CONF}/bin/idinstall ]
+then
+	:
+else
+	message ${NOTOOLS}
+	exit $FAILURE
+fi
+
+
+SDEV=/etc/conf/sdevice.d
+for DRV in app arp icmp ip llcloop rawip tcp udp
+do
+	mv ${DRV}.o Driver.o
+
+	grep -v "^[\*#]ident" ${DRV}.Master > Master
+	rm -rf ${DRV}.Master
+	
+	if [ -f ${DRV}.Space ]
+	then
+		mv ${DRV}.Space Space.c
+	fi
+
+	if [ -f ${DRV}.Mtune ]
+	then
+		mv ${DRV}.Mtune Mtune
+	fi
+
+	if [ -f ${DRV}.Stubs ]
+	then
+		mv ${DRV}.Stubs Stubs.c
+	fi
+
+	if [ -f ${DRV}.Node ]
+	then
+		grep -v "^[\*#]ident" ${DRV}.Node > Node
+		rm -rf ${DRV}.Node
+	fi
+
+	grep -v "^[\*#]ident" ${DRV}.System |
+		sed 's/	N	/	Y	/'  > ./System
+	rm -f ${DRV}.System
+
+	${CONF}/bin/idinstall -P ${PKGINST} -a ${DRV} 2>> $TMP
+	if [ $? != 0 ]
+	then
+		${CONF}/bin/idinstall -P ${PKGINST} -u ${DRV} 2>> $TMP
+		if [ $? != 0 ]
+		then
+			message "The installation cannot be completed due \
+to an error in the \
+driver installation during the installation of the ${DRV} driver \
+of the ${NAME}."
+		 	exit $FAILURE
+		fi
+	fi	
+	rm -f Driver.o Master Space.c System Node
+done
+	rm -f Driver.o Master Space.c System Node
+
+#
+#	add the appropriate entries to /etc/netconfig
+#
+#
+# Create inet device subdir
+#
+if [ ! -d /dev/inet ]
+then
+	mkdir /dev/inet || exit $FAILURE
+fi
+
+if pkginfo -i es >/dev/null 2>&1
+then
+	SYS_PUTDEV="range=SYS_PRIVATE-SYS_PRIVATE state=private 
+			mode=static ual_enable=y other=>y startup=y 
+			startup_level=SYS_PRIVATE startup_owner=root>rw- 
+			startup_group=other>--- startup_other=>---"
+	USR_PUTDEV="range=SYS_RANGE_MAX-SYS_RANGE_MIN state=pub_priv
+			mode=static ual_enable=y other=>y startup=y
+			startup_level=USER_LOGIN startup_owner=root>rw-
+			startup_group=other>rw- startup_other=>rw-"
+	SUB_PUTDEV="range=SYS_RANGE_MAX-SYS_RANGE_MIN state=pub_priv
+			mode=static ual_enable=y other=>y startup=y
+			startup_level=USER_LOGIN startup_owner=root>rw-
+			startup_group=other>rw- startup_other=>---"
+else
+	SYS_PUTDEV=""
+	USR_PUTDEV=""
+	SUB_PUTDEV=""
+fi
+
+for DRV in arp icmp ip rawip
+do
+	putdev -a $DRV cdevlist="/dev/$DRV,/dev/inet/$DRV" \
+		desc="$DRV protocol" $SYS_PUTDEV 2>/dev/null
+done
+
+# For historical reasons, the name of the llcloop device is /dev/loop
+
+putdev -a llcloop cdevlist="/dev/loop,/dev/inet/loop" \
+	desc="$llcloop protocol" $SYS_PUTDEV 2>/dev/null
+
+#
+# These devices are intended to be opened by services
+# with only the P_DEV privilege, so the startup_level is set to
+# USER_LOGIN.
+#
+putdev -a tcp cdevlist="/dev/tcp,/dev/inet/tcp" \
+	desc="tcp protocol" $USR_PUTDEV 2>/dev/null
+
+#
+#	create explicit tcp sub-devices -- needed by uucp
+#	TCP_CDEV builds a string of these minor devices
+TCP_CDEV=
+
+for MINOR in 00 01 02 03 04 05 06 07 08 09 10 11 12 13 14 \
+	15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31
+do
+	#	Build putdev cdevlist minor devices list
+	if [ -z "$TCP_CDEV" ]
+		then TCP_CDEV="/dev/inet/tcp${MINOR}"
+		else TCP_CDEV="$TCP_CDEV,/dev/inet/tcp${MINOR}"
+	fi
+done
+#
+#	distinct device alias for subdevices, mode 660
+putdev -a tcp_subdev desc="tcp subdevices" cdevlist=$TCP_CDEV $SUB_PUTDEV 2>/dev/null
+
+putdev -a udp cdevlist="/dev/udp,/dev/inet/udp" \
+	desc="udp protocol" $USR_PUTDEV 2>/dev/null
+
+
+# create the NET role; if it is already there, ignore error
+#/usr/bin/adminrole -n NET > /dev/null 2>&1
+
+#The following for-loop assigns the commands to the NET role.  Privileges
+#are gotten right from /etc/security/tcb/privs.
+#
+#for cmd in /usr/bin/rdate /usr/sbin/ifconfig /usr/sbin/in.routed \
+#	/usr/sbin/route /usr/sbin/nslookup /usr/sbin/slink /usr/sbin/arp \
+#	/usr/bin/ruptime /usr/bin/rwho /usr/sbin/in.rwhod /usr/sbin/in.named
+#do
+#	base=`basename $cmd`
+#	privs=`
+#	egrep ":${cmd}$" /etc/security/tcb/privs| #Find command in tcb database
+#	sed 's/^.*%inher,\(.*\):.*/\1/p' |	  # get the set of inher privs
+#	sed 's/^.*%fixed,\(.*\):.*//p' |	  # delete the fixed privs
+#	sed 's/,/:/gp'				  # changed ,'s to :'s
+#	`
+#	if [ -z "$privs" ]
+#	then
+#		if [ ! -f $cmd ]
+#			then	echo "Warning: $cmd not found on the system.\c"
+#				echo "	Not adding to TFM."
+#				continue
+#			else	adminrole -a $base:$cmd NET
+#		fi
+#	else
+#		adminrole -a $base:$cmd:$privs NET
+#	fi
+#done
+
+if [ ! -c /dev/pts/0 ]
+then
+	echo "
+WARNING: pseudo-terminals have not been installed on this machine.
+Internet commands such as rlogin and rsh require psuedo-terminals.
+Psuedo-terminals are part of the Networking Support Utilities package;
+please re-install that package."
+
+fi
+
+#
+#	add the appropriate entries to /etc/netconfig
+#
+
+if grep '[ 	]inet[ 	][ 	]*tcp[ 	][ 	]*/dev/tcp[ 	]' /etc/netconfig >/dev/null 2>&1
+then
+	: Already there!
+else
+	echo "tcp	tpi_cots_ord	v	inet	tcp	/dev/tcp	/usr/lib/tcpip.so,/usr/lib/resolv.so" >>/etc/netconfig
+fi
+
+if grep '[ 	]inet[ 	][ 	]*udp[ 	][ 	]*/dev/udp[ 	]' /etc/netconfig >/dev/null 2>&1
+then
+	: Already there!
+else
+	echo "udp	tpi_clts  	v	inet	udp	/dev/udp	/usr/lib/tcpip.so,/usr/lib/resolv.so" >>/etc/netconfig
+fi
+
+if grep '[ 	]inet[ 	][ 	]*icmp[ 	][ 	]*/dev/icmp[ 	]' /etc/netconfig >/dev/null 2>&1
+then
+	: Already there!
+else
+	echo "icmp	tpi_raw  	-	inet	icmp	/dev/icmp	/usr/lib/tcpip.so,/usr/lib/resolv.so" >>/etc/netconfig
+fi
+
+if grep '[ 	]inet[ 	][ 	]*-[ 	][ 	]*/dev/rawip[ 	]' /etc/netconfig >/dev/null 2>&1
+then
+	: Already there!
+else
+	echo "rawip	tpi_raw  	-	inet	-	/dev/rawip	/usr/lib/tcpip.so,/usr/lib/resolv.so" >>/etc/netconfig
+fi
+
+[ "$UPDEBUG" = YES ] && goany
+
+#
+#  Delete the tcp entry from the sac and then replace it.  This
+#  will ensure the corrrct version getting out there if we are restoring
+#  files due to an UPGRADE or OVERLAY installation.
+#
+sacadm -r -p tcp >/dev/null 2>&1
+sacadm -a -p tcp -t listen -c "/usr/lib/saf/listen -m inet/tcp0 tcp 2>/dev/null" -v `nlsadmin -V` -n 3  2>/dev/null
+SACRET=$?
+[ "${SACRET}" != "0" -a "${SACRET}" != "10" ] && \
+	echo "sacadm -a -p tcp failed - returned ${SACRET}" >>${UPERR}
+
+[ "$UPDEBUG" = YES ] && goany
+
+# PKGINSTALL_TYPE may not be set if auto install mode
+# therefore read in PKGINSTALL_TYPE from inet.env
+
+[ "$PKGINSTALL_TYPE" ] || {
+	[ -f $UPGRADE_STORE/inet.env ] && . $UPGRADE_STORE/inet.env
+}
+
+#
+#  Now we need to bring back the stashed /etc/conf/tcp files
+#  and dbfconv then on the way.
+#
+[ "${PKGINSTALL_TYPE}" != "NEWINSTALL" ] && {
+	#
+	#  Command that converts _pmtab (sactab, etc) files from V4 to 4.2
+	#
+	DBFCONV=/usr/lib/saf/dbfconv
+
+	case ${PKGINSTALL_TYPE} in
+		"OVERLAY") SAVE=${UPGRADE_STORE}/SVR4.2 ;;
+		"UPGRADE") SAVE=${UPGRADE_STORE} ;;
+		*) ;;
+	esac
+
+	#
+	#  copy back all regular files saved from /etc/saf/tcp, and
+	#  we'll dbfconv the _pmtab later.
+	#
+	CUR_DIR=`pwd`
+	cd ${SAVE}/etc/saf/tcp
+	find . -type f -print | cpio -pdum /etc/saf/tcp 2>/dev/null
+	cd ${CUR_DIR}
+
+	[ "$UPDEBUG" = YES ] && goany
+
+	#
+	#  Need to remove any blank lines from the
+	#  _pmtab file before the conversion is done.
+	#
+	TAB='	'
+	SPACE=' '
+	sed -e "/^[${TAB}${SPACE}]*$/d" ${SAVE}/etc/saf/tcp/_pmtab \
+		> /tmp/_pmtab.tcp 2>/dev/null
+
+	${DBFCONV} /tmp/_pmtab.tcp /etc/saf/tcp/_pmtab
+
+	#
+	#  Next, 'kick' the SAC so that the new tcp _pmtab file is
+	#  read in and acted upon.  If sacadm complains, that's OK,
+	#  as it may not be running yet.
+	#
+	sacadm -x -p tcp 2>/dev/null
+
+	#
+	#  Last thing is to resore the System.tcp file if it had
+	#  been backed up in preinstall.
+	#
+	cd ${SAVE}/etc/uucp
+	find . -name "Systems.tcp" -print | cpio -pdum /etc/uucp \
+		2>/dev/null
+	cd ${CUR_DIR}
+
+	[ "$UPDEBUG" = YES ] && goany
+}
+
+#
+#  If /etc/hosts already had this host name or IP address in it,
+#  comment those lines out so that we can add a "correct" entry for
+#  this machine.  This machine may have been changed since last install.
+#
+[ "${IPADDR}" ] && {
+	NODENAME=`uname -n` 2>/dev/null
+	[ "${NODENAME}" ] && {
+		TAB='	'
+		SPACE=' '
+		PAT1="/[${TAB}${SPACE}]${NODENAME}[${TAB}${SPACE}]/s/^/#/"
+		PAT2="/[${TAB}${SPACE}]${NODENAME}$/s/^/#/"
+		PAT3="/^${IPADDR}[${TAB}${SPACE}]/s/^/#/"
+		sed -e "${PAT1}" -e "${PAT2}" -e "${PAT3}" < /etc/hosts \
+			> /tmp/hosts 2>/dev/null
+		cp /tmp/hosts /etc/hosts >/dev/null 2>$1
+		rm /tmp/hosts >/dev/null 2>$1
+		echo "${IPADDR}\t${NODENAME}" >>/etc/hosts
+	}
+}
+
+# listener set up and its uucp access points is now done by a 
+# new script: listen.setup. Only run if LISTENER=YES
+#  Also run if we had a _pmtab in /etc/saf/tcp so that it
+#  will be fixed up correctly for the UPGRADE/OVERLAY
+
+export RAN_SETUP
+RAN_SETUP=""
+[ "${LISTENER}" = "YES" -o -f /etc/saf/tcp/_pmtab ] && {
+	/etc/inet/listen.setup noinstallf >> /var/sadm/install/logs/${PKGINST}.log 2>&1
+	RAN_SETUP="YES"
+}
+
+#
+#  If listen.setup was not run, we need to clear this machine's
+#  ideas about its IP address.
+#
+[ "${RAN_SETUP}" ] || nlsadmin -l "" tcp 2>/dev/null
+
+#
+#	Add /dev/inet to /etc/ttysrch to speed up ttyname
+#
+echo "/dev/inet	MF" >>/etc/ttysrch
+
+#
+#	Create /etc/passwd and /etc/group entry for UID_NOBODY
+#	so in.fingerd can run
+#
+UID_NOBODY="`grep '^nobody:' /etc/passwd | cut -d: -f3`"
+GID_NOBODY="`grep '^nobody:' /etc/group | cut -d: -f3`"
+if [ -z "$UID_NOBODY" ]
+then
+	if [ -z "$GID_NOBODY" ]
+	then
+		touch /noshell
+		chmod +x /noshell
+		useradd -c 'unprivileged user' -d /nonexistent \
+			-s /noshell nobody
+		rm /noshell
+	else
+		touch /noshell
+		chmod +x /noshell
+		# already have a group nobody -- use it
+		useradd -c 'unprivileged user' -d /nonexistent \
+			-s /noshell -g ${GID_NOBODY} nobody
+		rm /noshell
+	fi
+	UID_NOBODY="`grep '^nobody:' /etc/passwd | cut -d: -f3`"
+fi
+if [ -z "$GID_NOBODY" -a ! -z "$UID_NOBODY" ]
+then
+	if cut -d: -f3 </etc/group | grep "^${UID_NOBODY}\$" >/dev/null
+	then
+		# already have group using nobody's uid
+		GID_NOBODY="`grep '^nobody:' /etc/passwd | cut -d: -f4`"
+	else
+		GID_NOBODY=$UID_NOBODY
+	fi
+	echo "nobody::${GID_NOBODY}:" >>/etc/group
+	/usr/sbin/pwconv
+	/sbin/creatiadb
+	usermod -g ${GID_NOBODY} nobody
+fi
+
+#
+#	Add root to list of users denied ftp access
+#
+echo "root" >>/etc/inet/ftpusers
+installf $PKGINST /etc/inet/ftpusers f 0444 root sys 1 NULL NULL
+installf $PKGINST /etc/ftpusers=/etc/inet/ftpusers s
+
+#	Create inetd as a port monitor.  Version doesn't matter
+#	since inetd doesn't usr _pmtab.
+#
+
+# The following ( ) shell scripts are to capture WARNING
+# messages resulting from installing the package
+# in Maintenance mode (aka init S) when the sac
+# program is not running or has never yet been run.
+# The database files are correctly updated when these
+# error numbers are received, the messages usually read:
+#
+# warning - could not ascertain sac status
+
+(	SACOUT="`sacadm -a -p inetd -t inetd -c /usr/sbin/inetd \
+			-v 1 -y \"internet daemon\" 2>&1`"
+	RET=$?
+	if [ 10 = $RET -o 0 = $RET ]
+	then
+		exit 0
+	else
+		# display messages other than "inetd already exists"
+		[ "$RET" != 6 ] && echo "$SACOUT" 1>&2
+		exit $RET
+	fi
+)
+
+# If root is a defined user and has inetd in the TFM database,
+# then we do not need to add it again.
+adminuser root | grep "inetd:/usr/sbin/inetd" >/dev/null 2>&1
+rc=$?
+
+[ $rc = 1 ] && {
+	# Enable inetd to run under the SAC through tfadmin with privileges
+	# The first try may fail due to root not added as a TFM user yet.
+
+	CMD="inetd:/usr/sbin/inetd:allprivs"
+	adminuser -a $CMD root >/dev/null 2>&1
+
+	# We may not be able to add TFM users without using the "-n" option.
+	# If above fails, try again with -n.
+	if [ $? -ne 0 ]
+		then	adminuser -n -a $CMD root 
+	fi
+}
+
+
+#
+#	for security release, let them know how to disable inet services.
+#
+
+/usr/bin/mail root >/dev/null 2>&1 <<!
+Subject: inet package installation: how to disable inet services
+
+The inet services have been installed.  In order to disable access to 
+or from this system in the future, use the /etc/inet/inet.priv -d script.
+If you need to enable the inet services afterwards, you can run
+/etc/inet/inet.priv -e in single user mode to restore file modes
+and privileges.
+!
+
+# make the nodes so that shutdown doesn't complain
+[ -d /tmp/inet/nodes ] || mkdir -p  /tmp/inet/nodes
+for DRV in arp icmp ip llcloop rawip tcp udp
+do
+cp $CONF/node.d/$DRV /tmp/inet/nodes
+done
+$CONF/bin/idmknod -s -e /tmp/inet/nodes > /dev/null 2>&1 
+
+# configure protocols for inet for multiple boards
+/etc/confnet.d/configure
+
+#
+# attach the desktop manager class definition
+#
+if [ ! -z "`echo ${CLASSES} | grep DTMadmin`" ]
+then
+	if [ -d /usr/X/lib/classdb ]
+	then
+		grep "INCLUDE inet\.cdb;" /usr/X/lib/classdb/dtadmin >/dev/null 2>&1
+		if [ $? -ne 0 ]
+		then
+			echo "INCLUDE inet.cdb;" >>/usr/X/lib/classdb/dtadmin
+		fi
+	fi
+fi
+
+#
+# Add Internet_Setup icon to all the existing users with desktop
+# First, get the list of users; /usr/bin/listusers cannot be used 
+# because it is not in the base package.
+
+#listusers|cut -f1 -d " " > /tmp/USERS_LIST 
+
+rm -f /tmp/USERS_LIST
+while read line 
+do 
+	uid=`echo $line | cut -f 3 -d ":"` 
+	[ "$uid" -lt 100 ] && continue
+	name=`echo $line | cut -f 1 -d ":"` 
+	echo "$name" >> /tmp/USERS_LIST
+done < /etc/passwd
+
+sort -o /tmp/USERS_LIST /tmp/USERS_LIST 
+
+while read name 
+do
+	HOMEDIR=`egrep "^$name:" /etc/passwd|cut -f 6 -d ":"`
+
+	# check if desktop environment is setup
+	[ -d $HOMEDIR/System_Setup ] && {
+		[ ! -s $HOMEDIR/System_Setup/Internet_Setup ] && {
+			ln -s /usr/X/bin/InternetMgr $HOMEDIR/System_Setup/Internet_Setup  2>/dev/null
+			installf $PKGINST $HOMEDIR/System_Setup/Internet_Setup=/usr/X/bin/InternetMgr s
+		}
+	}
+done < /tmp/USERS_LIST
+
+rm -f /tmp/USERS_LIST
+
+
+# Now clean up
+#
+for i in app.o app.Master app.System 
+do
+	removef $PKGINST /tmp/inet/$i >/dev/null 2>&1
+done
+for i in arp.o arp.Master arp.Space arp.System arp.Node
+do
+	removef $PKGINST /tmp/inet/$i >/dev/null 2>&1
+done
+for i in icmp.o icmp.Master icmp.System icmp.Node
+do
+	removef $PKGINST /tmp/inet/$i >/dev/null 2>&1
+done
+for i in ip.o ip.Master ip.System ip.Node ip.Space ip.Stubs
+do
+	removef $PKGINST /tmp/inet/$i >/dev/null 2>&1
+done
+for i in llcloop.o llcloop.Master llcloop.System llcloop.Node llcloop.Space
+do
+	removef $PKGINST /tmp/inet/$i >/dev/null 2>&1
+done
+for i in rawip.o rawip.Master rawip.System rawip.Node
+do
+	removef $PKGINST /tmp/inet/$i >/dev/null 2>&1
+done
+for i in tcp.o tcp.Master tcp.System tcp.Node tcp.Space tcp.Mtune
+do
+	removef $PKGINST /tmp/inet/$i >/dev/null 2>&1
+done
+for i in udp.o udp.Master udp.System udp.Node udp.Space
+do
+	removef $PKGINST /tmp/inet/$i >/dev/null 2>&1
+done
+removef $PKGINST /tmp/inet >/dev/null 2>&1
+removef -f $PKGINST
+rm -f $TMP 1>/dev/null 2>&1
+
+#
+#	wrap up with installf -f  and exit message (required reboot)
+#
+
+installf -f $PKGINST
+
+############# Begin UPGRADE AND OVERLAY #######################
+
+[ "$AUTOMERGE" != NULL -a "$REINSTALL" != NO ] && {
+
+#	If AUTOMERGE=Yes, ${SCRIPTS}/pkgmrgconf will 
+#	merge the config files listed in $UPGRADE_STORE/${PKGINST}.sav.
+#	If merge failed, it informs user which files the merge failed.
+
+#	If AUTOMERGE=No, ${SCRIPTS}/pkgmrgconf will 
+#	inform user where there old config files live and that
+#	the system will use new versions of the config. files
+
+	# PKGINSTALL_TYPE may not be set if auto install mode
+	# therefore read in PKGINSTALL_TYPE from inet.env
+
+	[ "$PKGINSTALL_TYPE" ] || {
+
+		[ -f $UPGRADE_STORE/inet.env ] && . $UPGRADE_STORE/inet.env
+	}
+
+	# if upgrade, do not merge config files.
+	# However, tell them where the config files are.
+
+	[ "$PKGINSTALL_TYPE" = UPGRADE ] && AUTOMERGE=No
+
+	${SCRIPTS}/pkgmrgconf "${PKGINST}" "$AUTOMERGE" "$NAME"
+}
+
+[ "$UPDEBUG" = YES ] && goany
+
+# cleanup patch files from /var/sadm/install/contents and rm them
+
+${SCRIPTS}/up_cleanup "${PKGINST}"
+
+############# End   UPGRADE AND OVERLAY #######################
+
+exit 	10

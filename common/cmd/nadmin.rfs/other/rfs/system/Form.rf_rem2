@@ -1,0 +1,28 @@
+#ident	"@(#)nadmin.rfs:other/rfs/system/Form.rf_rem2	1.4.5.1"
+#ident  "$Header: Form.rf_rem2 2.0 91/07/12 $"
+form="Removes Members from the Rfmaster File"
+help=OPEN TEXT $INTFBASE/Text.itemhelp $LININFO
+close=unset -l PID -l LINES
+
+`readfile $INTFBASE/form.msg | message -p`
+`set -l OBJ_DIR=$INTFBASE/netservices/remote_files/other/rfs/system`
+
+done=`indicator -w;
+	set -el HOST="$F1";
+	"$INTFBASE/netservices/remote_files/other/rfs/system/bin/del_member"| set -l PID;
+	set -l KEYCMD="OPEN TEXT $INTFBASE/netservices/remote_files/other/rfs/system/Text.generic 'Removes Members from the Rfmaster File' '/var/tmp/gone_$PID'"
+`$!KEYCMD
+	
+name="System:"
+nrow=1
+ncol=1
+frow=1
+fcol=13
+rows=1
+columns=14
+lininfo=rf_rem2:system
+rmenu=`echo "{ ";
+	/usr/bin/cat /var/tmp/member_$PID;
+	echo " }"`
+valid=` [ "$F1" ]`
+invalidmsg="Press CHOICES to select valid responses."

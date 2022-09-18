@@ -1,0 +1,75 @@
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+/**/#ident	"@(#)vga256:vga256/INIT/Imakefile	1.15"
+
+/**/#
+/**/# If the Makefile is lost or corrupted, to generate a new Makefile:
+/**/# 
+/**/#  /usr/X/bin/imake -DUseInstalled -DTOPDIR=. -DCURDIR=. -I/usr/X/lib/config
+/**/#
+/**/# change SRCFILE to your file name
+/**/#
+
+#define VgaSharedObjectRule()				@@\
+.c.o:							@@\
+	$(CC) -c -KPIC -DVGA_PAGE_SIZE="(64*1024)" -O -Xa -Dix86 $(INCLUDES) $<; @@\
+
+#define	InstallInitLibrary(libname,destdir)				@@\
+install:: all 								@@\
+	$(INSTALL) $(INSTLIBFLAGS) /**/libname/**/_256i.so destdir @@\
+	$(INSTALL) $(INSTDATFLAGS) /**/libname/**/.256cfg destdir
+
+#define VgaInitRule(libname)				@@\
+all:: /**/libname/**/_256i.so				@@\
+/**/libname/**/_256i.so:: libname/**/_256i.o			@@\
+	$(RM) libv256i.so 				@@\
+	$(CC) $(YFLAGS) -G /**/libname/**/_256i.o -o /**/libname/**/_256i.so -h libv256i.so.1 @@\
+	@echo /**/libname/**/_256i.so generated.		@@\
+	InstallInitLibrary(libname,$(VGAINITDIR))	@@\
+
+SRCS =	 misc_256i.c et4k_256i.c leg_256i.c ati_256i.c t89_256i.c wdc1x_256i.c
+
+   INCLUDES = -I./ -I../
+     LFLAGS = -buxz
+ VGAINITDIR = $(USRLIBDIR)/vgainit
+ SHAREDOBJS =
+
+#ifdef XWINSharedDisplayLibrary
+VgaSharedObjectRule()
+
+all::
+	@echo "Making 256 color initialization drivers for various VGA boards ...."
+
+install:: 
+	$(MKDIRHIER) $(VGAINITDIR)
+
+DEFAULT_LIB = misc_256i.so
+
+VgaInitRule(misc)
+VgaInitRule(et4k)
+VgaInitRule(leg)
+VgaInitRule(ati)
+VgaInitRule(t89)
+VgaInitRule(wdc1x)
+
+#if NOTNOW
+VgaInitRule(et3k)
+#endif
+
+all:: $(DEFAULT_LIB)
+	$(CP) $(DEFAULT_LIB) libv256i.so
+	@echo Done making 256 color initialization drivers.
+#endif
+
+clean::
+	$(RM) *.so
+
+DependTarget()
+

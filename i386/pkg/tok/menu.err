@@ -1,0 +1,43 @@
+#ident	"@(#)pkg.tok:menu.err	1.3"
+#ident	"$Header: $"
+
+.pageno
+Page %d of %d
+.ul
+Token Ring Hardware Support
+.hhelp_ban
+Instructions
+.helpbanner
+Help: Parameter Selection Error
+.ur
+Parameter Selection Error
+.ll
+Press F1 for Help.
+.lr
+F1=Help
+.top
+`[ "$ERR" = 1 ] && echo "Adaptor $BNO could not be installed because the"`
+`[ "$ERR" = 1 ] && echo "interrupts listed below are in use already:"`
+`[ "$ERR" = 1 ] && cat $INTVFL`
+`[ "$ERR" = 2 ] && echo "Adaptor $BNO could not be installed because the"`
+`[ "$ERR" = 2 ] && echo "$ADDR_TYPE addresses are in use already."`
+`[ "$ERR" = 2 ] && echo " Press 'F1' to see the supported $ADDR_TYPE addresses."`
+`[ "$ERR" = 3 ] && echo "Both kinds of boards cannot be installed on one machine"`
+.form
+ENTER
+.button
+Apply
+Reset
+.bottom
+`echo $ERROPT`
+.help
+`[ "$ERR" = 1 ] && echo "No help available."`
+`[ "$ERR" = 2 ] && cat ${LIST}`
+`[ "$ERR" = 3 ] && echo "No help available."`
+.helpinst
+F1=Instructions  ESC=Exit help  1=Forward  2=Back
+.hhelpinst
+ESC=Exit instructions  1=Forward  2=Back
+.working
+Working...
+.end

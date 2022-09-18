@@ -1,0 +1,5 @@
+#ident	"@(#)nadmin.rfs:other/rfs/HELP/control.help	1.2.7.2"
+#ident  "$Header: control.help 2.0 91/07/12 $"
+
+	The control menu allows you to start, monitor, and stop
+	Remote File Sharing operation.

@@ -1,0 +1,13 @@
+#ident	"@(#)oampkg:common/cmd/oampkg/pkgscripts/default	1.5.7.4
+#ident  "$Header: $"
+mail=root
+instance=overwrite
+partial=nocheck
+runlevel=nocheck
+idepend=quit
+rdepend=quit
+space=quit
+setuid=nocheck
+conflict=nocheck
+action=nocheck
+basedir=default

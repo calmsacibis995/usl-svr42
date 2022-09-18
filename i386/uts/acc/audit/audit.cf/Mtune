@@ -1,0 +1,6 @@
+#ident	"@(#)uts-x86:acc/audit/audit.cf/Mtune	1.2"
+* AUDIT Parameters
+ADT_BSIZE	20480	10240	20480
+ADT_NBUF	2	0	5
+ADT_NLVLS	4	1	4
+

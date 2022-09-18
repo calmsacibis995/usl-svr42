@@ -1,0 +1,32 @@
+#ident	"@(#)uts-x86at:io/target/sdi.cf/space.gen	1.9"
+#ident	"$Header: $"
+
+/*
+ * sdi/space.c
+ */
+
+#include "config.h"
+#include "util/types.h"
+#include "io/target/sdi_edt.h"
+#include <io/target/sdi.h>
+#include <io/target/scsi.h>
+#include <io/vtoc.h>	/* needed for dcd.h */
+#include <io/hba/dcd.h>
+#include <io/hba/wd7000.h>
+#include <io/hba/aha.h>
+#include <io/hba/dpt_sdi.h>
+#include <io/hba/mcis.h>
+
+int sdi_major = SDI__CMAJOR_0;
+
+struct sdi_edt edtpool[NSDIDEV];	/* pool of edt entries */
+struct sdi_edt edt_hash[EDT_HASH_LEN];	/* edt hash table */
+struct owner	owner_pool[NOWNER];	/* owner pool */
+
+long   sdi_started = 0;
+
+struct hba_cfg HBA_tbl[SDI_HBASWSZ];
+int	sdi_hbaswsz = SDI_HBASWSZ;
+
+void	(*sdi_rinits[SDI_RTABSZ])();
+int	sdi_rtabsz = SDI_RTABSZ;

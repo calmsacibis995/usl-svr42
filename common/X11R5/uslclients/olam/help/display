@@ -1,0 +1,28 @@
+By entering a display name, host name, and network type in the Display \
+Name, Host Name, and Netspec fields respectively, OPEN LOOK clients on \
+this machine will be permitted to connect to the specified display on \
+the specified remote host using the specified network type.
+Valid network types depend on the networking software that has been \
+installed.  "starlan" and "it" are the most common, representing \
+STARLAN and TCP/IP respectively.  Contact your system administrator to \
+find out what networking software has been installed.
+
+An entry with a "*" for both the Display Name and Host Name fields \
+matches all display specifications.  This directs all connection \
+requests to use the specified network type.  There should usually be \
+at most one entry of this type at the end of the list.
+
+Entries are tried in order until a successful connection is made, an \
+entry with "*" for both the Display Name and Host Name is tried, or \
+the end of the list is reached.
+
+Example:
+An entry containing "my6386-s", "my6386", and "starlan", would allow \
+you to connect to the machine called "my6386" over the STARLAN network \
+by using "my6386-s:0.0" as the display specification.
+
+Example:
+An entry containing "*", "*", and "it", would allow you to connect to \
+any machine over the TCP/IP network by using "<machine-name>:0.0" as \
+the display specification (Provided <machine-name> does not match a \
+preceding Display Name entry that produces a successful connection.).

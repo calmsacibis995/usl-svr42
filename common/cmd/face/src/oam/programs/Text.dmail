@@ -1,0 +1,20 @@
+#ident	"@(#)face:src/oam/programs/Text.dmail	1.6.4.3"
+#ident  "$Header: Text.dmail 1.4 91/10/15 $"
+
+title=$$uxface:378:"Removal of Mail Services"
+
+init=false
+
+`indicator -w;
+fmlgrep '^vmsys:' /etc/passwd | fmlcut -f6 -d: |set -e VMSYS;
+if fmlgrep 'name="$$uxface:369:Mail Services"' $VMSYS/lib/services > /dev/null;
+then
+	if $VMSYS/bin/delmenu '$$uxface:369:Mail Services' > /dev/null;
+	then
+		message "$$uxface:379:Mail Services have been removed.";
+	else
+		message "$$uxface:380:Mail Services have not been removed.";
+	fi;
+else
+	message "$$uxface:381:Mail Services are not in the Programs Menu.";
+fi`

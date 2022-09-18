@@ -1,0 +1,75 @@
+#ident	"@(#)pkg.eth:prototype	1.8"
+#ident  "$Header: $"
+
+i depend
+i pkginfo
+i postinstall
+i preinstall
+i preremove
+i request
+i eth/menu.err=menu.err
+i eth/menu.eth=menu.eth
+i eth/menu.param=menu.param
+
+!OAMBASE=/usr/sadm/sysadm
+!PKGINST=eth
+!PKGSAV=/var/sadm/pkg/$PKGINST/save
+!default 0544 bin bin
+d none /tmp	?	?	?
+d none /tmp/eth	755	bin	bin
+d imx586 /tmp/eth/imx586	775	bin	bin
+d ie6 /tmp/eth/ie6		775	bin	bin
+d ee16 /tmp/eth/ee16	775	bin	bin
+d el16 /tmp/eth/el16	775	bin	bin
+d wd /tmp/eth/wd	775	bin	bin
+v imx586 /tmp/eth/imx586/Driver.o=/etc/conf/pack.d/imx586/Driver.o
+v imx586 /tmp/eth/imx586/Space.c=/etc/conf/pack.d/imx586/space.c
+v imx586 /tmp/eth/imx586/Master=/etc/conf/mdevice.d/imx586
+v imx586 /tmp/eth/imx586/System=/etc/conf/sdevice.d/imx586
+v imx586 /tmp/eth/imx586/Node=/etc/conf/node.d/imx586
+v ie6 /tmp/eth/ie6/Driver.o=/etc/conf/pack.d/ie6/Driver.o
+v ie6 /tmp/eth/ie6/Space.c=/etc/conf/pack.d/ie6/space.c
+v ie6 /tmp/eth/ie6/Master=/etc/conf/mdevice.d/ie6
+v ie6 /tmp/eth/ie6/System=/etc/conf/sdevice.d/ie6
+v ie6 /tmp/eth/ie6/Node=/etc/conf/node.d/ie6
+v ee16 /tmp/eth/ee16/Driver.o=/etc/conf/pack.d/ee16/Driver.o
+v ee16 /tmp/eth/ee16/Space.c=/etc/conf/pack.d/ee16/space.c 
+v ee16 /tmp/eth/ee16/Master=/etc/conf/mdevice.d/ee16 
+v ee16 /tmp/eth/ee16/System=/etc/conf/sdevice.d/ee16
+v ee16 /tmp/eth/ee16/Node=/etc/conf/node.d/ee16 
+v el16 /tmp/eth/el16/Driver.o=/etc/conf/pack.d/el16/Driver.o 
+v el16 /tmp/eth/el16/Space.c=/etc/conf/pack.d/el16/space.c 
+v el16 /tmp/eth/el16/Master=/etc/conf/mdevice.d/el16 
+v el16 /tmp/eth/el16/System=/etc/conf/sdevice.d/el16 
+v el16 /tmp/eth/el16/Node=/etc/conf/node.d/el16 
+v wd /tmp/eth/wd/Driver.o=/etc/conf/pack.d/wd/Driver.o
+v wd /tmp/eth/wd/Space.c=/etc/conf/pack.d/wd/space.c
+v wd /tmp/eth/wd/Master=/etc/conf/mdevice.d/wd
+v wd /tmp/eth/wd/System=/etc/conf/sdevice.d/wd
+v wd /tmp/eth/wd/Node=/etc/conf/node.d/wd
+
+d none /usr	?	?	?
+d none /usr/include	?	?	?
+d none /usr/include/sys	?	?	?
+
+#	header files: default owner=bin group=bin mode=0444
+
+!default 0444 bin bin
+f none /usr/include/sys/dlpi_ether.h
+
+f imx586 /usr/include/sys/dlpi_imx586.h
+f imx586 /usr/include/sys/imx586.h
+
+f ie6 /usr/include/sys/dlpi_ie6.h
+f ie6 /usr/include/sys/ie6.h
+
+f ee16 /usr/include/sys/dlpi_ee16.h
+f ee16 /usr/include/sys/ee16.h
+
+
+f el16 /usr/include/sys/dlpi_el16.h
+f el16 /usr/include/sys/el16.h
+
+
+f wd /usr/include/sys/dlpi_wd.h
+f wd /usr/include/sys/wd.h

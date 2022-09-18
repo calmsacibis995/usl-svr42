@@ -1,0 +1,70 @@
+#ident	"@(#)oamintf:common/cmd/oamintf/usermgmt/Form.modmac2	1.1.7.3"
+#ident  "$Header: Form.modmac2 2.0 91/07/12 $"
+
+form="$!OP Security Levels"
+
+framemsg=`readfile $INTFBASE/form.msg`
+
+help=OPEN TEXT $INTFBASE/Text.itemhelp $LININFO
+
+	
+close=`/usr/bin/rm -f $UMODERR`
+done=`test "$F1" != "$OSL" && set -l ALLARGS="$UMODARGS $UMODARGSAUD -h $!OPERATOR$FLVLS";
+	test "$F2" != "$OLL" && set -l ALLARGS="$ALLARGS -v$F2";
+	message -w -f "Modifying user $LOGIN.";
+	if [ -n "$TFADMIN" ]; then shell "$TFADMIN usermod $!ALLARGS $!LOGIN >/dev/null 2>$UMODERR";
+	else shell "usermod $!ALLARGS $!LOGIN >/dev/null 2>$UMODERR"; fi;
+	if [ "$RET" -eq "0" ]; then
+      		set -l MOD_LIFE=shortterm;
+		set -l CMD="OPEN TEXT $OBJ_DIR/Text.musrok $LOGIN";
+	else
+		set -l CMD="OPEN TEXT $OBJ_DIR/Text.musrnok $LOGIN";
+	fi;
+	unset -l ALLARGS -l UMODARGSAUD;
+`$CMD
+
+# Get current alias info (both ways - got to get lids and aliases)
+`lvlname |sed '/^Levels:/d;/^$/d;/^Classifications/,$ d;s/^[0-9]*:*//;s/::.*$//'>/tmp/$VPID.levels`
+
+
+#  $F1
+name=Security level(s) or alias(es):
+lininfo=Form.mac1:seclvl
+nrow=1
+ncol=3
+frow=1
+fcol=35
+rows=1
+columns=40
+scroll=true
+`shell "$TFADMIN /usr/bin/logins -oh -l $LOGIN" |fmlcut -d: -f7-|/usr/bin/sed 's/:/ /g' |set -l OSL`
+value="$OSL"
+rmenu=OPEN MENU $OBJ_DIR/Menu.mlvls
+valid=`message -f "Please wait."; echo "$F1" |sed 's/,/ /g' | set -l LVLS;
+	if [ -n "$LVLS" ]; then
+	    if regex -v "$LVLS" '.* .*'; then
+	       valforloop "$LVLS" "grep \$i /tmp/$VPID.levels";
+	    else grep $LVLS /tmp/$VPID.levels;
+	    fi;
+	    shell "echo '$F1' |sed 's/,/ -h$!OPERATOR/g'" | set -l FLVLS;
+fi`
+invalidmsg=const "Error - Enter an existing qualified level name or alias"
+fieldmsg= const "Press the CHOICES function key. Press SAVE when you complete the form."
+
+#  $F2
+name=Default Login Level:
+lininfo=Form.mac2:loglvl
+nrow=2
+ncol=3
+frow=2
+fcol=24
+rows=1
+columns=40
+scroll=true
+`shell "$TFADMIN /usr/bin/logins -oh -l $LOGIN" | fmlcut -d: -f6|set -l OLL`
+value="$OLL"
+rmenu={ `cat /tmp/$VPID.levels` }
+valid=`test -n "$F2" && grep $F2 /tmp/$VPID.levels`
+invalidmsg=const "Error - Enter an existing qualified level name or alias"
+fieldmsg= const "Press the CHOICES function key. Press SAVE when you complete the form."
+# EOF

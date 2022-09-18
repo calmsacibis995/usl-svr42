@@ -1,0 +1,5 @@
+#ident	"@(#)uts-x86:fs/nfs/nfs.cf/Master	1.4"
+#ident	"$Header: $"
+$version 1
+$entry init
+nfs	nfs	F	0	0	0

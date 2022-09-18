@@ -1,0 +1,4 @@
+#ident	"@(#)eac:i386/eaccmd/maplocale/default	1.1.1.1"
+#ident  "$Header: default 1.1 91/07/04 $"
+
+LANG=english_us.88591

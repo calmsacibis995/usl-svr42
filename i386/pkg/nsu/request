@@ -1,0 +1,134 @@
+#ident	"@(#)pkg.nsu:i386/pkg/nsu/request	1.3.5.21"
+#ident	"$Header: $"
+
+#	request script for nsu package installation
+
+trap 'exit 3' 15
+
+#
+#  Make sure LANG environment variable is set.  If it's not set
+#  coming in to this request script, then default to the C-locale.
+#
+[ ${LANG} ] || LANG="C"
+export LANG
+
+UPINSTALL=/etc/inst/up
+SCRIPTS=/usr/sbin/pkginst
+UPGRADE_STORE=/var/sadm/upgrade
+
+. $SCRIPTS/updebug
+
+[ "$UPDEBUG" = "YES" ] && {
+	set -x
+	goany
+}
+
+OUTPUT=$1
+> ${OUTPUT}
+
+CLASSES="none" export CLASSES
+
+DIR=/etc/inst/locale/${LANG}/menus/nsu
+[ -d ${DIR} ] || mkdir -p ${DIR}
+cp ${REQDIR}/nsu/menu* ${DIR}
+
+#
+#  Set up to use menu_colors; default to C-locale if ${LANG}'s dir has
+#  no menu_colors.sh
+#
+if [ -f /etc/inst/locale/${LANG}/menus/menu_colors.sh ]
+then
+	. /etc/inst/locale/${LANG}/menus/menu_colors.sh
+else
+	. /etc/inst/locale/C/menus/menu_colors.sh
+fi
+
+############# Begin UPGRADE AND OVERLAY #######################
+
+export INSTALL_MODE PKGINSTALL_TYPE AUTOMERGE
+
+#  set INSTALL_MODE to CUSTOM, if not set
+
+[ "$INSTALL_MODE" ] || INSTALL_MODE=CUSTOM
+
+AUTOMERGE=NULL
+PKGINSTALL_TYPE=NEWINSTALL
+
+#is it upgrade or overlay?
+#	${SCRIPTS}/chkpkgrel returns 2 if installed pkg is DESTINY
+#					4 if installed pkg is V4
+#					1 if installed pkg if UNK version
+#					0 if pkg is not installed
+
+[ "$UPDEBUG" = "YES" ] && goany
+
+${SCRIPTS}/chkpkgrel
+PKGVERSION=$?
+
+case $PKGVERSION in
+	2)	PKGINSTALL_TYPE=OVERLAY	;;
+	4)	PKGINSTALL_TYPE=UPGRADE	;;
+	*)	;;
+esac
+
+[ "$PKGINSTALL_TYPE" = NEWINSTALL ] || {
+
+	AUTOMERGE=Yes
+
+	#
+	# First check for ptm in /etc/conf/sdevice.d, if it exists, use it,
+	# otherwise check for it in $UPINSTALL.
+	#
+	# After we've been through here once, we NEVER want to use the values
+	# in $UPINSTALL/ptm again, so we need to rm the file.  In case
+	# the install fails, I'm going to wait until the postinstall script
+	# to remove it.
+	#
+
+	PTM=/etc/conf/sdevice.d/ptm
+	[ -f $PTM ] || PTM=$UPINSTALL/ptm
+
+	[ -f $PTM ] && {
+
+		grep "^ptm	" $PTM >/tmp/ptm.$$ 2>/dev/null
+		OFS=$IFS
+		IFS="	"	#tab
+		read Dev Conf DFLT x4 x5 x6 x7 x8 x9 x10 </tmp/ptm.$$
+		IFS=$OFS
+
+    		[ "$Conf" = N ] && unset DFLT
+		rm -f /tmp/ptm.$$
+	}
+	[ "$DFLT" ] && {
+		[ $DFLT -lt 16 ] && DFLT=16
+	}
+}
+
+[ "$DFLT" ] || DFLT=16	#16 default pseudo_ttys
+
+[ "$UPDEBUG" = "YES" ] && goany
+
+############# Begin UPGRADE AND OVERLAY #######################
+
+PTNUM=${DFLT} export PTNUM
+
+menu_colors regular
+> /tmp/out
+
+menu -f $DIR/menu.nsu -o /tmp/out 2> /dev/null
+. /tmp/out
+
+#
+#  Give 16 pty's if this variable unset.
+#
+[ ${PTNUM} ] || PTNUM=16
+
+echo "CLASSES=\"${CLASSES}\"" >> $OUTPUT
+
+echo "PTNUM=$PTNUM" >>$OUTPUT || exit 1
+
+echo AUTOMERGE=\"${AUTOMERGE}\" >> ${OUTPUT}
+echo PKGINSTALL_TYPE=\"${PKGINSTALL_TYPE}\" >> ${OUTPUT}
+echo INSTALL_MODE=\"${INSTALL_MODE}\" >> ${OUTPUT}
+
+exit 0

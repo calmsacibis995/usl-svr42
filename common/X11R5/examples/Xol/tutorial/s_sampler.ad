@@ -1,0 +1,60 @@
+s_sampler*.statictext1.string:	Statictext (read only) for the Footerpanel . . .
+s_sampler*Cancel.label:	Cancel
+s_sampler*Exit.label:	Exit
+s_sampler*Okay.label:	Okay
+s_sampler*One.label:	One
+s_sampler*Rainbow.label:	Rainbow
+s_sampler*Two.label:	Two
+s_sampler*abbmenu_caption.label:	Abbreviatedmenubutton:
+s_sampler*abm_button1.label:	One
+s_sampler*abm_button2.label:	Two
+s_sampler*bb_caption.label:	Bulletinboard
+s_sampler*buttongadget.label:	Oblongbutton
+s_sampler*c_caption.label:	Caption
+s_sampler*ca_caption.label:	Controlarea:
+s_sampler*cb_caption.label:	Checkbox:
+s_sampler*checkbox.label:	CHECKBOX LABEL
+s_sampler*cw_button.label:	Popup: Command Window
+s_sampler*e_caption.label:	Exclusives:
+s_sampler*ex_caption.label:	Exclusives:
+s_sampler*f_caption.label:	Flat Widgets
+s_sampler*fm_caption.label:	Form
+s_sampler*footer1.string:	Footer widget for messages
+s_sampler*footer2.string:	Footer widget for messages
+s_sampler*g_caption.label:	Gauge
+s_sampler*gbutton1.label:	Button1
+s_sampler*gbutton2.label:	Button2
+s_sampler*gd_caption.label:	Gadgets
+s_sampler*mbutton1.label:	One
+s_sampler*mbutton2.label:	Two
+s_sampler*menubutton.label:	Menubutton
+s_sampler*menubuttongadget.label:	Menubutton
+s_sampler*ne_caption.label:	Nonexclusives:
+s_sampler*nex_caption.label:	Nonexclusives:
+s_sampler*option1.label:	Option 1
+s_sampler*option2.label:	Option 2
+s_sampler*popupshell0.title:	README
+s_sampler*popupshell1.title:	Command Window
+s_sampler*popupshell2.title:	Property Window
+s_sampler*pw_button.label:	Popup: Property Window
+s_sampler*rbutton1.label:	Choice 1
+s_sampler*rbutton2.label:	Choice 2
+s_sampler*rbutton3.label:	Choice 3
+s_sampler*rbutton4.label:	Choice 1
+s_sampler*rbutton5.label:	More
+s_sampler*readme.label:	README
+s_sampler*s_sampler.title:	s_sampler
+s_sampler*slider_caption.label:	Slider
+s_sampler*slist_caption.label:	Scrollinglist
+s_sampler*statictext3.string:	This text is in a\n\
+statictext widget\n\
+in a scrolled window.\n\
+You can move it up\n\
+and down or left\n\
+and right with the\n\
+two scrollbars.\n
+s_sampler*sw_caption.label:	Scrolledwindow
+s_sampler*te_caption.label:	Textedit:
+s_sampler*textedit.source:	This text is in a textedit \nwidget and can be edited.
+s_sampler*tf_caption.label:	Textfield: type & type <return> :
+s_sampler*flatCheckbox.label: CheckBox%d

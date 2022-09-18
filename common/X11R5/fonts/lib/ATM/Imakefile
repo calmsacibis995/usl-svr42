@@ -1,0 +1,61 @@
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+/**/#ident	"@(#)libatm:Imakefile	1.2"
+
+
+#ifndef AdobeSharedLibraryObjTarget
+#define AdobeSharedLibraryObjTarget(libname,objs1,objs2)            @@\
+AllTarget(Concat(lib,libname.so))                                       @@\
+                                                                        @@\
+Concat(lib,libname.so):  objs1 objs2 					@@\
+        $(RM) $@                                                       @@\
+        ($(CC) $(YFLAGS) -G objs1 objs2 -o $@ -h ../$@ $(SHLIBFLAGS))           @@\
+                                                                        @@\
+clean::                                                                 @@\
+        $(RM) Concat(lib,libname.so)
+
+#endif
+
+OBJS = atm/?*.o oematm/?*.o 
+SHAREDOBJS = atm/?*.o 
+
+SOBJS1 = atm/atmbitmap.o\
+	atm/fixed386.o \
+	atm/atmfuncs.o \
+	atm/atmfont.o \
+	atm/atmimpl.o \
+	atm/fsatmprop.o \
+	atm/cacheimpl.o \
+	atm/encodings.o \
+	atm/doublink.o \
+	atm/buildglu.o \
+	atm/parseglu.o \
+	atm/buffmana.o \
+	atm/fsatmbitmap.o
+
+SOBJS2 = oematm/atmqred.o \
+	oematm/charmap.o \
+	oematm/chartype.o \
+	oematm/cscan.o \
+	oematm/fix64.o	\
+	oematm/fixed.o \
+	oematm/flatten.o \
+	oematm/flex.o \
+	oematm/fontbuil.o \
+	oematm/fxmtxinv.o \
+	oematm/glbclr.o \
+	oematm/matrix.o \
+	oematm/parse.o \
+	oematm/sqrt.o \
+	oematm/strtofix.o
+AdobeSharedLibraryObjTarget(atm,$(SOBJS1),$(SOBJS2))
+InstallSharedLibrary1(libatm.so,$(USRLIBDIR))
+DependTarget()
+clean::

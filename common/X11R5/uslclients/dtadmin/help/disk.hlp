@@ -1,0 +1,513 @@
+#ident	"@(#)dtadmin:help/disk.hlp	1.12"
+^*version^1
+^*title^Disk A
+^:Diskette
+^*width^70
+^+DesktopMgr/help.defs
+^?Using Floppy Disks
+^0^Disk A (Disk B)
+^$10
+Disk A (Disk B)
+
+Use Disk A (or Disk B) to perform these basic operations for floppy
+disks:
+
+   o opening the floppy disk as a folder
+
+   o backing up \d(files^file) and \d(folders^folder)
+
+   o restoring files and folders
+
+   o installing packages
+
+   o formatting (for use with the UNIX system or DOS)
+
+   o creating DOS directories
+
+When you \d(double-click) on the Disk A (or Disk B) icon, an attempt
+is made to determine what operation you want. For example, if your
+floppy disk contains a backup from a previous session, the Restore
+window automatically appears. Use the icon menu (see the icon menu
+reference card) to choose an operation rather than have it automati-
+cally selected. For example, to reuse a floppy disk that already con-
+tains a backup, choose Backup from the icon menu.
+
+Note: The operations of the Disk A and Disk B icons are identical
+except that the Disk A icon pertains to floppy drive A and the Disk B
+icon pertains to floppy drive B. The icons for Disk A and Disk B
+indicate whether the floppy drive is for 3.5" or 5.25" floppy disks.
+If your system only has one floppy drive, only the Disk A icon is
+present.
+
+All Disk A operations are accessible from the Icon Menu. Besides the
+three menu options common to all Icon Menus (Open, Properties, and
+Delete), the Disk A Icon Menu includes:
+
+   o Backup: displays the Backup window
+
+   o Restore: displays the Restore window
+
+   o Install: displays the Application Setup window
+
+   o Format: Brings up the Format window
+
+Note: Cartridge tapes have an advantage over floppy disks because
+they typically hold 60, 120 or more MB (megabytes) of data. If you
+have large amounts of data to backup, we highly recommend using a car-
+tridge tape for backing up instead of high density floppy disks, which
+only hold 1.2 or 1.4 MB of data.
+
+More information:
+
+        \k(Backup-Restore^dtadmin/backup.hlp^Backup-Restore)
+        \k(Application Setup^dtadmin/pkgset.hlp^Application Setup)
+        \k(Format Window)
+        \k(DOS Floppy - Drive:path Window)
+        \k(Copy DOS Files Window)
+        \k(File: Create DOS Directory Window)
+^1^Format Window
+^$20
+\k{Disk A (Disk B)}
+1. Format Window
+
+Before floppy disks can be used with a computer, they must be formatted.
+Use the Format window to format floppy disks, not only for use on
+computers running the UNIX operating system, but also for use on
+computers running DOS. In fact, it's possible for your computer to be
+loaded with both operating systems, allowing you to freely switch
+between them. See the UNIX system installation documentation for
+information on loading multiple operating systems.
+
+The Format window appears when you double-click on the Disk A icon and
+there is a blank, unformatted floppy disk in floppy drive A.
+
+Before beginning to format a floppy disk, you must choose the Density
+and Type.
+
+More information:
+
+         \k(Floppy Disk Densities)
+         \k(Format Type)
+
+The buttons available from the Format window are:
+
+        \k(Action Button)
+        \k(Help Button)
+^2^Floppy Disk Densities
+^$30
+1. \k{Format Window}
+   1.1 Floppy Disk Densities
+
+First choose the Density. Floppy disks are available in two densities,
+High and Low, as well as in two sizes. Table 1 gives the capacities of
+the most popular sizes and densities of floppy disks.
+
+       Table 1: Floppy Disk Capacities
+
+\t\tHigh\tLow
+
+\t\t=============
+
+\t3.5":\t1.4 MB\t720 KB
+
+\t5.25":\t1.2 MB\t360 KB
+
+Note: Note that you cannot format a floppy disk to a capacity it's not
+designed for. The box that floppy disks come in is clearly marked as
+to whether or not the floppy disks are high density. If the box
+identifies disks only as double sided, the disks are low density. For
+additional identification, high density 3.5" floppy disks are marked
+with the letters HD near the sliding, metal door.
+^2^Format Type
+^$40
+1. \k{Format Window}
+   1.2 Format Type
+
+After selecting the Density, select the Type of format you want to
+perform. Your choices are:
+
+        \k(Backup Use)
+        \k(Desktop Folder)
+        \k(DOS Format)
+^3^Backup Use
+^$50
+1. \k{Format Window}
+   1.2 \k{Format Type}
+       1.2.1 Backup Use
+
+The Backup Use option lets you format floppy disks so that you can
+back up files from your computer's hard disk to a floppy disk for safe
+keeping. You cannot use the files directly from a floppy disk
+formatted this way; you must restore the files to the hard disk before
+you can access them.
+^3^Desktop Folder
+^$60
+1. \k{Format Window}
+   1.2 \k{Format Type}
+       1.2.2 Desktop Folder
+
+The Desktop Folder option lets you format floppy disks so that you can
+copy files from your computer's hard disk to a floppy disk and also
+access the files directly from the floppy disk without first restoring
+them to the hard disk. This option prepares the floppy disk in way
+that lets you use it as a folder. There is no difference between a
+folder on a floppy disk and the folders on your hard disk. Floppy
+disks formatted this way can be accessed through a folder window and
+can be used to hold files and other folders.
+^3^DOS Format
+^$70
+1. \k{Format Window}
+   1.2 \k{Format Type}
+       1.2.3 DOS Format
+
+The DOS Format option lets you format floppy disks for use with the
+DOS operating system. You may have DOS on your computer as well as
+the UNIX system. Floppy disks formatted for the UNIX system are not
+compa- tible with DOS, and vice versa. Each operating system must have
+floppy disks formatted specifically for it.
+^2^Action Button
+^$80
+1. \k{Format Window}
+   1.3 Action Button
+
+The Actions button lets you start the formatting process and exit the
+Format window. Clicking on the Actions button displays a menu with
+the following options:
+
+        \k(Format^^FormatAB)
+        \k(Exit^^ExitAB)
+^3^Format=FormatAB
+^$90
+1. \k{Format Window}
+   1.3 \k{Action Button}
+       1.3.1 Format
+
+The Format menu option starts the formatting process. A graphic
+representing 0 to 100% appears and fills in as the format progresses.
+A message at the bottom of the window appears when the format is com-
+plete.
+^3^Exit=ExitAB
+^$100
+1. \k{Format Window}
+   1.3 \k{Action Button}
+       1.3.2 Exit
+
+The Exit menu option closes the Format window.
+^2^Help Button
+^$110
+1. \k{Format Window}
+   1.4 Help Button
+
+The Help button provides on-line help for the Format window. Clicking
+on the Help button displays a menu with the following options:
+
+        \k(Format^^FormatHB)
+        \k(Table of Contents)
+        \k(Help Desk)
+^3^Format=FormatHB
+^$120
+1. \k{Format Window}
+   1.4 \k{Help Button}
+       1.4.1 Format
+
+The Format menu option provides on-line help for the Format window.
+^3^Table of Contents
+^$130
+1. \k{Format Window}
+   1.4 \k{Help Button}
+       1.4.2 Table of Contents
+
+The Table of Contents menu option displays the list of help topics
+available for the Format window.
+^3^Help Desk
+^$140
+1. \k{Format Window}
+   1.4 \k{Help Button}
+       1.4.3 Help Desk
+
+The Help Desk menu selection opens the Help Desk window. From there,
+you can \d(double-click) on the icon for which you want on-line help.
+^1^DOS Floppy - Drive:path Window
+^$150
+\k{Disk A (Disk B)}
+2. DOS Floppy - Drive:path Window
+
+When you insert an DOS floppy disk into the disk drive and \d(double-click)
+on the Disk A (or Disk B) icon, the DOS Floppy window appears. By
+\d(dragging-and-dropping^drag-and-drop) icons from a Desktop folder to this window, you
+can transfer files between your UNIX system and DOS floppy disks. By
+using the Copy menu option under the File button, you can copy files
+to a UNIX folder.
+
+Note: You cannot copy folders (or directories) between the UNIX system
+and DOS floppy disks. You must first open the folder (or directory)
+and then copy the files it contains.
+
+Caution: The UNIX system allows a less structured way of naming files.
+In DOS, you are limited to file names consisting of eight characters,
+a period (.) and then a three-letter extension (such as, filename.ext).
+If you copy a file with a name containing more than eight characters
+before a period (if any), from your UNIX system to a DOS floppy, then
+the file name is truncated and given the form filename.ext.
+
+When the name is changed, the new name might match an existing file
+name on your DOS floppy. In this case, the file on the floppy is
+replaced by the file from the UNIX Desktop and you do not receive a
+warning message that you're about to overwrite an existing file. Check
+your file names carefully before you copy files from your UNIX Desktop
+to a DOS floppy.
+
+Double-clicking on a folder in the DOS Floppy window opens the folder
+and shows icons representing the files in that folder
+(double-clicking on a DOS file or executable (program) does nothing).
+
+Note: If you double-click on a folder in the DOS Floppy window, an
+icon for a special folder, called "Parent Directory" is displayed on
+the first row, by itself. The icons representing the files in this
+folder begin in the second row. These icons are displayed in the
+current DOS Floppy window (as opposed to UNIX system floppy disks,
+which open a new window when you double-click on a folder). Double-
+clicking on the Parent Directory icon moves you up (out of the
+sub-directory). In addition, you cannot erase the Parent Directory
+icon.
+
+The format of UNIX system and DOS files is slightly different. DOS
+files end each line with a carriage return and line feed; UNIX system
+files end each line with only a line feed. In addition, DOS files mark
+the end of the file with a Ctrl-Z character.
+
+When transferring files from DOS to the UNIX system and vice versa,
+ASCII files (also known as text files) are handled differently than
+binary files (such as executables):
+
+   o ASCII Files: The format of ASCII files is automatically converted
+     unless you select Don't Convert on the UNIX <-> DOS line.
+
+   o Binary Files: The format of binary files is not converted; you
+     should not select Convert on Copy on the UNIX <-> DOS line.
+
+In general, it's not necessary to select either option on the UNIX <->
+DOS line. If, however, you want to make sure that a transferred file
+is either converted or not converted, click on the appropriate
+option.
+
+The buttons available from the DOS Floppy window are:
+
+        \k(File Button^^File ButtonDOS)
+        \k(Edit Button^^Edit ButtonDOS)
+        \k(Help Button^^Help ButtonDOS)
+^2^File Button=File ButtonDOS
+^$160
+2. \k{DOS Floppy - Drive:path Window}
+   2.1 File Button
+
+The File button lets you copy files and delete files and directories,
+create a sub-directory on the floppy disk, and exit from the DOS
+Floppy window. Clicking on the File button displays a menu with the
+following options:
+
+        \k(Copy^^CopyDOS)
+        \k(Erase^^EraseDOS)
+        \k(Create Directory^^Create DirectoryDOS)
+        \k(Exit^^ExitDOS)
+^3^Copy=CopyDOS
+^$170
+2. \k{DOS Floppy - Drive:path Window}
+   2.1 \k{File Button^^File ButtonDOS}
+       2.1.1 Copy
+
+The Copy menu option lets you copy selected DOS files to a UNIX system
+folder. Clicking on the Copy menu option displays the Copy DOS Files
+window.
+
+More information: \k(Copy DOS Files Window)
+^3^Erase=EraseDOS
+^$180
+2. \k{DOS Floppy - Drive:path Window}
+   2.1 \k{File Button^^File ButtonDOS}
+       2.1.2 Erase
+
+The Erase menu item lets you erase DOS files and sub-directories from
+the floppy disk. Select the file(s) you want to erase, then click on
+Erase.
+
+Note: You can erase a sub-directory from the floppy disk only if it is
+empty. If it is not empty, open the sub-directory and erase all its
+files then \d(double-click) on Parent Directory and erase the sub-directory
+itself.
+
+Caution: Erased DOS files do not go to the Wastebasket and therefore
+can not be put back.
+
+Clicking on Erase displays the File: Erase window. This window asks
+you to confirm that you want to erase the selected file(s), and has
+three buttons: Erase, Cancel, and Help.
+
+   o Erase: Click on Erase to permanently erase the selected file(s).
+
+   o Cancel: Click on Cancel to cancel your request to erase files.
+
+   o Help: Click on Help to display on-line help for Erase.
+^3^Create Directory=Create DirectoryDOS
+^$190
+2. \k{DOS Floppy - Drive:path Window}
+   2.1 \k{File Button^^File ButtonDOS}
+       2.1.3 Create Directory
+
+The Create Directory menu item enables you to create a directory on a
+DOS floppy. Clicking on Create Directory displays the File: Create DOS
+Directory window.
+
+More information: \k(File: Create DOS Directory Window)
+^3^Exit=ExitDOS
+^$200
+2. \k{DOS Floppy - Drive:path Window}
+   2.1 \k{File Button^^File ButtonDOS}
+       2.1.4 Exit
+
+The Exit menu option closes the DOS Floppy window.
+^2^Edit Button=Edit ButtonDOS
+^$210
+2. \k{DOS Floppy - Drive:path Window}
+   2.2 Edit Button
+
+The Edit button lets you select and unselect all the files from the
+DOS Floppy window. Clicking on the Edit button displays a menu with
+the following options:
+
+        \k(Select All Files)
+        \k(Unselect All)
+^3^Select All Files
+^$220
+2. \k{DOS Floppy - Drive:path Window}
+   2.2 \k{Edit Button^^Edit ButtonDOS}
+       2.2.1 Select All Files
+
+The Select All Files menu option selects all file icons in the window
+(directory icons are not selected - you must click ADJUST on a direc-
+tory icon to select it).
+^3^Unselect All
+^$230
+2. \k{DOS Floppy - Drive:path Window}
+   2.2 \k{Edit Button^^Edit ButtonDOS}
+       2.2.2 Unselect All
+
+The Unselect All menu option unselects all icons currently selected in
+the DOS Floppy window.
+^2^Help Button=Help ButtonDOS
+^$240
+2. \k{DOS Floppy - Drive:path Window}
+   2.3 Help Button
+
+The Help button provides on-line help for the DOS Floppy window.
+Clicking on the Help button displays a menu with the following
+options:
+
+        \k(DOS Floppy^^DOS FloppyDOS)
+        \k(Table of Contents^^Table of ContentsDOS)
+        \k(Help Desk^^Help DeskDOS)
+^3^DOS Floppy=DOS FloppyDOS
+^$250
+2. \k{DOS Floppy - Drive:path Window}
+   2.3 \k{Help Button^^Help ButtonDOS}
+       2.3.1 DOS Floppy
+
+The DOS Floppy menu option provides on-line help for the DOS Floppy
+window.
+^3^Table of Contents=Table of ContentsDOS
+^$260
+2. \k{DOS Floppy - Drive:path Window}
+   2.3 \k{Help Button^^Help ButtonDOS}
+       2.3.2 Table of Contents
+
+The Table of Contents menu option displays the list of help topics
+available for the DOS Floppy window.
+^3^Help Desk=Help DeskDOS
+^$270
+2. \k{DOS Floppy - Drive:path Window}
+   2.3 \k{Help Button^^Help ButtonDOS}
+       2.3.3 Help Desk
+
+The Help Desk menu selection opens the Help Desk window. From there,
+you can click on the icon for which you want on-line help.
+^1^Copy DOS Files Window
+^$280
+\k{Disk A (Disk B)}
+3. Copy DOS Files Window
+
+Use the Copy DOS Files window to choose a destination folder for DOS
+file(s) you want to copy. First, select the icon(s) for the file(s)
+you want to copy.
+
+The destination for the selected icon(s) is given on the Path line of
+the Copy DOS Files window. Click on a folder name in the Folder(s)
+box to change the destination folder. The Path line changes to
+indicate the new destination. Use the scrollbar, if present, to view
+additional folders.
+
+The buttons available from the Copy DOS Files window are:
+
+        \k(Copy Button^^Copy ButtonDOSC)
+        \k(Cancel Button^^Cancel ButtonDOSC)
+        \k(Help Button^^Help ButtonDOSC)
+^2^Copy Button=Copy ButtonDOSC
+^$290
+3. \k{Copy DOS Files Window}
+   3.1 Copy Button
+
+The Copy button copies the selected icon(s) to the folder indicated on
+the Path line.
+^2^Cancel Button=Cancel ButtonDOSC
+^$300
+3. \k{Copy DOS Files Window}
+   3.2 Cancel Button
+
+The Cancel button closes the Copy DOS Files window without copying any
+files.
+^2^Help Button=Help ButtonDOSC
+^$310
+3. \k{Copy DOS Files Window}
+   3.3 Help Button
+
+The Help button provides on-line help for the Copy DOS Files window.
+^1^File: Create DOS Directory Window
+^$320
+\k{Disk A (Disk B)}
+4. File: Create DOS Directory Window
+
+Use the File: Create DOS Directory window to create a directory on a
+DOS floppy disk by entering the name of the new directory in the Name
+text box.
+
+The buttons available from the File: Create DOS Directory window are:
+
+        \k(Create & Open Button^^Create & Open ButtonDOSD)
+        \k(Create Button^^Create ButtonDOSD)
+        \k(Cancel Button^^Cancel ButtonDOSD)
+        \k(Help Button^^Help ButtonDOSD)
+^2^Create & Open Button=Create & Open ButtonDOSD
+^$330
+4. \k{File: Create DOS Directory Window}
+   4.1 Create & Open Button
+
+The Create & Open button creates the new directory and opens it.
+^2^Create Button=Create ButtonDOSD
+^$340
+4. \k{File: Create DOS Directory Window}
+   4.2 Create Button
+
+The Create button creates the new directory but does not open it.
+^2^Cancel Button=Cancel ButtonDOSD
+^$350
+4. \k{File: Create DOS Directory Window}
+   4.3 Cancel Button
+
+The Cancel button closes the File: Create DOS Directory window without
+creating a DOS directory.
+^2^Help Button=Help ButtonDOSD
+^$360
+4. \k{File: Create DOS Directory Window}
+   4.4 Help Button
+
+The Help button provides on-line help for the File: Create DOS
+Directory window.

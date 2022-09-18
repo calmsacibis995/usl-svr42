@@ -1,0 +1,16 @@
+#ident	"@(#)uts-x86:io/cpyrt/cpyrt.cf/Master	1.4"
+#ident	"$Header: $"
+#
+# version id
+#
+$version 1
+
+#
+# entry points
+#
+$entry start
+
+#
+# Device  Prefix Characteristics Order	B-Major C-Major
+# -----------------------------------------------------
+cpyrt	cpyrt	o	0	0	0

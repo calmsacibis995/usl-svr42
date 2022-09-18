@@ -1,0 +1,122 @@
+#ident	"@(#)xpr:terminfo/daisy.ti	1.2"
+#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+#	Copyright (c) 1988, 1989, 1990 AT&T
+#	  All Rights Reserved
+
+#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+#	UNIX System Laboratories, Inc.
+#	The copyright notice above does not evidence any
+#	actual or intended publication of such source code.
+
+
+######################################################################
+#
+# Generic entry for the daisy wheel printers and emulations:
+#
+
+#
+# Basic capabilities:
+#
+daisy+basic,
+
+	daisy,
+
+	cols#132,
+	lines#66,
+
+	orc#12,
+	orhi#120,
+	orl#8,
+	orvi#48,
+
+	cr=^M,
+	cud1=^J,
+	cuf1=\s,
+	ff=^L,
+	ht=^I,
+	hpa=%?%p1%{100}%<%t\EC%p1%02d%e%p1%{110}%<%t\ECA%p1%{100}%-%d%e%p1%{120}%<%t\ECB%p1%{110}%-%d%e%p1%{130}%<%t\ECC%p1%{120}%-%d%e%p1%{140}%<%t\ECD%p1%{130}%-%d%e%p1%{150}%<%t\ECE%p1%{140}%-%d%e%p1%{160}%<%t\ECF%p1%{150}%-%d%;,
+	vpa=%?%p1%{100}%<%t\EP%p1%02d%e%p1%{110}%<%t\EPA%p1%{100}%-%d%e%p1%{120}%<%t\EPB%p1%{110}%-%d%e%p1%{130}%<%t\EPC%p1%{120}%-%d%e%p1%{140}%<%t\EPD%p1%{130}%-%d%e%p1%{150}%<%t\EPE%p1%{140}%-%d%e%p1%{160}%<%t\EPF%p1%{150}%-%d%;,
+
+	chr=%?%p1%{100}%<%t\EE%p1%02d%e%p1%{110}%<%t\EEA%p1%{100}%-%d%e%p1%{120}%<%t\EEB%p1%{110}%-%d%e%p1%{130}%<%t\EEC%p1%{120}%-%d%e%p1%{140}%<%t\EED%p1%{130}%-%d%e%p1%{150}%<%t\EEE%p1%{140}%-%d%e%p1%{160}%<%t\EEF%p1%{150}%-%d%;,
+	cvr=%?%p1%{100}%<%t\EL%p1%02d%e%p1%{110}%<%t\ELA%p1%{100}%-%d%e%p1%{120}%<%t\ELB%p1%{110}%-%d%e%p1%{130}%<%t\ELC%p1%{120}%-%d%e%p1%{140}%<%t\ELD%p1%{130}%-%d%e%p1%{150}%<%t\ELE%p1%{140}%-%d%e%p1%{160}%<%t\ELF%p1%{150}%-%d%;,
+
+	is2=\E\rP\EW\E.\EL08\EE12\E%\E<,
+
+	smso=\EQ,
+	rmso=\ER,
+	smul=\EI,
+	rmul=\EJ,
+	bold=\EKd,
+	sshm=\EQ,
+	rshm=\ER,
+	sgr0=\ER\EM\EJ,
+	sgr=%?%p1%t\EQ%e\ER%;%?%p2%t\EI%e\EJ%;%?%p6%t\EKd%e\EM%;,
+
+	smgb=\E-,
+	smgl=\E9,
+	smgr=\E0,
+	smgt=\E+,
+
+#   slines=,
+	u9=\EF%p1%02d,
+
+#
+# Graphics capabilities:
+#
+daisy+lowres,
+
+#
+#	We could use the graphics on/graphics off control sequences
+#	(ESC G/ESC 4) but for these problems:
+#
+#		- graphics mode gets turned off when a \r is received;
+#		- printing a character doesn't cause motion, which
+#		  means that each ``cell'' must be followed by a space;
+#		- to get the best aspect ratio, three horizontal dots
+#		  must be sent per ``cell'' (using the ESC 3 graphics mode
+#		  (1/60 instead of 1/120) alleviates this problem but
+#		  gives a worse aspect ratio).
+#
+#	So instead we set the HMI and VMI to 1/40 and 1/48 inch,
+#	respectively.
+#
+	npins#1,
+	spinv#48,
+	spinh#40,
+
+	porder=o\,o\,o\,o\,1\,1\,1\,o;32,
+
+#   bitwin#
+	u1=1,
+#   bitype#
+	u2=1,
+
+#   birep=
+	u4=%?%p3%{32}%=%t\EH%p2%{3}%*%Px%gx%{256}%/%{64}%+%c%gx%{256}%m%{16}%/%{64}%+%c%gx%{16}%m%{64}%+%c%;,
+
+#   defbi=
+#	THIS ASSUMES WE START AT THE TOP OF THE PAGE! (although
+#	maybe not in the first column.)
+	u6=%?%p5%{1}%=%t\EL01\EE03%p1%{3}%*%Px\r\EH%gx%{256}%/%{64}%+%c%gx%{256}%m%{16}%/%{64}%+%c%gx%{16}%m%{64}%+%c\EV%p2%{256}%/%{64}%+%c%p2%{256}%m%{16}%/%{64}%+%c%p2%{16}%m%{64}%+%c\E>%;,
+
+#   endbi=
+	u7=\EL08\EE12\E<,
+
+#   binel=
+	u5=\n\r%p1%{3}%*%Px\EH%gx%{256}%/%{64}%+%c%gx%{256}%m%{16}%/%{64}%+%c%gx%{16}%m%{64}%+%c,
+
+######################################################################
+#
+# Specific printers:
+#
+
+daisy,
+
+	use=daisy+basic, use=daisy+lowres,
+
+qume|sprint11|Qume Sprint 11,
+
+	bufsz#500,
+	cps#55,
+
+	use=daisy,

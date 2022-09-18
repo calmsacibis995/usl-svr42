@@ -1,0 +1,55 @@
+#			Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+#			Copyright (c) 1984, 1985, 1986, 1987, 1988, 1989, 1990 AT&T
+#			  All Rights Reserved
+
+#			THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+#			UNIX System Laboratories, Inc.
+#			The copyright notice above does not evidence any
+#			actual or intended publication of such source code.
+
+
+#ident	"@(#)mk:i386at/:mkpkgtools	1.7"
+#ident	"$Header: $"
+
+
+
+# THIS SCRIPT AND THE TOOLS THEY CREATE SHOULD ONLY BE USED
+# IF YOU ARE BUILDING SVR4.2 ON A SVR4.0 VERSION 4 SYSTEM.
+#
+#
+# If you are building on a SVR4.2 system, the native pkgmk
+# & pkgtrans can be used. They can be found in the softint pkg
+# which is in the softdev set.
+#
+#
+# This script will build the SVR4.0 Version 4 executable of the
+# SVR4.2 pkgmk & pkgtrans commands.
+#
+# pkgmk is needed for compression.
+# pkgtrans is needed because of sets.
+#
+#
+#
+# After this script completes, pkgmk & pkgtrans can be
+# found, respectively, in the following directories:
+#
+# $ROOT/usr/src/$WORK/cmd/pkgtools/oampkg/pkgmk
+# $ROOT/usr/src/$WORK/cmd/pkgtools/oampkg/pkgtrans
+#
+
+
+
+
+ROOT=$1
+WORK=$2
+TOOLS=$3
+
+BASE=$ROOT/usr/src/$WORK/cmd/pkgtools
+export ROOT WORK TOOLS BASE
+
+cd $BASE
+chmod 0755 buildtools
+
+./buildtools > build.out 2>&1
+
+exit 0

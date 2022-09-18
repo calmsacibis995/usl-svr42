@@ -1,0 +1,140 @@
+#ident	"@(#)dtadmin:help/remotsys.hlp	1.7"
+^*version^1
+^*title^Remote System
+^*width^70
+^+DesktopMgr/help.defs
+^?Connect to a remote computer system.
+^0^Remote System
+^$10
+Remote System
+
+Use the Remote System to quickly log in to another system or transfer
+files to that system though network connections.
+
+The following windows are provided for Remote System:
+
+        \k(Remote System Window)
+        \k(Remote System: Properties Window)
+
+More information: \k(Quick Dial Icons^dtadmin/qdial.hlp^Quick Dial)
+^1^Remote System Window
+^$20
+\k{Remote System}
+1. Remote System Window
+
+Use the Remote System window to open a \k(Terminal window^xterm/term.hlp^Terminal Window) into the remote
+system. The top of the Terminal window indicates the name of the
+remote system into which you're logged. From this window you can run
+UNIX System commands to do things such as edit and \k(transfer files^^Transferring Files).
+
+You must have a valid login ID on the remote system in order to log
+in. Once connected, you may or may not be prompted to enter your
+password.
+
+If an internet connection exists, you can avoid entering your password
+each time you log into the remote system. Create a file, called
+.rhosts, in your home directory on the remote system. Put the name of
+the machine you're logging in from and your login name in the file.
+For example, if your machine name is sfbop and your login is zorb (on
+the system you're logging in from), put the following, on one line, in
+the .rhosts file:
+
+	sfbop zorb
+
+More information: \k(Internet Setup^dtadmin/inet.hlp^Internet Setup)
+
+You have several possible ways to close (or log out of) the Remote
+System window, depending on how you're logged in and the type of
+system into which you're logged:
+
+   o Press and hold the Control key and press the letter D. Release
+     both keys.
+
+   o Type the word exit (all lowercase) and press ENTER.
+
+   o Type the word logout (all lowercase) and press ENTER.
+
+   o Click on the window button in the upper left corner of the Remote
+     System window. Select Close from the menu that appears.
+
+   o Enter tilde-dot (~.) and press Enter. This method of logging out
+     works only if you're logged in to a system that was setup through
+     the Dialup Setup window.
+^2^Transferring Files
+^$30
+1. \k{Remote System Window}
+   1.1 Transferring Files
+
+To transfer files to a remote system, \d(drag-and-drop) the file or
+folder on the Remote System icon. This action displays the Remote
+System: Properties window.
+
+More information: \k(Remote System: Properties Window)
+^1^Remote System: Properties Window
+^$40
+\k{Remote System}
+2. Remote System: Properties Window
+
+The Remote System: Properties window appears when you \d(drag-and-drop) a
+file or folder on the Remote System icon.
+
+The Destination System line indicates the system to which  the file or
+folder is being sent. The Recipient text box lets you specify who on
+the Destination System you want to receive the file or folder (for the
+UUCP Delivery Method only). Your login ID is pre-entered into this
+text box. However, you can change the recipient by entering another
+user's login ID.
+
+Note: If the delivery method is Internet, files are sent to the folder
+named in the Remote Folder text box. However, the file transfer can
+fail if:
+
+   o You don't have a user account on the remote system with the same
+     name as your user account on your local system.
+
+   o Your user account on the remote system does not have write
+     permissions for the folder named in the Remote Folder text box.
+
+   o The remote system does not allow access to your user account from
+     your local system.
+
+The Delivery Method line indicates how the file or folder is being
+sent. The system automatically determines whether UUCP or Internet
+delivery methods are available. When given the choice between UUCP or
+Internet, you use UUCP to avoid possible permissions problems on the
+remote system.
+
+The buttons available for the Remote System: Properties window are:
+
+        \k(Send Button^^Send ButtonPW)
+        \k(Reset Button^^Reset ButtonPW)
+        \k(Cancel Button^^Cancel ButtonPW)
+        \k(Help Button^^Help ButtonPW)
+^2^Send Button=Send ButtonPW
+^$50
+2. \k{Remote System: Properties Window}
+   2.1 Send Button
+
+The Send button sends the file or folder to the system and recipient
+specified in the Remote System: Properties window.
+^2^Reset Button=Reset ButtonPW
+^$60
+2. \k{Remote System: Properties Window}
+   2.2 Reset Button
+
+The Reset button reverses any changes you have not yet applied. The
+Remote System: Properties window remains open.
+^2^Cancel Button=Cancel ButtonPW
+^$70
+2. \k{Remote System: Properties Window}
+   2.3 Cancel Button
+
+The Cancel button closes the Remote System: Properties window without
+making any changes.
+^2^Help Button=Help ButtonPW
+^$80
+2. \k{Remote System: Properties Window}
+   2.4 Help Button
+
+The Help button provides on-line help for the Remote System:
+Properties window.

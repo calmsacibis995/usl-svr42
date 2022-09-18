@@ -1,0 +1,377 @@
+#ident	"@(#)dtm:help/help.hlp	1.13"
+^*version^1
+^*title^Help
+^*width^70
+^+DesktopMgr/help.defs
+^?Using on-line help.
+^0^Help
+^$10
+Help
+
+Help is available on-line for the windows and applications that come
+with the UNIX Desktop. The on-line help is a hypertext-based system
+that provides detailed information and lets you navigate the various
+help topics by clicking on special words, called \k(links^^Links and Definitions).
+
+The following windows are provided for Help:
+
+        \k(windowname: Help Window)
+        \k(windowname: Bookmark Window)
+        \k(windowname: Search Window)
+        \k(windowname: Notes Window)
+        \k(windowname: Definition Window)
+        \k(windowname: Glossary Window)
+^1^windowname: Help Window
+^$20
+\k{Help}
+1. windowname: Help Window
+
+Use the windowname Help window to display on-line help for the various
+UNIX Desktop windows. The title of the window has the name of the
+application whose Help button you clicked on instead of the word
+windowname. For example, if you click on the Help button in a Printer
+Setup window, the Printer Setup Help window appears.
+
+You have several ways to navigate the on-line help. You can use
+buttons to move to the next topic, previous topic, or the last topic
+viewed, or you can jump to areas in the text by clicking on special
+areas in the help text, called links. You also can display
+definitions of terms and a glossary of all terms defined for the help
+system.
+
+The buttons available from the windowname Help window are:
+
+        \k(Previous Topic Button)
+        \k(Next Topic Button)
+        \k(Backtrack Button)
+        \k(Go To Button)
+        \k(Bookmark Button)
+        \k(Search Button)
+        \k(Notes Button)
+
+More information:
+
+        \k(Links and Definitions)
+        \k(windowname: Definition Window)
+        \k(windowname: Glossary Window)
+^2^Links and Definitions
+^$30
+1. \k{windowname: Help Window}
+   1.1 Links and Definitions
+
+Words designated as links appear in a different color within the help
+text. When you click on a link, help text on that new topic replaces
+the current help text.
+
+Within the help text, certain words appear in ital- ics. When you
+click on these words, a window appears with the definition of the
+italicized word.
+^2^Previous Topic Button
+^$50
+1. \k{windowname: Help Window}
+   1.2 Previous Topic Button
+
+The Previous Topic button displays the topic of on-line help immedi-
+ately preceding the current one, following the order in the Table of
+Contents for the current window. Repeatedly clicking on the Previous
+Topic button lets you page backward through all the topics. When you
+reach the beginning of the help text, this button is dimmed (inactive).
+^2^Next Topic Button
+^$40
+1. \k{windowname: Help Window}
+   1.3 Next Topic Button
+
+The Next Topic button displays the next topic of on-line help, follow-
+ing the order in the Table of Contents for the current window.
+Repeatedly clicking on the Next Topic button lets you read all the
+topics sequentially, although you can click on a link at any time.
+When you get to the end of the help text, this button is dimmed
+(inactive).
+^2^Backtrack Button
+^$60
+1. \k{windowname: Help Window}
+   1.4 Backtrack Button
+
+The Backtrack button lets you page backward through all the screens
+previously viewed (that is, return from a jump). These may be for the
+current application or for different applications. For example, if
+you're reading help for folders and jump to help for the wastebasket,
+you can use the Backtrack button to return you to the folder's help.
+When there is no topic to go back to, this button is dimmed
+(inactive).
+^2^Go To Button
+^$70
+1. \k{windowname: Help Window}
+   1.5 Go To Button
+
+The Go To button lets you view the Table of Contents and Glossary for
+help; it also displays the Help Desk. You can use the Go To button to
+display help on using the help window. Clicking on the Go To button
+displays a menu with the following options:
+
+        \k(Table of Contents)
+        \k(Glossary)
+        \k(Help Desk)
+        \k(Using Help)
+^3^Table of Contents
+^$80
+1. \k{windowname: Help Window}
+   1.5 \k{Go To Button}
+       1.5.1 Table of Contents
+
+The Table of Contents menu option displays the list of help topics
+available for the current application.
+^3^Glossary
+^$90
+1. \k{windowname: Help Window}
+   1.5 \k{Go To Button}
+       1.5.2 Glossary
+
+The Glossary menu option displays the list of terms defined for the
+help system.
+^3^Help Desk
+^$100
+1. \k{windowname: Help Window}
+   1.5 \k{Go To Button}
+       1.5.3 Help Desk
+
+The Help Desk menu option opens the Help Desk window. From there, you
+can select the icon for which you want on-line help.
+^3^Using Help
+^$110
+1. \k{windowname: Help Window}
+   1.5 \k{Go To Button}
+       1.5.4 Using Help
+
+The Using Help menu option displays on-line help about using the
+on-line help system. This text replaces the help text currently
+displayed.
+^2^Bookmark Button
+^$120
+1. \k{windowname: Help Window}
+   1.6 Bookmark Button
+
+The Bookmark button lets you add an entry to the list of bookmarks
+topic so that you can easily return to a topic at a later time.
+Clicking on the Bookmark button displays the windowname: Bookmark
+window.
+
+More information: \k(windowname: Bookmark Window)
+^2^Search Button
+^$130
+1. \k{windowname: Help Window}
+   1.7 Search Button
+
+The Search button lets you search for specific text within the current
+help file. Clicking on the Search button displays the windowname:
+Search window .
+
+More information: \k(windowname: Search Window)
+^2^Notes Button
+^$140
+1. \k{windowname: Help Window}
+   1.8 Notes Button
+
+The Notes button lets you annotate the current help text with your own
+comments. Clicking on the Notes button displays the windowname:
+Notes window.
+
+More information: \k(windowname: Notes Window)
+^1^windowname: Bookmark Window
+^$150
+\k{Help}
+2. windowname: Bookmark Window
+
+Use the windowname: Bookmark window to display the current bookmarks.
+You also can add and delete bookmarks to keep the list current.
+
+Once you have created bookmarks, click on the topic you want to jump
+to and then click on the Go To button or \d(double-click) on the topic.
+The selected topic is displayed.
+
+The buttons available from the windowname: Bookmark window are:
+
+        \k(Go To Button^^Go To ButtonBK)
+        \k(Add Button ^^Add ButtonBK)
+        \k(Delete Button^^Delete ButtonBK)
+        \k(Delete All Button^^Delete All ButtonBK)
+        \k(Cancel Button^^Cancel ButtonBK)
+        \k(Help Button^^Help ButtonBK)
+^2^Go To Button=Go To ButtonBK
+^$160
+2. \k{windowname: Bookmark Window}
+   2.1 Go To Button
+
+The Go To button lets you jump to a topic marked by a bookmark.
+Highlight the desired bookmark by clicking on it. Then click on the Go
+To button.
+
+Note: You also can jump to a topic by \d(double-clicking^double-click) on it.
+^2^Add Button=Add ButtonBK
+^$170
+2. \k{windowname: Bookmark Window}
+   2.2 Add Button
+
+The Add button lets you add additional bookmarks. When you add a book-
+mark, the help topic currently displayed is marked.
+^2^Delete Button=Delete ButtonBK
+^$180
+2. \k{windowname: Bookmark Window}
+   2.3 Delete Button
+
+The Delete button lets you remove selected bookmark(s) from the list
+in the windowname: Bookmark window. Highlight the bookmark(s) you want
+to delete by clicking on it, then click on the Delete button to remove
+it.
+^2^Delete All Button=Delete All ButtonBK
+^$190
+2. \k{windowname: Bookmark Window}
+   2.4 Delete All Button
+
+The Delete All button lets you remove all bookmarks from the list in
+the windowname: Bookmark window. Click on the Delete All button to
+remove all the bookmarks.
+^2^Cancel Button=Cancel ButtonBK
+^$200
+2. \k{windowname: Bookmark Window}
+   2.5 Cancel Button
+
+The Cancel button closes the windowname: Bookmark window.
+^2^Help Button=Help ButtonBK
+^$210
+2. \k{windowname: Bookmark Window}
+   2.6 Help Button
+
+The Help button provides help for the windowname: Bookmark window.
+^1^windowname: Search Window
+^$220
+\k{Help}
+3. windowname: Search Window
+
+Use the windowname: Search window to search for specific text within
+on-line help. The title of the window has the name of the applica-
+tion whose Help button you clicked on instead of the word windowname.
+Enter the text you want to search for in the Search For text box and
+click on the Search button.
+
+The buttons available from the windowname: Search window are:
+
+        \k(Search Button ^^Search ButtonSW)
+        \k(Cancel Button^^Cancel ButtonSW)
+        \k(Help Button^^Help ButtonSW)
+^2^Search Button=Search ButtonSW
+^$230
+3. \k{windowname: Search Window}
+   3.1 Search Button
+
+The Search button begins the search for the text entered in the Search
+For text box. If the text is found, the topic containing that text
+appears in the help window. If the text is not found, the message, "No
+match found" appears at the bottom of the windowname: Search window.
+
+^2^Cancel Button=Cancel ButtonSW
+^$240
+3. \k{windowname: Search Window}
+   3.2 Cancel Button
+
+The Cancel button closes the windowname: Search window without
+searching for any text.
+^2^Help Button=Help ButtonSW
+^$250
+3. \k{windowname: Search Window}
+   3.3 Help Button
+
+The Help button provides help for the windowname: Search window.
+^1^windowname: Notes Window
+^$260
+\k{Help}
+4. windowname: Notes Window
+
+Use the windowname: Notes window to attach your own notes to help
+topics. The title of this window has the name of the application whose
+Help button you clicked on instead of the word windowname. When you
+open the windowname: Notes window, notes attached to the help topic
+you're currently reading are displayed.
+
+The buttons available from the windowname: Notes window are:
+
+        \k(Save Button ^^Save ButtonNW)
+        \k(Delete Button ^^Delete ButtonNW)
+        \k(Cancel Button^^Cancel ButtonNW)
+        \k(Help Button^^Help ButtonNW)
+^2^Save Button=Save ButtonNW
+^$270
+4. \k{windowname: Notes Window}
+   4.1 Save Button
+
+The Save button lets you attach your own note to the help topic
+displayed in the help window. Enter your note in the box inside the
+windowname: Notes window and click on the Save button.
+^2^Delete Button=Delete ButtonNW
+^$280
+4. \k{windowname: Notes Window}
+   4.2 Delete Button
+
+The Delete button lets you remove notes previously attached to the
+current help topic. Click on the Delete button to remove the note.
+^2^Cancel Button=Cancel ButtonNW
+^$290
+4. \k{windowname: Notes Window}
+   4.3 Cancel Button
+
+The Cancel button closes the windowname: Notes window without saving
+any notes.
+^2^Help Button=Help ButtonNW
+^$300
+4. \k{windowname: Notes Window}
+   4.4 Help Button
+
+The Help button provides help for the windowname: Notes window.
+^1^windowname: Definition Window
+^$310
+\k{Help}
+5. windowname: Definition Window
+
+The windowname: Definition window displays the definition for a term
+you click on.
+
+The buttons available from the windowname: Definition window are:
+
+        \k(Cancel Button ^^Cancel ButtonDW)
+        \k(Help Button^^Help ButtonDW)
+^2^Cancel Button=Cancel ButtonDW
+^$320
+5. \k{windowname: Definition Window}
+   5.1 Cancel Button
+
+The Cancel button closes the windowname: Definition window.
+^2^Help Button=Help ButtonDW
+^$330
+5. \k{windowname: Definition Window}
+   5.2 Help Button
+
+The Help button provides help for the windowname: Definition window.
+^1^windowname: Glossary Window
+^$340
+\k{Help}
+6. windowname: Glossary Window
+
+Use the windowname: Glossary window to display all the terms defined
+for the help system.
+
+The buttons available from the windowname: Glossary window are:
+
+        \k(Cancel Button ^^Cancel ButtonGW)
+        \k(Help Button^^Help ButtonGW)
+^2^Cancel Button=Cancel ButtonGW
+^$350
+6. \k{windowname: Glossary Window}
+   6.1 Cancel Button
+
+The Cancel button closes the windowname: Glossary window.
+^2^Help Button=Help ButtonGW
+^$360
+6. \k{windowname: Glossary Window}
+   6.2 Help Button
+
+The Help button provides help for the windowname: Glossary window.

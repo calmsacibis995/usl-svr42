@@ -1,0 +1,26 @@
+#ident	"@(#)proto:desktop/proto.flop.1	1.3.2.13"
+#ident	"$Header: $"
+/dev/null
+2370 40
+d--775 0 3
+INSTALL	---444 0 3 desktop/fdscripts/INSTALL
+etc	d--755 0 3
+	loadmods	---444 0 3 loadmods
+	conf	 d--755 0 3
+		mod.d	 d--755 0 3
+			dcd	---444 0 3 $ROOT/$MACH/etc/conf/modnew.d/dcd
+			dpt	---444 0 3 $ROOT/$MACH/etc/conf/modnew.d/dpt
+			wd7000	---444 0 3 $ROOT/$MACH/etc/conf/modnew.d/wd7000
+			adsc	---444 0 3 $ROOT/$MACH/etc/conf/modnew.d/adsc
+			ict	---444 0 3 $ROOT/$MACH/etc/conf/modnew.d/ict
+			athd	---444 0 3 $ROOT/$MACH/etc/conf/modnew.d/athd
+			mcesdi	---444 0 3 $ROOT/$MACH/etc/conf/modnew.d/mcesdi
+			mcst	---444 0 3 $ROOT/$MACH/etc/conf/modnew.d/mcst
+		$
+	$
+	initprog d--755 2 2
+		mip	---444 0 3 $ROOT/$MACH/etc/initprog/mip
+		sip	---444 0 3 $ROOT/$MACH/etc/initprog/sip
+		$
+	$
+$

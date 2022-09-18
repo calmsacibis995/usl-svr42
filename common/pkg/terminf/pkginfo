@@ -1,0 +1,11 @@
+#ident	"@(#)pkg.terminf:terminf/pkginfo	1.3.2.4"
+#ident  "$Header: $"
+
+PKG="terminf"
+CLASSES="none"
+NAME="Terminfo Utilities"
+VERSION="1"
+VENDOR="UNIX System Laboratories"
+CATEGORY="system,essential"
+PREDEPEND="terminf"
+RELEASE="4.2"

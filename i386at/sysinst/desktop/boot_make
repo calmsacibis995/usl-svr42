@@ -1,0 +1,209 @@
+#ident	"@(#)proto:desktop/boot_make	1.7.4.18"
+#ident	"$Header: $"
+
+# new boot_make script to create boot floppies
+
+# temp
+#PKG_MEDIA=diskette1
+#eval `grep ${PKG_MEDIA} /etc/device.tab | sed -e 's/.*:desc=/desc=/'`
+
+ask_drive () {
+
+if [ "${MEDIA}" = "" ]
+then
+	echo "MEDIA type is not set. MEDIA type may be diskette1 or diskette2"
+	echo "Please enter the MEDIA type default(diskette1): \c"; read MEDIA
+	[ "${MEDIA}" = "" ] && MEDIA="diskette1"
+fi
+
+FDRIVE_TMP=`devattr $MEDIA fmtcmd|cut -f 3 -d " "|sed 's/t//'`
+FDRIVE=`basename $FDRIVE_TMP`
+BLKS=`devattr $MEDIA capacity`
+BLKCYLS=`devattr $MEDIA mkfscmd|cut -f 7 -d " "`
+
+echo "${FDRIVE}\t${BLKCYLS}\t${BLKS}" >&2
+
+# end ask_drive
+}
+
+############
+# MAIN here
+
+FORMAT=/usr/sbin/format
+
+MEDIA=${1}
+#PROTO=${2}
+#MACH=${4}
+#ROOT=${3}
+
+if [ "${PROTO}" = "" ]
+then
+   if [ "$2" = "" ]
+   then
+	echo "PROTO is not set. Enter the path for PROTO: \c"; read PROTO
+   else
+	PROTO=$2
+   fi
+fi
+
+cd ${PROTO}
+
+if [ "${ROOT}" = "" ]
+then
+   if [ "$3" = "" ]
+   then
+	echo "ROOT is not set. Enter the path for ROOT: \c"; read ROOT
+   else
+	ROOT=$3
+   fi
+fi
+
+if [ "${MACH}" = "" ]
+then
+   if [ "$4" = "" ]
+   then
+        echo "MACH is not set. Enter the path for MACH: \c"; read MACH
+   else
+	MACH=$4
+   fi
+fi
+
+ask_drive 2> drive_info
+
+DRIVE_INFO=drive_info
+PROTO1=${PROTO}/desktop/proto.flop.1
+PROTO2=${PROTO}/desktop/proto.flop.2
+PROTO3=${PROTO}/desktop/proto.flop.3
+
+#FDRIVE=`cut -f1 ${DRIVE_INFO}`
+#BLKCYLS=`cut -f2 ${DRIVE_INFO}`
+#BLKS=`cut -f3 ${DRIVE_INFO}`
+VER4=-Fs5
+
+_Mkpr(){
+	unset P
+	P=`basename $1`
+	test -f /tmp/_$P && rm -rf /tmp/_$P
+	test -f /tmp/__$P && rm -rf /tmp/__$P
+	grep -v "^#" $1 > /tmp/__$P
+	sed "s,\$ROOT\/\$MACH,$ROOT/$MACH,p" /tmp/__$P >/tmp/_$P
+	echo /tmp/_$P
+}
+
+echo "Insert BOOTUNIX floppy 1 of 3 and"
+echo "press <RETURN>, s to skip, or F not to format: \c"
+read a
+[ "$a" != "s" ] && {
+	if [ "$a" != "F" ];then
+		${FORMAT} -i2 /dev/rdsk/${FDRIVE}t
+	fi
+	sync
+	dd if=${ROOT}/${MACH}/etc/fboot of=/dev/rdsk/${FDRIVE}t bs=512 conv=sync
+	sync
+
+	echo "mkfs ${VER4} -b 512 /dev/dsk/${FDRIVE} `_Mkpr ${PROTO1}` 2 ${BLKCYLS}"
+	> /usr/tmp/fimage
+	mkfs ${VER4} -b 512 /usr/tmp/fimage `_Mkpr ${PROTO1}` 2 ${BLKCYLS}
+	dd if=/usr/tmp/fimage of=/dev/rdsk/$FDRIVE bs=10240
+	labelit ${VER4} /dev/rdsk/${FDRIVE} instal flop
+	mount ${VER4} /dev/dsk/${FDRIVE} /mnt
+	echo "Copying unix onto the floppy..."
+	ulimit 5000
+
+	cp ${ROOT}/${MACH}/stand/unix /mnt
+	echo "1" > /mnt/FLOP_SEQ
+	sync
+	sync
+	umount /dev/dsk/${FDRIVE}
+}
+
+echo "Insert BOOTUNIX floppy 2 of 3 and "
+echo "press <RETURN>, s to skip or F not to format: \c"; read a
+[ "$a" != "s" ] && {
+	if [ "$a" != "F" ];then
+		${FORMAT} -i2 /dev/rdsk/${FDRIVE}t
+	fi
+
+	> /usr/tmp/fimage
+	grep -v '^#' mod_register > _mod_register
+	mkfs ${VER4} -b 512 /usr/tmp/fimage `_Mkpr ${PROTO2}` 2 ${BLKCYLS}
+	dd if=/usr/tmp/fimage of=/dev/rdsk/${FDRIVE}t bs=10240
+	labelit ${VER4} /dev/rdsk/${FDRIVE}t instal flop
+
+	mount ${VER4} /dev/dsk/${FDRIVE}t /mnt
+	ln /mnt/usr/sbin/fdisk /mnt/usr/sbin/partsize
+	ln /mnt/sbin/instcmd /mnt/sbin/fakevtoc
+	ln /mnt/sbin/instcmd /mnt/sbin/setpasswd
+	ln /mnt/sbin/instcmd /mnt/sbin/v_remount
+	ln /mnt/sbin/instcmd /mnt/sbin/ttyflushin
+	ln /mnt/sbin/instcmd /mnt/sbin/addswap
+	ln /mnt/sbin/instcmd /mnt/sbin/removeswap
+	ln /mnt/sbin/instcmd /mnt/sbin/printvtoc
+	ln /mnt/sbin/instcmd /mnt/sbin/slicesize
+	ln /mnt/sbin/instcmd /mnt/sbin/listswap
+	ln /mnt/sbin/instcmd /mnt/sbin/sleep
+	ln /mnt/sbin/instcmd /mnt/sbin/chroot
+	ln /mnt/sbin/sh /mnt/sbin/su
+	ln /mnt/sbin/sh /mnt/etc/sulogin
+	ln /mnt/usr/bin/mv /mnt/usr/bin/cp
+	ln /mnt/usr/bin/mv /mnt/usr/bin/ln
+	ln /mnt/sbin/sync /mnt/sbin/initprivs
+	ln /mnt/sbin/stepper /mnt/sbin/init
+	sync; sync;
+	touch /mnt/var/adm/utmp /mnt/var/adm/utmpx
+	ln /mnt/var/adm/utmp /mnt/etc/utmp
+	ln /mnt/var/adm/utmpx /mnt/etc/utmpx
+	sync; sync
+	
+	echo y > /mnt/yes
+	>/mnt/etc/mnttab
+	date > .packagedate
+	install -f /mnt/etc -m 644 -u root -g sys .packagedate 
+	
+	>/mnt/sbin/chkconsole
+	chmod 777 /mnt/sbin/chkconsole
+	echo "exit 0" >/mnt/sbin/chkconsole
+	echo "2" > /mnt/FLOP_SEQ
+	sync
+	df -t /mnt
+	sync
+	umount /dev/dsk/${FDRIVE}t
+	
+}
+
+echo "Insert BOOTUNIX floppy 3 of 3 and "
+echo "press <RETURN>, s to skip or F not to format: \c"; read a
+[ "$a" != "s" ] && {
+	if [ "$a" != "F" ];then
+		${FORMAT}  -i2 /dev/rdsk/${FDRIVE}t
+	fi
+
+	> /usr/tmp/fimage
+	mkfs ${VER4} -b 512 /usr/tmp/fimage `_Mkpr ${PROTO3}` 2 ${BLKCYLS}
+	dd if=/usr/tmp/fimage of=/dev/rdsk/${FDRIVE}t bs=10240
+	labelit ${VER4} /dev/rdsk/${FDRIVE}t instal flop
+	mount ${VER4} /dev/dsk/${FDRIVE}t /mnt
+#ln /mnt/etc/emulator /mnt/etc/emulator.rel1
+	touch /mnt/LABEL.4.0.dt
+        
+        for i in menus.cpio.Z scripts.cpio.Z disk4.cpio.Z disk3.cpio.Z 
+	do
+		[ ! -f $i ] && {
+			echo "\nError! Unable to find the file $i in `pwd`"
+			exit 5
+		}
+		if cp $i /mnt
+		then
+			echo 
+		else
+			echo "\nError! Unable to copy the file $i onto floppy 3"
+			exit 5
+		fi
+	done
+
+	echo "3" > /mnt/FLOP_SEQ
+	sync
+	df -t /mnt
+	sync
+	umount /dev/dsk/${FDRIVE}t
+}

@@ -1,0 +1,4 @@
+#ident	"@(#)uts-x86:util/util.cf/Master	1.3"
+#ident	"$Header: $"
+$version 1
+util	util	r	0	0	0

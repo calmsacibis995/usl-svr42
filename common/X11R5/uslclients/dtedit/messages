@@ -1,0 +1,155 @@
+---     0
+Editor: 
+Editor
+---     3
+---     4
+---     5
+---     6
+---     7
+Clear
+New...
+Open...
+Save
+Save As...
+Print
+Exit
+---    15
+---    16
+---    17
+---    18
+Undo
+Cut
+Copy
+Paste
+Delete
+---    24
+---    25
+---    26
+---    27
+---    28
+Split
+Properties...
+---    31
+---    32
+---    33
+---    34
+---    35
+---    36
+---    37
+---    38
+Index...
+Using Help...
+---    41
+---    42
+---    43
+---    44
+---    45
+---    46
+---    47
+---    48
+File
+Edit
+View
+Help
+---    53
+---    54
+---    55
+---    56
+---    57
+---    58
+Apply
+Set
+Reset
+Reset to Factory
+Cancel
+Help...
+---    65
+---    66
+---    67
+---    68
+Words
+Characters
+No Numbering
+---    72
+---    73
+---    74
+---    75
+---    76
+---    77
+---    78
+Left
+Right
+---    81
+---    82
+---    83
+---    84
+---    85
+---    86
+---    87
+---    88
+Wrap at:
+Number on:
+---    91
+---    92
+---    93
+---    94
+---    95
+---    96
+---    97
+---    98
+Editor: Properties
+Editor: Open
+Editor: Save
+Editor: Overwrite
+Editor: Exit
+Editor: (Untitled)
+New document.
+Document opened.
+---   107
+---   108
+Browse...
+Discard
+Filename:
+Continue
+Overwrite
+Help...
+---   115
+---   116
+---   117
+---   118
+The document has been changed.\nDiscard Changes?
+The document could not be saved.
+The file already exists.\nOverwrite it?
+Document cleared.
+Document saved.
+Document opened.
+Open cancelled.
+Document not saved!
+Save cancelled.
+Document overwritten!
+Document not overwritten!
+Overwrite cancelled.
+New document.
+The document has not been saved.\nExit anyway?
+Exit cancelled.
+---   134
+---   135
+---   136
+---   137
+---   138
+Property window mapped.
+Properties applied.
+Properties reset to previous settings.
+Properties reset to the factory settings.
+Property window cancelled.
+---   144
+---   145
+---   146
+---   147
+---   148
+Document could not be saved.
+Browsing...
+Document exists.  Overwrite?
+Another window into document opened.
+New window into document opened.
+Document has beed changed.  Discard changes?

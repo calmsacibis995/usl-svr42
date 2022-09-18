@@ -1,0 +1,99 @@
+#ident	"@(#)debugger:libexp/i386/DEPEND	1.6"
+
+cvt_util.o:	 cvt_util.C
+	$(CPLUS_CMD) -c cvt_util.C
+
+Val_BitF.o:	 Val_BitF.C
+	$(CPLUS_CMD) -c Val_BitF.C
+
+CCevalMach.o:	 CCevalMach.C
+	$(CPLUS_CMD) -c CCevalMach.C
+
+CCconvert.o:	../common/CCconvert.C
+	$(CPLUS_CMD) -c ../common/CCconvert.C
+
+Expr.o:	../common/Expr.C
+	$(CPLUS_CMD) -c ../common/Expr.C
+
+CCtree.o:	 ../common/CCtree.C
+	$(CPLUS_CMD) -c ../common/CCtree.C
+
+Const.o:	 ../common/Const.C 
+	$(CPLUS_CMD) -c ../common/Const.C
+
+CCtlex.o:	 ../common/CCtlex.C
+	$(CPLUS_CMD) -c ../common/CCtlex.C
+
+CClalex.o:	 ../common/CClalex.C
+	$(CPLUS_CMD) -c ../common/CClalex.C
+
+CCgram.o:	 ../common/CCgram.Y
+	$(YACC) $(YFLAGS) ../common/CCgram.Y
+	$(CPLUS_CMD) -c y.tab.c
+	mv y.tab.o CCgram.o
+	if cmp -s y.tab.h scanner.h ; \
+	then \
+		rm y.tab.h ; \
+	else \
+		rm -f scanner.h ; mv y.tab.h scanner.h ; \
+	fi 
+
+CCresolve.o:	 ../common/CCresolve.C
+	$(CPLUS_CMD) -c ../common/CCresolve.C
+
+CCeval.o:	 ../common/CCeval.C
+	$(CPLUS_CMD) -c ../common/CCeval.C
+
+Dbgvarsupp.o:	 ../common/Dbgvarsupp.C 
+	$(CPLUS_CMD) -c ../common/Dbgvarsupp.C
+
+Debug_var.o:	 ../common/Debug_var.C 
+	$(CPLUS_CMD) -c ../common/Debug_var.C
+
+ParsedRep.o:	 ../common/ParsedRep.C
+	$(CPLUS_CMD) -c ../common/ParsedRep.C
+
+Rvalue.o:	 ../common/Rvalue.C
+	$(CPLUS_CMD) -c ../common/Rvalue.C
+
+Resolver.o:	 ../common/Resolver.C
+	$(CPLUS_CMD) -c ../common/Resolver.C
+
+Value.o:	 ../common/Value.C
+	$(CPLUS_CMD) -c ../common/Value.C
+	
+fpemu.o:	 $(SGSBASE)/fpemu/common/fpemu.c
+	$(CC_CMD) -c -DFPEFATAL=fpemu_error $(SGSBASE)/fpemu/common/fpemu.c
+
+lex_util.o:	 ../common/lex_util.C
+	$(CPLUS_CMD) -c ../common/lex_util.C
+
+print_rval.o:	../common/print_rval.C
+	$(CPLUS_CMD) -c ../common/print_rval.C
+
+type.o:	../common/type.C
+	$(CPLUS_CMD) -c ../common/type.C
+
+OBJECTS	=  \
+	CCconvert.o \
+	CCevalMach.o \
+	CCtree.o \
+	Const.o \
+	CCtlex.o \
+	CClalex.o \
+	CCgram.o \
+	CCresolve.o \
+	CCeval.o \
+	Dbgvarsupp.o \
+	Debug_var.o \
+	Expr.o \
+	ParsedRep.o \
+	Resolver.o \
+	Rvalue.o \
+	Val_BitF.o \
+	Value.o \
+	cvt_util.o \
+	fpemu.o \
+	lex_util.o \
+	print_rval.o \
+	type.o

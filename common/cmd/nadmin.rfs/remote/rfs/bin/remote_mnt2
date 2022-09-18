@@ -1,0 +1,29 @@
+#ident	"@(#)nadmin.rfs:remote/rfs/bin/remote_mnt2	1.1.3.1"
+#ident  "$Header: remote_mnt2 2.0 91/07/12 $"
+
+if [ "$RES" = "" ];
+then
+	$TFADMIN /sbin/mount -F rfs $MOUNTP 2>>/usr/tmp/err_$$;
+else
+	$TFADMIN /sbin/mount -F rfs $RES 2>>/usr/tmp/err_$$;
+fi;
+if [ $? -eq 0 ]
+then
+	if [ "$RES" = "" ];
+	then
+		echo "\"$MOUNTP\" has been mounted via RFS." > /usr/tmp/rem_$$
+	else
+		echo "\"$RES\" has been made available via RFS." > /usr/tmp/rem_$$
+	fi;
+else
+	if [ "$RES" = "" ];
+	then
+		echo "\"$MOUNTP\" could not be mounted immediately.\n" > /usr/tmp/rem_$$
+	else
+		echo "\"$RES\" could not be made available immediately.\n" > /usr/tmp/rem_$$
+	fi;
+	/usr/bin/cat /var/tmp/err_$$ >> /var/tmp/rem_$$;
+fi
+/usr/bin/rm /var/tmp/err_$$
+
+echo $$

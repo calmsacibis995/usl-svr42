@@ -1,0 +1,46 @@
+#define koala_format 1
+#define koala_width 40
+#define koala_height 32
+#define koala_ncolors 5
+#define koala_chars_per_pixel 1
+static char * koala_colors[] = {
+" " , "#AAAAAAAAAAAA",
+"." , "#000000000000",
+"X" , "#FFFFAAAA0000",
+"o" , "#FFFFFFFF0000",
+"O" , "#AAAA55550000"
+} ;
+static char * koala_pixels[] = {
+"                                        ",
+"                                        ",
+"                                        ",
+"                                        ",
+"       .........        .........       ",
+"     ............      ............     ",
+"    ....XXXXXXX...    ...XXXXXXX....    ",
+"   ...XXXoooooXX..    ..XXoooooXXX...   ",
+"   ..XXooooooooX........XooooooooXX..   ",
+"   ..XoooooooooXX......XXoooooooooX..   ",
+"   ..XooooooooXXXXXXXXXXXXooooooooX..   ",
+"   ..XoooooooXXXXXXXXXXXXXXoooooooX..   ",
+"   ..XooooooXXXXXXXXXXXXXXXXooooooX..   ",
+"   ..XoooooXXXXXXXXXXXXXXXXXXoooooX..   ",
+"   ..XXoooXXXXXXXXXXXXXXXXXXXXoooXX..   ",
+"   ...XXXoXXX...XXXOOXXX...XXXoXXX...   ",
+"    ....XXXX.....XOOOOX.....XXXX....    ",
+"      ....XX.....XOOOOX.....XX....      ",
+"       ....XX...XXOOOOXX...XX....       ",
+"         ..XXXXXXXOOOOXXXXXXX..         ",
+"         ..XXXXXXXOOOOXXXXXXX..         ",
+"         ..XXXXXXXOOOOXXXXXXX..         ",
+"         ..XXXXXXXXOOXXXXXXXX..         ",
+"         ...XXXXXXXXXXXXXXXX...         ",
+"          ....XXXXXXXXXXXX....          ",
+"           ..................           ",
+"             ..............             ",
+"                                        ",
+"                                        ",
+"                                        ",
+"                                        ",
+"                                        "
+} ;

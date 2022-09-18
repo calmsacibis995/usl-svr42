@@ -1,0 +1,50 @@
+#define lines_format 1
+#define lines_width 32
+#define lines_height 32
+#define lines_ncolors 9
+#define lines_chars_per_pixel 1
+static char * lines_colors[] = {
+" " , "#FFFFFFFFFFFF",
+"." , "#00000000AAAA",
+"X" , "#0000FFFF0000",
+"o" , "#AAAAFFFF5555",
+"O" , "#FFFFFFFF0000",
+"+" , "#0000AAAA0000",
+"@" , "#00000000FFFF",
+"#" , "#FFFF00000000",
+"$" , "#FFFF0000FFFF"
+} ;
+static char * lines_pixels[] = {
+"                                ",
+"                                ",
+"  ............................  ",
+"  ............................  ",
+"                                ",
+"           XX    oo    OO       ",
+"    ++     XX    oo    OO       ",
+"    ++     XX    oo    OO       ",
+"    ++     XX    oo    OOO      ",
+"    ++     XX     oo    OO      ",
+"    ++      XX    oo    OO      ",
+"     ++     XX    oo    OOO     ",
+"     ++     XX    oo     OO     ",
+"     ++     XX     oo    OO     ",
+"     ++     XX     oo    O      ",
+"      ++     XX    oo           ",
+"      ++     XX    o            ",
+"      ++     XX                 ",
+"      ++     XX           @@@   ",
+"       ++    X          @@@@@   ",
+"       ++            @@@@@      ",
+"       ++          @@@@@        ",
+"       ++       @@@@@@          ",
+"       +      @@@@@             ",
+"            @@@@@               ",
+"         @@@@@@       ###       ",
+"       @@@@@          #####     ",
+"     @@@@@              #####   ",
+"  @@@@@      $$$$$$$$     ####  ",
+"  @@@        $$$$$$$$       ##  ",
+"                                ",
+"                                "
+} ;

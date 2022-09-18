@@ -1,0 +1,23 @@
+#ident	"@(#)bkrs:common/cmd/bkrs/basic.d/system/Form.files	1.4"
+#ident	"$Header: $"
+
+form="Selective System Backup"
+help=open text /usr/vmsys/OBJECTS/Text.h "$T" "$F"
+lifetime=permanent
+
+done=`echo $F1 > /usr/tmp/markfls.$VPID
+`open form $OBJ_DIR/system/Form.v1 "$ARG1 $ARG2 $ARG3"
+
+
+name=Files or directories to back up:
+nrow=1
+ncol=1
+rows=3
+columns=65
+frow=2
+fcol=1
+scroll=true
+valid=`filechk System "$F1"|regex 0`
+invalidmsg=`filemsg System "$F1"`
+fieldmsg=`set -l T="Selective System Backup" -l F=backup/private/T.hbkdir1`Enter one or more names separated by spaces and strike SAVE to save input.
+

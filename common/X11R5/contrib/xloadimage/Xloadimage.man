@@ -1,0 +1,408 @@
+.\"ident	"@(#)r4xloadimage:xloadimage.man	1.2"
+.TH XLOADIMAGE 1 "13 December 1989"
+.SH NAME
+xloadimage, xsetbg, xview \- load images into an X11 window or onto
+the root window
+.SH SYNOPSIS
+\fIxloadimage\fR [global_options] {[image_options] image ...}
+.SH DESCRIPTION
+\fIXloadimage\fR displays images in an X11 window or loads them onto
+the root window.  See the \fIIMAGE TYPES\fR section below for
+supported image types.
+.PP
+If the destination display cannot support the number of colors in the
+image, the image will be dithered (monochrome destination) or have its
+colormap reduced (color destination) as appropriate.  This can also be
+done forcibly with the \fI-halftone\fR and \fI-colors\fR options.
+.PP
+If more than one image is to be loaded, they will be merged into a
+single image.  The \fI-at\fR and \fI-center\fR options control where
+subsequent images will be loaded onto the initial image.  Any
+combination of color image depths and/or monochrome images may be
+loaded at one time.  If merging two color images would overload the
+number of available colormap entries, the number of colors shared
+between the images will be automatically reduced to fit.
+.PP
+A variety of image manipulations can be specified, including
+brightening, clipping, dithering, depth-reduction, and zooming.  Most
+of these manipulations have simple implementations; speed was opted
+for above accuracy.
+.PP
+If you are viewing a large image in a window, the initial window will
+be at most 90% of the size of the display unless the window manager
+does not correctly handle window size requests or if you've used the
+\fI-fullscreen\fR option.  You may move the image around in the window
+by dragging with the first mouse button.  The cursor will indicate
+which directions you may drag, if any.  You may exit the window by
+typing 'q' or '^C' when the keyboard focus is on the window.
+.PP
+It's possible to have a "slideshow" of many images by specifying the
+\fI-slideshow\fR option.
+.PP
+A wide variety of common image manipulations can be done by mixing and
+matching the available options.  See the section entitled \fIHINTS FOR
+GOOD IMAGE DISPLAYS\fR for some ideas.
+.PP
+\fIXsetbg\fR is equivalent to \fIxloadimage -onroot -quiet\fR and
+\fIxview\fR is equivalent to \fIxloadimage -view -verbose\fR.
+.SH GLOBAL OPTIONS
+The following options affect the global operation of \fIxloadimage\fR.
+They may be specified anywhere on the command line.
+.TP 8
+-border \fIcolor\fR
+This sets the background portion of the window which is not covered by
+any images to be \fIcolor\fR when given with -onroot option.
+.TP
+-display \fIdisplay_name\fR
+X11 display name to send the image(s) to.
+.TP
+-fullscreen
+Use the entire screen to display images.  This option is incompatible
+with -onroot.
+.TP
+-geometry \fIWxH[{+-X}{+-}Y]\fR
+This sets the size of the window onto which the images are loaded to a
+different value than the size of the image.  When viewing an image in
+a window, this can be used to reduce the size of the destination
+window.  When loading an image onto the root window, this option
+controls the size of the pixmap which will be loaded onto the root.
+If the size is smaller than that of the display, the image will be
+replicated.
+.TP
+-install
+Forcibly install the image's colormap when the window is focused.
+This violates ICCCM standards and only exists to allow operation with
+naive window managers.  Use this option only if your window manager
+does not install colormaps properly.
+.TP
+-list
+List the images which are along the image path.
+.TP
+-help
+Displays a short summary of xloadimage command line syntax.
+.TP
+-onroot
+Load image(s) onto the root window instead of viewing in a window.
+This is the opposite of \fI-view\fR.  \fIXSetbg\fR has this option set
+by default.  Loading with the -onroot option will fail if enough
+sharable colors cannot be allocated from the default colormap.
+.TP
+-path
+Displays the image path and image suffixes which will be used when
+looking for images.  These are loaded from ~/.xloadimagerc and
+optionally from a systemwide file (normally /usr/lib/xloadimagerc).
+.TP
+-quiet
+Forces \fIxloadimage\fR and \fIxview\fR to be quiet.  This is the
+default for \fIxsetbg\fR, but the others like to whistle. 
+.TP
+-slideshow
+Show each image argument one at a time instead of merging them.
+Typing 'p' will back up to the previous image displayed, 'n' will go
+to the next image, and 'q' or '^C' will quit.  This option is often
+used in conjunction with -fullscreen.
+.TP
+-supported
+List the supported image types. 
+.TP
+-verbose
+Causes \fIxloadimage\fR to be talkative, telling you what kind of
+image it's playing with and any special processing that it has to do. 
+This is the default for \fIxview\fR and \fIxloadimage\fR. 
+.TP
+-version
+Print the version number and patchlevel of this version of
+\fIxloadimage\fR.  Versions prior to version 1, patchlevel 03 do not
+have this option and should be updated.
+.TP
+-view
+View image(s) in a window.  This is the opposite of \fI-onroot\fR and
+the default for \fIxsetbg\fR. 
+.SH IMAGE OPTIONS
+The following options may preceed each image.  These options are
+local to the image they preceed. 
+.TP
+-at \fIX\fR,\fIY\fR
+Indicates coordinates to load the image at on the first image.  If
+this is an option to the first image, and the \fI-onroot\fR option is
+specified, the image will be loaded at the given location on the
+display background. 
+.TP
+-background \fIcolor\fR
+Use \fIcolor\fR as the background color instead of the default
+(usually white but this depends on the image type) if you are
+transferring a monochrome image to a color display. 
+.TP
+-brighten \fIpercentage\fR
+Specify a percentage multiplier for a color image's colormap.  A value
+of more than 100 will brighten an image, one of less than 100 will
+darken it. 
+.TP
+-center
+Center the image on the first image loaded.  If this is an option to
+the first image, and the \fI-onroot\fR option is specified, the image
+will be centered on the display background. 
+.TP
+-colors \fIn\fR
+Specify the maximum number of colors to use in the image.  This is a
+way to forcibly reduce the depth of an image.
+.TP
+-clip \fIX\fR,\fIY\fR,\fIW\fR,\fIH\fR
+Clip the image before loading it.  \fIX\fR and \fIY\fR define the
+upper-left corner of the clip area, and \fIW\fR and \fIH\fR define the
+extents of the area.  A zero value for \fIW\fR or \fIH\fR will be
+interpreted as the remainder of the image. 
+.TP
+-dither
+Dither a color image to monochrome.  This algorithm is very trivial;
+the \fI-halftone\fR option may look better if you don't mind the
+blown-up image.
+.TP
+-foreground \fIcolor\fR
+Use \fIcolor\fR as the foreground color instead of black if you are
+transferring a monochrome image to a color display.  This can also be
+used to invert the foreground and background colors of a monochrome
+image. 
+.TP
+-halftone
+Force halftone dithering of a color image when displaying on a
+monochrome display.  This happens by default when viewing color images
+on a monochrome display.  This option is ignored on monochrome images.
+This dithering algorithm blows an image up by sixteen times; if you
+don't like this, the \fI-dither\fR option will not blow the image up
+(but won't look as nice).
+.TP
+-name \fIimage_name\fR
+Force the next argument to be treated as an image name.  This is
+useful if the name of the image is \fI-dither\fR, for instance. 
+.TP
+-xzoom \fIpercentage\fR
+Zoom the X axis of an image by \fIpercentage\fR.  A number greater
+than 100 will expand the image, one smaller will compress it.  A zero
+value will be ignored. 
+.TP
+-yzoom \fIpercentage\fR
+Zoom the Y axis of an image by \fIpercentage\fR.  See \fI-xzoom\fR for
+more information. 
+.TP
+-zoom \fIpercentage\fR
+Zoom both the X and Y axes by \fIpercentage\fR.  See \fI-xzoom\fR for
+more information.  Technically the percentage actually zoomed is the
+square of the number supplied since the zoom is to both axes, but I
+opted for consistency instead of accuracy.
+.SH EXAMPLES
+To load the rasterfile "my.image" onto the background and replicate
+it to fill the entire background:
+.sp
+.ti +5
+xloadimage -onroot my.image
+.PP
+To load a monochrome image "my.image" onto the background, using red
+as the foreground color, replicate the image, and overlay
+"another.image" onto it at coordinate (10,10):
+.sp
+.ti +5
+xloadimage -foreground red my.image -at 10,10 another.image
+.PP
+To center the rectangular region from 10 to 110 along the X axis and
+from 10 to the height of the image along the Y axis:
+.sp
+.ti +5
+xloadimage -center -clip 10,10,100,0 my.image
+.PP
+To double the size of an image:
+.sp
+.ti +5
+xloadimage -zoom 200 my.image
+.PP
+To halve the size of an image:
+.sp
+.ti +5
+xloadimage -zoom 50 my.image
+.PP
+To brighten a dark image:
+.sp
+.ti +5
+xloadimage -brighten 150 my.image
+.PP
+To darken a bright image:
+.sp
+.ti +5
+xloadimage -brighten 50 my.image
+.SH HINTS FOR GOOD IMAGE DISPLAYS
+Since images are likely to come from a variety of sources, they may be
+in a variety of aspect ratios which may not be supported by your
+display.  The \fI-xzoom\fR and \fI-yzoom\fR options can be used to
+change the aspect ratio of an image before display.  If you use these
+options, it is recommended that you increase the size of one of the
+dimensions instead of shrinking the other, since shrinking looses
+detail.  For instance, many GIF images have an X:Y ratio of about 2:1.
+You can correct this for viewing on a 1:1 display with either
+\fI-xzoom 50\fR or \fI-yzoom 200\fR (reduce X axis to 50% of its size
+and expand Y axis to 200% of its size, respectively) but the latter
+should be used so no detail is lost in the conversion.
+.PP
+When merging images, the first image loaded is used to determine the
+depth of the merged image.  This becomes a problem if the first image
+is monochrome and other images are color, since the other images will
+be dithered to monochrome before merging.  You can get around this
+behavior by using the \fI-geometry\fR option to specify the size of
+the destination image -- this will force \fIxloadimage\fR to use the
+default depth of the display instead of 1.  The standard behavior
+might be modified in the future if it becomes a problem.
+.PP
+You can perform image processing on a small portion of an image by
+loading the image more than once and using the \fI-at\fR and
+\fI-clip\fR options.  Load the image, then load it again and clip,
+position, and process the second.  To brighten a 100x100 rectangular
+portion of an image located at (50,50), for instance, you could type:
+.sp
+.ti +5
+xloadimage my.image -at 50,50 -clip 50,50,100,100 -brighten 150 my.image
+.PP
+One common use of \fIxloadimage\fR is to load images onto the root
+window.  Unfortunately there is no agreed-upon method of freeing some
+root window resources, such as colormap entries, nor is there a way to
+modify the root window colormap without confusing most window
+managers.  For this reason, \fIxloadimage\fR will not allow the
+loading of images onto the root window if it cannot allocate shared
+colors from the root window's colormap.  I suggest the avoidance of
+multiple color image loads onto the root window, as these eat up root
+window shareable colormap entries.  If you wish to have a slideshow,
+display the images in a window.  A future implementation of
+\fIxloadimage\fR will have a \fI-fullscreen\fR (or maybe
+\fI-slideshow\fR) option, but this is as yet unavailable.
+.PP
+One common complaint is that \fIxloadimage\fR does not have a
+\fI-reverse\fR function for inverting monochrome images.  In fact,
+this function is a special-case of the foreground and background
+coloring options.  To invert an image with a black foreground and
+white background (which is standard), use \fI-foreground white
+-background black\fR.  This will work on both color and monochrome
+displays.
+.SH PATHS AND EXTENSIONS
+The file ~/.xloadimagerc (and optionally a system-wide file) defines
+the path and default extensions that \fIxloadimage\fR will use when
+looking for images.  This file can have two statements: "path=" and
+"extension=" (the equals signs must follow the word with no spaces
+between).  Everything following the "path=" keyword will be prepended
+to the supplied image name if the supplied name does not specify an
+existing file.  The paths will be searched in the order they are
+specified.  Everything following the "extension=" keyword will be
+appended to the supplied image name if the supplied name does not
+specify an existing file.  As with paths, these extensions will be
+searched in the order they are given.  Comments are any portion of a
+line following a hash-mark (#).
+.PP
+The following is a sample ~/.xloadimagerc file:
+.PP
+.nf
+  # paths to look for images in
+  path= /usr/local/images
+        /home/usr1/guest/madd/images
+        /usr/include/X11/bitmaps
+
+  # default extensions for images; .Z is automatic; scanned in order
+  extension= .csun .msun .sun .face .xbm .bm
+.fi
+.PP
+Versions of \fIxloadimage\fR prior to version 01, patchlevel 03 would
+load the system-wide file (if any), followed by the user's file.  This
+behavior made it difficult for the user to configure her environment
+if she didn't want the default.  Newer versions will ignore the
+system-wide file if a personal configuration file exists.
+.SH IMAGE TYPES
+.PP
+\fIXloadimage\fR currently supports the following image types:
+.sp
+.nf
+  Faces Project images
+  GIF images
+  Portable Bitmap (PBM) images
+  Sun monochrome rasterfiles
+  Sun color RGB rasterfiles
+  X10 bitmap files
+  X11 bitmap files
+  X pixmap files
+.fi
+.PP
+Normal, compact, and raw PBM images are supported.  Both standard and
+run-length encoded Sun rasterfiles are supported.  Any image whose
+name ends in .Z is assumed to be a compressed image and will be
+filtered through "uncompress".
+.SH AUTHOR
+.nf
+Jim Frost
+Saber Software
+jimf@saber.com
+.fi
+.PP
+Other contributing people include Barry Shein (bzs@std.com), Kirk
+Johnson (tuna@athena.mit.edu), Mark Snitily (zok!mark@apple.com),
+W. David Higgins (wdh@mkt.csd.harris.com), and Dave Nelson
+(daven@gauss.llnl.gov).
+.SH FILES
+.nf
+.in +5
+xloadimage              - the image loader and viewer
+xsetbg                  - pseudonym which quietly sets the background
+xview                   - pseudonym which views in a window
+/usr/lib/X11/Xloadimage - default system-wide configuration file
+~/.xloadimagerc         - user's personal configuration file
+.in -5
+.fi
+.SH COPYRIGHT
+Copyright (c) 1989, 1990 Jim Frost and others.
+.PP
+\fIXloadimage\fR is copywritten material with a very loose copyright
+allowing unlimited modification and distribution if the copyright
+notices are left intact.  Various portions are copywritten by various
+people, but all use a modification of the MIT copyright notice.
+Please check the source for complete copyright information.  The
+intent is to keep the source free, not to stifle its distribution, so
+please write to me if you have any questions.
+.SH BUGS
+Zooming dithered images, especially downwards, is UGLY.
+.PP
+The dithering algorithm used by \fI-dither\fR could be better, and
+both \fI-dither\fR and \fI-halftone\fR assume that a color's
+brightness is the sum of its RGB values, which is not correct but has
+the advantage of being simple and fast.
+.PP
+Images can come in a variety of aspect ratios.  \fIXloadimage\fR cannot
+detect what aspect ratio the particular image being loaded has, nor
+the aspect ratio of the destination display, so images with differing
+aspect ratios from the destination display will appear distorted.  See
+\fIHINTS FOR GOOD IMAGE DISPLAYS\fR for more information.
+.PP
+The GIF format allows more than one image to be stored in a single GIF
+file, but \fIxloadimage\fR will only display the first.
+.PP
+Only PseudoColor, GrayScale, StaticColor, and StaticGray visuals are
+supported.  These are the most common visuals so this isn't usually a
+problem.
+.PP
+You cannot load an image onto the root window if the default visual is
+not supported by \fIxloadimage\fR.
+.PP
+Images loaded onto the root window are retained with
+XSetCloseDownMode(disp, RetainTemporary) so that they can be easily
+cleaned out by future image loads.  Any application that does an
+XKillClient(disp, AllTemporary) will free up the root colormap (and
+things will get ugly).  Likewise, xloadimage will free up resources
+which other applications have retained via RetainTemporary.
+.PP
+One of the pseudonyms for \fIxloadimage\fR, \fIxview\fR, is the same
+name as Sun uses for their SunView-under-X package.  This will be
+confusing if you're one of those poor souls who has to use Sun's
+XView.
+.PP
+Some window managers do not correctly handle window size requests.  In
+particular, many versions of the twm window manager use
+the MaxSize hint instead of the PSize hint, causing images which
+are larger than the screen to display in a window larger than the
+screen, something which is normally avoided.  Some versions of twm
+also ignore the MaxSize argument's real function, to limit the maximum
+size of the window, and allow the window to be resized larger than the
+image.  If this happens, \fIxloadimage\fR merely places the image in
+the upper

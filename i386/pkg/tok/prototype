@@ -1,0 +1,38 @@
+#ident	"@(#)pkg.tok:prototype	1.7"
+#ident  "$Header: $"
+
+i depend
+i pkginfo
+i preinstall
+i postinstall
+i preremove
+i request
+i copyright
+i tok/menu.err=menu.err
+i tok/menu.tok=menu.tok
+i tok/menu.param=menu.param
+
+!OAMBASE=/usr/sadm/sysadm
+!PKGINST=tok
+!PKGSAV=/var/sadm/pkg/$PKGINST/save
+!default 0544 bin bin
+d none /tmp	?	?	?
+d none /tmp/tok	755	bin	bin
+d ibmtok /tmp/tok/ibmtok	775	bin	bin
+v ibmtok /tmp/tok/ibmtok/Driver.o=/etc/conf/pack.d/ibmtok/Driver.o
+v ibmtok /tmp/tok/ibmtok/Space.c=/etc/conf/pack.d/ibmtok/space.c
+v ibmtok /tmp/tok/ibmtok/Master=/etc/conf/mdevice.d/ibmtok
+v ibmtok /tmp/tok/ibmtok/System=/etc/conf/sdevice.d/ibmtok
+v ibmtok /tmp/tok/ibmtok/Node=/etc/conf/node.d/ibmtok
+
+d none /usr	?	?	?
+d none /usr/include	?	?	?
+d none /usr/include/sys	?	?	?
+d none /usr/lib	?	?	?
+
+#	header files: default owner=bin group=bin mode=0444
+
+!default 0444 bin bin
+
+f ibmtok /usr/include/sys/ibmtok.h
+f ibmtok /usr/include/sys/ibmtokhw.h

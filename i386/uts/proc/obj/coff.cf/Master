@@ -1,0 +1,7 @@
+#ident	"@(#)uts-x86:proc/obj/coff.cf/Master	1.5"
+#ident	"$Header: $"
+$version 1
+
+$entry exec core
+
+coff	coff	eo	20	0	0

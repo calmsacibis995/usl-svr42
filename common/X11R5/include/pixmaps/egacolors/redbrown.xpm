@@ -1,0 +1,19 @@
+#define redbrown_format 1
+#define redbrown_width 8
+#define redbrown_height 8
+#define redbrown_ncolors 2
+#define redbrown_chars_per_pixel 1
+static char * redbrown_colors[] = {
+" " , "#FFFF00000000",
+"." , "#AAAA55550000"
+} ;
+static char * redbrown_pixels[] = {
+" . . . .",
+". . . . ",
+" . . . .",
+". . . . ",
+" . . . .",
+". . . . ",
+" . . . .",
+". . . . "
+} ;

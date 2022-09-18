@@ -1,0 +1,4 @@
+#ident	"@(#)nadmin.rfs:other/rfs/HELP/system.help	1.2.6.1"
+#ident  "$Header: system.help 2.0 91/07/12 $"
+The systems menu allows you to manage how your system
+relates to remote systems in Remote File Sharing.

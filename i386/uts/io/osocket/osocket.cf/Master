@@ -1,0 +1,5 @@
+#ident	"@(#)uts-x86:io/osocket/osocket.cf/Master	1.1"
+#ident	"$Header: $"
+$version 1
+$entry init open close read write chpoll ioctl mmap
+osocket	osoc	sco	0	0	0

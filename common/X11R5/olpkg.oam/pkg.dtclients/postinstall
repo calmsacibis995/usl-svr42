@@ -1,0 +1,46 @@
+#ident	"@(#)olpkg.oam:pkg.dtclients/postinstall	1.2"
+#	Copyright (c) 1990, 1991 UNIX System Laboratories, Inc.
+#	Copyright (c) 1988 AT&T
+#	  All Rights Reserved
+
+#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+#	UNIX System Laboratories, Inc.
+#	The copyright notice above does not evidence any
+#	actual or intended publication of such source code.
+
+
+#
+#	Applications & Demos
+#
+
+
+#
+# make sure we're on V.4
+#
+if [ `uname -r`  -lt "4.0" ]
+then
+	echo "This package can only be installed on Release 4.0 or later systems"
+	exit 1
+fi
+
+#
+# now make sure fonts.dir is up-to-date
+#
+
+/usr/X/bin/mkfontdir /usr/X/lib/fonts/100dpi
+/usr/X/bin/mkfontdir /usr/X/lib/fonts/75dpi
+/usr/X/bin/mkfontdir /usr/X/lib/fonts/misc
+
+#
+# let them know that the Desktop Clients package is installed
+#
+
+installf $PKGINST /usr/options/$PKG.name
+echo $NAME > /usr/options/$PKG.name
+installf -f $PKGINST
+
+#
+# Now clean up
+#
+rm -rf /tmp/pkg > /dev/null 2>&1
+exit ${errflag}

@@ -1,0 +1,96 @@
+.\"ident	"@(#)r4xplaces:xplaces.man	1.1"
+.TH XPLACES X "1 Feb 1988" "X Version 11"
+.SH NAME
+xplaces - take snapshot of personal X window configuration and print
+command lines for all X applications
+.SH SYNOPSIS
+.B xplaces
+[-display \fIdisplayname\fP] [-id \fIwindow-id\fP]
+.SH DESCRIPTION
+.I xplaces
+prints on standard output the command lines used to startup 
+the X applications presently running and their geometry.
+The output, after a little editing, can be used
+in an initialization file.
+.SH EXAMPLE
+Here is a configuration example:
+.sp
+.nf
+DISPLAY=unix:0.0; export DISPLAY
+xterm -sb -geometry 80x9+1+19 -title console -name console -C \\
+	-display unix:0 -e /e/moraes/.x11startup.bw2  &
+xclock -geometry 100x100+1048+0  &
+rcmd neat.ai /ai/bin/X11/xterm -display gerrard.csri:0 \\
+	-geometry 80x57+291+26 -ls  &
+xterm -geometry 80x56+310+53 -e rlogin bay.csri  &
+xterm -geometry 80x51+410+128 -title gerrard.csri  &
+.fi
+.sp
+.I This 
+will start up a console terminal window (which receives redirected
+console output, preventing it from messing up the display), a clock
+and three terminal windows, one of which is started up by the shell script
+.I rcmd
+which starts up a command on a remote machine, putting it in the background.
+.I Rcmd 
+is useful only if the application on the remote machine has no use for
+standard output and error because they get redirected to /dev/null.
+.PP
+On the CSRI and ANT Suns, the recommended way of running
+.I X11
+is by ``x11''.
+In that case, the console xterm is automatically started up by the
+.I x11
+script, so that command must be removed from the xplaces output, and
+the remaining xterms (and other applications can be added to the
+.I x11start
+file.
+.SH OPTIONS
+.B xplaces
+is Xlib based, and accepts only the following two arguments.
+.TP 8
+.BI \-display " displayname"
+where displayname describes the display to use, and is in one
+of the standard forms. See X(1) for more details. The default is
+determined by the environment variable DISPLAY.
+.TP 8
+.BI \-id " window-id"
+which asks for the command string to start a particular window.
+Note that the window-id specified may be the window id of a parent
+if the window really holding the command string property (WM_COMMAND)
+and xplaces will find it correctly by recursive search through the
+window hierarchy. the window-id may be specified either as a decimal
+number, or as a hexadecimal number (prefixed by 0x) which makes it
+possible to use the output of 
+.B xlswins, 
+or 
+.B xwininfo
+with this option.
+.SH SEE ALSO
+.IR x11 (x),
+.IR X (x),
+.IR xprop (x),
+.IR xlswins (x)
+.br
+The Inter Client Communication Conventions Manual.
+.SH DIAGNOSTICS
+.B xplaces
+will complain about top level windows without commands associated with
+them, and print the name and class of such windows. It also complains
+about various X errors that may occur, and will die with an error
+message if used with incorrect arguments.
+.SH BUGS
+.I xplaces
+can only print the command line for application well behaved Xt applications,
+or applications that accept -geometry, and -iconic, and set WM_COMMAND and
+WM_NORMAL_HINTS.
+.br
+It can get confused if you use ambiguous options (-g for geometry, etc)
+.br
+With some window managers, it cannot locate icons. Blame for this
+lies solely with the window managers!
+.SH AUTHOR
+The first version was by Ken Yap (ken@cs.rochester.edu)
+.br
+This version was rewritten to deal with a much wider range of window manager
+and application behaviour by Mark Moraes (moraes@csri.toronto.edu)

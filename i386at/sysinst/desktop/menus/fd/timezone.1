@@ -1,0 +1,91 @@
+#ident	"@(#)proto:desktop/menus/fd/timezone.1	1.2"
+#ident	"$Header: $"
+.ul
+UNIX System Installation
+.ur
+Configure Date and Time
+.lr
+Del=Cancel  F1=Help
+.top
+On this screen, you will check the current date and time that is set on
+your computer, and change them if necessary.  You also select what
+timezone you are in.  If your timezone is not included in the choices,
+select "Another timezone".
+.form
+6//`date +"%m/%d/%y"`//The current date://
+// The current date is: `date +"%m/%d/%y"`//
+6//`date +"%T"`//The current time://
+// The current time is: `date +"%T"`//
+3 2 0 99//Enter the current year://YEAR//
+//Enter the Year (i.e., 92)//
+3 2 1 12//Enter the month of the year (1-12)://MONTH//
+//Enter the Month (1=Jan, 12=Dec)//
+3 2 1 31//Enter the day of the month (1-31)://DAY//
+ /Enter the Day (1-31)//
+3 2 0 23//Enter the hour of the day (0-23)://HOUR//
+//Enter the Hour (0-23)//
+3 2 0 59//Enter the minute of the hour (0-59)://MINUTE//
+//Enter the Minute (0-59)//
+2 5//EST::US Eastern Time (EST)//CST::US Central Time (CST)//MST::US Mountain Time (MST)//PST::US Pacific Time (PST)//OTHER::Another timezone//Enter Timezone://TIMEZONE//
+//Right/Left arrow keys for new choice (5 choices)//
+.button
+Apply
+Reset
+.bottom
+Press 'TAB' to move the cursor between fields.  When finished, move the
+cursor to "Apply" and then press 'ENTER' to continue.
+.pageno
+Page %d of %d
+.helpbanner
+Help: Configure Date and Time
+.hhelp_ban
+Instructions
+.help
+For detailed information, press the 'F1' (or '?') key at any time.
+
+The UNIX System needs  to know the current date and time as well
+as your local timezone.  This form displays the current date and time
+to which your computer's clock is set.  On this form, you must provide
+information in the following fields:
+
+YEAR
+
+This field accepts a 2-digit number representing the current year,
+such as 93.  At the beginning of a new century, this number should
+be 00.
+
+MONTH OF THE YEAR
+
+This field accepts a number from 1 to 12, where 1 is January and 12
+is December.
+
+DAY OF THE MONTH
+
+This field accepts the day, from 1 to 31, in the current month.
+
+HOUR OF THE DAY
+
+This field accepts the hour, from 0 to 23, in the current day.
+AM and PM are not recognized, so use 24-hour format.  For example,
+if it is 6:00 PM, enter 18.
+
+MINUTE OF THE HOUR
+
+This field accepts the minute, from 0 to 59, in the current hour.
+
+TIMEZONE
+
+This field allows you to select a value for your timezone.  If you
+do not see your timezone listed in the choices, select "Another
+timezone", and you can enter your specific timezone information on
+the next screen.
+
+When you have finished filling out this form, move the cursor to "Apply"
+and then press 'ENTER' to continue.
+.helpinst
+ESC=Exit help  F1=Instructions  Del=Cancel  1=Forward  2=Backward
+.hhelpinst
+ESC=Exit instructions  Del=Cancel  1=Forward  2=Backward
+.working
+Working...
+.end

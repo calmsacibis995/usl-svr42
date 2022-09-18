@@ -1,0 +1,14 @@
+#display VGA256 PseudoColor "LEGEND NEC5D 1024x768 9.75x7.32" 0 /dev/console lib/libvga256.so
+# /* LEGEND, 1024x768 and multisync monitors ;  ex: NEC 4d or 5d */
+
+#display VGA256 PseudoColor "LEGEND INTERLACED 1024x768 9.75x7.32" 0 /dev/console lib/libvga256.so
+# /* LEGEND, 1024x768 and interlaced monitors, ex: NEC 3d */
+
+#display VGA256 PseudoColor "LEGEND NEC5D 800x600 9.75x7.32" 0 /dev/console lib/libvga256.so
+# /* LEGEND, 800x600 for NEC5D  monitor */
+
+#display VGA256 PseudoColor "LEGEND MULTISYNC 800x600 9.75x7.32" 0 /dev/console lib/libvga256.so
+# /* LEGEND alternate entry: 800x600 for some multisync monitors */
+
+display VGA256 PseudoColor "LEGEND STDVGA 640x480 9.75x7.32" 0 /dev/console lib/libvga256.so
+# /*  LEGEND, 640x480 mode */

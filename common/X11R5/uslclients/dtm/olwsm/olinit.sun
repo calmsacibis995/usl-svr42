@@ -1,0 +1,131 @@
+#! /bin/sh
+#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+#	Copyright (c) 1988, 1989, 1990 AT&T
+#	  All Rights Reserved
+
+#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+#	UNIX System Laboratories, Inc.
+#	The copyright notice above does not evidence any
+#	actual or intended publication of such source code.
+
+#ident	"@(#)dtm:olwsm/olinit.sun	1.2"
+
+# Starts up X11/NeWS and the Xt+ OPEN LOOK workspace and window managers
+# locally.  Expects all the usual xnews environment variables to be set.
+
+cd $HOME
+
+# Make certain there is an .olinitrc so the workspace manager will
+# start the window manager (this would be better set up at "adduser"
+# time for the sake of remote sessions).
+
+if [ ! -r .olinitrc ]
+then
+cat << EOF > .olinitrc
+olwm &
+
+sleep 5		# the server has indigestion if olwm isn't first up
+if [ -x  \$HOME/.Oopenwin-init ]
+then
+	\$HOME/.Oopenwin-init
+else
+	\$XNEWSHOME/lib/openwin-init
+fi
+EOF
+fi
+
+# If no .Xdefaults file exists, then the xnews server will
+# give a protocol error when dtm executes the following
+# line from resource.c:
+#
+#	XDeleteProperty(DISPLAY, ROOT, XA_RESOURCE_MANAGER);
+#
+# X Error:  BadAtom, invalid Atom parameter
+#   Request Major code 19 ()
+#   Request Minor code
+#   ResourceID 0x200018
+#   Error Serial #217
+#   Current Serial #218
+#
+# So, as a workaround, we have to make certain there is
+# a .Xdefaults file seeded with something.  The "something"
+# we'll use is a resource that controls the behavior of
+# SELECT on menu buttons.  If "*selectDoesPreview" isn't
+# true (the new default for Xt+), then SELECT will behave
+# as MENU does on menu buttons (similar to how other UIs work).
+# We may want to set this anyway to be feel-compatible with
+# XView and tNt...
+
+grep [Ss]electDoesPreview .Xdefaults >/dev/null 2>&1
+if [ $? != 0 ]
+then
+cat << EOF >> .Xdefaults
+*selectDoesPreview:   true
+EOF
+fi
+
+# Sneak in our own OpenWindows initialization file.
+
+if [ -f  .openwin-init -a ! -f .Oopenwin-init ]
+then
+	mv .openwin-init .Oopenwin-init
+fi
+cat << EOF > .openwin-init
+#!/bin/sh
+{
+dtm > \$HOME/.oliniterr 2>&1
+psh << PSH_EOF
+	/ShutDown {
+	    % destroy all Lite windows
+	    createevent dup begin
+	        /Name /DoItEvent def
+	        /Action /Window def
+	        /ClientData { /destroy self send } def
+		/TimeStamp lasteventtime def
+	    end sendevent
+
+	    % destroy all NDE windows 
+	    /Frame null null { /destroy self send } calldoit
+ 
+	    % stop the window manager
+	    stopwm
+
+	    % Wait 3 seconds for console to die so we don't logout.
+	    0.05 sleep
+
+	    % nuke the cursor
+	    framebuffer /Cursor 0 1 /newscursor findfont newcursor put
+
+	    % Reset the colormap to the default.
+	    framebuffer /Colormap get
+	    dup /Installed false put /Installed true put
+
+	    % map a canvas over everything and paint it white.
+	    framebuffer dup setcanvas newcanvas
+	    dup clippath reshapecanvas
+	    dup /Mapped true put
+	    setcanvas
+	    1 fillcanvas
+
+	    % Terminate the server
+	    shutdownserver
+	} def
+	ShutDown
+PSH_EOF
+} &
+EOF
+chmod +x .openwin-init
+
+
+# Start X11/NeWS without the PS window manager.
+
+NOPSWM="" xnews
+
+
+# Clean up.
+
+rm -f .openwin-init
+if [ -f  .Oopenwin-init ]
+then
+	mv .Oopenwin-init .openwin-init
+fi

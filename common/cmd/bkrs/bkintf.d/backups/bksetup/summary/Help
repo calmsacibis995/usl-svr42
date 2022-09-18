@@ -1,0 +1,22 @@
+#ident	"@(#)bkrs:common/cmd/bkrs/bkintf.d/backups/bksetup/summary/Help	1.2.6.2"
+#ident  "$Header: Help 1.3 91/09/11 $"
+
+ABSTRACT: Backup Register Table Summary
+	The "summary" task allows you to display backup table register
+	information based on criteria entered.  The default backup
+	register table is /etc/bkup/bkreg.tab.
+
+TITLE: Backup Register Table Summary 
+
+F1:Table Field
+	"Table:" Enter the name of the backup register table you want to
+	display
+
+F2:Week Field
+	Enter a Week range between (1-52), or "demand", or "all".
+	The token "all" means that all weeks are displayed and the token
+	"demand" limits the display to demand run backup entries.
+
+F3:Day Field
+	Enter a day range between (0-6 0=Sunday), or "all" for all days.
+	The display will be limited to the range entered.

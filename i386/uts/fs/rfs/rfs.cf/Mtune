@@ -1,0 +1,14 @@
+#ident	"@(#)uts-x86:fs/rfs/rfs.cf/Mtune	1.2"
+#ident	"$Header: $"
+
+* RFS Parameters ---------------------
+NSRMOUNT	20	1	50
+NRCVD		150	40	500
+NSNDD		150	100	350
+MAXGDP		24	10	32
+MINSERVE	3	3	3
+MAXSERVE	6	3	6
+NRDUSER		250	1	700
+RCACHETIME	10	-1	10
+RFTMO_TIME	60	30	120
+RF_MAXKMEM	0	0	50

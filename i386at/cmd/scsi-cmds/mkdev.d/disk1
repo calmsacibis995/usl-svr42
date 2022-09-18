@@ -1,0 +1,28 @@
+#ident	"@(#)scsi-cmds:i386at/cmd/scsi-cmds/mkdev.d/disk1	1.5.1.1"
+#ident  "$Header: $"
+QUERY	Is this device to be used as a boot device?
+POSTMSG	If this is an unformatted or unpartitioned disk, prepare it with /sbin/diskadd.
+POSTMSG	Otherwise, edit "/etc/vfstab" to make file systems automatically mountable.
+ALIAS	disk
+DGRP	scsidisk
+ATTR	type="disk" scsi="true"  pdimkdtab="true" bklib="SCSI" desc="Disk Drive $N$" addcmd="/etc/diskadd $DEV$" removecmd="/usr/lib/scsi/checkdevice $DEVICE$ sd01" display="true" displaycmd="/etc/prtvtoc $CDEVICE$"
+FSATTR	type="dpart" dparttype="fs" scsi="true" desc="Disk Partition $N$"
+DPATTR	type="dpart" dparttype="dp" scsi="true" bklib="SCSI" desc="Disk Partition $N$"
+DATA
+key	minor	mode	/dev/dsk/	/dev/rdsk/	/dev/dsk/	/dev/rdsk/
+MO	0+D*S	0600	cCtTdLs0	cCtTdLs0	-		-
+M	1+D*S	0600	cCtTdLs1	cCtTdLs1	- 		-	
+M	2+D*S	0600	cCtTdLs2	cCtTdLs2	-		-	
+Y	3+D*S	0600	cCtTdLs3	cCtTdLs3	-		-	
+Y	4+D*S	0600	cCtTdLs4	cCtTdLs4	-		-	
+Y	5+D*S	0600	cCtTdLs5	cCtTdLs5	-		-	
+Y	6+D*S	0600	cCtTdLs6	cCtTdLs6	-		-	
+Y	7+D*S	0600	cCtTdLs7	cCtTdLs7	-		-	
+Y	8+D*S	0600	cCtTdLs8	cCtTdLs8	-		-	
+Y	9+D*S	0600	cCtTdLs9	cCtTdLs9	-		-	
+Y	10+D*S	0600	cCtTdLsa	cCtTdLsa	-		-	
+Y	11+D*S	0600	cCtTdLsb	cCtTdLsb	-		-	
+Y	12+D*S	0600	cCtTdLsc	cCtTdLsc	-		-	
+Y	13+D*S	0600	cCtTdLsd	cCtTdLsd	-		-	
+Y	14+D*S	0600	cCtTdLse	cCtTdLse	-		-	
+Y	15+D*S	0600	cCtTdLsf	cCtTdLsf	-		-	

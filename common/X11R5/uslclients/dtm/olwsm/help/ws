@@ -1,0 +1,76 @@
+The workspace is the whole screen.  \
+Windows and icons are displayed on the workspace.  \
+Windows are application work areas.  \
+Icons are windows that are displayed in a compressed form \
+to keep them readily available yet out of the way.
+
+ Using the Mouse
+You use the mouse pointer to control windows and icons \
+and to choose activities from menus.  \
+You use the mouse by moving the pointer to a specific place on the screen \
+and then pressing or clicking a mouse button to perform an action.  \
+You can perform the following actions with the mouse:
+
+Press a mouse button down and hold it.
+
+Release a mouse button to initiate the action.
+
+Click a mouse button by pressing and releasing it without moving the pointer.
+
+Double-click a mouse button by clicking twice within a short time period.
+
+Move the pointer by sliding the mouse with no buttons pressed.
+
+Drag the pointer by sliding the mouse with one or more buttons pressed.
+
+To maintain consistency, \
+each mouse button is assigned a specific function.  \
+The three basic mouse functions are:
+
+SELECT to select objects or manipulate controls
+
+ADJUST to add or take away from a group of selected objects
+
+MENU to display and choose from menus.
+
+ Starting Applications
+You start applications by moving the pointer anywhere on the background \
+of the workspace and press or click MENU to display the Workspace menu.
+
+ Using Menus
+Each point on the screen has a menu associated with it.  \
+The menu that is displayed depends on the position of the pointer.  \
+You can view and choose from any OPEN LOOK UI menu \
+in two ways using the MENU mouse button:
+
+Press-Drag-Release
+
+Click-Move-Click
+
+To use press-drag release, press MENU.  \
+The menu appropriate for the pointer location is displayed.  \
+Drag the pointer from control to control.  \
+When the pointer is on a control, \
+you will see visual feedback for the control.  \
+When the pointer is on the control you want, release MENU.  \
+The control is executed and the menu is dismissed.  \
+If you do not want to choose a control, \
+move the pointer off the menu and release the mouse button.
+
+To use click-move-click, click MENU.  \
+The menu appropriate for the pointer location \
+is displayed and stays on the screen.  \
+You do not need to keep the MENU button pressed.  \
+Move the pointer to the control you want to choose.  \
+Click SELECT or MENU to choose the control.  \
+The control is executed and the menu is dismissed.  \
+If you do not want to choose a control, \
+move the pointer off the menu and click SELECT or MENU \
+to dismiss the menu without choosing a control.
+
+ Moving Windows and Icons
+You can move windows and icons on the workspace individually.  \
+To move a window or icon, press SELECT and drag the pointer.  \
+A bounding box is displayed showing the outline of the window or icon.  \
+When the bounding box is at the place where you want \
+to move the window or icon, release SELECT.

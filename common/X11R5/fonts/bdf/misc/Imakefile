@@ -1,0 +1,105 @@
+/**/#ident	"@(#)r4miscfont:misc/Imakefile	1.4"
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+SRCS = 5x8.bdf 6x9.bdf 6x10.bdf 6x12.bdf 6x13.bdf 6x13B.bdf \
+	7x13.bdf 7x13B.bdf 8x13.bdf 8x13B.bdf 9x15.bdf 9x15B.bdf \
+	10x20.bdf cursor.bdf deccurs.bdf decsess.bdf \
+	olcursor.bdf olgl10.bdf olgl12.bdf olgl14.bdf olgl19.bdf nil2.bdf \
+	clB6x10.bdf clB6x12.bdf clB8x10.bdf clB8x12.bdf clB8x13.bdf \
+	clB8x14.bdf clB8x16.bdf clB8x8.bdf clB9x15.bdf clI6x12.bdf clI8x8.bdf \
+	clR4x6.bdf clR5x10.bdf clR5x6.bdf clR5x8.bdf clR6x10.bdf clR6x12.bdf \
+	clR6x13.bdf clR6x6.bdf clR6x8.bdf clR7x10.bdf clR7x12.bdf clR7x14.bdf \
+	clR7x8.bdf clR8x10.bdf clR8x12.bdf clR8x13.bdf clR8x14.bdf \
+	clR8x16.bdf clR8x8.bdf clR9x15.bdf 7x14.bdf 7x14rk.bdf \
+	12x24.bdf 12x24rk.bdf 8x16.bdf 8x16rk.bdf pc6x10.bdf pc12x20.bdf
+
+OBJS = 5x8.snf 6x9.snf 6x10.snf 6x12.snf 6x13.snf 6x13B.snf \
+	7x13.snf 7x13B.snf 8x13.snf 8x13B.snf 9x15.snf 9x15B.snf \
+	10x20.snf cursor.snf deccurs.snf decsess.snf \
+	olcursor.snf olgl10.snf olgl12.snf olgl14.snf olgl19.snf nil2.snf \
+	clB6x10.snf clB6x12.snf clB8x10.snf clB8x12.snf clB8x13.snf \
+	clB8x14.snf clB8x16.snf clB8x8.snf clB9x15.snf clI6x12.snf clI8x8.snf \
+	clR4x6.snf clR5x10.snf clR5x6.snf clR5x8.snf clR6x10.snf clR6x12.snf \
+	clR6x13.snf clR6x6.snf clR6x8.snf clR7x10.snf clR7x12.snf clR7x14.snf \
+	clR7x8.snf clR8x10.snf clR8x12.snf clR8x13.snf clR8x14.snf \
+	clR8x16.snf clR8x8.snf clR9x15.snf 7x14.snf 7x14rk.snf \
+	12x24.snf 12x24rk.snf 8x16.snf 8x16rk.snf pc6x10.snf pc12x20.snf
+
+FONTINSTDIR = $(FONTDIR)/misc
+
+MakeFonts()
+
+FontTarget(5x8)
+FontTarget(6x9)
+FontTarget(6x10)
+FontTarget(6x12)
+FontTarget(6x13)
+FontTarget(6x13B)
+FontTarget(7x13)
+FontTarget(7x13B)
+FontTarget(8x13)
+FontTarget(8x13B)
+FontTarget(9x15)
+FontTarget(9x15B)
+FontTarget(10x20)
+FontTarget(cursor)
+FontTarget(deccurs)
+FontTarget(decsess)
+FontTarget(olcursor)
+FontTarget(olgl10)
+FontTarget(olgl12)
+FontTarget(olgl14)
+FontTarget(olgl19)
+FontTarget(nil2)
+FontTarget(clB6x10)
+FontTarget(clB6x12)
+FontTarget(clB8x10)
+FontTarget(clB8x12)
+FontTarget(clB8x13)
+FontTarget(clB8x14)
+FontTarget(clB8x16)
+FontTarget(clB8x8)
+FontTarget(clB9x15)
+FontTarget(clI6x12)
+FontTarget(clI8x8)
+FontTarget(clR4x6)
+FontTarget(clR5x10)
+FontTarget(clR5x6)
+FontTarget(clR5x8)
+FontTarget(clR6x10)
+FontTarget(clR6x12)
+FontTarget(clR6x13)
+FontTarget(clR6x6)
+FontTarget(clR6x8)
+FontTarget(clR7x10)
+FontTarget(clR7x12)
+FontTarget(clR7x14)
+FontTarget(clR7x8)
+FontTarget(clR8x10)
+FontTarget(clR8x12)
+FontTarget(clR8x13)
+FontTarget(clR8x14)
+FontTarget(clR8x16)
+FontTarget(clR8x8)
+FontTarget(clR9x15)
+FontTarget(7x14)
+FontTarget(7x14rk)
+FontTarget(12x24)
+FontTarget(12x24rk)
+FontTarget(8x16)
+FontTarget(8x16rk)
+FontTarget(pc6x10)
+FontTarget(pc12x20)
+
+InstallFonts($(FONTINSTDIR))
+InstallFontAliases($(FONTINSTDIR))
+InstallNonExec(dtxt.alias,$(FONTINSTDIR))
+
+depend::

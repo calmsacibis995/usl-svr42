@@ -1,0 +1,47 @@
+#ident "@(#)set:common/set/admin/menu.remove	1.2"
+#ident "$Header: $"
+.pageno
+Page %d of %d
+.ul
+UNIX System Installation
+.hhelp_ban
+Instructions
+.helpbanner
+Help: Remove Package
+.ur
+Remove Package
+.ll
+.lr
+F1=Help
+.top
+WARNING: Incompatibilities exist with the OA&M package.
+
+There are versions of packages installed on your computer that are
+incompatible with the new Operations, Administration and Maintenance package.
+You must remove these packages, in order, before you can install OA&M.
+First the old FACE package and then the old OA&M package must be removed.
+
+The new Operations, Administration and Maintenance package will not be
+installed at this time.
+.form
+ENTER
+.selection
+Press 'ENTER' to continue.
+.help
+For detailed instructions, press the 'F1' (or '?') key at any time.
+
+Your computer has older versions of the FACE and Operations, Administration
+and Maintenance packages already installed.  These packages cannot be
+overlayed and must be removed before you can install the new versions.
+
+It is important that the old FACE package be removed first, followed by the
+removal of the old OA&M package.
+
+See the documentation for further information on how to remove a package.
+.helpinst
+ESC=Exit help  F1=Instructions  1=Forward  2=Backward
+.hhelpinst
+ESC=Exit instructions  1=Forward  2=Backward
+.working
+Working...
+.end

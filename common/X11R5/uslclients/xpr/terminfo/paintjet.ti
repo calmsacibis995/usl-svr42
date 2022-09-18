@@ -1,0 +1,438 @@
+#ident	"@(#)xpr:terminfo/paintjet.ti	1.3"
+#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+#	Copyright (c) 1988, 1989, 1990 AT&T
+#	  All Rights Reserved
+
+#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+#	UNIX System Laboratories, Inc.
+#	The copyright notice above does not evidence any
+#	actual or intended publication of such source code.
+
+
+####################
+####################
+##
+## HP PaintJet:
+##
+##	- 16 colors
+##	- 90 DPI graphics
+##
+####################
+####################
+
+hppaintjet|paintjet|HP PaintJet; 90 DPI graphics (16 colors),
+
+##########
+##
+## Printer state/type:
+##
+##########
+
+# Automatic right margin: move to column 0 next line
+	am,
+
+# Hard copy device
+# Printer overstrikes
+# Underline character overstrikes
+	hc,
+	os,
+	ul,
+
+
+##########
+##
+## Printer capacities:
+##
+##########
+
+# Width in columns at default CPI
+# Length of page at default LPI
+	cols#80,
+	lines#66,
+
+# Steps per inch horizontally
+# Steps per inch vertically
+# Steps per column, distance moved after printing (normal mode)
+# Steps per line, distance moved on auto newline (normal mode)
+	orhi#180,
+	orvi#180,
+	orc#18,
+	orl#30,
+
+# Nominal print rate in characters per second
+# The printer manual claims the following:
+#
+#	16.7 inches/second
+#	167 cps @ 10 CPI
+#	200 cps @ 12 CPI
+#	300 cps @ 18 CPI
+#
+# I chose the smallest value.
+	cps#167,
+
+# Buffer capacity in characters
+# The printer manual claims the following buffer size:
+#
+#	.5 - 8K characters (depending on whether downloadable
+#	characters are used.)
+#
+# I chose the smallest value.
+	bufsz#512,
+
+
+##########
+##
+## Printer initialization
+##
+##########
+
+# Printer initialization string 2
+# Printer initialization string 3
+#
+# Use the first is2 if you want to avoid automatic form-feeds
+# between calls to tput init. However, it is dangerous because
+# it doesn't reset the page length. Use the second is2 to be
+# safe.
+#	is2=\E(s0B\E)s1B\E&d@\E&l0L\E&v0S\E(0@^O\E&k0S\E&l6D\E&k0G\EZ,
+	is2=\EE\E&k0S\E&l6D\E&l66P\E&l66F\E&k0G\EZ,
+	is3=\E&k1W,
+
+
+##########
+##
+## Carriage motion:
+##
+##########
+
+# Carriage return
+# Newline (behaves like cr followed by lf)
+# Page eject
+	cr=^M,
+	nel=^M^J,
+	ff=^L,
+
+# The control sequences \E&a...H and \E&a...V use real-world metrics
+# (decipoints, 1/720 inch) not the relative metrics of lines and columns.
+# Since size of a line or column depends on the current pitch settings,
+# we have to adjust these control sequences according to what pitch we've
+# set before. We use the undocumented Terminfo feature of ``static''
+# registers A-Z to keep track of the current CPI and LPI. The registers
+# %gC and %gL contain the values related to the CPI and LPI, respectively,
+# as the following table shows:
+#
+#  CPI    %gC        LPI    %gL
+#  ---    ---        ---    ---
+#   10     72         6     120
+#   12     60         8      90
+#   18     40         9      80
+#
+# The register values are the 720 divided by the CPI or LPI value.
+#
+# Note: We can't code a "cuu1" nor a "hu", even though the printer
+# is capable of reverse linefeeds, because of this decipoint
+# problem, since "cuu1" and "hu" are not (typically) passed through
+# tparm()! If they don't go through tparm(), the registers aren't
+# expanded.
+#
+# Note: At 180 DPI best resolution (horizontally and vertically),
+# the finest position the printer can resolve is 4 decipoints.
+
+# Non-destructive space (carriage right)
+# Move carriage left one space
+# Down one line
+	cuf1=\s,
+	cub1=^H,
+	cud1=^J,
+
+# Move carriage right # spaces
+# Move carriage left # spaces
+# Move carriage down # lines
+# Move carriage up # lines
+	cuf=\E&a+%p1%?%gC%t%gC%e%{72}%;%*%dH,
+	cub=\E&a-%p1%?%gC%t%gC%e%{72}%;%*%dH,
+	cud=\E&a+%p1%?%gL%t%gL%e%{120}%;%*%dV,
+	cuu=\E&a-%p1%?%gL%t%gL%e%{120}%;%*%dV,
+
+# Half-line down (forward 1/2 linefeed)
+	hd=\E=,
+
+# Horizontal position absolute
+# Vertical position absolute
+	hpa=\E&a%p1%?%gC%t%gC%e%{72}%;%*%dH,
+	vpa=\E&a%p1%?%gL%t%gL%e%{120}%;%*%dV,
+
+# Move 1 step right
+# Move 1 step left
+# Move 1 step down
+# Move 1 step up
+# Move # step right
+# Move # step left
+# Move # step down
+# Move # step up
+	mcuf1=\E&a+4H,
+	mcub1=\E&a-4H,
+	mcud1=\E&a+4V,
+	mcuu1=\E&a-4V,
+	mcuf=\E&a+%p1%{4}%*%dH,
+	mcub=\E&a-%p1%{4}%*%dH,
+	mcud=\E&a+%p1%{4}%*%dV,
+	mcuu=\E&a-%p1%{4}%*%dV,
+
+# Move # steps from the left margin
+# Move # steps from the top margin
+	mhpa=\E&a%p1%{4}%*%dH,
+	mvpa=\E&a%p1%{4}%*%dV,
+
+
+##########
+##
+## Attributes:
+##
+##########
+
+# Define attributes:
+#	standout-1 under-2 rev-3 blink-4 dim-5 bold-6 blank-7 prot-8 acs-9
+# Turn off all attributes
+	sgr=%?%p1%p6%|%t\E(s1B\E)s1B%;%?%p2%t\E&dD%;,
+	sgr0=\E&d@\E(s0B\E)s0B,
+
+# Begin standout mode
+# End standout mode
+	smso=\E(s1B\E)s1B,
+	rmso=\E(s0B\E)s0B,
+
+# Turn on bold
+	bold=\E(s1B\E)s1B,
+
+# Start underscore mode
+# End underscore mode
+	smul=\E&dD,
+	rmul=\E&d@,
+
+
+##########
+##
+## Margins/page length:
+##
+##########
+
+# Set page length to #1 lines
+	slines=\E&l%p1P\E&l%p1F,
+	u9=\E&l%p1%dP\E&l%p1%dF,
+
+
+##########
+##
+## Change CPI and LPI
+##
+##########
+
+# Change character pitch
+	cpi=%?%p1%{10}%=%t\E&k0S%{72}%PC%e%p1%{12}%=%t\E&k4S%{60}%PC%e%p1%{18}%=%t\E&k2S%{40}%PC%;,
+
+# Change line pitch
+	lpi=%?%p1%{6}%=%t\E&l6D%{120}%PL%e%p1%{8}%=%t\E&l8D%{90}%PL%e%p1%{9}%=%t\E&l9D%{80}%PL%;,
+
+
+##########
+##
+## Alternate character sets
+##
+##########
+
+# List of character set names
+# Select character set #
+	scs=%?%p1%{0}%=%t\E(0U%e%p1%{1}%=%t\E(0D%e%p1%{2}%=%t\E(0N%e%p1%{3}%=%t\E(1E%e%p1%{4}%=%t\E(1F%e%p1%{5}%=%t\E(1G%e%p1%{6}%=%t\E(0I%e%p1%{7}%=%t\E(0S%e%p1%{8}%=%t\E(2S%e%p1%{9}%=%t\E(8U%e%p1%{10}%=%t\E(10U%e%p1%{11}%=%t\E(11U%;,
+	csnm=%?%p1%{0}%=%tusascii%e%p1%{1}%=%tnorwegian%e%p1%{2}%=%tecma94%e%p1%{3}%=%tunited_kingdom%e%p1%{4}%=%tfrench%e%p1%{5}%=%tgerman%e%p1%{6}%=%titalian%e%p1%{7}%=%tswedish_names%e%p1%{8}%=%tspanish%e%p1%{9}%=%troman8%e%p1%{10}%=%tpc8%e%p1%{11}%=%tpc8_danish_norwegian%;,
+
+
+##########
+##
+## Misc.
+##
+##########
+
+# Printer uses xon/xoff handshaking
+# X-off character
+# X-on character
+	xon,
+	xoffc=^S,
+	xonc=^Q,
+
+
+##########
+##
+## Color
+##
+##########
+
+# Number of colors in a ribbon/ink-cartridge
+#
+# Note: This is the most colors we can do. An application is
+# free to ask for less (by giving a depth < 4 in the "defbi"
+# string.)
+	colors#16,
+
+# Map application RGB values into printer RGB values
+#
+# Problem:
+#
+# The PaintJet maps some values of "gray" into pink!
+# Why? Well, mathematically the printer is correct,
+# in that the RGB values for its pink are closest (in the
+# sum of the RGB components squared) to the gray of, for
+# instance, the EGA gray. But pink ain't gray to the eye!
+#
+# Solution:
+#
+# Not as simple as we'd like. Ideally, "gray" means
+# the RGB components have the same values. But this
+# isn't true, for various reasons:
+#
+#	- different bits-per-component (e.g. 3 3 2),
+#	  with round-off error the scaled RGB components
+#	  may differ
+#
+#	- gamma correction, such that the individually tuned
+#	  RGB components that give a nice gray on some monitor
+#	  have slightly different values
+#
+# So, we check the RGB components to see if they are "close"
+# to the same value; if so, we compute the closest true gray
+# from the PaintJet palette. This is in essence a gamma correction
+# for the printer (reverse gamma correction? gamma uncorrection?)
+# (Note: In the one place I saw this problem the RGB values
+# differed by 62 units, on a 1000 unit scale! This seems like
+# a large difference to me, and it may not suit your needs.
+# Feel free to play with the value %{63} in the string below.)
+#
+# Obviously, other colors may similarly need corrections. Feel
+# free to play around some more!
+	initc=%?%p1%{16}%<%t%?%{-63}%Pn%{63}%Pp%gn%p2%p3%-%<%p2%p3%-%gp%<%&%gn%p2%p4%-%<%p2%p4%-%gp%<%&%&%t%?%p2%{250}%<%t\E*v4A\E*v4B\E*v6C%e%p2%{500}%<%t\E*v15A\E*v16B\E*v18C%e%p2%{750}%<%t\E*v43A\E*v43B\E*v45C%e\E*v90A\E*v88B\E*v85C%;%e\E*v%p2%{86}%*%{1000}%/%{4}%+%dA\E*v%p3%{84}%*%{1000}%/%{4}%+%dB\E*v%p4%{79}%*%{1000}%/%{6}%+%dC%;\E*v%p1%dI%;,
+
+
+##########
+##
+## Graphics
+##
+##########
+
+# Number of ``pins''
+# Spacing of pins vertically in pins per inch
+# Spacing of pins horizontally in pins per inch
+	npins#8,
+	spinv#90,
+	spinh#90,
+
+# Matches software bits to pins
+	porder=1\,2\,3\,4\,5\,6\,7\,8;0,
+
+# Start printing bit image graphics, #1 bits wide
+#
+# The escape sequence to begin a row of raster data
+# is either \E*b#V or \E*b#W, depending on whether this
+# is the first D-1 of D planes or the Dth plane.
+# We use the undocumented Terminfo feature of ``static''
+# registers A-Z to keep track of which plane we are at.
+#
+# Note: Although the HP PaintJet has a data compression scheme,
+# it doesn't fit well into the Terminfo model of "birep". Most
+# problems can be licked (a tricky one that CAN be licked is
+# that only ONE \E*b#V or \E*b#W can be sent per row; the way
+# to do this would be to keep a count of how many pixels have been
+# done by birep/sbim, and put out the \E*b#V or \E*b#W only when
+# that count shows a full row has been put out.) However, the
+# one problem that stops us cold is that the # in the \E*b#V
+# or \E*b#W must be the number of BYTES put out by the mixture
+# of birep/sbim AFTER the \E*b#V or \E*b#W! This number will vary
+# according to the mix of birep and sbim used.
+	sbim=%gP%{1}%+%PP\E*b%p1%d%?%gP%gD%=%tW%{0}%PP%eV%;,
+
+# Define rectangular bit-image region:
+#	x-1 y-2 width-3 height-4 scale-5 depth-6
+# End a bit-image region
+#
+# No scaling. The printer can do either 180 DPI or 90 DPI,
+# but it can do depth > 2 color only at 90 DPI.
+#
+# Note:
+#    X (or Y) * 8 == pos in decipoints (8 == 720/90)
+	defbi=%?%p5%{1}%=%t\E*b0M\E*r%p6%dU%p6%PD\E*t90R\E&a%p1%{8}%*%dH\E&a%p2%{8}%*%dV\E*r%p3%dS\E*r1A%{0}%PP%;,
+	u6=%?%p5%{1}%=%t\E*b0M\E*r%p6%dU%p6%PD\E*t90R\E&a%p1%{8}%*%dH\E&a%p2%{8}%*%dV\E*r%p3%dS\E*r1A%{0}%PP%;,
+	endbi=\E*rB,
+	u7=\E*rB,
+
+# Number of passes for each bit-image row
+	bitwin#1,
+	u1=1,
+
+# Type of bit-image device
+	bitype#3,
+	u2=3,
+
+
+####################
+####################
+##
+## HP PaintJet:
+##
+##	- 16 colors
+##	- 90 DPI graphics
+##	- Highly saturated ink, for doing color transparencies
+##
+####################
+####################
+
+hppaintjetT|paintjetT|HP PaintJet; 90 DPI graphics (16 colors); for transparencies,
+
+	is3=\E&k3W,
+	use=paintjet,
+
+
+####################
+####################
+##
+## HP PaintJet:
+##
+##	- 8 colors
+##	- 180 DPI graphics
+##
+####################
+####################
+
+hppaintjet-hi|paintjet-hi|HP PaintJet; 180 DPI graphics (8 colors),
+
+##########
+##
+## Graphics capabilities:
+##
+##########
+
+	spinv#180,
+	spinh#180,
+
+	defbi=%?%p5%{1}%=%t\E*b0M\E*r%p6%dU%p6%PD\E*t%{180}%p5%/%dR\E&a%p1%{4}%*%dH\E&a%p2%{4}%*%dV\E*r%p3%dS\E*r1A%{0}%PP%;,
+	u6=%?%p5%{1}%=%t\E*b0M\E*r%p6%dU%p6%PD\E*t%{180}%p5%/%dR\E&a%p1%{4}%*%dH\E&a%p2%{4}%*%dV\E*r%p3%dS\E*r1A%{0}%PP%;,
+
+	colors#8,
+
+	initc=%?%p1%{8}%<%t%?%{-63}%Pn%{63}%Pp%gn%p2%p3%-%<%p2%p3%-%gp%<%&%gn%p2%p4%-%<%p2%p4%-%gp%<%&%&%t%?%p2%{250}%<%t\E*v4A\E*v4B\E*v6C%e%p2%{500}%<%t\E*v15A\E*v16B\E*v18C%e%p2%{750}%<%t\E*v43A\E*v43B\E*v45C%e\E*v90A\E*v88B\E*v85C%;%e\E*v%p2%{86}%*%{1000}%/%{4}%+%dA\E*v%p3%{84}%*%{1000}%/%{4}%+%dB\E*v%p4%{79}%*%{1000}%/%{6}%+%dC%;\E*v%p1%dI%;,
+
+	use=paintjet,
+
+####################
+####################
+##
+## HP PaintJet:
+##
+##	- 8 colors
+##	- 180 DPI graphics
+##	- Highly saturated ink, for doing color transparencies
+##
+####################
+####################
+
+hppaintjetT-hi|paintjetT-hi|HP PaintJet; 180 DPI graphics (8 colors); for transparencies,
+
+	is3=\E&k3W,
+	use=paintjet-hi,

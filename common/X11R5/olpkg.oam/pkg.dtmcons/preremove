@@ -1,0 +1,71 @@
+#ident	"@(#)olpkg.oam:pkg.dtmcons/preremove	1.1"
+#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+#	Copyright (c) 1988, 1989, 1990 AT&T
+#	  All Rights Reserved
+
+#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+#	UNIX System Laboratories, Inc.
+#	The copyright notice above does not evidence any
+#	actual or intended publication of such source code.
+
+
+#
+#       USL DESTiny Desktop Metaphor
+#
+
+TMP=/tmp/desktop.err
+TMPDIR=`pwd`
+XTOP=/usr/X
+XADMDIR=$XTOP/adm
+XINCDIR=$XTOP/include
+XLIBDIR=$XTOP/lib
+XBINDIR=$XTOP/bin
+XMANDIR=$XTOP/man
+NAME="USL DESTiny Desktop Metaphor"
+echo "\n\tRemoving\n\t${NAME}\n\tpackage...\n"
+
+FAILURE=1	# fatal error
+CONFDIR=/etc/conf
+CONFBIN=${CONFDIR}/bin
+#
+# Remove console emulator consem
+#
+CONNAME="Console Emulator"
+/etc/conf/bin/idcheck -p consem >/dev/null 2>&1
+if [ $? != 0 ]
+then
+	# It is there
+	echo "\n\tRemoving $CONNAME"
+	if [ $rebuildflag = 0 ]
+	then
+		echo "\tThis requires the kernel to be rebuilt; the"
+		echo "\trebuild will happen automatically."
+	fi
+	rebuildflag=1
+	removef -f /usr/include/sys/consem.h > /dev/null 2>&1
+	/etc/conf/bin/idinstall -d consem
+fi
+
+echo "\n\tNow removing End User System files..."
+
+#
+#     Special cases
+#
+if [ $rebuildflag = 1 ]
+then
+	# rebuild for changes to take effect
+	
+	${CONFBIN}/idbuild
+	if [ "$?" -ne "0" ]
+	then
+		echo "\n\tAn error was encountered attempting to rebuild"
+		echo "\t the UNIX System kernel."
+		echo "\tThe kernel modifications were not changed, and"
+		echo "\t the UNIX System has not been modified."
+		exit ${FAILURE}
+	else
+		exit 10
+	fi
+else
+	exit 0
+fi

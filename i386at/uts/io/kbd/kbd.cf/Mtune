@@ -1,0 +1,5 @@
+#ident	"@(#)uts-x86at:io/kbd/kbd.cf/Mtune	1.2"
+#ident	"$Header: $"
+NKBDU		6	6	6
+ZUMEM		4096	4096	4096
+KBDTIME		20	20	20

@@ -1,0 +1,267 @@
+.\"ident	"@(#)xevent:xevent.man	1.1"
+
+.\" xevent.man (Troff source file)
+.\"	Acc: 575578486 Mon Mar 28 13:54:46 1988
+.\"	Mod: 575578487 Mon Mar 28 13:54:47 1988
+.\"	Sta: 575578487 Mon Mar 28 13:54:47 1988
+.\"	Owner: 2011
+.\"	Group: 1985
+.\"	Permissions: 666
+
+
+.\"	START USER STAMP AREA
+
+
+.\"	END USER STAMP AREA
+
+.TH XEVENT 1 "local" "X Version 11"
+.SH NAME
+xevent \- event monitor for X window system
+
+.SH SYNOPSIS
+
+.B xevent 
+[ option ] ...
+
+.SH DESCRIPTION
+
+\fIxevent\fP
+lets you interactively monitor events on several windows simultaneously.
+You are able to selectively monitor only those events of interest
+on a per window basis.
+These can be changed at any time.
+Output is sent to \fBstdout\fP and optionally to a log file.
+.PP
+Event and window selection is done interactively using the
+\fIxevent\fP
+window which is comprised of a set of \fIcommand buttons\fP and \fIevent buttons\fP.
+The format of these buttons is controlled using the options described below.
+There are 6 command buttons and 25 event buttons
+(one for each possible event mask).
+When you start up
+\fIxevent\fP
+you will be asked to select an initial window to monitor.
+This window is referred to as the \fIcurrent window\fP.
+The
+\fIxevent\fP
+window highlights the event buttons for those events
+being monitored on the current window.
+Events to monitor can be selected/unselected for the current window by clicking
+on the corresponding event button.
+.PP
+There are 3 event masks that can be selected
+by at most 1 client for a given window.
+These events are \fIButtonPress\fP, \fIResizeRedirect\fP, and
+\fISubstructureRedirect\fP.
+If you attempt to select one of these event masks and it is
+already selected, \fIxevent\fP will beep at you.
+.PP
+The command buttons allow you to select additional windows to monitor,
+or control the output of the monitor.
+There are 6 command buttons:
+.PP
+.TP 8
+.B Window
+Interactively change the current window.
+The cursor is changed and you are prompted to select a new window.
+The event buttons for those events being monitored on the selected window
+(if any) are highlighted and can be changed.
+.PP
+.TP 8
+.B Parent
+Set the current window to the parent of the presently current window.
+This allows you to select windows fully obscured by their subwindows.
+The event buttons for those events being monitored on the selected window
+(if any) are highlighted and can be changed.
+.PP
+.TP 8
+.B Clear
+Clear all monitored events for the current window.
+This is provided as a quick
+way of unselecting all monitored events from the current window.
+.PP
+.TP 8
+.B LogOff/LogOn
+Turn off/on the monitor output.
+This temporarily suspends/resumes
+output from all events on all windows being monitored.
+.PP
+.TP 8
+.B Long/Short
+Display the events in long/short form.
+In long form all members of the event structure are displayed.
+In short form only the event type and window are given.
+.PP
+.TP 8
+.B Quit
+Exit \fIxevent\fP.
+
+.SH OPTIONS
+
+.I xevent
+understands to following options:
+.PP
+.TP 8
+.B \-abbrev
+The command/event button names are abbreviated.
+The default is to use the entire name.
+.PP
+.TP 8
+.B \-bd \fIcolor\fP
+Specify the border color.
+The default border color is ``black''.
+.PP
+.TP 8
+.B \-bg \fIcolor\fP
+Specify the background color.
+The default background color is ``white''.
+.PP
+.TP 8
+.B \-bw \fIpixels\fP
+Specify the width in pixels of the border.
+The default value is 4 pixels.
+.PP
+.TP 8
+.B \-c \fIcolumns\fP
+Specify the number of columns of event buttons.
+The default value is 2 columns.
+.PP
+.TP 8
+.B \-center
+The event buttons are centered.
+The default is left justification.
+.PP
+.TP 8
+.B \-colmajor
+The event buttons are displayed in column major order.
+This is the default.
+.PP
+.TP 8
+.B \-fg \fIcolor\fP
+Specify the foreground color.
+The default foreground color is ``black''.
+.PP
+.TP 8
+.B \-fn \fIfontname\fP
+Specify the font.
+The default font is ``8x13''.
+.PP
+.TP 8
+.B \-left
+The event buttons are left justified.
+This is the default.
+.PP
+.TP 8
+.B \-log \fIlogfile\fP
+If this option is specified, the monitor events are written to the
+given file as well as to standard output.
+.PP
+.TP 8
+.B \-normal
+The command/event button names are not abbreviated.
+This is the default.
+.PP
+.TP 8
+.B \-pad \fIpadding\fP
+The given padding (in pixels) is used to pad the text.
+The default value is 3 pixels.
+.PP
+.TP 8
+.B \-rowmajor
+The event buttons are displayed in row major order.
+The default is column major order.
+.PP
+.TP 8
+.B \-geometry \fIgeometry\fP
+The \fIxevent\fP window is created in the specified location.
+See \fIX(1)\fP for a full explanation.
+.PP
+.TP 8
+.B \-display \[\fIhost\fP]:\[\fIdisplay\fP]
+Normally,
+.I xevent
+gets the host and display number to use from the environment
+variable ``DISPLAY''.  Either or both can be specified with this option.
+.I host
+specifies which machine to create the
+.I xevent
+window on, and
+.I display
+specifies the display number.
+.SH X DEFAULTS
+.PP
+.TP 8
+.B Abbreviate
+Abbreviate event button names.
+The default is to use the entire name.
+.PP
+.TP 8
+.B Background
+Set the background color.
+The default background color is ``white''.
+.PP
+.TP 8
+.B Border
+Set the border color.
+The default border color is ``black''.
+.PP
+.TP 8
+.B BorderWidth
+Set the border width of the window.
+The default value is 4 pixels.
+.PP
+.TP 8
+.B Center
+Center event buttons.
+The default is left justification.
+.PP
+.TP 8
+.B ColMajor
+Display event buttons in column major order.
+This is the default.
+.PP
+.TP 8
+.B Columns
+Display event buttons using this many columns.
+The default value is 2 columns.
+.PP
+.TP 8
+.B Font
+Set the font.
+The default font is ``8x13''.
+.PP
+.TP 8
+.B Foreground
+Set the foreground color.
+The default foreground color is ``black''.
+.PP
+.TP 8
+.B Left
+Left justify event buttons.
+This is the default.
+.PP
+.TP 8
+.B  Log
+Set the log file name.
+Log events to this file as well as standard output.
+.PP
+.TP 8
+.B Normal
+Display entire event button names.
+This is the default.
+.PP
+.TP 8
+.B Padding
+Padding around text.
+The default is 3 pixels.
+.PP
+.TP 8
+.B RowMajor
+Display event buttons in row major order.
+The default is column major order.
+
+.SH AUTHOR
+
+Copyright (c) 1987, AT&T
+.br
+Ross Hilbert - AT&T

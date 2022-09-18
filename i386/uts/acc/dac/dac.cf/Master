@@ -1,0 +1,4 @@
+#ident	"@(#)uts-x86:acc/dac/dac.cf/Master	1.6"
+$version 1
+$entry init
+dac	dac_	o	0	0	0

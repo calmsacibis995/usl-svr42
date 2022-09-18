@@ -1,0 +1,418 @@
+#ident	"@(#)pkg.tok:request	1.4"
+#ident	"$Header: $"
+
+trap 'exit 3' 15
+
+reset_board ()
+{
+	DRV=$1
+	case ${DRV} in
+	IBMAT)	echo "IBMAT_NUM=\"0\"" >>${RSPDIR}/boards;;
+	IBMMCA)	echo "IBMMCA_NUM=\"0\"" >>${RSPDIR}/boards;;
+	esac
+}
+
+check_get_parameters ()
+{
+	unset INT_CHOICES NVECT DRV IRQ AVAIL_INTVS 
+
+	DRV=$1
+	BNO=$2
+
+	export DRV BNO
+	check_interrupt $DRV
+	if [ $? -eq 1 ]
+	then
+		ERROPT="Press 'Enter' now";export ERROPT
+		menu_colors warn
+		menu -r -f ${MENUDIR}/menu.err -o /tmp/$$.err </dev/tty
+		return 1
+	fi
+
+	. /tmp/$$.chkintv
+	rm -f /tmp/$$.chkintv
+
+	export INT_CHOICES NVECT IRQ AVAIL_INTVS
+
+	unset RAMADDR_CHOICES NRAMADDR RAM_FILE
+	unset ROMADDR_CHOICES NROMADDR ROM_FILE
+	# check ram addresses if /tmp/$DRV.ramaddr exists
+
+	if [ -f /tmp/$DRV.ramaddr ]
+	then
+		check_addresses $DRV RAM
+		if [ $? = 1 ]
+		then
+			reset_board $DRV
+			ERROPT="Press 'Enter' now";export ERROPT
+			menu_colors warn
+			menu -r -f ${MENUDIR}/menu.err -o /tmp/$$.err </dev/tty
+			return 1
+		fi
+		. /tmp/$$.chkaddr
+		export RAMADDR_CHOICES NRAMADDR RAMADDR RAM_FILE
+		rm -f /tmp/$$.chkaddr
+	fi
+
+	if [ -f /tmp/$DRV.romaddr ]
+	then
+		check_addresses $DRV ROM
+		if [ $? = 1 ]
+		then
+			reset_board $DRV
+			ERROPT="Press 'Enter' now";export ERROPT
+			menu_colors warn
+			menu -r -f ${MENUDIR}/menu.err -o /tmp/$$.err </dev/tty
+			return 1
+		fi
+		. /tmp/$$.chkaddr
+		export ROMADDR_CHOICES NROMADDR ROMADDR ROM_FILE
+		rm -f /tmp/$$.chkaddr
+	fi
+
+	menu_colors regular
+	menu -r -f ${MENUDIR}/menu.param -o $RSPDIR/${DRV}.${BNO} 2>/tmp/$$.e.irq </dev/tty
+	. $RSPDIR/${DRV}.${BNO}
+
+	if [ "$IRQ" = "2" ]
+	then
+		echo "IRQ=9" >>$RSPDIR/${DRV}.${BNO}
+		echo "9" >>/tmp/$$.newintv
+	else
+		echo "$IRQ" >>/tmp/$$.newintv
+	fi
+
+	if [ "$RAMADDR" ]
+	then
+		echo "$RAMADDR" >>/tmp/$$.ramaddr
+	fi
+
+	if [ "$ROMADDR" ]
+	then
+		echo "$ROMADDR" >>/tmp/$$.romaddr
+	fi
+
+	rm -f /tmp/$DRV.intv /tmp/$DRV.r[ao]maddr
+	rm -f /tmp/$DRV.r[ao]mavail 
+	return 0
+}
+
+check_interrupt () {
+	DRV=$1
+	INTVFL=/tmp/$DRV.intv
+	INT_CHOICES="//"
+	AVAIL_INTVS=
+
+	# validate the list of interrupt vectors and the default intv
+
+	NVECT=0
+	for j in `cat $INTVFL`
+	do
+		if [ $j -eq 2 ];then j=9; fi
+
+		# if $j is already selected - don't include in list
+
+		if [ -f /tmp/$$.newintv ]
+		then
+			grep $j /tmp/$$.newintv > /dev/null
+			if [ $? = 0 ];then continue; fi
+		fi
+
+		# if $j is already in use - don't include in list
+
+		${CONFBIN}/idcheck -v $j
+		rc=$?
+
+		# $rc = 1 means this intv is in use
+
+		if [ $j = 9 ];then j=2; fi
+		if [ $rc != 0  ]
+		then
+			if [ "$PKGINSTALL_TYPE" = NEWINSTALL ];then continue;fi
+
+			# if in use by a tok driver, include in the list
+
+			grep "^$j " $UPGRADE_STORE/$$.[1-2].ibmtok 2>/dev/null 1>/dev/null
+			if [ $? != 0 ]; then continue;fi
+		fi
+		AVAIL_INTVS="$AVAIL_INTVS $j"
+		if [ $NVECT = 0 ]; then NEW_DFLT_INTV=$j; fi
+		NVECT=`expr $NVECT + 1`
+		INT_CHOICES="${INT_CHOICES}${j}::${j}//"
+	done
+
+	if [ ! "$AVAIL_INTVS" ]
+	then
+		ERR="1" export ERR INTVFL
+		return 1
+	fi
+
+	AVAIL_INTVS="$AVAIL_INTVS "
+	echo "$AVAIL_INTVS" | grep " ${DFLT_INTV} " >/dev/null
+	if [ $? != 0 ];then DFLT_INTV=$NEW_DFLT_INTV;fi
+	IRQ=$DFLT_INTV
+
+	echo "AVAIL_INTVS=\"$AVAIL_INTVS\"" >/tmp/$$.chkintv
+	echo "IRQ=\"$IRQ\"" >>/tmp/$$.chkintv
+	echo "INT_CHOICES=\"$INT_CHOICES\"" >>/tmp/$$.chkintv
+	echo "NVECT=\"$NVECT\"" >>/tmp/$$.chkintv
+	return 0
+}
+
+check_addresses ()
+{
+	DRV=$1
+	if [ "$2" = "RAM" ]
+	then
+		ADDR_TYPE=RAM
+		DFLT_ADDR=$RAMADDR
+		LIST=/tmp/$DRV.ramaddr
+		SELECTED_ADDRS=/tmp/$$.ramaddr
+		ADDRESSES=/tmp/$$.ramavail
+	elif [ "$2" = "ROM" ]
+	then
+		ADDR_TYPE=ROM
+		DFLT_ADDR=$ROMADDR
+		LIST=/tmp/$DRV.romaddr
+		SELECTED_ADDRS=/tmp/$$.romaddr
+		ADDRESSES=/tmp/$$.romavail
+	fi
+	rm -f $ADDRESSES
+	ADDR_CHOICES="//"
+	NADDR=0
+	while read A
+	do
+		if [ -f $SELECTED_ADDRS ]
+		then
+			# if $A is already selected - don't include in list
+
+			grep "$A" $SELECTED_ADDRS > /dev/null
+			if [ $? = 0 ];then continue; fi
+		fi
+		set $A
+		SADR=$1
+		EADR=$2
+		${CONFBIN}/idcheck -c -l$SADR -u$EADR
+		rc=$?
+		if [ $rc -gt 0  -a $rc -lt 100 ]
+		then
+			if [ $PKGINSTALL_TYPE = NEWINSTALL ]; then continue; fi
+			if [ ! -f $UPGRADE_STORE/$$.[1-2].* ]; then continue; fi
+			grep " $SADR " $UPGRADE_STORE/$$.[1-2].* >/dev/null
+			if [ $? != 0 ];then continue; fi
+			grep " $EADR" $UPGRADE_STORE/$$.[1-2].* >/dev/null
+			if [ $? != 0 ];then continue; fi
+		fi
+		echo "$SADR $EADR" >> $ADDRESSES
+		if [ $NADDR = 0 ]; then NEW_DFLT_ADDR="$A"; fi
+		NADDR=`expr $NADDR + 1`
+		ADDR_CHOICES="${ADDR_CHOICES}${A}//"
+		echo "NEW_DFLT_ADDR=\"$NEW_DFLT_ADDR\"" >/tmp/$$.savaddrs
+		echo "NADDR=$NADDR" >>/tmp/$$.savaddrs
+		echo "ADDR_CHOICES=\"${ADDR_CHOICES}\"" >>/tmp/$$.savaddrs
+	done <$LIST
+
+	if [ ! -f "$ADDRESSES" ]
+	then
+		ERR="2" export ERR ADDR_TYPE LIST
+		return 1
+	fi
+	. /tmp/$$.savaddrs
+	rm -f /tmp/$$.savaddrs
+	grep "$DFLT_ADDR" $ADDRESSES > /dev/null
+	if [ $? != 0 ]; then DFLT_ADDR="$NEW_DFLT_ADDR"; fi
+
+	if [ "$ADDR_TYPE" = "RAM" ]
+	then
+		echo "RAM_FILE=\"$ADDRESSES\"" >/tmp/$$.chkaddr
+		echo "RAMADDR=\"$DFLT_ADDR\"" >>/tmp/$$.chkaddr
+		echo "RAMADDR_CHOICES=\"$ADDR_CHOICES\"" >>/tmp/$$.chkaddr
+		echo "NRAMADDR=\"$NADDR\"" >>/tmp/$$.chkaddr
+	elif [ "$ADDR_TYPE" = "ROM" ]
+	then
+		echo "ROM_FILE=\"$ADDRESSES\"" >>/tmp/$$.chkaddr
+		echo "ROMADDR=\"$DFLT_ADDR\"" >>/tmp/$$.chkaddr
+		echo "ROMADDR_CHOICES=\"$ADDR_CHOICES\"" >>/tmp/$$.chkaddr
+		echo "NROMADDR=\"$NADDR\"" >>/tmp/$$.chkaddr
+	fi
+	return 0
+}
+
+find_existing_config ()
+{
+	export INSTALL_MODE PKGINSTALL_TYPE 
+	#  set INSTALL_MODE to CUSTOM, if not set
+	if [ ! "$INSTALL_MODE" ]
+	then
+		INSTALL_MODE=CUSTOM
+	fi
+
+	SCRIPTS=/usr/sbin/pkginst
+	UPGRADE_STORE=/var/sadm/upgrade
+
+	${SCRIPTS}/chkpkgrel
+	PKGVERSION=$?
+
+	case $PKGVERSION in
+		2)	PKGINSTALL_TYPE=OVERLAY	;;
+		4)	PKGINSTALL_TYPE=UPGRADE	;;
+		*)	PKGINSTALL_TYPE=NEWINSTALL ;;
+	esac
+
+	echo PKGINSTALL_TYPE=\"${PKGINSTALL_TYPE}\" >> ${POST_FILE}
+	echo INSTALL_MODE=\"${INSTALL_MODE}\" >> ${POST_FILE}
+
+	#
+	# Check in /etc/conf/sdevice.d for existing config.
+	#
+
+	SD=/etc/conf/sdevice.d
+	if [ ! -d $SD ]
+	then
+		echo "$PKGINST request - $SD missing"
+		exit 1
+	fi
+
+	OFS=$IFS
+	IFS="	"	#tab
+
+	if [ -f $SD/ibmtok ]
+	then
+		grep "^ibmtok	" $SD/ibmtok >/tmp/$$.UPG.ibmtok 2>/dev/null
+
+		N=1
+		while true
+		do
+			read Dev Cfg Unit Ipl Itype Vec Sioa Eioa Srom Erom Dma
+			if [ $? = 1 ];then break; fi
+			read F1 F2 F3 F4 F5 F6 F7 F8 Sram Eram F11
+			if [ $? = 1 ];then break; fi
+
+			if [ "$Cfg" = N ]; then continue; fi
+			if [ $Vec = 9 ]; then Vec=2; fi
+
+			echo "$Vec $Sioa $Eioa $Srom $Erom $Sram $Eram"\
+						>>$UPGRADE_STORE/$$.$N.ibmtok
+			N=`expr $N + 1`
+		done </tmp/$$.UPG.ibmtok
+
+		rm /tmp/$$.UPG.ibmtok
+	fi
+
+	IFS=$OFS
+}
+
+##### main #####
+
+if [ ! "$LANG" ]; then LANG=C; fi; export LANG
+
+if [ -f /etc/inst/locale/${LANG}/menus/menus_colors.sh ]
+then
+	. /etc/inst/locale/${LANG}/menus/menu_colors.sh
+else
+	. /etc/inst/locale/C/menus/menu_colors.sh
+fi
+
+MENUDIR=/etc/inst/locale/${LANG}/menus/tok
+
+mkdir -p ${MENUDIR} 1>/dev/null 2>/dev/null
+cp ${REQDIR}/tok/* ${MENUDIR} 1>/dev/null 2>/dev/null
+
+CONFBIN=/etc/conf/bin
+VFILE=/tmp/varfile
+rm -rf $VFILE
+POST_FILE=$1
+rm -rf $POST_FILE
+RSPDIR=/var/sadm/tok_resp
+rm -rf $RSPDIR /var/sadm/upgrade/*ibmtok*
+mkdir -p $RSPDIR
+
+# check what is already configured
+
+find_existing_config
+
+GOTSEL=0
+while [ $GOTSEL = 0 ]
+do
+	IBMAT_NUM=0; export IBMAT_NUM
+	IBMMCA_NUM=0; export IBMMCA_NUM
+
+	menu_colors regular
+	menu -r -f ${MENUDIR}/menu.tok -o $RSPDIR/boards 2>/tmp/$$.e.brds </dev/tty
+	. $RSPDIR/boards
+	if [ "${IBMAT_NUM}" = "" ]; then IBMAT_NUM=0; fi
+	if [ "${IBMMCA_NUM}" = "" ]; then IBMMCA_NUM=0; fi
+
+	if [ ${IBMAT_NUM} != 0 -a ${IBMMCA_NUM} != 0 ]
+	then
+		ERROPT="Press 'Enter' to retry";export ERROPT
+		ERR=3;export ERR
+		menu_colors warn
+		menu -r -f ${MENUDIR}/menu.err -o /tmp/$$.err </dev/tty
+	elif [ ${IBMAT_NUM} = 0 -a ${IBMMCA_NUM} = 0 ]
+	then
+		rm -rf /tmp/$$.* $RSPDIR
+		menu -c
+		exit 1
+	else
+		GOTSEL=1
+	fi
+done
+
+DRV=IBMTOK
+
+NUM=1
+while [ ${NUM} -le ${IBMAT_NUM} ]
+do
+	echo "2 3 6 7" >/tmp/$DRV.intv
+	DFLT_INTV=2
+	IOADDR="A20 A23" #default io addresses
+	RAM_LIST=/tmp/$DRV.ramaddr
+	ROM_LIST=/tmp/$DRV.romaddr
+
+	echo "C0000 C3FFF\nC4000 C7FFF\nC8000 CBFFF\nCC000 CFFFF" >$RAM_LIST
+	echo "D0000 D3FFF\nD4000 D7FFF\nD8000 DBFFF\nDC000 DFFFF" >>$RAM_LIST
+	echo "C0000 C7FFF\nC8000 CFFFF\nD0000 D7FFF\nD8000 DFFFF" >>$RAM_LIST
+	echo "C0000 CFFFF\nD0000 DFFFF" >>$RAM_LIST
+	RAMADDR="D0000 D3FFF" # default ram addresses
+
+	echo "CC000 CC1FF" >${ROM_LIST}
+	echo "DC000 DC1FF" >>${ROM_LIST}
+	ROMADDR="CC000 CC1FF" # default rom addresses
+
+	# override defaults with current values (if any)
+
+	if [ -f $UPGRADE_STORE/$$.${NUM}.ibmtok ]
+	then
+		read DFLT_INTV Sioa Eioa Srom Erom Sram Eram\
+					 <$UPGRADE_STORE/$$.${NUM}.ibmtok
+		ROMADDR="$Srom $Erom"
+		RAMADDR="$Sram $Eram"
+	fi
+	check_get_parameters $DRV $NUM
+	STATUS=$?
+	if [ $STATUS = 1 ]; then break; fi
+
+	NUM=`expr $NUM + 1`
+done
+
+NUM=1
+while [ ${NUM} -le ${IBMMCA_NUM} ]
+do
+	echo "2 3 10 11" >/tmp/$DRV.intv
+	DFLT_INTV=2
+	if [ -f $UPGRADE_STORE/$$.${NUM}.ibmtok ]
+	then
+		read DFLT_INTV Sioa Eioa Srom Erom Sram Eram\
+					 <$UPGRADE_STORE/$$.${NUM}.ibmtok
+	fi
+	check_get_parameters $DRV $NUM
+	STATUS=$?
+	if [ $STATUS = 1 ]; then break; fi
+
+	NUM=`expr $NUM + 1`
+done
+
+rm -f /tmp/$$.*
+menu -c
+exit ${STATUS}

@@ -1,0 +1,27 @@
+#ident	"@(#)oamintf:common/cmd/oamintf/softwaremgmt/defaults/Text.sd_remok	1.1.2.2"
+#ident  "$Header: Text.sd_remok 2.0 91/07/12 $"
+
+################################################################################
+#	Module Name: Text.sd_remok
+################################################################################
+title="Remove Installation Default File"
+
+framemsg=`readfile $INTFBASE/trept.msg`
+
+lifetime=shortterm
+
+rows=4
+columns=60
+
+text="
+The installation defaults file $ARG1 has been removed."
+
+altslks
+
+name=CONT
+button=11
+action=update $OBJ_DIR/Form.sd_remove true
+
+name=CANCEL
+button=14
+action=CLEANUP

@@ -1,0 +1,6 @@
+#ident	"@(#)passwd:passwd.dfl	1.2.5.1"
+#ident "$Header: /sms/sinixV5.4es/rcs/s19-full/usr/src/cmd/passwd/passwd.dfl,v 1.1 91/02/28 19:24:04 ccs Exp $"
+MAXWEEKS=24
+MINWEEKS=0
+WARNWEEKS=1
+PASSLENGTH=6

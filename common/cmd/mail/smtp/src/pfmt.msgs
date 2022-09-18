@@ -1,0 +1,88 @@
+#ident	"@(#)mail:common/cmd/mail/smtp/src/pfmt.msgs	1.1.2.3"
+#ident @(#)pfmt.msgs	1.9
+/*	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.	*/
+/*	Copyright (c) 1984, 1985, 1986, 1987, 1988, 1989, 1990 AT&T	*/
+/*	  All Rights Reserved  	*/
+
+/*	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF     	*/
+/*	UNIX System Laboratories, Inc.                     	*/
+/*	The copyright notice above does not evidence any   	*/
+/*	actual or intended publication of such source code.	*/
+
+:1:bad input file\n
+:2:<<< %s
+:3:timer (%d sec) expired: %s.\n
+:4:error opening %s\n
+:5:error reading ctl file %s\n
+:6:bad control file %s\n
+:7:unknown service TCP/smtp\n
+:8:can't read pid; breaking lock %s\n
+:9:breaking stale lock %s\n
+:10:usage: %s [-D] [-N] [-u] [-d domain] [-H helohost] sender targethost recip ...\n
+:11:usage: %s [-D] [-N] ctlfiles ...\n
+:12:%s: invalid control file\n
+:13:unknown host (%s).\n
+:14:unknown service TCP/%s\n
+:15:Can't set SO_DEBUG\n
+:16:[-cvtB] [-w #days] [-r #days] [-s #scheds] [dir]\n
+:17:only '%s' may use the '-c' option\n
+:18:only '%s' may use the '-r' option\n
+:19:only '%s' may use the '-w' option\n
+:U_20:error reading ctl file %s\n
+:21:can't open %s\n
+:22:error writing %s\n
+:23:can't rename %s to %s\n
+:24:empty file.\n
+:25:From_ line missing or malformed.\n
+:26:error reading input.\n
+:27:interrupted\n
+:U_28:usage: smtpqer -O [-n] [-N] [-H helohost] [-d domain] [-a toaddr] [-u] from to\n
+:U_29:usage: smtpqer [-n] [-N] [-H helohost] [-d domain] [-a toaddr] [-u] from tohost to...\n
+:30:cannot create spool directory %s%s\n
+:31:creating spool file\n
+:32:writing data file\n
+:33:Binary contents cannot be sent via SMTP\n
+:U_34:writing data file\n
+:35:creating control file\n
+:36:unknown host <%s>\n
+:37:timer (%d sec) expired: initial handshake.\n
+:38:timer (%d sec) expired: response to MAIL FROM/RCPT TO.\n
+:39:timer (%d sec) expired: response to DATA.\n
+:40:timer (%d sec) expired: sending mail data.\n
+:41:timer (%d sec) expired: expecting delivery ack.\n
+:42:timer (%d sec) expired: response to RSET.\n
+:43:timer (%d sec) expired: response to QUIT.\n
+:44:timer (%d sec) expired: start sending mail data.\n
+:45:smtpsched: error reading data file: %s\n
+:46:timer (%d sec) expired: finishing data.\n
+:47:write error in smtp: %s\n
+:48:error reading data file: %s\n
+:49:error opening error file: %s\n
+:50:reading header: %s\n
+:51:socket: %s\n
+:52:%s: %s\n
+:53:malloc: %s\n
+:54:error reading from smtp: %s\n
+:55:read eof from smtp: %s\n
+:56:error writing to smtp: %s\n
+:57:setup - fdopen: %s\n
+:58:setup - socket: %s\n
+:59:setup - connect: %s\n
+:60:Cannot set level to %s\n
+:61:Cannot test for MLD\n
+:62:regerror: list overflow\n
+:63:regerror: unmatched right paren\n
+:64:regerror: too many subexpressions\n
+:65:regerror: can't happen: operand stack overflow\n
+:66:regerror: can't happen: operator stack overflow\n
+:67:regerror: can't happen: operator stack underflow\n
+:68:regerror: unknown operator in evaluntil\n
+:69:regerror: malformed '[]'\n
+:70:regerror: out of memory\n
+:71:regerror: missing operand\n
+:72:regerror: too many character classes\n
+:73:usage: smtpqer -O [-B] [-D] [-N] [-n] [-u] [-a toaddr] [-d domain] [-H helohost] from to\n
+:74:usage: smtpqer [-B] [-D] [-N] [-n] [-u] [-a toaddr] [-d domain] [-H helohost] from tohost to...\n
+:75:usage: %s [-L sysloadlimit] [-l smtpdlim] [-n] [-h thishost] [-H helohost] [-r]\n
+:76:%s: too many args\n
+:77:regerror: unmatched left paren\n

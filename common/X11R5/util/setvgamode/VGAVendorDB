@@ -1,0 +1,13 @@
+#Vendor Name		chipset	  configfiles		init_drivers
+#============================================================================
+# DO NOT MOVE THE "Miscellaneous VGA" from the first line; setvgamode -default
+# takes the first entry here and within the misc_16i.so, it takes the first
+# entry, which is 640x480 16 colors
+#
+#
+"Miscellaneous VGA"	misc "misc.16cfg misc.256cfg" "misc_16i.so misc_256i.so"
+"Tseng Labs"		ET4000AX "et4k.16cfg et4k.256cfg" "et4k_16i.so et4k_256i.so"
+"Sigma Designs"		ET4000AX "leg.256cfg" "leg_256i.so"
+"Trident Microsystems"	T8900C	"t89.16cfg t89.256cfg" "t89_16i.so t89_256i.so"
+"ATI Technologies"	ATIXL "ati.16cfg ati.256cfg" "ati_16i.so ati_256i.so"
+"Western Digital"	WDC1x "wdc1x.16cfg wdc1x.256cfg" "wdc1x_16i.so wdc1x_256i.so"

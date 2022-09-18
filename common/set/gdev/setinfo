@@ -1,0 +1,10 @@
+#ident	"@(#)set:common/set/gdev/setinfo	1.1"
+#ident	"$Header: $"
+
+# Format for the setinfo file.  	Field separator is: <tab>
+# pkg   parts   default category	pkg full-name
+# abbr          y/n
+
+dtxtdev	2	y	graphics	XWIN GWS Development
+dtoldev	2	y	graphics	MooLIT Development
+desksup	1	y	graphics	Desktop Manager Development

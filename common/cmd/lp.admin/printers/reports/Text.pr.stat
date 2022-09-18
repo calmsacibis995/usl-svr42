@@ -1,0 +1,17 @@
+#ident	"@(#)lp.admin:printers/reports/Text.pr.stat	1.2.3.1"
+#ident  "$Header: Text.pr.stat 2.0 91/07/12 $"
+
+#	Module Name: Text.wh.stat 
+
+title="Printer Status" 
+
+
+begrow=36
+begrow=1
+rows=18
+columns=72
+scroll=true
+text="`if [ -n "$TFADMIN" ]; then $TFADMIN lpstat -p$ARG1;
+else lpstat -p$ARG1; fi`"
+
+

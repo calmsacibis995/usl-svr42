@@ -1,0 +1,12 @@
+#ident	"@(#)uts-x86:proc/ipc/sem.cf/Mtune	1.2"
+#ident	"$Header: $"
+* Semaphore Parameters -------------
+SEMMAP		10	10	10
+SEMMNI		10	10	10
+SEMMNS		60	60	60
+SEMMNU		30	30	30
+SEMMSL		25	25	25
+SEMOPM		10	10	10
+SEMUME		10	10	10
+SEMVMX		32767	32767	32767
+SEMAEM		16384	16384	16384

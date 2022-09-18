@@ -1,0 +1,148 @@
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+/**/#ident	"@(#)xterm:Imakefile	1.61"
+
+TMP=		./tmp
+TERMDIR=	$(USRLIBDIR)/terminfo
+
+           SRCS =	ATTPrsTbl.c \
+			button.c \
+			charproc.c \
+			cursor.c \
+			data.c \
+			input.c \
+			ioctl.c \
+			main.c \
+			menu.c \
+			misc.c \
+			openpty.c \
+			screen.c \
+			scrollbar.c \
+			tabs.c \
+			util.c \
+			VTPrsTbl.c \
+			VTinit.c \
+			TekPrsTbl.c \
+			Tekproc.c
+
+OBJS = $(SRCS:.c=.o)
+
+       PROGRAMS = resize uudecode uuencode xterm terminfo_files
+
+       INCLUDES = -I$(LIBSRC)
+LOCAL_LIBRARIES = XolClientLibs
+        DEPLIBS = XolClientDepLibs
+
+#ifdef Release5
+DEFINES = $(SYS_DEFINES) -DUTMP -DXT_BC -DI18N -DDTM_HELP
+#else
+DEFINES = $(SYS_DEFINES) -DUTMP -DDTM_HELP
+#endif
+
+INSTALLFLAGS = -m 755
+
+all: $(PROGRAMS)
+
+uudecode:
+        $(HCC) -o uudecode uudecode.c
+
+uuencode:
+        $(HCC) -o uuencode uuencode.c
+
+NormalProgramTarget(resize,resize.o,,,)
+
+NormalProgramTarget(xterm,$(OBJS),$(DEPLIBS),$(LOCAL_LIBRARIES),)
+
+xterm: uudecode xterm.stdkbmap
+
+InstallProgram(xterm,$(BINDIR))
+
+InstallDesktopClient($(BINDIR)/xterm,$(DESKTOPDIR)/Applications/Terminal)
+
+InstallProgram(resize,$(BINDIR))
+
+InstallManPage(xterm,$(MANDIR))
+
+InstallAppDefaults(XTerm)
+
+InstallMultipleHelpFiles(help/term.hlp,$(USRLIBDIR)/locale/C/help/xterm)
+
+
+   /* install Process Icon and mask */
+InstallMultiple(term48.icon,$(USRLIBDIR)/pixmaps)
+InstallMultiple(term48.mask,$(USRLIBDIR)/bitmaps)
+   /* install Folder Icon and mask */
+InstallMultiple(pixmaps/term.icon,$(USRLIBDIR)/pixmaps)
+InstallMultiple(pixmasks/term.icon,$(USRLIBDIR)/pixmasks)
+   /* install DragNDrop Cursor and Mask */
+InstallMultiple(bitmaps/term.icon,$(USRLIBDIR)/bitmaps)
+InstallMultiple(bitmasks/term.icon,$(USRLIBDIR)/bitmasks)
+
+
+
+DependTarget()
+
+xterm.stdkbmap: stdkbmap.uu uudecode
+	/bin/cat stdkbmap.uu | ./uudecode
+
+terminfo_files: $(TMP)/xterm $(TMP)/xtermm $(TMP)/tek4014
+
+$(TMP)/xterm: xterm.uu uudecode
+	-@if [ ! -d "$(TMP)" ] ;\
+	then    echo "\n\t$(TMP) not found.";\
+		echo "\tCreating $(TMP)\n";\
+		mkdir -p $(TMP); \
+	fi;
+	@echo "\tuudecode will create xterm terminfo entry in $(TMP) directory"
+	/bin/cat xterm.uu | ./uudecode
+
+$(TMP)/xtermm: xtermm.uu uudecode
+	-@if [ ! -d "$(TMP)" ] ;\
+	then    echo "\n\t$(TMP) not found.";\
+		echo "\tCreating $(TMP)";\
+		mkdir -p $(TMP); \
+	fi;
+	@echo "\tuudecode will create xtermm terminfo entry in $(TMP) directory"
+	/bin/cat xtermm.uu | ./uudecode
+
+$(TMP)/tek4014: tek4014.uu uudecode
+	-@if [ ! -d "$(TMP)" ] ;\
+	then    echo "\n\t$(TMP) not found.";\
+		echo "\tCreating $(TMP)";\
+		mkdir -p $(TMP); \
+	fi;
+	@echo "\tuudecode will create tek4014 terminfo entry in $(TMP) directory"
+	/bin/cat tek4014.uu | ./uudecode
+
+install:: $(TMP)/xterm $(TMP)/xtermm xterm.stdkbmap
+	$(INSTALL) -m 644 xterm.stdkbmap $(USRLIBDIR)
+	-@if [ ! -d "$(TERMDIR)/x" ] ;\
+	then    echo "\t$(TERMDIR)/x not found.";\
+		echo "\n\tCreating $(TERMDIR)/x\n";\
+		mkdir -p $(TERMDIR)/x; \
+	fi;
+	-@if [ ! -d "$(TERMDIR)/t" ] ;\
+	then    echo "\t$(TERMDIR)/t not found.";\
+		echo "\n\tCreating $(TERMDIR)/t\n";\
+		mkdir -p $(TERMDIR)/t; \
+	fi;
+	-@if [ ! -d "$(TERMDIR)/4" ] ;\
+	then    echo "\t$(TERMDIR)/4 not found.";\
+		echo "\n\tCreating $(TERMDIR)/4\n";\
+		mkdir -p $(TERMDIR)/4; \
+	fi;
+	$(INSTALL) -m 644 $(TMP)/xterm $(TERMDIR)/x
+	$(INSTALL) -m 644 $(TMP)/xtermm $(TERMDIR)/x
+	$(INSTALL) -m 644 $(TMP)/tek4014 $(TERMDIR)/t
+	@rm -rf $(TERMDIR)/4/4014
+	ln $(TERMDIR)/t/tek4014 $(TERMDIR)/4/4014
+
+clobber:: 
+	$(RM) xterm.stdkbmap

@@ -1,0 +1,199 @@
+#ident	"@(#)oamintf:common/cmd/oamintf/softwaremgmt/defaults/Form.sd_add	1.4.7.2"
+#ident  "$Header: Form.sd_add 2.0 91/07/12 $"
+
+form="Add Installation Defaults File"
+help=OPEN TEXT $INTFBASE/Text.itemhelp $LININFO
+framemsg="`readfile $INTFBASE/form.msg`"
+
+`readfile $INTFBASE/frept.msg | set -l MSG2`
+`set -l PKGADM="/var/sadm/install"`
+
+done=`message -w;
+	shell "echo \"basedir=$F2\nmail=$F3\nrunlevel=$F6\nconflict=$F7\nsetuid=$F8\naction=$F9\nidepend=$F10\nrdepend=$F11\nspace=$F12\npartial=$F13\ninstance=$F14\"" >$PKGADM/admin/$F1 2>/tmp/sd_adder;
+		if [ "$RET" -eq "0" ];
+		then
+			set -l CMD="OPEN TEXT $OBJ_DIR/Text.sd_addok $F1";
+		else
+			set -l CMD="OPEN TEXT $OBJ_DIR/Text.sd_addnok $F2";
+		fi;
+	message -f $MSG2;
+`$CMD
+
+name=Installation defaults filename:
+lininfo=add-file
+nrow=1
+ncol=2
+frow=1
+fcol=35
+rows=1
+columns=14
+choicemsg=Enter the name of the installation defaults file to be created.
+valid=`[ -n $F1 ] && valpath -an $PKGADM/admin/$F1`
+invalidmsg=`
+	if [ -z $F1 ] ;
+	then
+		echo Error - input is required. ;
+	else
+		echo Error - installation defaults file already exists. ;
+	fi
+`
+
+name=Default base directory for packages:
+lininfo=basedir
+scroll=TRUE
+nrow=2
+ncol=2
+frow=2
+fcol=40
+rows=1
+columns=30 
+value=ask
+rmenu={ ask default }
+valid=`[ $F2 = ask ] || [ $F2 = default ] || valpath -ay $F2`
+invalidmsg=Error - specify \"ask\", \"default\" or an absolute pathname to a directory.
+	
+name=List of users to notify:
+lininfo=mail
+scroll=TRUE
+nrow=3
+ncol=2
+frow=3
+fcol=28
+rows=1
+columns=42 
+value=root
+rmenu=OPEN MENU $OBJ_DIR/Menu.logins
+valid=`
+	message -w ;
+	shell "
+		[ -z \"$F3\" ] && exit 1
+		for arg in \`echo \"$F3\" | sed 's/,/ /g'\`
+		do
+			/usr/bin/grep \"^\$arg:\" /etc/passwd && continue
+			exit 1
+		done
+	"
+`
+invalidmsg=Error - specify list of valid login names acceptable to mail(1)
+
+name=ACTION
+nrow=5
+ncol=2
+fcol=-1
+
+name=SITUATION
+nrow=5
+ncol=13
+fcol=-1
+
+name=Incorrect run-level during installation or removal
+lininfo=runlevel
+nrow=6
+ncol=13
+frow=6
+fcol=2
+rows=1
+columns=9
+value=ask
+rmenu={ ask quit nocheck }
+menuonly=TRUE
+
+name=Package contains a pathname in conflict with other packages
+lininfo=conflict
+nrow=7
+ncol=13
+frow=7
+fcol=2
+rows=1
+columns=9
+value=ask
+rmenu={ ask quit nochange nocheck }
+menuonly=TRUE
+
+name=Package contains a setuid/setgid process
+lininfo=setuid
+nrow=8
+ncol=13
+frow=8
+fcol=2
+rows=1
+columns=9
+value=ask
+rmenu={ ask quit nochange nocheck }
+menuonly=TRUE
+
+name=Package contains scripts which may affect security
+lininfo=security
+nrow=9
+ncol=13
+frow=9
+fcol=2
+rows=1
+columns=9
+value=ask
+rmenu={ ask quit nocheck }
+menuonly=TRUE
+
+name=Package dependencies are not met during installation
+lininfo=idepend
+nrow=10
+ncol=13
+frow=10
+fcol=2
+rows=1
+columns=9
+value=ask
+rmenu={ ask quit nocheck }
+menuonly=TRUE
+
+name=Package dependencies are not met during removal
+lininfo=rdepend
+nrow=11
+ncol=13
+frow=11
+fcol=2
+rows=1
+columns=9
+value=ask
+rmenu={ ask quit nocheck }
+menuonly=TRUE
+
+name=Disk space requirements are not met
+lininfo=space
+nrow=12
+ncol=13
+frow=12
+fcol=2
+rows=1
+columns=9
+value=ask
+rmenu={ ask quit nocheck }
+menuonly=TRUE
+
+name=Package is already partially installed
+lininfo=partial
+nrow=13
+ncol=13
+frow=13
+fcol=2
+rows=1
+columns=9
+value=ask
+rmenu={ ask quit nocheck }
+menuonly=TRUE
+
+name=A different instance of the package is already installed
+lininfo=instance
+nrow=14
+ncol=13
+frow=14
+fcol=2
+rows=1
+columns=9
+value=ask
+rmenu={ ask quit overwrite unique }
+menuonly=TRUE
+
+name=RESET
+button=8
+action=reset

@@ -1,0 +1,52 @@
+#ident	"@(#)dtadmin:help/passwd.hlp	1.7"
+^*version^1
+^*title^Password Setup
+^:Password_Setup
+^*width^70
+^+DesktopMgr/help.defs
+^?Change your login password.
+^0^Password Setup
+^$10
+Password Setup
+
+Every time you login you are prompted for your \d(login) password.
+Use the Password Setup window to change your password.
+
+Note: It's important to keep your password secure: don't tell anyone
+else what your password is and don't write it down and attach the
+piece of paper to your keyboard. Keeping your password safe prevents
+unauthorized per- sons from using your computer system. Anyone needing
+to work on your system should have their own login and password.
+
+The following window is provided for Password Setup:
+
+        \k(Password Setup Window)
+^1^Password Setup Window
+^$20
+\k{Password Setup}
+1. Password Setup Window
+
+Use the Password Setup Window to enter a new password for your user
+account. When the  Password Setup window appears, it prompts you for
+your old password. This prevents someone who doesn't know your current
+password from changing it. When you enter your old password, the char-
+acters you type do not appear on the screen. If you do not enter the
+correct password, the Password Setup window closes.
+
+After you correctly enter your current password, you are prompted for
+a new password. Enter a new password that contains at least six char-
+acters, one of which is either a number or special character (special
+characters include semicolon, colon, brackets, braces, and other nor-
+mal punctuation).
+
+Once you enter a valid new password, you are prompted to re-enter it.
+This serves as a check to make sure that you entered what you think
+you entered. If you enter the same password the second time, the
+password is accepted and the Password Setup window closes. If what you
+enter the second time doesn't match what you entered the first time,
+an error message appears stating that the passwords don't match; you
+are prompted again for the new password.
+
+To close the Password Setup window without changing your password,
+click on the window menu button at the top of the window and choose
+Close.

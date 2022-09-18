@@ -1,0 +1,118 @@
+#ident	"@(#)pkg.acp:preremove	1.2.1.20"
+#ident	"$Header: $"
+
+
+FAILURE=1	# fatal error
+
+REBUILD=0
+
+CONFDIR=/etc/conf
+CONFBIN=${CONFDIR}/bin
+ERR=/tmp/acp.rm.err
+
+trap '' 1 2 3 5 15 
+
+NOTOOLS="ERROR: The Installable Driver feature has been removed. \
+The ${NAME} cannot be removed."
+
+# determine that ID/TP tools are available
+
+if
+	[ ! -x ${CONFBIN}/idbuild -o ! -x ${CONFBIN}/idinstall ]
+then
+	message ${NOTOOLS}
+	exit $FAILURE
+fi
+
+
+rem_module () {
+
+MODULE=$1
+MODARGS=$2
+
+	${CONFBIN}/idinstall -gs ${MODULE} | /usr/bin/sed -e\
+		's/	Y/	N/' > System 2>/dev/null
+	${CONFBIN}/idinstall -us ${MODULE} > ${ERR} 2>&1
+
+	if [ $? != 0 ]
+    	then
+    		message " The removal of ${MODULE} cannot be \
+    		completed due to an error in the removal of the driver module. \
+    		The file ${ERR} contains the errors."
+    		exit $FAILURE
+    	fi
+    	${CONFBIN}/idinstall -P ${PKGINST} -d${MODARGS} ${MODULE} > ${ERR} 2>&1
+
+}
+
+## remove the xnamfs: Driver.o, space.c, sdevice.d, mtune.d, Modstub.o
+## remove the vx: Driver.o, space.c, sdevice.d
+## remove the clist: Driver.o, sdevice.d, Modstub.o
+## remove the osxt: Driver.o, space.c, sdevice.d
+
+rem_module xnamfs opsTb
+rem_module vx ops 
+rem_module clist osb
+rem_module osxt ops
+
+
+for  MODULE in clist_gd consem devadp i286x isocket mpt osocket sp spt v3compat xout XENIX
+do
+	${CONFBIN}/idcheck -p ${MODULE}
+	RET="$?"
+	if
+		[ "${RET}" -ne "100" -a "${RET}" -ne "0" ]
+	then
+
+		${CONFBIN}/idinstall -P ${PKGINST} -d ${MODULE} 2>> /tmp/${module}.err
+		REBUILD=1
+	fi
+done
+
+#change the group of /dev/[r]dsk/[01]s5 back to sys
+#change the group perms of /dev/[r]dsk/[01]s5 back to  0
+
+if [ -b /dev/dsk/[01]s5 ]
+then 
+	chgrp sys /dev/dsk/[01]s5
+	chmod g-rw /dev/dsk/[01]s5
+fi
+
+if [ -c /dev/rdsk/[01]s5 ]
+then 
+	chgrp sys /dev/rdsk/[01]s5
+     	chmod g-rw /dev/rdsk/[01]s5
+fi
+
+#remove the group dos from /etc/group
+groupdel dos > /dev/null 2>&1 
+
+rm -f /dev/hd1[0-6] > /dev/null 2>&1
+rm -f /dev/rhd1[0-6] > /dev/null 2>&1
+rm -f /dev/install1 /dev/rinstall1 /dev/fd148ds8 /dev/fd148ds9 /dev/fd148 /dev/rfd148ds8 /dev/rfd148ds9 /dev/rfd148 > /dev/null 2>&1
+rm -f /dev/fd196ds15 /dev/fd196 /dev/rfd196ds15 /dev/rfd196 /dev/rfd148 > /dev/null 2>&1
+rm -f /dev/rfd1135ds18 /dev/rfd196ds18 /dev/rdsk/f1q18dt /dev/rfd1135ds9 /dev/rfd196ds9 /dev/rdsk/f1q9dt /dev/rdsk/f1d8t /dev/rdsk/f1d9t > /dev/null 2>&1
+rm -f /dev/fd1135ds18 /dev/fd196ds18 /dev/dsk/f1q18dt /dev/fd1135ds9 /dev/fd196ds9 /dev/dsk/f1q9dt /dev/dsk/f1d8t /dev/dsk/f1d9t > /dev/null 2>&1
+rm -f /dev/hd1a /dev/u[012] /dev/rhd1a /dev/rd1d /dev/sctfdm1 /dev/sctfdm129
+
+
+
+rm -f $TMP > /dev/null 2>&1 
+
+if
+	[ "${REBUILD}" = "1" ]
+then
+	# rebuild for changes to take effect
+	
+	${CONFBIN}/idbuild
+	if
+		[ "$?" -ne "0" ]
+	then
+		exit ${FAILURE}
+	else
+		exit 10
+	fi
+else
+	exit 0
+
+fi

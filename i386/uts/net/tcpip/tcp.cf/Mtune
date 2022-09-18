@@ -1,0 +1,3 @@
+#ident	"@(#)uts-x86:net/tcpip/tcp.cf/Mtune	1.2"
+#ident	"$Header: $"
+TCPLINGER	120	120	120

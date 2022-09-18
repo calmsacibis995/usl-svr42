@@ -1,0 +1,125 @@
+#ident	"@(#)pkg.acp:request	1.18"
+#ident	"$Header: $"
+
+#	request script for acp package installation
+
+trap 'exit 3' 15
+
+#
+#  Make sure LANG environment variable is set.  If it's not set
+#  coming in to this request script, then default to the C-locale.
+#
+[ ${LANG} ] || LANG="C"
+export LANG
+
+UPINSTALL=/etc/inst/up
+SCRIPTS=/usr/sbin/pkginst
+
+. ${SCRIPTS}/updebug
+
+[ "$UPDEBUG" = YES ] && {
+	set -x
+	goany
+}
+
+############# Begin  UPGRADE AND OVERLAY #######################
+
+export PKGINSTALL_TYPE INSTALL_MODE
+
+#  set INSTALL_MODE to CUSTOM, if not set
+
+[ "$INSTALL_MODE" ] || INSTALL_MODE=CUSTOM
+
+PKGINSTALL_TYPE=NEWINSTALL
+
+#is it upgrade or overlay?
+
+${SCRIPTS}/chkpkgrel
+PKGVERSION=$?
+
+case $PKGVERSION in
+	2)	PKGINSTALL_TYPE=OVERLAY	;;
+	4)	PKGINSTALL_TYPE=UPGRADE	;;
+	*)	;;
+esac
+
+[ "$PKGINSTALL_TYPE" = NEWINSTALL ] || {
+
+	#
+	# First check for mpt in /etc/conf/sdevice.d, if it exists, use it,
+	# otherwise check for it in $UPINSTALL.
+	#
+	# After we've been through here once, we NEVER want to use the values
+	# in $UPINSTALL/mpt again, so we need to rm the file.  In case
+	# the install fails, I'm going to wait until the postinstall script
+	# to remove it.
+	#
+
+	MPT=/etc/conf/sdevice.d/mpt
+	[ ! -f $MPT ] && MPT=$UPINSTALL/mpt
+
+	[ "$UPDEBUG" = YES ] && goany
+
+	[ -f $MPT ] && {
+		grep "^mpt	" $MPT >/tmp/mpt.$$ 2>/dev/null
+		OFS=$IFS
+		IFS="	"	#tab
+		read Dev Conf DFLT x4 x5 x6 x7 x8 x9 x10 </tmp/mpt.$$
+		IFS=$OFS
+    		[ "$Conf" = N ] && unset DFLT
+		rm -f /tmp/mpt.$$
+	}
+
+	[ "$DFLT" ] && {
+		[ $DFLT -lt 8 ] && DFLT=8
+	}
+}
+
+[ "$DFLT" ] || DFLT=8
+
+echo "PKGINSTALL_TYPE=$PKGINSTALL_TYPE" >>$1 || exit 1
+echo "INSTALL_MODE=$INSTALL_MODE" >>$1 || exit 1
+
+[ "$UPDEBUG" = YES ] && goany
+
+############# End  UPGRADE AND OVERLAY #######################
+
+#	Find out how many pseudo-ttys user wants configured
+#
+#PROMPT="Enter the number of compatible pseudo-terminal devices 
+#	to configure on your system.\n"
+#HELPMSG="NOTE: since each pseudo-terminal device configured 
+#	allocates memory, choose only the number of terminals
+#	you really require."
+
+PTNUM=${DFLT} export PTNUM
+
+> /tmp/out
+
+#
+#  Put menu files in correct location
+#
+DIR=/etc/inst/locale/${LANG}/menus/acp
+[ -d ${DIR} ] || mkdir -p ${DIR}
+cp ${REQDIR}/acp/menu* ${DIR}
+
+#
+#  Set up to use menu_colors; default to C-locale if ${LANG}'s dir has
+#  no menu_colors.sh
+#
+if [ -f /etc/inst/locale/${LANG}/menus/menu_colors.sh ]
+then
+	. /etc/inst/locale/${LANG}/menus/menu_colors.sh
+else
+	. /etc/inst/locale/C/menus/menu_colors.sh
+fi
+
+menu_colors regular
+menu -f ${DIR}/menu.acp -o /tmp/out 2> /dev/null
+. /tmp/out
+
+[ ${PTNUM} ] || PTNUM=0
+
+echo "PTNUM=$PTNUM" >>$1 || exit 1
+
+exit 0

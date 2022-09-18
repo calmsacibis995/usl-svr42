@@ -1,0 +1,28 @@
+#define gbmesh_format 1
+#define gbmesh_width 16
+#define gbmesh_height 16
+#define gbmesh_ncolors 3
+#define gbmesh_chars_per_pixel 1
+static char * gbmesh_colors[] = {
+" " , "#0000AAAA0000",
+"." , "#000000000000",
+"X" , "#00000000FFFF"
+} ;
+static char * gbmesh_pixels[] = {
+" .XXXXXXXXXXX.  ",
+"  .XXXXXXXXXX...",
+"   .XXXXXXXX.  .",
+".   .XXXXXX.   .",
+"X.   .XXXX.   .X",
+"XX.   ..X.   .XX",
+"XXX.  . .   .XXX",
+"XXXX...    .XXXX",
+"XXXX.    ...XXXX",
+"XXX.   . .  .XXX",
+"XX.   .X..   .XX",
+"X.   .XXXX.   .X",
+".   .XXXXXX.   .",
+".  .XXXXXXXX.   ",
+"...XXXXXXXXXX.  ",
+"  .XXXXXXXXXXX. "
+} ;

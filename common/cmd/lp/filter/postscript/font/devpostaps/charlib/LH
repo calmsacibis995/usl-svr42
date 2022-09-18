@@ -1,0 +1,5 @@
+#ident	"@(#)lp:filter/postscript/font/devpostaps/charlib/lh	1.1.2.2"
+#ident	"$Header: $"
+/build_lh {
+pop
+gsav

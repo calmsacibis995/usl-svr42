@@ -1,0 +1,35 @@
+#ident	"@(#)oamintf:common/cmd/oamintf/usermgmt/Text.apswdok	1.2.6.4"
+#ident  "$Header: Text.apswdok 2.0 91/07/12 $"
+################################################################################
+#	Module Name: Text.apswdok
+################################################################################
+Title="Define User Password Information"
+
+framemsg=`readfile $INTFBASE/trept.msg`
+
+lifetime=shortterm
+
+close=`set -l END="CLOSE $OBJ_DIR/Form.audit $OBJ_DIR/Form.mac1 $OBJ_DIR/Form.mac2"`$END
+
+rows=6
+columns=75
+
+text="
+The password has been defined as follows: 
+
+   `if [ $TFADMIN ];
+    then
+	$TFADMIN passwd -s $ARG1;
+    else
+        /usr/bin/passwd -s $ARG1;
+    fi`"
+
+altslks
+
+name=CONT
+button=11
+action=update $OBJ_DIR/Form.addusr true
+
+name=CANCEL
+button=14
+action=CLEANUP

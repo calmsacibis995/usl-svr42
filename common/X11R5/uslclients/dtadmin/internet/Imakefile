@@ -1,0 +1,42 @@
+/**/#ident	"@(#)dtadmin:internet/Imakefile	1.23"
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+
+#define PassCDebugFlags 'CDEBUGFLAGS=$(CDEBUGFLAGS)'
+
+         SRCS = \
+		main.c init.c list.c property.c file.c find.c items.c \
+		caption.c update.c utils.c edit.c footer.c view.c  \
+		local.c spool.c expand.c buttons.c install.c message.c \
+		help.c network.c
+
+OBJS = $(SRCS:.c=.o)
+
+   DTCLIENTSLIB = $(USLCLIENTSRC)/libDtI
+       DTLIBSRC = $(LIBSRC)/Dt
+      DTILIBSRC = $(DTCLIENTSLIB)
+     DTAMLIBSRC = ../dtamlib
+        DTAMLIB = $(DTAMLIBSRC)/libdtam.a
+         DTILIB = $(DTILIBSRC)/libDtI.so
+          DTLIB = $(DTLIBSRC)/libDt.so
+       GIZMOSRC = $(LIBSRC)/Gizmo
+       GIZMOLIB = $(GIZMOSRC)/libGizmo.so
+
+       INCLUDES = -I$(LIBSRC) -I$(LIBSRC)/Xol -I$(GIZMOSRC) -I$(DTILIBSRC) -I$(USLCLIENTSRC)
+LOCAL_LIBRARIES = $(DTAMLIB) $(DTILIB) $(DTLIB) $(GIZMOLIB) XolClientLibs
+        DEPLIBS = $(DTAMLIB) $(DTILIB) $(DTLIB) $(GIZMOLIB) XolClientDepLibs
+
+  SYS_LIBRARIES = -lgen -lm
+
+ComplexProgramTarget(InternetMgr)
+
+InstallMultiple(inet,$(DESKTOPDIR)/PackageMgr)
+InstallMultiple(inet.cdb,$(USRLIBDIR)/classdb)
+InstallDesktopClient($(BINDIR)/InternetMgr,$(DESKTOPDIR)/System_Setup/Internet_Setup)

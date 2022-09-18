@@ -1,0 +1,31 @@
+#ident	"@(#)oamintf:common/cmd/oamintf/softwaremgmt/defaults/Text.sd_addnok	1.1.2.2"
+#ident  "$Header: Text.sd_addnok 2.0 91/07/12 $"
+
+################################################################################
+#	Module Name: Text.sd_addnok
+################################################################################
+title="Add Installation Default File"
+
+framemsg=`readfile $INTFBASE/trept.msg`
+
+lifetime=shortterm
+
+rows=4
+columns=60
+
+text="
+The installation defaults file $ARG1 could not be added.
+
+The error was:
+`cat /tmp/sd_adderr`
+"
+
+altslks
+
+name=CONT
+button=11
+action=update $OBJ_DIR/Form.sd_add true
+
+name=CANCEL
+button=14
+action=CLEANUP

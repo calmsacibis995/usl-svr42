@@ -1,0 +1,128 @@
+*** mailsurr.v4	Thu May 14 18:04:25 1992
+--- mailsurr.p13	Thu May 14 18:04:44 1992
+***************
+*** 1,2 ****
+! #ident	"@(#)mail:mailsurr	1.5.2.4"
+! # @(#)mailsurr	2.10 'attmail mail(1) command'
+--- 1,2 ----
+! #ident	"@(#)/etc/mail/mailsurr.sl 1.5 4.1dt 05/08/92 52970 AT&T-USL"
+! # @(#)mailsurr	2.20 'attmail mail(1) command'
+***************
+*** 18,21 ****
+  #
+! '.+'	'.*[`;&|^<>()].*'	'Deny'
+! '.+'	'!*#.*'			'Deny'
+  
+--- 18,21 ----
+  #
+! '.+'	'.*[`;&|^<>()].*'	'Deny No Shell Metacharacters'
+! '.+'	'!*#.*'			'Deny No Shell Metacharacters'
+  
+***************
+*** 31,32 ****
+--- 31,36 ----
+  
++ # Collapse bang address loops
++ #
++ '.+'	'[^@%!]+![^@%!]+![^@%]+'	'Translate T=1;B=*; R=|uucollapse' '%n'
++ 
+  # Map domain-routed domain addresses. That is, map all names of
+***************
+*** 49,51 ****
+  #
+! '.+'	'[^!].+'		'Translate R=|/usr/bin/mailalias %n'
+  
+--- 53,55 ----
+  #
+! '.+'	'[^!]+'			'Translate T=1;B=*; R=|mailalias -P%L! -P%U! -P%L\%D! -P%U\%D! -S@%U\%D -S@%L\%D -S@%L -S@%U -r -p' '%n'
+  
+***************
+*** 58,66 ****
+  
+- ####
+- #### Part 3
+- ####
+- #### Delivery commands should go here. All addresses going
+- #### remote should begin with a single "!".
+- ####
+- 
+  # Map all names of the form host.uucp!user -> host!user
+--- 62,63 ----
+***************
+*** 73,74 ****
+--- 70,78 ----
+  
++ ####
++ #### Part 3
++ ####
++ #### Delivery commands should go here. All addresses going
++ #### remote should begin with a single "!".
++ ####
++ 
+  # Check for binary mail. Uncomment this if you want to use it.
+***************
+*** 75,78 ****
+  #
+! #'.+'	'!([^!]+)!.+'
+! #		'< F=*;C=0; /usr/lib/mail/surrcmd/ckbinarsys -t %C -s \\1'
+  
+--- 79,81 ----
+  #
+! #'.+'	'!([^!]+)!.+'		'< F=*;C=0; ckbinarsys -t %C -s \\1'
+  
+***************
+*** 80,87 ****
+  # it is more universal and handles binary mail properly.
+! # If using smtp, un-comment the second line.
+! # If running DNS name server, delete the "-N" option to smtpqer
+! # (it disables MX queries).
+! '.+'	'!([^!]+)!(.+)'		'< /usr/bin/uux -a%R - \\1!rmail (\\2)'
+! #'.+'	'!([^!]+)!(.+)'		'< /usr/lib/mail/surrcmd/smtpqer -N %R \\1 \\2'
+  
+  # If none of the above work, then ship remote mail off to a smarter host.
+--- 83,94 ----
+  # it is more universal and handles binary mail properly.
+! #
+! '.+'	'!([^!]+)!(.+)'		'< B=1024; uux -a %R -p -- \\1!rmail' '(\\2)'
+! '.+'	'!([^!]+)!(.+)'		'< B=4096; smtpqer -N %R \\1' '\\2'
+  
++ ####
++ #### Part 3b
++ ####
++ #### Smarter-host processing
++ ####
++ 
+  # If none of the above work, then ship remote mail off to a smarter host.
+***************
+*** 90,93 ****
+  #
+! #'.+'	'!(.+[!@%].+)'		'Translate R=!%X!\\1'
+  
+  ####
+--- 97,113 ----
+  #
+! #'.+'	'!(.+)'			'Translate T=1; R=!%X!\\1'
+  
++ # If CLUSTER is set to the same as SMARTERHOST, such as when many sites
++ # share the same mailcnfg file, then use something like this instead
++ # and define x=alternate-smarter-host in the mailcnfg file. This entry
++ # assumes the use of uucp.
++ #
++ #'.+'	'!(.+)'			'< sh -c "if [ \"%X\" != \"%U\" ]; then uux -a%R - %X!rmail '(\\1)'; else uux -a%R - %x!rmail '(\\1)';fi"'
++ 
++ # If you have a flat name space across multiple machines, but user-names only
++ # exist on disjoint machines, this entry will forward any name not known
++ # locally off to the given host.
++ #
++ #'.+'	'.*[!@].*'		'Translate T=1; R=|localmail -p -S @HOST.DOMAIN' '%n'
++ 
+  ####
+***************
+*** 97 ****
+--- 117,122 ----
+  ####
++ 
++ # Log mail delivery
++ #
++ #'.+'	'.+'	'> W=1;B=*; maillog -o /var/mail/:log' '-O %O %R %n %H %l --'
++ #'.+'	'.+'	'Errors W=1;B=*; maillog -o /var/mail/:errors' '-O %O %R %n %H %l --'

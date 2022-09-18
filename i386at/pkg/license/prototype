@@ -1,0 +1,13 @@
+#ident	"@(#)pkg.license:prototype	1.5"
+#ident	"$Header: $"
+
+i pkginfo
+i postinstall
+i copyright
+i depend
+
+!default 775 root sys
+
+d none /tmp ? ? ?
+
+f none /tmp/update=/usr/lib/peruser	555 bin bin

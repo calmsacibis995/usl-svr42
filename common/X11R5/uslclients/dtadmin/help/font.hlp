@@ -1,0 +1,602 @@
+#ident	"@(#)dtadmin:help/font.hlp	1.18"
+^*version^1
+^*title^Font Setup
+^:Font_Setup
+^*width^70
+^+DesktopMgr/help.defs
+^?Install and select Desktop fonts.
+^0^Font Setup
+^$10
+Font Setup
+
+Use the Font Setup window to view, install, and delete \d(fonts^font) on your
+desktop. \d(Type 1) \d(outline fonts^outline font) packaged for use on DOS and Microsoft
+Windows with the \d(Adobe Type Manager) product (\d(ATM)) can be installed.
+The Type 1 fonts you install can be displayed by any graphics
+application on your desktop that wants to use them.
+
+You cannot install bitmapped fonts using this window, although you
+can view and delete them with this window.
+
+The Type 1 fonts that can be viewed on your desktop are rendered with
+the Adobe Type Manager product. This \d(outline font renderer) creates
+\d(bitmapped fonts^bitmapped font) "on the fly: for display on your monitor. This version of
+ATM renders characters stored as 1 byte; no multibyte or composite
+fonts, such as Kanji fonts, can be displayed.
+
+You can use Type 1 fonts for display only on the monitor of the system
+running SVR4.2 (the "console"). You cannot use them for display on
+graphics terminals attached to such a system.
+
+Any Type 1 font that you install on the desktop can be downloaded to
+PostScript printers for printing. If your application generates
+PostScript output for printing and uses the appropriate font-naming
+conventions, the SVR4.2 system will automatically take care of the
+downloading of the PostScript fonts to your printer.
+
+When Type 1 fonts are installed, Adobe font metric files are installed
+(if they are available on the DOS floppy disk). Applications may use
+these files to generate more accurately formatted PostScript output.
+
+The following windows are provided for Font Setup:
+
+        \k(Font Setup Window)
+        \k(Font Setup: Install Type 1 Fonts from Diskette Window)
+        \k(Font Setup: Delete Bitmapped/Outline Fonts Window)
+^1^Font Setup Window
+^$20
+\k{Font Setup}
+1. Font Setup Window
+
+The Font Setup Window displays the names of the \d(typeface families^typeface family)
+installed on your system and the styles available for each.  Each
+family may have one or more available \d(styles^style); the list of styles
+changes as you choose different families. A family and style
+combination is called a \d(typeface).
+
+When the selected font is a \d(bitmapped font), a list of available
+\d(point sizes^point size) is displayed; when the selected font is an \d(outline font), a
+line appears that lets you enter a point size in the range from 6 to 100.
+You can type the point size for outline fonts in the field (use the TAB
+or ENTER key to register the value you type), or you may click on the
+arrows to increase or decrease the point size one point at a time; you
+also can click on and hold the buttons to move up or down a few points
+at once. The upper limit of 100 points applies only to the sam- ple
+text displayed in this window; applications may display fonts of much
+larger size.
+
+Each time you change a family, style, or point size, and the selected
+font is an outline font, the cursor will change to a symbol for a few
+moments, showing that the font is being rendered for display; once the
+font has been rendered, you can return to it later and find it is
+immediately available from a font cache. The UNIX SVR4.2 system is a
+virtual memory system, and the default cache is large enough to meet
+most users' needs.
+
+The Font Setup window also displays sample text in the currently
+selected font. You can type any character you want into the sample
+text area. The upper limit of 100 points applies only to the sample
+text displayed in this window; applications may display fonts of much
+larger size.
+
+If the outline fonts shown in the display do not seem smooth enough,
+consult your installation manual to ensure that the system settings
+for your video card are properly set.
+
+The \d(buttons^button) available from the Font Setup window are:
+
+        \k(Actions Button)
+        \k(View Button)
+        \k(Font Button)
+        \k(Help Button)
+^2^Actions Button
+^$30
+1. \k{Font Setup Window}
+   1.1 Actions Button
+
+The Actions button lets you install, delete, and check the integrity of
+fonts. It also lets you exit from the Font Setup window. Clicking on
+the Actions button brings up a menu with the following options:
+
+        \k(Install)
+        \k(Delete)
+        \k(Integrity Check)
+        \k(Exit)
+^3^Install
+^$40
+1. \k{Font Setup Window}
+   1.1 \k{Actions Button}
+       1.1.1 Install
+
+The Install menu item lets you install \d(Type 1) \d(outline fonts^outline font) onto your
+system. Type 1 fonts are widely available from computer software
+stores, Adobe Systems Incorporated, and mail order suppliers. Use
+fonts packaged for use with DOS or Microsoft Windows and the
+\d(Adobe Type Manager) (ATM) product.
+
+Note: If you attempt to install fonts and do not have the correct
+floppy disk in the disk drive, a Notice window is displayed requesting
+you to insert the correct type of floppy disk.
+
+You must have appropriate privileges to install fonts. If you don't,
+this menu item will not be active for you.
+
+Clicking on the Install menu item brings up the Font Setup: Install
+Type 1 Fonts from Diskette window.
+
+More information:
+
+        \k(Notice: Insert a DOS Diskette)
+        \k(Notice: Not a DOS Diskette)
+        \k(Notice: No Recognizable Type 1 Fonts)
+        \k(Font Setup: Install Type 1 Fonts from Diskette Window)
+^4^Notice: Insert a DOS Diskette
+^$50
+1. \k{Font Setup Window}
+   1.1 \k{Actions Button}
+       1.1.1 \k{Install}
+             1.1.1.1 Notice: Insert a DOS Diskette
+
+When you select the Install menu option and a floppy disk is not in
+the disk drive, a notice window appears. To install fonts, you must
+insert into the disk drive a DOS floppy disk containing Type 1 fonts.
+You can use either 3.5" or 5.25" disks; the system will check both
+disk drives if necessary.
+
+The Insert a DOS Diskette notice has three \d(buttons^button):
+
+   o Continue Button: This button continues the process of installing
+     fonts. Use this button after inserting a DOS disk containing Type
+     1 fonts.
+
+   o Cancel Button: This button closes the notice window and ends the
+     attempt to install fonts.
+
+   o Help Button: This button provides on-line help for the Insert a
+     DOS Diskette notice.
+^4^Notice: Not a DOS Diskette
+^$60
+1. \k{Font Setup Window}
+   1.1 \k{Actions Button}
+       1.1.1 \k{Install}
+	     1.1.1.2 Notice: Not a DOS Diskette
+
+When you select the Install menu option and the floppy disk in the
+disk drive is not a DOS-formatted floppy disk, a different notice
+window appears.
+
+Check the floppy disk to see whether it is formatted for the UNIX
+System or Apple computers instead. To install fonts, you must insert
+into the disk drive a DOS floppy disk containing Type 1 fonts.
+
+The Not a DOS Diskette notice has three \d(buttons^button):
+
+   o Continue Button: This button continues the process of installing
+     fonts. Use this button after inserting a DOS floppy disk
+     containing Type 1 fonts.
+
+   o Cancel Button: This button closes the notice window and ends the
+     attempt to install fonts.
+
+   o Help Button: This button provides on-line help for the Not a DOS
+     Diskette notice.
+^4^Notice: No Recognizable Type 1 Fonts
+^$70
+1. \k{Font Setup Window}
+   1.1 \k{Actions Button}
+       1.1.1 \k{Install}
+             1.1.1.3 Notice: No Recognizable Type 1 Fonts
+
+When you select the Install menu option and the floppy disk in the
+disk drive is a DOS formatted floppy disk but does not contain Type 1
+fonts, a third notice window appears.
+
+Check the floppy disk to see that it contains Type 1 fonts. To install
+fonts, you must insert a DOS floppy disk containing Type 1 fonts into
+the disk drive; retail fonts from Adobe are packaged with floppy disks
+for use with DOS font utilities. You want to insert only the Adobe
+disks labeled "Fonts"; the other floppy disks, labeled "Foundry
+Disk" or "Program Disk", do not contain fonts.
+
+Fonts from other Type 1 type vendors will install as well. The required
+file, called a \d(PFB) file, must be in the top directory of the DOS
+floppy disk, or in a subdirectory named PSFONTS. These files are con-
+verted to \d(PFA) files when installed on the UNIX SVR4.2 system.
+
+If you cannot install fonts on your floppy disks because they are not
+in this format or for some other reason, consult the Part I of the
+UNIX Desktop Handbook for information on how to install Type 1 fonts
+from DOS floppy disks using UNIX system commands instead of the UNIX
+Desktop.
+
+The No Recognizable Type 1 Fonts notice has three \d(buttons^button):
+
+   o Continue Button: This button continues the process of installing
+     fonts. Use this button after inserting a DOS floppy disk
+     containing Type 1 fonts.
+
+   o Cancel Button: This button closes the notice window and ends the
+     attempt to install fonts.
+
+   o Help Button: This button provides on-line help for the No
+     Recognizable Type 1 Fonts notice.
+
+^3^Delete
+^$80
+1. \k{Font Setup Window}
+   1.1 \k{Actions Button}
+       1.1.2 Delete
+
+The Delete menu option lets you delete fonts from your system. You
+must have appropriate privileges to delete fonts. If you don't, this
+menu item will not be active for you. Clicking on the Delete menu
+option brings up a menu with the following options:
+
+   o The Bitmapped menu item lets you delete bitmapped fonts from your
+     system. Clicking on the Bitmapped menu item brings up the Font
+     Setup: Delete Bitmapped Fonts window.
+
+   o The Outline menu item lets you delete outline fonts from your
+     system. Clicking on the Outline menu item brings up the Font
+     Setup: Delete Outline Fonts window.
+
+More Information:
+
+        \k(Font Setup: Delete Bitmapped/Outline Fonts Window)
+^3^Integrity Check
+^$90
+1. \k{Font Setup Window}
+   1.1 \k{Actions Button}
+       1.1.3 Integrity Check
+
+The Integrity Check menu option lets you test the integrity of the
+fonts loaded on your system. You must have appropriate privileges to
+check the integrity of your fonts. If you don't, this menu item will
+not be active for you. This check ensures that the fonts available to
+your applications are consistent with the font files installed on your
+system. Clicking on the Integrity Check menu option begins the
+integrity test of the fonts. Be patient when running this test; it can
+take considerable time to complete.
+^3^Exit
+^$100
+1. \k{Font Setup Window}
+   1.1 \k{Actions Button}
+       1.1.4 Exit
+
+The Exit menu option lets you exit from the Font Setup window. Click-
+ing on the Exit menu option closes the Font Setup window.
+^2^View Button
+^$110
+1. \k{Font Setup Window}
+   1.2 View Button
+
+The View button lets you change the way fonts are viewed in the Font
+Setup window. Clicking on the View button brings up a menu with the
+following options:
+
+        \k(Font Name)
+        \k(Display)
+^3^Font Name
+^$120
+1. \k{Font Setup Window}
+   1.2 \k{View Button}
+       1.2.1 Font Name
+
+The Font Name menu option lets you select how the \d(font) name is
+displayed at the bottom of the Font Setup window. Once you select the
+Font Name menu option, you can choose between the following options:
+
+   o The Short option displays the common name of the font.
+
+   o The \d(XLFD) option displays the XLFD name of the font (this is
+     the name that the X Window System uses). The XLFD name is helpful
+     to application developers.
+^3^Display
+^$130
+1. \k{Font Setup Window}
+   1.2 \k{View Button}
+       1.2.2 Display
+
+The Display menu option changes how the sample text is displayed in
+the Font Setup window. Once you click on the Display menu option, you
+can choose between the following options:
+
+   o The Phrase option displays the phrase "Type in here." You can
+     change the phrase displayed by clicking on the phrase and
+     deleting or entering characters.
+
+   o The Character Set option displays every character in the
+     \d(font's^font) character set. You can change the characters displayed
+     by clicking on the phrase and deleting or entering characters
+     (you cannot restore any non-ASCII ISO Latin 1 characters deleted
+     from the window without restarting the Font Setup window).
+^2^Font Button
+^$140
+1. \k{Font Setup Window}
+   1.3 Font Button
+
+The Font button allows you to make the font currently displayed in
+your text area the one used on the UNIX Desktop. You may want to do
+this to customize the appearance of your windows, or to use a larger
+font that is easier to read. This capability is only available for the
+"C locale"; if you are using another locale, such as French or Ger-
+man, these options are not available.
+
+Clicking on the Font button brings up a menu with the following
+options:
+
+        \k(Restore Default)
+        \k(Apply to Windows)
+        \k(Apply to Terminal Only)
+^3^Restore Default
+^$150
+1. \k{Font Setup Window}
+   1.3 \k{Font Button}
+       1.3.1 Restore Default
+
+The Restore Default menu option restores the fonts originally used by
+UNIX Desktop. It undoes what the Apply to Windows and Apply to
+Terminal Only menu options do.
+
+Note: You can determine which font you have previously applied when
+you first begin a session. The Font Setup window displays as its
+initial font the one you last applied (or the default font if you
+restored the default font or never applied a new one).
+^3^Apply to Windows
+^$160
+1. \k{Font Setup Window}
+   1.3 \k{Font Button}
+       1.3.2 Apply to Windows
+
+The Apply to Windows menu option lets you apply the currently
+selected font (as displayed by the sample text) to all applications
+capable of making use of the font. It does not effect Terminal windows.
+
+This option is intended to allow you to customize the look of your
+screen; it can be particularly useful to enlarge the font used in
+windows if you are demonstrating the Desktop and the viewers are
+several feet from your monitor.
+
+Changing the default font does not affect all fonts in all windows; it
+depends on whether the application can take advantage of the dynamic
+nature of the change, as well as on how many special uses of fonts are
+made in an application. For example, some applications use several
+styles of font; the Apply to Windows menu option changes only the
+Roman (upright) style; italic or bold styles may not be affected (you
+can see this effect in the Help windows). In addition, the labels on
+the icons in folders and on the Desktop are not effected.
+
+Note: Do not Apply a font that does not contain alphabetic characters,
+such as a Symbol font, since you would not be able to read your menus,
+buttons, and window titles. If you have learned the position of the
+Restore Default menu option, you can restore your Desktop to a sane
+state, otherwise you might have to restart the system.
+
+You can apply fonts to the UNIX Desktop only in the size range of
+10 to 20 points. If you attempt to apply a font outside this size range,
+you receive an error message at the bottom of the window. Fonts of 18
+or 20 points may result in some distortion to certain windows for the
+current session. The distortion disappears the next time you start the
+UNIX Desktop.
+^3^Apply to Terminal Only
+^$180
+1. \k{Font Setup Window}
+   1.3 \k{Font Button}
+       1.3.4 Apply to Terminal Only
+
+The Apply to "Terminal" Only menu option lets you apply the selected
+font to just the new Terminal windows (Terminal is located in the
+Applications folder). You can apply only fixed-width fonts, such as
+Courier, in Terminal windows. Unlike the Apply to Windows menu option,
+this option affects only new windows, not existing windows.
+
+You can apply fonts to a Terminal window only in the size range of 10
+to 20 points. If you attempt to apply a font outside this size range,
+you receive an error message at the bottom of the window.
+^2^Help Button
+^$190
+1. \k{Font Setup Window}
+   1.4 Help Button
+
+The Help button provides on-line help for the Font Setup window.
+Clicking on the Help button brings up a menu with the following
+options:
+
+        \k(Font Setup^^Font Setup Help)
+        \k(Table of Contents)
+        \k(Help Desk)
+^3^Font Setup=Font Setup Help
+^$200
+1. \k{Font Setup Window}
+   1.4 \k{Help Button}
+       1.4.1 Font Setup
+
+The Font Setup menu option provides on-line help on the the Font Setup
+window.
+^3^Table of Contents
+^$210
+1. \k{Font Setup Window}
+   1.4 \k{Help Button}
+       1.4.2 Table of Contents
+
+The Table of Contents menu option displays the list of help topics
+available for the Font Setup window.
+^3^Help Desk
+^$220
+1. \k{Font Setup Window}
+   1.4 \k{Help Button}
+       1.4.3 Help Desk
+
+The Help Desk menu option opens the Help Desk window. From there, you
+can select the icon for which you want on-line help.
+^1^Font Setup: Install Type 1 Fonts from Diskette Window
+^$230
+\k{Font Setup}
+2. Font Setup: Install Type 1 Fonts from Diskette Window
+
+The Font Setup: Install Type 1 Fonts from Diskette window lets you
+install Type 1 outline fonts on your computer system. This window will
+open only if a DOS floppy disk containing \d(Type 1) \d(fonts^font) has
+been successfully read by your system.
+
+Keep in mind that the UNIX SVR4.2 system may be shipped with packages
+of fonts (both outline and bitmapped) that you install using the Pack-
+age Manager. The Package Manager is a different way of installing
+fonts and can be used only for a limited number of fonts provided by
+your hardware or software vendor. Installation done with the Font
+Setup: Install Type 1 Fonts from Diskette window, however, works with
+Type 1 fonts on floppy disk only, as sold for the retail DOS Windows
+market.
+
+You also can open this window by dragging the floppy disk icon from
+the Disks-etc folder onto the Font Setup icon or window; the Install
+window automatically opens to read the floppy disk.
+
+On the left side of the window is a box containing either the names of
+the fonts or the font files available for installation. The right side
+of the window indicates your progress when you choose to install one
+or more of the fonts.
+
+Note: Installation of fonts can take some time, as files are copied
+and the system is reconfigured to use the new fonts.
+
+Select fonts you want to install by clicking on the font name (you can
+select more than one font at a time). To unselect a font, click on it
+again.
+
+When you install fonts, an attempt is made to find and install Adobe
+font metric files (\d(AFM)) files from the floppy disk as well as the
+fonts themselves, for use by your application's PostScript formatting.
+No warning is given if these files are not available on the DOS floppy
+disk.
+
+Note: If you remove the ATM application from your Desktop system, you
+can still install Type 1 fonts from DOS floppy disks; however, they
+do not appear in the Font Setup window.
+
+The buttons available from the Font Setup: Install Type 1 Fonts from
+Diskette window are:
+
+        \k(Install Button^^Install Button1)
+        \k(Install All Button)
+        \k(Cancel Button^^Cancel Button1)
+        \k(Help Button^^Help Button2)
+^2^Install Button=Install Button1
+^$240
+2. \k{Font Setup: Install Type 1 Fonts from Diskette Window}
+   2.1 Install Button
+
+The Install button immediately installs the selected font(s) onto your
+computer system. After installing the font(s), the Font Setup: Install
+Type 1 Fonts from Diskette window closes.
+^2^Install All Button
+^$250
+2. \k{Font Setup: Install Type 1 Fonts from Diskette Window}
+   2.2 Install All Button
+
+The Install All button installs all fonts (even if you selected specific
+fonts) on the floppy disk to your computer system. After instal-
+ling the fonts, the Font Setup: Install Type 1 Fonts from Diskette
+window closes.
+^2^Cancel Button=Cancel Button1
+^$260
+2. \k{Font Setup: Install Type 1 Fonts from Diskette Window}
+   2.3 Cancel Button
+
+The Cancel button closes the Font Setup: Install Type 1 Fonts from
+Diskette window without installing any fonts.
+^2^Help Button=Help Button2
+^$270
+2. \k{Font Setup: Install Type 1 Fonts from Diskette Window}
+   2.4 Help Button
+
+The Help button provides on-line help for Font Setup: Install Type 1
+Fonts from Diskette.
+^1^Font Setup: Delete Bitmapped/Outline Fonts Window
+^$280
+\k{Font Setup}
+3. Font Setup: Delete Bitmapped/Outline Fonts Window
+
+UNIX SVR4.2 has two windows for deleting fonts from your system: the
+Font Setup: Delete Bitmapped Fonts window and the Font Setup: Delete
+Outline Fonts window.
+
+The two windows are identical except for the list of fonts they
+display. One displays only bitmapped fonts, the other only outline
+fonts. Use these windows to delete fonts you no longer need on your
+system. Fonts typically use quite a bit of disk space; deleting unused
+fonts lets you recover space on your hard disk.
+
+Select the desired fonts by clicking on the font name. You can select
+as many as you want. To unselect a font, click on it again.
+
+Note: Once you delete fonts, the only way to get them back
+on your system is to reinstall them from the original media. If you
+installed the fonts from floppy disk you easily can reinstall them.
+However, all bitmapped fonts (and some outline fonts) are installed
+with applications. If you delete these fonts, you can only get them
+back by reinstalling the application. In addition, some fonts may have
+been preinstalled by your hardware dealer. In this case, you may not
+be able to reinstall the fonts at all (the system prevents you from
+deleting some bitmapped fonts that are essential for the operation of
+the UNIX Desktop.
+
+The buttons available from the Font Setup: Delete Bitmapped/Outline
+Fonts window are:
+
+        \k(Delete Button^^Delete Button2)
+        \k(Reset Button^^Reset Button1)
+        \k(Cancel Button^^Cancel Button2)
+        \k(Help Button^^Help Button3)
+^2^Delete Button=Delete Button2
+^$290
+3. \k{Font Setup: Delete Bitmapped/Outline Fonts Window}
+   3.1 Delete Button
+
+The Delete button deletes the selected font(s) from your computer sys-
+tem and may take some time (the system must be reconfigured with the
+reduced set of fonts). After deleting the font(s), the Font Setup:
+Delete Bitmapped/Outline Fonts window closes.
+
+More information: \k(Delete Notice Window)
+^3^Delete Notice Window
+^$300
+3. \k{Font Setup: Delete Bitmapped/Outline Fonts Window}
+   3.1 \k{Delete Button^^Delete Button2}
+       3.1.1 Delete Notice Window
+
+When you click on the Delete button to delete a font, a notice
+appears. This confirmation message lets you know that it may be diffi-
+cult to reinstall the fonts.
+
+The Delete notice has three \d(buttons^button):
+
+   o Continue Button: This button continues the process of deleting
+     fonts.
+
+   o Cancel Button: This button closes the notice window and ends the
+     attempt to delete fonts.
+
+   o Help Button: This button provides on-line help for the Delete
+     notice.
+^2^Reset Button=Reset Button1
+^$310
+3. \k{Font Setup: Delete Bitmapped/Outline Fonts Window}
+   3.2 Reset Button
+
+The Reset button reverses any changes you have not yet applied. The
+Font Setup: Delete Bitmapped/Outline Fonts window remains open.
+^2^Cancel Button=Cancel Button2
+^$320
+3. \k{Font Setup: Delete Bitmapped/Outline Fonts Window}
+   3.3 Cancel Button
+
+The Cancel button closes the Font Setup: Delete Bitmapped/Outline
+Fonts window without deleting any fonts.
+^2^Help Button=Help Button3
+^$330
+3. \k{Font Setup: Delete Bitmapped/Outline Fonts Window}
+   3.4 Help Button
+
+The Help button provides help for the Font Setup: Delete
+Bitmapped/Outline Fonts window.

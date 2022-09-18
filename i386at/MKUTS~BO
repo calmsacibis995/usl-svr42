@@ -1,0 +1,62 @@
+#ident	"@(#)mk:i386at/:mkuts	1.9"
+#ident "$Header: $"
+#
+#	Configure and make the UNIX Operating System with various devices
+#
+trap "exit 1" 1 2 3 15
+
+Root=$1
+Mach=$2
+Work=$3
+Tools=$4
+Cpu=$5
+
+#
+#	check for merge
+#
+if [ ! -f .common ]
+then
+	echo "$0: need to execute :mkmerge echo before this command can be executed"
+	exit 1
+fi
+
+ROOT=${Root}
+TOOLS=${Tools}
+MACH=${Mach}
+UTSRULES=${Root}/usr/src/${Work}/uts/uts.rulefile
+UTSDEPEND=${Root}/usr/src/${Work}/uts/depend.rules
+export MACH ROOT TOOLS UTSRULES UTSDEPEND
+
+set -e
+
+echo "Building Ktools"
+cd ${Root}/usr/src/${Work}/ktool
+${Tools}/usr/ccs/bin/${Cpu}env ${Cpu}make -f ktool.mk install
+
+cd ${Root}/usr/src/${Work}/ktool
+${Tools}/usr/ccs/bin/${Cpu}env ${Cpu}make -f ktool.mk \
+	idtools.xenv_install unixsyms.xenv_install
+
+echo "Building Kernel"
+cd ${Root}/usr/src/${Work}/uts
+${Tools}/usr/ccs/bin/${Cpu}env ${Cpu}make -P -f unix.mk \
+	UTSRULES=${Root}/usr/src/${Work}/uts/uts.rulefile \
+	UTSDEPEND=${Root}/usr/src/${Work}/uts/depend.rules
+
+
+echo "Installing bootstrap code"
+cd ${Root}/usr/src/${Work}/uts/boot
+${Tools}/usr/ccs/bin/${Cpu}env ${Cpu}make -f boot.mk install \
+	UTSRULES=${Root}/usr/src/${Work}/uts/uts.rulefile \
+	UTSDEPEND=${Root}/usr/src/${Work}/uts/depend.rules
+
+
+PATH=$PATH:${Root}/${Mach}/etc/conf/bin ; export PATH
+
+echo "Building a \"unix\" (doing idbuild) file"
+cd ${Root}/usr/src/${Work}/uts
+${Tools}/usr/ccs/bin/${Cpu}env ${Cpu}make -f unix.mk idbuild \
+	UTSRULES=${Root}/usr/src/${Work}/uts/uts.rulefile \
+	UTSDEPEND=${Root}/usr/src/${Work}/uts/depend.rules
+
+exit 0

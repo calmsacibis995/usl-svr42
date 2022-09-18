@@ -1,0 +1,224 @@
+#ident	"@(#)dtm:help/links.hlp	1.7"
+^*version^1
+^*title^Link
+^:Links
+^*width^70
+^+DesktopMgr/help.defs
+^?Introduction to Links
+^0^Links
+^$10
+Links
+
+Links provide a way to access \d(files^file) and \d(folders^folder) from different places,
+without making copies of them. Keep in mind that whenever you access
+the linked copy, it's the original that you are really working with.
+
+Two advantages to using links instead of copies are:
+
+   o Changes: If you make a copy of a file and you need to make a
+     change, you must edit both copies if you want the files to remain
+     identical. With a linked copy, if you edit either the link or the
+     original file, the change is present in both (because only one
+     really exists)
+
+   o Space: Because a link only "points" to the original and is not a
+     duplicate it does not take up any space on your computer system.
+     This is especially important when you want an entire folder to be
+     accessed from more than one place. By linking the folder, all the
+     files in the folder can be accessed from another location without
+     making copies of them.
+
+There are times when you do want to create copies instead of links,
+like when you want to keep the original version of a file unmodified
+while making updates to the copy.
+
+More information:
+
+        \k(Creating Links)
+        \k(Deleting Links)
+        \k(Types of Links)
+        \k(Where Does The Link Point To)
+        \k(Examples)
+^1^Creating Links
+^$20
+\k{Links}
+1. Creating Links
+
+There are two simple ways to create links in the UNIX Desktop. First,
+you can use the Link menu option under the File button in a Folder
+window. Second, you can use the Alt and Ctrl keys while dragging an
+icon.
+
+        \k(Link Menu Item)
+        \k(Drag-and-Drop)
+        \k(Examples)
+^2^Link Menu Item
+^$30
+1. \k{Creating Links}
+   1.1 Link Menu Item
+
+Every folder window has a File button which brings up a menu. One of
+the options in this menu is Link. To create a link follow these steps:
+
+   o In an open folder, click on the icon you want to link.
+
+   o Click on the File button.
+
+   o Click on the Link menu option. This opens the File: Link window.
+
+   o Either enter the name for the link in the File box or use the
+     Folder(s) box to select the new location for the link.
+
+   o Click on the \k(type of link^^Types of Links) (Hard or Soft).
+
+   o Click on the Link button at the bottom of the window. The link
+     is created. If you change you mind and don't want to create the
+     link, click on the Cancel button.
+^2^Drag-and-Drop
+^$40
+1. \k{Creating Links}
+   1.2 Drag-and-Drop
+
+To use \d(drag-and-drop), start with two open folders; one should have the
+icon of what you want to link, and the other should be the location
+for the link.
+
+   o On the keyboard, press and hold both the Ctrl and Alt keys.
+
+   o With your other hand, move the mouse pointer over the icon you
+     want to link.
+
+   o Press and hold the SELECT (left) mouse button.
+
+   o Move the mouse pointer (by moving the mouse) to the other folder
+     (where you want the link to be).
+
+   o Release the mouse button and the Ctrl and Alt keys. A soft link
+     is now created.
+
+More information:
+
+        \k(Types of Links)
+        \k(Examples)
+^1^Deleting Links
+^$50
+\k{Links}
+2. Deleting Links
+
+Links can be deleted just as copies can. When you delete a link,
+either soft or hard, the original is untouched. However, the results
+of deleting the original file differs depending upon the type of link:
+
+   o Soft Link: When you delete the original, the link is no longer
+     active; that is, you can no longer access the file through the
+     link.
+
+   o Hard Link: When you delete the original, the hard link is still
+     active; that is, you can access the file through the hard link.
+     When you delete the original and all the hard links, the file is
+     gone.
+^1^Types of Links
+^$60
+\k{Links}
+3. Types of Links
+
+There are two kinds of links: soft and hard. With either type you can
+create two or more icons for the same file or folder.
+
+   o Soft Link: A soft link has the advantage that it can link files
+     that are in different disk slices, different disks or possibly
+     even on different computers. However, when a file or folder
+     has a soft link and the original is deleted, the link is still
+     present though it is no longer active.
+
+     You can tell that a file is a soft link by the dotted line between
+     the icon and its name.
+
+   o Hard Link: A hard link must be in the same part of a disk as the
+     original file or folder. When the original is deleted, the hard link
+     still exists and is active.
+
+More information:
+
+        \k(Examples)
+^1^Where Does The Link Point To
+^$70
+\k{Links}
+4. Where Does The Link Point To
+
+After you created a link, you can use the Desktop: File Properties
+window to see where the link points to. To bring up this window, click
+MENU on the file or folder's icon. From the menu that appears, click
+on Properties. Under "File Name" is the "Links To" line if the icon is
+a soft link, or the "No. of Hard Links" line if the icon is a hard link.
+The information is different for soft and hard links.
+
+   o Soft Links: The "Links To" line shows the original file or folder
+     for the link.
+
+   o Hard Links: The "No. of Hard Links" line shows the number of hard
+     links. Typically this is 1 indicating that the file or folder is linked to
+     itself. If there are additional links, the number will be higher.
+^1^Examples
+^$80
+\k{Links}
+5. Examples
+
+Link Menu Item Example
+
+The Clock is normally located in the Applications Folder. You may, for
+convenience, want to be able to access it from the UNIX Desktop window
+so you don't have to open the Applications Folder every time you want
+to use the Clock. You can do this with a copy, but that would take up
+extra space on your system with no advantages over a link. We'll use
+the Link menu item and create a hard link for the Clock.
+
+   o If they are not already opened, open the Applications Folder and
+     your UNIX Desktop window. (The UNIX Desktop window does not
+     really need to be open for this example. Having it open, however,
+     lets you see that the link is created as soon as you complete the
+     last step.)
+
+   o Click on the Clock icon in the Applications Folder.
+
+   o Click on the File button in the Applications Folder. A menu
+     appears with Open, New, Copy, Move, Link, and so on.
+
+   o Click on the Link menu option.The File: Link window opens.
+
+   o On the Path line, it should say /home/your_id where your_id is
+     your login ID (for example, /home/zorb). If the Path line is not
+     correct, use the Folder(s) box to click on the correct path (you
+     might have to click on Parent Directory).
+
+   o Click on Hard on the Link Type line.
+
+   o Click on the Link button at the bottom of the window. The hard
+     link is now created and appears in the UNIX Desktop window.
+
+Drag-and-Drop Example
+
+In addition to having Clock in you UNIX Desktop window, you might want
+Email there too. We'll use the Drag-and-Drop method of creating a soft
+link for Email. Though there are several steps involved, this is actually
+much easier to do than to describe.
+
+   o If they are not already opened, open the Applications Folder and
+     your UNIX Desktop window.
+
+   o Move the mouse pointer to the Email icon in the Applications
+     folder.
+
+   o Locate the Ctrl and Alt keys on the keyboard. Press and hold both
+     keys with one hand.
+
+   o With the other hand, press and hold the SELECT (left) mouse but-
+     ton.
+
+   o Move the mouse pointer to the UNIX Desktop window (continue to
+     hold down the Ctrl and Alt keys as well as the SELECT mouse but-
+     ton as you move the mouse pointer).
+
+   o Release the SELECT mouse button and the Ctrl and Alt keys. An
+     Email icon now appears in the UNIX Desktop window. The link has
+     been created.

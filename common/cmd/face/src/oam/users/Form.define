@@ -1,0 +1,102 @@
+#ident	"@(#)face:src/oam/users/Form.define	1.4.4.5"
+#ident  "$Header: Form.define 1.10 92/01/17 $"
+
+form=$$uxface:293:"Add a FACE Environment for a UNIX System User"
+
+`set -l YES="$$uxface:61:yes" -l NO="$$uxface:56:no";
+set -l I18N_UL="$$uxface:294:User's Login ID:";
+set -l I18N_IFAL="$$uxface:301:Invoke FACE at Login:";
+set -l I18N_PUSA="$$uxface:304:Provide UNIX System Access:";
+set -l I18N_SS="$$uxface:306:Show System Administration in FACE menu:";
+fmlmax "$I18N_UL" "$I18N_IFAL" "$I18N_PUSA" "$I18N_SS" | set -l FCOL;
+fmlmax -l "$YES" "$NO" | set -l YESCOL`
+
+done=`regex -v "$F2" $YES yes $NO no | set -l LNF2;
+regex -v "$F3" $YES yes $NO no | set -l LNF3;
+regex -v "$F4" $YES yes $NO no | set -l LNF4;
+unset -l I18N_UL -l I18N_IFAL -l I18_PUSA -l I18N_SS -l FCOL`open TEXT $OBJ_DIR/Text.define "$F1" "$LNF4" "$LNF2" "$LNF3" `getfrm`
+
+close=`unset -l UID -l IMSG;
+unset -l I18N_UL -l I18N_IFAL -l I18_PUSA -l I18N_SS -l FCOL`
+
+help=open TEXT $INTFBASE/Text.itemhelp $LININFO
+autolayout=true
+
+`fmlgrep '^vmsys:' /etc/passwd | fmlcut -f6 -d: | set -e VMSYS`
+
+name=$I18N_UL
+nrow=1
+ncol=1
+rows=1
+columns=8
+fcol=$FCOL
+# frow=1
+# fcol=42
+lininfo=`message -f $$uxface:295:"Enter the login ID of the user you wish to add."`form:F1
+# this rmenu is strange. notice the repeated 0-9 terms in the regex.
+# these limit to matches to entries in /etc/passwd with at least 3
+# digits in the uid.  the list of names in the regex are those names not to 
+# be displayed as valid choices
+rmenu=const { `indicator -w; sort +0 -1 -t: /etc/passwd | regex "^nobody:" "" "^noaccess:" "" "^vmsys:" "" "^oasys:" "" '^([^:][^:]*)$0:[^:]*:[0-9][0-9][0-9][0-9]*:.*$' '$m0'` }
+valid=`indicator -w;
+fmlgrep "^${F1}:" /etc/passwd | fmlcut -f3 -d":" | set -l UID;
+if [ -z "${F1}" ];
+then
+	set -l IMSG=$$uxface:100:"You must enter a value for this field.";
+	echo false;
+elif [ -z "${UID}" ];
+then
+	set -l IMSG=$$uxface:298:"The login specified must exist in the /etc/passwd file first.";
+	echo false;
+elif [ "${UID}" -lt "100" ];
+then
+	set -l IMSG=$$uxface:578:"A Login ID with uid less than 100, can not be defined as a FACE user.";
+	echo false;
+elif $VMSYS/bin/chkperm -v -u "${F1}" 2>/dev/null;
+then
+	set -l IMSG=$$uxface:300:"${F1} is already a FACE user, use modify instead.";
+	echo false;
+else
+	echo true;
+fi`
+invalidmsg="${IMSG}"
+scroll=true
+
+name=$I18N_IFAL
+nrow=2
+ncol=1
+rows=1
+columns=$YESCOL
+# frow=2
+# fcol=42
+value=$YES
+lininfo=`message -f $$uxface:302:"Should FACE be invoked automatically when this user logs onto this system?"`form:F2
+rmenu=const { $YES $NO }
+menuonly=true
+invalidmsg=$$uxface:303:"Only yes or no are valid answers."
+
+name=$I18N_PUSA
+nrow=3
+ncol=1
+rows=1
+columns=$YESCOL
+# frow=3
+# fcol=42
+value=$NO
+lininfo=`message -f $$uxface:305:"Should this user have access to the UNIX System shell?"`form:F3
+rmenu=const { $YES $NO }
+menuonly=true
+invalidmsg=$$uxface:303:"Only yes or no are valid answers."
+
+name=$I18N_SS
+nrow=4
+ncol=1
+rows=1
+columns=$YESCOL
+# frow=4
+# fcol=42
+value=$NO
+lininfo=`message -f $$uxface:307:"Should this user have a System Administration entry in the top FACE menu?"`form:F4
+rmenu=const { $YES $NO }
+menuonly=true
+invalidmsg=$$uxface:303:"Only yes or no are valid answers."

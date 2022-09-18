@@ -1,0 +1,3 @@
+#ident	"@(#)uts-x86:net/tcpip/arp.cf/Node	1.2"
+#ident	"$Header: $"
+clone	arp	c	arp

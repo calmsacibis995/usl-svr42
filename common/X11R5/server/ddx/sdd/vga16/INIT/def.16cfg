@@ -1,0 +1,4 @@
+display VGA16 StaticColor "VGA STDVGA 640x480 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+# /* Standard VGA 16 colors: common for all VGA cards */
+display VGA16 StaticColor "VGAPAN STDVGA 1024x480 16 15.6x7.32" 0 /dev/console lib/libvga16.so
+# /* virtual screen (1024x480) for standard VGA (640x480 displayed) */

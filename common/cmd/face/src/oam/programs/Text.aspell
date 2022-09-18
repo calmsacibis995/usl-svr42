@@ -1,0 +1,23 @@
+#ident	"@(#)face:src/oam/programs/Text.aspell	1.5.4.3"
+#ident  "$Header: Text.aspell 1.4 91/10/15 $"
+
+title=$$uxface:373:"Installation of Spell Checker"
+
+init=false
+
+`indicator -w;
+fmlgrep '^vmsys:' /etc/passwd | fmlcut -f6 -d: |set -e VMSYS;
+if fmlgrep 'name="$$uxface:237:Spell Checker"' $VMSYS/lib/services > /dev/null;
+then
+	message "$$uxface:374:Spell Checker is already in the Programs Menu.";
+elif [ ! -x /usr/bin/spell ];
+then
+	message "$$uxface:375:The SPELL Utilities do not exist on your system yet.";
+else
+	if $VMSYS/bin/addmenu '$$uxface:237:Spell Checker' "OBJECTS/spell/Form.spell" > /dev/null;
+	then
+		message "$$uxface:376:Spell Checker has been added.";
+	else
+		message "$$uxface:377:Spell Checker has not been added.";
+	fi;
+fi`

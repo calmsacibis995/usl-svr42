@@ -1,0 +1,65 @@
+/**/#ident	"@(#)bitfontlib:bitmap/Imakefile	1.7"
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+
+#ifdef XWINServer
+#include <Server.tmpl>
+#endif
+
+#if Release5
+#define DoSharedLib	YES
+#define DoNormalLib	YES
+#include <Library.tmpl>
+#include <sv4Lib.tmpl>
+#endif
+
+
+LIBNAME = bitmap
+
+HEADERS = \
+	snfstr.h 
+
+SRCS = \
+	bitmap.c \
+	snffuncs.c \
+	snfread.c 
+
+OBJS = \
+	bitmap.o \
+	snffuncs.o \
+	snfread.o 
+
+
+   INCLUDES = -I.  -I../include  -I$(TOP)/X11 -I$(FONTSRC)/include -I$(FONTINCSRC) -I$(FONTLIBINCSRC) -I$(SERVERSRC)/include
+     LFLAGS = -buxz
+
+
+SHAREDOBJS = $(OBJS)
+DEFAULT_LIBS = libbitmap.so libbitmap.a
+
+#if Release5
+LibraryObjectRule()
+
+SharedLibraryTarget2(bitmap,$(SHAREDOBJS),shared,..)
+NormalLibraryTarget(bitmap,$(OBJS))
+#else
+all:: $(DEFAULT_LIBS)
+MixedLibraryObjectRule()
+ArchiveLibraryTarget(bitmap,$(OBJS))
+SharedLibraryTarget(bitmap,$(SHAREDOBJS),,)
+#endif
+
+
+install::
+InstallLibrary($(LIBNAME),$(USRLIBDIR))
+
+InstallSharedLibrary1(libbitmap.so,$(USRLIBDIR))
+DependTarget()
+clean::

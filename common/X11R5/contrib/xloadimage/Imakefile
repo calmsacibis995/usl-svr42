@@ -1,0 +1,43 @@
+/**/#ident	"@(#)r4xloadimage:Imakefile	1.2"
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+
+    SYSPATHFILE = $(XAPPLOADDIR)/Xloadimage
+        DEFINES = -DSYSPATHFILE=\"$(SYSPATHFILE)\"
+        DEPLIBS = $(DEPXLIB)
+LOCAL_LIBRARIES = $(XLIB)
+           SRCS = bright.c clip.c compress.c dither.c faces.c fill.c \
+		  gif.c halftone.c imagetypes.c merge.c misc.c new.c \
+		  options.c path.c pbm.c reduce.c root.c send.c \
+		  sunraster.c value.c window.c xbitmap.c xloadimage.c \
+		  xpixmap.c zio.c zoom.c
+           OBJS = bright.o clip.o compress.o dither.o faces.o fill.o \
+		  gif.o halftone.o imagetypes.o merge.o misc.o new.o \
+		  options.o path.o pbm.o reduce.o root.o send.o \
+		  sunraster.o value.o window.o xbitmap.o xloadimage.o \
+		  xpixmap.o zio.o zoom.o
+
+ComplexProgramTarget(xloadimage)
+install:: 
+	$(RM) $(BINDIR)/xsetbg
+	$(LN) $(BINDIR)/xloadimage $(BINDIR)/xsetbg
+InstallAppDefaults(Xloadimage)
+
+$(SYSPATHFILE):
+	@echo "*** Creating default $(SYSPATHFILE) since you"
+	@echo "*** don't have one. This file is used to set up default places"
+	@echo "*** and names to look for images.  You probably want to edit"
+	@echo "*** it for your site.  See the xloadimage manual page for"
+	@echo "*** details on the contents of this file."
+	cp /dev/null $(SYSPATHFILE)
+	echo "path=$(INCDIR)/bitmaps $(INCDIR)/images \
+		$(INCDIR)/pixmaps $(INCDIR)/images/gif" >> $(SYSPATHFILE)
+	echo "extension=.xpm .csun .msun .sun .face .xbm .bm .gif" \
+		>>$(SYSPATHFILE)

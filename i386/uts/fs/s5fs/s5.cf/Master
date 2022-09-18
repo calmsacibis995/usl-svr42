@@ -1,0 +1,5 @@
+#ident	"@(#)uts-x86:fs/s5fs/s5.cf/Master	1.4"
+#ident	"$Header: $"
+$version 1
+$entry init
+s5	s5	F	0	0	0

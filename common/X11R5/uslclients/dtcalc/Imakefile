@@ -1,0 +1,64 @@
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+/**/#ident	"@(#)dtcalc:Imakefile	1.7"
+
+#ifdef Release5
+#include <sv4Lib.tmpl>
+#endif
+
+           STAR = *
+
+#if defined(SYSV) || defined(SystemV4)
+        HELPDIR = $(USRLIBDIR)/locale/C/help
+#else
+        HELPDIR = $(LIBDIR)/locale/C/help
+#endif
+
+#if defined(MacIIArchitecture) || defined(MotoR4Architecture)
+      IEEE_DEFS = -DIEEE
+#endif
+        DEFINES = $(IEEE_DEFS) $(SIGNAL_DEFINES)
+
+       INCLUDES = -I$(LIBSRC) -I$(XOLLIBSRC)
+
+#if Release5
+        DEPLIBS = $(DEPXMULIB) XolClientDepLibs
+#else
+        DEPLIBS = $(XMULIB) XolClientDepLibs
+#endif
+LOCAL_LIBRARIES = $(XMULIB) XolClientLibs
+  SYS_LIBRARIES = -lm
+
+SRCS = dtcalc.c actions.c math.c Icons.c
+OBJS = $(SRCS:.c=.o)
+
+            CMD = dtcalc
+          CLASS = DtCalc
+    APPLICATION = Calculator
+
+all::	$(CMD)
+
+NormalProgramTarget($(CMD),$(OBJS),$(DEPLIBS),$(LOCAL_LIBRARIES),$(SYS_LIBRARIES))
+
+InstallProgram($(CMD),$(BINDIR))
+InstallAppDefaults($(CLASS))
+
+InstallMultiple(bitmaps/$(STAR),$(USRLIBDIR)/bitmaps)
+InstallMultiple(pixmaps/$(STAR),$(USRLIBDIR)/pixmaps)
+
+InstallMultipleHelpFiles(help/$(STAR),$(HELPDIR)/$(CLASS))
+
+InstallDesktopClient($(BINDIR)/$(CMD),$(DESKTOPDIR)/Applications/$(APPLICATION))
+
+clobber:: clean
+
+DependTarget()
+
+LintTarget()

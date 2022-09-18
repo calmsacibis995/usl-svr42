@@ -1,0 +1,17 @@
+#ident	"@(#)nametoaddr:common/lib/nametoaddr/oam/name_to_addr/loopback/Help	1.1.3.3"
+#ident "$Header: /sms/sinixV5.4es/rcs/s19-full/usr/src/lib/nametoaddr/oam/name_to_addr/loopback/Help,v 1.1 91/02/28 21:03:41 ccs Exp $"
+ABSTRACT:
+	This item adds service information to the
+	services files of the loopback protocols.
+	All services available on you machine should exist
+	in the services files.
+
+menu:services:Service Information
+	This item adds service names into the services file
+	for the loopback protocols.
+
+loopback:service:Service Information
+	Please enter the name of a service available on
+	this machine.  The service information will be entered
+	into the services files for the loopback protocols.
+

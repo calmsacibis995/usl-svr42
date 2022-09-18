@@ -1,0 +1,426 @@
+#ident	"@(#)pkg.bkrs:i386/pkg/bkrs/prototype	1.4.2.18"
+#ident	"$Header: $"
+
+# packaging files
+
+
+!INTFBIN=/usr/sadm/sysadm/bin
+!MENU=/usr/sadm/sysadm/menu
+!BKRS=/usr/sadm/sysadm/add-ons/bkrs
+!PKGBIN=/usr/sadm/install/bin
+!PKGSCR=/usr/sadm/install/scripts
+!VMSYS=/usr/vmsys
+
+i	pkginfo
+i	depend
+i	bkrs/menu.remove=menu.remove
+i	postinstall
+i	preinstall
+i	preremove
+i	postremove
+i	copyright
+
+!default 0755 bin bin
+
+d none /etc ? ? ?
+d none /sbin ? ? ?
+d none /usr ? ? ?
+d none /usr/bin ? ? ?
+d none /usr/include ? ? ?
+d none /usr/include/sys ? ? ?
+d none /usr/lib ? ? ?
+d none /usr/lbin ? ? ?
+d none /usr/sadm ? ? ?
+d none /usr/sbin ? ? ?
+d none /usr/sadm/install/bin ? ? ?
+d none /usr/sadm/install/scripts ? ? ?
+
+# basic and extended OAM directories
+
+d none $INTFBIN 
+
+d none $MENU 
+d none $MENU/applmgmt
+d none $MENU/netservices 
+d none $MENU/restores 0755 bin bin
+d none $MENU/restores/basic
+d none $MENU/restores/basic/private
+
+
+d none $BKRS 
+d none $BKRS/backup_service
+d none $BKRS/backup_service/extended
+d none $BKRS/backup_service/extended/setup
+d none $BKRS/backup_service/extended/setup/add
+d none $BKRS/backup_service/extended/status
+d none $BKRS/restores
+d none $BKRS/restores/extended
+
+d OAM_extended /var/sadm/bkup 0755 root sys
+d OAM_extended /var/sadm/bkup/logs 0755 root sys
+d OAM_extended /var/sadm/bkup/toc 0755 root sys
+
+d OAM_basic /etc/bkup 0755 root sys
+d OAM_basic /etc/bkup/method 0755 root sys
+d OAM_basic /usr/lib/getdate 0700 root other
+d OAM_basic /usr/sadm/bkup 0755 bin bin
+d OAM_basic /usr/sadm/bkup/bin 0755 bin bin
+
+d OAM_extended $MENU/backup_service/extended  0755 root sys
+d OAM_extended $MENU/backup_service/extended/setup 0755 root sys
+d OAM_extended $MENU/backup_service/extended/setup/rotation 0755 root sys
+
+## moved from oam pkg
+
+d OAM_basic $BKRS 0755 bin bin
+d OAM_basic $BKRS/backup_service 0755 bin bin
+d OAM_basic $BKRS/backup_service/extended 0755 bin bin
+d OAM_basic $BKRS/backup_service/extended/backup 0755 bin bin
+d OAM_basic $BKRS/backup_service/extended/history 0755 bin bin
+d OAM_basic $BKRS/backup_service/extended/history/full 0755 bin bin
+d OAM_basic $BKRS/backup_service/extended/history/limit 0755 bin bin
+d OAM_basic $BKRS/backup_service/extended/history/selective 0755 bin bin
+d OAM_basic $BKRS/backup_service/extended/reminder 0755 bin bin
+d OAM_basic $BKRS/backup_service/extended/reminder/add 0755 bin bin
+d OAM_basic $BKRS/backup_service/extended/reminder/display 0755 bin bin
+d OAM_basic $BKRS/backup_service/extended/reminder/modify 0755 bin bin
+d OAM_basic $BKRS/backup_service/extended/reminder/remove 0755 bin bin
+d OAM_basic $BKRS/backup_service/extended/respond 0755 bin bin
+d OAM_basic $BKRS/backup_service/extended/schedule 0755 bin bin
+d OAM_basic $BKRS/backup_service/extended/schedule/add 0755 bin bin
+d OAM_basic $BKRS/backup_service/extended/schedule/display 0755 bin bin
+d OAM_basic $BKRS/backup_service/extended/schedule/modify 0755 bin bin
+d OAM_basic $BKRS/backup_service/extended/schedule/remove 0755 bin bin
+d OAM_basic $BKRS/backup_service/extended/setup 0755 bin bin
+d OAM_basic $BKRS/backup_service/extended/setup/add     0755 bin bin
+d OAM_basic $BKRS/backup_service/extended/setup/exception_list  0755 bin bin
+d OAM_basic $BKRS/backup_service/extended/setup/exception_list/add      0755 bin bin
+d OAM_basic $BKRS/backup_service/extended/setup/exception_list/display  0755 bin bin
+d OAM_basic $BKRS/backup_service/extended/setup/exception_list/remove   0755 bin bin
+d OAM_basic $BKRS/backup_service/extended/setup/full    0755 bin bin
+d OAM_basic $BKRS/backup_service/extended/setup/modify  0755 bin bin
+d OAM_basic $BKRS/backup_service/extended/setup/remove  0755 bin bin
+d OAM_basic $BKRS/backup_service/extended/setup/rotation        0755 bin bin
+d OAM_basic $BKRS/backup_service/extended/setup/summary 0755 bin bin
+d OAM_basic $BKRS/backup_service/extended/status 0755 bin bin
+d OAM_basic $BKRS/backup_service/extended/status/full 0755 bin bin
+d OAM_basic $BKRS/backup_service/extended/status/limit 0755 bin bin
+d OAM_basic $BKRS/backup_service/extended/status/modify 0755 bin bin
+d OAM_basic $BKRS/backup_service/extended/status/selective 0755 bin bin
+
+d OAM_basic $BKRS/restores 0755 bin bin
+d OAM_basic $BKRS/restores/extended 0755 bin bin
+d OAM_basic $BKRS/restores/extended/operator 0755 bin bin
+d OAM_basic $BKRS/restores/extended/respond 0755 bin bin
+d OAM_basic $BKRS/restores/extended/restore 0755 bin bin
+d OAM_basic $BKRS/restores/extended/status 0755 bin bin
+d OAM_basic $BKRS/restores/extended/status/full 0755 bin bin
+d OAM_basic $BKRS/restores/extended/status/modify 0755 bin bin
+d OAM_basic $BKRS/restores/extended/status/selective 0755 bin bin
+
+d OAM_extended $MENU/restores/extended 0755 root sys
+d OAM_extended $MENU/restores/extended/status 0755 root sys
+
+f OAM_extended /etc/bkup/bkexcept.tab 0600 root sys 1 NULL NULL
+
+
+f OAM_extended /etc/bkup/method/fdp 550 root sys 2 dev,macread,macwrite,mount dacread,dacwrite
+f OAM_extended /etc/bkup/method/ffile 550 root sys 2 dev,macread,macwrite,mount dacread,dacwrite
+l OAM_extended /etc/bkup/method/fimage=/etc/bkup/method/fdp
+l OAM_extended /etc/bkup/method/incfile=/etc/bkup/method/ffile
+f OAM_extended /etc/bkup/method/migration 550 root sys 2 dev,macread,macwrite dacread,dacwrite
+
+f OAM_extended /etc/bkup/method/fdisk 0700 root sys
+f OAM_extended /etc/bkup/bkreg.tab 0600 root sys 1 NULL NULL
+f OAM_extended /etc/bkup/rsmethod.tab 0644 root sys 1 NULL NULL
+f OAM_extended /etc/bkup/rsstrat.tab 0644 root sys 1 NULL NULL
+f OAM_extended /etc/bkup/rsstatus.tab 0600 root sys 1 NULL NULL
+f OAM_extended /sbin/bkhistory 100 root sys 2 NULL macread,macwrite,dacread 
+
+f none /sbin/restore 0100 root sys 2 dev,macread,macwrite dacread,dacwrite 
+f none /usr/sbin/restore 0100 root sys 2 dev,macread,macwrite dacread,dacwrite 
+
+f OAM_extended /sbin/rsoper 0100 root sys 2 NULL mount,dev,macread,macwrite,dacread,dacwrite
+f OAM_extended /usr/sbin/rsstatus 0100 root sys 2 macread,macwrite dacread,dacwrite
+f OAM_extended /usr/sbin/urestore 4111 root sys 1 NULL macread,macwrite,dacread,dacwrite
+f OAM_extended /usr/sbin/ursstatus 4111 root sys 1 NULL macread,macwrite,dacread,dacwrite
+f OAM_basic /usr/lib/getdate/bkrsdates 0444 bin bin 1 NULL NULL
+f OAM_basic /usr/lib/libadmIO.a 0644 bin bin
+f OAM_basic /usr/include/sys/libadmIO.h 0444 bin bin
+f OAM_basic /usr/lib/libbrmeth.a 0644 bin bin
+f OAM_basic /usr/sadm/bkup/bin/add 0755 bin bin
+f OAM_basic /usr/sadm/bkup/bin/bkdaemon 0100 root sys 2 dev,mount,macread,macwrite dacread,dacwrite
+f none /usr/sbin/backup 0100 root sys 2 NULL dev,macread,macwrite,dacread,dacwrite
+
+f OAM_extended /usr/sbin/bkexcept 0100 root sys 2 NULL macread,macwrite,dacread,dacwrite
+f OAM_extended /usr/sbin/bkoper 0100 root sys 2 NULL dev,macread,macwrite,dacread,dacwrite
+f OAM_extended /usr/sbin/bkreg 0100 root sys 2 NULL macread,macwrite,dacread,dacwrite
+f OAM_extended /usr/sbin/bkstatus 0100 root sys 2 NULL macread,macwrite,dacread,dacwrite
+
+
+f OAM_extended /usr/sbin/rsnotify 0100 root sys 2 NULL macread,macwrite,dacread,dacwrite
+f OAM_extended /usr/sbin/rsoper 0755 root sys 2 NULL mount,dev,macread,macwrite,dacread,dacwrite
+s OAM_extended /sbin/urestore=/usr/sbin/urestore
+
+
+!default 0775 bin bin 2 NULL macread,macwrite,dacread,dacwrite
+
+f OAM_basic /usr/sadm/bkup/bin/bkhfull
+f OAM_basic /usr/sadm/bkup/bin/bkhsel
+f OAM_basic /usr/sadm/bkup/bin/bkhtofile
+f OAM_basic /usr/sadm/bkup/bin/bkid
+f OAM_basic /usr/sadm/bkup/bin/bkmadd
+f OAM_basic /usr/sadm/bkup/bin/bkmsg
+f OAM_basic /usr/sadm/bkup/bin/bkregdisp
+f OAM_basic /usr/sadm/bkup/bin/bkregpath
+f OAM_basic /usr/sadm/bkup/bin/bkregvals
+f OAM_basic /usr/sadm/bkup/bin/bksadd
+f OAM_basic /usr/sadm/bkup/bin/bkscddisp
+f OAM_basic /usr/sadm/bkup/bin/bkschg
+f OAM_basic /usr/sadm/bkup/bin/bkssel
+f OAM_basic /usr/sadm/bkup/bin/bkup
+f OAM_basic /usr/sadm/bkup/bin/brfindtab
+f OAM_basic /usr/sadm/bkup/bin/change
+f OAM_basic /usr/sadm/bkup/bin/chgmsg
+f OAM_basic /usr/sadm/bkup/bin/chgscd
+f OAM_basic /usr/sadm/bkup/bin/cron_parse
+f OAM_basic /usr/sadm/bkup/bin/delscd
+f OAM_basic /usr/sadm/bkup/bin/errdays
+f OAM_basic /usr/sadm/bkup/bin/errnewtag
+f OAM_basic /usr/sadm/bkup/bin/erroldtag
+f OAM_basic /usr/sadm/bkup/bin/errweeks
+f OAM_basic /usr/sadm/bkup/bin/full
+f OAM_basic /usr/sadm/bkup/bin/get_rotvals
+f OAM_basic /usr/sadm/bkup/bin/getrpd
+f OAM_basic /usr/sadm/bkup/bin/newtag
+f OAM_basic /usr/sadm/bkup/bin/oldtag
+f OAM_basic /usr/sadm/bkup/bin/rest
+f OAM_basic /usr/sadm/bkup/bin/rsid
+f OAM_basic /usr/sadm/bkup/bin/rsop
+f OAM_basic /usr/sadm/bkup/bin/rsschg
+f OAM_basic /usr/sadm/bkup/bin/rsstat
+f OAM_basic /usr/sadm/bkup/bin/summary
+f OAM_basic /usr/sadm/bkup/bin/tag_exists
+f OAM_basic /usr/sadm/bkup/bin/valbkids
+f OAM_basic /usr/sadm/bkup/bin/valdays
+f OAM_basic /usr/sadm/bkup/bin/validdate
+f OAM_basic /usr/sadm/bkup/bin/validdays
+f OAM_basic /usr/sadm/bkup/bin/validmons
+f OAM_basic /usr/sadm/bkup/bin/validweeks
+f OAM_basic /usr/sadm/bkup/bin/valmeth
+f OAM_basic /usr/sadm/bkup/bin/valmonths
+f OAM_basic /usr/sadm/bkup/bin/valpaths
+f OAM_basic /usr/sadm/bkup/bin/valrpath
+f OAM_basic /usr/sadm/bkup/bin/valrsids
+f OAM_basic /usr/sadm/bkup/bin/valusers
+f OAM_basic /usr/sadm/bkup/bin/valweeks
+f OAM_basic /usr/sadm/bkup/bin/exconv.sed 0700 root sys 2 NULL macread,macwrite,dacread,dacwrite
+
+!default 0775 bin bin
+
+
+## moved from oam pkg
+
+f OAM_bhelp $MENU/restores/Help 0644 root sys
+v OAM_basic $MENU/restores/restore.menu 0644 root sys
+
+f OAM_basic $BKRS/backup_service/extended/backup/Form.backup 0644 root sys
+f OAM_ehelp $BKRS/backup_service/extended/backup/Help 0644 root sys
+f OAM_basic $BKRS/backup_service/extended/backup/Text.bkpnok 0644 root sys
+f OAM_basic $BKRS/backup_service/extended/backup/Text.bkpok 0644 root sys
+
+f OAM_ehelp $BKRS/backup_service/extended/history/Help 0644 root sys
+
+
+f OAM_extended $BKRS/backup_service/extended/history/full/Form.full 0644 root sys
+f OAM_extended $BKRS/backup_service/extended/history/full/Form.oldfile 0644 root sys
+f OAM_ehelp $BKRS/backup_service/extended/history/full/Help 0644 root sys
+f OAM_extended $BKRS/backup_service/extended/history/full/Text.bkherr 0644 root sys
+f OAM_extended $BKRS/backup_service/extended/history/full/Text.bkhok 0644 root sys
+f OAM_extended $BKRS/backup_service/extended/history/full/Text.full 0644 root sys
+f OAM_extended $BKRS/backup_service/extended/history/limit/Form.limit 0644 root sys
+f OAM_ehelp $BKRS/backup_service/extended/history/limit/Help 0644 root sys
+f OAM_extended $BKRS/backup_service/extended/history/limit/Text.limnok 0644 root sys
+f OAM_extended $BKRS/backup_service/extended/history/limit/Text.limok 0644 root sys
+f OAM_extended $BKRS/backup_service/extended/history/selective/Form.oldfile 0644 root sys
+f OAM_extended $BKRS/backup_service/extended/history/selective/Form.select 0644 root sys
+f OAM_ehelp $BKRS/backup_service/extended/history/selective/Help 0644 root sys
+f OAM_extended $BKRS/backup_service/extended/history/selective/Text.bkherr 0644 root sys
+f OAM_extended $BKRS/backup_service/extended/history/selective/Text.bkhok 0644 root sys
+f OAM_extended $BKRS/backup_service/extended/history/selective/Text.select 0644 root sys
+
+f OAM_ehelp $BKRS/backup_service/extended/reminder/Help 0644 root sys
+f OAM_extended $BKRS/backup_service/extended/reminder/add/Form.add 0644 root sys
+
+f OAM_ehelp $BKRS/backup_service/extended/reminder/add/Help 0644 root sys
+f OAM_extended $BKRS/backup_service/extended/reminder/add/Text.addnok 0644 root sys
+f OAM_extended $BKRS/backup_service/extended/reminder/add/Text.addok 0644 root sys
+
+f OAM_ehelp $BKRS/backup_service/extended/reminder/display/Help 0644 root sys
+f OAM_extended $BKRS/backup_service/extended/reminder/display/Text.display 0644 root sys
+
+f OAM_extended $BKRS/backup_service/extended/reminder/modify/Form.modify 0644 root sys
+f OAM_extended $BKRS/backup_service/extended/reminder/modify/Form.values 0644 root sys
+f OAM_ehelp $BKRS/backup_service/extended/reminder/modify/Help 0644 root sys
+f OAM_extended $BKRS/backup_service/extended/reminder/modify/Text.modify 0644 root sys
+f OAM_extended $BKRS/backup_service/extended/reminder/modify/Text.modnok 0644 root sys
+f OAM_extended $BKRS/backup_service/extended/reminder/modify/Text.modok 0644 root sys
+
+f OAM_extended $BKRS/backup_service/extended/reminder/remove/Form.remove 0644 root sys
+f OAM_ehelp $BKRS/backup_service/extended/reminder/remove/Help 0644 root sys
+f OAM_extended $BKRS/backup_service/extended/reminder/remove/Text.remnok 0644 root sys
+f OAM_extended $BKRS/backup_service/extended/reminder/remove/Text.remok 0644 root sys
+f OAM_extended $BKRS/backup_service/extended/reminder/remove/Text.remove 0644 root sys
+
+f OAM_extended $BKRS/backup_service/extended/respond/Form.bkoper 0644 root sys
+f OAM_ehelp $BKRS/backup_service/extended/respond/Help 0644 root sys
+f OAM_extended $BKRS/backup_service/extended/respond/Text.bjpnok 0644 root sys
+f OAM_extended $BKRS/backup_service/extended/respond/Text.bjpok 0644 root sys
+
+f OAM_ehelp $BKRS/backup_service/extended/schedule/Help 0644 root sys
+
+## no object in p8;  topps?
+##f OAM_extended $MENU/backup_service/schedule/bksched.menu 0644 root sys
+
+f OAM_extended $BKRS/backup_service/extended/schedule/add/Form.add 0644 root sys
+f OAM_ehelp $BKRS/backup_service/extended/schedule/add/Help 0644 root sys
+f OAM_extended $BKRS/backup_service/extended/schedule/add/Text.addnok 0644 root sys
+f OAM_extended $BKRS/backup_service/extended/schedule/add/Text.addok 0644 root sys
+
+f OAM_ehelp $BKRS/backup_service/extended/schedule/display/Help 0644 root sys
+f OAM_extended $BKRS/backup_service/extended/schedule/display/Text.display 0644 root sys
+
+f OAM_extended $BKRS/backup_service/extended/schedule/modify/Form.modify 0644 root sys
+f OAM_extended $BKRS/backup_service/extended/schedule/modify/Form.values 0644 root sys
+f OAM_ehelp $BKRS/backup_service/extended/schedule/modify/Help 0644 root sys
+f OAM_extended $BKRS/backup_service/extended/schedule/modify/Text.modify 0644 root sys
+f OAM_extended $BKRS/backup_service/extended/schedule/modify/Text.modnok 0644 root sys
+f OAM_extended $BKRS/backup_service/extended/schedule/modify/Text.modok 0644 root sys
+
+f OAM_extended $BKRS/backup_service/extended/schedule/remove/Form.remove 0644 root sys
+f OAM_ehelp $BKRS/backup_service/extended/schedule/remove/Help 0644 root sys
+f OAM_extended $BKRS/backup_service/extended/schedule/remove/Text.remnok 0644 root sys
+f OAM_extended $BKRS/backup_service/extended/schedule/remove/Text.remok 0644 root sys
+f OAM_extended $BKRS/backup_service/extended/schedule/remove/Text.remove 0644 root sys
+
+## no object in p8;  topps?; no "setup"
+##f OAM_ehelp $MENU/backup_service/setup/Help 0644 root sys
+##f OAM_extended $MENU/backup_service/setup/bksetup.menu 0644 root sys
+
+f OAM_extended $BKRS/backup_service/extended/setup/add/Form.add 0644 root sys
+f OAM_extended $BKRS/backup_service/extended/setup/add/Form.add2 0644 root sys
+f OAM_ehelp $BKRS/backup_service/extended/setup/add/Help 0644 root sys
+f OAM_extended $BKRS/backup_service/extended/setup/add/Text.addok 0644 root sys
+
+f OAM_ehelp $BKRS/backup_service/extended/setup/exception_list/Help 0644 root sys
+f OAM_extended $BKRS/backup_service/extended/setup/exception_list/add/Form.add 0644 root sys
+f OAM_ehelp $BKRS/backup_service/extended/setup/exception_list/add/Help 0644 root sys
+f OAM_extended $BKRS/backup_service/extended/setup/exception_list/add/Text.addnok 0644 root sys
+f OAM_extended $BKRS/backup_service/extended/setup/exception_list/add/Text.addok 0644 root sys
+f OAM_extended $BKRS/backup_service/extended/setup/exception_list/display/Form.display 0644 root sys
+f OAM_ehelp $BKRS/backup_service/extended/setup/exception_list/display/Help 0644 root sys
+f OAM_extended $BKRS/backup_service/extended/setup/exception_list/display/Text.display 0644 root sys
+f OAM_extended $BKRS/backup_service/extended/setup/exception_list/display/Text.errs 0644 root sys
+
+## no object in p8;  topps?
+##f OAM_extended $BKRS/backup_service/extended/setup/exception_list/except.menu 0644 root sys
+
+
+f OAM_extended $BKRS/backup_service/extended/setup/exception_list/remove/Form.remove 0644 root sys
+f OAM_ehelp $BKRS/backup_service/extended/setup/exception_list/remove/Help 0644 root sys
+f OAM_extended $BKRS/backup_service/extended/setup/exception_list/remove/Text.remove 0644 root sys
+f OAM_extended $BKRS/backup_service/extended/setup/full/Form.full 0644 root sys
+f OAM_ehelp $BKRS/backup_service/extended/setup/full/Help 0644 root sys
+f OAM_extended $BKRS/backup_service/extended/setup/full/Text.errs 0644 root sys
+f OAM_extended $BKRS/backup_service/extended/setup/full/Text.full 0644 root sys
+f OAM_extended $BKRS/backup_service/extended/setup/modify/Form.modify 0644 root sys
+f OAM_extended $BKRS/backup_service/extended/setup/modify/Form.values 0644 root sys
+f OAM_ehelp $BKRS/backup_service/extended/setup/modify/Help 0644 root sys
+f OAM_extended $BKRS/backup_service/extended/setup/modify/Menu.methods 0644 root sys
+
+## no object in p8;  topps?
+##f OAM_extended $BKRS/backup_service/extended/setup/modify/Text.modnok 0644 root sys
+##f OAM_extended $BKRS/backup_service/extended/setup/modify/Text.modok 0644 root sys
+
+
+f OAM_extended $BKRS/backup_service/extended/setup/remove/Form.remove 0644 root sys
+f OAM_extended $BKRS/backup_service/extended/setup/remove/Form.values 0644 root sys
+f OAM_ehelp $BKRS/backup_service/extended/setup/remove/Help 0644 root sys
+
+## no object in p8;  topps?
+##f OAM_extended $BKRS/backup_service/extended/setup/remove/Text.remnok 0644 root sys
+##f OAM_extended $BKRS/backup_service/extended/setup/remove/Text.remok 0644 root sys
+
+f OAM_extended $BKRS/backup_service/extended/setup/rotation/Form.rotate 0644 root sys
+f OAM_extended $BKRS/backup_service/extended/setup/rotation/Form.values 0644 root sys
+f OAM_ehelp $BKRS/backup_service/extended/setup/rotation/Help 0644 root sys
+f OAM_extended $BKRS/backup_service/extended/setup/rotation/Text.rotnok 0644 root sys
+f OAM_extended $BKRS/backup_service/extended/setup/rotation/Text.rotok 0644 root sys
+f OAM_extended $BKRS/backup_service/extended/setup/summary/Form.summary 0644 root sys
+f OAM_ehelp $BKRS/backup_service/extended/setup/summary/Help 0644 root sys
+f OAM_extended $BKRS/backup_service/extended/setup/summary/Text.errs 0644 root sys
+f OAM_extended $BKRS/backup_service/extended/setup/summary/Text.summary 0644 root sys
+
+f OAM_ehelp $BKRS/backup_service/extended/status/full/Help 0644 root sys
+f OAM_extended $BKRS/backup_service/extended/status/full/Text.full 0644 root sys
+f OAM_extended $BKRS/backup_service/extended/status/limit/Form.limit 0644 root sys
+f OAM_ehelp $BKRS/backup_service/extended/status/limit/Help 0644 root sys
+f OAM_extended $BKRS/backup_service/extended/status/limit/Text.limnok 0644 root sys
+f OAM_extended $BKRS/backup_service/extended/status/limit/Text.limok 0644 root sys
+f OAM_extended $BKRS/backup_service/extended/status/modify/Form.control 0644 root sys
+f OAM_extended $BKRS/backup_service/extended/status/modify/Form.modify 0644 root sys
+f OAM_ehelp $BKRS/backup_service/extended/status/modify/Help 0644 root sys
+f OAM_extended $BKRS/backup_service/extended/status/modify/Text.modnok 0644 root sys
+f OAM_extended $BKRS/backup_service/extended/status/modify/Text.modok 0644 root sys
+f OAM_extended $BKRS/backup_service/extended/status/selective/Form.select 0644 root sys
+f OAM_ehelp $BKRS/backup_service/extended/status/selective/Help 0644 root sys
+f OAM_extended $BKRS/backup_service/extended/status/selective/Menu.states 0644 root sys
+f OAM_extended $BKRS/backup_service/extended/status/selective/Text.errs 0644 root sys
+f OAM_extended $BKRS/backup_service/extended/status/selective/Text.select 0644 root sys
+
+f OAM_extended $BKRS/restores/extended/operator/Form.setup 0644 root sys
+f OAM_ehelp $BKRS/restores/extended/operator/Help 0644 root sys
+f OAM_extended $BKRS/restores/extended/operator/Text.setnok 0644 root sys
+f OAM_extended $BKRS/restores/extended/operator/Text.setok 0644 root sys
+
+f OAM_extended $BKRS/restores/extended/respond/Form.rsoper 0644 root sys
+f OAM_ehelp $BKRS/restores/extended/respond/Help 0644 root sys
+f OAM_extended $BKRS/restores/extended/respond/Menu.methods 0644 root sys
+f OAM_extended $BKRS/restores/extended/respond/Text.err 0644 root sys
+f OAM_extended $BKRS/restores/extended/respond/Text.rsoper 0644 root sys
+
+f OAM_basic $BKRS/restores/extended/restore/Form.restore 0644 root sys
+f OAM_ehelp $BKRS/restores/extended/restore/Help 0644 root sys
+f OAM_basic $BKRS/restores/extended/restore/Text.err 0644 root sys
+f OAM_basic $BKRS/restores/extended/restore/Text.rest 0644 root sys
+
+f OAM_ehelp $BKRS/restores/extended/status/Help 0644 root sys
+
+f OAM_ehelp $BKRS/restores/extended/status/full/Help 0644 root sys
+f OAM_extended $BKRS/restores/extended/status/full/Text.full 0644 root sys
+f OAM_extended $BKRS/restores/extended/status/modify/Form.modify 0644 root sys
+f OAM_ehelp $BKRS/restores/extended/status/modify/Help 0644 root sys
+f OAM_extended $BKRS/restores/extended/status/modify/Text.modnok 0644 root sys
+f OAM_extended $BKRS/restores/extended/status/modify/Text.modok 0644 root sys
+f OAM_extended $BKRS/restores/extended/status/selective/Form.select 0644 root sys
+f OAM_ehelp $BKRS/restores/extended/status/selective/Help 0644 root sys
+f OAM_extended $BKRS/restores/extended/status/selective/Text.errs 0644 root sys
+f OAM_extended $BKRS/restores/extended/status/selective/Text.select 0644 root sys
+
+
+d OAM_basic /var/sadm/pkg/bkrs 0755 root sys
+d OAM_basic /var/sadm/pkg/bkrs/save 0755 root sys
+d OAM_basic /var/sadm/pkg/bkrs/save/intf_install 0755 root sys
+
+# Menu modification/update files
+f OAMmif /var/sadm/pkg/bkrs/save/intf_install/bkup.mi 0644 root sys
+f OAMmif /var/sadm/pkg/bkrs/save/intf_install/rest.mi 0644 root sys
+
+
+f OAM_ehelp $BKRS/backup_service/extended/Help 0644 root sys
+f OAM_extended $BKRS/backup_service/extended/setup/Help 0644 root sys
+f OAM_extended $BKRS/backup_service/extended/setup/add/Menu.methods 0644 root sys
+f OAM_extended $BKRS/backup_service/extended/setup/add/Text.addnok 0644 root sys
+f OAM_ehelp $BKRS/backup_service/extended/status/Help 0644 root sys
+f OAM_ehelp $BKRS/restores/extended/Help 0644 root sys
+

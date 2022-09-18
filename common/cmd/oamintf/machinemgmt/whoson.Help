@@ -1,0 +1,6 @@
+#ident	"@(#)oamintf:common/cmd/oamintf/machinemgmt/whoson.Help	1.1.4.2"
+#ident  "$Header: whoson.Help 2.0 91/07/12 $"
+ABSTRACT:
+	The "whos_on" task prints the login, terminal device number,
+	and sign-on date and time of all users who are currently
+	using the system.

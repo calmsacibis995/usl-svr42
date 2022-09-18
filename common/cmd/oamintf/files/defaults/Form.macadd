@@ -1,0 +1,99 @@
+#ident	"@(#)filemgmt:common/cmd/oamintf/files/defaults/Form.macadd	1.6.3.2"
+#ident  "$Header: Form.macadd 2.0 91/07/12 $"
+Form="Adds Defaults for a File System"
+help=OPEN TEXT $INTFBASE/Text.itemhelp $LININFO
+
+`readfile $INTFBASE/form.msg | message -p`
+
+done=`message "Adding defaults for File System. Please wait...";
+	if [ -n "$TFADMIN" ]; then
+		$TFADMIN $OAMBASE/bin/adddef "$ARG1" "$ARG2" "$F1" "$F2" "$F4" "$F5" "$F6";
+	else
+		$OAMBASE/bin/adddef "$ARG1" "$ARG2" "$F1" "$F2" "$F4" "$F5" "$F6";
+	fi;
+	message "\"$ARG1\" has been added as a default"`
+
+# get levels for validation later
+`lvlname |/usr/bin/sed '/^Classifications:/,$ d;/^Levels:/d;/^$/d;s/^[0-9]*::*//;s/::/z/;s/$/z/'>/tmp/$VPID.lvls`
+
+
+#F1
+name="Should the file system be automatically mounted at boot:"
+lininfo=Form.add2:F1
+nrow=1
+ncol=1
+frow=1
+fcol=58
+rows=1
+columns=3
+value=no
+rmenu={ yes no }
+menuonly=true
+invalidmsg="Press CHOICES to select valid response."
+
+#F2
+name="File System type:"
+lininfo=Form.add2:F2
+nrow=2
+ncol=1
+frow=2
+fcol=19
+rows=1
+columns=20
+rmenu={ `message -w; $OAMBASE/bin/sysfs |  /usr/bin/sort ` }
+menuonly=true
+invalidmsg="Press CHOICES to select valid response."
+
+
+#F3
+name="Mount Options:"
+lininfo=Form.add2:F3
+nrow=4
+ncol=1
+frow=4
+fcol=28
+inactive=true
+
+#F4
+name="Read and write privileges:"
+lininfo=Form.add2:F4
+nrow=5
+ncol=1
+frow=5
+fcol=28
+rows=1
+columns=10
+value=read/write
+rmenu={ read/write read-only }
+menuonly=true
+invalidmsg="Press CHOICES to select valid response."
+
+
+#F5
+name="Should setuid programs be allowed:"
+lininfo=Form.add2:F5
+nrow=6
+ncol=1
+frow=6
+fcol=36
+rows=1
+columns=3
+value=yes
+rmenu={ yes no na }
+menuonly=true
+invalidmsg="Press CHOICES to select valid response."
+
+#F6
+name="File system security level ceiling:"
+lininfo=Form.macadd:F6
+nrow=7
+ncol=1
+frow=7
+fcol=37
+rows=1
+columns=20
+scroll=TRUE
+valid=`test -z "$F6" || fmlgrep "${F6}z" /tmp/$VPID.lvls`
+invalidmsg="Error - Enter a valid level name or alias."
+fieldmsg="Enter a valid level name or alias."
+

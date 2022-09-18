@@ -1,0 +1,22 @@
+#ident	"@(#)initpkg:i386/cmd/initpkg/init.d/mse	1.1"
+
+if [ ! -d /usr/lib ]
+then			# /usr not mounted
+	exit
+fi
+
+case "$1" in
+'start')
+	/usr/lib/mousemgr &
+	;;
+'stop')
+	pid=`/usr/bin/ps -e | /usr/bin/grep mousemgr | /usr/bin/sed -e 's/^  *//' -e 's/ .*//'`
+	if [ "${pid}" != "" ]
+	then
+		/usr/bin/kill ${pid}
+	fi
+	;;
+*)
+	echo "Usage: /etc/init.d/mse { start | stop }"
+	;;
+esac

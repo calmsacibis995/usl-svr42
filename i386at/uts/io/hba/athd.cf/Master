@@ -1,0 +1,4 @@
+*ident	"@(#)uts-x86at:io/hba/athd.cf/Master	1.3"
+*ident	"$Header: $"
+$version 1
+athd	athd_	o	0	0	0

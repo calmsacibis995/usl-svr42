@@ -1,0 +1,17 @@
+#ident	"@(#)pkg.bkrs:i386/pkg/bkrs/pkginfo	1.2.2.6"
+#ident "$Header: $"
+
+#
+# "must" parameters
+#
+
+PKG="bkrs"
+BASEDIR="/"
+NAME="Extended Backup and Restore"
+PSTAMP=""
+RELEASE="4.2"
+VERSION="1"
+VENDOR="UNIX System Laboratories"
+# the order of classes is important here
+CLASSES="none bkrs OAM_basic OAM_bhelp OAM_extended OAM_ehelp OAMmif OAMintf"
+CATEGORY="system"

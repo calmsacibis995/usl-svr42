@@ -1,0 +1,15 @@
+#ident	"@(#)oamintf:i386/cmd/oamintf/xx/FACE3.2/OBJECTS/mailset/Menu.mail	1.2"
+#ident	"$Header: $"
+
+Menu=Mail Setup 
+lifetime=longterm
+#help=open text $VMSYS/OBJECTS/Text.h "Set Up Mail" mailset/T.hmail
+
+name=This System
+action=nop
+show=false
+
+name=Other Systems
+action=nop
+show=false
+

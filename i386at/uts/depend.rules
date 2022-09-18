@@ -1,0 +1,91 @@
+#ident	"@(#)uts-x86at:depend.rules	1.1"
+#
+#	depend.rules for makefiles
+#
+
+depend:: makedep
+	@ if [ -s makedep ] ;\
+	then \
+		 /bin/echo '/^# DO NOT DELETE THIS LINE/+1,$$d' >eddep ; \
+		/bin/echo '$$r makedep' >>eddep; \
+		/bin/echo 'w!' >>eddep ; \
+		rm -f $(MAKEFILE).bak ; \
+		cp $(MAKEFILE) $(MAKEFILE).bak ; \
+		ex - $(MAKEFILE) < eddep ; \
+		chown `/bin/ls -l $(MAKEFILE) | cut -c16-24` $(MAKEFILE).bak; \
+		chgrp `/bin/ls -l $(MAKEFILE) | cut -c25-33` $(MAKEFILE).bak; \
+	fi
+	-@ rm -f eddep makedep makedep1 makedeperrs
+
+makedep:: $(CFILES) $(CFILES1) $(SFILES) $(SFILES1)
+	@ (if [ "$(MAKEFILE)" = "" -o "$(AWK)" = "" ];\
+	then echo one or more of '$$MAKEFILE' or '$$AWK' is not set; false; fi)
+	-@ rm -f makedep makedeperrs
+	-@ (if [ -n "$(CFILES)" ] ;\
+	then \
+		for i in $(CFILES) "" ; \
+		do \
+			if [ $$i ] ; \
+			then \
+				/bin/echo "\n"`basename $$i .c`.o: $$i >makedep1; \
+				$(CC) -H -E $(CFLAGS) $(DEFLIST) $$i 2>&1 >/dev/null |grep -v " " |sort -u - >>makedep1;\
+				cat makedep1 | sed -e '3,$$s,\.\./,$$(KBASE)/,' -e '3,$$s,\.\./,,g' -e '3,$$s,^,	,g' -e '2,$$s,$$, \\,g' -e 's,$(INC),$$(INC),g' -e '$$a\
+\	$$(FRC)' >> makedep; \
+				if [ '$(CRULES)' ] ; \
+				then \
+					/bin/echo $(CRULES) >>makedep ; \
+				fi \
+			fi \
+		done \
+	fi) 2>makedeperrs
+	-@ (if [ -n "$(CFILES1)" ] ;\
+	then \
+		for i in $(CFILES1) "" ; \
+		do \
+			if [ $$i ] ; \
+			then \
+				/bin/echo "\n"`basename $$i .c`.o: $$i >makedep1; \
+				$(CC) -H -E $(CFLAGS1) $(DEFLIST1) $$i 2>&1 >/dev/null |grep -v " " |sort -u - >>makedep1;\
+				cat makedep1 | sed -e '3,$$s,\.\./,$$(KBASE)/,' -e '3,$$s,\.\./,,g' -e '3,$$s,^,	,g' -e '2,$$s,$$, \\,g' -e 's,$(INC),$$(INC),g' -e '$$a\
+\	$$(FRC)' >> makedep; \
+				if [ '$(CRULES1)' ] ; \
+				then \
+					/bin/echo $(CRULES1) >>makedep ; \
+				fi \
+			fi \
+		done \
+	fi) 2>makedeperrs
+	-@ (if [ -n "$(SFILES)" ] ;\
+	then \
+		for i in $(SFILES) "" ; \
+		do \
+			if [ $$i ] ; \
+			then \
+				/bin/echo "\n"`basename $$i .s`.o: $$i >makedep1; \
+				cat makedep1 | sed -e '3,$$s,^,	,g' -e '2,$$s,$$, \\,g' -e 's,$(INC),$$(INC),g' -e '$$a\
+\	$$(FRC)' >> makedep; \
+				if [ '$(SRULES)' ] ; \
+				then \
+					/bin/echo $(SRULES) >>makedep ; \
+				fi \
+			fi \
+		done \
+	fi) 2>makedeperrs
+	-@ (if [ -n "$(SFILES1)" ] ;\
+	then \
+		for i in $(SFILES1) "" ; \
+		do \
+			if [ $$i ] ; \
+			then \
+				/bin/echo "\n"`basename $$i .s`.o: $$i >makedep1; \
+				cat makedep1 | sed -e '3,$$s,^,	,g' -e '2,$$s,$$, \\,g' -e 's,$(INC),$$(INC),g' -e '$$a\
+\	$$(FRC)' >> makedep; \
+				if [ '$(SRULES1)' ] ; \
+				then \
+					/bin/echo $(SRULES1) >>makedep ; \
+				fi \
+			fi \
+		done \
+	fi) 2>makedeperrs
+	@cat makedeperrs >&- 1>&2
+	@(if [ -s makedeperrs ]; then rm -f makedep; false; fi)

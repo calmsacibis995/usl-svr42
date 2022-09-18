@@ -1,0 +1,7 @@
+#ident	"@(#)oamintf:common/cmd/oamintf/intf_remove/Prototype	1.3.4.3"
+#ident  "$Header: Prototype 2.0 91/07/12 $"
+!PKGBIN=/usr/sadm/install/bin
+!PKGSCR=/usr/sadm/install/scripts
+
+f intf $PKGBIN/intf_remove 0755 bin bin
+

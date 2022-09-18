@@ -1,0 +1,6 @@
+#ident	"@(#)pkg.bsdcompat:postremove	1.1"
+#ident	"$Header: $"
+
+
+rm -f /usr/ucblib/aliases.dir
+rm -f /usr/ucblib/aliases.pag

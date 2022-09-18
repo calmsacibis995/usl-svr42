@@ -1,0 +1,55 @@
+#define yuck_format 1
+#define yuck_width 40
+#define yuck_height 40
+#define yuck_ncolors 6
+#define yuck_chars_per_pixel 1
+static char * yuck_colors[] = {
+" " , "#FFFFFFFFFFFF",
+"." , "#AAAAAAAAAAAA",
+"X" , "#0000AAAA0000",
+"o" , "#AAAAFFFF5555",
+"O" , "#000000000000",
+"+" , "#FFFF00000000"
+} ;
+static char * yuck_pixels[] = {
+" . . . . . . . . . . . . . . . . . . . .",
+". . . . . . . . XoXoXoXoX . . . . . . . ",
+" . . . . . . XoXoXoXoXoXoXoX . . . . . .",
+". . . . . .oXoXoXoXoXoXoXoXoXo. . . . . ",
+" . . . . XoXoXoXoXoXoXoXoXoXoXoX . . . .",
+". . . . XoXoXoXoXoXoXoXoXoXoXoXoX . . . ",
+" . . . XoXoXoXoXoXoXoXoXoXoXoXoXoX . . .",
+". . . XoXoXoXoXoXoXoXoXoXoXoXoXoXoX . . ",
+" . . XoXoXoXoXoXoXoXoXoXoXoXoXoXoXoX . .",
+". . XoXoXoXoO.XoXoXoXoXoXoO.XoXoXoXoX . ",
+" . .oXoXoXoXoO.XoXoXoXoXoO.XoXoXoXoXo. .",
+". .oXoXoXoXoXoO.XoXoXoXoO.XoXoXoXoXoXo. ",
+" . XoXoXoXoXoXoO.XoXoXoO.XoXoXoXoXoXoX .",
+". XoXoXoXoXoXoXoO.XoXoO.XoXoXoXoXoXoXoX ",
+" .oXoXoXoXoXoXoXoO.XoO.XoXoXoXoXoXoXoXo.",
+". XoXoXoXoXoXoXoXoXoXoXoXoXoXoXoXoXoXoX ",
+" XoXoXoXoO.XoXoXoXoXoXoXoXoXoX.OoXoXoXoX",
+".oXoXoXoXoX.OoXoXoXoXoXoXoXoO.XoXoXoXoXo",
+" XoXoXoXoXoXoO.XoXoXoXoXoX.OoXoXoXoXoXoX",
+".oXoXoXoO.O.O.O.OoXoXoXoO.O.O.O.OoXoXoXo",
+" XoXoXoXoXoXoO.XoXoXoXoXoX.OoXoXoXoXoXoX",
+".oXoXoXoXoX.OoXoXoXoXoXoXoXoO.XoXoXoXoXo",
+" XoXoXoXoO.XoXoXoXoXoXoXoXoXoX.OoXoXoXoX",
+".oXoXoXoXoXoXoXoXoXoXoXoXoXoXoXoXoXoXoXo",
+" XoXoXoXoXoXoXoXoXoXoXoXoXoXoXoXoXoXoXoX",
+". XoXoXoXoXoXoXoXoXoXoXoXoXoXoXoXoXoXoX ",
+" .oXoXoXoXoXoXoXoO.O.O.OoXoXoXoXoXoXoXo.",
+". XoXoXoXoXoXoO.O.+o+o+.O.OoXoXoXoXoXoX ",
+" . XoXoXoXoO.O.XoOo+o+oOoX.O.OoXoXoXoX .",
+". .oXoXoX.O.XoXoX.+o+o+.XoXoX.O.XoXoXo. ",
+" . .oXoX.OoXoXoXoOo+o+oOoXoXoXoO.XoXo. .",
+". . XoX.OoXoXoXoX.+o+o+.XoXoXoXoO.XoX . ",
+" . . XoXoXoXoXoXoX.+o+.XoXoXoXoXoXoX . .",
+". . . XoXoXoXoXoXoX.O.XoXoXoXoXoXoX . . ",
+" . . . XoXoXoXoXoXoXoXoXoXoXoXoXoX . . .",
+". . . . XoXoXoXoXoXoXoXoXoXoXoXoX . . . ",
+" . . . . XoXoXoXoXoXoXoXoXoXoXoX . . . .",
+". . . . . .oXoXoXoXoXoXoXoXoXo. . . . . ",
+" . . . . . . XoXoXoXoXoXoXoX . . . . . .",
+". . . . . . . . XoXoXoXoX . . . . . . . "
+} ;

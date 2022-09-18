@@ -1,0 +1,12 @@
+#ident	"@(#)upgrade:i386/cmd/upgrade/diffs/rfs.LIST	1.2"
+#ident	"$Header: $"
+
+etc/rfs/tcp/master.master
+etc/rfs/tcp/rfmaster
+etc/rfs/tcp/loc.passwd
+etc/rfs/auth.info/gid.rules
+etc/rfs/auth.info/uid.rules
+etc/rfs/auth.info/.<uid.rules>
+etc/rfs/auth.info/.<gid.rules>
+etc/rfs/domain
+etc/rfs/netspec

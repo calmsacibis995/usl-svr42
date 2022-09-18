@@ -1,0 +1,5 @@
+#ident	"@(#)disksetup:i386at/cmd/disksetup/s5.dflt	1.1"
+BLKSIZE=1024,2048,512
+MNTOPT=
+MKFSTYP=1
+LABELIT=YES

@@ -1,0 +1,30 @@
+#ident	"@(#)face:OBJECTS/lp/Menu.lpops	1.3.4.2"
+#ident  "$Header: Menu.lpops 1.7 91/10/29 $"
+
+`set -l I18N_PQ="$$uxface:408:Printer Queue" ;
+set -l I18N_PS="$$uxface:409:Printer Status"`
+
+menu=$$uxface:406:"Printer Operations"
+
+`$VMSYS/bin/chexec lpstat && set -l LPC="lpstat -r" || set -l LPC="echo BaD"`
+
+help=open text OBJECTS/Text.h "$$uxface:572:HELP on Printer Operations" lp/T.hlpops
+
+framemsg=$$uxface:399:"Move to an item with arrow keys and press ENTER to select the item."
+
+name=$$uxface:407:"Print Options"
+action=OPEN FORM OBJECTS/Form.prin
+
+name=$I18N_PQ
+action=`${LPC} | set -l LPS;
+regex -v "${LPS}"
+        '^BaD$'    "OPEN TEXT OBJECTS/lp/Text.nlp"
+        '.*not.*$'      "OPEN TEXT OBJECTS/lp/Text.nsched"
+        '.*'    'OPEN TEXT OBJECTS/lp/Text.lpops "o" "$I18N_PQ"'`
+
+name=$I18N_PS
+action=`${LPC} | set -l LPS;
+regex -v "${LPS}"
+        '^BaD$'    "OPEN TEXT OBJECTS/lp/Text.nlp"
+        '.*not.*$'      "OPEN TEXT OBJECTS/lp/Text.nsched"
+        '.*'    'OPEN TEXT OBJECTS/lp/Text.lpops "p" "$I18N_PS"'`

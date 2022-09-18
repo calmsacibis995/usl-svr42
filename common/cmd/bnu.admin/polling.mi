@@ -1,0 +1,5 @@
+#ident	"@(#)bnu.admin:common/cmd/bnu.admin/polling.mi	1.2.1.2"
+#ident "$Header: polling.mi 2.0 91/08/20 $"
+main:network_services:basic_networking:polling:add^Causes Systems to Be Polled by Basic Networking^Form.addpoll
+main:network_services:basic_networking:polling:list^Lists Systems Polled by Basic Networking^Form.listpoll
+main:network_services:basic_networking:polling:remove^Prevent Polling of Remote Systems^Form.rmpoll

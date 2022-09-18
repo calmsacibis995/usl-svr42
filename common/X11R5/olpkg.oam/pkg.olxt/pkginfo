@@ -1,0 +1,21 @@
+#ident	"@(#)olpkg.oam:pkg.olxt/pkginfo	1.5"
+#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+#	Copyright (c) 1988, 1989, 1990 AT&T
+#	  All Rights Reserved
+
+#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+#	UNIX System Laboratories, Inc.
+#	The copyright notice above does not evidence any
+#	actual or intended publication of such source code.
+
+
+PKG="olxt"
+PREDEPEND=""
+NAME="OPEN LOOK X Toolkit"
+ARCH="at386"
+RELEASE="4"
+VERSION="1"
+VENDOR="USL"
+
+CLASSES="toolkit"
+CATEGORY="graphics"

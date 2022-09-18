@@ -1,0 +1,51 @@
+#ident	"@(#)pkg.oam:menu.oam	1.7"
+#ident	"$Header: $"
+.pageno
+Page %d of %d
+.ul
+UNIX System Installation
+.hhelp_ban
+Instructions
+.helpbanner
+Help on Sysadm Password
+.ur
+Sysadm Password
+.ll
+.lr
+F1=Help
+.top
+You now need to choose a password to restrict access to the account
+'sysadm', for system administration.
+
+You will be asked to enter the password after this screen.  The text of the
+password as you type it will not appear on the screen.  You will then be
+prompted to type the same password again.  See the help facility or the
+installation guide for more information.
+.form
+#THIS FIELD INTENTIONALLY LEFT BLANK
+.selection
+#THIS FIELD INTENTIONALLY LEFT BLANK
+.bottom
+Press 'ENTER' to continue:
+.help
+For detailed instructions, press the 'F1' (or '?') key at any time.
+
+On the next screen, you will be asked to enter the password you have chosen
+for the 'sysadm' account.  The characters that you type will not appear on
+the screen and you will be asked to type the password a second time to
+verify your choice.
+
+If the two passwords do not match, you will see a message that says:
+       ERROR: They don't match.
+       TO FIX: Try again.
+You will be prompted again to enter and verify the password.  If you do
+make a mistake, you will have two chances to type the passwords properly.
+If the passwords still do not match, you will be prompted again the first
+time you use the login.
+.helpinst
+F1=Instructions  ESC=Exit help  1=Forward  2=Back
+.hhelpinst
+ESC=Return to help  1=Forward  2=Back
+.working
+Working...
+.end

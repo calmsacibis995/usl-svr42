@@ -1,0 +1,82 @@
+.\"ident	"@(#)xwud:xwud.man	1.1"
+
+.\" xwud.man (Troff source file)
+.\"	Acc: 574010317 Thu Mar 10 10:18:37 1988
+.\"	Mod: 573096015 Sun Feb 28 20:20:15 1988
+.\"	Sta: 573774703 Mon Mar  7 16:51:43 1988
+.\"	Owner: 2011
+.\"	Group: 1985
+.\"	Permissions: 444
+
+
+.\"	START USER STAMP AREA
+
+
+.\"	END USER STAMP AREA
+
+.TH XWUD 1 "1 March 1988" "X Version 11"
+.SH NAME
+xwud - image displayer for X
+.SH SYNOPSIS
+.B "xwud"
+[-debug] [-help] [-inverse] [-in \fIfile\fP]
+[-display \fIdisplay\fP]
+.SH DESCRIPTION
+.PP
+.I Xwud
+is an X Window System window image undumping utility.
+.I Xwud
+allows X users to display window images that were saved in a specially
+formatted dump file.  The window  image  will  appear  at  the
+coordinates of the original window from which the dump was taken.
+This is a crude version of a more advanced utility that has never
+been written.  Monochrome
+dump files are displayed on a color monitor in the default foreground and
+background colors. 
+.SH OPTIONS
+.PP
+.TP 8
+.B "-help"
+Print out a short description of the allowable options.
+.PP
+.TP 8
+.B "-in \fIfile\fP"
+This option allows the user to explicitly specify the input 
+file on the command line.  The default is to take input from standard in.
+.PP
+.TP 8
+.B -inverse
+Applies to monochrome window dump files only. If selected, the window is
+undumped in reverse video. This is mainly needed because the display
+is `write white', whereas dump files intended eventually to be written
+to a printer are generally `write black'.
+.PP
+.TP 8
+.B "-display \fIdisplay\fP"
+This  option  allow  you  to  specify the server to connect to; see \fIX(1)\fP.
+.SH ENVIRONMENT
+.PP
+.TP 8
+.B DISPLAY
+To get default display.
+.SH FILES
+.PP
+.TP 8
+.B XWDFile.h
+X Window Dump File format definition file.
+.SH BUGS
+.PP
+Does not attempt to do color translation when the destination screen
+does not have a colormap exactly matching that of the original window.
+.SH SEE ALSO
+xwd(1), xpr(1), xdpr(1), X(1)
+.SH COPYRIGHT
+Copyright 1988, Massachusetts Institute of Technology.
+.br
+See \fIX(1)\fP for a full statement of rights and permissions.
+.SH AUTHOR
+Tony Della Fera, Digital Equipment Corp., MIT Project Athena
+.br
+William F. Wyatt, Smithsonian Astrophysical Observatory
+
+

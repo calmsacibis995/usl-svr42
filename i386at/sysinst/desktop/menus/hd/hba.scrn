@@ -1,0 +1,124 @@
+#ident	"@(#)proto:desktop/menus/hd/hba.scrn	1.14"
+#
+# Menu description file format
+#
+# Lines beginning with '#' are comments
+#
+# format string for page numbering - 1st %d is current pg and 2nd is total pgs
+.pageno
+Page %d of %d
+#
+# string that appears in the upper left corner
+.ul
+UNIX System Installation
+#
+# The banner for the help_within_help screen
+.hhelp_ban
+Instructions
+#
+# The banner for the help screen
+.helpbanner
+Help: Reinsert HBA Diskette
+#
+# string that appears in the upper right corner
+.ur
+Reinsert HBA Diskette
+#
+# string that appears in the lower left corner
+#.ll
+#THIS SPACE INTENTIONALLY LEFT BLANK.
+#
+# string that appears in the lower right corner
+.lr
+Del=Cancel  F1=Help
+#
+# text for above the menu form (used to be -s strings)
+.top
+`[ "${HBA_ERROR}" = "1" ] && echo "Cannot install HBA diskette! Try again.\n"`
+`[ "${HBA_ERROR}" = "2" ] && echo "You have inserted the wrong HBA diskette! Try again.\n"`
+`[ "${HBA_ERROR}" = "3" ] && echo "This diskette is not an HBA diskette. Try again.\n"`
+You must now reinsert the HBA diskette(s) that you used before.
+
+Please insert the diskette labeled:
+
+`echo "        "${HBA_PROMPT}`
+
+into the drive and press 'ENTER'.
+#
+# This is the "options" string for menus.
+#.optstring
+#THIS SPACE INTENTIONALLY LEFT BLANK.
+#
+# Delimiter for form - the contents of this section are the same as
+# the contents of a file specified w/-f options, autodetects whether its
+# a form or a menu.
+.form
+ENTER
+#
+.selection
+Press 'ENTER' to continue.
+#
+# Help text.  This can also be done using I/O redirection; if aline begins
+# with a <, the rest of the line is considered to be a filename and is
+# read in as though it were part of the file.  If the file contains other
+# .keywords, or `backticks` or <redirection, these will not be processed.
+.help
+For detailed instructions, press the 'F1' (or '?') key at any time.
+
+When you began installing the UNIX System, you inserted Host Bus Adapter
+diskette(s) that were used in setting up the system.  You must now enter
+these same diskette(s) again so that they may be copied to your hard disk.
+
+Host Bus Adapters are controller cards that are installed in your computer
+and which allow you to attach peripheral devices such hard disks, cartridge
+tape drives, etc.  to your computer.  SCSI (short for Small Computer System
+Interface) Host Bus Adapters are a common example of a family of Host Bus
+Adapters.  The UNIX System supports many Host Bus Adapters, including:
+
+    Adaptec AHA-1540B/1542B, AHA-1640/1642 and AHA-1740/1742 SCSI
+    controllers (all in standard mode),
+
+    DPT SCSI controllers,
+
+    Western Digital 7000 SCSI controllers,
+
+    ESDI,
+
+    IDE, and
+
+    ST506.
+
+If your computer is equipped with one of the Host Bus Adapters listed above,
+the UNIX System will automatically recognize that it is installed and will
+handle it appropriately.  If however, your computer is not equipped with one
+of the Host Bus Adapters listed above, you should have received (with either
+your computer, your Host Bus Adapter controller card or your copy of the UNIX
+System), a diskette labeled "Host Bus Adapter Drivers".  You must re-insert
+any Host Bus Adapter diskettes you have (you were asked to insert them
+earlier in the installation process) so that the drivers that control the
+Host Bus Adapter controller cards can be added to your UNIX System.
+
+Again, if your computer is equipped with one of the Host Bus Adapters listed
+above you will most likely not have (and will not need) a separate Host
+Bus Adapter diskette.  If you do not have one, simply exit the help facility
+and press 'ENTER' to continue the installation process.
+
+If you do have a Host Bus Adapter diskette but are not sure if you need to
+use it, it is recommended that you insert the diskette (and install the Host
+Bus Adapter drivers) as it will not negatively affect your computer to have
+a Host Bus Adapter driver installed even if you do not have a corresponding
+Host Bus Adapter controller card.
+#
+# This is the instructions (help banner) for the help screens.
+.helpinst
+ESC=Exit help  F1=Instructions  Del=Cancel  1=Forward  2=Backward
+.hhelpinst
+ESC=Exit instructions  Del=Cancel  1=Forward  2=Backward
+#
+# This is the "Working..." flag that flashes on the screen if the -r
+# option is specified on the command line.
+#.working
+#THIS SPACE INTENTIONALLY LEFT BLANK.
+#
+# This is an optional keyword for the end of input
+.end

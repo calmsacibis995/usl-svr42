@@ -1,0 +1,212 @@
+#ident	"@(#)olpkg.oam:pkg.dtmcons/prototype	1.1"
+#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+#	Copyright (c) 1988, 1989, 1990 AT&T
+#	  All Rights Reserved
+
+#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+#	UNIX System Laboratories, Inc.
+#	The copyright notice above does not evidence any
+#	actual or intended publication of such source code.
+
+
+i copyright
+i depend
+i pkginfo
+i postinstall
+i preremove
+
+!PACKDIR=$ROOT/usr/src/X11R4/olpkg.oam
+!OAMBASE=/usr/sadm/sysadm
+!PKGINST=desktop
+!PKGSAV=/var/sadm/pkg/$PKGINST/save
+
+!default 0755 bin bin
+
+d desktop /usr ? ? ?
+d desktop /usr/bin ? ? ?
+d desktop /usr/include ? ? ?
+d desktop /usr/include/sys ? ? ?
+d desktop /usr/lib ? ? ?
+d desktop /tmp ? ? ?
+d desktop /tmp/pkg 0755 root sys
+d desktop /tmp/pkg/desktop 0755 root sys
+d desktop /tmp/pkg/desktop/consem 0755 root sys
+
+v desktop /tmp/pkg/desktop/consem/Driver.o=$PACKDIR/tmp/Driver.o ? ? ?
+v desktop /tmp/pkg/desktop/consem/Master=$PACKDIR/tmp/Master ? ? ?
+v desktop /tmp/pkg/desktop/consem/System=$PACKDIR/tmp/System ? ? ?
+v desktop /tmp/pkg/desktop/consem/Space.c=$PACKDIR/tmp/Space.c ? ? ?
+v desktop /usr/include/sys/consem.h=$PACKDIR/tmp/consem.h ? ? ?
+
+d desktop /usr/X
+d desktop /usr/X/adm
+d desktop /usr/X/bin
+s desktop /usr/bin/X11=/usr/X/bin
+d desktop /usr/X/clients
+d desktop /usr/X/desktop
+d desktop /usr/X/desktop/bitmaps
+d desktop /usr/X/desktop/pixmaps
+d desktop /usr/X/desktop/dtadmin
+d desktop /usr/X/desktop/dtadmin/dashboard
+d desktop /usr/X/include
+d desktop /usr/X/include/DnD
+d desktop /usr/X/include/Dt
+d desktop /usr/X/include/DtI
+s desktop /usr/include/Xol=/usr/X/include/Xol
+d desktop /usr/X/lib
+d desktop /usr/X/lib/locale
+d desktop /usr/X/lib/locale/C
+d desktop /usr/X/lib/locale/C/help
+d desktop /usr/X/lib/locale/C/help/dtm
+d desktop /usr/X/lib/locale/C/help/dtm
+d desktop /usr/X/lib/locale/C/help/olwm
+d desktop /usr/X/lib/locale/C/help/olprintscreen
+s desktop /usr/lib/X11=/usr/X/lib
+d desktop /usr/X/lib/Xol
+
+s desktop /usr/X/lib/libDt.so=/usr/lib/libX11.so.1
+s desktop /usr/X/lib/libDtI.so=/usr/lib/libXol.so.1
+
+f desktop /usr/X/adm/.olinitrc=$PACKDIR/tmp/.olinitrc 755 root sys
+f desktop /usr/X/adm/.olsetup=$PACKDIR/tmp/.olsetup 755 root sys
+f desktop /usr/X/adm/oladduser=$PACKDIR/adm/oladduser 755 root sys
+f desktop /usr/X/adm/olremuser=$PACKDIR/adm/olremuser 755 root sys
+f desktop /usr/X/adm/olsetvar=$PACKDIR/adm/olsetvar 755 root sys
+f desktop /usr/X/adm/olunsetvar=$PACKDIR/adm/olunsetvar 755 root sys
+
+f desktop /usr/X/bin/dtm
+f desktop /usr/X/bin/dsdm
+f desktop /usr/X/bin/prtsetup
+f desktop /usr/X/bin/dialup
+f desktop /usr/X/bin/dtinternet
+f desktop /usr/X/bin/LoginMgr
+f desktop /usr/X/bin/MediaMgr
+f desktop /usr/X/bin/PackageMgr
+f desktop /usr/X/bin/PrtMgr
+f desktop /usr/X/bin/dashboard
+f desktop /usr/X/bin/olprintscreen
+f desktop /usr/X/bin/xpr
+f desktop /usr/X/bin/xwd
+f desktop /usr/X/bin/xwud
+f desktop /usr/X/bin/xterm
+
+!default 0644 bin bin
+
+f desktop /usr/X/lib/app-defaults/XTerm
+f desktop /usr/X/lib/app-defaults/olprintscreen
+
+f desktop /usr/X/desktop/.dtfclass
+f desktop /usr/X/desktop/.toolboxes
+f desktop /usr/X/desktop/.controlrm
+f desktop /usr/X/desktop/.apps
+f desktop /usr/X/desktop/bitmaps/cheader.icon
+f desktop /usr/X/desktop/bitmaps/datafile.icon
+f desktop /usr/X/desktop/bitmaps/directory.ico
+f desktop /usr/X/desktop/bitmaps/executable.ico
+f desktop /usr/X/desktop/bitmaps/modemm.xbm
+f desktop /usr/X/desktop/bitmaps/tcpadmm.xbm
+f desktop /usr/X/desktop/pixmaps/pixmaps/blkdev.icon
+f desktop /usr/X/desktop/pixmaps/pixmaps/chrdev.icon
+f desktop /usr/X/desktop/pixmaps/pixmaps/csource.xpm
+f desktop /usr/X/desktop/pixmaps/pixmaps/datafile.icon
+f desktop /usr/X/desktop/pixmaps/pixmaps/dir.icon
+f desktop /usr/X/desktop/pixmaps/pixmaps/exec.icon
+f desktop /usr/X/desktop/pixmaps/pixmaps/pipe.icon
+f desktop /usr/X/desktop/pixmaps/pixmaps/sblkdev.icon
+f desktop /usr/X/desktop/pixmaps/pixmaps/schrdev.icon
+f desktop /usr/X/desktop/pixmaps/pixmaps/sdatafile.icon
+f desktop /usr/X/desktop/pixmaps/pixmaps/sdir.icon
+f desktop /usr/X/desktop/pixmaps/pixmaps/sem.icon
+f desktop /usr/X/desktop/pixmaps/pixmaps/sexec.icon
+f desktop /usr/X/desktop/pixmaps/pixmaps/shmem.icon
+f desktop /usr/X/desktop/pixmaps/pixmaps/spipe.icon
+f desktop /usr/X/desktop/pixmaps/pixmaps/ssem.icon
+f desktop /usr/X/desktop/pixmaps/pixmaps/sshmem.icon
+
+f desktop /usr/X/desktop/pixmaps/pixmaps/sunk.icon
+f desktop /usr/X/desktop/pixmaps/pixmaps/toolbox.icon
+f desktop /usr/X/desktop/pixmaps/pixmaps/unk.icon
+f desktop /usr/X/desktop/pixmaps/disk3.5.xpm
+f desktop /usr/X/desktop/pixmaps/disk5.25.xpm
+f desktop /usr/X/desktop/pixmaps/ctape.xpm
+f desktop /usr/X/desktop/pixmaps/package.xpm
+f desktop /usr/X/desktop/pixmaps/pack_p.xpm
+f desktop /usr/X/desktop/pixmaps/dash.xpm
+f desktop /usr/X/desktop/pixmaps/dash_p.xpm
+f desktop /usr/X/desktop/pixmaps/users.xpm
+f desktop /usr/X/desktop/pixmaps/user.xpm
+f desktop /usr/X/desktop/pixmaps/modem.xpm
+f desktop /usr/X/desktop/pixmaps/tcpadm.xpm
+f desktop /usr/X/desktop/pixmaps/prticon.xpm
+f desktop /usr/X/desktop/pixmaps/prtmask.xpm
+f desktop /usr/X/desktop/pixmaps/prtmask.xbm
+f desktop /usr/X/desktop/pixmaps/setupicon.xpm
+f desktop /usr/X/desktop/pixmaps/setupmask.xpm
+f desktop /usr/X/desktop/pixmaps/prtjob.xpm
+f desktop /usr/X/desktop/pixmaps/bigprtjob.xpm
+f desktop /usr/X/desktop/pixmaps/setupmask.xbm
+f desktop /usr/X/desktop/dtam.dtfclass
+f desktop /usr/X/desktop/dtadmin/dashboard/.dashrc
+f desktop /usr/X/lib/locale/C/help/dtm/wb.hlp
+f desktop /usr/X/lib/locale/C/help/dtm/folder.hlp
+f desktop /usr/X/lib/locale/C/help/dtm/toolbox.hlp
+f desktop /usr/X/lib/locale/C/help/olwm/all_popups
+f desktop /usr/X/lib/locale/C/help/olwm/border
+f desktop /usr/X/lib/locale/C/help/olwm/icon
+f desktop /usr/X/lib/locale/C/help/olwm/ok_apply
+f desktop /usr/X/lib/locale/C/help/olwm/ok_button
+f desktop /usr/X/lib/locale/C/help/olwm/ok_menu
+f desktop /usr/X/lib/locale/C/help/olwm/ok_reset
+f desktop /usr/X/lib/locale/C/help/olwm/menu_backgroun
+f desktop /usr/X/lib/locale/C/help/olwm/popup_cancel
+f desktop /usr/X/lib/locale/C/help/olwm/popup_dismiss
+f desktop /usr/X/lib/locale/C/help/olwm/popup_menu
+f desktop /usr/X/lib/locale/C/help/olwm/popup_owner
+f desktop /usr/X/lib/locale/C/help/olwm/pushpin
+f desktop /usr/X/lib/locale/C/help/olwm/resize_corner
+f desktop /usr/X/lib/locale/C/help/olwm/this_window
+f desktop /usr/X/lib/locale/C/help/olwm/window_back
+f desktop /usr/X/lib/locale/C/help/olwm/window_close
+f desktop /usr/X/lib/locale/C/help/olwm/window_full
+f desktop /usr/X/lib/locale/C/help/olwm/window_menu
+f desktop /usr/X/lib/locale/C/help/olwm/window_menu_bu
+f desktop /usr/X/lib/locale/C/help/olwm/window_open
+f desktop /usr/X/lib/locale/C/help/olwm/window_prop
+f desktop /usr/X/lib/locale/C/help/olwm/window_quit
+f desktop /usr/X/lib/locale/C/help/olwm/window_refresh
+f desktop /usr/X/lib/locale/C/help/olwm/window_restore
+f desktop /usr/X/lib/locale/C/help/olwm/window_move
+f desktop /usr/X/lib/locale/C/help/olwm/window_resize
+f desktop /usr/X/lib/locale/C/help/olprintscreen/olps_general
+f desktop /usr/X/lib/locale/C/help/olprintscreen/olps_propertie
+
+f desktop /usr/X/include/DnD/FuncProto.h
+f desktop /usr/X/include/DnD/OlDnDUtil.h
+f desktop /usr/X/include/DnD/OlDnDVCX.h
+f desktop /usr/X/include/DnD/OlDnDVCXI.h
+f desktop /usr/X/include/DnD/OlDnDVCXP.h
+f desktop /usr/X/include/Dt/Desktop.h
+f desktop /usr/X/include/Dt/DtDTMMsg.h
+f desktop /usr/X/include/Dt/DtHMMsg.h
+f desktop /usr/X/include/Dt/DtMsg.h
+f desktop /usr/X/include/Dt/DtTBMsg.h
+f desktop /usr/X/include/Dt/DtWBMsg.h
+f desktop /usr/X/include/Dt/Property.h
+f desktop /usr/X/include/DtI/DtI.h
+f desktop /usr/X/include/DtI/FIconBoxP.h
+f desktop /usr/X/include/DtI/dtutil.h
+f desktop /usr/X/include/DtI/execute.h
+f desktop /usr/X/include/DtI/mapfile.h
+f desktop /usr/X/include/DtI/xpm.h
+f desktop /usr/X/include/DtI/HyperText.h
+f desktop /usr/X/include/DtI/HyperTextP.h
+f desktop /usr/X/lib/libGizmo.so
+
+f desktop /usr/X/include/BaseWGizmo.h
+f desktop /usr/X/include/FListGizmo.h
+f desktop /usr/X/include/InputGizmo.h
+f desktop /usr/X/include/ModalGizmo.h
+f desktop /usr/X/include/ChoiceGizm.h  
+f desktop /usr/X/include/Gizmos.h 
+f desktop /usr/X/include/MenuGizmo.h
+f desktop /usr/X/include/PopupGizmo.h

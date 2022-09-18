@@ -1,0 +1,123 @@
+#ident	"@(#)dtadmin:userad/scripts/dtdeluser	1.9"
+#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+#	Copyright (c) 1988, 1989, 1990 AT&T
+#	  All Rights Reserved
+
+#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+#	UNIX System Laboratories, Inc.
+#	The copyright notice above does not evidence any
+#	actual or intended publication of such source code.
+
+
+Prefix=UX:`/usr/bin/basename $0`
+
+XDIR=${XWINHOME:-/usr/X}
+
+. $XDIR/adm/dtuser.msgs
+
+DESK=$XDIR/desktop
+Toolbox=.	# where to install toolboxes; relative to $LOGINDIR
+DotWastebasket=.wastebasket
+HelpDesk=$Toolbox/Help_Desk
+FolderMap=$Toolbox/Folder_Map
+Wastebasket=$Toolbox/Wastebasket
+Shutdown=$Toolbox/Shutdown
+InBox=UUCP_Inbox
+Mailbox=mailbox
+D1=Applications
+D2=Disks-etc
+D3=Utilities
+D4=Preferences
+D5=System_Setup
+FOLDERS="$D1 $D2 $D3 $D4 $D5"
+
+if [ -f $XDIR/adm/pre_deluser ]
+then
+	. $XDIR/adm/pre_deluser
+fi
+
+if [ $# -eq 0 ]
+then	USER=$LOGNAME
+else	USER=$1
+fi
+PASS=`/usr/bin/grep "$USER" /etc/passwd | /usr/bin/cut -d: -f1,4,6`
+for ENTRY in $PASS
+do
+	FIRST=`echo $ENTRY | /usr/bin/cut -d: -f1`
+	if [ "$USER" = "$FIRST" ]
+	then
+		VALIDATE=1
+		GROUP=`echo $ENTRY | cut -d: -f2`
+		LOGINDIR=`echo $ENTRY | cut -d: -f3`
+		break
+	fi
+done
+if [ $VALIDATE = 0 ]
+then
+	$GETTXT $TXT_BadLoginId  >& 2
+	exit 1
+fi
+if [ "$LOGINDIR" = "" ]
+then
+	$GETTXT $TXT_MissingHome >& 2
+	exit 2
+fi
+if [ ! -r $LOGINDIR -o ! -w $LOGINDIR -o ! -x $LOGINDIR ]
+then
+	$GETTXT $TXT_AccessHome >& 2
+	exit 3
+fi
+
+$XDIR/adm/olremuser $USER 2>/dev/null
+cd $LOGINDIR
+/usr/bin/mv .dtfclass .dtfclass-old
+/sbin/rm -f  $D3/$InBox .lastsession .dtprops 
+/sbin/rm -rf .dthelp
+/usr/bin/rmdir $Mailbox 2>/dev/null
+
+cd $LOGINDIR/$Toolbox
+/sbin/rm -f $HelpDesk $FolderMap $Wastebasket $Shutdown
+/usr/bin/rmdir /var/spool/uucppublic/receive/$USER 2>/dev/null
+/usr/bin/rmdir $DotWastebasket 2>/dev/null
+/sbin/rm -rf .dtinfo
+
+for DIR in `echo $FOLDERS`
+do
+[ -d "$DESK/$DIR" ] && {
+	for FILE in `ls  $DESK/$DIR`
+	do
+		rm -rf $LOGINDIR/$Toolbox/$DIR/$FILE
+	done
+rm -f $LOGINDIR/$Toolbox/$DIR/.dtinfo
+rmdir $LOGINDIR/$Toolbox/$DIR 2>/dev/null
+}
+done
+
+SaveIFS=$IFS
+IFS="
+"
+for PERM in `cat $DESK/LoginMgr/Users/$USER`
+do
+	if [ "$PERM" = "owner" ]
+	then
+		$XDIR/adm/make-owner - $USER 2>/dev/null
+	else
+		PRIVLINE=`/usr/bin/grep "$PERM" $DESK/LoginMgr/PrivTable 2>/dev/null | /usr/bin/cut -f2 -d"	"`
+		IFS=","
+		for ENTRY in $PRIVLINE
+		do
+			COMMAND=`echo $ENTRY | /usr/bin/cut -f1 -d":"`
+			/usr/bin/adminuser -r $COMMAND $USER 2>/dev/null
+		done
+	fi
+done
+IFS="$SaveIFS"
+/usr/bin/rm -f $DESK/LoginMgr/Users/$USER
+/usr/bin/rmdir $DESK/LoginMgr/Users 2>/dev/null
+
+if [ -f $XDIR/adm/post_deluser ]
+then
+	. $XDIR/adm/post_deluser
+else
+	exit 0
+fi

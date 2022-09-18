@@ -1,0 +1,75 @@
+#ident	"@(#)proto:desktop/menus/hd/chkmouse.2	1.5"
+#ident	"$Header: $"
+
+.pageno
+Page %d of %d
+.ul
+UNIX System Installation
+.hhelp_ban
+Instructions
+.helpbanner
+Help: Serial Mouse Port Selection
+.ur
+Serial Mouse Port Selection
+.ll
+Please make a selection. Press F1 for help.
+.lr
+F1=Help
+.top
+In order to use a serial mouse, you must tell the installation program which
+serial port your mouse is connected to.  You must also indicate the number
+of buttons that are on the mouse you will be using.  See the help facility
+or the Installation Guide for more information.
+`[ "$SPORT" ] && echo ""`
+`[ "$SPORT" ] && echo "The values shown below describe a serial mouse that was already configured"`
+`[ "$SPORT" ] && echo "on this computer.  If you have not changed your mouse then you should accept"`
+`[ "$SPORT" ] && echo "these values."`
+
+Enter the following information about your serial mouse.
+.form
+#TYPE_ENUM <# of choices> //choice 1//choice 2//..//choice n//field label//
+2 2 //COM1::tty00 (COM 1)//COM2::tty01 (COM 2)//    Serial Port your mouse is connected to:  //SPORT//
+#field options
+//Right/Left arrow keys for new choice (2 choices)//
+#
+#TYPE_ENUM <# of choices> //choice 1//choice 2//..//choice n//field label//
+2 2 //2//3//    Number of mouse buttons:  //MOUSEBUTTONS//
+#field options
+//Right/Left arrow keys for new choice (2 choices)//
+#
+#
+.button
+Apply
+Reset
+.bottom
+Press 'TAB' to move the cursor between fields.  When finished, move the
+cursor to "Apply" and then press 'ENTER' to continue.
+.help
+For detailed instructions, press the 'F1' (or '?') key at any time.
+`[ "$SPORT" ] && echo ""`
+`[ "$SPORT" ] && echo "The default values on this screen were used by a serial mouse that was"`
+`[ "$SPORT" ] && echo "attached to your original UNIX System.  If you have not changed your mouse"`
+`[ "$SPORT" ] && echo "then you should accept these values."`
+
+SERIAL PORT
+
+In order for the UNIX System to properly handle your serial mouse, it must
+know the serial port that you have the mouse attached to.  Refer to the
+documentation that came with your computer to determine if your serial mouse
+is attached to tty00 (also known as COM1) or tty01 (also known as COM2).
+
+NUMBER OF MOUSE BUTTONS
+
+When you use your mouse in the UNIX System's graphical user environment, you
+will be able to use different buttons on the mouse for activities such as
+drag-and-drop, double-clicking, and popping up menus.  Your mouse has either
+two or three buttons; please select the correct number.
+
+See the Installation Guide for more details.
+.helpinst
+ESC=Exit help  F1=Instructions  1=Forward  2=Backward
+.hhelpinst
+ESC=Exit instructions  1=Forward  2=Backward
+.working
+Working...
+.end

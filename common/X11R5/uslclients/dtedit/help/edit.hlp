@@ -1,0 +1,581 @@
+#ident	"@(#)dtedit:help/edit.hlp	1.12"
+^*version^1
+^*title^Text Editor
+^:Text_Editor
+^*width^70
+^+DesktopMgr/help.defs
+^?Edit simple text files.
+^0^Text Editor
+^$10
+Text Editor
+
+Use the Text Editor to edit existing \d(text files^text file) and create new ones.
+You can cut, copy and paste between text files displayed in different
+Text Editor windows.
+
+The following windows are provided for the Text Editor:
+
+        \k(Text Editor Window)
+        \k(Text Editor: Open Window)
+        \k(Text Editor: Save Window)
+        \k(Text Editor: Properties Window)
+        \k(Text Editor: Find Window)
+^1^Text Editor Window
+^$20
+\k{Text Editor}
+1. Text Editor Window
+
+Use the Text Editor Window to open, save, print, and copy data between
+\d(text files^text file). When editing a new text file, the top of the window says
+"Text Editor: (Untitled)" to indicate that the text file being edited
+does not yet have a name. If what you're editing previously has been
+saved to a file (with the Save menu option under the File button),
+then the name of the text file appears at the top of the window.
+
+The buttons available from the Text Editor window are:
+
+        \k(File Button)
+        \k(Edit Button)
+        \k(View Button)
+        \k(Help Button)
+^2^File Button
+^$30
+1. \k{Text Editor Window}
+   1.1 File Button
+
+The File button lets you do basic operations, such as Open, Save, and
+Print text files. Clicking on the File button displays a menu with
+the following options:
+
+        \k(New)
+        \k(Open)
+        \k(Save)
+        \k(Save As)
+        \k(Print)
+        \k(Exit)
+^3^New
+^$40
+1. \k{Text Editor Window}
+   1.1 \k{File Button}
+       1.1.1 New
+
+The New menu option lets you open a new Text Editor window so that you
+can edit additional text files. Clicking on the New menu option opens
+another Text Editor window. Several Text Editor windows can be open at
+the same time.
+^3^Open
+^$50
+1. \k{Text Editor Window}
+   1.1 \k{File Button}
+       1.1.2 Open
+
+The Open menu option lets you open an existing text file for editing.
+Clicking on the Open menu option displays the Text Editor: Open win-
+dow.
+
+More information: \k(Text Editor: Open Window)
+^3^Save
+^$60
+1. \k{Text Editor Window}
+   1.1 \k{File Button}
+       1.1.3 Save
+
+The Save menu option lets you save the current text file. If your text
+file has already been saved, selecting the Save menu option saves the
+text file using the file name at the top of the Text Editor window.
+The message, "Document Saved" appears at the bottom of the Text Editor
+window. If the text file has not previously been saved, selecting the
+Save menu option displays the Text Editor: Save window, so that you
+can select a file name for your text file.
+
+More information: \k(Text Editor: Save Window)
+^3^Save As
+^$70
+1. \k{Text Editor Window}
+   1.1 \k{File Button}
+       1.1.4 Save As
+
+The Save As menu option is similar to the Save menu option. If your
+text file has already been saved, the Save As menu option lets you
+choose another name under which to save the text file. The original
+file is not changed. Selecting the Save As menu option displays the
+Text Editor: Save window.
+
+More information: \k(Text Editor: Save Window)
+^3^Print
+^$80
+1. \k{Text Editor Window}
+   1.1 \k{File Button}
+       1.1.5 Print
+
+The Print menu option sends the current text file to the \d(default) printer.
+
+More information: \k(Printer Setup^dtadmin/printer.hlp^Printer Setup)
+^3^Exit
+^$90
+1. \k{Text Editor Window}
+   1.1 \k{File Button}
+       1.1.6 Exit
+
+The Exit menu option closes the Text Editor window. If you have
+already saved all the edits made in this session, the Text Editor win-
+dow immediately closes. If you have not saved your most recent edits,
+a message window appears asking whether you want to exit anyway. This
+window has three buttons: Exit, Cancel, and Help.
+
+   o Exit Button: This button closes the Text Editor window without
+     saving any changes.
+
+   o Cancel Button: This button cancels your request to exit and
+     returns you to the Text Editor window. You may now save your work
+     and exit the Text Editor window.
+
+   o Help Button: This button provides on-line help for the Exit menu
+     option.
+^2^Edit Button
+^$100
+1. \k{Text Editor Window}
+   1.2 Edit Button
+
+The Edit button lets you select, delete, and or copy move blocks of
+text in the Text Editor window. It also lets you undo the last change
+you made. Before copying or moving text, you must highlight the
+desired block of text.
+
+Clicking on the Edit Button displays a menu with the following
+options:
+
+        \k(Undo)
+        \k(Cut)
+        \k(Copy)
+        \k(Paste)
+        \k(Delete)
+        \k(Select All)
+        \k(Unselect All)
+
+More information: \k(Highlighting Text)
+^3^Highlighting Text
+^$110
+1. \k{Text Editor Window}
+   1.2 \k{Edit Button}
+       1.2.1 Highlighting Text
+
+There are three ways to select or highlight text in the Text Editor:
+
+   o Drag the mouse pointer across the desired text while holding
+     SELECT (the left mouse button). Release the mouse button when all
+     the text you want to copy or move is highlighted.
+
+   o \d(Double-click^double click) on a word to highlight the word. Triple-click
+     SELECT (the left mouse button) anywhere in a paragraph to
+     highlight an entire paragraph.
+
+   o Various combinations of keys highlight characters, words, and
+     lines:
+
+     - SHIFT ARROW: Press and hold the SHIFT key and use the left or
+       right arrow key to highlight one or more letters to the left or
+       right.
+
+     - SHIFT Ctrl ARROW: Press and hold the SHIFT and Ctrl key and use
+       the left or right arrow key to highlight one or more words to
+       the left or right.
+
+     - SHIFT END: Press and hold the SHIFT key and then press the END
+       key to highlight one or more lines going forward from the cur-
+       sor location.
+
+     - SHIFT HOME: Press and hold the SHIFT key and then press the
+       HOME key to highlight from the beginning of the current para-
+       graph to the cursor location.
+
+     - Ctrl Alt LEFT ARROW: Press and hold the Ctrl and Alt keys and
+       then press the LEFT ARROW key to highlight the entire paragraph
+       in which the cursor is located.
+^3^Undo
+^$120
+1. \k{Text Editor Window}
+   1.2 \k{Edit Button}
+       1.2.2 Undo
+
+The Undo menu option restores the last change you made. For example,
+if you deleted some text and want to get it back, use this option. If
+you select this option a second time, what you restored is undone.
+^3^Cut
+^$130
+1. \k{Text Editor Window}
+   1.2 \k{Edit Button}
+       1.2.3 Cut
+
+The Cut menu option lets you remove text from the text file you're
+editing. You can later retrieve the text with the Paste menu option,
+effectively moving the text within your text file. To cut text, first
+\k(highlight^^Highlighting Text) it, and then select the Cut menu option. The highlighted
+text disappears. It's temporarily stored in an area called the \d(clipboard).
+
+More information: \k(Paste)
+^3^Copy
+^$140
+1. \k{Text Editor Window}
+   1.2 \k{Edit Button}
+       1.2.4 Copy
+
+The Copy menu option lets you duplicate text from the text file you're
+editing without retyping. It makes a copy of the selected text in the
+\d(clipboard) that you can retrieve later using the Paste menu option. To
+Copy text, first \k(highlight^^Highlighting Text) it, and then select the Copy menu option.
+The highlighted text is copied to the clipboard and remains in its
+current position.
+^3^Paste
+^$150
+1. \k{Text Editor Window}
+   1.2 \k{Edit Button}
+       1.2.5 Paste
+
+The Paste menu option copies text from the \d(clipboard) into your text
+file at the location of the cursor.
+
+Note: The text in the clipboard can be from another window capable of
+holding text. In other words, you can paste text to and from different
+windows.
+^3^Delete
+^$160
+1. \k{Text Editor Window}
+   1.2 \k{Edit Button}
+       1.2.6 Delete
+
+The Delete menu option lets you delete text from the text file you're
+editing. To delete text, first highlight it, and then select the
+Delete menu option. The highlighted text disappears. Using the Delete
+menu option does not affect the \d(clipboard) in any way. If you pre-
+viously used Cut or Copy, the text in the clipboard is still available
+after using Delete.
+^3^Select All
+^$170
+1. \k{Text Editor Window}
+   1.2 \k{Edit Button}
+       1.2.7 Select All
+
+The Select All menu option highlights all text in the current text file
+^3^Unselect All
+^$180
+1. \k{Text Editor Window}
+   1.2 \k{Edit Button}
+       1.2.8 Unselect All
+
+The Unselect All menu option unselects any highlighted text in the
+current text file.
+^2^View Button
+^$190
+1. \k{Text Editor Window}
+   1.3 View Button
+
+The View button lets you open additional editing windows, control word
+wrap and line numbers, and search for text. Clicking on the View but-
+ton displays a menu with the following options:
+
+        \k(Another)
+        \k(Properties)
+        \k(Find)
+^3^Another
+^$200
+1. \k{Text Editor Window}
+   1.3 \k{View Button}
+       1.3.1 Another
+
+The Another menu option lets you open an additional Text Editor window
+containing the current text file, giving you another view into your
+text file. When you select the Another menu option, a new Text Editor
+window opens containing the text file you're currently editing.
+^3^Properties
+^$210
+1. \k{Text Editor Window}
+   1.3 \k{View Button}
+       1.3.2 Properties
+
+The Properties menu option lets you turn on word or character wrap,
+and specify whether or not line numbers are displayed in the Text
+Editor window. Clicking on the Properties menu option displays the
+Text Editor:  Properties window.
+^3^Find
+^$220
+1. \k{Text Editor Window}
+   1.3 \k{View Button}
+       1.3.3 Find
+
+The Find menu option lets you search for specific text in the Text
+Editor window. Clicking on the Find menu option displays the Text
+Editor: Find window.
+^2^Help Button
+^$230
+1. \k{Text Editor Window}
+   1.4 Help Button
+
+The Help button provides on-line help for the Text Editor window.
+Clicking on the Help button displays a menu with the following
+options:
+
+        \k(Text Editor^^Text Editor Help)
+        \k(Table of Contents)
+        \k(Help Desk)
+^3^Text Editor=Text Editor Help
+^$240
+1. \k{Text Editor Window}
+   1.4 \k{Help Button}
+       1.4.1 Text Editor
+
+The Text Editor menu option provides on-line help for the Text Editor
+window.
+^3^Table of Contents
+^$250
+1. \k{Text Editor Window}
+   1.4 \k{Help Button}
+       1.4.2 Table of Contents
+
+The Table of Contents menu option displays the list of help topics
+available for the Text Editor window.
+^3^Help Desk
+^$260
+1. \k{Text Editor Window}
+   1.4 \k{Help Button}
+       1.4.3 Help Desk
+
+The Help Desk menu option opens the Help Desk window. From there, you
+can select the icon for which you want on-line help.
+^1^Text Editor: Open Window
+^$270
+\k{Text Editor}
+2. Text Editor: Open Window
+
+Use the Text Editor: Open window to open a text file for editing.  The
+current \d(path) is shown at the top of the window. Below that is a
+box for the file name. If the text file you want to edit is in the
+path shown, enter its file name in the File box. Alternatively, select
+a folder from the list in the Folder(s) box (as you do so, the path at
+the top of the window changes), and then select a text file from the
+list in the File(s) box. Use the scrollbars (if present) to view
+additional folders and files.
+
+The buttons available from the Text Editor: Open window are:
+
+        \k(Open Button)
+        \k(Cancel Button^^Cancel ButtonO)
+        \k(Help Button^^Help ButtonO)
+^2^Open Button
+^$280
+2. \k{Text Editor: Open Window}
+   2.1 Open Button
+
+The Open button opens the selected text file for editing in a new Text
+Editor window. The existing Text Editor window remains open.
+^2^Cancel Button=Cancel ButtonO
+^$290
+2. \k{Text Editor: Open Window}
+   2.2 Cancel Button
+
+The Cancel button closes the Text Editor: Open window without opening
+any more files.
+^2^Help Button=Help ButtonO
+^$300
+2. \k{Text Editor: Open Window}
+   2.3 Help Button
+
+The Help button provides on-line help for the Text Editor: Open window.
+^1^Text Editor: Save Window
+^$310
+\k{Text Editor}
+3. Text Editor: Save Window
+
+Use the Text Editor: Save window to save the text file you're
+currently editing. The current \d(path) is shown at the top of the
+window. Below that is a box for a file name. Enter a name for your
+text file in the File box. If the path does not indicate the folder in
+which you want to save the file, select a folder from the list in the
+Folder(s) box (as you do so, the path at the top of the window
+changes). Use the scrollbars (if present) to view additional folders.
+
+The buttons available from the Text Editor: Save window are:
+
+        \k(Save Button)
+        \k(Cancel Button^^Cancel ButtonS)
+        \k(Help Button^^Help ButtonS)
+^2^Save Button
+^$320
+3. \k{Text Editor: Save Window}
+   3.1 Save Button
+
+The Save button saves the text file you're editing with the file name
+specified in the File box.
+
+If you attempt to save your current work to a file that already
+exists, a message window appears that indicates that the file already
+exists. You are asked whether you want to overwrite that file. This
+notice has three buttons: Overwrite, Cancel, and Help.
+
+   o Overwrite Button: This button saves your current work to
+     the file name you indicated in the Text Editor: Save window,
+     overwriting the existing file of the same name.
+
+   o Cancel Button: This button cancels your request to save
+     your work and returns you to the Text Editor window.
+
+   o Help Button: This button provides on-line help for the Overwrite
+     notice.
+
+If for some reason, your file cannot be saved, a notice appears
+indicating that the file cannot be saved. Possible reasons are that
+the file is read-only, or that you entered an invalid path for the
+file name. After closing the message window, check the file and path
+and try saving your work again. This window has two buttons: Continue
+and Help.
+
+   o Continue Button: This button closes the message window and lets
+     you continue with your work in the Text Editor window.
+
+   o Help Button: This button provides on-line help for the Cannot
+     Save notice.
+^2^Cancel Button=Cancel ButtonS
+^$330
+3. \k{Text Editor: Save Window}
+   3.2 Cancel Button
+
+The Cancel button closes the Text Editor: Save window without saving
+your file.
+^2^Help Button=Help ButtonS
+^$340
+3. \k{Text Editor: Save Window}
+   3.3 Help Button
+
+The Help button provides on-line help for the Text Editor: Save window.
+^1^Text Editor: Properties Window
+^$350
+\k{Text Editor}
+4. Text Editor: Properties Window
+
+Use the Text Editor: Properties window to turn on word or character
+wrap (how words are broken at the end of a line), and line numbering
+for the file you're editing.
+
+The options for the Wrap at setting are Words, Characters, and No
+Wrapping.
+
+   o Words: This option makes words that don't fit completely on a
+     line wrap over to the next line. Words are not broken; the entire
+     word is put on the next line.
+
+   o Characters: This option makes any characters that don't fit on a
+     line wrap over to the next line. In this case, a word is broken
+     at the character that doesn't fit.
+
+   o No Wrapping: This option prevents words or characters from wrap-
+     ping to the next line. As you continue entering characters, the
+     line scrolls horizontally to make more space. Notice that the
+     bottom scrollbar moves as you type past the right side of the
+     Text Editor window.
+
+The options for the Number on setting are No Numbering and Left.
+
+   o No Numbering: Line numbers are not displayed in the Text Editor
+     window.
+
+   o Left: Lines numbers are displayed at the left side of the Text
+     Editor window. Notice that when word or character wrap is on, the
+     line numbers show each line that ends with a hard return, not
+     each line with characters on it.
+
+The buttons available from the Text Editor: Properties window are:
+
+        \k(Apply Button)
+        \k(Set Button)
+        \k(Reset Button)
+        \k(Reset to Factory Button)
+        \k(Cancel Button^^Cancel ButtonP)
+        \k(Help Button^^Help ButtonP)
+^2^Apply Button
+
+^$360
+4. \k{Text Editor: Properties Window}
+   4.1 Apply Button
+
+The Apply button immediately applies any changes made in the Text Edi-
+tor: Properties window. These changes only affect the current session.
+After applying the changes, the Text Editor: Properties window closes.
+^2^Set Button
+^$370
+4. \k{Text Editor: Properties Window}
+   4.2 Set Button
+
+The Set button is similar to the Apply button, except the changes made
+in the Text Editor: Properties window are not temporary; they are
+saved and affect future sessions in the Text Editor window. After
+applying the changes, the Text Editor: Properties window closes.
+^2^Reset Button
+^$380
+4. \k{Text Editor: Properties Window}
+   4.3 Reset Button
+
+The Reset button reverses any changes you have not yet applied in the
+Text Editor: Properties Window. The window remains open.
+^2^Reset to Factory Button
+^$390
+4. \k{Text Editor: Properties Window}
+   4.4 Reset to Factory Button
+
+The Reset To Factory button resets any changes you make to the values
+originally set in the software. The Text Editor: Properties window
+remains open.
+^2^Cancel Button=Cancel ButtonP
+^$400
+4. \k{Text Editor: Properties Window}
+   4.5 Cancel Button
+
+The Cancel button closes the Text Editor: Properties window without
+changing any properties.
+^2^Help Button=Help ButtonP
+^$410
+4. \k{Text Editor: Properties Window}
+   4.6 Help Button
+
+The Help button provides on-line help for the Text Editor: Properties
+window.
+^1^Text Editor: Find Window
+^$420
+\k{Text Editor}
+5. Text Editor: Find Window
+
+Use the Text Editor: Find window to search for specific text within
+your text file. Enter the text you want to search for in the Text box.
+
+The buttons available from the Text Editor: Find window are:
+
+        \k(Next Button)
+        \k(Previous Button)
+        \k(Cancel Button^^Cancel ButtonF)
+        \k(Help Button^^Help ButtonF)
+^2^Next Button
+^$430
+5. \k{Text Editor: Find Window}
+   5.1 Next Button
+
+The Next button begins the search and finds the next occurrence of the
+text in the text file beginning at the cursor position.
+^2^Previous Button
+^$440
+5. \k{Text Editor: Find Window}
+   5.2 Previous Button
+
+The Previous button searches backwards from the cursor position and
+finds the previous occurrence of the text in the text file.
+^2^Cancel Button=Cancel ButtonF
+^$450
+5. \k{Text Editor: Find Window}
+   5.3 Cancel Button
+
+The Cancel button closes the Text Editor: Find window without
+searching for any text.
+^2^Help Button=Help ButtonF
+^$460
+5. \k{Text Editor: Find Window}
+   5.4 Help Button
+
+The Help button provides on-line help for the Text Editor: Find window.

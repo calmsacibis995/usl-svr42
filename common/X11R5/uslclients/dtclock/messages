@@ -1,0 +1,142 @@
+Clock: Properties
+Clock: Set Alarm
+---     2
+---     3
+---     4
+---     5
+---     6
+---     7
+---     8
+None
+Traditional
+Ship's Bells
+---    12
+---    13
+---    14
+---    15
+---    16
+---    17
+---    18
+Analog
+Digitial
+---    21
+---    22
+---    23
+---    24
+---    25
+---    26
+---    27
+---    28
+Second
+Minute
+---    31
+---    32
+---    33
+---    34
+---    35
+---    36
+---    37
+---    38
+Apply
+Set Defaults
+Reset
+Reset to Factory
+Cancel
+Help
+---    45
+---    46
+---    47
+---    48
+Set Alarm...
+Properties...
+Help...
+---    52
+---    53
+---    54
+---    55
+---    56
+---    57
+---    58
+Set Alarm
+Reset Alarm
+Cancel
+Help...
+---    63
+---    64
+---    65
+---    66
+---    67
+---    68
+default alarm message:
+Message:
+Hour:
+Minute:
+AM
+PM
+AM/PM:
+---    76
+---    77
+---    78
+Jan
+Feb
+Mar
+Apr
+May
+Jun
+Jul
+Aug
+Sep
+Oct
+Nov
+Dec
+---    91
+---    92
+---    93
+---    94
+---    95
+---    96
+---    97
+---    98
+January
+February
+March
+April
+May
+June
+July
+August
+September
+October
+November
+December
+---   111
+---   112
+---   113
+---   114
+---   115
+---   116
+---   117
+---   118
+Sunday
+Monday
+Tuesday
+Wednesday
+Thursday
+Friday
+Saturday
+---   126
+---   127
+---   128
+Sun
+Mon
+Tue
+Wed
+Thu
+Fri
+Sat
+---   136
+---   137
+---   138
+Chime:
+Mode:
+Tick:

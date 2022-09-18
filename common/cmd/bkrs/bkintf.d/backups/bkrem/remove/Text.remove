@@ -1,0 +1,8 @@
+#ident	"@(#)bkrs:common/cmd/bkrs/bkintf.d/backups/bkrem/remove/Text.remove	1.2.3.1"
+#ident  "$Header: Text.remove 1.2 91/06/21 $"
+title="Current Backup Reminder Schedule"
+init=`message Press [CANCEL] to return to the removal form.`
+text="`cron_parse -m bkmsg $ARG1`"
+columns=76
+rows=15
+wrap=FALSE

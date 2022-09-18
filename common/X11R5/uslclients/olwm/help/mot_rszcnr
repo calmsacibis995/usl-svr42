@@ -1,0 +1,15 @@
+Use the resize corners to expand or contract the area of a window in either
+the horizontal dimension, the vertical dimension, or both.
+
+Move the mouse pointer to any resize corner. If the resizeCursors resource
+is set, then the cursor will change to indicate that it is in position to
+resize. While the cursor is in the resize corner, press SELECT, and drag
+the pointer. A bounding box is displayed to show you the location of the
+new window border. If the resize feedback option is set, then a feedback
+window is displayed in the center of the screen with the new size of the
+window, should you release SELECT now.
+
+Release SELECT when the window is at the desired size. The window is
+redisplayed in the new size, and the contents adjust to fit within the
+borders of the window. If the resize feedback option is set, the feedback
+window disappears.

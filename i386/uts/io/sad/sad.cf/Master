@@ -1,0 +1,16 @@
+#ident	"@(#)uts-x86:io/sad/sad.cf/Master	1.4"
+#ident	"$Header: $"
+#
+# version id
+#
+$version 1
+
+#
+# entry points
+#
+$entry  init
+
+#
+# Device  Prefix Characteristics Order	B-Major C-Major
+# -----------------------------------------------------
+sad	sad	kScr	0	0	25

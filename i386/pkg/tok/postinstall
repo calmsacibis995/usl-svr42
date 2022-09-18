@@ -1,0 +1,165 @@
+#ident	"@(#)pkg.tok:postinstall	1.7"
+#ident	"$Header: $"
+
+FAILURE=1	# fatal error
+RSPDIR=/var/sadm/tok_resp
+CONFDIR=/etc/conf
+CONFBIN=${CONFDIR}/bin
+TMP=/tmp/$$.tok.err
+ERROR1=" Errors have been written to the file $TMP."
+NETINFO=/usr/sbin/netinfo
+SD=/etc/conf/sdevice.d
+
+Init_Parameters ()
+{
+	egrep "^ibmtok" ibmtok/System > /tmp/$$.system
+	read Dev Cfg Unit Ipl Itype Iv Sioa Eioa Scma Ecma Dma </tmp/$$.system
+	export Dev Cfg Unit Ipl Itype Dma
+
+	grep -v "^ibmtok	[YN]	" ibmtok/System >/tmp/$$.ibmtok
+	mv /tmp/$$.ibmtok ibmtok/System
+}
+
+WriteParams ()
+{
+	BNO=$1
+	Vec=$2
+	Sioa=$3
+	Eioa=$4
+	Sram=$5
+	Eram=$6
+	Srom=$7
+	Erom=$8
+
+	N=`expr $BNO - 1`
+
+	# Need two entries in System file to handle RAM/ROM split
+
+	echo "$Dev\tY\t$Unit\t$Ipl\t$Itype\t$Vec\t$Sioa\t$Eioa\t$Srom\t$Erom\t$Dma" >>ibmtok/System
+	echo "$Dev\tY\t$Unit\t0\t0\t0\t0\t0\t$Sram\t$Eram\t$Dma" >>ibmtok/System
+
+	if [ $N -gt 0 ]
+	then
+		Nmaj=`expr $N \* 2`
+		echo "clone\tibmtok_${N}\tc:${Nmaj}\tibmtok" >>ibmtok/Node
+	fi
+	$NETINFO -a -d ibmtok_${N}
+}
+
+do_installf ()
+{
+	installf -f -c none $PKGINST
+	installf -f -c $1 $PKGINST
+}
+
+clean_up ()
+{
+	removef $PKGINST /tmp/tok/ibmtok/* >/dev/null 2>&1
+	for i in Driver.o Master Space.c System Node
+	do
+		removef $PKGINST /tmp/tok/ibmtok/$i >/dev/null 2>&1
+	done
+
+	removef -c none $PKGINST /tmp/tok/ibmtok >/dev/null 2>&1
+	removef $PKGINST /tmp/tok/ibmtok >/dev/null 2>&1
+	removef $PKGINST /tmp/tok >/dev/null 2>&1
+	removef -f $PKGINST >/dev/null 2>&1
+
+	rm -rf $RSPDIR /tmp/$$.* \
+		/etc/inst/locale/${LOCALE}/menus/tok \
+		/etc/inst/locale/C/menus/tok
+}
+
+idinstall_build_installf ()
+{
+	cd $1
+	/etc/conf/bin/idinstall -P ${PKGINST} -a $1 2>> $TMP
+	if [ $? != 0 ]
+	then
+		/etc/conf/bin/idinstall -P ${PKGINST} -u $1 2>> $TMP
+		if [ $? != 0 ]
+		then
+			prterr_exit "driver installation"
+		fi
+	fi
+	cd ..
+
+	# now build
+
+	if [ "$PKGINSTALL_TYPE" = "NEWINSTALL" ]
+	then
+		${CONFBIN}/idbuild -M $1 2>> $TMP
+	else
+		${CONFBIN}/idbuild 2>> $TMP
+	fi
+	if [ $? != 0 ]
+	then
+		prterr_exit "kernel reconfiguration"
+	fi
+
+	do_installf $1
+}
+
+prterr_exit ()
+{
+       	echo "The installation cannot be completed due to an error"
+	echo "in the $1."
+	echo "$ERROR1"
+	echo "Please try the installation again.  If the error"
+	echo "occurs again, contact your Service Representative." 
+	exit $FAILURE
+}
+
+######## main ########
+
+cd /tmp/tok
+
+. $RSPDIR/boards
+if [ "${IBMAT_NUM}" = "" ]; then IBMAT_NUM=0; fi
+if [ "${IBMMCA_NUM}" = "" ]; then IBMMCA_NUM=0; fi
+
+Init_Parameters
+
+RAMADDR="0 0"
+ROMADDR="0 0"
+
+i=1
+if [ ${IBMAT_NUM} != 0 ]
+then
+	while [ $i -le ${IBMAT_NUM} ]
+	do
+		if [ "${i}" = "1" ]; then IOADDR="A20 A23"; else IOADDR="A24 A27";fi
+
+		if [ -f $RSPDIR/IBMTOK.${i} ]
+		then
+			. $RSPDIR/IBMTOK.${i}
+
+			WriteParams ${i} ${IRQ} ${IOADDR} ${RAMADDR} ${ROMADDR}
+		fi
+		i=`expr $i + 1`
+	done
+fi
+
+i=1
+if [ ${IBMMCA_NUM} != 0 ]
+then
+	IOADDR="0 0"
+
+	while [ $i -le ${IBMMCA_NUM} ]
+	do
+		if [ -f $RSPDIR/IBMTOK.${i} ]
+		then
+			. $RSPDIR/IBMTOK.${i}
+
+			WriteParams ${i} ${IRQ} ${IOADDR} ${RAMADDR} ${ROMADDR}
+		fi
+		i=`expr $i + 1`
+	done
+fi
+
+idinstall_build_installf ibmtok
+
+/etc/confnet.d/configure > /dev/null
+clean_up
+errflag=`expr ${errflag:=0} + 10`
+exit ${errflag} 

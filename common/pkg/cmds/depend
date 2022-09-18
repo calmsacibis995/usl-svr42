@@ -1,0 +1,6 @@
+#ident	"@(#)pkg.cmds:common/pkg/cmds/depend	1.4"
+#ident	"$Header: $"
+
+P	base	Base System
+P	lp	Printer Support
+P	nsu	Network Support Utilities

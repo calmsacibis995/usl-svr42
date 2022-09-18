@@ -1,0 +1,28 @@
+#ident	"@(#)face:src/oam/users/Menu.ulist	1.2.4.4"
+#ident  "$Header: Menu.ulist 1.6 91/11/06 $"
+
+menu=$$uxface:539:"FACE Users on This System"
+
+framemsg=$$uxface:387:"Press CANCEL to return to the previous frame."
+
+help=open TEXT $INTFBASE/Text.itemhelp 'menu:F1'
+
+init=`if [ $NR -eq 0 ];
+then
+	message $$uxface:540:"There are no FACE users defined on this system.";
+	echo false;
+else
+	echo true;
+fi`
+
+
+#
+# if there are any face users on this system, list them
+#
+`fmlgrep '^vmsys:' /etc/passwd | fmlcut -f6 -d: | set -e VMSYS;
+$VMSYS/bin/chkperm -l | sort | regex '(.*)$0' '
+name=$m0
+action=badchar'`
+
+name=""
+button=3

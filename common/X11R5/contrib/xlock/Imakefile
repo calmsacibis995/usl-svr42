@@ -1,0 +1,53 @@
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+/**/#ident	"@(#)r4xlock:Imakefile	1.2"
+/**/# @(#)Imakefile 22.2 89/09/20
+/**/# Imakefile - xlock
+/**/#
+/**/# Copyright (c) 1989 by Sun Microsystems, Inc.
+/**/#
+/**/#
+/**/# This file is provided AS IS with no warranties of any kind.  The author
+/**/# shall have no liability with respect to the infringement of copyrights,
+/**/# trade secrets or any patents by this file or any part thereof.  In no
+/**/# event will the author be liable for any lost revenue or profits or
+/**/# other special, indirect and consequential damages.
+/**/#
+/**/#
+       INCLUDES = -I$(TOP) -I$(TOP)/X11
+LOCAL_LIBRARIES = $(XLIB) $(XMULIB) $(XTOOLLIB)
+  SYS_LIBRARIES = -lm
+           SRCS = Xlock.c \
+		  hopalong.c \
+		  life.c \
+		  qix.c \
+		  XCrHsbCmap.c \
+		  HSBmap.c \
+		  XCrDynCmap.c
+           OBJS = Xlock.o \
+	          hopalong.o \
+		  life.o \
+		  qix.o \
+		  XCrHsbCmap.o \
+		  HSBmap.o \
+		  XCrDynCmap.o
+
+ComplexProgramTarget(Xlock)
+
+all:: .Xlock
+.Xlock: Xlock
+	$(LN) Xlock .Xlock
+InstallScript(xlock,$(BINDIR))
+InstallProgram(.Xlock,$(BINDIR))
+InstallManPage(xlock,$(MANDIR))
+
+DependTarget()
+
+

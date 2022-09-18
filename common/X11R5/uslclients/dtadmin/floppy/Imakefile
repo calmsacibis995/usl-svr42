@@ -1,0 +1,84 @@
+/**/#ident	"@(#)dtadmin:floppy/Imakefile	1.12.2.13"
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+
+#define PassCDebugFlags 'CDEBUGFLAGS=$(CDEBUGFLAGS)'
+
+         SRCS1 = \
+		devmenu.c\
+		dos.c\
+		misc.c\
+		format.c\
+		backup.c\
+		restore.c\
+		MediaMgr.c
+
+         OBJS1 = \
+		devmenu.o\
+		dos.o\
+		misc.o\
+		backup.o\
+		restore.o\
+		format.o\
+		MediaMgr.o
+
+
+         SRCS2 = RemoteFilt.c
+
+         OBJS2 = RemoteFilt.o
+
+         PROG1 = MediaMgr
+
+         PROG2 = RemoteFilt
+
+         HDRS1 = \
+		media.h\
+		media_msgs.h
+
+         OBJS  = $(OBJS1) $(OBJS2)
+         SRCS  = $(SRCS1) $(SRCS2)
+         HDRS  = $(HDRS1) $(HDRS2)
+         PROGS = $(PROG1) $(PROG2)
+
+   DTCLIENTSLIB = $(USLCLIENTSRC)/libDtI
+       DTLIBSRC = $(LIBSRC)/Dt
+    GIZMOLIBSRC = $(LIBSRC)/Gizmo
+    MEMUTLIBSRC = $(LIBSRC)/Memutil
+      DTILIBSRC = $(DTCLIENTSLIB)
+     DTAMLIBSRC = ../dtamlib
+         DTILIB = $(DTILIBSRC)/libDtI.so
+          DTLIB = $(DTLIBSRC)/libDt.so
+       GIZMOLIB = $(GIZMOLIBSRC)/libGizmo.so
+       MEMUTLIB = $(MEMUTLIBSRC)/libmemut.so
+        DTAMLIB = $(DTAMLIBSRC)/libdtam.a
+
+       INCLUDES = -I$(LIBSRC) -I$(LIBSRC)/Xol -I$(DTILIBSRC) -I$(GIZMOLIBSRC) -I$(USLCLIENTSRC)
+LOCAL_LIBRARIES = $(DTAMLIB) $(DTILIB) $(DTLIB) $(GIZMOLIB) XolClientLibs
+        DEPLIBS = $(DTAMLIB) $(DTILIB) $(DTLIB) $(GIZMOLIB) XolClientDepLibs
+
+  SYS_LIBRARIES = -lgen -lm
+
+all:: $(PROGS)
+
+NormalProgramTarget($(PROG1),$(OBJS1),$(DEPLIBS),$(LOCAL_LIBRARIES),$(SYS_LIBRARIES))
+NormalProgramTarget($(PROG2),$(OBJS2),,,)
+
+InstallProgram($(PROG1),$(BINDIR))
+InstallProgram($(PROG2),$(DTADMDIR))
+
+InstallMultiple(dtindex,$(DTADMDIR))
+InstallMultiple(dtbackup.sh,$(DTADMDIR))
+InstallMultiple(dtamcheckdev,$(DTADMDIR))
+
+InstallDesktopClient($(BINDIR)/MediaMgr,$(DESKTOPDIR)/Utilities/Backup-Restore)
+
+DependTarget()
+
+LintTarget()

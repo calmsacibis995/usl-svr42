@@ -1,0 +1,38 @@
+#ident	"@(#)mk:i386at/:mkfiles	1.6"
+
+#
+# This script will place the SVR3.2 shared objects found
+# in $ROOT/usr/src/$WORK/shared into $ROOT/$MACH/usr/lib
+#
+# This script will also create the $ROOT?$MACH/dev/null file
+
+# call from :mk as follows
+#./:mkfiles ${ROOT} ${MACH} ${WORK} >files.out 2>&1
+#
+
+Root=$1
+Mach=$2
+Work=$3
+
+
+
+#
+#	Copy the shared objects.
+#
+
+
+if [ ! -d ${Root}/${Mach}/usr/lib ]
+then
+	mkdir -p ${Root}/${Mach}/usr/lib
+fi
+
+cp ${Root}/usr/src/${Work}/shared/lib*_s ${Root}/${Mach}/usr/lib
+
+
+#
+#	Now create /dev/null
+#
+
+touch ${Root}/${Mach}/dev/null
+
+exit 0

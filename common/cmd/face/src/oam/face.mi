@@ -1,0 +1,4 @@
+#ident	"@(#)face:src/oam/face.mi	1.7.4.2"
+#ident  "$Header: face.mi 1.2 91/06/26 $"
+#status#new
+main:applications:FACE^Framed Access Command Environment Administration^Menu.FACE

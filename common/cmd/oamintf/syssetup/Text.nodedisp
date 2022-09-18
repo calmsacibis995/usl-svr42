@@ -1,0 +1,32 @@
+#ident	"@(#)oamintf:common/cmd/oamintf/syssetup/Text.nodedisp	1.1.6.2"
+#ident  "$Header: Text.nodedisp 2.0 91/07/12 $"
+################################################################################
+#	Module Name: Text.nodedisp
+#	Calling Sequence: nodename.menu
+#	Functional Description: This Text object displays the System-Name and
+#				the Network Node-Name
+#	How:
+#	Inputs:
+#	Functions Called:
+#	Issues:
+################################################################################
+
+Title=Display System Name and Network Node Name
+
+help=OPEN TEXT $INTFBASE/Text.itemhelp "display:ABSTRACT"
+
+rows=5
+columns=72
+
+framemsg=`readfile $INTFBASE/display.msg`
+
+`shell "$TFADMIN /usr/bin/uname -s" | set -l SYSNM ;
+ shell "$TFADMIN /usr/bin/uname -n" | set -l NODENM`
+
+text="
+   System-Name:       $SYSNM
+
+   Network Node-Name: $NODENM
+   
+   "
+

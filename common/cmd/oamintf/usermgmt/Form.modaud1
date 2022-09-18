@@ -1,0 +1,59 @@
+#ident	"@(#)oamintf:common/cmd/oamintf/usermgmt/Form.modaud1	1.1.6.3"
+#ident  "$Header: Form.modaud1 2.0 91/07/12 $"
+
+form="Modify Default Audit Event(s)"
+
+`set -l MOD_LIFE=longterm`
+lifetime=$MOD_LIFE
+
+framemsg=`readfile $INTFBASE/form.msg`
+
+help=OPEN TEXT $INTFBASE/Text.itemhelp $LININFO
+
+wrap=false
+
+done=`unset -l OP -l op -l OPERATOR;
+if [ "$F1" != "no change" ]; then
+	if [ "$F1" = "add" ]; then
+		 set -l OPERATOR="+" -l OP=Add -l op=add;
+	elif [ "$F1" = "remove" ]; then
+		 set -l OPERATOR="-" -l OP=Remove -l op=remove;
+	elif [ "$F1" = "replace" ]; then
+		 set -l OPERATOR="=" -l OP=Replace -l op=replace;
+	elif [ "$F1" = "change" ]; then
+		 set -l OPERATOR="" -l OP=Change -l op=change;
+	fi;
+	set -l CMD="OPEN FORM $OBJ_DIR/Form.modaud2";
+elif [ "$!ESPKG" -eq "0" ]; then
+	set -l CMD="OPEN FORM $OBJ_DIR/Form.modmac1";
+else
+	message -w -f "Modifying user $LOGIN.";
+	/usr/bin/rm -f /tmp/sgrp;
+	if [ -n "$TFADMIN" ]; then shell "$TFADMIN usermod $!UMODARGS $!LOGIN >/dev/null 2>$UMODERR";
+	else shell "usermod $!UMODARGS $!LOGIN >/dev/null 2>$UMODERR"; fi;
+	if [ "$RET" -eq "0" ]; then
+      		set -l MOD_LIFE=shortterm;
+		set -l CMD="OPEN TEXT $OBJ_DIR/Text.musrok $LOGIN";
+	else
+		set -l CMD="OPEN TEXT $OBJ_DIR/Text.musrnok $LOGIN";
+	fi;
+fi`$CMD
+
+#  $F1
+name=Do you want to modify the default audit event(s)?
+lininfo=Form.modaud1:audit1
+nrow=1
+ncol=3
+frow=1
+fcol=53
+rows=1
+columns=12
+scroll=true
+
+value=no change
+rmenu={ add remove replace change "no change" }
+menuonly=true
+
+invalidmsg=const "ERROR: Not a valid choice."
+fieldmsg= const "Press the CHOICES function key. Press SAVE when you complete the form."
+

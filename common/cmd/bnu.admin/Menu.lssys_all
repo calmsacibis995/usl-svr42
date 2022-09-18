@@ -1,0 +1,18 @@
+#ident	"@(#)bnu.admin:common/cmd/bnu.admin/Menu.lssys_all	1.5.7.3"
+#ident  "$Header: Menu.lssys_all 2.1 91/09/13 $"
+
+################################################################################
+#
+#	Module Name:Menu.lssys_all
+#
+#	Functional Description: This menu is a popup menu for listing all
+#                               system entries in /etc/uucp/Systems.
+#
+################################################################################
+menu="SYSTEM- TIME  TYPE  CLASS  PHONE  LOGIN"
+
+`$TFADMIN /usr/bin/cat /etc/uucp/Systems | regex '^([^ ^#^	][^ ^#^	]*)$0 (.*)$1'
+'name="$m0"
+description="$m1"
+action=CLOSE'`
+ 

@@ -1,0 +1,38 @@
+CLASS diskette1
+BEGIN
+	_LPATTERN	f0t;
+	_ICONFILE	Disk_A.icon;
+	_DFLTICONFILE	disk3.5.xpm;
+	MENU _Open	'exec MediaMgr -D diskette1 &';
+	MENU Backup	'exec MediaMgr -B -D diskette1 &';
+	MENU Restore	'exec MediaMgr -R -D diskette1 &';
+	MENU Install	'exec PackageMgr -D diskette1 &';
+	MENU Format	'exec MediaMgr -F -D diskette1 &';
+	_DROP		'exec MediaMgr -D diskette1 -C "%S" &';
+END
+
+CLASS diskette2
+BEGIN
+	_LPATTERN	f1t;
+	_ICONFILE	Disk_B.icon;
+	_DFLTICONFILE	disk5.25.xpm;
+	MENU _Open	'exec MediaMgr -D diskette2 &';
+	MENU Backup	'exec MediaMgr -B -D diskette2 &';
+	MENU Restore	'exec MediaMgr -R -D diskette2 &';
+	MENU Install	'exec PackageMgr -D diskette2 &';
+	MENU Format	'exec MediaMgr -F -D diskette2 &';
+	_DROP		'exec MediaMgr -D diskette2 -C "%S" &';
+END
+
+CLASS ctape1
+BEGIN
+	_LPATTERN	c0s0n;
+	_ICONFILE	ctape.glyph;
+	MENU _Open	'exec MediaMgr -D ctape1 &';
+	MENU Backup	'exec MediaMgr -B -D ctape1 &';
+	MENU Restore	'exec MediaMgr -R -D ctape1 &';
+	MENU Install	'exec PackageMgr -D ctape1 &';
+	MENU Rewind	'exec /usr/lib/tape/tapecntl -w &';
+	_DROP		'exec MediaMgr -D ctape1 -C "%S" &';
+END
+

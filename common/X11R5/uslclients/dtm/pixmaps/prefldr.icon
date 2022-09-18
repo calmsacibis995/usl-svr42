@@ -1,0 +1,50 @@
+#define prefldr_format 1
+#define prefldr_width 32
+#define prefldr_height 32
+#define prefldr_ncolors 9
+#define prefldr_chars_per_pixel 1
+static char * prefldr_colors[] = {
+" " , "#E400E400E400",
+"." , "#000000000000",
+"X" , "#DB00DB00BA00",
+"o" , "#710071007100",
+"O" , "#E000E0000000",
+"+" , "#AA00AA00AA00",
+"@" , "#7100CF00BA00",
+"#" , "#E00000000000",
+"$" , "#00000000E000"
+} ;
+static char * prefldr_pixels[] = {
+"                                ",
+"                                ",
+"                                ",
+"               ..........       ",
+"              .XXXXXXXXXX.      ",
+"  ............XXooXooXooXX...   ",
+" .XXXXXXXXXXXX.XXXXXXXXXX.XXo.  ",
+" .XXXXXXX.XXXXX..........XXXo. O",
+" .XXXXXX.+.XXXXXXXXXXXXXXXXXo.OO",
+" .XXXXX.+.+......+XXXXXXXXXXoOOO",
+" .XXXX.+. .+.XXXXX.XXXXXXXXXoOOO",
+" .XXX..++. .+.XXXXX.XXXXXXXXOOOO",
+" .XX.  .++.+.@XXXXXX.XXXXXXOOOOO",
+" .X.    .++.@.XXXXX.XXXXXXOOOO##",
+" ..      ..@.XXXXX.XXXXXXOOOO###",
+" .@.     .@.XXXXXXX.XXXXXOOOO###",
+" ..@.   .@.XXXXXXXXX.XXXOOOO####",
+"....@. .@...............OOO####$",
+".   .@.@.              OOO####$$",
+". .. .@... .. .. .. ..OOO####$$$",
+". ..+.. ..+..+..+..+.OOOO###$$$$",
+".  ++    ++ ++ ++ ++ OOO###$$$$$",
+". .. .. .. .. .. .. OOO###$$$$$$",
+". ..+..+..+..+..+..OOO###$$$$$. ",
+".  ++ ++ ++ ++ ++ OOO###$$$$Xo. ",
+". .. .. .. .. .. OOO###$$$$.oo. ",
+". ..+..+..+..+..OOO###$$$$ ...  ",
+".  ++ ++ ++ ++ OOO###$$$   .o   ",
+". ... ........OOO###$$$ .. .o   ",
+". ...+.......OOO###$$$  ..+.o   ",
+".  +++ +++++OOO###$$$    ++.o   ",
+"...........OOO###$$$........o   "
+} ;

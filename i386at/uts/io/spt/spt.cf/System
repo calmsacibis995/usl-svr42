@@ -1,0 +1,5 @@
+#ident	"@(#)uts-x86at:io/spt/spt.cf/System	1.3"
+#ident	"$Header: $"
+$version 1
+$loadable spt
+spt	N	8	0	0	0	0	0	0	0	-1

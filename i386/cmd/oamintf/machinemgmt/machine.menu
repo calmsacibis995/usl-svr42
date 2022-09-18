@@ -1,0 +1,11 @@
+#ident	"@(#)oamintf:i386/cmd/oamintf/machinemgmt/machine.menu	1.3"
+#ident  "$Header: machine.menu 1.1 91/08/28 $"
+#menu#Machine Configuration Display and Shutdown
+#help#machine.help^Machine Configuration Display and Shutdown
+#life#permanent
+
+configuration^System Configuration Display^configmgmt/cfgmgmt.menu
+monitor^Message Monitoring^placeholder^monitor/Text.monitor
+shutdown^Stops All Running Programs and Halts Machine^power/Text.power
+reboot^Stops All Running Programs and Reboots Machine^reboot/Text.reboot
+whos on^Displays List of Users Logged onto Machine^whoson/Text.whoson

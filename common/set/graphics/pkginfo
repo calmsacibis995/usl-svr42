@@ -1,0 +1,11 @@
+#ident  "@(#)set:common/set/graphics/pkginfo	1.3"
+#ident  "$Header: $"
+
+PKG=graphics
+PREDEPEND=
+VERSION="1"
+RELEASE="4.2"
+NAME="Graphical Applications Set"
+CATEGORY=set
+VENDOR="UNIX System Laboratories"
+CLASSES=none

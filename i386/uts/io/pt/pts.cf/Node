@@ -1,0 +1,18 @@
+#ident	"@(#)uts-x86:io/pt/pts.cf/Node	1.2"
+#ident	"$Header: $"
+pts	pts/0	c	0
+pts	pts/1	c	1
+pts	pts/2	c	2
+pts	pts/3	c	3
+pts	pts/4	c	4
+pts	pts/5	c	5
+pts	pts/6	c	6
+pts	pts/7	c	7
+pts	pts/8	c	8
+pts	pts/9	c	9
+pts	pts/10	c	10
+pts	pts/11	c	11
+pts	pts/12	c	12
+pts	pts/13	c	13
+pts	pts/14	c	14
+pts	pts/15	c	15

@@ -1,0 +1,50 @@
+#ident	"@(#)olpkg.oam:pkg.dtoldev/postinstall	1.4"
+#	Copyright (c) 1990, 1991 UNIX System Laboratories, Inc.
+#	Copyright (c) 1988 AT&T
+#	  All Rights Reserved
+
+#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+#	UNIX System Laboratories, Inc.
+#	The copyright notice above does not evidence any
+#	actual or intended publication of such source code.
+
+
+#
+#	USL MooLIT Development Package
+#
+
+
+#
+# make sure we're on V.4
+#
+if [ `uname -r`  -lt "4.0" ]
+then
+	echo "This package can only be installed on Release 4.0 or later systems"
+	exit 1
+fi
+
+#
+# attach the desktop manager class definitions
+#
+if [ -d /usr/X/lib/classdb ]
+then
+	grep "INCLUDE development;" /usr/X/lib/classdb/dtadmin >/dev/null 2>&1
+	if [ $? -ne 0 ]
+	then
+		echo "INCLUDE development;" >> /usr/X/lib/classdb/dtadmin
+	fi
+fi
+
+#
+# let them know that the MooLIT Development package is installed
+#
+
+installf $PKGINST /usr/options/$PKG.name
+echo $NAME > /usr/options/$PKG.name
+installf -f $PKGINST
+
+#
+# Now clean up
+#
+rm -rf /tmp/pkg >/dev/null 2>&1
+exit ${errflag}

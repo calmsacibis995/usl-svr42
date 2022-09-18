@@ -1,0 +1,1315 @@
+#ident	"@(#)dtm:help/folder.hlp	1.48"
+^*version^1
+^*title^Folder
+^:Folder
+^*width^70
+^+DesktopMgr/help.defs
+^?Store files and other folders.
+^0^Folder
+^$10
+Folder
+
+Think of a \d(folder) as a container for \d(files^file) and other folders. When
+you first start the UNIX Desktop, the UNIX Desktop window appears. It
+contains several special folders as well as several applications:
+
+        \k(Applications Folder^^Applications FolderH)
+        \k(Disks-etc Folder^^Disks-etc FolderH)
+        \k(Folder Map^^Folder MapH)
+        \k(Help Desk^^Help DeskH)
+        \k(Mailbox Folder^^Mailbox FolderH)
+        \k(Preferences Folder^^Preferences FolderH)
+        \k(Shutdown^^ShutdownH)
+        \k(System Setup Folder^^System Setup FolderH)
+        \k(Utilities Folder^^Utilities FolderH)
+        \k(Wastebasket^^WastebasketH)
+
+Folder Help: The following windows are provided for folders:
+
+   o \k(Folder: folder_name Window)
+
+   o \k(File: New Window)
+
+   o \k(File: Copy Window)
+
+   o \k(File: Move Window)
+
+   o \k(File: Link Window)
+
+   o \k(Desktop: File Properties Window)
+
+   o \k(File: Find Window)
+
+   o \k(View: Customize Window)
+
+   o \k(Found Files Window)
+
+   o \k(Folder: Open Window)
+^1^Applications Folder=Applications FolderH
+^$20
+\k{Folder}
+1. Applications Folder
+
+The Applications Folder is a convenient place to locate applications
+you might add to your system, such as word processors, database pro-
+grams, etc. When you first load your UNIX Desktop system, the follow-
+ing applications are included:
+
+   o Calculator
+
+   o \k(Clock^dtclock/clock.hlp)
+
+   o \k(Editor^dtedit/edit.hlp^Text Editor)
+
+   o \k(Email^dtmail/mail.hlp^Mail)
+
+   o \k(Terminal^xterm/term.hlp^Terminal)
+
+   o Puzzle
+^1^Disks-etc Folder=Disks-etc FolderH
+^$30
+\k{Folder}
+2. Disks-etc Folder
+
+The Disks-etc Folder contains icons for things such as floppy disk
+drives, cartridge tape drives, CD-ROM drives, etc. When you first
+load your UNIX Desktop system, the following icons are included, pro-
+vided your system is equipped with floppy and cartridge tape drives:
+
+   o \k(Disk A^dtadmin/disk.hlp)
+
+   o \k(Cartridge Tape^dtadmin/tape.hlp^Cartridge Tape)
+^1^Folder Map=Folder MapH
+^$40
+\k{Folder}
+3. Folder Map
+
+The \k(Folder Map^DesktopMgr/fmap.hlp^Folder Map) shows, in graphical form, the relationships between the
+folders on your system.
+^1^Help Desk=Help DeskH
+^$50
+\k{Folder}
+4. Help Desk
+
+The Help Desk contains icons representing the various applications on
+your system. From there you can click on an icon and view short
+description and on-line help for the application.
+^1^Mailbox Folder=Mailbox FolderH
+^$55
+\k{Folder}
+5. Mailbox Folder
+
+The Mailbox Folder stores your outgoing mail (in a file called mbox).
+^1^Preferences Folder=Preferences FolderH
+^$60
+\k{Folder}
+6. Preferences Folder
+
+The Preferences Folder contains icons that let you change certain pro-
+perties of the UNIX Desktop, such as the colors and how the mouse but-
+tons and keyboard work. The Preferences Folder contains:
+
+   o \k(Color^DesktopMgr/clrpref.hlp^Color Preferences)
+
+   o \k(Desktop^DesktopMgr/dskpref.hlp^Desktop Preferences)
+
+   o \k(Icons^DesktopMgr/icnpref.hlp^Icons Preferences)
+
+   o \k(Keyboard^DesktopMgr/keypref.hlp^Keyboard Preferences)
+
+   o \k(Locale^DesktopMgr/locpref.hlp^Locale Preferences)
+
+   o \k(Miscellaneous^DesktopMgr/mispref.hlp^Miscellaneous Preferences)
+
+   o \k(Mouse^DesktopMgr/moupref.hlp^Mouse Preferences)
+^1^Shutdown=ShutdownH
+^$70
+\k{Folder}
+7. Shutdown
+
+\k(Shutdown^DesktopMgr/shutdown.hlp^Shutdown) lets you restart or turn off the power to your computer. To
+preserve your \d(files^file), you should always use Shutdown instead of turning
+off you computer while applications are running.
+^1^System Setup Folder=System Setup FolderH
+^$80
+\k{Folder}
+8. System Setup Folder
+
+The System Setup Folder contains icons that help you administer your
+system. For example, you can add fonts to your system, setup a modem
+for dialing out to other systems, and add and remove users from your
+system. The System Setup Folder includes:
+
+   o \k(Application Setup^dtadmin/pkgset.hlp^Application Setup)
+
+   o \k(Dialup Setup^dtadmin/DialMgr.hlp^Dialup Setup)
+
+   o \k(Font Setup^dtadmin/font.hlp^Font Setup)
+
+   o \k(Icon Setup^DesktopMgr/iconset.hlp^Icon Setup)
+
+   o \k(Password Setup^dtadmin/passwd.hlp^Password Setup)
+
+   o \k(Printer Setup^dtadmin/printer.hlp^Printer Setup)
+
+   o \k(User Setup^dtadmin/LoginMgr.hlp^User Setup)
+
+   o \k(Internet Setup^dtadmin/inet.hlp^Internet Setup)
+^1^Utilities Folder=Utilities FolderH
+^$90
+\k{Folder}
+9. Utilities Folder
+
+The Utilities Folder provides various applications to help you with
+your system. For example, you can backup and restore files and fold-
+ers, check your system status and set tasks to run when you're not at
+your computer. The Utilities Folder includes:
+
+   o \k(Backup-Restore^dtadmin/backup.hlp^Backup-Restore)
+
+   o \k(System Status^dtadmin/dashbrd.hlp^System Status)
+
+   o \k(Task Scheduler^dtsched/sched.hlp^Task Scheduler)
+^1^Wastebasket=WastebasketH
+^$100
+\k{Folder}
+10. Wastebasket
+
+The \k(Wastebasket^DesktopMgr/wb.hlp^Wastebasket) holds files and folders you delete from your system. It
+could hold them indefinitely or you can set the Wastebasket to
+permanently remove deleted files and folders at fixed intervals.
+^1^Folder: folder_name Window
+^$110
+\k{Folder}
+11. Folder: folder_name Window
+
+Folders are named Folder: folder_name where folder_name is replaced by
+the name of the folder. Folders allow you to access \d(files^file) and other
+\d(folders^folder). From within a folder window, you can do all the basic file
+manipulation-procedures, such as moving, copying, and deleting files.
+You also can open other folder windows and change the way the files
+are viewed in the folder window, that is, as:
+
+   o \d(icons^icon)
+
+   o file names
+
+   o file names with other information, such as size of file
+
+The following \d(buttons^button) are available from all folder windows:
+(Note: Not all menu items under a button are always selectable.  Some
+menu items are only selectable if one or more icons are selected in
+the folder window. Others are selectable only if the operation is
+possible. For example, the Undo option under the Edit button is only
+selectable if you performed an operation that can be undone.)
+
+        \k(File Button)\t\t\k(Edit Button)\t\k(View Button)
+        \k(Folders Button)\t\k(Help Button^^Help ButtonFW)
+
+More Information: \k(Using Files and Folders)
+^2^Using Files and Folders
+^$120
+11. \k{Folder: folder_name Window}
+   11.1 Using Files and Folders
+
+Information in your computer is saved in \d(files^file). For example, when you
+write a letter with a word processor, the contents of the letter are
+saved in a file. UNIX Desktop folders are created to group together
+files related in some way. If a number of files inside a folder are
+related, you can create another folder within the first folder to
+group together those files. Creating folders for related files keep
+your files organized and easy to find.
+
+The contents of every folder can be displayed in a folder window.
+You have several ways to open a folder:
+
+   o \d(Double-click^double-click) on a folder's icon.
+
+   o Click on a folder's icon and then click on the Open menu option
+     under the File button.
+
+   o Click MENU on a folder's icon to display its icon menu. Click on
+     Open from the menu.
+
+Once you open a folder window, use your mouse to easily perform a
+variety of operations on files and folders:
+
+   o Single click to select: Move the mouse pointer over an icon and
+     click (press and release) the SELECT mouse button once.
+
+     - A single click on any icon selects that icon. Once selected,
+       you can use any of the file operations on the icon, such as
+       \k(Move), \k(Copy), or \k(Delete).
+
+   o \d(Double-click^double-click) to open: Move the mouse pointer over an icon and
+     click SELECT (press the left mouse button twice rapidly).
+
+     - Double-clicking on a data file opens the file and starts it up
+       in whatever application with which it was created. For example,
+       if the file is a text file, double-clicking starts up the word
+       processor or text editor with the file open and ready for
+       editing.
+
+     - Double-clicking on a folder opens another folder window and
+       displays the contents of the folder. The name of this window is
+       Folder: folder_name where folder_name is the name of the folder
+       on which you double-clicked.
+
+     - Double-clicking on an application starts up the application.
+
+     - Select multiple icons:
+
+     - Using ADJUST: When one or more icons are already selected,
+       click ADJUST (Ctrl-SELECT) to select additional icons. If an
+       icon is already selected, clicking ADJUST on the icon unselects
+       it.
+
+     - Using a bounding box: To select several icons near each other
+       with a bounding box, click and hold SELECT on the background
+       area of a folder window. Next, drag the mouse pointer and
+       enclose the desired icons in the box being formed.  When you
+       release the mouse button, the icons within the box are
+       selected. Notice that only icons completely enclosed within the
+       bounding box are selected.
+
+       Note: You can unselect several icons by creating a bounding box
+       with the ADJUST mouse function. Icons must be completely
+       enclosed in this bounding box to be unselected.
+
+   o \d(Drag-and-drop^drag-and-drop): Place the mouse pointer on top of an icon and click
+     and hold SELECT. Still holding SELECT, move the mouse pointer
+     (drag) until the icon is over a window or another icon and
+     release the mouse button (drop). Notice that, if you drag an icon
+     to an area that is an invalid drop site, the icon changes to an
+     Invalid Drop Site icon (a circle with a line through it).
+
+     You can drag-and-drop icons on the following:
+
+       - An application: Dropping an icon onto an application designed
+	 for drag-and-drop, starts the application using the dropped
+	 data file as input. An application can be a spreadsheet, text
+	 editor, printer, or any other application that recognizes the
+	 type of file you are dropping on it.
+
+       - Another folder icon or folder window: Dropping an icon onto
+	 another folder icon or folder window moves the icon to that
+	 folder. For example, if you have both the UNIX Desktop window
+	 and the Applications folder open, you can drag the Clock icon
+	 (or any other icon) from the Applications folder to the UNIX
+	 Desktop window. Now, when you want to open the Clock icon,
+	 you do it from the UNIX Desktop window.
+
+       Note: You can use keys as you drag-and-drop to make a copy or
+       create a soft link. Press and hold the following key(s) while
+       doing the drag-and-drop. To copy an icon, use the Alt key; to
+       create a soft link, use the Alt and Ctrl keys. Use of these
+       keys works for both two-button and three-button mice.
+
+       More information: \k(Types of Links)
+
+       - Wastebasket icon: Dropping an icon onto the Wastebasket icon
+	 deletes the icon by moving it to the wastebasket.
+
+       - Mail icon: Dropping a file icon onto the mail icon causes the
+	 file to be mailed to the user (or users) previously selected.
+	 The users may be either on your computer system or on a
+	 remote computer system.
+
+       - Printer icon: Dropping a file icon onto a printer icon causes
+	 the file to be sent to the printer represented by the printer
+	 icon.
+
+       - Remote system icon: Dropping a file icon onto an icon
+	 representing a remote computer system copies the file to the
+         remote computer system.
+
+       - Window background: You can drop an icon in another location
+	 in a window to reposition it. Do this to group related icons.
+	 The new icon positions are preserved when you exit the Desktop.
+
+       Note: "Busy" icons (icons involved in a previous operation that
+       has not completed) cannot be operated on.
+^2^File Button
+^$130
+11. \k{Folder: folder_name Window}
+   11.2 File Button
+
+The File button lets you do basic operations such as Open, Copy, and
+Move for files and folders. Clicking on the File button displays a
+menu with the following options (notice that all menu options except
+for New, Find, and Exit are active only if one or more icons are
+selected):
+
+        \k(Open)\t\k(New)\t\k(Rename)
+        \k(Copy)\t\k(Move)\t\k(Link)
+        \k(Delete)\t\k(Print)\t\k(Properties)
+        \k(Find)\t\t\k(Exit)
+^3^Open
+^$140
+11. \k{Folder: folder_name Window}
+   11.2 \k{File Button}
+       11.2.1 Open
+
+The Open menu option lets you open the selected icons. If you open a
+folder icon, a new folder window appears for that folder. If you open
+a file icon, the action associated with that file takes place. For
+example, if you open a file icon associated with a word processor, the
+word processor begins running with the selected file in its editing
+screen.
+
+^3^New
+^$150
+11. \k{Folder: folder_name Window}
+   11.2 \k{File Button}
+       11.2.2 New
+
+The New menu option provides a pop-up window that lets you create a
+new file. Clicking on the New menu option displays the File: New win-
+dow.
+
+More information: \k(File: New Window)
+^3^Copy
+^$160
+11. \k{Folder: folder_name Window}
+   11.2 \k{File Button}
+       11.2.3 Copy
+
+The Copy menu option lets you copy the selected icons to another
+folder. First select the icon or icons you want to copy in the folder
+window. Next, click on the Copy menu option to display the File: Copy
+window.
+
+More information: \k(File: Copy Window)
+^3^Rename
+^$170
+11. \k{Folder: folder_name Window}
+   11.2 \k{File Button}
+       11.2.4 Rename
+
+The Rename menu option that lets you change the name a file or folder.
+Clicking on the Rename menu option displays the File: Rename window.
+
+More information: \k(File: Rename Window)
+^3^Move
+^$180
+11. \k{Folder: folder_name Window}
+   11.2 \k{File Button}
+       11.2.5 Move
+
+The Move menu option lets you move the selected icons to another folder.
+It can also be used to rename a selected icon (by Moving it to a new
+name). First select the icon or icons you want to move from the folder
+window. Next, click on the Move menu option to display the File: Move
+window.
+
+More information: \k(File: Move Window)
+^3^Link
+^$190
+11. \k{Folder: folder_name Window}
+   11.2 \k{File Button}
+       11.2.6 Link
+
+The Link menu option lets you link an icon in a folder to another
+folder so that it is available from more than one location. First
+select the icon you want to link from the folder window. Next, click
+on the Link menu option to display the File: Link window.
+
+More information: \k(File: Link Window)
+^3^Delete
+^$200
+11. \k{Folder: folder_name Window}
+   11.2 \k{File Button}
+       11.2.7 Delete
+
+The Delete menu option lets you remove the selected icons. The deleted
+icons are moved to the wastebasket, where they eventually are deleted
+according to your wastebasket deletion schedule.
+
+Note: You can retrieve a deleted icon by using the Undo menu option
+under the \k(Edit button^^Edit Button).
+
+More information: \k(Wastebasket Window^DesktopMgr/wb.hlp)
+^3^Print
+^$210
+11. \k{Folder: folder_name Window}
+   11.2 \k{File Button}
+       11.2.8 Print
+
+The Print menu option lets you send the selected icons to the
+\d(default) printer. This has the same effect as \d(dragging-and-dropping^drag-and-drop) an
+icon on the default printer's icon.
+
+More information: \k(Printer Setup^dtadmin/printer.hlp^Printer Setup)
+^3^Properties
+^$220
+11. \k{Folder: folder_name Window}
+   11.2 \k{File Button}
+       11.2.9 Properties
+
+The Properties menu option lets you view and set properties for the
+selected icon. First select an icon from a folder window. Next, click
+on the Properties menu option to display the Desktop: File Properties
+window.
+
+More information: \k(Desktop: File Properties Window)
+^3^Find
+^$230
+11. \k{Folder: folder_name Window}
+   11.2 \k{File Button}
+       11.2.10 Find
+
+The Find menu option lets you search for files by file name, file con-
+tents, file type, or last modification date. Clicking on the Find menu
+option displays the File: Find window.
+
+More information: \k(File: Find Window)
+^3^Exit
+^$240
+11. \k{Folder: folder_name Window}
+   11.2 \k{File Button}
+       11.2.11 Exit
+
+The Exit menu item immediately closes the folder window. When you exit
+a folder, the icon layout and view are preserved.
+^2^Edit Button
+^$300
+11. \k{Folder: folder_name Window}
+   11.3 Edit Button
+
+The Edit button lets you select or unselect icons and undo the most
+recent Copy, Delete, Rename, Move, or Link action. Clicking on the Edit
+button displays a menu with the following options:
+
+        \k(Select All)
+        \k(Unselect All)
+        \k(Undo)
+^3^Select All
+^$310
+11. \k{Folder: folder_name Window}
+   11.3 \k{Edit Button}
+       11.3.1 Select All
+
+The Select All menu option selects all icons in the window. You then
+can use operations under the File button to move, copy or do other
+file operations on entire sets of icons.
+^3^Unselect All
+^$320
+11. \k{Folder: folder_name Window}
+   11.3 \k{Edit Button}
+       11.3.2 Unselect All
+
+The Unselect All menu option unselects all icons currently selected in
+the window.
+^3^Undo
+^$330
+11. \k{Folder: folder_name Window}
+   11.3 \k{Edit Button}
+       11.3.3 Undo
+
+The Undo menu option lets you undo the previous Copy, Rename, Move,
+Link, or Delete command.
+^2^View Button
+^$250
+11. \k{Folder: folder_name Window}
+   11.4 View Button
+
+The View button lets you change how files and folders are sorted and
+represented in a folder window. Clicking on the View button displays
+a menu with the following options:
+
+        \k(Align)
+        \k(Sort)
+        \k(Format)
+        \k(Customize)
+^3^Align
+^$260
+11. \k{Folder: folder_name Window}
+   11.4 \k{View Button}
+       11.4.1 Align
+
+The Align menu option aligns the icons in a folder window into
+straight rows and columns.
+^3^Sort
+^$270
+11. \k{Folder: folder_name Window}
+   11.4 \k{View Button}
+       11.4.2 Sort
+
+The Sort menu option lets you choose the order in which files and
+folders are displayed in a folder window. Once you choose Sort, you
+can then choose from the following options:
+
+   o By Type: This option groups icons by type, such as folders,
+     data files, and applications.
+
+   o By Name: This option sorts files alphabetically. (Actually, the
+     Name option sorts items in ASCII order: file names beginning
+     with punctuation precede files beginning with capital letters,
+     which precede files beginning with lower-case letters.)
+
+   o By Size: This option sorts files by their size. The smallest file
+     is first; the largest file is last.
+
+   o By Time: This option sorts files by the time they were last
+     changed. The file changed most recently is shown first.
+^3^Format
+^$280
+11. \k{Folder: folder_name Window}
+   11.4 \k{View Button}
+       11.4.3 Format
+
+The Format menu option lets you choose the way files and folders are
+presented on the screen. Once you choose Format, you can choose from
+the following format options:
+
+   o Icons: This option displays each file and folder as an icon and a
+     name.
+
+   o Short: This option displays the name of each file and folder,
+     with a mini-icon to the left of the name, giving you a com-
+     pact view of your files and folders.
+
+   o Long: This option displays a long listing of the files and fold-
+     ers. The listing includes a mini-icon, file name, file size,
+     modification time, owner, group, and file permissions.
+^3^Customize
+^$290
+11. \k{Folder: folder_name Window}
+   11.4 \k{View Button}
+       11.4.4 Customize
+
+The Customize menu option lets you select specific types of icons to
+display. The default is all icons. Using metacharacters, you can
+define patterns that can be used to limit which icons are displayed.
+Clicking on the Customize menu option displays the View: Customize
+window.
+
+More information: \k(View: Customize Window)
+^2^Folders Button
+^$340
+11. \k{Folder: folder_name Window}
+   11.5 Folders Button
+
+The Folders button allows you to open additional \d(folder) windows.
+Clicking on the Folders button displays a menu, the contents of which
+depend on which folders you have already opened. When you first start
+the UNIX Desktop, the menu for the UNIX Desktop window has the
+following options:
+
+   o \k(Parent Folder)
+
+   o \k(Folder Map^^Folder Map1)
+
+   o \k(Other Folder)
+
+As you open more folders, the list of menu options grows, with each
+new folder name appearing at the top of the list. For example, if you
+open a bin folder and then a reports folder from your UNIX Desktop
+window, the menu has these options:
+
+   o /zorb/reports
+
+   o /zorb/bin
+
+   o Parent Folder
+
+   o Folder Map
+
+   o Other Folder
+
+Note: Your login ID replaces zorb in these examples.
+
+You can open a folder window for any folder listed by clicking on it.
+^3^Parent Folder
+^$350
+11. \k{Folder: folder_name Window}
+   11.5 \k{Folders Button}
+       11.5.1 Parent Folder
+
+The Parent Folder menu option lets you open the folder that stores the
+folder you're in. For example, if an open folder has the path
+/home/zorb/reports/december (the folder window's title is Folder:
+december), the parent folder is reports: the december folder is
+contained within the reports folder which is on your Desktop, which is
+contained within a special UNIX SVR4.2 folder called home.
+^3^Folder Map=Folder Map1
+^$360
+11. \k{Folder: folder_name Window}
+   11.5 \k{Folders Button}
+       11.5.2 Folder Map
+
+The Folder Map menu option lets you open the Folder Map from any
+folder.
+
+More information: \k(Folder Map^DesktopMgr/fmap.hlp^Folder Map)
+^3^Other Folder
+^$370
+11. \k{Folder: folder_name Window}
+   11.5 \k{Folders Button}
+       11.5.3 Other Folder
+
+The Other Folder menu option lets you display the contents of any
+folder accessible to you on your computer. Clicking on the Other
+Folder menu option displays the Folder: Open window.
+
+More information: \k(Folder: Open Window)
+^2^Help Button=Help ButtonFW
+^$380
+11. \k{Folder: folder_name Window}
+   11.6 Help Button
+
+The Help button provides on-line help for a folder. Clicking on the
+Help button displays a menu with the following options:
+
+        \k(Folder^^FolderFW)
+        \k(Table of Contents)
+        \k(Help Desk)
+^3^Folder=FolderFW
+^$390
+11. \k{Folder: folder_name Window}
+   11.6 \k{Help Button}
+       11.6.1 Folder
+
+The Folder menu option provides help for a folder window.
+^3^Table of Contents
+^$400
+11. \k{Folder: folder_name Window}
+   11.6 \k{Help Button}
+       11.6.2 Table of Contents
+
+The Table of Contents menu option displays the list of help topics
+available for a folder window.
+^3^Help Desk
+^$410
+11. \k{Folder: folder_name Window}
+   11.6 \k{Help Button}
+       11.6.3 Help Desk
+
+The Help Desk menu option opens the Help Desk window. From there, you
+can select the icon for which you want on-line help.
+^1^File: New Window
+^$420
+\k{Folder}
+12. File: New Window
+
+Use the File: New window to create new files and folders. To do so you
+select a file class and template (if provided), and specify a file
+name.
+
+At the top of the File: New window is the Class box. Click on the icon
+representing the class of file or folder you're creating.
+
+Note: Datafile class is selected unless you select another.
+
+The file class you choose defines characteristics such as the
+application associated with your new file and the icon that represents
+the file. For example, if you create a spreadsheet file, the file
+class defines what spreadsheet program to use when you open the file,
+how to format the file if you print it, and what action to take if you
+drag-and-drop another icon onto this icon.
+
+Click on the template you want to use to create this file if a list of
+templates is provided in the Templates list box. Certain applications
+require you to start with a template, which puts some information into
+the file. This information lets the application recognize and use the
+file properly. The templates are created by you when you install an
+application onto your system.
+
+Note: The first template in the list is selected unless you
+     select another. When a template is selected, the Name text box is
+     automatically filled in with the name of the template.
+
+     More information:
+          \k(Application Setup^dtadmin/pkgset.hlp)
+          \k(Icon Setup^DesktopMgr/iconset.hlp)
+
+Enter the name for the new file or folder in the Name text box.
+
+The buttons available for the File: New window are:
+
+        \k(Create & Open Button^^Create & Open ButtonNW)
+        \k(Create Button^^Create ButtonNW)
+        \k(Cancel Button^^Cancel ButtonNW)
+        \k(Help Button^^Help ButtonNW)
+^2^Create & Open Button=Create & Open ButtonNW
+^$430
+12. \k{File: New Window}
+   12.1 Create & Open Button
+
+The Create & Open button creates the new file or folder and specified
+immediately opens it.
+^2^Create Button=Create ButtonNW
+^$440
+12. \k{File: New Window}
+   12.2 Create Button
+
+The Create button creates the new file or folder specified but does
+not open it.
+^2^Cancel Button=Cancel ButtonNW
+^$450
+12. \k{File: New Window}
+   12.3 Cancel Button
+
+The Cancel button closes the File: New window without creating a file.
+^2^Help Button=Help ButtonNW
+^$460
+12. \k{File: New Window}
+   12.4 Help Button
+
+The Help button provides on-line help for the File: New window.
+^1^File: Copy Window
+^$470
+\k{Folder}
+13. File: Copy Window
+
+Use the File: Copy window to either make a copy of a selected file or
+specify a folder into which you can copy one or more selected icons.
+The Copy operation is similar to the Move operation. Both create a
+duplicate of the original file or folder at the destination. However,
+the Copy operation leaves the original file or folder intact; the Move
+operation deletes the original.
+
+The destination for the selected icon(s) is given on the Path line of
+the File: Copy window. Click on a folder name or on Parent Folder in
+the Folder(s) box to change the destination folder (use the scrollbar,
+if present, to view additional folders). The Path line changes to
+indicate the destination. Alternatively, enter the path and name of
+the destination folder in the File text box.
+
+If you are copying only a single file, you can rename the file as you
+copy it by including a new file name in the File text box.
+
+The buttons available from the File: Copy window are:
+
+        \k(Copy Button^^Copy ButtonCW)
+        \k(Cancel Button^^Cancel ButtonCW)
+        \k(Help Button^^Help ButtonCW)
+^2^Copy Button=Copy ButtonCW
+^$480
+13. \k{File: Copy Window}
+   13.1 Copy Button
+
+The Copy button copies the selected icon(s) to the file or folder
+indicated on the Path line and/or in the File text box.
+^2^Cancel Button=Cancel ButtonCW
+^$490
+13. \k{File: Copy Window}
+   13.2 Cancel Button
+
+The Cancel button closes the File: Copy window without copying a file
+or folder.
+^2^Help Button=Help ButtonCW
+^$500
+13. \k{File: Copy Window}
+   13.3 Help Button
+
+The Help button provides on-line help for the File: Copy window.
+^1^File: Rename Window
+^$510
+\k{Folder}
+14. File: Rename Window
+
+Use the File: Rename window to specify new names for files and folders.
+
+The buttons available for the File: Rename window are:
+
+        \k(Rename Button^^Rename ButtonRW)
+        \k(Cancel Button^^Cancel ButtonRW)
+        \k(Help Button^^Help ButtonRW)
+^2^Rename Button=Rename ButtonRW
+^$520
+14. \k{File: Rename Window}
+   14.1 Rename Button
+
+The Rename button renames the file or folder as indicated.
+^2^Cancel Button=Cancel ButtonRW
+^$530
+14. \k{File: Rename Window}
+   14.2 Cancel Button
+
+The Cancel button closes the File: Rename window without renaming the
+selected file or folder.
+^2^Help Button=Help ButtonRW
+^$540
+14. \k{File: Rename Window}
+   14.3 Help Button
+
+The Help button provides on-line help for the File: Rename window.
+^1^File: Move Window
+^$550
+\k{Folder}
+15. File: Move Window
+
+Use the File: Move window to select a folder into which you can move
+the selected icons. The Move operation is similar to the Copy opera-
+tion. Both create a duplicate of the original file or folder at the
+destination. However, the Copy operation leaves the original file or
+folder intact; the Move operation deletes the original.
+
+The destination for the selected icon(s) is given on the Path line of
+the File: Move window. Click on a folder name or on Parent Folder in
+the Folder(s) box to change the destination folder (use the scrollbar,
+if present, to view additional folders). The Path line changes to
+indicate the destination.  Alternatively, you can enter the path and
+name of the destination file or folder in the File text box.
+
+If you are moving only a single file, you can rename the file as you
+move it by including a new file name in the File text box. Otherwise,
+enter only the name for the destination folder. If the folder does not
+exist, it is created.
+
+Moving an icon via the File: Move window without changing the icon's
+name has the same effect as using the \d(drag-and-drop) technique to
+move the icon.
+
+The buttons available from the File: Move window are:
+
+        \k(Move Button^^Move ButtonMW)
+        \k(Cancel Button^^Cancel ButtonMW)
+        \k(Help Button^^Help ButtonMW)
+^2^Move Button=Move ButtonMW
+^$560
+15. \k{File: Move Window}
+   15.1 Move Button
+
+The Move button moves the selected folder(s) to the folder indicated
+on the Path line or in the File text box.
+^2^Cancel Button=Cancel ButtonMW
+^$570
+15. \k{File: Move Window}
+   15.2 Cancel Button
+
+The Cancel button closes the File: Move window without moving any
+files.
+^2^Help Button=Help ButtonMW
+^$580
+15. \k{File: Move Window}
+   15.3 Help Button
+
+The Help button provides on-line help for the File: Move window.
+^1^File: Link Window
+^$590
+\k{Folder}
+16. File: Link Window
+
+Use the File: Link window to link the selected file or folder to
+another folder window. The Link operation is similar to the Copy and
+Move operations. The Link operation, however, does not create a
+duplicate of the selected file or folder. It only creates a copy of
+the icon, not the actual file. This, in effect, lets you access the
+same file or folder from more than one location, preserving space on
+your system disk because the files are not actually copied.
+
+The destination for the selected icon(s) is given on the Path line of
+the File: Link window. The destination for the selected icon(s) is
+given on the Path line. Click on a folder name or on Parent Folder in
+the Folder(s) box to change the destination folder (use the scrollbar,
+if present, to view additional folders). The Path line changes to
+indicate the destination. Alternatively, enter the path and name of
+the destination folder in the File text box.
+
+Note: If you are linking a single file or folder, you can include a
+new name for the linked file or folder in the File box. Although the
+linked file has a new name, it still accesses the original file.
+
+The buttons available from the File: Link window are:
+
+        \k(Link Button^^Link ButtonLW)
+        \k(Cancel Button^^Cancel ButtonLW)
+        \k(Help Button^^Help ButtonLW)
+
+More information: \k(Types of Links)
+^2^Types of Links
+^$600
+16. \k{File: Link Window}
+   16.1 Types of Links
+
+You can create two kinds of links: soft and hard. With both types, you
+can create a new icon linked to the selected file or folder. Use the
+Link Type line to specify one of two types of links:
+
+   o A soft link has the advantage that it can link files in different
+     disk slices (sections), different disks, or possibly even on
+     different computers. However, when a file or folder has a soft
+     link and the original is deleted, the link is still present,
+     though it is no longer a valid reference to the file.
+
+     You can tell that a file has a soft link when dots appear beneath
+     the icon or mini-icon. Use the \k(Desktop: File Properties window^^Desktop: File Properties Window)
+     to see to which file the icon is linked.
+
+   o A hard link must be in the same part of a disk as the original
+     file (you cannot create a hard link for a folder). When the
+     original is deleted, the hard link still exists and keeps a copy
+     of the original file.
+
+     Hard links have no affect on the  appearance of a file's icon (as
+     do soft links). The \k(Desktop: File Properties window^^Desktop: File Properties Window) shows how many
+     links exist. Typically, only one link exists (the file is linked
+     to itself). If one or more hard links exist, the number is
+     higher.
+
+^2^Link Button=Link ButtonLW
+^$610
+16. \k{File: Link Window}
+   16.2 Link Button
+
+The Link button links the selected file or folder to the folder
+indicated on the Path line or in the File text box. The link is
+either soft or hard, according to the Link Type selected.
+^2^Cancel Button=Cancel ButtonLW
+^$620
+16. \k{File: Link Window}
+   16.3 Cancel Button
+
+The Cancel button closes the File: Link window without linking any
+files.
+^2^Help Button=Help ButtonLW
+^$630
+16. \k{File: Link Window}
+   16.4 Help Button
+
+The Help button provides on-line help for the File: Link window.
+^1^Desktop: File Properties Window
+^$640
+\k{Folder}
+17. Desktop: File Properties Window
+
+Use the Desktop: File Properties window to display the name, owner,
+group permissions, and the Icon Class for the selected icon. In
+addition, you can add a comment to be associated with the icon
+
+The following text boxes and options are displayed in the Desktop:
+File Properties window:
+
+   o File Name: This text box contains the name of the file or folder
+     whose properties are displayed in the window.
+
+   o No. of Hard Links: This line shows the number of hard links for a
+     file. If the selected icon in the folder window is for a folder
+     or a soft link, this line does not appear.
+
+   o Links To: This line shows what file a soft link is linked to. If
+     the selected icon in the folder window is for a folder or hard
+     link, this line does not appear.
+
+   o Owner: This text box shows the login ID of the file or folder's
+     owner.
+
+   o Group: This text box shows the group to which the file or folder
+     belongs.
+
+   o Modification Time: This is the time and date the file or folder
+     was last modified.
+
+   o Owner Access: The options on this line determine whether the
+     owner has Read, Write, or Execute permission for the file or
+     folder.
+
+   o Group Access: The options on this line determine whether members
+     of the group to which the file or folder belongs have Read,
+     Write, or Execute permission for the file or folder.
+
+   o Other Access: The options on this line determine whether users
+     other than those covered by the Owner and Group Access lines have
+     Read, Write, or Execute permission for the file or folder.
+
+   o Icon Class Name: This is the icon class to which the file or folder
+     belongs.
+
+     More information: \k(Icon Setup^DesktopMgr/iconset.hlp^Icon Class Information)
+
+   o Comments: This text box contains any comment you'd like to enter.
+
+The buttons available for the Desktop: File Properties window are:
+
+        \k(Apply Button^^Apply ButtonPW)
+        \k(Reset Button^^Reset ButtonPW)
+        \k(Cancel Button^^Cancel ButtonPW)
+        \k(Help Button^^Help ButtonPW)
+^2^Apply Button=Apply ButtonPW
+^$650
+17. \k{Desktop: File Properties Window}
+   17.1 Apply Button
+
+The Apply button applies any changes you make in the Desktop: File
+Properties window to the selected entry in a folder window. After
+applying the changes, the Desktop: File Properties window closes.
+^2^Reset Button=Reset ButtonPW
+^$660
+17. \k{Desktop: File Properties Window}
+   17.2 Reset Button
+
+The Reset button reverses any changes you have not yet applied. The
+Desktop: File Properties window remains open.
+^2^Cancel Button=Cancel ButtonPW
+^$670
+17. \k{Desktop: File Properties Window}
+   17.3 Cancel Button
+
+The Cancel button closes the Desktop: File Properties window with no
+changes made.
+^2^Help Button=Help ButtonPW
+^$680
+17. \k{Desktop: File Properties Window}
+   17.4 Help Button
+
+The Help button provides on-line help for the Desktop: File Properties
+window.
+^1^File: Find Window
+^$700
+\k{Folder}
+18. File: Find Window
+
+Use the File: Find window to search for \d(files^file) by their name,
+contents, name and contents, type, or date last modified. Start either
+by entering the file name in the File Name(s) text box and/or some
+text (\k(metacharacters^^Metacharacters) can be used) within the file in the appropriate
+text box at the top of the File: Find window. If you enter the name of
+a file in the File Name(s) text box, a search is made for all files
+with that name or names. If you enter a word or phrase in the
+Word/Phrase text box, a search is made for files containing the word
+or phrase (only data files and folders are searched). If you fill in
+both text boxes, the text in the File Contents text box is search for
+only within files that match the name or names in the File Name(s)
+text box.
+
+If you want the case of the characters to be ignored (that is, if you
+want to search for either uppercase or lowercase letters), then click
+on the appropriate Ignore Upper/Lower Case box. This can be done for
+both the File Names(s) and Word/Phrase text boxes.
+
+Next, choose the folders through which you want to search from the
+Where To Look list in the center of the window (use the scrollbar to
+view additional folders). Click on each folder or set of folders
+through which you want to search. You also can enter the \d(path) of
+the folders through which you want to search in the Other text box.
+
+If you want to search only for files that have changed with a certain
+number of days, enter the number of days in the Files updated within
+the last ? days text box. You also can click on the arrows to increase
+or decrease the number of days. All files changed more than this
+number of days ago are ignored.
+
+In the File Type box near the bottom of the window, the type of files
+for which the search should look. If you don't select any file types,
+all the file types shown are examined.
+
+The buttons available for the File: Find window are
+
+        \k(Find Button^^Find ButtonFF)
+        \k(Cancel Button^^Cancel ButtonFF)
+        \k(Help Button^^Help ButtonFF)
+^2^Find Button=Find ButtonFF
+^$710
+18. \k{File: Find Window}
+   18.1 Find Button
+
+Clicking on the Find button begins the search based on the information
+you enter in the File: Find window. The progress of the search is
+reported in the Find in Progress window. This window has one button:
+Stop. Click on the Stop button to cancel the search.
+
+^2^Cancel Button=Cancel ButtonFF
+^$720
+18. \k{File: Find Window}
+   18.2 Cancel Button
+
+The Cancel button closes the File: Find window without starting a
+search.
+^2^Help Button=Help ButtonFF
+^$730
+18. \k{File: Find Window}
+   18.3 Help Button
+
+The Help button provides on-line help for the File: Find window.
+^1^View: Customize Window
+^$740
+\k{Folder}
+19. View: Customize Window
+
+Use the View: Customize window to customize the display in a folder
+window in two ways. The first is through the use of special
+characters, called \k(metacharacters^^Metacharacters) in the File Name text box. The second
+is by selecting the types of files in the File Type box. The methods
+may be combined as well.
+
+The buttons available for the View: Customize window are:
+
+        \k(Apply Button^^Apply ButtonVFW)
+        \k(Show All Button^^Show All ButtonVFW)
+        \k(Cancel Button^^Cancel ButtonVFW)
+        \k(Help Button^^Help ButtonVFW)
+
+More information:
+
+	\k(Metacharacters)
+	\k(File Types)
+^2^Metacharacters
+^$750
+19. \k{View: Customize Window}
+   19.1 Metacharacters
+
+Think of metacharacters as wild cards. When you use a metacharacter,
+it matches one or more characters without you specifying which
+characters.
+
+The most widely used metacharacter is the asterisk (*). It matches any
+one or more characters. For example, if you enter m* in the Name text
+box, all files beginning with the letter m are displayed, such as
+mailbox, myfile, and m. Similarly, if you enter *m in the Name text
+box, files that end with the letter m are displayed, regardless of
+what preceded the m, such as reportm, my_dream, and m.
+
+^2^File Types
+^$755
+19. \k{View: Customize Window}
+   19.2 File Types
+
+Choose from among the eight file types provided in the View: Customize
+window: Folder, Executable, Datafile, Pipe, Char. Device, Block
+Device, Semaphore, and Shared Memory.
+
+   o Folder: Folders contain files and other folders.
+
+   o Executable: Files that can be run as programs.
+
+   o Datafile: Files containing data. Dafafiles are usually associated
+     with a specific application.
+
+   o Pipe, Char. Device, Block Device, Semaphore, and Shared Memory:
+     These are special file types accessible primarily by applications.
+
+^2^Apply Button=Apply ButtonVFW
+^$760
+19. \k{View: Customize Window}
+   19.3 Apply Button
+
+The Apply button applies a filter to the folder window, displaying
+only file and folders that match the criteria specified in the View:
+Customize window.
+^2^Show All Button=Show All ButtonVFW
+^$770
+19. \k{View: Customize Window}
+   19.4 Show All Button
+
+The Show All button sets the View: Customize window so that when you
+click on the \k(Apply button^^Apply ButtonVFW), all icons are displayed in the folder
+window.
+^2^Cancel Button=Cancel ButtonVFW
+^$780
+19. \k{View: Customize Window}
+   19.5 Cancel Button
+
+The Cancel button closes the View: Customize window without changing
+the view of the folder window.
+^2^Help Button=Help ButtonVFW
+^$790
+19. \k{View: Customize Window}
+   19.6 Help Button
+
+The Help button provides on-line help for the View: Customize window.
+^1^Found Files Window
+^$795
+\k{Folder}
+20. Found Files Window
+
+The Found Files window displays the files found after a search is com-
+pleted.You then can perform the basic file operations on the displayed
+files, such as Open, Copy, or Move.
+
+The buttons available for the Found Files window are:
+
+        \k(File Button^^File ButtonFFW)
+        \k(Edit Button^^Edit ButtonFFW)
+        \k(Help Button^^Help ButtonFFW)
+^2^File Button=File ButtonFFW
+^$800
+20. \k{Found Files Window}
+   20.6 File Button
+
+The File button lets you do basic file operations, such as Open, Copy,
+Rename, and Move. Except for the New and Rename menu options, which
+the Found File window does not include, this button has the same menu
+items as the \k(File button^^File Button) in a folder window.
+^2^Edit Button=Edit ButtonFFW
+^$810
+20. \k{Found Files Window}
+   20.7 Edit Button
+
+The Edit button lets you select or unselect icons and undo the most
+recent Copy, Delete, Rename, Move, or Link action. This button has the
+same menu items as the \k(Edit button^^Edit Button) in a folder window.
+^2^Help Button=Help ButtonFFW
+^$820
+20. \k{Found Files Window}
+   20.8 Help Button
+
+The Help button provides on-line help for a folder. Clicking on the
+Help button displays a menu with the following options:
+
+        \k(Folder^^FolderFFW)
+        \k(Table of Contents^^Table of ContentsFFW)
+        \k(Help Desk^^Help DeskFFW)
+^3^Folder=FolderFFW
+^$830
+20. \k{Found Files Window}
+   20.8 \k{Help Button^^Help ButtonFFW}
+       20.8.1 Folder
+
+The Folder menu option provides help for a folder window.
+^3^Table of Contents=Table of ContentsFFW
+^$840
+20. \k{Found Files Window}
+   20.8 \k{Help Button^^Help ButtonFFW}
+       20.8.2 Table of Contents
+
+The Table of Contents menu option displays the list of help topics
+available for a folder window.
+^3^Help Desk=Help DeskFFW
+^$850
+20. \k{Found Files Window}
+   20.8 \k{Help Button^^Help ButtonFFW}
+       20.8.3 Help Desk
+
+The Help Desk menu option opens the Help Desk window. From there, you
+can \d(double-click) on the icon for which you want on-line help.
+^1^Folder: Open Window
+^$860
+\k{Folder}
+21. Folder: Open Window
+
+Use the Folder: Open window to open any folder on your system to
+which you have access.
+
+The current path is given on the Path line of the Folder: Open
+window.  Click on the name of a folder you want to open from the
+Folder(s) list box. The Path line changes to indicate the selected
+folder (use the scrollbar, if present, to view additional folders).
+Alternatively, enter in the Folder text box the name (and, if
+necessary, the path) of the folder you want to open.
+
+The buttons available from the Folder: Open window are:
+
+	\k(Open Button^^Open ButtonOW)
+	\k(Cancel Button^^Cancel ButtonOW)
+ 	\k(Help Button^^Help ButtonOW)
+^2^Open Button=Open ButtonOW
+^$870
+21. \k{Folder: Open Window}
+   21.1 Open Button
+
+The Open button opens the folder indicated in the Folder box.
+^2^Cancel Button=Cancel ButtonOW
+^$880
+21. \k{Folder: Open Window}
+   21.2 Cancel Button
+
+The Cancel button closes the Folder: Open window without opening a
+folder.
+^2^Help Button=Help ButtonOW
+^$890
+21. \k{Folder: Open Window}
+   21.3 Help Button
+
+The Help button provides on-line help for the Folder: Open window.

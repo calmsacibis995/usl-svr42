@@ -1,0 +1,5 @@
+#ident	"@(#)uts-x86at:io/cram/cram.cf/Master	1.4"
+#ident	"$Header: $"
+$version 1
+$entry open close read write ioctl
+cram	cmos	kcor	0	0	18

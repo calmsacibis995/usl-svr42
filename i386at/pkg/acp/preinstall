@@ -1,0 +1,89 @@
+#ident	"@(#)pkg.acp:preinstall	1.1.2.16"
+#ident	"$Header: $"
+
+#add the group dos to /etc/group for the dos commands
+grep dos /etc/group 2>&1 > /dev/null
+[ $? != 0 ] && groupadd dos 2>&1 > /dev/null
+
+############# Begin UPGRADE AND OVERLAY #######################
+
+UPINSTALL=/etc/inst/up
+SCRIPTS=/usr/sbin/pkginst
+. ${SCRIPTS}/updebug
+
+[ "$UPDEBUG" = YES ] && {
+	set -x
+	goany
+}
+
+# remove /usr/share/lib/termcap /etc/termcap, if V4 termcap is installed
+# acp installs  these files
+
+${SCRIPTS}/chkpkgrel  termcap
+TERMCAPVER=$?
+
+# Cannot pkgrm from preinstall scripts.   Use pkgrem
+[ $TERMCAPVER -ne 0 ] && {
+
+	rm -f /usr/share/lib/termcap /etc/termcap
+	>/var/sadm/upgrade/rm.v4termcap	#postinstall will removef termcap
+}
+
+UPGFILE=/var/sadm/upgrade/${PKGINST}.env
+
+# if $UPGFILE exists, then it is custom mode and PTNUM is already set
+
+[ -f "$UPGFILE" ] && {
+
+	rm -f $UPGFILE
+	[ "$UPDEBUG" = YES ] && goany
+	exit 0
+}
+
+# otherwise if $UPGFILE does not exist if it is auto install mode
+# determine the configured pseudo-ttys and set PTNUM accordingly
+#is it upgrade or overlay?
+#	${SCRIPTS}/chkpkgrel returns    4 if pkg is V4
+#					2 if pkg is DESTINY
+#					1 if pkg if UNK version
+#					0 if pkg is not installed
+
+[ "$UPDEBUG" = YES ] && goany
+
+${SCRIPTS}/chkpkgrel
+PKGVERSION=$?
+PKGINSTALL_TYPE=NEWINSTALL
+
+case $PKGVERSION in
+	2)	PKGINSTALL_TYPE=OVERLAY	;;
+	4)	PKGINSTALL_TYPE=UPGRADE	;;
+	*)	;;
+esac
+
+rm -f  $UPGFILE 	#chkpkgrel  creates an $UPGFILE
+
+[ "$PKGINSTALL_TYPE" = NEWINSTALL ] || {
+
+	MPT=/etc/conf/sdevice.d/mpt
+	[ ! -f $MPT ] && MPT=$UPINSTALL/mpt
+
+	[ -f $MPT ] && {
+
+		grep "^mpt	" $MPT >/tmp/mpt.$$ 2>/dev/null
+		OFS=$IFS; IFS="	"	#tab
+		read Dev Conf DFLT all_others </tmp/mpt.$$
+		IFS=$OFS
+    		[ "$Conf" = N ] && DFLT=
+		rm -f /tmp/mpt.$$
+	}
+
+	[ "$DFLT" ] && {
+		[ $DFLT -lt 8 ] && DFLT=8
+		echo "PTNUM=$DFLT" >>$UPGFILE || exit 1
+	}
+}
+
+[ "$UPDEBUG" = YES ] && goany
+
+############# End  UPGRADE AND OVERLAY #######################
+exit 0

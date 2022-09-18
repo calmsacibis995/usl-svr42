@@ -1,0 +1,20 @@
+#define tbweave_format 1
+#define tbweave_width 8
+#define tbweave_height 8
+#define tbweave_ncolors 3
+#define tbweave_chars_per_pixel 1
+static char * tbweave_colors[] = {
+" " , "#FFFFAAAA0000",
+"." , "#000000000000",
+"X" , "#0000AAAAFFFF"
+} ;
+static char * tbweave_pixels[] = {
+" .XXXX..",
+". .XX. .",
+"X. .. .X",
+"XX.. .XX",
+"XX. ..XX",
+"X. .. .X",
+". .XX. .",
+"..XXXX. "
+} ;

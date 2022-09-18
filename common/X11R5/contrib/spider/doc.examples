@@ -1,0 +1,980 @@
+	     IV.   E X A M P L E S   A N D   C O N U N D R U M S
+
+In all the examples below, the tableau will be given here in the text as best
+as can be done within the limits of the character set.  For those who want to
+see the positions more graphically via the program, each example also starts
+with a line of apparent garbage that, if selected, can be read using the
+[File: Resume from Selection] command to display the position.  (The line is
+quite long and may wrap around onto more than one line when you display it;
+you have to select it all to restore the position.)
+
+Some of these examples are extremely complex.  Novice players may wish to
+step through just the first example, to get an idea of how to play, and save
+the other examples for later.  The final example is a deck that is especially
+easy to win with (unless you're trying to win with all eight suits still in
+the tableau), so you might try that one to boost your confidence if you're
+having a lot of trouble getting anywhere.
+
+===========================================================================
+
+J6m\ZM^3>gU82j]`LGMFl8o0WeDimHa;d^1QcHGKQdQAZ6l;oK/QmbbBhNhiMiWe=FOH<jJ]T^1URFDdGj^_7TRgK7lFY52@aDCd1==>D >Kg74/^ YoT[/6 HCcF/P \MNXm/Q EK25/k 9^0M/c KF0@W/N \JHY/: 9GLR/L \W8hH/2.
+
+Here, to start you off, is an example of the beginning of a game.  We'll step
+through it and look at the rationale behind the recommended moves.  Here's
+the initial tableau:
+
+ --	 --	 --	 --	 --	 --	 --	 --	 --	 --
+ --	 --	 --	 --	 --	 --	 --	 --	 --	 --
+ --	 --	 --	 --	 --	 --	 --	 --	 --	 --
+ --	 --	 --	 --	 --	 --	 --	 --	 --	 --
+ --	10d	 As	 --	 3h	 9s	 --	 Jh	 Qh	 --
+ 6d			 4s			 3c			 7c
+
+The two primary rules of thumb to bear in mind throughout the game, and
+particularly at the start, are (1) try to get a space, and (2) keep your
+options open.  The first rule should be fairly clear; the second leads to a
+few common strategic decisions.  First, given the choice, make a "natural"
+move instead of an "unnatural" one, where a natural move is one that brings
+together two cards of the same suit.  This keeps our options open by allowing
+us to move the newly combined cards as a unit should we turn up an
+appropriate card.  Second, given the choice, move a card (or pile) that has
+more than one place it can go.  This keeps our options open by allowing us to
+move it to the other place if for some reason we want to dig into the pile
+sitting in the first location.  Third, work from the top down.  Thus we move
+a 9 onto a 10 before moving an 8 onto the 9 (unless the latter move is
+natural while the former is not), since once we move an unnatural 8 onto the
+9 we won't be able to move the 9.  Now, with these ideas in mind, let's look
+at the play of the above tableau.
+
+Our highest-ranking move is Jack onto Queen, and it's also our only natural
+move, so it wins for sure.  We move the Jh from column 8 to column 9, and in
+this particular game we chance to turn up a 6s in column 8.  Now we have no
+natural moves.  We could try for the space by moving the 6s to column 10, but
+that move isn't going to go away, so instead we go from the top down by
+moving the 10d from 2 to 9.  This time we turn up a 4c.  No hesitation about
+this one!  We move the 3c from 7 to 2.  (Note that we still have the 4s onto
+which we can, eventually, move the 3h, so we're not giving up our option of
+digging into pile 5.  But even if we didn't have the other 4, making the
+natural move would be the better play.)  In column 7 the card turned up is a
+2c, which we promptly move to column 2, turning up a 10h.  The tableau is
+now:
+
+ --	 --	 --	 --	 --	 --	 --	 --	 --	 --
+ --	 --	 --	 --	 --	 --	 --	 --	 --	 --
+ --	 --	 --	 --	 --	 --	 --	 --	 --	 --
+ --	 4c	 --	 --	 --	 --	10h	 6s	 --	 --
+ --	 3c	 As	 --	 3h	 9s			 Qh	 --
+ 6d	 2c		 4s					 Jh	 7c
+								10d
+
+Having once again run out of natural moves, we revert to working from the top
+down, and move the 9s from 6 to 9.  This also follows the rule of moving a
+pile that has more than one place to go; if we find ourselves interested in
+digging through column 9 we can move the 9s to column 7 instead.  But for
+now, since column 7 looks like a more likely place to dig, we'll bury column
+9 a bit more.  In column 6 we turn up a Kc.  Since we have no place to move
+the 10d from column 9, we are unable to get pile 9 moved onto the newly
+revealed King.  Them's the breaks.
+
+Continuing from the top down, we decide it's time to move a 6 onto the 7c.
+Which 6 should we move?  Neither is natural, but the one in column 8 looks
+like a better one to move since we're only 3 cards away from getting a space
+in that column.  So we move the 6s from 8 to 10 and turn up a 6c.  We're
+getting low on things to do now; we can move the 3h or the As.  Going by the
+top-down rule, we move the 3h from 5 to 4, turning up a 2h, which we move
+onto the 3h (now in column 4).  This time we turn up a 9d:
+
+ --	 --	 --	 --	 --	 --	 --	 --	 --	 --
+ --	 --	 --	 --	 --	 --	 --	 --	 --	 --
+ --	 --	 --	 --	 9d	 --	 --	 6c	 --	 --
+ --	 4c	 --	 --		 Kc	10h		 --	 --
+ --	 3c	 As	 --					 Qh	 --
+ 6d	 2c		 4s					 Jh	 7c
+ 			 3h					10d	 6s
+ 			 2h					 9s
+
+We could now move the 9d from 5 to 7, but instead we choose to move the As
+from column 3, since there are two places to put it.  Column 4 is already
+unnatural, so we'll move it there.  The card turned up is the other As.  We
+could move this Ace onto the other deuce, but this would lose us our option
+of moving the first Ace there should we want to dig into column 4, so we'll
+let the top-down rule take precedence and move the 9d.  But let's not be
+hasty!  Instead of moving the 9d from 5 to 7, we'll move the 9s from 9 to 7
+and then move the 9d from 5 to 9; this puts the 9d with a 10d, which it can't
+hurt to do.  This time we turn up a Qh.  Since we're so close to a space now,
+we keep going by moving the Qh from 5 to 6, turning up a 10d:
+
+ --	 --	 --	 --	10d	 --	 --	 --	 --	 --
+ --	 --	 --	 --		 --	 --	 --	 --	 --
+ --	 --	 --	 --		 --	 --	 6c	 --	 --
+ --	 4c	 As	 --		 Kc	10h		 --	 --
+ --	 3c		 --		 Qh	 9s		 Qh	 --
+ 6d	 2c		 4s					 Jh	 7c
+			 3h					10d	 6s
+			 2h					 9d
+			 As
+
+Only one move left to try: we move the As from 3 to 2, turning up a 7h.  Once
+again, we shuffle things around a bit so keep as many piles natural as
+possible; we move the 6s from 10 to 3 and the 6c from 8 to 10, turning up a
+5d.  We move the 5d from 8 to 1 (natural) and turn up a 3s:
+
+ --	 --	 --	 --	10d	 --	 --	 3s	 --	 --
+ --	 --	 --	 --		 --	 --		 --	 --
+ --	 --	 7h	 --		 --	 --		 --	 --
+ --	 4c	 6s	 --		 Kc	10h		 --	 --
+ --	 3c		 --		 Qh	 9s		 Qh	 --
+ 6d	 2c		 4s					 Jh	 7c
+ 5d	 As		 3h					10d	 6c
+			 2h					 9d
+			 As
+
+We have no more moves (aside from useless maneuvers such as moving the 9d
+from 9 to 5), so it's now time to deal a new round.  We never did get a
+space, but we got two piles down to a single card each, so we are quite
+likely to get a space soon after the new deal.  This game is going somewhat
+better than average and will very likely be won with proper play.  If you
+actually do get a space in the first round, you're doing particularly well.
+
+===========================================================================
+
+1;]mcD96:2o6j1J7Fj>N/\j?Pe:O`5J_0EZo@Uj?Pe:O`5J_0EZo@Uj?Pe:O`5J_0EZo@Uj?Pe:O`5J_0EZo@Uj?Pe:O`5J_0EZo@Uj?P O  DLV/7V[ N=^cfil 8_/R<3d9NC4I^SDY?F\bfKl16[ k;]>Hhn ak\k/Z\2O[<@FkLPWZ[;>CdINS 9A C L75/1;\aFJo.
+
+Now, for your first "Spider problem", here is a relatively simple position.
+In the tableau shown below, what should you do?  First off, what are your
+options?  On what should you base your choice?  (After the tableau is the
+"solution", so don't read further until you're ready!)
+
+10h	(sp)	 --	 Ad	 --	 Qc	 --	 3s	 Qh	 --
+		 --	 7d	 --	 Jh	 --	 2s		 --
+		 --	 6d	 Kh	10d	 --			 --
+		 8s	 5d	 Qc	 6c	 --			 7d
+		 7s	 Qs	 Jc	 4c	 Qd			 6d
+		 6s	 Js	10c	 3d	 Jd			 5d
+			10d	 9c	 2d	10h			 4d
+				 8c		 Js			 3d
+				 7c		10s			 2c
+				 6c		 9s			 As
+				 5c		 8h
+				 4c		 7h
+				 3c		 6h
+				 2c		 5h
+				 Ac		 4s
+				 Qd		 3h
+				10c		10s
+				 9c		 8c
+				 8s		 7h
+				 7s		 6h
+				 6s		 5h
+				 5s		 4h
+				 4s		 3h
+				 3s		 2h
+				 2s		 Ah
+
+Solution:
+
+First, the options.  There's no way to get through column 5 or 7 to turn up a
+new card.  (This should be pretty obvious; we'll save detailed analyses of
+this sort of thing for cases where it's not as clear.)  Nor does it do us any
+good to dig into column 4 or 6.  We don't have any complete suits showing, so
+there's no way we can try to put one together.  That leaves three fairly
+simple options: (1) we could move the 8-6s from column 3 into the space,
+turning up a new card, (2) we could dig through column 10 (moving the Ace
+onto a deuce, the 2c into the space, 5-3d onto the 6s in column 3, 2c out of
+the space and back onto the 5-3d, and finally the 7-6d into the space) and
+turn up a new card there, or (3) we could fill in the space and deal a new
+round.
+
+It's usually a good idea to turn up more cards when possible rather than bury
+everything under a new deal, so we'll discount the third option.  That leaves
+us with the choice of which column to dig through, 3 or 10.  The two are
+equally close to becoming new spaces (three face-down cards each), so that's
+not a consideration here.  Let's consider what the face-down card might be
+that will be revealed.  If it's a Jack, 4, or King, we can get back the space
+(which we'll have lost in the process of getting to the new card).  If it's a
+9 or 8, we MIGHT get the space back right away; it depends on whether we
+moved the 8 (from column 3) or the 7 (from column 10) into the space.
+Looking at the tableau, we see there are five 8's visible, but only three
+9's.  Thus it's more likely we'll turn up a 9, so we should go for column 3.
+(Sorry for all this gory detail, but this is after all intended as an
+introductory example.)
+
+So it looks like the best thing to do is move the 8-6s from column 3 into the
+space.  But wait!  Suppose the card turned up isn't a Jack, 4, King, or 9,
+and furthermore isn't an Ace or 5 (which we would be able to move elsewhere
+immediately)?  Is there anything we can do ahead of time to hedge our bets?
+Yes!  We can move the spade Ace from column 10 to column 5, then use the
+space to swap the deuces in columns 6 and 10 (move one deuce into the space,
+move the other deuce to the other column, and move the first deuce out of the
+space).  Now column 10 contains just the 7 through deuce of diamonds, and if
+we chance to turn up an 8 in column 3 we can move the 7-2d onto it.  Note
+that we have to do this BEFORE we move the 8-6s into the space, since we need
+the space to swap the deuces.  In fact, in the game where this particular
+tableau arose, the card turned up in column 3 was the diamond 8.  The
+preparations made in column 10 eventually produced not one but TWO spaces!
+(Play it out using the program and see for yourself.)
+
+===========================================================================
+
+?jT\Ne61gU/3`5J_0EZo@Uj?Pe:O`5J_0EZo@Uj?Pe:O`5J_0EZo@Uj?Pe:O`5J_0EZo@Uj?Pe:O`5J_0EZo@Uj?Pe:O`5J_0EZo@Uj?P LF^Q/lLQ7[]`8Qe^_ B\^</D:[l6^cO  K/jc\D= <\e G`j/T;j_Qf9maEBo P/5Ql ^:[/eQWeU[>CO9M@4I] Q=Lh/C;aS2o D0/b6;[MEXM.
+
+Turn up another face-down card WITHOUT dealing more cards or "using up" the
+space.  (You may, of course, use the space, so long as you are sure you can
+get it back no matter what the card turned up turns out to be.)  Note that
+there are enough clubs and hearts showing to form complete sets of those
+suits.  Here's the tableau (again, the solution follows the tableau):
+
+ --	 --	(sp)	 --	 Qh	 --	 --	 --	 --	 --
+ --	 --		 Ks	 Jh	 --	 Jc	 --	 --	 --
+ --	 --		 2s	 7h	 --	 8h	 --	 --	 Kh
+ --	 --		 As		 As	 7h	 Kc	 --	 Qc
+ Jc	 Kd		 9h		 9h		 Qc	 Kc	 Jh
+10h	 9d		 8d		 8s		 Jd	 7s	 Js
+ 9c	 8d				 7c		 5s	 6s	 3d
+ 8s	 7d				 6c		 4h	 Qh	 2c
+ 7d	 3h				 5c		 3c	 Js	 Ad
+ 6h	 2h				 4h		 2c	 8c	 8h
+ 5d	 Ah				 3s		 Ac
+ 3d	 2d				 2s		10s
+ 2d					 5c		 9s
+ Ah					 6d		 8c
+ 9s					 5h		 7s
+10c							 6s
+							 5s
+							 4c
+
+Solution:
+
+First, we ascertain that we can't get a second space.  The only place where
+we might be able to do so is column 5, and to move the Q-Jh we need to find a
+King that doesn't already have a Queen on it.  (We'll call this a "free
+King", for short.)  There are three free Kings, but the one in column 9 is
+useless since we need another free King to get to it, and those in columns 2
+and 4 are inaccessible since there are no free 3's.  Hence, whatever we do,
+we have to do it using only the one space.
+
+Next, can we remove a complete set of clubs or hearts?  Well, hearts are out,
+because the only Kh showing is in column 10, and the only 10h is in column 1,
+and getting to each of them requires that we move a 3 onto a free 4.  Since
+there's only one free 4 (in column 8), we lose.  How about clubs?  They don't
+work out, either, but the proof is trickier.  The only 9c is in column 1 and
+getting to it will require our sole free 4.  Thus we can't use the Qc in
+column 10, and must instead use the Qc from column 8.  To reach it we need a
+free 6; we have exactly one free 6, namely in column 9.  We CAN get to this
+6, without losing the space, by a fairly convoluted sequence of moves.  You
+may want to figure out how it can be done before reading on. . . .  Ready?
+Okay, proceed as follows: 7h from 5 to 10, 10c from 1 to 5, 8c from 9 to 1,
+Js from 9 to 3 (into the space), 10c from 5 to 3, Jh from 5 to 9, 10c from 3
+to 9, Js from 3 to 5, 10c from 9 to 5, Q-Jh from 9 to 3, 7-6s from 9 to 4,
+and finally Q-Jh from 3 to 9, getting the space back.
+
+Having determined that we can, if desired, obtain a free 6, let's get back to
+the question of the clubs.  The only 7c is in column 6, and getting to it
+requires a free 6.  But we need the free 6 to get to the Qc as well.  So we
+again lose.  We are thus reduced to uncovering a card without removing any
+suits and without getting any more spaces.  Which column is it to be?  It
+obviously can't be a column containing a King, since (given that we can't
+remove any completed suits) the only place a King can go is into the space.
+And it can't be column 1 or 7, since that would require a free Queen, and
+there isn't any.  So it must be column 6.  We can get through that column by
+first digging through to the free 6 as described earlier, and then playing:
+5h from 6 to 4, 6d from 6 to 10, 5c from 6 to 10, 3-2s from 6 to 3, 4h from 6
+to 4, 3-2s from 3 to 4, 7-5c from 6 to 1.  The tableau now looks like this:
+
+ --	 --	(sp)	 --	 Qh	 --	 --	 --	 --	 --
+ --	 --		 Ks	 Js	 --	 Jc	 --	 --	 --
+ --	 --		 2s	10c	 --	 8h	 --	 --	 Kh
+ --	 --		 As		 As	 7h	 Kc	 --	 Qc
+ Jc	 Kd		 9h		 9h		 Qc	 Kc	 Jh
+10h	 9d		 8d		 8s		 Jd	 Qh	 Js
+ 9c	 8d		 7s				 5s	 Jh	 3d
+ 8s	 7d		 6s				 4h		 2c
+ 7d	 3h		 5h				 3c		 Ad
+ 6h	 2h		 4h				 2c		 8h
+ 5d	 Ah		 3s				 Ac		 7h
+ 3d	 2d		 2s				10s		 6d
+ 2d							 9s		 5c
+ Ah							 8c
+ 9s							 7s
+ 8c							 6s
+ 7c							 5s
+ 6c							 4c
+ 5c
+
+Once again, it's time to make contingency plans.  If we just move the 9h-8s
+onto the 10c and the As onto the 2s, we could be in trouble if we turn up a
+King.  The lone space won't be sufficient for us to be able to move the stuff
+out of column 5 onto the King.  So we undo some of what we did in the course
+of getting the free 6: Jh from 9 to 3, 10c from 5 to 3, Js from 5 to 9, 10c
+from 3 to 9, Jh from 3 to 5.  While we're at it, it can't hurt to move the 4c
+from 8 to 1, and in a moment we'll match the 8s with a 9s, too.  We now
+proceed: 8s from 6 to 3, 9h from 6 to 9, 8-5c from 1 to 9, 8s from 3 to 1,
+and finally As from 6 to 4.  (Once again, preparation pays off; in the game
+where this took place, the card turned up was indeed a King.)
+
+===========================================================================
+
+?jT\Ne61gU/3`5J_0EZo@Uj?Pe:O`5J_0EZo@Uj?Pe:O`5J_0EZo@Uj?Pe:O`5J_0EZo@Uj?Pe:O`5J_0EZo@Uj?Pe:O`5J_0EZo@Uj?P LF^Q/lLR4Y^cDjm3 XCkS/QENCCAV`O 3 ]:na6K<1F[LAV =Dil1W9>CgJN b P 4:[/eQW8\afKl16  @J/8\QA7o279 C.
+
+Again, complete sets of clubs and hearts are available.  Without dealing any
+more cards or turning up any face-down cards, remove a set of clubs AND a set
+of hearts (not necessarily in that order).  Can you remove them in the other
+order?
+
+ --	 --	 8c	 Ks	 Kh	 5c	 Kc	 --	(sp)	 --
+ --	 --		 Qh	 Qh			 --		 --
+ --	 --		 Jc	 Jh			 --		 Kh
+ --	 --		10c	10c			 Kc		 Qc
+ Jc	 Kd		 9c	 9h			 Qc		 Jh
+10h	 9d		 8c	 8d			 Jd		 Js
+ 9s	 8d		 7c	 7d			10h		 3d
+ 8s	 7d		 6c	 6d			 9h		 2c
+ 7s	 3h		 5c	 5d			 8h		 Ad
+ 6s	 2h		 4c	 4h			 7h		 8h
+ 5s	 Ah		 3c	 3d			 6h		 7h
+ 4s	 2d		 2c	 2d			 5h
+ 3c	 Ah		 Ac				 4h
+ 2s							 3h
+ As
+
+Solution:
+
+The clubs look like the better bet, since the Jack through Ace are already
+assembled and there's a King-Queen in column 8.  Let's see what can be done.
+Since there are no free 9's or 6's, we have to remove the first completed
+suit without the benefit of any additional spaces.  Since we are also short
+on free 4's, this means we can't use the Qc in column 10.  That seems okay;
+the one in column 8 looks easier to get to anyhow.  All we have to do is move
+the Jd somewhere (along with the 10-3h).  There are no free Queens, so the
+Jack will have to move into the space (or some other Jack must move into the
+space to free up a Queen).  But we can't move the Jd anywhere while the
+hearts are there, and the only free Jack is in column 10 where we can't get
+at it.  We could move the 10-3h into the space, but then what do we do with
+the Jack?  Looks like the clubs aren't going to work after all.
+
+Let's try the hearts.  It looks like we'll have the same problem, since we
+have to move the 10c from column 5 somewhere else to clear off the K-Jh.  The
+only place we can move the 10c is the space, and to do that we have to do
+something about the 9h attached to the 10c.  Since we don't have any free
+10's, what can we do?  The idea is to use the space to swap things around
+such that the sequences of a single suit are where we need them most.  We do
+it as follows:  First we get the 4h out of the way by moving 3-2d from 5 to
+9, 4h from 5 to 6, and 3-2d from 9 to 6.  Then we move 8-5d from 5 to 9, 8-3h
+from 8 to 5, 8-5d from 9 to 8, 9-3h from 5 to 9, 9-Ac from 4 to 5, 9-3h from
+9 to 4, 8-5d from 8 to 9, 8-3h from 4 to 8, 8-5d from 9 to 4 (we certainly
+have made a mess of all those nice clubs in column 4, haven't we?), 10-Ac
+from 5 to 9, 10-3h from 8 to 5, 10-Ac from 9 to 8.  Now we can move the Ah
+from 2 to 6, 2d from 2 to 9, and 2-Ah from 2 to 5 to complete the hearts.
+The 2d comes out of the space and back to column 2, and removing the hearts
+gives us a second space.  With two spaces we have no trouble straightening
+the clubs back out and completing a set.
+
+Note that, rather than removing the completed set of clubs from column 8, we
+should pile a Q-Ac into column 7 and remove the suit from there.  We can
+always move the Kc from column 8 into the newly created space in column 7 if
+we wish, but by getting the space we keep our options open.  Note also that,
+had there been a 10d around, we might have been able to pull the same trick
+with the Jd in column 8 as we did with the 10c in column 5; since there
+wasn't, though, we had to go after the hearts first.
+
+===========================================================================
+
+C576XV@Ra`MgY>9XFSnF/^j?Pe:O`5J_0EZo@Uj?Pe:O`5J_0EZo@Uj?Pe:O`5J_0EZo@Uj?Pe:O`5J_0EZo@Uj?Pe:O`5J_0EZo@Uj?P 3>0f9NC7I^ H=Zn HUUgKl1YC4I^SDYR PFeM2 B1D[ C:^>LPV;] MAK\1F[lAVk<Qm WSUHK<1EY h;^SDYo`Ti 4e\.
+
+In the tableau below, there are two deals (20 cards) remaining.  What do you
+do?
+
+ Kh	 Ks	 Kh	 Qh	 Jc	 Qd	 Js	 9s	10s	 6d
+ Qh	10h	 Qs	 Ac	10c	 Jh	 Kc	 9c	 Kd	 Qs
+ Jd	 9d	 8s	 Ac	 9h	10h	 Qc	 Kc	 Qd	 Js
+10s	 8d	 7h	 4s	 8h	 6s	 Jc	 9h	 Jd
+ 9s		 6h	 3h		 5s	10c	 8h	10d
+ 8s		 5h			 4h	 9c	 7h	 9d
+ 7s		 4h			 3h	 8c	 6h	 8c
+ 6c		 8d			 2h	 7c	 5d	 7s
+ 5c		 7d			 As	 6c	 4s	 6s
+ 4c		 6d				 5c		 5s
+		 5d				 4c
+		 4d				 3c
+		 3d				 2c
+		 2d				 3s
+		 Ad
+		 7d
+
+Solution:
+
+If you grabbed at the opportunity to remove a set of clubs from column 7,
+shame on you!  Once you do that, you're stuck, and except for a little bit of
+"naturalising" (swapping cards so as to create longer runs in a single suit)
+you can do nothing but deal out another round.  In fact, it is possible to
+remove TWO suits, get two spaces, and straighten out almost all the suit
+changes before running out of steam.  But let's start by looking at the
+various options available to see what our reasoning should be.
+
+Ignoring for the moment whether we can remove any suits, can we get a space?
+Obviously, we can't get a space in any column containing a King, which leaves
+columns 4, 5, 6, and 10.  Column 5 is hopeless because the only free Queens
+(columns 3 and 4) cannot be reached without either two free 9's or two free
+deuces.  We have one free deuce (column 7) and both free 9's are trapped
+under a King.  Getting through any of the other columns requires a free
+King.  The King in column 8 cannot be reached without the temporary use of a
+free 6, and the only such 6 is under a Queen and thus requires another free
+King to reach.  On the other hand, we CAN reach the King in column 2.  But in
+order to do so we need temporary use of a free 10, which means we'll have had
+to move the 6s from column 6 onto our only free 7.  Thus, though we might be
+able to move the Qs out of column 10, we wouldn't have any place to move the
+6d.  And, since we lack a free Queen on which to park the Jh from column 6,
+the free King won't be enough to get through that column.  Column 4 we've
+already identified as being hopeless.  Thus we conclude that we can't get a
+space without removing any suits.
+
+Now what?  If we remove the clubs from column 7, all we get is a free Jack,
+which we have no use for, and which we can't move out of the way.  We can't
+remove a set of spades since we have no 2s showing, and likewise there's no
+Ah visible.  We can't remove diamonds (at least, not first) because we can't
+get to the Kd without a free 9 on which to park the 8c, and both free 9's are
+trapped under a Kc.  So it looks like the first order of business is to
+remove a set of clubs from column 8, if possible.
+
+That's a big "if"; it looks rather hopeless.  Digging through to the Kc
+requires temporary use of a free 5 and 6, and permanent use of a free 10.
+Well, a moment ago we said we might be able to reach the 6d in column 10.
+Can we in fact do so?  Yes, if we're VERY careful!  Once we uncover the Ks in
+column 2, we want to be able to move the Q-Js from column 10, so we can't
+afford to put the 10h from column 2 on top of them.  That means we have to
+find a 10s to move to column 10, thereby freeing up a different Jack.  Such a
+10 is in column 1, and we'd better move it BEFORE using up the free 7!
+Without further ado, here we go: 6-4c from 1 to 3, 10-7s from 1 to 10, 3s
+from 7 to 8, As from 6 to 7, 4-2h from 6 to 9, 6-5s from 6 to 10
+(conveniently the correct suit), 9-8d from 2 to 6, 10h from 2 to 1, Q-5s from
+10 to 2, 4-3s from 8 to 2, 5d from 8 to 10, 9-6h from 8 to 1, As from 7 to 9,
+Q-2c from 7 to 8, 3h from 4 to 3, 4s from 4 to 10, Ac from 4 to 8, and voila!
+we remove a set of clubs from column 8.  Here's the new tableau:
+
+ Kh	 Ks	 Kh	 Qh	 Jc	 Qd	 Js	 9s	10s	 6d
+ Qh	 Qs	 Qs	 Ac	10c	 Jh	 Kc	 9c	 Kd	 5d
+ Jd	 Js	 8s		 9h	10h			 Qd	 4s
+10h	10s	 7h		 8h	 9d			 Jd
+ 9h	 9s	 6h			 8d			10d
+ 8h	 8s	 5h						 9d
+ 7h	 7s	 4h						 8c
+ 6h	 6s	 8d						 7s
+	 5s	 7d						 6s
+	 4s	 6d						 5s
+	 3s	 5d						 4h
+		 4d						 3h
+		 3d						 2h
+		 2d						 As
+		 Ad
+		 7d
+		 6c
+		 5c
+		 4c
+		 3h
+
+Unfortunately, though we've uncovered a free 9, there's no longer anything we
+can do with it, because we've added some crud to column 9, not to mention
+column 3.  Furthermore, if we're going to form a set of diamonds, we'd best
+not lose track of the stuff in column 3.  So let's go back to the very
+beginning and try again, this time keeping things a bit more available: 7d
+from 3 to 5, 6-4c from 1 to 5, 10-7s from 1 to 10, 3s from 7 to 8, As from 6
+to 7, 4-2h from 6 to 9, 6-5s from 6 to 10, 9-8d from 2 to 6, 10h from 2 to 1,
+Q-5s from 10 to 2, 4-3s from 8 to 2, 5d from 8 to 10, 9-6h from 8 to 1, 4-2h
+from 9 to 10, As from 7 to 10, Q-2c from 7 to 8, 3h from 4 to 5, 4s from 4 to
+9, Ac from 4 to 8, and again we are able to remove a set of clubs from column
+8.  Now, however, the tableau looks like this:
+
+ Kh	 Ks	 Kh	 Qh	 Jc	 Qd	 Js	 9s	10s	 6d
+ Qh	 Qs	 Qs	 Ac	10c	 Jh	 Kc	 9c	 Kd	 5d
+ Jd	 Js	 8s		 9h	10h			 Qd	 4h
+10h	10s	 7h		 8h	 9d			 Jd	 3h
+ 9h	 9s	 6h		 7d	 8d			10d	 2h
+ 8h	 8s	 5h		 6c				 9d	 As
+ 7h	 7s	 4h		 5c				 8c
+ 6h	 6s	 8d		 4c				 7s
+	 5s	 7d		 3h				 6s
+	 4s	 6d						 5s
+	 3s	 5d						 4s
+		 4d
+		 3d
+		 2d
+		 Ad
+
+Now we can get out a set of diamonds as follows: 7-4s from 9 to 6, 8c from 9
+to 8, 8-Ad from 3 to 9, and remove the diamonds:
+
+ Kh	 Ks	 Kh	 Qh	 Jc	 Qd	 Js	 9s	10s	 6d
+ Qh	 Qs	 Qs	 Ac	10c	 Jh	 Kc	 9c		 5d
+ Jd	 Js	 8s		 9h	10h		 8c		 4h
+10h	10s	 7h		 8h	 9d				 3h
+ 9h	 9s	 6h		 7d	 8d				 2h
+ 8h	 8s	 5h		 6c	 7s				 As
+ 7h	 7s	 4h		 5c	 6s
+ 6h	 6s			 4c	 5s
+	 5s			 3h	 4s
+	 4s
+	 3s
+
+Well, looking better, but it's still not obvious where we can find a space.
+Based on the "free" cards, there are only two possibilities: either we use
+the 10s in column 9 to uncover the 9s in column 8 and thus the Qs in column 3
+and thus get a space in column 5, or we dig through column 6.  Column 5
+doesn't work because we need temporary use of a free 7.  It may be that, by
+judicious advance planning, we could have arranged to have a clearer path
+through this column (e.g., by building column 1's hearts in column 5), but we
+needn't go back for a third try because we can get through column 6 anyway.
+We'll need temporary use of an 8, 10, and Queen, and getting the Queen will
+require permanent use of the 10, so we have to do things in the right order
+again.  Moreover, we have to be careful not to build anything new in column 6
+that will be hard to move out later.  So we do it this way: 7-4s from 6 to 8,
+9-8d from 6 to 9, 7-4s from 8 to 9, 9-6h from 1 to 6, 9-8c from 8 to 1, 7-4h
+from 3 to 1, 8s from 3 to 8, J-6h from 6 to 3, Q-3s from 2 to 7 (to prepare
+for later), and Qd from 6 to 2.  And here we are:
+
+ Kh	 Ks	 Kh	 Qh	 Jc	(sp)	 Js	 9s	10s	 6d
+ Qh	 Qd	 Qs	 Ac	10c		 Kc	 8s	 9d	 5d
+ Jd		 Jh		 9h		 Qs		 8d	 4h
+10h		10h		 8h		 Js		 7s	 3h
+ 9c		 9h		 7d		10s		 6s	 2h
+ 8c		 8h		 6c		 9s		 5s	 As
+ 7h		 7h		 5c		 8s		 4s
+ 6h		 6h		 4c		 7s
+ 5h				 3h		 6s
+ 4h						 5s
+						 4s
+						 3s
+
+Without detailing the exact moves from here on, the next steps should
+probably be something like this: Jc-3h from column 5 onto Qd in column 2,
+getting second space.  Swap 9-8d in column 9 with 9-8s in column 8 to form
+10-4s in one chunk.  Move Kc-3s from column 7 into a space and get the space
+back by moving 10-4s onto Js.  Move Ac from column 4 into a space and get the
+space back by moving J-6h from column 3 onto Qh and J-4s onto Qs.  After a
+bit more "naturalising", you should have a tableau something like:
+
+ Kh	 Ks	 Kh	(sp)	 9d	 Kc	 Qs	 Ac	(sp)	 6c
+ Qh	 Qs	 Qh		 8d	 Qd	 Js			 5c
+ Jc	 Js	 Jh		 7d	 Jd	10s			 4c
+10c	10s	10h		 6d	10h	 9s
+ 9c	 9s	 9h		 5d	 9h	 8s
+ 8c	 8s	 8h		 4h	 8h	 7s
+	 7s	 7h		 3h	 7h	 6s
+	 6s	 6h			 6h	 5s
+	 5s	 5h				 4s
+	 4s	 4h
+	 3s	 3h
+		 2h
+		 As
+
+This is as much straightening out as you can accomplish with the cards
+available, so it's finally time to deal another round.  But first, you have
+to fill in the spaces (them's the rules!).  So how should you fill them in?
+It's largely a matter of personal preference, but one likely possibility is
+to move the Q-Jd into one space and the 10-6h into the other.  The reason for
+this is that there's already a Queen in a space, so by creating a free King
+you have an extra chance at a space early in the next round.  Granted that
+you are almost certain to win at this point, but you might as well maximise
+your chances anyway!
+
+===========================================================================
+
+3^SD>\QBCTSZ`2<mkL1Z/?j?Pe:O`5J_0EZo@Uj?Pe:O`5J_0EZo@Uj?Pe:O`5J_0EZo@Uj?Pe:O`5J_0EZo@Uj?Pe:O`5J_0EZo@Uj?P 0>3d9N@7I^SGYN 1Ti>Sd9Mc4IZ NM ZnhZM =1f9NF<Afh2Zni RRFd 51Mc6K^3D? lG6h@ G@/NZX>CfhOcV;\] UH8.
+
+3^SD>\QBCTSZ`2<mkL1Z/?j?Pe:O`5J_0EZo@Uj?Pe:O`5J_0EZo@Uj?Pe:O`5J_0EZo@Uj?Pe:O`5J_0EZo@Uj?Pe:O`5J_0EZo@Uj?P 0>3d9N@7I^SGYN 1Ti>Sd9Mc4IZ NM ZnhZM =1f9NF<Afh2Zni RRFd 51Ma4K^3D? lG6h@ G@/LXX>CfhOcV;\] UH8.
+
+Can a set of spades be removed WITHOUT first getting a space or dealing any
+more cards?  If so, how?  If not, prove it!  Would it make any difference if
+the Js in column 7 were swapped with the Jd in column 9?  (The second
+"garbage" line above is for this modified tableau.)  Finally, given that it
+can be done, remove a set of hearts (as usual, without dealing any more
+cards).  What is the minimum number of other suits that must be removed in
+order to do so?  Does the order of the two face-down cards matter?
+
+ Kd	 Jc	 9h	 9c	 Qh	 9d	 Qc	 Ks	 --	 Qs
+ Qd	10c	10s	 8c	 Jc	 Qh	 Kc	 Js	 --	 Kc
+ Jd	 9c		 5s	10h	 Jh	 Qs	 2d	 Jd	 3c
+10d	 8c		 7d	 9h	 Ad	 Js	 Ac	 7d
+ 9d	 7c		 Kd	 8h		10d	 7h	 6h
+ 8d	 6c			 6s		 9s		 5c
+ 7h	 5c			 5s		 8s		 4h
+ 6d	 4s			 4s		 7s		 3h
+ 5d	 3s			 3s		 6s		 2d
+ 4d	 2s			 2c		 Qd		 Ah
+ 3d	 As			 6h				 4c
+ 2h	 As			 5d				 3c
+ Ah				 4d				 2c
+ 8h				 9s				 Ac
+								 7c
+
+Solution:
+
+This is a complicated one, so take a deep breath!  (If you didn't find it
+complicated, then perhaps you weren't thorough in your analysis.  Unless you
+(a) decided the spades could not be removed without getting a space, (b)
+realised that swapping the Jacks affects this, and (c) considered the 9d in
+column 1 at some point in your proof, your analysis is incomplete.)
+
+First let's consider the problem of putting together a set of spades.  We
+begin by finding all the pieces.  The only Ks is in column 8; the only Qs we
+can possibly get to without a space is in column 7.  (Actually, we shouldn't
+be too hasty; if we could remove a set of clubs without getting a space, we
+could reach the Qs in column 10.  But in moving the Qs we'd create a space,
+whether we needed it or not; and besides, the only Qc is in column 7 with the
+other Kc in the way.)  In digging to the Ks and Qs we'll reach both Jacks, so
+they shouldn't be a problem.  The 10s is in column 3, and the remaining
+spades are at various depths in columns 2, 5, and 7.  Can we pull all these
+cards together?
+
+To get to the Ks we need a free 8, a free 3, and a free Queen (even though we
+may end up using the Js from column 8, we need some place to put it in order
+to get to the King).  The 8 in column 4 is inaccessible unless we can remove
+a set of diamonds, which in turn is impossible without a space since the 7d
+in column 4 is inaccessible and likewise for the 7d in column 9 due to the
+absence of free 5's.  But we have a free 8 in column 1 and another in column
+5 (if we can reach it), so there's no problem with that.  We also have
+exactly one free 3, and one free Queen.  So far so good.  Can we reach the Qs
+in column 7?  That requires a free King, which is no problem.  It also
+requires someplace to move the 9-6s and the 10d.  This should pose no problem
+either.  Note that, though we need a free 10 and a free Jack for this, we
+don't "use up" those free cards by moving the 9-6s and 10d, since we uncover
+another 10 and Jack to become new free cards.  However, notice that we're
+eventually going to have to reach the 5s in column 5, and this will use up
+the free 10.  So we have to dig through column 7 before that.  In fact, we
+have to move the 10d out of column 7 before moving the 9s out of column 5,
+because once we move the latter we'll have 9's on all the 10's, and the 10d
+won't be movable.  Or will it?  If we could put a 9d onto the 10d (freeing up
+a different 10), we could move the 9s onto the newly freed 10 and still be
+able to move the 10d.  Let's assume for the moment that this is impossible
+(we'll prove it later, but don't want to digress too far here).  To repeat,
+then, we need to move the 10d out of column 7 before moving the 9s out of
+column 5.  Where does the 10d go?  The free Jack in column 9 is inaccessible
+without a free 5, and the other free Jacks (in columns 6 and 8) each require
+a free deuce (even though the Jack in column 8 doesn't require us to use up
+the deuce permanently).  The only free deuce is in column 5, and we can't get
+to it without moving the 9s.  So we're stuck!
+
+Now let's follow out that digression and make sure we can't get a 9d onto the
+10d.  We certainly can't use the 9d in column 6, since that would create a
+space, which is verboten.  In order to reach the 9d in column 1, we'd have to
+move the 8h.  If we put it onto the 9s in column 5, we would then be unable
+to move that 9s later on (we have only one free 9 available; as we'll see
+later, we can't get to the one in column 3 without moving the 9s from column
+5).  If we moved the 8-6s from column 7 onto the 9s in column 5, and then
+moved the 8h onto the newly freed 9s, we wouldn't be able to move THAT 9s
+later, so we either wouldn't be able to reach the Qs (if we had left the 9s
+in column 7 when we put the 8h on it) or else we'd be unable to reach the 10s
+(if we had moved the 9s there first).  So, although we might be able to get
+the 9d from column 1 onto the 10d in column 7, by the time we did so we'd
+have made a hopeless mess out of the spades.  The conclusion from all this is
+that it's impossible to remove a set of spades without first getting a
+space.
+
+Now, what if the Jacks were swapped as described?  In that case, we wouldn't
+need a free Jack on which to park the 10d; we could move the J-10d as a
+unit.  So the plan is to move the Qd out of column 7, followed by the 9-6s
+and J-10d.  Then we can use up the free 10 by moving the 9s out of column 5
+and finish bringing together the spades.  The complete sequence is: Qd from 7
+to 4, 9-6s from 7 to 3, J-10d from 7 to 4, 9s from 5 to 4, 5-4d from 5 to 3,
+7h from 8 to 1, 6h from 5 to 1, 5-4d from 3 to 1, 2c from 5 to 10, 5-3s from
+5 to 3, Ac from 8 to 10, and now we have to be careful not to move the 2d
+from column 8 onto the spades in column 3, so instead we move 3s from 3 to 1,
+2d from 8 to 1, Js from 8 to 7, Q-Js from 7 to 8, 10-4s from 3 to 8, As from
+2 to 1, and 3-As from 2 to 8.  Voila!
+
+That was for warm-up; what about removing the set of hearts?  The first step
+is easy: we look around to see where all the hearts are and find that the
+King and 5 are missing.  Hence these must be the two face-down cards.  It
+remains to be seen whether their order is significant.
+
+In the course of discussing the spades, we observed that we cannot remove a
+set of diamonds or clubs without first getting a space, and we also proved
+the same thing for the spades.  Since we can't get past the 4c in column 9
+without a space, it looks like our first order of business is getting one.
+Columns 1, 4, 7, 8, 9, and 10 are out, for obvious reasons.  Column 3 looks
+like the best bet, but in order to move the 10s we need a free Jack, and that
+in turn requires a free deuce, and THAT requires that we move the 9s from
+column 5 onto the 10s.  Thus, by the time we manage to move the 10s, we'll no
+longer have a free 10 on which to put the 9h to get the space.  Column 6 is
+similarly hopeless; in order to move the Ad we need to use up the free 10.
+Column 2 is out of the question since there's no place to put the 4-As.  That
+leaves column 5.
+
+To get through column 5 we need to use up a 10, two 7's, and a King, and we
+also need temporary use of a 6, 3, Jack, and Queen.  Getting the Jack will be
+no trouble once we've gotten to the 2c, and getting the 6 just needs another
+free King, which we can get from either column 8 or column 10.  Let's use the
+one in column 10; the only thing we have to watch out for is that if we wait
+too long to uncover that King (in particular, if we wait until we need it to
+put the Qh on to clear the space), we may find the 3c is immovable due to our
+having moved stuff onto it in the meanwhile.  So we have to move the 3c onto
+the 4d at some early opportunity.  Here we go: 9s from 5 to 3, Qd from 7 to
+4, 5-4d from 5 to 7, 6h from 5 to 8, 2c from 5 to 10, 6-3s from 5 to 9, 3-2c
+from 10 to 7, Ad from 6 to 7, 10-8h from 5 to 6, Jc from 5 to 4, and finally
+Qh from 5 to 10.  The tableau now looks like this:
+
+ Kd	 Jc	 9h	 9c	(sp)	 9d	 Qc	 Ks	 --	 Qs
+ Qd	10c	10s	 8c		 Qh	 Kc	 Js	 --	 Kc
+ Jd	 9c	 9s	 5s		 Jh	 Qs	 2d	 Jd	 Qh
+10d	 8c		 7d		10h	 Js	 Ac	 7d
+ 9d	 7c		 Kd		 9h	10d	 7h	 6h
+ 8d	 6c		 Qd		 8h	 9s	 6h	 5c
+ 7h	 5c		 Jc			 8s		 4h
+ 6d	 4s					 7s		 3h
+ 5d	 3s					 6s		 2d
+ 4d	 2s					 5d		 Ah
+ 3d	 As					 4d		 4c
+ 2h	 As					 3c		 3c
+ Ah						 2c		 2c
+ 8h						 Ad		 Ac
+								 7c
+								 6s
+								 5s
+								 4s
+								 3s
+
+Where do we go from here?  Well, we're trying to minimise the number of suits
+(other than hearts) removed, so let's see if we can get the hearts out right
+away.  We would need to dig through column 9; to do that we would have to
+move the 4-Ac into the space (or onto a free 5; we'll come back to this),
+after which we would have no place to move the 4-3h.  If we could get a free
+5 without using up the space, we might fare better, but the only free 5 is in
+column 4, and to get to it we must put the Kd into the space (remember we're
+assuming we're not going to remove any other suits) and we have no free 10
+with which to restore the space via column 4.  Nor can we get any more
+spaces; all columns contain Kings or 9's or Aces, and there are no free 10's
+or deuces, so digging through any pile would cost us the space, and would get
+us at most one space in return.  Thus we conclude that we must remove another
+suit before the hearts.  Which suit is it to be?
+
+It can't be clubs.  To reach the 10c (in column 2) we must move the first As
+into the space, since there are no free deuces anywhere.  Having done so, we
+have no place to move the 4-As.  (We have already noted that getting to the
+free 5 costs us the space.)  On the other hand, we CAN remove either diamonds
+or spades.  (If you thought you HAD to remove the diamonds, you might want to
+take a moment to study the above tableau and figure out how to remove the
+spades instead.)  Let's look at the diamonds first.  Most of them are already
+in column 1; all we need to dredge up are the 7, 2, and Ace.  We'll ignore
+the diamonds in column 9 (we know we can't reach the 7d there, and the 2d is
+less accessible than that in column 8), and proceed thusly: 7-6h from 8 to 6,
+Ac from 8 to 5, Ad from 7 to 8, Ac from 5 to 7, 8h from 1 to 3, 2-Ah from 1
+to 9, 2-Ad from 8 to 1, Jc from 4 to 10, K-Qd from 4 to 5, 6-Ad from 1 to 4,
+7h from 1 to 3, and 7-Ad from 4 to 1.  Removing the diamonds from column 1
+would give us this position:
+
+(sp)	 Jc	 9h	 9c	 Kd	 9d	 Qc	 Ks	 --	 Qs
+	10c	10s	 8c	 Qd	 Qh	 Kc	 Js	 --	 Kc
+	 9c	 9s	 5s		 Jh	 Qs		 Jd	 Qh
+	 8c	 8h			10h	 Js		 7d	 Jc
+	 7c	 7h			 9h	10d		 6h
+	 6c				 8h	 9s		 5c
+	 5c				 7h	 8s		 4h
+	 4s				 6h	 7s		 3h
+	 3s					 6s		 2d
+	 2s					 5d		 Ah
+	 As					 4d		 4c
+	 As					 3c		 3c
+						 2c		 2c
+						 Ac		 Ac
+								 7c
+								 6s
+								 5s
+								 4s
+								 3s
+								 2h
+								 Ah
+
+Now, before we pursue this any further, let's go back and see how we can
+remove the spades instead.  If we try to do so in the straightforward manner,
+we run into trouble.  Presumably we would uncover the Ks in column 8 by
+moving the 7-6h onto an 8 and the 2d-Ac onto a 3 (probably swapping the Ac/Ad
+as we did in the previous paragraph).  We would then move the Js out of
+column 8 and bring in a pile of spades from columns 7 (Q-J, 8-6), 3 (10-9),
+and 9 (5-3), piling them all onto the King.  But then we'd be unable to get
+to the 2s in column 2.  (Once we moved the first As into the space, we'd be
+unable to swap the 2-As with the 2-Ad (or whatever) blocking off the 3s in
+column 8.) The way out of this bind is to wait until the last minute to move
+anything onto the 3s, such that when we do it's the 2-As, and thus we won't
+need the space afterward.  Here's how we can do it: 7-6h from 8 to 6, Ac from
+8 to 5, Ad from 7 to 8, Ac from 5 to 7, 3-Ac from 7 to 5, 5-4d from 7 to 6,
+3-Ac from 5 to 6, 8-6s from 7 to 3, 9s from 7 to 5, 10d from 7 to 4, 9s from
+5 to 4, 10-6s from 3 to 7, 5-3s from 9 to 7.  Now we're ready to go: As from
+2 to 5, 2-As from 2 to 7, 2-Ad from 8 to 2, Js from 8 to 10, and Q-As from 7
+to 8.  Removing the suit gives this tableau:
+
+ Kd	 Jc	 9h	 9c	 As	 9d	 Qc	(sp)	 --	 Qs
+ Qd	10c		 8c		 Qh	 Kc		 --	 Kc
+ Jd	 9c		 5s		 Jh			 Jd	 Qh
+10d	 8c		 7d		10h			 7d	 Js
+ 9d	 7c		 Kd		 9h			 6h
+ 8d	 6c		 Qd		 8h			 5c
+ 7h	 5c		 Jc		 7h			 4h
+ 6d	 4s		10d		 6h			 3h
+ 5d	 3s		 9s		 5d			 2d
+ 4d	 2d				 4d			 Ah
+ 3d	 Ad				 3c			 4c
+ 2h					 2c			 3c
+ Ah					 Ac			 2c
+ 8h								 Ac
+								 7c
+								 6s
+
+Now, which of these two positions (resulting from removing either diamonds or
+spades) is better with regard to our ultimate goal -- the hearts?  Well, in
+the tableau immediately above (with the spades removed), we still can't get
+through column 9 (same reasoning as before), nor can we get any more spaces
+(column 2 is the only chance, but we can't get through it).  And since we
+can't get through column 2, we can't remove a set of clubs yet, so all we can
+do is remove a set of diamonds.  If that's the case, we might as well have
+removed the diamonds first and then seen whether we could do without removing
+the spades!  So we'll use the earlier tableau and proceed from there.
+
+Now we can dig through column 9 and turn up a new card, but we'll lose the
+space in the process, because we've got only one free 8 left.  Furthermore,
+to get to that free 8 we must use up our only free 6, so no matter which
+heart gets turned up we won't be able to move it, nor can it possibly get us
+the space back.  Furthermore, we still can't get any additional spaces (short
+of removing more suits) due to the lack of free 10's and deuces.  Thus we
+can't get out a set of hearts yet, but we're getting closer!
+
+What next?  We can now remove either spades or clubs.  Either way we end up
+getting a new space.  Removing the clubs has the advantage that it digs all
+the way to the 4-Ac in column 9, so let's try that approach.  We'll start by
+dredging out the Qc: 3-Ac from 7 to 1, 5-4d from 7 to 6, 3-Ac from 1 to 6,
+9-6s from 7 to 1, 10d from 7 to 10, 9-6s from 1 to 10, Js from 8 to 5, Q-Js
+from 7 to 8, Kc from 7 to 1, Qc from 7 to 1.  Now we finish the job: As from
+2 to 7, 4-As from 2 to 4, J-5c from 2 to 1, 2-Ah from 9 to 2, 6-3s from 9 to
+3, 2-Ah from 2 to 3, 5-As from 4 to 10, 7c from 9 to 4, 4-Ac from 9 to 1.
+Removing the clubs from column 1 yields:
+
+(sp)	(sp)	 9h	 9c	 Kd	 9d	 As	 Ks	 --	 Qs
+		10s	 8c	 Qd	 Qh		 Qs	 --	 Kc
+		 9s	 7c	 Js	 Jh		 Js	 Jd	 Qh
+		 8h			10h			 7d	 Jc
+		 7h			 9h			 6h	10d
+		 6s			 8h			 5c	 9s
+		 5s			 7h			 4h	 8s
+		 4s			 6h			 3h	 7s
+		 3s			 5d			 2d	 6s
+		 2h			 4d			 Ah	 5s
+		 Ah			 3c				 4s
+					 2c				 3s
+					 Ac				 2s
+									 As
+
+Surely two spaces will suffice!  Except that now we've used up the last of
+the free 8's, so both the 7d and the Jd will cost us spaces (we can move the
+Jd onto the Qs in column 10, but that too costs us a space).  If the 5h turns
+up, we'll be stuck, but what if we get the Kh?  Then, with a bit of judicious
+planning, we can move the Qs out of column 10 onto the Kh.  (The planning
+involves putting a Js on the Qs so the Jd can go elsewhere.)  But the lone
+space won't be enough to get the Kh off of column 9, once the Q-Js are placed
+with it.  So we must plan even further and leave a Q-Jh to be picked up by
+the Kh.  This is our only hope of getting the hearts out (without removing
+the spades), so let's see how it works out: 9-As from 10 to 1, 10d from 10 to
+5, 9-As from 1 to 5, 3-Ac from 6 to 1, 5-4d from 6 to 2, 10-6h from 6 to 8,
+3-Ac from 1 to 2, Jc from 10 to 1, Jh from 6 to 10, Jc from 1 to 6.  Now
+we've got the Jh with the Qh that we can move.  (We can't move the Qh in
+column 6 since that would cost us a space.)  Continuing: 5-As from 5 to 8,
+3-Ac from 2 to 1, 5-4d from 2 to 5, 3-Ac from 1 to 5, Ah from 9 to 1, 2d from
+9 to 2, 2-Ah from 3 to 9, 2d from 2 to 3, Ah from 1 to 3, 4-Ah from 9 to 1,
+5c from 9 to 2, 6h from 9 to 4, 5c from 2 to 4, 4-Ah from 1 to 4, Q-Jh from
+10 to 1, Kc from 10 to 2, Qs from 10 to 2, 7d from 9 to 10, Jd from 9 to 2,
+and we assume the Kh is turned up.  We move Q-Jh from 1 to 9 and reach the
+following position:
+
+(sp)	 Kc	 9h	 9c	 Kd	 9d	 As	 Ks	 --	 7d
+	 Qs	10s	 8c	 Qd	 Qh		 Qs	 Kh
+	 Jd	 9s	 7c	 Js	 Jc		 Js	 Qh
+		 8h	 6h	10d			10h	 Jh
+		 7h	 5c	 9s			 9h
+		 6s	 4h	 8s			 8h
+		 5s	 3h	 7s			 7h
+		 4s	 2h	 6s			 6h
+		 3s	 Ah	 5d			 5s
+		 2d		 4d			 4s
+		 Ah		 3c			 3s
+				 2c			 2s
+				 Ac			 As
+
+Unfortunately, despite our best preparations, we will be unable to combine
+the hearts once we move the K-Jh into the space and turn up the 5h.  We could
+go back and try removing the spades instead of the clubs earlier, but it
+wouldn't help.  We must remove both the spades AND the clubs (and the
+diamonds) before removing the hearts.  We can't get the spades together
+starting with the above tableau -- we can't get through column 3 with only
+one space.  So we'll back up to the previous tableau and proceed thusly: 2-Ah
+from 3 to 1, 6-3s from 3 to 4, 8-7h from 3 to 2, 10-9s from 3 to 8, 8-7h from
+2 to 3, Ah from 9 to 2, 2d from 9 to 4, Ah from 2 to 4, 2-Ah from 1 to 9,
+8-As from 10 to 8, and remove the spades.  We now have this:
+
+(sp)	(sp)	 9h	 9c	 Kd	 9d	 As	(sp)	 --	 Qs
+		 8h	 8c	 Qd	 Qh			 --	 Kc
+		 7h	 7c	 Js	 Jh			 Jd	 Qh
+			 6s		10h			 7d	 Jc
+			 5s		 9h			 6h	10d
+			 4s		 8h			 5c	 9s
+			 3s		 7h			 4h
+			 2d		 6h			 3h
+			 Ah		 5d			 2h
+					 4d			 Ah
+					 3c
+					 2c
+					 Ac
+
+With THREE spaces we should have no trouble!  Then again, considering how
+careful we had to be to even come close using two spaces, perhaps we should
+be cautious!  If we just start dumping things into spaces we may find we
+don't have enough spaces to move things around once we know what we want
+moved.  So we'll start by gathering what hearts we have: 3-Ac from 6 to 1,
+5-4d from 6 to 2, 6h from 6 to 3, 5-4d from 2 to 3, 3-Ac from 1 to 3, 4-Ah
+from 9 to 1, 5c from 9 to 2, 6h from 9 to 6, 5c from 2 to 6, 4-Ah from 1 to
+6.  Now, if we stuff the 7d and Jd from column 9 into a pair of spaces, and
+the 5h turns up, we can move 4-Ah from 6 to 9, 5c from 6 to 8, 5-Ah from 9 to
+6, and Q-Ah from 6 onto the newly revealed Kh.  But if the Kh is the first
+card turned up, we'll be in rough shape.  So let's prepare for that
+contingency just as we did in our earlier attempt.  We move 9s from 10 to 1,
+10d from 10 to 5, 9s from 1 to 5, 4-Ah from 6 to 1, 5c from 6 to 2, J-6h from
+6 to 8, Jc from 10 to 6, J-6h from 8 to 10, 10-6h from 10 to 6, 5c from 2 to
+6, 4-Ah from 1 to 6, Q-Jh from 10 to 8, Kc from 10 to 1, Qs from 10 to 1, 7d
+from 9 to 10, and here we are:
+
+ Kc	(sp)	 9h	 9c	 Kd	 9d	 As	 Qh	 --	 7d
+ Qs		 8h	 8c	 Qd	 Qh		 Jh	 --
+		 7h	 7c	 Js	 Jc			 Jd
+		 6h	 6s	10d	10h
+		 5d	 5s	 9s	 9h
+		 4d	 4s		 8h
+		 3c	 3s		 7h
+		 2c	 2d		 6h
+		 Ac	 Ah		 5c
+					 4h
+					 3h
+					 2h
+					 Ah
+
+No matter which heart is revealed when we move the Jd from 9 to 1, we will be
+able to finish combining the hearts.
+
+===========================================================================
+
+Ae[bFBe`0XjJA71dJjS2;b0Q9[YT01:>4HQoE;]7OIIXJIB432/DZcKfD>>CSO_H>Zgi[ed:5NPgamO?=mKT\gBR^c=Gd@O^@TM>]QdcD :gKni/^ f15K/8 LRb;/e 8f=HX/D UPH2/> J?B>/H Pa?n0/o ggKE/R oQfL/j ?`9Al/^.
+
+In case you're wondering what it takes to finish a game with all eight
+completed suits still sitting in the tableau, here's a deck (again,
+encountered in actual play) that makes it possible.  The "solution" is left
+as an exercise.
+
+This deck can also be useful as a confidence boost for novices who are having
+trouble winning at all, since it is relatively easy to win from this position
+if you are willing to remove suits as you complete them.
+
+ --	 --	 --	 --	 --	 --	 --	 --	 --	 --
+ --	 --	 --	 --	 --	 --	 --	 --	 --	 --
+ --	 --	 --	 --	 --	 --	 --	 --	 --	 --
+ --	 --	 --	 --	 --	 --	 --	 --	 --	 --
+ --	 9s	 Kd	 --	 4s	 8h	 --	 Qd	 7s	 --
+10d			 Jd			 Qh			 9d
+
+===========================================================================
+[Copyright (c) 1989, Donald R. Woods and Sun Microsystems, Inc.]
+

@@ -1,0 +1,32 @@
+	{
+	/*
+	 * Config entry structure initialization
+	 * for primary PS/2 ST506 controllers.
+	 */
+	"%s %s", /* Controller Name */
+	(CCAP_DMA | CCAP_NOSEEK | CCAP_RETRY | CCAP_ERRCOR), /* capabilities */
+	0L,                     /* No memory address 			*/
+	0L,                     /* No memory address 			*/
+	0x%lx,                  /* Primary I/O address (Fixed Disk Register)  */
+	0x%lx,                 	/* Secondary I/O address (Fixed Disk Register)*/
+	3,                      /* primary DMA channel			*/
+	0,                      /* No DMA 				*/
+	255,                    /* Max sector count 			*/
+	2,			/* Number of drives 			*/
+	10,                     /* 100us drive switch delay 		*/
+	%u,                      /* Start at minormap entry 0 (minor dev 0) */
+	512,                    /* Default sector size 			*/
+	mcst_bdinit,            /* init board function 			*/
+	mcst_drvinit,           /* init drive function 			*/
+	mcst_cmd,               /* command function 			*/
+	NULL,                   /* no open function 			*/
+	NULL,                   /* no close function 			*/
+	NULL,                   /* No Master Interrupt 			*/
+		{               /* Interrupt entries 			*/
+		%u,		/* interrupt level			*/
+		mcst_int,       /* First Hardware Interrupt 		*/
+		},
+		{               /* Special IOCTL handlers 		*/
+		0,              /* None present 			*/
+		},
+	},

@@ -1,0 +1,58 @@
+#ident	"@(#)pkg.pci:common/pkg/pci/prototype	1.2.1.4"
+
+#	Copyright (c) 1989  Locus Computing Corporation
+#	All Rights Reserved
+#
+#	@(#)prototype	1.2	1/2/92	15:21:38
+#
+i copyright
+i depend
+i pkginfo
+d none /etc					?   ?   ?
+d none /etc/rc0.d				?   ?   ?
+d none /etc/rc1.d				?   ?   ?
+d none /etc/rc2.d				?   ?   ?
+f none /etc/rc2.d/S95pci			755 bin bin
+l none /etc/rc0.d/K95pci=/etc/rc2.d/S95pci
+l none /etc/rc1.d/K95pci=/etc/rc2.d/S95pci
+d none /usr					?   ?   ?
+d none /usr/bin					?   ?   ?
+f none /usr/bin/charconv			755 bin bin
+l none /usr/bin/dos2unix=/usr/bin/charconv
+l none /usr/bin/unix2dos=/usr/bin/charconv
+d none /usr/pci					755 bin bin
+d none /usr/pci/bin				755 bin bin
+f none /usr/pci/bin/lmfmsg			755 bin bin
+f none /usr/pci/bin/pciprint			755 bin bin
+f none /usr/pci/bin/errlogger			755 bin bin
+f none /usr/pci/bin/pcidebug			755 bin bin
+f none /usr/pci/bin/pcidosout.232		755 bin bin
+f none /usr/pci/bin/pcidossvr.232		755 bin bin
+f none /usr/pci/bin/pciconsvr.ip		755 bin bin
+f none /usr/pci/bin/pcidosout.ip		755 bin bin
+f none /usr/pci/bin/pcidossvr.ip		755 bin bin
+f none /usr/pci/bin/pcimapsvr.ip		755 bin bin
+f none /usr/pci/bin/loadpci			755 bin bin
+f none /usr/pci/bin/environ			755 bin bin
+f none /usr/pci/bin/pcistart			755 bin bin
+f none /usr/pci/bin/pcistop			755 bin bin
+f none /usr/pci/bin/sharectl			755 bin bin
+f none /usr/pci/pcidossvr.232			755 bin bin
+v none /usr/pci/pciptys				644 bin bin
+d none /var/spool				?   ?   ?
+d none /var/spool/pcilog			777 bin bin
+d none /usr/pci/lib				755 bin bin
+f none /usr/pci/lib/pc437.lcs			644 bin bin
+f none /usr/pci/lib/pc850.lcs			644 bin bin
+f none /usr/pci/lib/8859.lcs			644 bin bin
+f none /usr/pci/lib/pc860.lcs			644 bin bin
+f none /usr/pci/lib/pc863.lcs			644 bin bin
+f none /usr/pci/lib/pc865.lcs			644 bin bin
+f none /usr/pci/lib/vt220-pc.ti			644 bin bin
+d none /usr/share				?   ?   ?
+d none /usr/share/lib				?   ?   ?
+d none /usr/share/lib/terminfo			?   ?   ?
+d none /usr/share/lib/terminfo/v		?   ?   ?
+f none /usr/share/lib/terminfo/v/vt220-pc	644 bin bin
+d none /usr/pci/dosmsg				755 bin bin
+f none /usr/pci/dosmsg/En.lmf			644 bin bin

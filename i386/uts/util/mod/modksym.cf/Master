@@ -1,0 +1,4 @@
+#ident	"@(#)uts-x86:util/mod/modksym.cf/Master	1.1"
+#ident	"$Header: $"
+$version 1
+modksym	modksym	-	0	0	0

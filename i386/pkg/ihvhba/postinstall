@@ -1,0 +1,41 @@
+#ident	"@(#)pkg.ihvhba:i386/pkg/ihvhba/postinstall	1.7"
+#ident	"$Header: $"
+
+do_install () {
+
+	${CONFBIN}/idinstall -P ${PKGINST} -a ${1} > ${ERR} 2>&1
+	RET=$?
+	if [ ${RET} != 0 ]
+	then
+		${CONFBIN}/idinstall -P ${PKGINST} -u ${1} > ${ERR} 2>&1
+		RET=$?
+	fi
+
+	if [ ${RET} != 0 ]
+	then
+		message "The installation cannot be completed due to \
+an error in the driver installation during the installation of the ${1} \
+module of the ${NAME}.  The file ${ERR} contains the errors."
+			exit ${FAILURE}
+	fi
+	cp disk.cfg /etc/conf/pack.d/${1}
+}
+
+FAILURE=1	# fatal error
+
+CONFDIR=/etc/conf
+CONFBIN=${CONFDIR}/bin
+ERR=/tmp/err.out
+
+for MODULE in mcis
+do
+	cd /tmp/${MODULE}
+	do_install ${MODULE}
+done
+
+cat /tmp/mcis/loadmods >> /etc/loadmods
+
+installf -f $PKGINST 
+
+removef ${PKGINST} /tmp/mcis/Driver.o /tmp/mcis/Space.c /tmp/mcis/Master /tmp/mcis/System /tmp/mcis/loadmods /tmp/mcis/disk.cfg /tmp/mcis >/dev/null 2>&1
+removef -f ${PKGINST} >/dev/null 2>&1

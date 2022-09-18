@@ -1,0 +1,40 @@
+String OleMtopLevel_title = "s_sampler" ;
+String OleMscrollingList_itemLabel = "ITEM %c" ;
+
+String OleMscrolledWindow_string =
+"This text is in a\n\
+statictext widget\n\
+in a scrolled window.\n\
+You can move it up\n\
+and down or left\n\
+and right with the\n\
+two scrollbars." ;
+
+String OleMfooterMessage_pointerIn = "Pointer entered STUB widget" ;
+String OleMfooterMessage_pointerOut = "Pointer left STUB widget" ;
+String OleMfooterMessage_oblongButtonCB = "OBLONGBUTTON callback" ;
+String OleMfooterMessage_oblongGadgetCB = "OBLONGBUTTONGADGET callback";
+String OleMfooterMessage_nonExclusivesCB = "[NON] EXCLUSIVES callback for button %d" ;
+String OleMfooterMessage_popupApplyCB = "POPUP apply callback" ;
+String OleMfooterMessage_popupSetDefaultsCB = "POPUP setdefaults callback" ;
+String OleMfooterMessage_popupResetCB = "POPUP reset callback" ;
+String OleMfooterMessage_popupResetFactoryCB = 
+	"POPUP resetfactory callback" ;
+String OleMfooterMessage_flatSelectCB = "FLAT select callback" ;
+String OleMfooterMessage_buttonSelected = "Button %d selected" ;
+String OleMfooterMessage_goodBye = "ADIOS !!!" ;
+String OleMfooterMessage_scrollbarMoved = "Form scrollbar moved to %d%%" ;
+String OleMfooterMessage_scrolledWindowVSB = 
+	"Scrolledwindow vertical scrollbar moved" ;
+String OleMfooterMessage_scrolledWindowHSB = 
+	"Scrolledwindow horizontal scrollbar moved" ;
+String OleMfooterMessage_scrollingListMsg = 
+	"SCROLLING LIST : Item label %s Data stored %d" ;
+String OleMfooterMessage_textfieldMsg = "TEXTFIELD User Input: %s\n" ;
+
+String OleMhelp_title = "Toplevel Widget" ;
+String OleMnotice_message = "NOTICE WIDGET:\n Confirm EXIT" ;
+String OleMstatictext_message = "Statictext message for README\n" ;
+String OleMexclusives_label = "Fewer" ;
+String OleMstub_label = "STUB" ;
+String OleMflatCheckbox_label = "CheckBox%d" ;

@@ -1,0 +1,122 @@
+#ident	"@(#)debugger:libexecon/i386/DEPEND	1.1"
+Proccore.o:	Proccore.C
+	$(CPLUS_CMD) -c Proccore.C
+
+Coffcore.o:	Coffcore.c
+	$(CC_CMD) -c Coffcore.c
+
+Frame.o:	Frame.C
+	$(CPLUS_CMD) -c Frame.C
+
+Reg1.o:	Reg1.C
+	$(CPLUS_CMD) -c Reg1.C
+
+RegAccess.o:	RegAccess.C
+	$(CPLUS_CMD) -c RegAccess.C
+
+Seglist.o:	../common/Seglist.C
+	$(CPLUS_CMD) -c ../common/Seglist.C
+
+Seg_mach.o:	Seg_mach.C
+	$(CPLUS_CMD) -c Seg_mach.C
+
+Segment.o:	../common/Segment.C
+	$(CPLUS_CMD) -c ../common/Segment.C
+
+HW_Watch.o:	HW_Watch.C
+	$(CPLUS_CMD) -c HW_Watch.C
+
+oldproc.o:	oldproc.C
+	$(CPLUS_CMD) -c oldproc.C
+
+Breaklist.o:	../common/Breaklist.C
+	$(CPLUS_CMD) -c ../common/Breaklist.C
+
+EventTable.o:	../common/EventTable.C
+	$(CPLUS_CMD) -c ../common/EventTable.C
+
+Event.o:	../common/Event.C
+	$(CPLUS_CMD) -c ../common/Event.C
+
+Ev_Notify.o:	../common/Ev_Notify.C
+	$(CPLUS_CMD) -c ../common/Ev_Notify.C
+
+LWP.check.o:	../common/LWP.check.C
+	$(CPLUS_CMD) -c   ../common/LWP.check.C
+
+LWP.ctl.o:	../common/LWP.ctl.C
+	$(CPLUS_CMD) -c   ../common/LWP.ctl.C
+
+LWP.event.o:	../common/LWP.event.C
+	$(CPLUS_CMD) -c ../common/LWP.event.C
+
+LWP.io.o:	../common/LWP.io.C
+	$(CPLUS_CMD) -c ../common/LWP.io.C
+
+LWP.new.o:	../common/LWP.new.C
+	$(CPLUS_CMD) -c ../common/LWP.new.C
+
+LWP.resp.o:	../common/LWP.resp.C
+	$(CPLUS_CMD) -c ../common/LWP.resp.C
+
+LWP.sym.o:	../common/LWP.sym.C
+	$(CPLUS_CMD) -c ../common/LWP.sym.C
+
+Process.o:	../common/Process.C
+	$(CPLUS_CMD) -c ../common/Process.C
+
+Procctl.o:	../common/Procctl.C
+	$(CPLUS_CMD) -c ../common/Procctl.C
+
+Proglist.o:	../common/Proglist.C
+	$(CPLUS_CMD) -c ../common/Proglist.C
+
+Program.o:	../common/Program.C
+	$(CPLUS_CMD) -c ../common/Program.C
+
+PtyList.o:	../common/PtyList.C
+	$(CPLUS_CMD) -c ../common/PtyList.C
+
+Reg.o:	../common/Reg.C
+	$(CPLUS_CMD) -c ../common/Reg.C
+
+Siglist.o:	../common/Siglist.C
+	$(CPLUS_CMD) -c ../common/Siglist.C
+
+StopEvent.o:	../common/StopEvent.C
+	$(CPLUS_CMD) -c ../common/StopEvent.C
+
+TSClist.o:	../common/TSClist.C
+	$(CPLUS_CMD) -c  ../common/TSClist.C
+
+OBJECTS	=  \
+	Proccore.o \
+	Coffcore.o \
+	Frame.o \
+	Reg1.o \
+	RegAccess.o \
+	HW_Watch.o \
+	oldproc.o \
+	Breaklist.o \
+	Event.o \
+	Ev_Notify.o \
+	EventTable.o \
+	LWP.check.o \
+	LWP.ctl.o \
+	LWP.event.o \
+	LWP.io.o \
+	LWP.new.o \
+	LWP.resp.o \
+	LWP.sym.o \
+	Process.o \
+	Procctl.o \
+	Proglist.o \
+	Program.o \
+	PtyList.o \
+	Reg.o \
+	Seglist.o \
+	Seg_mach.o \
+	Segment.o \
+	Siglist.o \
+	StopEvent.o \
+	TSClist.o

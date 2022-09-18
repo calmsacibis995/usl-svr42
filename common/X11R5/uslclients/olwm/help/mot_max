@@ -1,0 +1,17 @@
+Maximize:
+
+	Use the Maximize button to expand the dimensions of the
+	window or icon at the pointer location to a larger format
+	(specified by the application).
+
+Press-drag-release mode:
+
+	Drag SELECT or MENU onto the button and release SELECT to
+	increase the size of the window or icon at the pointer location.
+
+Stay-up mode:
+
+	Click SELECT or MENU on the window menu button to post the
+	window menu. Move the pointer over the button, and click
+	SELECT to expand the window to the maximium size allowed
+	by the application.

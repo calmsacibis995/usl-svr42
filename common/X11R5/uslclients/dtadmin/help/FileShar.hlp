@@ -1,0 +1,886 @@
+#ident	"@(#)dtadmin:help/FileShar.hlp	1.16"
+^*version^1
+^*title^File Sharing Setup
+^:File_Sharing
+^*width^70
+^+DesktopMgr/help.defs
+^?Sharing file and folders among systems.
+^0^File Sharing Setup
+^$10
+File Sharing Setup
+
+Use File Sharing Setup to share \d(files^file) and \d(folders^folder) between your system
+and other systems. Operation of File Sharing Setup relies on the
+Network File System (NFS) utilities, which \d(connects^connect) remote files
+between systems in a way that makes them look and act like they exist
+on the local system.
+
+Files and folders shared between systems are known as share-items, of
+which there are two types: local and remote. An example of a local
+share-item is your Applications folder (/home/janet/Applications)
+which you can add to a list of share-items to make available to with
+other systems. To another system, your Applications folder share-item
+is considered a remote share-item that could be \d(connected^connect)
+to and used as if it were actually part of the second system.
+
+Follow these steps to share files between systems:
+
+   o On your system:
+
+     1. start NFS. Click on the Actions button and then click on
+        Status menu option to display the Status window. From the
+        Status window, click on Start NFS.)
+
+     2. Click on the View button and choose the Local menu option to
+        change the view to local.
+
+     3. Click on the Share-Item button and choose the New menu option
+        to display the File Sharing: Add New Share-Item - Local window.
+
+     4. Fill in the information about the item to be shared.
+
+     5. Click on the Add button.
+
+   o On the system that wants to access your files:
+
+     1. Start NFS. Click on Actions button and then click on the
+	Status menu option to display the Status window. From the
+	Status window, click on Start NFS.)
+
+     2. Click on the View button and choose the Local menu option to
+	change the view to remote.
+
+     3. Click on the Share-Item button and choose the New menu option
+	to display the File Sharing: Add New Share-Item - Remote
+	window.
+
+     4. Fill in the information about the remote shared-item you want
+        to access.
+
+     5. Click on the Add button.
+
+The following windows are provided for File Sharing Setup (Note that
+Share-Item Properties windows are the same as the respective Add New
+Share-Item windows):
+
+        \k(File Sharing Setup: Local/Remote Share-Items Window)
+        \k(File Sharing: Status Window)
+        \k(File Sharing: Add New Share-Item - Local Window^^File Sharing: Add New Share-Item/Properties - Local Window)
+        \k(File Sharing: Add New Share-Item - Remote Window^^File Sharing: Add New Share-Item/Properties - Remote Window)
+        \k(File Sharing: Share-Item - Properties - Local Window^^File Sharing: Add New Share-Item/Properties - Local Window)
+        \k(File Sharing: Share-Item - Properties - Remote Window^^File Sharing: Add New Share-Item/Properties - Remote Window)
+        \k(File Sharing: Share-Item Window^^File Sharing: Share-Item Window)
+        \k(File Sharing: Remote Systems Window)
+^1^File Sharing Setup: Local/Remote Share-Items Window
+^$20
+\k{File Sharing Setup}
+1. File Sharing Setup: Local/Remote Share-Items Window
+
+Use the File Sharing Setup: Local Share-Items Window to view local
+\d(share-items^share-item) you make available to other systems. The File Sharing
+Setup: Remote Share-Items Window, lets you view remote share-items you
+use from other systems. You can add or delete local and remote
+share-items, and view file sharing status.
+
+The \d(buttons^button) available from the File Sharing Setup: Local/Remote
+Share-Items windows are:
+
+        \k(Actions Button^^Actions ButtonSI)
+        \k(View Button^^View ButtonSI)
+        \k(Share-Item Button^^Share-Item ButtonSI)
+        \k(Help Button^^Help ButtonSI)
+^2^Actions Button=Actions ButtonSI
+^$30
+1. \k{File Sharing Setup: Local/Remote Share-Items Window}
+   1.1 Actions Button
+
+The Actions button, depending on whether the view is local or remote,
+lets you share local \d(share-items^share-item) or access remote share-items. If the
+view is local, the Actions button lets you \d(advertise) and
+unadvertise your local share-items. If the view is remote, you can
+\d(connect) and unconnect remote share-items. From both views, the
+Actions button also lets you check the status of and exit file
+sharing.
+
+Clicking on the Actions button displays a menu with the following
+options:
+
+        \k(Connect^^ConnectSI)
+        \k(Unconnect^^UnconnectSI)
+        \k(Advertise^^AdvertiseSI)
+        \k(Unadvertise^^UnadvertiseSI)
+        \k(Status^^StatusSI)
+        \k(Exit^^ExitSI)
+^3^Connect=ConnectSI
+^$40
+1. \k{File Sharing Setup: Local/Remote Share-Items Window}
+   1.1 \k{Actions Button^^Actions ButtonSI}
+       1.1.1 Connect
+
+The Connect menu option is active only for the remote view. It lets
+you \d(connect) a previously added remote \d(share-item). The icon changes
+from Unconnected to Connected. The connection may take some time to
+complete. During the connection, the icon is shown as busy (the icon
+and its label are "dotted out"). Once connected, the icon is no longer
+busy and the remote share-item can be used by your system.
+
+Note: An asterisk (*) appears next to the icon label if the share-item
+was connected or advertised by someone using UNIX SVR4.2 in character-
+based mode.
+^3^Unconnect=UnconnectSI
+^$50
+1. \k{File Sharing Setup: Local/Remote Share-Items Window}
+   1.1 \k{Actions Button^^Actions ButtonSI}
+       1.1.2 Unconnect
+
+The Unconnect menu option is active only for the remote view. It lets
+you disconnect a \d(connected^connect) remote \d(share-item). The icon changes from 
+connected to unconnected.
+
+Note: Unconnect fails if the share-item is in use.
+^3^Advertise=AdvertiseSI
+^$60
+1. \k{File Sharing Setup: Local/Remote Share-Items Window}
+   1.1 \k{Actions Button^^Actions ButtonSI}
+       1.1.3 Advertise
+
+The Advertise menu option is active only for the local view. It lets
+you \d(advertise) a previously added local \d(share-item). If successful, the
+icon changes from Unadvertised to Advertised. Once advertised, your
+share-item can be accessed by other systems connected to your system
+over a network.
+^3^Unadvertise=UnadvertiseSI
+^$70
+1. \k{File Sharing Setup: Local/Remote Share-Items Window}
+   1.1 \k{Actions Button^^Actions ButtonSI}
+       1.1.4 Unadvertise
+
+The Unadvertise menu option is active only for the local view. It lets
+you unadvertise a currently \d(advertised^advertise) local \d(share-item). The icon
+changes from Advertised to Unadvertised.
+^3^Status=StatusSI
+^$80
+1. \k{File Sharing Setup: Local/Remote Share-Items Window}
+   1.1 \k{Actions Button^^Actions ButtonSI}
+       1.1.5 Status
+
+The Status menu option lets you check the status of file sharing and
+the remote hosts currently connected to your local \d(share-items^share-item). It
+also lets you start and stop NFS. Clicking on the Status menu option
+displays the File Sharing: Status window.
+
+More information: \k(File Sharing: Status Window)
+^3^Exit=ExitSI
+^$90
+1. \k{File Sharing Setup: Local/Remote Share-Items Window}
+   1.1 \k{Actions Button^^Actions ButtonSI}
+       1.1.6 Exit
+
+The Exit menu option lets you exit from File Sharing Setup.
+^2^View Button=View ButtonSI
+^$100
+1. \k{File Sharing Setup: Local/Remote Share-Items Window}
+   1.2 View Buton
+
+The View button lets you choose between viewing local or remote
+\d(share-items^share-item). Clicking on the View button displays a menu with the
+following options:
+
+        \k(Local^^LocalSI)
+        \k(Remote^^RemoteSI)
+^3^Local=LocalSI
+^$110
+1. \k{File Sharing Setup: Local/Remote Share-Items Window}
+   1.2 \k{View Buton^^View ButtonSI}
+       1.2.1 Local
+
+The Local menu option changes the view of the File Sharing Setup:
+Remote Share-Items window to Local. The Local view lets you see what
+\d(share-items^share-item) you are making available to others.
+^3^Remote=RemoteSI
+^$120
+1. \k{File Sharing Setup: Local/Remote Share-Items Window}
+   1.2 \k{View Buton^^View ButtonSI}
+       1.2.2 Remote
+
+The Remote menu option changes the view of the File Sharing Setup:
+Local Share-Items window to Remote. The Remote view lets you see what
+share-items from other systems you have selected and currently are
+connected to.
+^2^Share-Item Button=Share-Item ButtonSI
+^$130
+1. \k{File Sharing Setup: Local/Remote Share-Items Window}
+   1.3 Share-Item Button
+
+The Share-Item button, depending on whether the view is Local or
+Remote, lets you add, delete, or show properties for local or remote
+\d(share-items^share-item). When you add the new items, they are automatically
+\d(advertised^advertise) (if the view is local) or \d(connected^connect) (if
+the view is remote). Clicking on the Share-Item button displays a menu
+with the following options:
+
+        \k(New^^NewSI)
+        \k(Delete^^DeleteSI)
+        \k(Properties^^PropertiesSI)
+^3^New=NewSI
+^$140
+1. \k{File Sharing Setup: Local/Remote Share-Items Window}
+   1.3 \k{Share-Item Button^^Share-Item ButtonSI}
+       1.3.1 New
+
+The New menu option displays either the File Sharing: Add New Share-
+Item - Local or File Sharing: Add New Share-Item - Remote window
+(depending on whether the view is Local or Remote). You can fill in
+the requested information and add the remote or local share-item.
+^3^Delete=DeleteSI
+^$150
+1. \k{File Sharing Setup: Local/Remote Share-Items Window}
+   1.3 \k{Share-Item Button^^Share-Item ButtonSI}
+       1.3.2 Delete
+
+The Delete menu option lets you delete \d(share-items^share-item). Clicking on the
+Delete menu option displays the share-item Delete message.
+
+More information: \k(Share-Item Delete Message)
+^4^Share-Item Delete Message
+^$160
+1. \k{File Sharing Setup: Local/Remote Share-Items Window}
+   1.3 \k{Share-Item Button^^Share-Item ButtonSI}
+       1.3.2 \k{Delete^^DeleteSI}
+             1.3.2.1 Share-Item Delete Message
+
+The share-item Delete message has three buttons: Delete, Cancel, and
+Help.
+
+   o Delete Button: This button deletes the selected share-item(s).
+
+   o Cancel Button: This button cancels your request to delete a
+     share-item.
+
+   o Help Button: This button provides on-line help for the share-item
+     Delete message.
+^3^Properties=PropertiesSI
+^$170
+1. \k{File Sharing Setup: Local/Remote Share-Items Window}
+   1.3 \k{Share-Item Button^^Share-Item ButtonSI}
+       1.3.3 Properties
+
+The Properties menu option displays a window with information about
+the selected \d(share-item). Clicking on the Properties menu option displays
+the File Sharing: Share-Item - Properties-Local window or the File
+Sharing: Share-Item - Properties-Remote window (depending on whether
+the view is Local or Remote).
+^2^Help Button=Help ButtonSI
+^$180
+1. \k{File Sharing Setup: Local/Remote Share-Items Window}
+   1.4 Help Button
+
+The Help button provides on-line help for the File Sharing Setup:
+Local Share-Items and File Sharing Setup: Remote Share-Items windows.
+Clicking on the Help button displays a menu with the following
+options:
+
+        \k(File Sharing^^File SharingSI)
+        \k(Table of Contents^^Table of ContentsSI)
+        \k(Help Desk^^Help DeskSI)
+^3^File Sharing=File SharingSI
+^$190
+1. \k{File Sharing Setup: Local/Remote Share-Items Window}
+   1.4 \k{Help Button^^Help ButtonSI}
+       1.4.1 File Sharing
+
+The File Sharing Setup menu option provides on-line help for the File
+Sharing Setup: Local Share-Items and File Sharing Setup: Remote
+Share-Items windows.
+^3^Table of Contents=Table of ContentsSI
+^$200
+1. \k{File Sharing Setup: Local/Remote Share-Items Window}
+   1.4 \k{Help Button^^Help ButtonSI}
+       1.4.2 Table of Contents
+
+The Table of Contents menu option displays the list of help topics
+available for the File Sharing Setup: Local Share-Items and File
+Sharing Setup: Remote Share-Items windows.
+^3^Help Desk=Help DeskSI
+^$210
+1. \k{File Sharing Setup: Local/Remote Share-Items Window}
+   1.4 \k{Help Button^^Help ButtonSI}
+       1.4.3 Help Desk
+
+The Help Desk menu option opens the Help Desk window. From there, you
+can double-click on the icon for which you want on-line help.
+^1^File Sharing: Status Window
+^$220
+\k{File Sharing Setup}
+2. File Sharing: Status Window
+
+Use the File Sharing Status window to display the current status of
+file sharing on your system. It also lets you start and stop Network
+File System (NFS) utilities and update the status information.
+
+At the top of the File Sharing Status window are the "Can advertise
+files and folders" and "Can connect files and folders" lines. When
+these lines are followed by Yes, your system is able to advertise
+and/or connect share-items. If these lines are followed by No, your
+system is not able to advertise and/or connect share-items.
+
+The \d(buttons^button) available from the File Sharing Status window
+are:
+
+        \k(Start NFS Button^^Start NFS ButtonFS)
+        \k(Stop NFS Button^^Stop NFS ButtonFS)
+        \k(Update Status Button^^Update Status ButtonFS)
+        \k(Cancel Button^^Cancel ButtonFS)
+        \k(Help Button^^Help ButtonFS)
+^2^Start NFS Button=Start NFS ButtonFS
+^$230
+2. \k{File Sharing: Status Window}
+   2.1 Start NFS Button
+
+The Start NFS button starts the Network File System on your system.
+NFS must be started before \d(share-items^share-item) are actually shared. Be
+patient; starting NFS can take a few seconds.
+^2^Stop NFS Button=Stop NFS ButtonFS
+^$240
+2. \k{File Sharing: Status Window}
+   2.2 Stop NFS Button
+
+The Stop NFS button stops the Network File System on your system. Once
+NFS is stopped, all remote \d(share-items^share-item) are disconnected from your system
+and all local share-items are no longer available to remote systems.
+This may take a few moments. Clicking on the Stop NFS button displays
+the Stop NFS message.
+
+More information: \k(Stop NFS Message)
+^3^Stop NFS Message
+^$250
+2. \k{File Sharing: Status Window}
+   2.2 \k{Stop NFS Button^^Stop NFS ButtonFS}
+       2.2.1 Stop NFS Message
+
+The Stop NFS message has three buttons: Stop, Cancel, and Help.
+
+   o Stop Button: This button stops NFS from running.
+
+   o Cancel Button: This button cancels your request to stop NFS.
+
+   o Help Button: This button provides on-line help for the Stop NFS
+     message.
+^2^Update Status Button=Update Status ButtonFS
+^$260
+2. \k{File Sharing: Status Window}
+   2.3 Update Status Button
+
+The Update Status button checks the system to see whether the NFS
+status has changed since the window was last displayed. New status
+information is then displayed.
+^2^Cancel Button=Cancel ButtonFS
+^$270
+2. \k{File Sharing: Status Window}
+   2.4 Cancel Button
+
+The Cancel button closes the File Sharing: Status window.
+^2^Help Button=Help ButtonFS
+^$280
+2. \k{File Sharing: Status Window}
+   2.5 Help Button
+
+The Help button provides on-line help for the File Sharing: Status
+window.
+^1^File Sharing: Add New Share-Item - Local Window=File Sharing: Add New Share-Item/Properties - Local Window
+^$290
+\k{File Sharing Setup}
+3. File Sharing: Add New Share-Item - Local Window
+
+Use the File Sharing: Add New Share-Item - Local window to identify a
+local file or folder that you want to advertise (share with other
+systems). The File Sharing: Share-Item Properties - Local window shows
+the properties of a share-item that you have already added. The text
+boxes are the same for the two windows:
+
+   o Folder/File to share: Enter the full pathname-or the pathname
+     relative to your Desktop-of the file or folder you want to share
+     with remote systems. For example, if you have a folder called
+     Reports in your UNIX Desktop window, enter Reports. However, if
+     Reports is inside a folder called Important, which was in your
+     Desktop window, then enter Important/Reports.) You also can use
+     the Find button to locate the file or folder you want to share.
+     Clicking on the Find button displays the File Sharing: Share-Item
+     window.
+
+   o Icon Name: Enter the name used to identify the \d(share-item). If
+     you don't give it a name, the folder/file name is used.
+
+   o Advertise when NFS starts? If you want the share-item to be
+     automatically \d(advertised^advertise) whenever NFS starts, click
+     on Yes. If you don't, click on No. If the share-item is not
+     advertised automatically, you must readvertise it each time you
+     restart NFS.
+
+   o Advertise as: Click on Read Only, Read and Write, or No
+     Access. The option you select determines what users on other sys-
+     tems can do to a \d(share-item) you \d(advertise). If you only want
+     others to be able to read your advertised share-item, click
+     on Read Only. If you want others to be able to modify to as well
+     as read your advertised share-item, click on Read and Write. If
+     you only want selected remote systems to have access to your
+     share-item, click on No Access and add the selected systems to
+     the Exceptions list, described next.
+
+   o Exceptions: System Name: Enter the name of a system that you want
+     to have different permissions than those listed on the Advertise
+     as line. After you enter the System Name, click on Insert Read
+     Only or Insert Read and Write. The system is added to the Excep-
+     tion list with the permissions specified. You also can use the
+     Search button to locate a system name.
+
+     If you want to remove a system from the Exceptions list, first
+     click on the desired system name in the list. Next, click on the
+     Delete button. If you want to delete all the systems listed in
+     the Exceptions list, click on the Delete All button.
+
+   o Extended Options: Click on this box if you want to add advanced
+     command line options.
+
+     - Other command-line options: The UNIX system command called
+       share is used to advertise share-items to remote systems. This
+       text box lets you add extra options for the share command.  The
+       share command is documented in the UNIX System reference
+       manuals. Unless you're experienced with the share command,
+       leave this text box empty.
+
+More information:
+
+        \k(File Sharing: Share-Item Window^^File Sharing: Share-Item Window)
+        \k(File Sharing: Remote Systems Window)
+
+The buttons available from the File Sharing: Add New Share-Item -
+Local and File Sharing: Share-Item Properties-Local windows are:
+
+        \k(Find Button^^Find ButtonFSL)
+        \k(Search Button^^Search ButtonFSL)
+        \k(Add Button^^Add ButtonFSL)
+        \k(Apply Button^^Apply ButtonFSL)
+        \k(Reset Button^^Reset ButtonFSL)
+        \k(Cancel Button^^Cancel ButtonFSL)
+        \k(Help Button^^Help ButtonFSL)
+^2^Find Button=Find ButtonFSL
+^$300
+3. \k{File Sharing: Add New Share-Item - Local Window^^File Sharing: Add New Share-Item/Properties - Local Window}
+   3.1 Find Button
+
+The Find button helps you locate files and folders you want to share.
+Clicking on the Find button displays the File Sharing: Share-Item
+window.
+
+More information: \k(File Sharing: Share-Item Window^^File Sharing: Share-Item Window)
+^2^Search Button=Search ButtonFSL
+^$310
+3. \k{File Sharing: Add New Share-Item - Local Window^^File Sharing: Add New Share-Item/Properties - Local Window}
+   3.2 Search Button
+
+The Search button helps you locate remote systems that have access to
+your share-items. Clicking on the Search button displays the File
+Sharing: Remote Systems window.
+
+More information: \k(File Sharing: Remote Systems Window)
+^2^Add Button=Add ButtonFSL
+^$320
+3. \k{File Sharing: Add New Share-Item - Local Window^^File Sharing: Add New Share-Item/Properties - Local Window}
+   3.3 Add Button
+
+The Add button (on the File Sharing: Add New Share-Item - Local only)
+lets you add a new share-item to the list of available local
+share-items (those available to other systems). When a local
+share-item is added, file sharing attempts to advertise it.  After
+adding a new share-item, the window closes.
+
+If you click on Yes in response to the Advertise when NFS starts line,
+the added share-item is made available each time NFS restarts.
+Otherwise, it is not advertised the next time you restart NFS. To
+advertise it again, you have to open the File Sharing Setup window,
+change the view to Local, select the share-item, and use the Advertise
+menu option under the Actions button.
+
+^2^Apply Button=Apply ButtonFSL
+^$330
+3. \k{File Sharing: Add New Share-Item - Local Window^^File Sharing: Add New Share-Item/Properties - Local Window}
+   3.4 Apply Button
+
+The Apply button (on the File Sharing: Add New Share-Item - Local
+window only) immediately applies any changes made in the File Sharing:
+Share-Item Properties - Local window. After applying the changes, the
+File Sharing: Add New Share-Item - Local or File Sharing: Share-Item
+Properties - Local window closes.
+^2^Reset Button=Reset ButtonFSL
+^$340
+3. \k{File Sharing: Add New Share-Item - Local Window^^File Sharing: Add New Share-Item/Properties - Local Window}
+   3.5 Reset Button
+
+The Reset button reverses any changes you have not yet applied. The
+File Sharing: Add New Share-Item - Local or File Sharing: Share-Item
+Properties - Local window remains open.
+^2^Cancel Button=Cancel ButtonFSL
+^$350
+3. \k{File Sharing: Add New Share-Item - Local Window^^File Sharing: Add New Share-Item/Properties - Local Window}
+   3.6 Cancel Button
+
+The Cancel button closes the File Sharing: Add New Share-Item - Local
+or File Sharing: Share-Item Properties - Local window without saving
+any changes.
+^2^Help Button=Help ButtonFSL
+^$360
+3. \k{File Sharing: Add New Share-Item - Local Window^^File Sharing: Add New Share-Item/Properties - Local Window}
+   3.7 Help Button
+
+The Help button provides on-line help for either the File Sharing: Add
+New Share-Item - Local or File Sharing: Share-Item Properties - Local
+window.
+^1^File Sharing: Add New Share-Item - Remote Window=File Sharing: Add New Share-Item/Properties - Remote Window
+^$370
+\k{File Sharing Setup}
+4. File Sharing: Add New Share-Item - Remote Window
+
+The File Sharing: Add New Share-Item - Remote window is used to add a
+\d(share-item) for a folder or file that is currently being \d(advertised^advertise) by
+a remote system that you want to access from your local  system. The
+File Sharing: Share-Item Properties - Remote window shows the
+properties of a remote share-item that you have already added.
+
+Most of the text boxes are the same for the two windows:
+
+   o Remote System Name: Enter the name of the system whose advertised
+     share-item you want to access. If you don't know the name of the
+     remote system, you can choose it from the list that appears when
+     you click on the Search button.
+
+   o Available Share-Items: This box displays a list of share-items
+     advertised from the specified system. This box is filled in when
+     you click on the Show Available Share-Items button, or when you
+     click on the OK button from the File Sharing: Remote Systems
+     window.
+
+     Note: If the remote system is not on or is on but is not running
+     NFS, you must wait a short time while your local system attempts
+     to contact the remote system.
+
+   o Icon Name: Enter an identifying name for the share-item. You can
+     fill this in by clicking on one of the items in the Available
+     Share-Items list box, if present. If you don't give the icon a
+     name, the folder/file name is used.
+
+   o Share-Item to connect: Enter the name of the share-item to
+     \d(connect) to your system. You can fill this in by clicking on
+     an entry in the Available Share-Items list box, if present.
+
+   o Local Folder to connect it to: In order to access a remote
+     share-item, you must "connect" it to a folder on your local
+     system.
+
+     If you choose a local folder that is not empty, a warning
+     message appears.
+
+     More information: \k(Folder Not Empty Message)
+
+     Enter the name of the Local Folder to which you want the remote
+     share-item \d(connected^connect). Enter a full path or a path relative to
+     your UNIX Desktop window. Whenever the remote share-item is
+     "connected" to your system, you can access its contents by
+     opening the local folder specified in this text box.
+
+     If you enter a folder name that does not exist, the Create Folder
+     message appears.
+
+     You can use the Find Folder button to locate a folder. Clicking
+     on the Find Folder button displays the File Sharing: Locale
+     Folders window.
+
+   o Connect Share-Item as: If you want to \d(connect) the share-item
+     to your system so that you can only read the share-item, click on
+     the Read Only option. If you want to be able to read and modify
+     the share-item, click on the Read and Write option. (Read and
+     Write should be selected only if the share-item is advertised
+     that way.)
+
+   o Connect when NFS starts? If you want the share-item to be
+     automatically \d(connected^connect) when NFS starts, click on Yes. If you
+     don't want it to be connected automatically, click on No. If the
+     share-item is not connected automatically when NFS starts, you
+     must connect it manually whenever NFS is restarted if you want to
+     use it. To connect the share-item again, open the File Sharing
+     Setup window, click on the View button, click on the Remote menu
+     option, select the share-item, and click on the Connect menu
+     option under the Actions button.
+
+   o Extended Options: Click on this box if you want to access two
+     advanced options. These options apply to the way the share-item
+     is actually \d(connected^connect) to the system:
+
+     - Connection is: The options for this line let you choose between
+       soft and hard connections.
+
+       A soft connection is broken if the remote system suddenly
+       becomes unavailable. That is, if you request information from
+       a soft connection and, for some reason, the remote system
+       cannot be accessed, the attempt is continued for a certain
+       period of time before it finally fails.
+
+       Note: If you are in the middle of saving a file when the remote
+       system becomes unavailable, your changes may not have been
+       saved. Try saving them on the local system.
+
+       Attempts at making a hard connection never fail, but continue
+       indefinitely. For example, if you are copying a file to a
+       remote folder and the connection is broken, the system hangs
+       (that is, freezes and becomes unusable) until the share-item is
+       reconnected.
+
+       Unless you specifically select hard connection, connections are
+       soft.
+
+     - Other command-line options: The UNIX system command called
+       mount is used to connect share-items to your system. This line
+       lets you can add extra options for the mount command. The mount
+       command is documented in the UNIX System reference manuals.
+       Unless you're experienced with the mount command, do not change
+       the contents of this text box.
+
+The buttons available for the File Sharing: Add New Share-Item -
+Remote and File Sharing: Share-Item Properties - Remote windows are:
+
+        \k(Search Button^^Search ButtonFSR)
+        \k(Find Folder Button^^Find ButtonFSR)
+        \k(Add Button^^Add ButtonFSR)
+        \k(Apply Button^^Apply ButtonFSR)
+        \k(Reset Button^^Reset ButtonFSR)
+        \k(Cancel Button^^Cancel ButtonFSR)
+        \k(Help Button^^Help ButtonFSR)
+
+More information:
+
+        \k(File Sharing: Remote Systems Window)
+        \k(Create Folder Message)
+^2^Folder Not Empty Message
+^$375
+4. \k{File Sharing: Add New Share-Item - Remote Window^^File Sharing: Add New Share-Item/Properties - Remote Window}
+   4.1 Folder Not Empty Message
+
+The Folder Not Empty Warning message indicates that the folder you
+chose is not empty and the files or folders that it contains will not
+be available while the share-item is connected. This might cause
+applications on your system, or parts of the system itself to become
+inoperable.
+
+The warning message has three buttons: Add, Cancel, and Help.
+
+   o Add Button: This button adds the new share-item.
+   o Cancel Button: This button closes the warning window without
+     adding the share-item.
+   o Help Button: This button provides on-line help for the warning
+     window.
+^2^Create Folder Message
+^$380
+4. \k{File Sharing: Add New Share-Item - Remote Window^^File Sharing: Add New Share-Item/Properties - Remote Window}
+   4.2 Create Folder Message
+
+The Create Folder message has three buttons: Create, Cancel, and Help.
+
+   o Create Button: The Create button creates the folder and any
+     needed intermediate folders indicated on the Local Folder text
+     box.
+
+   o Cancel Button: The Cancel button cancels your request to create a
+     folder.
+
+   o Help Button: The Help button provides on-line help for the Create
+     Folder message.
+^2^Search Button=Search ButtonFSR
+^$390
+4. \k{File Sharing: Add New Share-Item - Remote Window^^File Sharing: Add New Share-Item/Properties - Remote Window}
+   4.3 Search Button
+
+The Search button helps you find systems which may have made share-
+items available to you. Clicking on the Search button displays the
+File Sharing: Remote Systems window.
+^2^Find Folder Button=Find ButtonFSR
+^$400
+4. \k{File Sharing: Add New Share-Item - Remote Window^^File Sharing: Add New Share-Item/Properties - Remote Window}
+   4.4 Find Folder Button
+
+The Find Folder button helps you locate the folders on your system to
+which you can connect remote \d(share-items^share-item). Clicking on the Find Folder
+button displays the File Sharing: Local Folder window.
+^2^Add Button=Add ButtonFSR
+^$410
+4. \k{File Sharing: Add New Share-Item - Remote Window^^File Sharing: Add New Share-Item/Properties - Remote Window}
+   4.5 Add Button
+
+File Sharing: Add New Share-Item - Remote window only. The Add button
+adds a new \d(share-item) to the list of available remote share-items
+and connects it to your system. If you click on Yes in response to the
+\d(Connect^connect) when NFS starts line, the added share-item is connected as
+soon as NFS starts on your system. Otherwise, it is not connected the
+next time you restart NFS. After the share-item is added, the window
+closes.
+^2^Apply Button=Apply ButtonFSR
+^$420
+4. \k{File Sharing: Add New Share-Item - Remote Window^^File Sharing: Add New Share-Item/Properties - Remote Window}
+   4.6 Apply Button
+
+File Sharing: Share-Item Properties - Remote window only. The Apply
+button immediately applies any changes you make. After applying the
+changes, the File Sharing: Share-Item Properties - Remote window
+closes.
+^2^Reset Button=Reset ButtonFSR
+^$430
+4. \k{File Sharing: Add New Share-Item - Remote Window^^File Sharing: Add New Share-Item/Properties - Remote Window}
+   4.7 Reset Button
+
+The Reset button reverses any changes you have not yet applied. The
+File Sharing: Add New Share-Item - Remote or File Sharing: Share-Item
+Properties - Remote window remains open.
+^2^Cancel Button=Cancel ButtonFSR
+^$440
+4. \k{File Sharing: Add New Share-Item - Remote Window^^File Sharing: Add New Share-Item/Properties - Remote Window}
+   4.8 Cancel Button
+
+The Cancel button closes the File Sharing: Add New Share-Item - Remote
+or File Sharing: Share-Item Properties - Remote window.
+^2^Help Button=Help ButtonFSR
+^$450
+4. \k{File Sharing: Add New Share-Item - Remote Window^^File Sharing: Add New Share-Item/Properties - Remote Window}
+   4.9 Help Button
+
+The Help button provides on-line help for either the File Sharing: Add
+New Share-Item - Remote or the File Sharing: Share-Item Properties -
+Remote window.
+^1^File Sharing: Share-Item Window
+^$460
+\k{File Sharing Setup}
+5. File Sharing: Share-Item Window
+
+Use the File Sharing: Share-Item window to choose from a list a file
+or folder to share.
+
+The path of the folders in the Folder(s) list box is given by the Path
+line at the top of the window. As you click on folders from the box,
+the path changes. The File(s) list box lists the files in the selected
+folder. You can select either a folder or a file to share. If you do
+not select a file, (that is, select only a folder), all files and
+folders in that folder are shared. Use the scrollbar, if present, to
+view additional files and folders.
+
+Alternately, you can enter the name of a folder or file in the File
+box.
+
+The buttons available from the File Sharing: Share-Item window are:
+
+        \k(OK Button^^OK ButtonFSSI)
+        \k(Cancel Button^^Cancel ButtonFSSI)
+        \k(Help Button^^Help ButtonFSSI)
+^2^OK Button=OK ButtonFSSI
+^$470
+5. \k{File Sharing: Share-Item Window}
+   5.1 OK Button
+
+The OK button fills in the Folder/File to Share text box with the name
+of the selected file or folder. After filling in the text box, the
+File Sharing: Share-Item window closes.
+^2^Cancel Button=Cancel ButtonFSSI
+^$480
+5. \k{File Sharing: Share-Item Window}
+   5.2 Cancel Button
+
+The Cancel button closes the File Sharing: Share-Item window without
+making any changes.
+^2^Help Button=Help ButtonFSSI
+^$490
+5. \k{File Sharing: Share-Item Window}
+   5.3 Help Button
+
+The Help button provides on-line help for the File Sharing: Share-Item
+window.
+^1^File Sharing: Remote Systems Window
+^$500
+\k{File Sharing Setup}
+6. File Sharing: Remote Systems Window
+
+Use the File Sharing: Remote Systems window to select a remote system
+from a list of systems that have access to your \d(share-items^share-item). Use the
+scrollbar, if present, to view additional remote systems.
+
+The buttons available from the File Sharing: Remote Systems window
+are:
+
+        \k(OK Button^^OK ButtonRS)
+        \k(Cancel Button^^Cancel ButtonRS)
+        \k(Help Button^^Help ButtonRS)
+^2^OK Button=OK ButtonRS
+^$510
+6. \k{File Sharing: Remote Systems Window}
+   6.1 OK Button
+
+The OK button fills in the System Name text box with the name of the
+selected file or folder. After filling in the text box, the File
+Sharing: Remote Systems window closes.
+
+Note: If the remote system is not on or is on but is not running NFS,
+you must wait a short time while your local system attempts to con-
+tact the remote system.
+^2^Cancel Button=Cancel ButtonRS
+^$520
+6. \k{File Sharing: Remote Systems Window}
+   6.2 Cancel Button
+
+The Cancel button closes the File Sharing: Remote Systems window
+without making any changes.
+^2^Help Button=Help ButtonRS
+^$530
+6. \k{File Sharing: Remote Systems Window}
+   6.3 Help Button
+
+The Help button provides on-line help for the File Sharing: Remote Sys-
+tems window.
+^1^File Sharing: Local Folders
+^$540
+\k{File Sharing Setup}
+7. File Sharing: Local Folders
+
+Use the File Sharing: Local Folders window to choose from a list of
+folders the folder to which you want to \d(connect) a share-item.
+
+Note: If you choose an existing folder, the files in that folder, if
+any, will not be accessible when you connect the remote share-item.
+
+The path of the folders in the Folder(s) list box is given by the Path
+line at the top of the window. As you click on folders from the box,
+the path changes. Use the scrollbar, if present, to view additional
+folders.
+
+The buttons available from the File Sharing: Local Folders window are:
+
+        \k(OK Button^^OK ButtonLF)
+        \k(Cancel Button^^Cancel ButtonLF)
+        \k(Help Button^^Help ButtonLF)
+^2^OK Button=OK ButtonLF
+^$550
+7. \k{File Sharing: Local Folders}
+   7.1 OK Button
+
+The OK button fills in the Local Folder to Connect to text box with
+the name of the selected folder. After filling in the text box, the
+File Sharing: Local Folders window closes.
+^2^Cancel Button=Cancel ButtonLF
+^$560
+7. \k{File Sharing: Local Folders}
+   7.2 Cancel Button
+
+The Cancel button closes the File Sharing: Local Folders window
+without making any changes.
+^2^Help Button=Help ButtonLF
+^$570
+7. \k{File Sharing: Local Folders}
+   7.3 Help Button
+
+The Help button provides on-line help for the File Sharing: Local
+Folders window.

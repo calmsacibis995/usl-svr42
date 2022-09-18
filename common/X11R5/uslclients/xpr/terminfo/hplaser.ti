@@ -1,0 +1,94 @@
+#ident	"@(#)xpr:terminfo/hplaser.ti	1.2"
+#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+#	Copyright (c) 1988, 1989, 1990 AT&T
+#	  All Rights Reserved
+
+#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+#	UNIX System Laboratories, Inc.
+#	The copyright notice above does not evidence any
+#	actual or intended publication of such source code.
+
+
+######################################################################
+#
+# Generic entry for the HP Laserjet printers and emulations:
+#
+
+#
+# Basic capabilities:
+#
+hplaser+basic,
+
+	cols#80,
+	lines#60,
+
+	orc#12,
+	orhi#120,
+	orl#8,
+	orvi#48,
+
+	cr=^M,
+	cud1=^J,
+	cuf1=\s,
+	cud=\E&a+%p1%dR,
+	cuf=\E&a+%p1%dC,
+	ff=^L,
+	hpa=\E&a%p1%dC,
+	vpa=\E&a%p1%dR,
+
+	cpi=%?%p1%{10}%=%t\E&k0S%e%p1%{17}%=%t\E&k2S%;,
+	chr=%?%p1%{0}%>%p1%{127}%<%t\E&k%p1%dH%;,
+	cvr=%?%p1%{0}%>%p1%{127}%<%t\E&l%p1%dC%;,
+	lpi=%?%p1%{1}%=%t\E&l1D%e%p1%{2}%=%t\E&l2D%e%p1%{3}%=%t\E&l3D%e%p1%{4}%=%t\E&l4D%e%p1%{6}%=%t\E&l6D%e%p1%{8}%=%t\E&l8D%e%p1%{12}%=%t\E&l12D%e%p1%{16}%=%t\E&l16D%e%p1%{24}%=%t\E&l24D%e%p1%{48}%=%t\E&l48D%;,
+
+	is2=\EE\E&k0G,
+	mgc=\E9,
+
+	rmul=\E&d\100,
+	ritm=\E(s0S,
+	smul=\E&dD,
+	sitm=\E(s1S,
+	smgtp=\E&l%p1%{1}%+%dE,
+	smgbp=\E&l%p1%{1}%+%dF,
+	smglp=\E&a%p1%dL,
+	smgrp=\E&a%p1%dM,
+
+#Set top margin at +2 offset
+	smgtp=\E&l%p1%dE,
+
+#Set page length
+	u9=\E&l%p1P,
+
+#
+# Graphics capabilities:
+#
+hplaser+high,
+
+	npins#8,
+	spinv#300,
+	spinh#300,
+
+	porder=1\,2\,3\,4\,5\,6\,7\,8;0,
+
+	sbim=\E*b%p1%dW,
+
+#   bitwin#,
+	u1=1,
+#   bitype#
+	u2=2,
+
+#   defbi=
+#	    X (or Y) * scale * 12/5 == pos in decipoints (12/5 == 720/300)
+	u6=%?%p5%{0}%>%p5%{5}%<%&%t\E&a%p1%p5%*%{12}%*%{5}%/%dH\E&a%p2%p5%*%{12}%*%{5}%/%dV\E*t%{300}%p5%/%dR\E*r1A%;,
+
+#   endbi=
+	u7=\E*rB,
+
+######################################################################
+#
+# Specific printers:
+#
+
+hplaserjet|hplaser|HP Laserjet I,
+
+	use=hplaser+basic, use=hplaser+high,

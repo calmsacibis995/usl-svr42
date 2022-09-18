@@ -1,0 +1,28 @@
+#ident	"@(#)face:OBJECTS/pref/Menu.pref	1.4.4.2"
+#ident  "$Header: Menu.pref 1.6 91/11/12 $"
+
+menu=$$uxface:436:"Preferences"
+
+help=open text OBJECTS/Text.h "$$uxface:573:HELP on Preferences" pref/T.hpref
+
+framemsg=$$uxface:399:"Move to an item with arrow keys and press ENTER to select the item."
+
+name=$$uxface:438:"Change Password"
+action=`run sh -c "echo $$uxface:439:'To return to FACE without changing your password, press BREAK or DEL'; exec passwd $LOGNAME"`nop
+
+name=$$uxface:151:"Color Attributes"
+action=OPEN FORM OBJECTS/pref/Form.color
+show=${HAS_COLORS}
+
+name=$$uxface:440:"Display Frames"
+action=OPEN FORM OBJECTS/pref/Form.display
+
+name=$$uxface:204:"File Permissions"
+action=OPEN FORM OBJECTS/pref/Form.perm
+
+name=$$uxface:441:"Office Functions"
+action=OPEN FORM OBJECTS/pref/Form.func
+
+name=""
+button=8
+action=nop

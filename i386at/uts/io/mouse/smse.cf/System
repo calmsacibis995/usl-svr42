@@ -1,0 +1,5 @@
+#ident	"@(#)uts-x86at:io/mouse/smse.cf/System	1.5"
+#ident	"$Header: $"
+$version 1
+$loadable smse
+smse	N	1	0	0	0	0	0	0	0	-1

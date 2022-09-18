@@ -1,0 +1,46 @@
+#define text_format 1
+#define text_width 32
+#define text_height 32
+#define text_ncolors 5
+#define text_chars_per_pixel 1
+static char * text_colors[] = {
+" " , "#FFFFFFFFFFFF",
+"." , "#000000000000",
+"X" , "#00000000AAAA",
+"o" , "#AAAAAAAAAAAA",
+"O" , "#0000AAAA0000"
+} ;
+static char * text_pixels[] = {
+"                                ",
+"        ..        X     X       ",
+"       o..o      oXX    XXXXo   ",
+"       ..o.      oXXX   XXXXX   ",
+"       .. .o      XXXX  oXXXX   ",
+"      ..o o.       XXXX   XX    ",
+"      ..   .        XXXX oXX    ",
+"     o..   .o       XXXXXXX     ",
+"     ........      oXXoXXX      ",
+"    o..    o.o    oXX  XXXX     ",
+"    ..      .o    XXX   XXXX    ",
+"   o..      o.    XXXX   XXXX   ",
+"   ..        .o   oXXXX   XXXXo ",
+"  o..        o.    XXXX    XXXo ",
+" .....      o...  XXXXo    oXX  ",
+"                                ",
+"                                ",
+"               Oo               ",
+"               oO   oO          ",
+"            Oo  OoOOOo          ",
+"            oOOOOOo             ",
+"               O                ",
+"               OoOOOOo          ",
+"             oOOOoO oOOo        ",
+"            oOoO  O   oO        ",
+"            Oo O oO    O        ",
+"           oO   OOo    Oo       ",
+"           Oo  oOO    oOo       ",
+"           OooOOo    oOo        ",
+"           oOOo    oOOo         ",
+"                OOOOo           ",
+"                                "
+} ;

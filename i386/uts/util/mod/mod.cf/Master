@@ -1,0 +1,5 @@
+#ident	"@(#)uts-x86:util/mod/mod.cf/Master	1.2"
+#ident	"$Header: $"
+$version 1
+$entry	halt
+mod	mod	-	0	0	0

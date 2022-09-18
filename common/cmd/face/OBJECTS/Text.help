@@ -1,0 +1,38 @@
+#ident	"@(#)face:OBJECTS/Text.help	1.6.4.2"
+#ident  "$Header: Text.help 1.5 91/12/17 $"
+
+title=`if [ "x$ARG3" = x ];
+then
+	echo $$uxface:356:"Help Facility:" $ARG2;
+else
+	echo $$uxface:356:"Help Facility:" $ARG3;
+fi`
+
+init="$RETVAL"
+
+framemsg=$$uxface:321:"Press the CANCEL function key to cancel."
+
+`test -r "$VMSYS/HELP/$ARG1" && set -l RETVAL=true || set -l RETVAL=false; 
+ regex -e -v "$RETVAL" 
+	'^false$' '`message $$uxface:354:"No HELP text is available for this item."`'`
+
+rows=12
+begrow=current
+begcol=current
+lifetime=shortterm
+text="`pathconv -f -v "HELP/$ARG1" | readfile`"
+columns=`longline | set -l LL;
+if [ "${LL}" -gt "${DISPLAYW}" ];
+then
+	echo ${DISPLAYW};
+else
+	echo ${LL};
+fi`
+
+name=""
+button=1
+action=nop
+
+name=$$uxface:355:"CONTENTS"
+button=8
+action=OPEN MENU OBJECTS/Menu.h0.toc

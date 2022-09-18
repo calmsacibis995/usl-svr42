@@ -1,0 +1,11 @@
+#!/usr/bin/wksh -openlook
+
+OlInitialize TOPLEVEL flat Flat "$@"
+XtCreateManagedWidget FORM form form $TOPLEVEL
+
+XtCreateManagedWidget F f flatExclusives $FORM \
+	itemFields:'{font, label}' \
+	items:' {6x13, Small}, {9x15, Medium}, {12x24, Large}'
+
+XtRealizeWidget $TOPLEVEL
+XtMainLoop

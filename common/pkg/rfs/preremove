@@ -1,0 +1,122 @@
+#ident	"@(#)pkg.rfs:common/pkg/rfs/preremove	1.11"
+#ident	"$Header: $"
+
+FAILURE=1	# fatal error
+
+REBUILD=0
+
+CONFDIR=/etc/conf
+CONFBIN=${CONFDIR}/bin
+
+turnoff () {
+cd /etc/conf/sdevice.d
+for i in $*
+do
+if [ -f $i ]
+then
+ed $i << END > /dev/null 2>&1
+1,\$s/	Y	/	N	/
+w
+w
+q
+END
+fi
+done
+}
+
+NOTOOLS="ERROR: The Installable Driver feature has been removed. \
+The ${NAME} cannot be removed."
+
+# determine that ID/TP tools are available
+
+if
+	[ ! -x ${CONFBIN}/idbuild -o ! -x ${CONFBIN}/idinstall ]
+then
+	message ${NOTOOLS}
+	exit $FAILURE
+fi
+
+# Issue a warning message if RFS is running.
+
+rfadmin >/dev/null 2>&1
+if
+	[ "$?" -eq "0" ]
+then
+	echo "WARNING: RFS is still running."
+fi
+
+SEDCMD="s/[	 ]Y/	N/"
+
+for MODULE in rfs
+do
+	${CONFBIN}/idcheck -p ${MODULE}
+	RET="$?"
+	if
+		[ "${RET}" -ne "100" -a "${RET}" -ne "0" ]
+	then
+		if [ "${MODULE}" = "rfs" ]
+		then
+			# RFS cannot be completely removed.  A stub.c
+			# must remain configured. 
+			turnoff rfs
+			mkdir /tmp/rfs$$ 2> /dev/null
+			cp ${CONFDIR}/pack.d/rfs/stubs.c /tmp/rfs$$/stubs.c
+			cp ${CONFDIR}/mdevice.d/rfs /tmp/rfs$$/rfs.m
+		fi
+
+		${CONFBIN}/idinstall -P ${PKGINST} -d${OPTS} ${MODULE}
+		if [ ! -d ${CONFDIR}/pack.d/rfs ]
+		then
+			mkdir ${CONFDIR}/pack.d/rfs
+			chmod 0775 ${CONFDIR}/pack.d/rfs
+			chgrp sys  ${CONFDIR}/pack.d/rfs
+			chown root ${CONFDIR}/pack.d/rfs
+		fi
+		cp /tmp/rfs$$/rfs.m ${CONFDIR}/mdevice.d/rfs
+		cp /tmp/rfs$$/stubs.c ${CONFDIR}/pack.d/rfs/stubs.c
+
+		chmod 0644 ${CONFDIR}/mdevice.d/rfs ${CONFDIR}/pack.d/rfs/stubs.c
+		chgrp sys  ${CONFDIR}/mdevice.d/rfs ${CONFDIR}/pack.d/rfs/stubs.c
+		chown root ${CONFDIR}/mdevice.d/rfs ${CONFDIR}/pack.d/rfs/stubs.c
+
+		REBUILD=1
+	fi
+done
+
+#
+# remove log files and lock files created by processes
+#
+rm -f /etc/dfs/osharetab /usr/net/servers/rfs/rfs.log /etc/rfs/.rmnt.lock /etc/rfs/rmnttab
+rm -fr /etc/rfs/auth.info
+
+# remove rfs from /etc/dfs/fstypes
+/usr/bin/egrep -v '^rfs' /etc/dfs/fstypes > /tmp/fstypes.$$ && cp /tmp/fstypes.$$ /etc/dfs/fstypes
+
+# remove menu files
+rm -rf /etc/inst/locale/C/menus/rfs
+
+#
+# remove rfs commands from TFM database for role NET and user root
+#
+#adminrole -r adv,dname,fumount,fusage,idload,rfadmin,rfpasswd,rfstart  NET
+#adminrole -r rfstop,rmntstat,unadv,rfuadmin,rmnttry,rmount,rumount  NET
+
+adminuser -r rmnttry root
+
+
+if
+	[ "${REBUILD}" = "1" ]
+then
+	# rebuild for changes to take effect
+	
+	${CONFBIN}/idbuild
+	if
+		[ "$?" -ne "0" ]
+	then
+		exit ${FAILURE}
+	else
+		exit 10
+	fi
+else
+	exit 0
+fi

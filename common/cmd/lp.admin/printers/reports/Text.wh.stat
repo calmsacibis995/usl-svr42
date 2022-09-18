@@ -1,0 +1,14 @@
+#ident	"@(#)lp.admin:printers/reports/Text.wh.stat	1.3.3.1"
+#ident  "$Header: Text.wh.stat 2.0 91/07/12 $"
+
+#	Module Name: Text.wh.stat 
+
+title="Printwheel and Character Set Status" 
+
+
+begrow=36
+begrow=1
+rows=18
+columns=50
+scroll=true
+text=`lpstat -l -S$ARG1`

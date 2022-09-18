@@ -1,0 +1,12 @@
+The Programs submenu has buttons \
+that represent programs you can run on the workspace.  \
+To display the Programs submenu, drag MENU into the right half \
+of the Programs menu button.  \
+To choose a button from the Programs submenu, \
+drag MENU onto a button and release MENU.
+
+You can edit the Programs submenu from its property \
+window to add new programs or remove old ones from the submenu.  \
+You access this property window using the Properties \
+menu button on the Workspace menu and choosing "Programs Submenu..." \
+from the Properties submenu.

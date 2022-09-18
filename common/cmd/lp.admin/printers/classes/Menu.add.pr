@@ -1,0 +1,27 @@
+#ident	"@(#)lp.admin:printers/classes/Menu.add.pr	1.1.2.1"
+#ident  "$Header: Menu.add.pr 2.0 91/07/12 $"
+
+menu=Choices
+lifeterm=shortterm
+multiselect=true
+framemsg="MARK choices then press ENTER"
+
+`set -l name_1="/tmp/lp.n1$VPID";
+	set -l tmp_1="/tmp/lp.tmp1$VPID";
+	set -l tmp_2="/tmp/lp.tmp2$VPID";
+	ls /etc/lp/printers | sort > $tmp_1;
+	cat /etc/lp/classes/$ARG1 | sort > $tmp_2;
+	cat $tmp_1 | comm -23 - $tmp_2 > $name_1;
+	
+if [ -s $name_1 ];
+then
+	echo "all" >> $name_1;
+else
+	echo "init=false";
+	message -b "There are no printers available to add.";
+	rm -f $name_1;
+fi`
+
+done=`getitems " "| set -l Form_Choice`close
+
+`/usr/bin/sort $name_1 | regex '^(.*)$0$' 'name=$m0'`

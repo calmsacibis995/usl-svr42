@@ -1,0 +1,193 @@
+#ident	"@(#)debugger:gui.d/i386/DEPEND	1.3"
+
+main.o:	../common/main.C ../common/UI.h
+	$(CPLUS_CMD) -c ../common/main.C
+
+Windows.o: ../common/Windows.C ../common/UI.h
+	$(CPLUS_CMD) -c ../common/Windows.C
+
+Command.o: ../common/Command.C ../common/UI.h \
+		../common/Component.h \
+		../common/Command.h \
+		../common/Window_sh.h \
+		../../lib$(UI)/common/Window_shP.h \
+		../common/Text_line.h \
+		../../lib$(UI)/common/Text_lineP.h \
+		../common/Boxes.h \
+		../common/Menu.h \
+		gui_msg.h
+	$(CPLUS_CMD) -c ../common/Command.C
+
+Context.o: ../common/Context.C ../common/UI.h \
+		../common/Context.h \
+		../common/Ps_pane.h \
+		../common/Stack_pane.h \
+		../common/Syms_pane.h \
+		../common/Component.h \
+		../../lib$(UI)/common/Window_shP.h \
+		../common/Window_sh.h \
+		../common/Boxes.h \
+		../common/Menu.h \
+		gui_msg.h
+	$(CPLUS_CMD) -c ../common/Context.C
+
+Ps_pane.o: ../common/Ps_pane.C ../common/UI.h \
+		../common/Component.h \
+		../common/Ps_pane.h \
+		../common/Dialog_sh.h \
+		../../lib$(UI)/common/Dialog_shP.h \
+		../common/Boxes.h
+	$(CPLUS_CMD) -c ../common/Ps_pane.C
+
+Stack_pane.o: ../common/Stack_pane.C ../common/UI.h \
+		../common/Component.h \
+		../common/Stack_pane.h \
+		../common/Dialog_sh.h \
+		../../lib$(UI)/common/Dialog_shP.h \
+		../common/Boxes.h
+	$(CPLUS_CMD) -c ../common/Stack_pane.C
+
+Syms_pane.o: ../common/Syms_pane.C ../common/UI.h \
+		../common/Component.h \
+		../common/Syms_pane.h \
+		../common/Dialog_sh.h \
+		../../lib$(UI)/common/Dialog_shP.h \
+		../common/Boxes.h
+	$(CPLUS_CMD) -c ../common/Syms_pane.C
+
+Events.o: ../common/Events.C ../common/UI.h \
+		../common/Events.h \
+		../common/Component.h \
+		../../lib$(UI)/common/Window_shP.h \
+		../common/Window_sh.h \
+		../common/Boxes.h \
+		../common/Menu.h
+	$(CPLUS_CMD) -c ../common/Events.C
+
+Source.o: ../common/Source.C ../common/UI.h \
+		../common/Events.h \
+		../common/Sch_dlg.h \
+		../common/Component.h \
+		../../lib$(UI)/common/Window_shP.h \
+		../common/Window_sh.h \
+		../common/Boxes.h \
+		../common/Menu.h
+	$(CPLUS_CMD) -c ../common/Source.C
+
+Dis.o: ../common/Dis.C ../common/UI.h \
+		../common/Events.h \
+		../common/Sch_dlg.h \
+		../common/Component.h \
+		../../lib$(UI)/common/Window_shP.h \
+		../common/Window_sh.h \
+		../common/Boxes.h \
+		../common/Menu.h
+	$(CPLUS_CMD) -c ../common/Dis.C
+
+Status.o: ../common/Status.C \
+		../common/Status.h \
+		../common/Component.h \
+		../common/Boxes.h \
+		../common/Stext.h \
+		../../lib$(UI)/common/StextP.h
+	$(CPLUS_CMD) -c ../common/Status.C
+
+Dispatcher.o: ../common/Dispatcher.C ../common/UI.h
+	$(CPLUS_CMD) -c ../common/Dispatcher.C
+
+Proclist.o: ../common/Proclist.C ../common/UI.h \
+		../common/Notifier.h
+	$(CPLUS_CMD) -c ../common/Proclist.C
+
+Eventlist.o: ../common/Eventlist.C ../common/UI.h
+	$(CPLUS_CMD) -c ../common/Eventlist.C
+
+Notifier.o:	../common/Notifier.C ../common/Notifier.h
+	$(CPLUS_CMD) -c ../common/Notifier.C
+
+Dialogs.o: ../common/Dialogs.C ../common/UI.h \
+		../common/Dialogs.h \
+		../common/Component.h \
+		../common/Dialog_sh.h \
+		../../lib$(UI)/common/Dialog_shP.h \
+		../common/Radio.h \
+		../../lib$(UI)/common/RadioP.h \
+		../common/Caption.h \
+		../../lib$(UI)/common/CaptionP.h \
+		gui_msg.h
+	$(CPLUS_CMD) -c ../common/Dialogs.C
+
+Ctrl_dlg.o: ../common/Ctrl_dlg.C ../common/UI.h \
+		../common/Dialogs.h \
+		../common/Component.h \
+		../common/Dialog_sh.h \
+		../../lib$(UI)/common/Dialog_shP.h \
+		../common/Radio.h \
+		../../lib$(UI)/common/RadioP.h \
+		../common/Caption.h \
+		../../lib$(UI)/common/CaptionP.h
+	$(CPLUS_CMD) -c ../common/Ctrl_dlg.C
+
+Event_dlg.o: ../common/Event_dlg.C ../common/UI.h \
+		../common/Dialogs.h \
+		../common/Component.h \
+		../common/Dialog_sh.h \
+		../../lib$(UI)/common/Dialog_shP.h \
+		../common/Radio.h \
+		../../lib$(UI)/common/RadioP.h \
+		../common/Caption.h \
+		../../lib$(UI)/common/CaptionP.h
+	$(CPLUS_CMD) -c ../common/Event_dlg.C
+
+Sch_dlg.o: ../common/Sch_dlg.C ../common/UI.h \
+		../common/Sch_dlg.h \
+		../common/Dis.h \
+		../common/Source.h \
+		../common/Dialogs.h \
+		../common/Component.h \
+		../common/Text_disp.h \
+		../common/Dialog_sh.h \
+		../../lib$(UI)/common/Dialog_shP.h \
+		../common/Radio.h \
+		../../lib$(UI)/common/RadioP.h \
+		../common/Caption.h \
+		../../lib$(UI)/common/CaptionP.h \
+		gui_msg.h
+	$(CPLUS_CMD) -c ../common/Sch_dlg.C
+
+util.o: ../common/util.C ../common/UI.h gui_msg.h
+	$(CPLUS_CMD) -c ../common/util.C
+
+Help.o:	../common/Help.C ../common/Help.h
+	$(CPLUS_CMD) -c ../common/Help.C
+
+FileInfo.o:	../common/FileInfo.C ../common/FileInfo.h
+	$(CPLUS_CMD) -c ../common/FileInfo.C
+
+GMtable.o:	GMtable.c gui_msg.h
+	$(CC_CMD) -c GMtable.c
+
+OBJECTS	=  \
+	main.o \
+	Windows.o \
+	Command.o \
+	Context.o \
+	Ps_pane.o \
+	Stack_pane.o \
+	Syms_pane.o \
+	Source.o \
+	Dis.o \
+	Events.o \
+	Status.o \
+	Dispatcher.o \
+	Dialogs.o \
+	Ctrl_dlg.o \
+	Sch_dlg.o \
+	Event_dlg.o \
+	Proclist.o \
+	Eventlist.o \
+	Notifier.o \
+	util.o \
+	GMtable.o \
+	Help.o \
+	FileInfo.o

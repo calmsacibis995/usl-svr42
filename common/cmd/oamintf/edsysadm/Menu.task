@@ -1,0 +1,25 @@
+#ident	"@(#)oamintf:common/cmd/oamintf/edsysadm/Menu.task	1.4.3.2"
+#ident  "$Header: Menu.task 2.0 91/07/12 $"
+
+################################################################################
+#	Module Name: Menu.task
+#	Date: March 1988
+#
+#	Args Passed Out:
+#		ARG1 -> add/chg task flag
+#		ARG2 -> dfltpkg name (add only)
+################################################################################
+menu="Add/Change Task"
+
+help=OPEN TEXT $INTFBASE/Text.itemhelp $LININFO
+
+name=add
+lininfo=Menu.task:add
+description="Create a new Task"
+action=OPEN FORM $EDSYSADM/Form.task "addtask" "dfltpkg"
+
+name=change
+lininfo=Menu.task:chg
+description="Change an Existing Task"
+action=OPEN FORM $EDSYSADM/Form.chgtask
+

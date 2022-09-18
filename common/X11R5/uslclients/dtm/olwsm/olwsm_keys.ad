@@ -1,0 +1,134 @@
+#ident	"@(#)dtm:olwsm/olwsm_keys.ad	1.10"
+#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+#	Copyright (c) 1988, 1989, 1990 AT&T
+#	  All Rights Reserved
+
+#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+#	UNIX System Laboratories, Inc.
+#	The copyright notice above does not evidence any
+#	actual or intended publication of such source code.
+
+
+# First, how many keyboard property sheets?  Then, a list of their names,
+# page labels, mnemonics, and help files.  There is a TAB between each field.
+# Each is required.  Each entry ends with a semicolon.
+
+*Wsmkeys.num: 9
+*Wsmkeys.sheets:\
+Core	Keyboard Core Functions	C;\
+Cut-Copy-Paste	Keyboard Cut-Copy-Paste Functions	P;\
+Inter-Window Navigation	Keyboard Inter-Window Navigation Functions	I;\
+Intra-Window Navigation	Keyboard Intra-Window Navigation Functions	N;\
+Mouse	Keyboard Mouse Functions	M;\
+Scrolling	Keyboard Scrolling Functions	S;\
+Text Selection	Keyboard Text Selection Functions	T;\
+Text Edit	Keyboard Text Edit Functions	E;\
+System	Keyboard System Functions	Y;
+
+# Now, for each name above, how many keys and the list of keys.  The list
+# of keys is: <type (= K,E,M,U)> <name> <keysym>[,<keysym>];<caption>;;
+
+*Core.num: 6
+*Core.keys:\
+K *cancelKey <Escape>;Cancel:;;\
+K *defaultActionKey <Return>,Ctrl<Return>;Default Action:;;\
+K *helpKey <F1>;Help:;;\
+K *propertiesKey Ctrl<p>;Properties:;;\
+K *stopKey Ctrl<s>;Stop:;;\
+K *undoKey Alt<BackSpace>;Undo:;;
+
+*Cut-Copy-Paste.num: 6
+*Cut-Copy-Paste.keys:\
+K *cutKey Shift<Delete>;Cut:;;\
+K *copyKey Ctrl<Insert>;Copy:;;\
+K *pasteKey Shift<Insert>;Paste:;;\
+K *primaryCutKey Alt<F11>;Primary Cut:;;\
+K *primaryCopyKey Alt Ctrl<Insert>,Ctrl<F11>;Primary Copy:;;\
+K *primaryPasteKey <F11>;Primary Paste:;;
+
+*Mouse.num: 7
+*Mouse.keys:\
+E *selectKey <space>,Ctrl<space>;Select:;;\
+E *adjustKey Ctrl Shift<ampersand>;Adjust:;;\
+E *menuKey Ctrl<m>,<F4>;Menu:;;\
+E *dragKey <F5>;Drag:;;\
+E *dropKey <F2>;Drop:;;\
+M *duplicateKey Alt<space>;Duplicate:;;\
+M *menuDefaultKey Ctrl Shift<m>,Shift<F4>;Set Menu Default:;;
+
+*Text Edit.num: 8
+*Text Edit.keys:\
+K *delCharFwdKey <Delete>;Delete Character Forward:;;\
+K *delCharBakKey <BackSpace>;Delete Character Backward:;;\
+K *delWordFwdKey Ctrl Shift<Delete>;Delete Word Forward:;;\
+K *delWordBakKey Ctrl Shift<BackSpace>;Delete Word Backward:;;\
+K *delLineFwdKey Ctrl<Delete>;Delete Line Forward:;;\
+K *delLineBakKey Ctrl<BackSpace>;Delete Line Backward:;;\
+K *delLineKey Alt Shift<Delete>;Delete Line:;;\
+K *addModeKey Shift<F8>;Add Mode:;;
+
+*Inter-Window Navigation.num: 4
+*Inter-Window Navigation.keys:\
+K *nextWinKey Alt<F6>;Next Window:;;\
+K *prevWinKey Shift Alt<F6>;Previous Window:;;\
+K *nextAppKey Alt<Escape>;Next Application:;;\
+K *prevAppKey Shift Alt<Escape>;Previous Application:;;
+
+*Intra-Window Navigation.num: 17
+*Intra-Window Navigation.keys:\
+K *upKey <Up>;Up:;;\
+K *downKey <Down>;Down:;;\
+K *leftKey <Left>;Left:;;\
+K *rightKey <Right>;Right:;;\
+K *nextFieldKey <Tab>,Ctrl<Tab>;Next Field:;;\
+K *prevFieldKey Shift<Tab>,Shift Ctrl<Tab>;Previous Field:;;\
+K *wordFwdKey Ctrl<Right>;Word Forward:;;\
+K *wordBakKey Ctrl<Left>;Word Backward:;;\
+K *lineStartKey <Home>;Line Start:;;\
+K *lineEndKey <End>;Line End:;;\
+K *paneStartKey Shift Ctrl<Home>;Pane Start:;;\
+K *paneEndKey Shift Ctrl<End>;Pane End:;;\
+K *nextPane <F6>;Next Pane:;;\
+K *prevPane Shift<F6>;Previous Pane:;;\
+K *docStartKey Ctrl<Home>;Document Start:;;\
+K *docEndKey Ctrl<End>;Document End:;;\
+K *menubarKey <F10>;Menu Bar:;;
+
+*Scrolling.num: 12
+*Scrolling.keys:\
+K *scrollUpKey Ctrl<bracketright>;Scroll Up:;;\
+K *scrollDownKey Ctrl<bracketleft>;Scroll Down:;;\
+K *scrollLeftKey Alt<bracketleft>;Scroll Left:;;\
+K *scrollRightKey Alt<bracketright>;Scroll Right:;;\
+K *pageUpKey <Prior>;Page Up:;;\
+K *pageDownKey <Next>;Page Down:;;\
+K *pageLeftKey Ctrl<Prior>;Page Left:;;\
+K *pageRightKey Ctrl<Next>;Page Right:;;\
+K *scrollTopKey Alt<Prior>;Scroll Top:;;\
+K *scrollBottomKey Alt<Next>;Scroll Bottom:;;\
+K *scrollLeftEdge Alt<braceleft>;Scroll Left Edge:;;\
+K *scrollRightEdge Alt<braceright>;Scroll Right Edge:;;
+
+*Text Selection.num: 10
+*Text Selection.keys:\
+K *selCharFwdKey Shift<Right>;Select Character Forward:;;\
+K *selCharBakKey Shift<Left>;Select Character Backward:;;\
+K *selWordFwdKey Shift Ctrl<Right>;Select Word Forward:;;\
+K *selWordBakKey Shift Ctrl<Left>;Select Word Backward:;;\
+K *selLineFwdKey Shift<End>;Select Line Forward:;;\
+K *selLineBakKey Shift<Home>;Select Line Backward:;;\
+K *selLineKey Ctrl Alt<Left>;Select Line:;;\
+K *selFlipEndsKey Alt<Insert>;Flip Selection Ends:;;\
+K *selectAllKey Ctrl<slash>;Select All:;;\
+K *deselectAllKey Ctrl<backslash>;Deselect All:;;
+
+*System.num: 8
+*System.keys:\
+K *togglePushpinKey Ctrl<t>;Pin/Unpin:;;\
+K *vertSBMenuKey Ctrl<r>;Vertical-Scrollbar Menu:;;\
+K *horizSBMenuKey Alt Ctrl<r>;Horizontal-Scrollbar Menu:;;\
+K *windowMenuKey Shift<Escape>;Window Menu:;;\
+K *wmBackKey Alt<F3>;Move Window to Back:;;\
+K *wmMoveKey Alt<F7>;Move Window:;;\
+K *wmResizeKey Alt<F8>;Resize Window:;;\
+K *wmQuitKey Alt<F4>;Quit Application:;;

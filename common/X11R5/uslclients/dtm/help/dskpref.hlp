@@ -1,0 +1,186 @@
+#ident	"@(#)dtm:help/dskpref.hlp	1.9"
+^*version^1
+^*title^Desktop Preferences
+^:Desktop
+^*width^70
+^+DesktopMgr/help.defs
+^?Customizing the Desktop appearance.
+^0^Desktop Preferences
+^$10
+Desktop Preferences
+
+Use Desktop Preferences to change certain characteristics that effect
+how the Desktop looks.
+
+The following window is provided for Desktop Preferences:
+
+        \k(Desktop Preferences Window)
+^1^Desktop Preferences Window
+^$20
+\k{Desktop Preferences}
+1. Desktop Preferences Window
+
+Use the Desktop Preferences window to display and change the set-
+tings for the following preferences: GUI Environment, Start Desktop at
+login, Interface Appearance, Show Full Path Names, File Icon Grid
+Size, and Default Folder Window Size.
+
+The first line of the Desktop Preferences window contains a CATEGORY
+button (arrow). This button lets you quickly switch between all
+Preference windows. When you click on the arrow, a menu appears with
+the Preference windows listed. Click on the Preference window you
+want. You can also click on Next Page to get the next Preference win-
+dow in the list.
+
+The buttons available from the Desktop Preferences window are:
+
+        \k(Apply Button^^Apply ButtonDesk)
+        \k(Reset Button^^Reset ButtonDesk)
+        \k(Reset to Factory Button^^Reset to Factory ButtonDesk)
+        \k(Cancel Button^^Cancel ButtonDesk)
+        \k(Help Button^^Help ButtonDesk)
+
+More information: \k(How to change Desktop preferences)
+^2^How to change Desktop preferences
+^$30
+1. \k{Desktop Preferences Window}
+   1.1 How to change Desktop preferences
+
+The following preferences can be changed through the Desktop Prefer-
+ences window:
+
+        \k(GUI Environment)
+        \k(Start Desktop at login)
+        \k(Interface Appearance)
+        \k(Show Full Path Names)
+        \k(File Icon Grid Size)
+        \k(Default Folder Window Size)
+^3^GUI Environment
+^$40
+1. \k{Desktop Preferences Window}
+   1.1 \k{How to change Desktop preferences}
+       1.1.1 GUI Environment
+
+The GUI Environment option lets you choose between OPEN LOOK and
+Motif-style windows. Click on the style you prefer. The change takes
+effect the next time you log into your system. If you don't change
+this preference, Motif-style windows are used.
+^3^Start Desktop at login
+^$50
+1. \k{Desktop Preferences Window}
+   1.1 \k{How to change Desktop preferences}
+       1.1.2 Start Desktop at login
+
+The Start Desktop at login option lets you set whether or not the
+Desktop automatically starts when you login. If you set it to No, and
+later want to start the Desktop, type "desktop" at the UNIX system
+prompt and press ENTER. When set to Yes, the Desktop automatically
+starts every time you login. If you don't change this preference, the
+Desktop is started every time you login.
+
+Note: If you set this option to Yes and you want to enter a full-screen,
+character-based mode, you must log in through the Console Login screen
+(click on Exit when the graphical login screen appears). At the
+Console Login prompt, follow your user ID with "DT=no". For example:
+
+	Console Login: zorb DT=no
+^3^Interface Appearance
+^$55
+1. \k{Desktop Preferences Window}
+   1.1 \k{How to change Desktop preferences}
+       1.1.3 Interface Appearance
+
+The Interface Appearance option lets you choose either a flat 2D (two-
+dimensional) or a richer looking 3D (three-dimensional) visual
+appearance for the Desktop. If you are using a monochrome monitor, the
+2D option may be more visually appealing.
+^3^Show Full Path Names
+^$60
+1. \k{Desktop Preferences Window}
+   1.1 \k{How to change Desktop preferences}
+       1.1.4 Show Full Path Names
+
+The Show Full Path Names option lets you choose between having the full
+path name of a folder or just the folder name displayed in the title
+area of a folder window. If you want the full path displayed, click on
+Yes. For just the folder name, click on No. If you don't change this
+preference, only the folder name is displayed in the title area of a
+folder window.
+^3^File Icon Grid Size
+^$70
+1. \k{Desktop Preferences Window}
+   1.1 \k{How to change Desktop preferences}
+       1.1.5 File Icon Grid Size
+
+The File Icon Grid Size option lets you adjust the size of the grid
+used to position file icons inside folders. Normally, this area is 84
+by 62 pixels. To space the icons farther apart or to prevent
+overlapping icon labels, increase the grid size. To bring the icons
+closer together, decrease the grid size.
+
+To change the grid size, either click on the line containing the
+number you want to change and enter a new number, or click on the
+arrows to increase or decrease the number.
+^3^Default Folder Window Size
+^$80
+1. \k{Desktop Preferences Window}
+   1.1 \k{How to change Desktop preferences}
+       1.1.6 Default Folder Window Size
+
+The Default Folder Window Size option lets you change how folder
+windows appear when you open them. You can change the number of rows
+and columns displayed. Normally, folder windows are set for two rows
+and five columns. To make the folder window larger, and therefore
+display more icons, increase the number of rows and columns. To make
+the folder window smaller, and display fewer icons, decrease the
+number of rows and columns.
+
+To change the folder-window size, either click on the line containing
+the number you want to change and enter a new number, or click on the
+arrows to increase or decrease the number.
+^2^Apply Button=Apply ButtonDesk
+^$90
+1. \k{Desktop Preferences Window}
+   1.2 Apply Button
+
+The Apply button saves and applies all changes made in any preferences
+window. If you made any changes, the changes are immediately applied
+to all Desktop applications, including those currently open. After
+applying the changes, the Desktop Preferences window closes.
+^2^Reset Button=Reset ButtonDesk
+^$100
+1. \k{Desktop Preferences Window}
+   1.3 Reset Button
+
+The Reset button reverses any changes you have not yet applied in the
+Desktop Preferences window. The Desktop preferences window remains open.
+
+Note: The Reset button does not affect the saved values, which are
+changed only when the \k(Apply button^^Apply ButtonDesk) is used.
+
+^2^Reset to Factory Button=Reset to Factory ButtonDesk
+^$110
+1. \k{Desktop Preferences Window}
+   1.4 Reset to Factory Button
+
+The Reset to Factory button resets all characteristics in the Desktop
+Preferences window to those originally set in the software. Use the
+\k(Apply button^^Apply ButtonDesk) to have the original characteristics take
+effect. The Desktop Preferences window remains open.
+
+Note: The Reset to Factory button does not affect the saved values,
+which are changed only when the Apply button is used.
+^2^Cancel Button=Cancel ButtonDesk
+^$120
+1. \k{Desktop Preferences Window}
+   1.5 Cancel Button
+
+The Cancel button closes the Desktop Preferences window without making
+any changes.
+^2^Help Button=Help ButtonDesk
+^$130
+1. \k{Desktop Preferences Window}
+   1.6 Help Button
+
+The Help Button provides on-line help for the Desktop Preferences
+window.

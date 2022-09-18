@@ -1,0 +1,4 @@
+#ident	"@(#)uts-x86:net/tcpip/icmp.cf/System	1.4"
+#ident	"$Header: $"
+$version 1
+icmp	N	1	0	0	0	0	0	0	0	-1

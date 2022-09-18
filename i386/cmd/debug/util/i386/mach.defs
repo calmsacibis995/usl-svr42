@@ -1,0 +1,3 @@
+#ident	"@(#)debugger:util/i386/mach.defs	1.2"
+
+DEFLIST	= -DOLD_PROC -DFOLLOWER_PROC

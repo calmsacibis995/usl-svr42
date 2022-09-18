@@ -1,0 +1,5 @@
+#ident	"@(#)uts-x86:proc/class/fc.cf/Master	1.2"
+#ident	"$Header: $"
+$version 1
+$entry _init
+fc	fc	do	0	0	0

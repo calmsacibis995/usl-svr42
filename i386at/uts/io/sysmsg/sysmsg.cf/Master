@@ -1,0 +1,5 @@
+#ident	"@(#)uts-x86at:io/sysmsg/sysmsg.cf/Master	1.4"
+#ident	"$Header: $"
+$version 1
+$entry  open write ioctl
+sysmsg	smsg	krc	0	0	19

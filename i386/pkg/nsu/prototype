@@ -1,0 +1,293 @@
+#ident	"@(#)pkg.nsu:i386/pkg/nsu/prototype	1.19.18.39"
+#ident	"$Header: $"
+
+#	All files/directories are defined as relocatable. Although
+#	BASENAME is not used at this time (i.e. defaults to /)
+#	doing this may facilitate future development.
+#
+#	installation files:
+#		'request' gets number of pseudo-ttys from installer
+#		'postinstall' installs drivers, etc
+#		'preremove' uninstalls drivers, etc
+#		'preinstall' saves the volatile files for upgrade/overlay
+#
+i nsu/menu.nsu=menu.nsu
+i pkginfo
+i r.nsunetcnfg
+i postinstall
+i preinstall
+i preremove
+i copyright
+i depend
+i request
+
+!PATCH_LOC=/etc/inst/up/patch
+
+#
+#	directories: default owner=root group=sys mode=0775
+#
+!default 775 root sys
+d none  /etc	-	-	-
+d none  /etc/conf	-	-	-
+d none  /etc/conf/pack.d	-	-	-
+d none	/etc/conf/mdevice.d	-	-	-
+d none	/etc/conf/sdevice.d	-	-	-
+d none	/etc/conf/node.d	-	-	-
+d none	/etc/conf/mtune.d	-	-	-
+d none	/etc/conf/pack.d/ptem	-	-	-
+d none	/etc/conf/pack.d/pckt	-	-	-
+d none	/etc/conf/pack.d/ptm	-	-	-
+d none	/etc/conf/pack.d/pts	-	-	-
+d none	/etc/conf/pack.d/sockmod	-	-	-
+d none	/etc/conf/pack.d/timod	-	-	-
+d none	/etc/conf/pack.d/tirdwr	-	-	-
+d none	/etc/conf/pack.d/ticots	-	-	-
+d none	/etc/conf/pack.d/ticlts	-	-	-
+d none	/etc/conf/pack.d/ticotsor	-	-	-
+d none	/etc/conf/pack.d/ntty	-	-	-
+d none  /etc/init.d	-	-	-
+d none  /etc/rc0.d	-	-	-
+d none  /etc/rc1.d	-	-	-
+d none  /etc/rc2.d	-	-	-
+d none	/dev	-	-	-
+d none	/usr	-	-	-
+s none	/usr/adm=/var/adm	?	?	?
+d none	/usr/adm/streams	775	adm	adm	1	NULL	NULL
+d none	/usr/bin	-	-	-
+d none	/usr/include	-	-	-
+d none	/usr/include/sys	-	-	-
+d none	/usr/lib	-	-	-
+d none	/usr/net	775	root	sys	1	NULL	NULL
+d none	/usr/net/nls	775	root	sys	1	NULL	NULL
+d none	/usr/lib/iaf	-	-	-
+d none	/usr/lib/iaf/cr1	775	root	sys	1	NULL	NULL
+d none	/usr/lib/rexec	-	-	-	1	NULL	NULL
+d none	/usr/lib/saf	-	-	-	1	NULL	NULL
+d none	/usr/sbin	-	-	-
+d none  /usr/sadm	-	-	-
+#d none  /usr/sadm/sysadm	-	-	-
+d none  /etc/iaf	?	?	?	?	?	?
+d none	/etc/iaf/cr1	-	-	-	1	NULL	NULL
+d none	/etc/idmap	-	-	-	1	NULL	NULL
+d none	/etc/idmap/attrmap	-	-	-	1	NULL	NULL
+d none	/etc/rexec	-	-	-	1	NULL	NULL
+d none	/etc/net	-	-	-	1	NULL	NULL
+d none	/etc/net/ticots	755	-	-	1	NULL	NULL
+d none	/etc/net/ticlts	755	-	-	1	NULL	NULL
+d none	/etc/net/ticotsord	755	-	-	1	NULL	NULL
+d none	/var	-	-	-
+d none	/var/iaf	-	-	-	1	NULL	NULL
+d none	/var/iaf/cr1	-	-	-	1	NULL	NULL
+d none  /etc/cs	?	?	?	?	?	?
+d none  /var/adm	?	?	?	?	?	?
+d none  /var/adm/log	?	?	?	1	NULL	NULL
+d none  /tmp	?	?	?
+d none	/tmp/nsu	-	-	-	1 	NULL	NULL
+
+#
+#	driver object files: default owner=root group=root mode=500
+#
+!default 0500 root root 1 NULL NULL
+
+f none	/tmp/nsu/ptem.Dr=/etc/conf/pack.d/ptem/Driver.o
+f none	/tmp/nsu/ptem.Sp=/etc/conf/pack.d/ptem/space.c
+f none	/tmp/nsu/ptem.Ma=/etc/conf/mdevice.d/ptem
+f none	/tmp/nsu/ptem.Sy=/etc/conf/sdevice.d/ptem
+
+f none	/tmp/nsu/pckt.Dr=/etc/conf/pack.d/pckt/Driver.o
+f none	/tmp/nsu/pckt.Ma=/etc/conf/mdevice.d/pckt
+f none	/tmp/nsu/pckt.Sy=/etc/conf/sdevice.d/pckt
+
+f none	/tmp/nsu/ptm.Dr=/etc/conf/pack.d/ptm/Driver.o
+f none	/tmp/nsu/ptm.Sp=/etc/conf/pack.d/ptm/space.c
+f none	/tmp/nsu/ptm.Ma=/etc/conf/mdevice.d/ptm
+f none	/tmp/nsu/ptm.Sy=/etc/conf/sdevice.d/ptm
+f none	/tmp/nsu/ptm.No=/etc/conf/node.d/ptm
+
+f none	/tmp/nsu/pts.Dr=/etc/conf/pack.d/pts/Driver.o
+f none	/tmp/nsu/pts.Ma=/etc/conf/mdevice.d/pts
+f none	/tmp/nsu/pts.Sy=/etc/conf/sdevice.d/pts
+
+f none	/tmp/nsu/sockmod.Dr=/etc/conf/pack.d/sockmod/Driver.o
+f none	/tmp/nsu/sockmod.Sp=/etc/conf/pack.d/sockmod/space.c
+f none	/tmp/nsu/sockmod.Ma=/etc/conf/mdevice.d/sockmod
+f none	/tmp/nsu/sockmod.Sy=/etc/conf/sdevice.d/sockmod
+
+f none	/tmp/nsu/timod.Dr=/etc/conf/pack.d/timod/Driver.o
+f none	/tmp/nsu/timod.Sp=/etc/conf/pack.d/timod/space.c
+f none	/tmp/nsu/timod.Ma=/etc/conf/mdevice.d/timod
+f none	/tmp/nsu/timod.Sy=/etc/conf/sdevice.d/timod
+
+f none	/tmp/nsu/tirdwr.Dr=/etc/conf/pack.d/tirdwr/Driver.o
+f none	/tmp/nsu/tirdwr.Sp=/etc/conf/pack.d/tirdwr/space.c
+f none	/tmp/nsu/tirdwr.Ma=/etc/conf/mdevice.d/tirdwr
+f none	/tmp/nsu/tirdwr.Sy=/etc/conf/sdevice.d/tirdwr
+
+f none	/tmp/nsu/ticlts.Dr=/etc/conf/pack.d/ticlts/Driver.o
+f none	/tmp/nsu/ticlts.Ma=/etc/conf/mdevice.d/ticlts
+f none	/tmp/nsu/ticlts.Sy=/etc/conf/sdevice.d/ticlts
+f none  /tmp/nsu/ticlts.No=/etc/conf/node.d/ticlts
+
+f none	/tmp/nsu/ticots.Dr=/etc/conf/pack.d/ticots/Driver.o
+f none	/tmp/nsu/ticots.Ma=/etc/conf/mdevice.d/ticots
+f none	/tmp/nsu/ticots.Sy=/etc/conf/sdevice.d/ticots
+f none  /tmp/nsu/ticots.No=/etc/conf/node.d/ticots
+
+f none	/tmp/nsu/ticotsor.Dr=/etc/conf/pack.d/ticotsor/Driver.o
+f none	/tmp/nsu/ticotsor.Ma=/etc/conf/mdevice.d/ticotsor
+f none	/tmp/nsu/ticotsor.Sy=/etc/conf/sdevice.d/ticotsor
+f none  /tmp/nsu/ticotsor.No=/etc/conf/node.d/ticotsor
+
+f none	/tmp/nsu/ntty.Dr=/etc/conf/pack.d/ntty/Driver.o
+f none	/tmp/nsu/ntty.Sp=/etc/conf/pack.d/ntty/space.c
+f none	/tmp/nsu/ntty.Ma=/etc/conf/mdevice.d/ntty
+f none	/tmp/nsu/ntty.Sy=/etc/conf/sdevice.d/ntty
+
+#
+#	commands: default owner=root, group=sys, mode=0100
+#
+!default 0100 root sys
+f none	/usr/sbin/nlsadmin 0755 root adm 2 NULL dacread,dacwrite,dev,driver,macread,macwrite,setflevel
+f none	/usr/sbin/kmacntl - - - 2 NULL dacread,dacwrite,dev,driver,fsysrange,macread,macwrite
+s none	/usr/bin/kmacntl=/usr/sbin/kmacntl
+f none	/usr/sbin/kmapr - - - 2 NULL dacread,dacwrite,dev,driver,fsysrange,macread,macwrite
+s none	/usr/bin/kmapr=/usr/sbin/kmapr
+f none	/usr/sbin/kmamkdb - - - 2 NULL NULL
+s none	/usr/bin/kmamkdb=/usr/sbin/kmamkdb
+f none	/usr/sbin/strace - - - 2 NULL dacread,dacwrite,dev,driver,fsysrange,macread,macwrite
+f none	/usr/sbin/strclean - - - 2 NULL compat,dacread,dacwrite,dev,driver,filesys,fsysrange,macread,macwrite
+f none	/usr/sbin/strerr - - - 2 NULL dacread,dacwrite,dev,driver,fsysrange,macread,macwrite
+s none	/usr/bin/strace=/usr/sbin/strace
+s none	/usr/bin/strclean=/usr/sbin/strclean
+s none	/usr/bin/strerr=/usr/sbin/strerr
+f none	/usr/sbin/syslogd - - - 2 NULL dacread,dacwrite,dev,driver,fsysrange,macread,macwrite,sysops
+#
+#	IAF cr1 scheme and administrative commands
+#
+!default 0755 root sys
+f none	/usr/bin/cryptkey - - - 1 NULL NULL
+f none	/usr/sbin/keymaster - - - 2 NULL macwrite
+f none	/usr/lib/iaf/cr1/scheme - - - 1 NULL macread,macwrite,dev,audit
+
+f none	/etc/init.d/keymaster 0444 root sys 2 NULL NULL
+l none	/etc/dinit.d/S69keymaster=/etc/init.d/keymaster
+
+#
+#	IAF cr1 directory links for international/domestic operation
+#
+s none	/etc/iaf/cr1.des=/etc/iaf/cr1
+s none	/etc/iaf/cr1.enigma=/etc/iaf/cr1
+s none	/usr/lib/iaf/cr1.des=/usr/lib/iaf/cr1
+s none	/usr/lib/iaf/cr1.enigma=/usr/lib/iaf/cr1
+s none	/var/iaf/cr1.des=/var/iaf/cr1
+s none	/var/iaf/cr1.enigma=/var/iaf/cr1
+
+#
+#	International commands
+#
+!default 0755 bin bin
+f none	/usr/bin/pseudo - - - 2 NULL owner,dev,macread,macwrite,setflevel
+
+#	id mapping administration commands
+#
+!default 0550 sys sys
+f none	/usr/sbin/idadmin - - - 2 NULL dacwrite,macwrite,owner,setflevel
+f none	/usr/bin/uidadmin 02551 sys sys 1 dacwrite,macread,macwrite,setflevel NULL
+f none  /usr/sbin/attradmin
+
+f none	/var/adm/log/idmap.log 0660 sys sys 2 NULL NULL
+
+#
+#	rexec commands
+#
+!default 0555 bin bin 1 NULL NULL
+f none	/usr/bin/rexec
+s none	/usr/bin/rx=/usr/bin/rexec
+s none	/usr/bin/rl=/usr/bin/rexec
+s none	/usr/bin/rquery=/usr/bin/rexec
+
+f none	/usr/lib/rexec/rxserver 0555 bin bin 1 dacwrite,dev,macread,macwrite,owner,setflevel NULL
+f none	/usr/lib/rexec/rxlist 0555 bin bin 1 NULL NULL
+
+f none	/usr/sbin/rxservice - - - 1 NULL dacwrite,macwrite,owner,setflevel
+#
+#	rexec services file
+#
+f none	/etc/rexec/services 0644 root bin
+
+# moved from rpc pkg
+!default 0555 root sys 
+f none  /usr/bin/rpcinfo
+f none  /usr/sbin/rpcbind
+
+#
+#	header files: default owner=bin group=bin mode=0444
+#
+!default 0444 bin bin 1 NULL NULL
+f none	/usr/include/cr1.h
+f none	/usr/include/dial.h
+f none	/usr/include/iaf.h
+f none	/usr/include/listen.h
+f none	/usr/include/netconfig.h
+f none	/usr/include/netdir.h
+f none	/usr/include/sac.h
+f none	/usr/include/rx.h
+f none	/usr/include/cs.h
+
+f none /usr/include/sys/ticlts.h
+
+f none /usr/include/sys/ticots.h
+
+f none /usr/include/sys/ticotsord.h
+
+f none /usr/include/sys/tihdr.h
+
+f none /usr/include/sys/timod.h
+
+#
+#	library routines: default owner=root group=bin mode=444
+#
+!default 0444 root bin 1 NULL NULL
+
+f none	/usr/lib/pt_chmod 04111 root bin 1 NULL allprivs
+
+f none	/usr/lib/libsocket.so
+
+!default 0644 root bin 1 NULL NULL
+f none	/usr/lib/straddr.so
+
+#
+#	listener files: default owner=root group=bin mode=755
+#
+!default 0755 root sys	
+f none	/usr/lib/saf/listen - - - 2 NULL allprivs
+f none	/usr/lib/saf/dbfconv - - - 2 NULL allprivs
+f none	/usr/lib/saf/nlps_server - - - 2 NULL allprivs
+
+#
+#	Connection Server daemon, log files, and init script
+#	moved to pkg.base.  All OA&M related files have been
+#	moved to pkg.oam.
+#
+
+
+#########################
+# Upgrade installation
+# patch files
+!default 0755 root sys 1 NULL NULL
+
+d none	$PATCH_LOC/etc/net
+d none	$PATCH_LOC/etc/net/ticlts
+d none	$PATCH_LOC/etc/net/ticots
+d none	$PATCH_LOC/etc/net/ticotsord
+
+!default 0644 root sys 1 NULL NULL
+
+f none	$PATCH_LOC/etc/net/ticlts/hosts
+f none	$PATCH_LOC/etc/net/ticlts/services
+f none	$PATCH_LOC/etc/net/ticots/hosts
+f none	$PATCH_LOC/etc/net/ticots/services
+f none	$PATCH_LOC/etc/net/ticotsord/hosts
+f none	$PATCH_LOC/etc/net/ticotsord/services
+f none	$PATCH_LOC/etc/netconfig
+

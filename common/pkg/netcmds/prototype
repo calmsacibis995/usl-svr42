@@ -1,0 +1,42 @@
+#ident	"@(#)pkg.netcmds:common/pkg/netcmds/prototype	1.2"
+#ident  "$Header: $"
+#
+i pkginfo
+i depend
+i preinstall
+i postinstall
+i preremove
+i postremove
+i copyright
+
+!USRSBIN=/usr/sbin
+!USRLIB=/usr/lib
+!ETC=/etc
+!T=/
+
+d none $USRSBIN 		? ? ? ? ? ?
+d none $USRLIB 			? ? ? ? ? ?
+d none $ETC 			? ? ? ? ? ?
+d none $USRLIB/lp		775	lp	lp
+
+#  SMTP files
+
+f none	/usr/lib/mail/surrcmd/in.smtpd	0555	root	mail	1	NULL	dev,setuid
+f none	/usr/lib/mail/surrcmd/smtp	02555	smtp	mail	1	NULL	NULL
+l none	/usr/lib/mail/surrcmd/smtpbatch=/usr/lib/mail/surrcmd/smtp
+f none	/usr/lib/mail/surrcmd/smtpd	0555	smtp	mail	1	NULL	NULL
+f none	/usr/lib/mail/surrcmd/smtploop	0555	smtp	mail	1	setplevel	NULL
+f none	/usr/lib/mail/surrcmd/smtpqer	02555	smtp	mail	1	NULL	NULL
+f none	/usr/lib/mail/surrcmd/smtpsched	02555	smtp	mail	1	NULL	NULL
+#  SMTP spool directory
+
+d none	/var/spool/smtpq		0775	smtp	mail
+
+# LP Networking Commands
+
+f none $USRLIB/lp/lpNet		110 lp lp 2 NULL	audit,setuid,setplevel,setflevel,owner,macread,macwrite,dacread,dacwrite,compat,dev,sysops
+f none $USRLIB/lp/lpsched=$USRLIB/lp/lpsched.net	4110 root lp 2 NULL	audit,setuid,setplevel,setflevel,owner,macread,macwrite,dacread,dacwrite,compat,dev,sysops
+f none $USRSBIN/lpsystem	4110 root lp 2 NULL	audit,macread,macwrite,setflevel,owner,dacread
+f none $USRSBIN/lpadmin=$USRSBIN/lpadmin.net		4110 root lp 2 NULL	audit,macread,macwrite,setflevel,owner,dev,dacread
+v none /etc/lp/Systems		664 lp lp 2 NULL	NULL
+

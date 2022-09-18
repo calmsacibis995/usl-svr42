@@ -1,0 +1,147 @@
+#ident	"@(#)proto:desktop/menus/fd/initial.1	1.13"
+#ident	"$Header: $"
+#
+# Menu description file format
+#
+# Lines beginning with '#' are comments
+#
+# format string for page numbering - 1st %d is current pg and 2nd is total pgs
+.pageno
+Page %d of %d
+#
+# string that appears in the upper left corner
+.ul
+UNIX System Installation
+#
+# The banner for the help_within_help screen
+.hhelp_ban
+Instructions
+#
+# The banner for the help screen
+.helpbanner
+Help: Introduction
+#
+# string that appears in the upper right corner
+.ur
+Introduction
+#
+# string that appears in the lower left corner
+#.ll
+#THIS SPACE INTENTIONALLY LEFT BLANK.
+#
+# string that appears in the lower right corner
+.lr
+Del=Cancel  F1=Help
+#
+# text for above the menu form (used to be -s strings)
+.top
+
+              Welcome to the UNIX System installation process!
+
+
+If you have never installed the UNIX System before, it is recommended that
+you press the 'F1' (or '?') key now to learn more about the installation
+process and the hardware requirements of the UNIX System.
+
+
+   - Pressing the 'F1' (or '?') key at any time during installation will
+     display more information or help.
+
+   - Pressing the 'Del' key at any time cancels the installation.
+#   
+#   As a reminder, these are shown at the bottom of the screen in the help bar.
+#
+# This is the "options" string for menus.
+#.optstring
+#THIS SPACE INTENTIONALLY LEFT BLANK.
+#
+# Delimiter for form - the contents of this section are the same as
+# the contents of a file specified w/-f options, autodetects whether its
+# a form or a menu.
+.form
+ENTER
+#
+# This is the prompt string for a MENU only.
+#.selection
+#THIS SPACE INTENTIONALLY LEFT BLANK.
+#
+# This is the text for beneath the menu (used to be -i strings)  Now we
+# can include text underneath the menu selection line, because of .selection
+.selection
+Press the 'F1' (or '?') key for more information or 'ENTER' to continue.
+#
+# Help text.  This can also be done using I/O redirection; if aline begins
+# with a <, the rest of the line is considered to be a filename and is
+# read in as though it were part of the file.  If the file contains other
+# .keywords, or `backticks` or <redirection, these will not be processed.
+.help
+For detailed instructions, press the 'F1' (or '?') key at any time.
+
+This help screen will provide you with information on the following topics:
+
+    SAVING FILES
+    INSTALLATION OVERVIEW
+    HARDWARE REQUIREMENTS
+
+SAVING FILES
+
+The UNIX System software must be installed (or copied) onto the hard disk of
+your computer.  This process may erase or alter any files on your hard disk.
+Therefore, before installation, you should make a copy of any files on the
+hard disk.  If you need to save files on the hard disk you should cancel the
+installation now and backup your files.
+information.
+
+INSTALLATION OVERVIEW
+
+The installation program prepares your computer's hardware and copies the
+UNIX System software onto your computer's hard disk(s).  Briefly, this
+involves partitioning your hard disk(s), selecting file systems,
+transferring the UNIX System files to your hard disk(s).  More information
+on each of these terms and steps is given below.
+
+Partitioning a hard disk divides it into a number of parts called
+"partitions".  Each partition can be used for a different operating system.
+When the first or "primary" hard disk has multiple partitions, the partition
+labeled as "Active" is used to boot your computer.  During installation the
+UNIX System software will be copied to the Active partition of your primary
+hard disk.
+
+A file system is a collection of files and folders (also called directories)
+and the structure that organizes them.  The UNIX System uses a
+hierarchical (multi-level) folder structure that permits folders to contain
+files and folders, which themselves can contain files and folders, and so
+on.  More information on UNIX file systems can be found in the Installation
+Guide.
+
+HARDWARE REQUIREMENTS
+
+The general hardware requirements for installing the UNIX System are:
+
+   - You must have at least a 60 MB primary hard disk (for a computer with
+     more than one hard disk, the primary hard disk is the one that the
+     computer boots from).
+
+   - If you wish to create multiple partitions on your primary hard disk,
+     then at least one of them must be 60 MB or larger and made Active.
+
+If you wish to install the Foundation Set from a non-SCSI cartridge tape,
+you should refer to the documentation to make sure that the configuration
+of your tape drive is correct.
+
+For additional hardware requirements, see the Installation Guide.
+#
+# This is the instructions (help banner) for the help screens.
+.helpinst
+ESC=Exit help  F1=Instructions  Del=Cancel  1=Forward  2=Backward
+.hhelpinst
+ESC=Exit instructions  Del=Cancel  1=Forward  2=Backward
+#
+# This is the "Working..." flag that flashes on the screen if the -r
+# option is specified on the command line.
+.working
+Working...
+#THIS SPACE INTENTIONALLY LEFT BLANK.
+#
+# This is an optional keyword for the end of input
+.end

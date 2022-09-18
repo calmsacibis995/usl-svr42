@@ -1,0 +1,44 @@
+#ident	"@(#)oamintf:common/cmd/oamintf/usermgmt/Form.lsusr	1.1.8.2"
+#ident  "$Header: Form.lsusr 2.0 91/07/12 $"
+
+################################################################################
+#	Module Name:  Form.lsusr
+################################################################################
+form="List Users"
+
+framemsg=`readfile $INTFBASE/form.msg`
+
+help=OPEN TEXT $INTFBASE/Text.itemhelp $LININFO
+
+done=`if [ "$TFADMIN" != "" ];
+      then
+	  $TFADMIN -t logins 2>/dev/null;
+	  if [ $RET -ne 0 ];
+	  then
+		set -l CMD="OPEN TEXT $OBJ_DIR/Text.nolsusr";
+	  else
+	  	set -l CMD="OPEN TEXT $OBJ_DIR/Text.lsusr $F1";
+	  fi;
+      else
+	  set -l CMD="OPEN TEXT $OBJ_DIR/Text.lsusr $F1";
+      fi`$CMD
+
+
+name=User:
+lininfo=Form.lsusr:list
+nrow=1
+ncol=3
+frow=1
+fcol=8
+rows=1
+columns=10
+
+value=all
+rmenu=OPEN MENU $OBJ_DIR/Menu.zlogins
+valid="`regex -v "$F1" 'all' 'true' || /usr/sadm/sysadm/bin/chk_logins $F1`"
+invalidmsg=const "ERROR: Must be a valid login on this system."
+choicemsg=const "Select a valid login or ALL for all logins on this system."
+
+name=RESET
+button=8
+action=RESET

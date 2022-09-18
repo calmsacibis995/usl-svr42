@@ -1,0 +1,67 @@
+#ident	"@(#)set:i386/set/fnd/prototype	1.26"
+#ident	"$Header: $"
+
+# SIP packaging files
+
+i set.1
+i set.2
+i set.3
+i set.4
+i set.5
+i set.6
+i set.7
+i pkginfo
+i preinstall
+i postinstall
+i copyright
+i request
+i response
+i setinfo
+i setsize
+
+!PKGSRCLOC=../../pkg
+!XPKGSRCLOC=../../X11R5/olpkg.oam
+
+i base/request=$PKGSRCLOC/base/ifiles/request 
+i base/chknode.1=$PKGSRCLOC/base/ifiles/chknode.1
+i base/warn.noboot=$PKGSRCLOC/base/ifiles/warn.noboot
+i base/copyright=$PKGSRCLOC/base/ifiles/copyright
+i base/pkginfo=$PKGSRCLOC/base/ifiles/pkginfo
+
+i lp/request=$PKGSRCLOC/lp/request 
+i lp/response=$PKGSRCLOC/lp/response 
+i lp/depend=$PKGSRCLOC/lp/depend 
+i lp/copyright=$PKGSRCLOC/lp/copyright 
+i lp/pkginfo=$PKGSRCLOC/lp/pkginfo 
+ 
+i nsu/request=$PKGSRCLOC/nsu/request 
+i nsu/response=$PKGSRCLOC/nsu/response 
+i nsu/depend=$PKGSRCLOC/nsu/depend 
+i nsu/menu.nsu=$PKGSRCLOC/nsu/menu.nsu 
+i nsu/menu.nsu.1=$PKGSRCLOC/nsu/menu.nsu.1 
+i nsu/copyright=$PKGSRCLOC/nsu/copyright
+i nsu/pkginfo=$PKGSRCLOC/nsu/pkginfo
+
+i dtxt/depend=$XPKGSRCLOC/pkg.dtxt/depend 
+i dtxt/request=$XPKGSRCLOC/pkg.dtxt/request 
+i dtxt/response=$XPKGSRCLOC/pkg.dtxt/response 
+i dtxt/copyright=$XPKGSRCLOC/pkg.dtxt/copyright 
+i dtxt/pkginfo=$XPKGSRCLOC/pkg.dtxt/pkginfo 
+
+i atm/depend=$XPKGSRCLOC/pkg.atm/depend 
+i atm/copyright=$XPKGSRCLOC/pkg.atm/copyright 
+i atm/pkginfo=$XPKGSRCLOC/pkg.atm/pkginfo 
+
+i desktop/depend=$XPKGSRCLOC/pkg.desk/depend 
+i desktop/request=$XPKGSRCLOC/pkg.desk/request 
+i desktop/response=$XPKGSRCLOC/pkg.desk/response 
+i desktop/copyright=$XPKGSRCLOC/pkg.desk/copyright 
+i desktop/pkginfo=$XPKGSRCLOC/pkg.desk/pkginfo 
+
+i acp/request=$PKGSRCLOC/acp/request 
+i acp/response=$PKGSRCLOC/acp/response 
+i acp/depend=$PKGSRCLOC/acp/depend 
+i acp/menu.acp=$PKGSRCLOC/acp/menu.acp 
+i acp/menu.acp.1=$PKGSRCLOC/acp/menu.acp.1 
+i acp/copyright=$PKGSRCLOC/acp/copyright
+i acp/pkginfo=$PKGSRCLOC/acp/pkginfo

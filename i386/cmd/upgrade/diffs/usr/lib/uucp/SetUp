@@ -1,0 +1,64 @@
+*** SetUp.v4	Mon Feb 24 11:38:08 1992
+--- SetUp.destiny	Mon Feb 24 11:38:28 1992
+***************
+*** 1,3 ****
+  #!/bin/sh
+! #ident	"@(#)/usr/lib/uucp/SetUp.sl 1.1 4.0 05/29/91 48763 AT&T-USL"
+  
+--- 1,4 ----
+  #!/bin/sh
+! #ident	"@(#)/usr/lib/uucp/SetUp.sl 1.1 4.1dt 10/05/91 17536 AT&T-USL"
+! #ident "$Header: SetUp 1.2 91/04/17 $"
+  
+***************
+*** 23,25 ****
+  rm -rf $LIB/$4
+! $SYMLINK $ETC/$4 $LIB/$4
+  }
+--- 24,26 ----
+  rm -rf $LIB/$4
+! $SYMLINK $SETC/$4 $LIB/$4
+  }
+***************
+*** 35,38 ****
+  
+! LIB=$ROOT/usr/lib/uucp
+! ETC=$ROOT/etc/uucp
+  
+--- 36,40 ----
+  
+! LIB=$ROOT/$MACH/usr/lib/uucp
+! ETC=$ROOT/$MACH/etc/uucp
+! SETC=/etc/uucp
+  
+***************
+*** 53,55 ****
+  	rm -rf $LIB/$i
+! 	$SYMLINK $ETC/$i $LIB/$i
+      done
+--- 55,57 ----
+  	rm -rf $LIB/$i
+! 	$SYMLINK $SETC/$i $LIB/$i
+      done
+***************
+*** 69,71 ****
+  needit $OWNER $GROUP 644 Sysfiles
+! needit $OWNER $GROUP 600 Systems L.sys
+  
+--- 71,73 ----
+  needit $OWNER $GROUP 644 Sysfiles
+! needit $OWNER $GROUP 640 Systems L.sys
+  
+***************
+*** 92,96 ****
+  chgrp $GROUP $ETC/Permissions
+! chmod 600 $ETC/Permissions
+  rm -rf $LIB/Permissions
+! $SYMLINK $ETC/Permissions $LIB/Permissions
+  
+--- 94,98 ----
+  chgrp $GROUP $ETC/Permissions
+! chmod 640 $ETC/Permissions
+  rm -rf $LIB/Permissions
+! $SYMLINK $SETC/Permissions $LIB/Permissions
+  

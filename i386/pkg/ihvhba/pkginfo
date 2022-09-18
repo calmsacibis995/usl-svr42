@@ -1,0 +1,9 @@
+#ident	"@(#)pkg.ihvhba:i386/pkg/ihvhba/pkginfo	1.2"
+#ident  "$Header: $"
+
+CATEGORY="system"
+CLASSES="none"
+NAME="MCIS IHV HBA" 
+PKG="ihvhba"
+VENDOR="UNIX System Laboratories"
+VERSION="1"

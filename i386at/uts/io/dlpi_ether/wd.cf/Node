@@ -1,0 +1,3 @@
+#ident	"@(#)uts-x86at:io/dlpi_ether/wd.cf/Node	1.1"
+#ident	"$Header: $"
+clone   wd_0     c:0       wd

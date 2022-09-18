@@ -1,0 +1,39 @@
+#ident	"@(#)oamintf:common/cmd/oamintf/devices/format/Text.fmtok	1.1.5.2"
+#ident  "$Header: Text.fmtok 2.1 91/08/20 $"
+
+################################################################################
+#	Module Name: Text.fmtok
+################################################################################
+title="Format of Volume Complete"
+
+
+framemsg="`readfile $INTFBASE/conf.msg`"
+`message -w "Press CONT to repeat this task or CANCEL to return to the menu."`
+
+help=OPEN TEXT $INTFBASE/Text.itemhelp Text.fmtok:ABSTRACT
+
+lifetime=shortterm
+
+text="
+The volume is formatted.  You may now remove it from `/usr/bin/devattr $ARG1 desc`."
+
+rows=3
+columns=70
+
+altslks
+
+name=
+button=9
+action=nop
+
+name=
+button=10
+action=nop
+
+name=CONT
+button=11
+action=OPEN TEXT $OBJ_DIR/Text.format $ARG1
+
+name=CANCEL
+button=14
+action=`/usr/bin/devfree $VPID $ARG1`CLEANUP

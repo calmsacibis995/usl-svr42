@@ -1,0 +1,22 @@
+#ident	"@(#)idmap:oam/name_map/mappings/Text.disable	1.1.3.1"
+#ident  "$Header: Text.disable 2.0 91/07/12 $"
+
+################################################################################
+#
+#	Module Name: Text.disable
+#
+#	Functional Description: This text reports status of disable
+#			
+################################################################################
+
+title="Disable User Controlled Mapping in a Scheme"
+
+begrow=any
+begcol=any
+
+rows=10
+columns=50
+
+text="     $ARG1 of scheme $ARG2"
+
+`readfile $INTFBASE/display.msg | message -s`

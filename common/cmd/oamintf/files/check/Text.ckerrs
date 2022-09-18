@@ -1,0 +1,16 @@
+#ident	"@(#)filemgmt:common/cmd/oamintf/files/check/Text.ckerrs	1.5.2.2"
+#ident  "$Header: Text.ckerrs 2.0 91/07/12 $"
+Title="File System Check"
+
+close=`$OAMBASE/bin/rmfile 'check.err'`
+
+`message "" `
+
+help=OPEN TEXT $INTFBASE/Text.itemhelp ckerrhelp
+
+begrow=distinct
+begcol=distinct
+rows=18
+columns=75
+
+text="   `readfile /tmp/check.err` "

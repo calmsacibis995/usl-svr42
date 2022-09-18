@@ -1,0 +1,25 @@
+#ident	"@(#)wksh:olwksh.rc	1.3"
+if [ "$_HOLDENV_" ]
+then 
+	ENV=$_HOLDENV_
+	if [ -r "$ENV" ]
+	then . "$ENV"
+	fi
+else
+	unset ENV
+fi
+unset _HOLDENV_
+if [ ! "$WKSHPS1" ]
+then WKSHPS1="[WKSH] $PS1" export WKSHPS1
+fi
+PS1="$WKSHPS1"
+if [ ! "$WKSHFPATH" ]
+then 
+	if [ "$FPATH" ]
+	then WKSHFPATH="$FPATH:/usr/X/lib/wksh/olfuncs"
+	else WKSHFPATH="/usr/X/lib/wksh/olfuncs"
+	fi
+	export WKSHFPATH
+fi
+FPATH="$WKSHFPATH"
+call wk_libinit

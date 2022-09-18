@@ -1,0 +1,7 @@
+#!/usr/bin/sh
+#ident	"@(#)pkg.nsu:common/pkg/nsu/r.nsunetcnfg	1.1.1.1"
+#ident "$Header: /sms/sinixV5.4es/rcs/s19-full/usr/src/pkg/nsu/r.nsunetcnfg,v 1.1 91/02/28 21:32:17 ccs Exp $"
+# This shell script will be run when we remove the nsu package
+# to see what is done to the nsunetcnfg class of files.
+# /etc/netconfig is the only file that lives in that class, and
+# we don't want it removed, so this script is intentionally left blank.

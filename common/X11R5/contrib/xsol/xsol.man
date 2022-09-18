@@ -1,0 +1,49 @@
+.\"ident	"@(#)xsol:xsol.man	1.2"
+.\" @(#)xsol.man 1.4 89/06/16; Copyright (c) 1988 - Sun Microsystems
+.TH xsol 1 "15 Aug 1988"
+.SH NAME
+xsol \- play solitaire
+.SH SYNOPSIS
+.B xsol
+[
+.BI \-display " connection"
+]
+[
+.BI \-nodrag
+]
+[
+.BI [\-,+]r
+]
+.SH DESCRIPTION
+.I xsol
+plays a solitaire game similar to Klondike.  
+The playing field is made up of seven slots,
+where stacks are built in descending value with alternating suits.
+Aces are built on at the top, and ascending order in the same suit.
+Kings can be moved to any empty space in the playing field.
+The deck can reversed if unused cards are left by clicking on the 
+empty deck window on the table .
+.br
+The cards are moved using the Left mouse button (Button1).
+Pressing the button selects the card, and it (and any cards on it) can 
+then by dragged to its destination, where releasing will place them.  
+The deck cards are selected by clicking on them.
+.SH OPTIONS
+.TP 5
+.BI \-display " connection"
+Connect to X server display,
+.IR connection.
+.TP 5
+.BI \-nodrag
+A button press selects the card, and a second press places it.
+.TP 5
+.BI [\-,+]r
+Turns reverse video on or off to make cards more readable on monochrome
+or gray scale devices.
+.SH SEE ALSO
+    X(1)
+.SH COPYRIGHT
+Copyright (c) 1988 by Sun Microsystems, Inc.
+.sp 1
+David Lemke (lemke@sun.com)
+

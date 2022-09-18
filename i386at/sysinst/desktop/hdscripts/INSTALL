@@ -1,0 +1,14 @@
+#ident	"@(#)proto:desktop/hdscripts/INSTALL	1.4.1.14"
+
+/sbin/sh /etc/inst/scripts/trap.sh|2|i|Trap handling routine
+TERM=AT386|2|E| set TERM
+PATH=:/usr/bin:/sbin:/etc:/usr/sbin:|2|E| set PATH
+SCRIPTS=/etc/inst/scripts|2|E| set SCRIPTS
+/sbin/sh /etc/inst/scripts/uncompress.sh|2|c|/sbin/sh uncompress.sh
+/sbin/sh /etc/inst/scripts/initialize.sh|0|c|/sbin/sh initialize.sh
+/sbin/sh /etc/inst/scripts/chk_up_over.sh|0|C|For Upgrade/Overlay
+/sbin/sh /etc/inst/scripts/install.sh|0|c|/sbin/sh media_type.sh
+/sbin/sh /etc/inst/scripts/loadhba.sh|0|c|/sbin/sh loadhba.sh
+/sbin/sh /etc/inst/scripts/pdiconfig.sh|0|C|/sbin/sh rebuild.sh
+/sbin/sh /etc/inst/scripts/rebuild.sh|0|c|/sbin/sh pdiconfig.sh
+/sbin/sh /etc/inst/scripts/reboot.sh|0|c|/sbin/sh reboot.sh

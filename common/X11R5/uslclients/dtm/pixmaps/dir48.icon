@@ -1,0 +1,61 @@
+#define dir48_format 1
+#define dir48_width 48
+#define dir48_height 48
+#define dir48_ncolors 4
+#define dir48_chars_per_pixel 1
+static char * dir48_colors[] = {
+" " , "#E400E400E400",
+"." , "#000000000000",
+"X" , "#DB00DB00BA00",
+"o" , "#710071007100"
+} ;
+static char * dir48_pixels[] = {
+"                                                ",
+"                                                ",
+"                                                ",
+"                       .............            ",
+"                      .XXXXXXXXXXXXX.           ",
+"                     .XXXXXXXXXXXXXXX.          ",
+"   ..................XXXooXXoooXXooXXX......    ",
+"  .XXXXXXXXXXXXXXXXXX.XXXXXXXXXXXXXXX.XXXXXX.   ",
+"  .XXXXXXXXXXXXXXXXXXX.XXXXXXXXXXXXX.XXXXXXXo.  ",
+"  .XXXXXXXXXXXXXXXXXXXX.............XXXXXXXXo.o ",
+"  .XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXo.o ",
+"  .XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXo.o ",
+"  .XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXo.o ",
+"  .XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXo.o ",
+"  .XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXo.o ",
+"  .XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXo.o ",
+"  .XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXo.o ",
+"  .XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXo.o ",
+"  .XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXo.o ",
+"  .XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXo.o ",
+"  .XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXo.o ",
+"  .XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXo.o ",
+"  .XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXo.o ",
+"  .XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXo.o ",
+"  .XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXo.o ",
+"  .XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXo.o ",
+"  .XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXo.o ",
+"  .XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXo.o ",
+"  .XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXo.o ",
+"  .XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXo.o ",
+"  .XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXo.o ",
+"  .XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXo.o ",
+"  .XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXo.o ",
+"  .XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXo.o ",
+"  .XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXo.o ",
+"  .XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXo.o ",
+"  .XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXo.o ",
+"  .oooooooooooooooooooooooooooooooooooooooooo.o ",
+"  ............................................o ",
+"   ooooooooooooooooooooooooooooooooooooooooooo  ",
+"                                                ",
+"                                                ",
+"                                                ",
+"                                                ",
+"                                                ",
+"                                                ",
+"                                                ",
+"                                                "
+} ;

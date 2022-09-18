@@ -1,0 +1,31 @@
+#ident	"@(#)bkrs:common/cmd/bkrs/basic.d/system/Menu.backsel	1.3"
+#ident	"$Header: $"
+
+menu="Select Removable Media"
+help=open text /usr/vmsys/OBJECTS/Text.h "Select Removable Media" backup/private/T.hdevice
+framemsg=`readfile $INTFBASE/ssmenu.msg`
+
+# print list of device types supporting attribute along with the
+# corresponding descriptions
+
+`indicator -w;
+	/usr/bin/getdev -a "removable=true" > /dev/null;
+	regex -e -v "$RET"
+		'^1$' '`message -t "There are no devices to display in this system configuration." "`init=false' "false"`
+		'^.*$' "true"
+
+`/usr/bin/getdev -a "removable=true"  | regex '^(.*)$0' '
+
+name="`/usr/bin/devattr $m0 desc`"
+action=`;
+	/usr/bin/devattr "$m0" cdevice | set -l CDEV;
+	/usr/bin/devattr "$m0" type | set -l TYPE;
+	if [ "$TYPE" = "qtape" ];
+	then
+		set -l TYPE="-t";
+	else
+		set -l TYPE="";
+	fi;
+ `open form $OBJ_DIR/system/Form.files "-d $CDEV $TYPE -f"
+' `
+

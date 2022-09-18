@@ -1,0 +1,89 @@
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+/**/#ident	"@(#)r4pixmaps:pixmaps/Imakefile	1.12"
+#define IHaveSubdirs
+#define PassCDebugFlags
+
+SUBDIRS = egacolors
+
+INSTALLFLAGS = $(INSTINCFLAGS)
+
+SRCS = \
+	4xsun.xpm \
+	abstract.xpm \
+	balltube.xpm \
+	beams.xpm \
+	bee.xpm \
+	bees.xpm \
+	bigcastle.xpm \
+	bigweave.xpm \
+	bokhara.xpm \
+	books.xpm \
+	bricks.xpm \
+	bug.xpm \
+	castle.xpm \
+	chainlink.xpm \
+	circles.xpm \
+	circuit.xpm \
+	clouds.xpm \
+	colors.xpm \
+	colorwave.xpm \
+	cross.xpm \
+	diagbox.xpm \
+	escher.xpm \
+	flag.xpm \
+	flowers.xpm \
+	fruit.xpm \
+	gbmesh.xpm \
+	grapes.xpm \
+	hex.xpm \
+	iris.xpm \
+	jolifond.xpm \
+	koala.xpm \
+	leaf.xpm \
+	lion.xpm \
+	mountains.xpm \
+	nobozos.xpm \
+	nodos.xpm \
+	paisley.xpm \
+	paperoll.xpm \
+	plaid.xpm \
+	planet.xpm \
+	planetrise.xpm \
+	rainbow.xpm \
+	rbwave.xpm \
+	rings.xpm \
+	slant.xpm \
+	spandex.xpm \
+	square.xpm \
+	star.xpm \
+	stones.xpm \
+	sun.xpm \
+	target.xpm \
+	tbweave.xpm \
+	trees.xpm \
+	triad.xpm \
+	vine.xpm \
+	weave.xpm \
+	widerweave.xpm \
+	yuck.xpm
+
+all::
+
+
+BuildIncludes($(SRCS),pixmaps,..)
+
+MakeDirectories(install,$(INCDIR)/pixmaps)
+MakeSubdirs($(SUBDIRS))
+InstallMultiple($(SRCS),$(INCDIR)/pixmaps)
+
+depend::
+	@echo "skipping make depend in ./X11/pixmaps"
+

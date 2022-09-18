@@ -1,0 +1,5 @@
+#ident	"@(#)uts-x86:fs/ufs/ufs.cf/System	1.4"
+#ident	"$Header: $"
+$version 1
+$loadable ufs
+ufs	Y	0	0	0	0	0	0	0	0	-1

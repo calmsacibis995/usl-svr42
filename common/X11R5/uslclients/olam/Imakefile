@@ -1,0 +1,122 @@
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+/**/#ident	"@(#)olam:Imakefile	1.21"
+
+LISTDSRC = listd
+LISTDLIB = $(LISTDSRC)/liblistd.a
+
+#ifdef GARAGE
+
+DEBUG = 
+CDEBUGFLAGS =
+MYDEFINES = -DDISPHELPFILE=\"/usr/users/jprem/garage/olam/help/display\" \
+	    -DHOSTHELPFILE=\"/usr/users/jprem/garage/olam/help/host_name\"
+MAKEDEFINES = -DSYSV -Di386 -DGARAGE
+
+#if BigEndianArchitecture == YES
+DEFINES = $(SYS_DEFINES) -DLIBDIR=\"$(LIBDIR)\" -DBIGENDIAN $(MYDEFINES)
+#else
+DEFINES = $(SYS_DEFINES) -DLIBDIR=\"$(LIBDIR)\" $(MYDEFINES)
+#endif
+
+XINSTALLED	= $(PROJECTROOT)
+INCLUDES	= -I$(LISTDSRC) -I$(XINSTALLED)/include
+XLIB		= $(XINSTALLED)/lib/libX11.a
+LOCAL_LIBRARIES	= $(LISTDLIB) $(XINSTALLED)/lib/libXol.a \
+		  $(XINSTALLED)/lib/libXt.a
+
+.KEEP_STATE:
+
+.SCCS_GET:
+
+#else
+
+DEBUG = 
+INCLUDES		= -I$(LISTDSRC) -I$(LIBSRC)
+LOCAL_LIBRARIES		= $(LISTDLIB) XolClientLibs
+DEPLIBS			= $(LISTDLIB) XolClientDepLibs
+
+#endif
+
+STAR = *
+
+#define IHaveSubdirs
+#define PassCDebugFlags 'CDEBUGFLAGS=$(CDEBUGFLAGS)'
+SUBDIRS = $(LISTDSRC)
+
+HEADERS = \
+	common.h \
+	config.h \
+	create.h \
+	error.h \
+	file_stuff.h \
+	footer.h \
+	pfsl.h \
+	rdisp.h \
+	rhost.h \
+	util.h \
+	validate.h
+
+SRCS = \
+	common.c \
+	create.c \
+	error.c \
+	file_stuff.c \
+	footer.c \
+	olam.c \
+	pfsl.c \
+	rdisp.c \
+	rhost.c \
+        validate.c\
+        errors.c
+
+OBJS = \
+	common.o \
+	create.o \
+	error.o \
+	file_stuff.o \
+	footer.o \
+	olam.o \
+	pfsl.o \
+	rdisp.o \
+	rhost.o \
+        validate.o\
+        errors.o
+
+
+MakeSubdirs($(SUBDIRS))
+DependSubdirs($(SUBDIRS))
+
+ComplexProgramTarget(olam)
+
+COUNT:
+	wc -l $(HEADERS) $(SRCS)
+
+#if defined(SVR4) || defined(SystemV4)
+LINT:	$(SRCS)
+	@for i in $(SRCS); do\
+	  (echo skipping: lint -u $(INCLUDES) $$i); \
+	done
+
+#else
+
+LINT:	$(SRCS)
+	@for i in $(SRCS); do\
+	  (lint -u $(INCLUDES) $$i >$$i.ln); \
+	done
+#endif
+
+install::
+	-mkdir -p $(USRLIBDIR)/locale/C/help/olam
+
+InstallMultipleHelpFiles(help/$(STAR),$(USRLIBDIR)/locale/C/help/olam)
+
+InstallAppDefaults(olam)
+

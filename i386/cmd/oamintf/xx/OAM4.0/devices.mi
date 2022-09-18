@@ -1,0 +1,4 @@
+#ident	"@(#)oamintf:i386/cmd/oamintf/xx/OAM4.0/devices.mi	1.2"
+#ident	"$Header: $"
+#status#new
+main:storage_devices:groups^Device Group Administration^groups.menu

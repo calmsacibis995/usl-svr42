@@ -1,0 +1,3 @@
+#ident	"@(#)bnu.admin:common/cmd/bnu.admin/setup.mi	1.4.1.2"
+#ident "$Header: setup.mi 2.0 91/08/20 $"
+main:network_services:basic_networking:setup:add^Adds Devices, Systems, and Polled Systems to Database^Menu.setup

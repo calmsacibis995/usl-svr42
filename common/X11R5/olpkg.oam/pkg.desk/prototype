@@ -1,0 +1,987 @@
+#ident	"@(#)olpkg.oam:pkg.desk/prototype	1.141"
+#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+#	Copyright (c) 1988, 1989, 1990 AT&T
+#	  All Rights Reserved
+
+#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+#	UNIX System Laboratories, Inc.
+#	The copyright notice above does not evidence any
+#	actual or intended publication of such source code.
+
+
+i copyright
+i request
+i preinstall
+i depend
+i pkginfo
+i postinstall
+i preremove
+
+!OAMBASE=/usr/sadm/sysadm
+!PKGINST=desktop
+!PKGSAV=/var/sadm/pkg/$PKGINST/save
+
+!default 4755 root other
+
+f desktop /usr/X/bin/olinit
+s desktop /usr/X/bin/desktop=/usr/X/bin/olinit
+
+!default 0755 bin bin
+
+d desktop /etc ? ? ?
+d desktop /etc/dinit.d ? ? ?
+d desktop /usr ? ? ?
+d desktop /usr/bin ? ? ?
+d desktop /usr/include ? ? ?
+d desktop /usr/include/sys ? ? ?
+d desktop /usr/bin ? ? ?
+d desktop /usr/lib ? ? ?
+
+d desktop /usr/X
+d desktop /usr/X/adm
+d desktop /usr/X/bin
+s desktop /usr/bin/X11=/usr/X/bin
+d desktop /usr/X/desktop
+d desktop /usr/X/desktop/LoginMgr
+d desktop /usr/X/desktop/LoginMgr/Users
+d desktop /usr/X/desktop/PackageMgr
+d desktop /usr/X/desktop/DialupMgr
+d desktop /usr/X/desktop/PrintMgr
+d desktop /usr/X/desktop/PrintMgr/Filters
+d desktop /usr/X/desktop/Applications
+d desktop /usr/X/desktop/Preferences
+d desktop /usr/X/desktop/Disks-etc
+d desktop /usr/X/desktop/Utilities
+d desktop /usr/X/desktop/System_Setup
+d desktop /usr/X/desktop/dashboard
+d desktop /usr/X/desktop/rft
+d desktop /usr/X/include
+d desktop /usr/X/include/DnD
+d desktop /usr/X/include/Dt
+d desktop /usr/X/include/Gizmo
+d desktop /usr/X/include/Xol
+d desktop /usr/X/include/Xol/bitmaps
+d desktop /usr/X/lib
+s desktop /usr/lib/X11=/usr/X/lib
+d desktop /usr/X/lib/Xol
+d desktop /usr/X/lib/app-defaults
+d desktop /usr/X/lib/classdb
+d desktop /usr/X/lib/bitmaps
+d desktop /usr/X/lib/bitmasks
+d desktop /usr/X/lib/pixmaps
+d desktop /usr/X/lib/pixmasks
+d desktop /usr/X/lib/fonts
+d desktop /usr/X/lib/fonts/75dpi
+d desktop /usr/X/lib/fonts/100dpi
+d desktop /usr/X/lib/fonts/Xol
+d desktop /usr/X/lib/locale
+d desktop /usr/X/lib/locale/C
+d desktop /usr/X/lib/locale/C/help
+d desktop /usr/X/lib/locale/C/help/DesktopMgr
+d desktop /usr/X/lib/locale/C/help/dtadmin
+d desktop /usr/X/lib/locale/C/help/dtclock
+d desktop /usr/X/lib/locale/C/help/dtedit
+d desktop /usr/X/lib/locale/C/help/dtm
+d desktop /usr/X/lib/locale/C/help/dtmail
+d desktop /usr/X/lib/locale/C/help/dtsched
+d desktop /usr/X/lib/locale/C/help/olwm
+d desktop /usr/X/lib/locale/C/help/Mwm
+d desktop /usr/X/lib/locale/C/help/olprintscreen
+d desktop /usr/X/lib/locale/C/help/fontmgr
+d desktop /usr/X/lib/locale/C/help/xterm
+d desktop /usr/X/lib/locale/C/help/xdm
+d desktop /usr/X/lib/locale/C/help/DtCalc
+d desktop /usr/X/lib/template
+d desktop /usr/X/lib/xdm
+
+v desktop /usr/X/adm/.olinitrc 644 root sys
+v desktop /usr/X/adm/.olsetup 644 root sys
+v desktop /usr/X/adm/.xsession 644 root sys
+v desktop /usr/X/adm/dtuser.msgs 644 root sys
+v desktop /usr/X/adm/dtindex 755 root sys
+v desktop /usr/X/adm/dtadduser 755 root sys
+f desktop /usr/X/adm/dtbackup.sh 555 root sys
+f desktop /usr/X/adm/RemoteFilt 755 root sys
+v desktop /usr/X/adm/dtdeluser 755 root sys
+f desktop /usr/X/adm/dtexec 755 root sys
+f desktop /usr/X/adm/addttymon 755 root sys
+f desktop /usr/X/adm/delttymon 755 root sys
+v desktop /usr/X/adm/make-owner 755 root sys
+v desktop /usr/X/adm/olremuser 755 root sys
+v desktop /usr/X/adm/olsetvar 755 root sys
+v desktop /usr/X/adm/olunsetvar 755 root sys
+v desktop /usr/X/adm/dtprinter 755 root sys
+v desktop /usr/X/adm/dtfilter 755 root sys
+v desktop /usr/X/adm/dtisv 755 root sys
+l desktop /usr/X/adm/dtmodem=/usr/X/adm/dtisv
+l desktop /usr/X/adm/dttypes=/usr/X/adm/dtisv
+
+f desktop /etc/dinit.d/S81dtam=/usr/X/adm/dtamcheckdev
+
+f desktop /usr/X/bin/xdm
+f desktop /usr/X/bin/nondesktop
+f desktop /usr/X/bin/xsetroot
+
+s desktop /usr/X/adm/dtamcheckdev=/etc/dinit.d/S81dtam
+
+f desktop /usr/X/lib/libXaw.so
+l desktop /usr/X/lib/libXaw.so.1=/usr/X/lib/libXaw.so
+f desktop /usr/X/lib/libXmu.so
+l desktop /usr/X/lib/libXmu.so.1=/usr/X/lib/libXmu.so
+f desktop /usr/X/lib/libXext.so
+l desktop /usr/X/lib/libXext.so.1=/usr/X/lib/libXext.so
+f desktop /usr/X/lib/libXt.so
+l desktop /usr/X/lib/libXt.so.1=/usr/X/lib/libXt.so
+f desktop /usr/X/lib/libDnD.so
+l desktop /usr/X/lib/libDnD.so.1=/usr/X/lib/libDnD.so
+
+l desktop /usr/X/lib/libXol.so.1=/usr/X/lib/libXol.so
+f desktop /usr/X/lib/libXol.so
+l desktop /usr/X/lib/libOlit.so.1=/usr/X/lib/libOlit.so
+f desktop /usr/X/lib/libOlit.so
+l desktop /usr/X/lib/libOlitO.so.1=/usr/X/lib/libOlitO.so
+f desktop /usr/X/lib/libOlitO.so
+l desktop /usr/X/lib/libOlitM.so.1=/usr/X/lib/libOlitM.so
+f desktop /usr/X/lib/libOlitM.so
+
+f desktop /usr/X/lib/libDt.so
+l desktop /usr/X/lib/libDt.so.1=/usr/X/lib/libDt.so
+f desktop /usr/X/lib/libDtI.so
+l desktop /usr/X/lib/libDtI.so.1=/usr/X/lib/libDtI.so
+f desktop /usr/X/lib/libGizmo.so
+l desktop /usr/X/lib/libGizmo.so.1=/usr/X/lib/libGizmo.so
+
+f desktop /usr/X/bin/DialupMgr
+s desktop /usr/X/desktop/System_Setup/Dialup_Setup=/usr/X/bin/DialupMgr
+f desktop /usr/X/bin/LoginMgr
+s desktop /usr/X/desktop/System_Setup/User_Setup=/usr/X/bin/LoginMgr
+s desktop /usr/X/desktop/System_Setup/Extra_Admin=/usr/sbin/sysadm
+f desktop /usr/X/bin/MediaMgr
+s desktop /usr/X/desktop/Utilities/Backup-Restore=/usr/X/bin/MediaMgr
+f desktop /usr/X/bin/PackageMgr
+s desktop /usr/X/desktop/System_Setup/Appl-n_Setup=/usr/X/bin/PackageMgr
+f desktop /usr/X/bin/PrtMgr
+f desktop /usr/X/bin/alarm.sh 755 bin bin
+f desktop /usr/X/bin/cronedit.sh 755 bin bin
+f desktop /usr/X/bin/dashboard
+s desktop /usr/X/desktop/Utilities/System_Status=/usr/X/bin/dashboard
+f desktop /usr/X/bin/dsdm
+f desktop /usr/X/bin/dtalarm
+f desktop /usr/X/bin/dtclock
+s desktop /usr/X/desktop/Applications/Clock=/usr/X/bin/dtclock
+f desktop /usr/X/bin/dtmail
+s desktop /usr/X/desktop/Applications/Mail=/usr/X/bin/dtmail
+f desktop /usr/X/bin/dtedit
+s desktop /usr/X/desktop/Applications/Text_Editor=/usr/X/bin/dtedit
+f desktop /usr/X/bin/dtm
+f desktop /usr/X/adm/dtprivilege
+f desktop /usr/X/bin/dtsched
+s desktop /usr/X/desktop/Utilities/Task_Scheduler=/usr/X/bin/dtsched
+f desktop /usr/X/adm/dtstatus
+f desktop /usr/X/bin/fontmgr
+s desktop /usr/X/desktop/System_Setup/Font_Setup=/usr/X/bin/fontmgr
+f desktop /usr/X/bin/olprintscreen
+f desktop /usr/X/bin/olwm
+f desktop /usr/X/bin/prtsetup
+s desktop /usr/X/desktop/System_Setup/Printer_Setup=/usr/X/bin/prtsetup
+f desktop /usr/X/bin/puzzle
+s desktop /usr/X/desktop/Applications/Puzzle=/usr/X/bin/puzzle
+f desktop /usr/X/bin/dtcalc
+s desktop /usr/X/desktop/Applications/Calculator=/usr/X/bin/dtcalc
+f desktop /usr/X/bin/xterm
+f desktop /usr/X/bin/resize
+s desktop /usr/X/desktop/Applications/Terminal=/usr/X/bin/xterm
+f desktop /usr/X/bin/wrap
+f desktop /usr/X/bin/xmodmap
+
+
+!default 0644 bin bin
+
+f desktop /etc/rc2.d/S69xdm=/usr/X/adm/S98xdm
+s desktop /usr/X/adm/S69xdm=/etc/rc2.d/S69xdm
+
+f desktop /usr/X/bin/disable_glogin 4755 root sys
+f desktop /usr/X/bin/enable_glogin 4755 root sys
+
+f desktop /usr/X/bin/copyright 0755 bin bin
+f desktop /usr/X/bin/copyright.sh 0755 bin bin
+v desktop /usr/X/lib/xdm/Xservers 0755 bin bin
+v desktop /usr/X/lib/xdm/xdm-config 0755 bin bin
+v desktop /usr/X/lib/xdm/Xsetup_0 0755 bin bin
+f desktop /usr/X/lib/app-defaults/Dtlogin
+f desktop /usr/X/lib/app-defaults/Nondesktop
+
+v desktop /usr/X/desktop/.dtfclass
+v desktop /usr/X/desktop/Help_Desk 777 bin bin
+f desktop /usr/X/desktop/DtColorProps=/usr/X/desktop/dtprop 755 bin bin
+f desktop /usr/X/desktop/DtDesktopProps=/usr/X/desktop/dtprop 755 bin bin
+f desktop /usr/X/desktop/DtIconProps=/usr/X/desktop/dtprop 755 bin bin
+f desktop /usr/X/desktop/DtKeybdProps=/usr/X/desktop/dtprop 755 bin bin
+f desktop /usr/X/desktop/DtLocaleProps=/usr/X/desktop/dtprop 755 bin bin
+f desktop /usr/X/desktop/DtMiscProps=/usr/X/desktop/dtprop 755 bin bin
+f desktop /usr/X/desktop/DtMouseProps=/usr/X/desktop/dtprop 755 bin bin
+s desktop /usr/X/desktop/Preferences/Color=/usr/X/desktop/DtColorProps
+s desktop /usr/X/desktop/Preferences/Desktop=/usr/X/desktop/DtDesktopProps
+s desktop /usr/X/desktop/Preferences/Icons=/usr/X/desktop/DtIconProps
+s desktop /usr/X/desktop/Preferences/Keyboard=/usr/X/desktop/DtKeybdProps
+s desktop /usr/X/desktop/Preferences/Locale=/usr/X/desktop/DtLocaleProps
+s desktop /usr/X/desktop/Preferences/Miscellaneous=/usr/X/desktop/DtMiscProps
+s desktop /usr/X/desktop/Preferences/Mouse=/usr/X/desktop/DtMouseProps
+f desktop /usr/X/desktop/dtbinder 755 bin bin
+f desktop /usr/X/desktop/dtwastebasket 755 bin bin
+s desktop /usr/X/desktop/System_Setup/Icon_Setup=/usr/X/desktop/dtbinder
+f desktop /usr/X/desktop/Folder_Map 755 bin bin
+f desktop /usr/X/desktop/Shutdown 755 bin bin
+s desktop /usr/X/desktop/System_Setup/Password_Setup=/usr/bin/passwd
+f desktop /usr/X/desktop/LoginMgr/PrivTable
+f desktop /usr/X/desktop/PackageMgr/desktop
+v desktop /usr/X/desktop/DialupMgr/Modems
+v desktop /usr/X/desktop/PrintMgr/Printers
+v desktop /usr/X/desktop/PrintMgr/Types
+v desktop /usr/X/desktop/PrintMgr/Filters/dpost
+v desktop /usr/X/desktop/PrintMgr/Filters/postprint
+v desktop /usr/X/desktop/dashboard/StatusFile
+f desktop /usr/X/desktop/rft/dtcopy 755 bin bin
+f desktop /usr/X/desktop/rft/dtmsg 755 bin bin
+f desktop /usr/X/desktop/rft/dtcall 755 bin bin
+f desktop /usr/X/desktop/rft/nview 755 bin bin
+
+v desktop /usr/X/lib/classdb/dtadmin 644 root root
+v desktop /usr/X/lib/classdb/system
+v desktop /usr/X/lib/classdb/system.post
+v desktop /usr/X/lib/classdb/peripherals 644 root root
+
+v desktop /usr/X/lib/app-defaults/DesktopMgr
+v desktop /usr/X/lib/app-defaults/DtCalc
+v desktop /usr/X/lib/app-defaults/olprintscreen
+v desktop /usr/X/lib/app-defaults/olwm
+v desktop /usr/X/lib/app-defaults/olwsm_keys
+v desktop /usr/X/lib/app-defaults/XTerm
+
+f desktop /usr/X/lib/bitmaps/alias.icon
+f desktop /usr/X/lib/bitmaps/mail.icon
+f desktop /usr/X/lib/bitmaps/mail32.icon
+f desktop /usr/X/lib/bitmaps/manmail.icon
+f desktop /usr/X/lib/bitmaps/nmanmail.icon
+f desktop /usr/X/lib/bitmaps/nrdmail.icon
+f desktop /usr/X/lib/bitmaps/rdmail.icon
+f desktop /usr/X/lib/bitmaps/sndmail.icon
+f desktop /usr/X/lib/bitmaps/dtclock.32
+f desktop /usr/X/lib/bitmaps/dtsched.32
+f desktop /usr/X/lib/bitmaps/editor.glyph
+f desktop /usr/X/lib/bitmaps/editor.icon
+f desktop /usr/X/lib/bitmaps/editor.mask
+f desktop /usr/X/lib/bitmaps/mailfile
+f desktop /usr/X/lib/bitmaps/term48.mask
+f desktop /usr/X/lib/bitmaps/appfldr48.icon
+f desktop /usr/X/lib/bitmaps/puzzle.icon
+
+f desktop /usr/X/lib/bitmasks/blkdev.icon
+f desktop /usr/X/lib/bitmasks/chrdev.icon
+f desktop /usr/X/lib/bitmasks/datafile.icon
+f desktop /usr/X/lib/bitmasks/dir.icon
+f desktop /usr/X/lib/bitmasks/exec.icon
+f desktop /usr/X/lib/bitmasks/pipe.icon
+f desktop /usr/X/lib/bitmasks/printer.icon
+f desktop /usr/X/lib/bitmasks/sblkdev.icon
+f desktop /usr/X/lib/bitmasks/schrdev.icon
+f desktop /usr/X/lib/bitmasks/sdatafile.icon
+f desktop /usr/X/lib/bitmasks/sdir.icon
+f desktop /usr/X/lib/bitmasks/sem.icon
+f desktop /usr/X/lib/bitmasks/sexec.icon
+f desktop /usr/X/lib/bitmasks/shmem.icon
+f desktop /usr/X/lib/bitmasks/spipe.icon
+f desktop /usr/X/lib/bitmasks/ssem.icon
+f desktop /usr/X/lib/bitmasks/sshmem.icon
+f desktop /usr/X/lib/bitmasks/sunk.icon
+f desktop /usr/X/lib/bitmasks/term.icon
+f desktop /usr/X/lib/bitmasks/toolbox.icon
+f desktop /usr/X/lib/bitmasks/unk.icon
+f desktop /usr/X/lib/bitmasks/draw1.icon
+f desktop /usr/X/lib/bitmasks/draw2.icon
+f desktop /usr/X/lib/bitmasks/nfs.icon
+f desktop /usr/X/lib/bitmasks/puzzle.icon
+f desktop /usr/X/lib/bitmasks/acu.glyph
+f desktop /usr/X/lib/bitmasks/bizgraph.icon
+f desktop /usr/X/lib/bitmasks/diagnose.icon
+f desktop /usr/X/lib/bitmasks/dir.glyph
+f desktop /usr/X/lib/bitmasks/drawfile1.icon
+f desktop /usr/X/lib/bitmasks/netnode.icon
+f desktop /usr/X/lib/bitmasks/nfs48.icon
+f desktop /usr/X/lib/bitmasks/passwd.32
+f desktop /usr/X/lib/bitmasks/data48.icon
+f desktop /usr/X/lib/bitmasks/dtmisc.icon
+f desktop /usr/X/lib/bitmasks/emptywb
+f desktop /usr/X/lib/bitmasks/exec48.icon
+f desktop /usr/X/lib/bitmasks/filledwb
+f desktop /usr/X/lib/bitmasks/hdesk48.icon
+f desktop /usr/X/lib/bitmasks/disk3.5.xpm
+f desktop /usr/X/lib/bitmasks/disk5.25.xpm
+f desktop /usr/X/lib/bitmasks/dtsched.32=/usr/X/lib/bitmaps/dtsched.32
+f desktop /usr/X/lib/bitmasks/dtsched.48=/usr/X/lib/bitmaps/dtsched.48
+
+f desktop /usr/X/lib/bitmaps/prefldr.icon
+f desktop /usr/X/lib/bitmaps/recfldr.icon
+f desktop /usr/X/lib/bitmaps/sysfldr.icon
+f desktop /usr/X/lib/bitmaps/dtprop.icon
+f desktop /usr/X/lib/bitmaps/utlfldr.icon
+f desktop /usr/X/lib/bitmaps/appfldr.icon
+f desktop /usr/X/lib/bitmaps/mfldr.icon
+f desktop /usr/X/lib/bitmaps/color.icon
+f desktop /usr/X/lib/bitmaps/mouse.icon
+f desktop /usr/X/lib/bitmaps/keybd.icon
+f desktop /usr/X/lib/bitmaps/PrtMgr.icon
+f desktop /usr/X/lib/bitmaps/blkdev.icon
+f desktop /usr/X/lib/bitmaps/chrdev.icon
+f desktop /usr/X/lib/bitmaps/datafile.icon
+f desktop /usr/X/lib/bitmaps/dfltprt.icon
+f desktop /usr/X/lib/bitmaps/dir.icon
+f desktop /usr/X/lib/bitmaps/exec.icon
+f desktop /usr/X/lib/bitmaps/emptywb
+f desktop /usr/X/lib/bitmaps/filledwb
+f desktop /usr/X/lib/bitmaps/pipe.icon
+f desktop /usr/X/lib/bitmaps/printer.icon
+f desktop /usr/X/lib/bitmaps/prtreq.icon
+f desktop /usr/X/lib/bitmaps/prtsetup.icon
+f desktop /usr/X/lib/bitmaps/sblkdev.icon
+f desktop /usr/X/lib/bitmaps/schrdev.icon
+f desktop /usr/X/lib/bitmaps/sdatafile.icon
+f desktop /usr/X/lib/bitmaps/sdir.icon
+f desktop /usr/X/lib/bitmaps/sem.icon
+f desktop /usr/X/lib/bitmaps/sexec.icon
+f desktop /usr/X/lib/bitmaps/shmem.icon
+f desktop /usr/X/lib/bitmaps/spipe.icon
+f desktop /usr/X/lib/bitmaps/ssem.icon
+f desktop /usr/X/lib/bitmaps/sshmem.icon
+f desktop /usr/X/lib/bitmaps/sunk.icon
+f desktop /usr/X/lib/bitmaps/term.icon
+f desktop /usr/X/lib/bitmaps/toolbox.icon
+f desktop /usr/X/lib/bitmaps/unk.icon
+
+f desktop /usr/X/lib/bitmaps/acctg.icon
+f desktop /usr/X/lib/bitmaps/bizdata.icon
+f desktop /usr/X/lib/bitmaps/bizgraph.icon
+f desktop /usr/X/lib/bitmaps/calmgr.icon
+f desktop /usr/X/lib/bitmaps/datab.icon
+f desktop /usr/X/lib/bitmaps/databfile.icon
+f desktop /usr/X/lib/bitmaps/diagnose.icon
+f desktop /usr/X/lib/bitmaps/dtp.icon
+f desktop /usr/X/lib/bitmaps/dtpfile.icon
+f desktop /usr/X/lib/bitmaps/image.icon
+f desktop /usr/X/lib/bitmaps/imagefile.icon
+f desktop /usr/X/lib/bitmaps/info.mgr.icon
+f desktop /usr/X/lib/bitmaps/oam48.icon
+f desktop /usr/X/lib/bitmaps/passwd.48
+f desktop /usr/X/lib/bitmaps/spread1.icon
+f desktop /usr/X/lib/bitmaps/spread2.icon
+f desktop /usr/X/lib/bitmaps/spreadf1.icon
+f desktop /usr/X/lib/bitmaps/spreadf2.icon
+f desktop /usr/X/lib/bitmaps/util48.icon
+f desktop /usr/X/lib/bitmaps/dos48.icon
+f desktop /usr/X/lib/bitmaps/binder48.icon
+f desktop /usr/X/lib/bitmaps/drawfile1.icon
+f desktop /usr/X/lib/bitmaps/drawfile2.icon
+f desktop /usr/X/lib/bitmaps/docfile1.icon
+f desktop /usr/X/lib/bitmaps/docfile2.icon
+f desktop /usr/X/lib/bitmaps/docfile3.icon
+f desktop /usr/X/lib/bitmaps/fax.icon
+f desktop /usr/X/lib/bitmaps/fax48.icon
+f desktop /usr/X/lib/bitmaps/wordp1.icon
+f desktop /usr/X/lib/bitmaps/wordp2.icon
+f desktop /usr/X/lib/bitmaps/exec48.icon
+f desktop /usr/X/lib/bitmaps/dtprop48.icon
+f desktop /usr/X/lib/bitmaps/data48.icon
+f desktop /usr/X/lib/bitmaps/dir48.icon
+f desktop /usr/X/lib/bitmaps/fmap48.icon
+f desktop /usr/X/lib/bitmaps/draw1.icon
+f desktop /usr/X/lib/bitmaps/draw2.icon
+f desktop /usr/X/lib/bitmaps/gendev.icon
+f desktop /usr/X/lib/bitmaps/acu.glyph
+f desktop /usr/X/lib/bitmaps/backup48.icon
+f desktop /usr/X/lib/bitmaps/dash.icon
+f desktop /usr/X/lib/bitmaps/dash48.icon
+f desktop /usr/X/lib/bitmaps/disk3.48.xpm
+f desktop /usr/X/lib/bitmaps/disk3.5.xpm
+f desktop /usr/X/lib/bitmaps/disk5.48.xpm
+f desktop /usr/X/lib/bitmaps/disk5.25.xpm
+f desktop /usr/X/lib/bitmaps/modem.icon
+f desktop /usr/X/lib/bitmaps/modem48.icon
+f desktop /usr/X/lib/bitmaps/nfs48.icon
+f desktop /usr/X/lib/bitmaps/passwd.32
+f desktop /usr/X/lib/bitmaps/pkgmgr48.icon
+f desktop /usr/X/lib/bitmaps/pkgmgr.icon
+f desktop /usr/X/lib/bitmaps/pkgset.glyph
+f desktop /usr/X/lib/bitmaps/printer48.icon
+f desktop /usr/X/lib/bitmaps/prtset48.icon
+f desktop /usr/X/lib/bitmaps/restore48.icon
+f desktop /usr/X/lib/bitmaps/tcpadm48.icon
+f desktop /usr/X/lib/bitmaps/user48.glyph
+f desktop /usr/X/lib/bitmaps/font48.icon
+f desktop /usr/X/lib/bitmaps/prefldr48.icon
+f desktop /usr/X/lib/bitmaps/recfldr48.icon
+f desktop /usr/X/lib/bitmaps/sysfldr48.icon
+f desktop /usr/X/lib/bitmaps/netnode.icon
+f desktop /usr/X/lib/bitmaps/dir.glyph
+f desktop /usr/X/lib/bitmaps/tcpadm.icon
+f desktop /usr/X/lib/bitmaps/smprt.icon
+f desktop /usr/X/lib/bitmaps/pkgmgr.glyph
+f desktop /usr/X/lib/bitmaps/user.glyph
+f desktop /usr/X/lib/bitmaps/login.glyph
+f desktop /usr/X/lib/bitmaps/group.glyph
+f desktop /usr/X/lib/bitmaps/xcalc.icon
+f desktop /usr/X/lib/bitmaps/xcalc48.icon
+f desktop /usr/X/lib/bitmaps/xcalc48.mask
+f desktop /usr/X/lib/bitmaps/font.icon
+f desktop /usr/X/lib/bitmaps/binder.icon
+f desktop /usr/X/lib/bitmaps/backup.glyph
+f desktop /usr/X/lib/bitmaps/cheader
+f desktop /usr/X/lib/bitmaps/ctape.glyph
+f desktop /usr/X/lib/bitmaps/dticon.icon
+f desktop /usr/X/lib/bitmaps/dtloc.icon
+f desktop /usr/X/lib/bitmaps/dtmisc.icon
+f desktop /usr/X/lib/bitmaps/empty32.icon
+f desktop /usr/X/lib/bitmaps/fmap.icon
+f desktop /usr/X/lib/bitmaps/hdesk32.icon
+f desktop /usr/X/lib/bitmaps/hdesk48.icon
+f desktop /usr/X/lib/bitmaps/oam.icon
+f desktop /usr/X/lib/bitmaps/olpix.icon
+f desktop /usr/X/lib/bitmaps/shut.icon
+f desktop /usr/X/lib/bitmaps/wb32.icon
+f desktop /usr/X/lib/bitmaps/dtsched.48
+f desktop /usr/X/lib/bitmaps/dtedit.48
+
+
+f desktop /usr/X/lib/pixmaps/usl128.xpm
+f desktop /usr/X/lib/pixmaps/util48.icon
+f desktop /usr/X/lib/pixmaps/dos48.icon
+f desktop /usr/X/lib/pixmaps/binder48.icon
+f desktop /usr/X/lib/pixmaps/drawfile1.icon
+f desktop /usr/X/lib/pixmaps/drawfile2.icon
+f desktop /usr/X/lib/pixmaps/docfile1.icon
+f desktop /usr/X/lib/pixmaps/docfile2.icon
+f desktop /usr/X/lib/pixmaps/docfile3.icon
+f desktop /usr/X/lib/pixmaps/fax.icon
+f desktop /usr/X/lib/pixmaps/fax48.icon
+f desktop /usr/X/lib/pixmaps/wordp1.icon
+f desktop /usr/X/lib/pixmaps/wordp2.icon
+f desktop /usr/X/lib/pixmaps/draw1.icon
+f desktop /usr/X/lib/pixmaps/draw2.icon
+f desktop /usr/X/lib/pixmaps/acu.glyph
+f desktop /usr/X/lib/pixmaps/appfldr.icon
+f desktop /usr/X/lib/pixmaps/backup.glyph
+f desktop /usr/X/lib/pixmaps/backup48.icon
+f desktop /usr/X/lib/pixmaps/prefldr.icon
+f desktop /usr/X/lib/pixmaps/sysfldr.icon
+f desktop /usr/X/lib/pixmaps/xcalc.icon
+f desktop /usr/X/lib/pixmaps/xcalc48.icon
+f desktop /usr/X/lib/pixmaps/olpix.icon
+f desktop /usr/X/lib/pixmaps/shut.icon
+f desktop /usr/X/lib/pixmaps/mouse.icon
+f desktop /usr/X/lib/pixmaps/color.icon
+f desktop /usr/X/lib/pixmaps/keybd.icon
+f desktop /usr/X/lib/pixmaps/recfldr.icon
+f desktop /usr/X/lib/pixmaps/utlfldr.icon
+f desktop /usr/X/lib/pixmaps/dtprop.icon
+f desktop /usr/X/lib/pixmaps/mfldr.icon
+f desktop /usr/X/lib/pixmaps/printer48.icon
+f desktop /usr/X/lib/pixmaps/prtset48.icon
+f desktop /usr/X/lib/pixmaps/binder.icon
+f desktop /usr/X/lib/pixmaps/blkdev.icon
+f desktop /usr/X/lib/pixmaps/chrdev.icon
+f desktop /usr/X/lib/pixmaps/csource.xpm
+f desktop /usr/X/lib/pixmaps/ctape.glyph
+f desktop /usr/X/lib/pixmaps/dash48.icon
+f desktop /usr/X/lib/pixmaps/dash.icon
+f desktop /usr/X/lib/pixmaps/datafile.icon
+f desktop /usr/X/lib/pixmaps/desktop.xpm
+f desktop /usr/X/lib/pixmaps/dfltprt.icon
+f desktop /usr/X/lib/pixmaps/dir.glyph
+f desktop /usr/X/lib/pixmaps/dir.icon
+f desktop /usr/X/lib/pixmaps/disk3.5.xpm
+f desktop /usr/X/lib/pixmaps/disk5.25.xpm
+f desktop /usr/X/lib/pixmaps/disk3.48.xpm
+f desktop /usr/X/lib/pixmaps/disk5.48.xpm
+f desktop /usr/X/lib/pixmaps/dtclock.32
+f desktop /usr/X/lib/pixmaps/dtsched.32
+f desktop /usr/X/lib/pixmaps/dtsched.48
+f desktop /usr/X/lib/pixmaps/editor.glyph
+f desktop /usr/X/lib/pixmaps/editor.icon
+f desktop /usr/X/lib/pixmaps/emptywb
+f desktop /usr/X/lib/pixmaps/exec.icon
+f desktop /usr/X/lib/pixmaps/filledwb
+f desktop /usr/X/lib/pixmaps/font.icon
+f desktop /usr/X/lib/pixmaps/font48.icon
+f desktop /usr/X/lib/pixmaps/gendev.icon
+f desktop /usr/X/lib/pixmaps/group.glyph
+f desktop /usr/X/lib/pixmaps/hdesk32.icon
+f desktop /usr/X/lib/pixmaps/hdesk48.icon
+f desktop /usr/X/lib/pixmaps/login.glyph
+f desktop /usr/X/lib/pixmaps/mail.icon
+f desktop /usr/X/lib/pixmaps/mail32.icon
+f desktop /usr/X/lib/pixmaps/mailfile
+f desktop /usr/X/lib/pixmaps/manmail.icon
+f desktop /usr/X/lib/pixmaps/nmanmail.icon
+f desktop /usr/X/lib/pixmaps/modem.icon
+f desktop /usr/X/lib/pixmaps/modem48.icon
+f desktop /usr/X/lib/pixmaps/netnode.icon
+f desktop /usr/X/lib/pixmaps/oam.icon
+f desktop /usr/X/lib/pixmaps/passwd.32
+f desktop /usr/X/lib/pixmaps/pipe.icon
+f desktop /usr/X/lib/pixmaps/pkgmgr.glyph
+f desktop /usr/X/lib/pixmaps/pkgmgr.icon
+f desktop /usr/X/lib/pixmaps/printer.icon
+f desktop /usr/X/lib/pixmaps/prtreq.icon
+f desktop /usr/X/lib/pixmaps/rdmail.icon
+f desktop /usr/X/lib/pixmaps/nrdmail.icon
+f desktop /usr/X/lib/pixmaps/restore48.icon
+f desktop /usr/X/lib/pixmaps/sblkdev.icon
+f desktop /usr/X/lib/pixmaps/schrdev.icon
+f desktop /usr/X/lib/pixmaps/sdatafile.icon
+f desktop /usr/X/lib/pixmaps/sdir.icon
+f desktop /usr/X/lib/pixmaps/sem.icon
+f desktop /usr/X/lib/pixmaps/prtsetup.icon
+f desktop /usr/X/lib/pixmaps/sexec.icon
+f desktop /usr/X/lib/pixmaps/shmem.icon
+f desktop /usr/X/lib/pixmaps/smprt.icon
+f desktop /usr/X/lib/pixmaps/sndmail.icon
+f desktop /usr/X/lib/pixmaps/alias.icon
+f desktop /usr/X/lib/pixmaps/spipe.icon
+f desktop /usr/X/lib/pixmaps/ssem.icon
+f desktop /usr/X/lib/pixmaps/sshmem.icon
+f desktop /usr/X/lib/pixmaps/sunk.icon
+f desktop /usr/X/lib/pixmaps/term.icon
+f desktop /usr/X/lib/pixmaps/term48.icon
+f desktop /usr/X/lib/pixmaps/toolbox.icon
+f desktop /usr/X/lib/pixmaps/unk.icon
+f desktop /usr/X/lib/pixmaps/user.glyph
+f desktop /usr/X/lib/pixmaps/user.icon
+f desktop /usr/X/lib/pixmaps/wb32.icon
+f desktop /usr/X/lib/pixmaps/nfs.icon
+f desktop /usr/X/lib/pixmaps/nfs48.icon
+f desktop /usr/X/lib/pixmaps/nfsLocal
+f desktop /usr/X/lib/pixmaps/nfsMounted
+f desktop /usr/X/lib/pixmaps/nfsRemote
+f desktop /usr/X/lib/pixmaps/nfsShared
+f desktop /usr/X/lib/pixmaps/pkgmgr48.icon
+f desktop /usr/X/lib/pixmaps/pkgset.glyph
+f desktop /usr/X/lib/pixmaps/tcpadm.icon
+f desktop /usr/X/lib/pixmaps/tcpadm48.icon
+f desktop /usr/X/lib/pixmaps/user48.glyph
+f desktop /usr/X/lib/pixmaps/cheader
+f desktop /usr/X/lib/pixmaps/data48.icon
+f desktop /usr/X/lib/pixmaps/dir48.icon
+f desktop /usr/X/lib/pixmaps/dticon.icon
+f desktop /usr/X/lib/pixmaps/dtloc.icon
+f desktop /usr/X/lib/pixmaps/dtmisc.icon
+f desktop /usr/X/lib/pixmaps/dtprop48.icon
+f desktop /usr/X/lib/pixmaps/empty32.icon
+f desktop /usr/X/lib/pixmaps/exec48.icon
+f desktop /usr/X/lib/pixmaps/fmap.icon
+f desktop /usr/X/lib/pixmaps/fmap48.icon
+f desktop /usr/X/lib/pixmaps/prefldr48.icon
+f desktop /usr/X/lib/pixmaps/recfldr48.icon
+f desktop /usr/X/lib/pixmaps/sysfldr48.icon
+
+f desktop /usr/X/lib/pixmaps/appfldr48.icon
+f desktop /usr/X/lib/pixmaps/acctg.icon
+f desktop /usr/X/lib/pixmaps/bizdata.icon
+f desktop /usr/X/lib/pixmaps/bizgraph.icon
+f desktop /usr/X/lib/pixmaps/calmgr.icon
+f desktop /usr/X/lib/pixmaps/datab.icon
+f desktop /usr/X/lib/pixmaps/databfile.icon
+f desktop /usr/X/lib/pixmaps/diagnose.icon
+f desktop /usr/X/lib/pixmaps/dtp.icon
+f desktop /usr/X/lib/pixmaps/dtpfile.icon
+f desktop /usr/X/lib/pixmaps/image.icon
+f desktop /usr/X/lib/pixmaps/imagefile.icon
+f desktop /usr/X/lib/pixmaps/info.mgr.icon
+f desktop /usr/X/lib/pixmaps/oam48.icon
+f desktop /usr/X/lib/pixmaps/passwd.48
+f desktop /usr/X/lib/pixmaps/puzzle.icon
+f desktop /usr/X/lib/pixmaps/spread1.icon
+f desktop /usr/X/lib/pixmaps/spread2.icon
+f desktop /usr/X/lib/pixmaps/spreadf1.icon
+f desktop /usr/X/lib/pixmaps/spreadf2.icon
+f desktop /usr/X/lib/pixmaps/dtedit.48
+
+f desktop /usr/X/lib/pixmasks/drawfile1.icon
+f desktop /usr/X/lib/pixmasks/netnode.icon
+f desktop /usr/X/lib/pixmasks/smprt.icon
+f desktop /usr/X/lib/pixmasks/hdesk48.icon
+f desktop /usr/X/lib/pixmasks/blkdev.icon
+f desktop /usr/X/lib/pixmasks/chrdev.icon
+f desktop /usr/X/lib/pixmasks/datafile.icon
+f desktop /usr/X/lib/pixmasks/dir.icon
+f desktop /usr/X/lib/pixmasks/dtclock.32
+f desktop /usr/X/lib/pixmasks/dtsched.32
+f desktop /usr/X/lib/pixmasks/dtsched.48
+f desktop /usr/X/lib/pixmasks/emptywb
+f desktop /usr/X/lib/pixmasks/exec.icon
+f desktop /usr/X/lib/pixmasks/filledwb
+f desktop /usr/X/lib/pixmasks/mail.mask
+f desktop /usr/X/lib/pixmasks/mailfile
+f desktop /usr/X/lib/pixmasks/manmail.mask
+f desktop /usr/X/lib/pixmasks/passwd.32
+f desktop /usr/X/lib/pixmasks/rdmail.mask
+f desktop /usr/X/lib/pixmasks/sndmail.mask
+f desktop /usr/X/lib/pixmasks/alias.mask
+f desktop /usr/X/lib/pixmasks/pipe.icon
+f desktop /usr/X/lib/pixmasks/sblkdev.icon
+f desktop /usr/X/lib/pixmasks/schrdev.icon
+f desktop /usr/X/lib/pixmasks/sdatafile.icon
+f desktop /usr/X/lib/pixmasks/sdir.icon
+f desktop /usr/X/lib/pixmasks/sem.icon
+f desktop /usr/X/lib/pixmasks/sexec.icon
+f desktop /usr/X/lib/pixmasks/shmem.icon
+f desktop /usr/X/lib/pixmasks/spipe.icon
+f desktop /usr/X/lib/pixmasks/ssem.icon
+f desktop /usr/X/lib/pixmasks/sshmem.icon
+f desktop /usr/X/lib/pixmasks/sunk.icon
+f desktop /usr/X/lib/pixmasks/term.icon
+f desktop /usr/X/lib/pixmasks/toolbox.icon
+f desktop /usr/X/lib/pixmasks/unk.icon
+f desktop /usr/X/lib/pixmasks/acu.glyph
+f desktop /usr/X/lib/pixmasks/dir.glyph
+f desktop /usr/X/lib/pixmasks/diagnose.icon
+f desktop /usr/X/lib/pixmasks/nfs48.icon
+f desktop /usr/X/lib/pixmasks/bizgraph.icon
+f desktop /usr/X/lib/pixmasks/dtmisc.icon
+f desktop /usr/X/lib/pixmasks/exec48.icon
+f desktop /usr/X/lib/pixmasks/data48.icon
+f desktop /usr/X/lib/pixmasks/draw1.icon
+f desktop /usr/X/lib/pixmasks/draw2.icon
+f desktop /usr/X/lib/pixmasks/puzzle.icon
+f desktop /usr/X/lib/pixmasks/disk3.5.xpm
+f desktop /usr/X/lib/pixmasks/disk5.25.xpm
+
+f desktop /usr/X/lib/locale/C/Codeset=/usr/X/lib/C/Codeset
+f desktop /usr/X/lib/locale/C/help/DesktopMgr/desktop.hlp
+f desktop /usr/X/lib/locale/C/help/DesktopMgr/links.hlp
+f desktop /usr/X/lib/locale/C/help/DesktopMgr/clrpref.hlp
+f desktop /usr/X/lib/locale/C/help/DesktopMgr/datafile.hlp
+f desktop /usr/X/lib/locale/C/help/DesktopMgr/dskpref.hlp
+f desktop /usr/X/lib/locale/C/help/DesktopMgr/folder.hlp
+f desktop /usr/X/lib/locale/C/help/DesktopMgr/fmap.hlp
+f desktop /usr/X/lib/locale/C/help/DesktopMgr/shutdown.hlp
+f desktop /usr/X/lib/locale/C/help/DesktopMgr/help.defs
+f desktop /usr/X/lib/locale/C/help/DesktopMgr/help.hlp
+f desktop /usr/X/lib/locale/C/help/DesktopMgr/helpdesk.hlp
+f desktop /usr/X/lib/locale/C/help/DesktopMgr/iconset.hlp
+f desktop /usr/X/lib/locale/C/help/DesktopMgr/icnpref.hlp
+f desktop /usr/X/lib/locale/C/help/DesktopMgr/keypref.hlp
+f desktop /usr/X/lib/locale/C/help/DesktopMgr/locpref.hlp
+f desktop /usr/X/lib/locale/C/help/DesktopMgr/mispref.hlp
+f desktop /usr/X/lib/locale/C/help/DesktopMgr/moupref.hlp
+f desktop /usr/X/lib/locale/C/help/DesktopMgr/pref.hlp
+f desktop /usr/X/lib/locale/C/help/DesktopMgr/wb.hlp
+
+f desktop /usr/X/lib/locale/C/help/dtadmin/DialMgr.hlp
+f desktop /usr/X/lib/locale/C/help/dtadmin/FileShar.hlp
+f desktop /usr/X/lib/locale/C/help/dtadmin/LoginMgr.hlp
+f desktop /usr/X/lib/locale/C/help/dtadmin/backup.hlp
+f desktop /usr/X/lib/locale/C/help/dtadmin/dashbrd.hlp
+f desktop /usr/X/lib/locale/C/help/dtadmin/disk.hlp
+f desktop /usr/X/lib/locale/C/help/dtadmin/font.hlp
+f desktop /usr/X/lib/locale/C/help/dtadmin/passwd.hlp
+f desktop /usr/X/lib/locale/C/help/dtadmin/pkgset.hlp
+f desktop /usr/X/lib/locale/C/help/dtadmin/printer.hlp
+f desktop /usr/X/lib/locale/C/help/dtadmin/printuse.hlp
+f desktop /usr/X/lib/locale/C/help/dtadmin/qdial.hlp
+f desktop /usr/X/lib/locale/C/help/dtadmin/remotsys.hlp
+f desktop /usr/X/lib/locale/C/help/dtadmin/tape.hlp
+
+f desktop /usr/X/lib/locale/C/help/dtclock/clock.hlp
+f desktop /usr/X/lib/locale/C/help/dtedit/edit.hlp
+f desktop /usr/X/lib/locale/C/help/dtsched/sched.hlp
+f desktop /usr/X/lib/locale/C/help/dtmail/mail.hlp
+f desktop /usr/X/lib/locale/C/help/olwm/all_popups
+l desktop /usr/X/lib/locale/C/help/Mwm/all_popups=/usr/X/lib/locale/C/help/olwm/all_popups
+f desktop /usr/X/lib/locale/C/help/olwm/border
+l desktop /usr/X/lib/locale/C/help/Mwm/border=/usr/X/lib/locale/C/help/olwm/border
+f desktop /usr/X/lib/locale/C/help/olwm/help_window
+l desktop /usr/X/lib/locale/C/help/Mwm/help_window=/usr/X/lib/locale/C/help/olwm/help_window
+f desktop /usr/X/lib/locale/C/help/olwm/icon
+l desktop /usr/X/lib/locale/C/help/Mwm/icon=/usr/X/lib/locale/C/help/olwm/icon
+f desktop /usr/X/lib/locale/C/help/olwm/ok_apply
+l desktop /usr/X/lib/locale/C/help/Mwm/ok_apply=/usr/X/lib/locale/C/help/olwm/ok_apply
+f desktop /usr/X/lib/locale/C/help/olwm/ok_button
+l desktop /usr/X/lib/locale/C/help/Mwm/ok_button=/usr/X/lib/locale/C/help/olwm/ok_button
+f desktop /usr/X/lib/locale/C/help/olwm/ok_menu
+l desktop /usr/X/lib/locale/C/help/Mwm/ok_menu=/usr/X/lib/locale/C/help/olwm/ok_menu
+f desktop /usr/X/lib/locale/C/help/olwm/ok_reset
+l desktop /usr/X/lib/locale/C/help/Mwm/ok_reset=/usr/X/lib/locale/C/help/olwm/ok_reset
+f desktop /usr/X/lib/locale/C/help/olwm/menu_backgroun
+l desktop /usr/X/lib/locale/C/help/Mwm/menu_backgroun=/usr/X/lib/locale/C/help/olwm/menu_backgroun
+f desktop /usr/X/lib/locale/C/help/olwm/popup_cancel
+l desktop /usr/X/lib/locale/C/help/Mwm/popup_cancel=/usr/X/lib/locale/C/help/olwm/popup_cancel
+f desktop /usr/X/lib/locale/C/help/olwm/popup_dismiss
+l desktop /usr/X/lib/locale/C/help/Mwm/popup_dismiss=/usr/X/lib/locale/C/help/olwm/popup_dismiss
+f desktop /usr/X/lib/locale/C/help/olwm/popup_menu
+l desktop /usr/X/lib/locale/C/help/Mwm/popup_menu=/usr/X/lib/locale/C/help/olwm/popup_menu
+f desktop /usr/X/lib/locale/C/help/olwm/popup_owner
+l desktop /usr/X/lib/locale/C/help/Mwm/popup_owner=/usr/X/lib/locale/C/help/olwm/popup_owner
+f desktop /usr/X/lib/locale/C/help/olwm/pushpin
+l desktop /usr/X/lib/locale/C/help/Mwm/pushpin=/usr/X/lib/locale/C/help/olwm/pushpin
+f desktop /usr/X/lib/locale/C/help/olwm/resize_corner
+l desktop /usr/X/lib/locale/C/help/Mwm/resize_corner=/usr/X/lib/locale/C/help/olwm/resize_corner
+f desktop /usr/X/lib/locale/C/help/olwm/this_window
+l desktop /usr/X/lib/locale/C/help/Mwm/this_window=/usr/X/lib/locale/C/help/olwm/this_window
+f desktop /usr/X/lib/locale/C/help/olwm/win_title
+l desktop /usr/X/lib/locale/C/help/Mwm/win_title=/usr/X/lib/locale/C/help/olwm/win_title
+f desktop /usr/X/lib/locale/C/help/olwm/window_back
+l desktop /usr/X/lib/locale/C/help/Mwm/window_back=/usr/X/lib/locale/C/help/olwm/window_back
+f desktop /usr/X/lib/locale/C/help/olwm/window_close
+l desktop /usr/X/lib/locale/C/help/Mwm/window_close=/usr/X/lib/locale/C/help/olwm/window_close
+f desktop /usr/X/lib/locale/C/help/olwm/window_full
+l desktop /usr/X/lib/locale/C/help/Mwm/window_full=/usr/X/lib/locale/C/help/olwm/window_full
+f desktop /usr/X/lib/locale/C/help/olwm/window_menu
+l desktop /usr/X/lib/locale/C/help/Mwm/window_menu=/usr/X/lib/locale/C/help/olwm/window_menu
+f desktop /usr/X/lib/locale/C/help/olwm/window_menu_bu
+l desktop /usr/X/lib/locale/C/help/Mwm/window_menu_bu=/usr/X/lib/locale/C/help/olwm/window_menu_bu
+f desktop /usr/X/lib/locale/C/help/olwm/window_move
+l desktop /usr/X/lib/locale/C/help/Mwm/window_move=/usr/X/lib/locale/C/help/olwm/window_move
+f desktop /usr/X/lib/locale/C/help/olwm/window_open
+l desktop /usr/X/lib/locale/C/help/Mwm/window_open=/usr/X/lib/locale/C/help/olwm/window_open
+f desktop /usr/X/lib/locale/C/help/olwm/window_prop
+l desktop /usr/X/lib/locale/C/help/Mwm/window_prop=/usr/X/lib/locale/C/help/olwm/window_prop
+f desktop /usr/X/lib/locale/C/help/olwm/window_quit
+l desktop /usr/X/lib/locale/C/help/Mwm/window_quit=/usr/X/lib/locale/C/help/olwm/window_quit
+f desktop /usr/X/lib/locale/C/help/olwm/window_refresh
+l desktop /usr/X/lib/locale/C/help/Mwm/window_refresh=/usr/X/lib/locale/C/help/olwm/window_refresh
+f desktop /usr/X/lib/locale/C/help/olwm/window_resize
+l desktop /usr/X/lib/locale/C/help/Mwm/window_resize=/usr/X/lib/locale/C/help/olwm/window_resize
+f desktop /usr/X/lib/locale/C/help/olwm/window_restore
+l desktop /usr/X/lib/locale/C/help/Mwm/window_restore=/usr/X/lib/locale/C/help/olwm/window_restore
+f desktop /usr/X/lib/locale/C/help/olwm/mot_max
+l desktop /usr/X/lib/locale/C/help/Mwm/mot_max=/usr/X/lib/locale/C/help/olwm/mot_max
+f desktop /usr/X/lib/locale/C/help/olwm/mot_maxb
+l desktop /usr/X/lib/locale/C/help/Mwm/mot_maxb=/usr/X/lib/locale/C/help/olwm/mot_maxb
+f desktop /usr/X/lib/locale/C/help/olwm/mot_min
+l desktop /usr/X/lib/locale/C/help/Mwm/mot_min=/usr/X/lib/locale/C/help/olwm/mot_min
+f desktop /usr/X/lib/locale/C/help/olwm/mot_minb
+l desktop /usr/X/lib/locale/C/help/Mwm/mot_minb=/usr/X/lib/locale/C/help/olwm/mot_minb
+f desktop /usr/X/lib/locale/C/help/olwm/mot_restore
+l desktop /usr/X/lib/locale/C/help/Mwm/mot_restore=/usr/X/lib/locale/C/help/olwm/mot_restore
+f desktop /usr/X/lib/locale/C/help/olwm/mot_close
+l desktop /usr/X/lib/locale/C/help/Mwm/mot_close=/usr/X/lib/locale/C/help/olwm/mot_close
+f desktop /usr/X/lib/locale/C/help/olwm/mot_rszcnr      
+l desktop /usr/X/lib/locale/C/help/Mwm/mot_rszcnr=/usr/X/lib/locale/C/help/olwm/mot_rszcnr
+f desktop /usr/X/lib/locale/C/help/olwm/mot_icon
+l desktop /usr/X/lib/locale/C/help/Mwm/mot_icon=/usr/X/lib/locale/C/help/olwm/mot_icon
+f desktop /usr/X/lib/locale/C/help/olwm/mot_rszhndl     
+l desktop /usr/X/lib/locale/C/help/Mwm/mot_rszhndl=/usr/X/lib/locale/C/help/olwm/mot_rszhndl
+f desktop /usr/X/lib/locale/C/help/olwm/mot_lower
+l desktop /usr/X/lib/locale/C/help/Mwm/mot_lower=/usr/X/lib/locale/C/help/olwm/mot_lower
+f desktop /usr/X/lib/locale/C/help/olprintscreen/olps_general
+f desktop /usr/X/lib/locale/C/help/olprintscreen/olps_props
+
+f desktop /usr/X/lib/locale/C/help/xterm/term.hlp
+
+f desktop /usr/X/lib/locale/C/help/xdm/login.hlp
+
+f desktop /usr/X/lib/locale/C/help/DtCalc/calc.hlp
+
+f desktop /usr/X/lib/locale/C/ol_locale_def
+
+f desktop /usr/X/lib/Xol/scale.map
+f desktop /usr/X/lib/Xol/66x48.arc
+f desktop /usr/X/lib/Xol/66x48.ck
+f desktop /usr/X/lib/Xol/66x48.p2
+f desktop /usr/X/lib/Xol/66x48.p3
+f desktop /usr/X/lib/Xol/66x55.arc
+f desktop /usr/X/lib/Xol/66x55.ck
+f desktop /usr/X/lib/Xol/66x55.p2
+f desktop /usr/X/lib/Xol/66x55.p3
+f desktop /usr/X/lib/Xol/66x66.arc
+f desktop /usr/X/lib/Xol/66x66.ck
+f desktop /usr/X/lib/Xol/66x66.p2
+f desktop /usr/X/lib/Xol/66x66.p3
+f desktop /usr/X/lib/Xol/76x55.arc
+f desktop /usr/X/lib/Xol/76x55.ck
+f desktop /usr/X/lib/Xol/76x55.p2
+f desktop /usr/X/lib/Xol/76x55.p3
+f desktop /usr/X/lib/Xol/76x63.arc
+f desktop /usr/X/lib/Xol/76x63.ck
+f desktop /usr/X/lib/Xol/76x63.p2
+f desktop /usr/X/lib/Xol/76x63.p3
+f desktop /usr/X/lib/Xol/76x76.arc
+f desktop /usr/X/lib/Xol/76x76.ck
+f desktop /usr/X/lib/Xol/76x76.p2
+f desktop /usr/X/lib/Xol/76x76.p3
+f desktop /usr/X/lib/Xol/95x95.arc
+f desktop /usr/X/lib/Xol/95x95.ck
+f desktop /usr/X/lib/Xol/95x95.p2
+f desktop /usr/X/lib/Xol/95x95.p3
+
+f desktop /usr/X/include/Xol/bitmaps/a10pinin
+f desktop /usr/X/include/Xol/bitmaps/a10pinout
+f desktop /usr/X/include/Xol/bitmaps/a10pinout_d
+f desktop /usr/X/include/Xol/bitmaps/a12pinin
+f desktop /usr/X/include/Xol/bitmaps/a12pinout
+f desktop /usr/X/include/Xol/bitmaps/a12pinout_d
+f desktop /usr/X/include/Xol/bitmaps/a14pinin
+f desktop /usr/X/include/Xol/bitmaps/a14pinout
+f desktop /usr/X/include/Xol/bitmaps/a14pinout_d
+f desktop /usr/X/include/Xol/bitmaps/a19pinin
+f desktop /usr/X/include/Xol/bitmaps/a19pinout
+f desktop /usr/X/include/Xol/bitmaps/a19pinout_d
+f desktop /usr/X/include/Xol/bitmaps/b10pinin
+f desktop /usr/X/include/Xol/bitmaps/b10pinout
+f desktop /usr/X/include/Xol/bitmaps/b12pinin
+f desktop /usr/X/include/Xol/bitmaps/b12pinout
+f desktop /usr/X/include/Xol/bitmaps/b12pinout_d
+f desktop /usr/X/include/Xol/bitmaps/c10pinin
+f desktop /usr/X/include/Xol/bitmaps/c10pinout
+f desktop /usr/X/include/Xol/bitmaps/c12pinin
+f desktop /usr/X/include/Xol/bitmaps/c12pinout
+f desktop /usr/X/include/Xol/bitmaps/c12pinout_d
+f desktop /usr/X/include/Xol/bitmaps/d10pinin
+f desktop /usr/X/include/Xol/bitmaps/d10pinout
+f desktop /usr/X/include/Xol/bitmaps/d12pinin
+f desktop /usr/X/include/Xol/bitmaps/d12pinout
+f desktop /usr/X/include/Xol/bitmaps/d12pinout_d
+f desktop /usr/X/include/Xol/bitmaps/e10pinin
+f desktop /usr/X/include/Xol/bitmaps/e10pinout
+f desktop /usr/X/include/Xol/bitmaps/e12pinin
+f desktop /usr/X/include/Xol/bitmaps/e12pinout
+f desktop /usr/X/include/Xol/bitmaps/e12pinout_d
+f desktop /usr/X/include/Xol/bitmaps/f10pinin
+f desktop /usr/X/include/Xol/bitmaps/f10pinout
+f desktop /usr/X/include/Xol/bitmaps/f12pinin
+f desktop /usr/X/include/Xol/bitmaps/f12pinout
+f desktop /usr/X/include/Xol/bitmaps/f12pinout_d
+f desktop /usr/X/include/Xol/bitmaps/g10pinin
+f desktop /usr/X/include/Xol/bitmaps/g10pinout
+f desktop /usr/X/include/Xol/bitmaps/g12pinin
+f desktop /usr/X/include/Xol/bitmaps/g12pinout
+f desktop /usr/X/include/Xol/bitmaps/g12pinout_d
+f desktop /usr/X/include/Xol/bitmaps/h10pinin
+f desktop /usr/X/include/Xol/bitmaps/h10pinout
+f desktop /usr/X/include/Xol/bitmaps/h12pinin
+f desktop /usr/X/include/Xol/bitmaps/h12pinout
+f desktop /usr/X/include/Xol/bitmaps/h12pinout_d
+f desktop /usr/X/include/Xol/bitmaps/i10pinin
+f desktop /usr/X/include/Xol/bitmaps/i10pinout
+f desktop /usr/X/include/Xol/bitmaps/i12pinin
+f desktop /usr/X/include/Xol/bitmaps/i12pinout
+f desktop /usr/X/include/Xol/bitmaps/j10pinin
+f desktop /usr/X/include/Xol/bitmaps/j10pinout
+f desktop /usr/X/include/Xol/bitmaps/j12pinin
+f desktop /usr/X/include/Xol/bitmaps/j12pinout
+f desktop /usr/X/include/Xol/bitmaps/k10pinin
+f desktop /usr/X/include/Xol/bitmaps/k10pinout
+f desktop /usr/X/include/Xol/bitmaps/k12pinin
+f desktop /usr/X/include/Xol/bitmaps/k12pinout
+
+f desktop /usr/X/lib/fonts/Xol/a12biluc.snf
+f desktop /usr/X/lib/fonts/Xol/a12bluci.snf
+f desktop /usr/X/lib/fonts/Xol/a12butto.snf
+f desktop /usr/X/lib/fonts/Xol/a12iluci.snf
+f desktop /usr/X/lib/fonts/Xol/a12lucid.snf
+f desktop /usr/X/lib/fonts/Xol/a12sbarh.snf
+f desktop /usr/X/lib/fonts/Xol/a12sbarv.snf
+f desktop /usr/X/lib/fonts/Xol/a12sldrh.snf
+f desktop /usr/X/lib/fonts/Xol/a12sldrv.snf
+f desktop /usr/X/lib/fonts/Xol/b12butto.snf
+f desktop /usr/X/lib/fonts/Xol/b12sbarh.snf
+f desktop /usr/X/lib/fonts/Xol/b12sbarv.snf
+f desktop /usr/X/lib/fonts/Xol/b12sldrh.snf
+f desktop /usr/X/lib/fonts/Xol/b12sldrv.snf
+f desktop /usr/X/lib/fonts/Xol/c12butto.snf
+f desktop /usr/X/lib/fonts/Xol/c12sbarh.snf
+f desktop /usr/X/lib/fonts/Xol/c12sbarv.snf
+f desktop /usr/X/lib/fonts/Xol/c12sldrh.snf
+f desktop /usr/X/lib/fonts/Xol/c12sldrv.snf
+f desktop /usr/X/lib/fonts/Xol/d12butto.snf
+f desktop /usr/X/lib/fonts/Xol/d12sbarh.snf
+f desktop /usr/X/lib/fonts/Xol/d12sbarv.snf
+f desktop /usr/X/lib/fonts/Xol/d12sldrh.snf
+f desktop /usr/X/lib/fonts/Xol/d12sldrv.snf
+f desktop /usr/X/lib/fonts/Xol/e12biluc.snf
+f desktop /usr/X/lib/fonts/Xol/e12bluci.snf
+f desktop /usr/X/lib/fonts/Xol/e12butto.snf
+f desktop /usr/X/lib/fonts/Xol/e12iluci.snf
+f desktop /usr/X/lib/fonts/Xol/e12lucid.snf
+f desktop /usr/X/lib/fonts/Xol/e12sbarh.snf
+f desktop /usr/X/lib/fonts/Xol/e12sbarv.snf
+f desktop /usr/X/lib/fonts/Xol/e12sldrh.snf
+f desktop /usr/X/lib/fonts/Xol/e12sldrv.snf
+f desktop /usr/X/lib/fonts/Xol/f12butto.snf
+f desktop /usr/X/lib/fonts/Xol/f12sbarh.snf
+f desktop /usr/X/lib/fonts/Xol/f12sbarv.snf
+f desktop /usr/X/lib/fonts/Xol/f12sldrh.snf
+f desktop /usr/X/lib/fonts/Xol/f12sldrv.snf
+f desktop /usr/X/lib/fonts/Xol/fonts.alias
+f desktop /usr/X/lib/fonts/Xol/fonts.dir
+f desktop /usr/X/lib/fonts/Xol/g12butto.snf
+f desktop /usr/X/lib/fonts/Xol/g12sbarh.snf
+f desktop /usr/X/lib/fonts/Xol/g12sbarv.snf
+f desktop /usr/X/lib/fonts/Xol/g12sldrh.snf
+f desktop /usr/X/lib/fonts/Xol/g12sldrv.snf
+f desktop /usr/X/lib/fonts/Xol/h12butto.snf
+f desktop /usr/X/lib/fonts/Xol/h12sbarh.snf
+f desktop /usr/X/lib/fonts/Xol/h12sbarv.snf
+f desktop /usr/X/lib/fonts/Xol/h12sldrh.snf
+f desktop /usr/X/lib/fonts/Xol/h12sldrv.snf
+
+f desktop /usr/X/lib/fonts/75dpi/luIS10.snf
+f desktop /usr/X/lib/fonts/75dpi/luRS10.snf
+f desktop /usr/X/lib/fonts/75dpi/lutRS10.snf
+f desktop /usr/X/lib/fonts/75dpi/lutBS10.snf
+f desktop /usr/X/lib/fonts/75dpi/luBS12.snf
+f desktop /usr/X/lib/fonts/75dpi/luIS12.snf
+f desktop /usr/X/lib/fonts/75dpi/luRS12.snf
+f desktop /usr/X/lib/fonts/75dpi/lutRS12.snf
+f desktop /usr/X/lib/fonts/75dpi/lutBS12.snf
+f desktop /usr/X/lib/fonts/75dpi/luBS14.snf
+f desktop /usr/X/lib/fonts/75dpi/luIS14.snf
+f desktop /usr/X/lib/fonts/75dpi/luRS14.snf
+f desktop /usr/X/lib/fonts/75dpi/lutRS14.snf
+f desktop /usr/X/lib/fonts/75dpi/lutBS14.snf
+f desktop /usr/X/lib/fonts/75dpi/luBS18.snf
+f desktop /usr/X/lib/fonts/75dpi/courR10.snf
+f desktop /usr/X/lib/fonts/75dpi/courB12.snf
+f desktop /usr/X/lib/fonts/75dpi/courO12.snf
+f desktop /usr/X/lib/fonts/75dpi/courR12.snf
+f desktop /usr/X/lib/fonts/75dpi/courR14.snf
+f desktop /usr/X/lib/fonts/75dpi/helvO10.snf
+f desktop /usr/X/lib/fonts/75dpi/helvR10.snf
+f desktop /usr/X/lib/fonts/75dpi/helvB12.snf
+f desktop /usr/X/lib/fonts/75dpi/helvO12.snf
+f desktop /usr/X/lib/fonts/75dpi/helvR12.snf
+f desktop /usr/X/lib/fonts/75dpi/helvB14.snf
+f desktop /usr/X/lib/fonts/75dpi/helvO14.snf
+f desktop /usr/X/lib/fonts/75dpi/helvR14.snf
+f desktop /usr/X/lib/fonts/75dpi/desk.alias
+v desktop /usr/X/lib/fonts/75dpi/fonts.alias=/usr/X/lib/fonts/75dpi/desk.alias
+
+f desktop /usr/X/lib/fonts/100dpi/luBS12.snf
+f desktop /usr/X/lib/fonts/100dpi/luIS12.snf
+f desktop /usr/X/lib/fonts/100dpi/luRS12.snf
+f desktop /usr/X/lib/fonts/100dpi/lutRS12.snf
+f desktop /usr/X/lib/fonts/100dpi/lutBS12.snf
+f desktop /usr/X/lib/fonts/100dpi/luBS14.snf
+f desktop /usr/X/lib/fonts/100dpi/courB12.snf
+f desktop /usr/X/lib/fonts/100dpi/courO12.snf
+f desktop /usr/X/lib/fonts/100dpi/courR12.snf
+f desktop /usr/X/lib/fonts/100dpi/helvB12.snf
+f desktop /usr/X/lib/fonts/100dpi/helvO12.snf
+f desktop /usr/X/lib/fonts/100dpi/helvR12.snf
+f desktop /usr/X/lib/fonts/100dpi/desk.alias
+v desktop /usr/X/lib/fonts/100dpi/fonts.alias=/usr/X/lib/fonts/100dpi/desk.alias
+
+l desktop /usr/X/lib/locale/C/help/dtadmin/MediaMgr.hlp=/usr/X/lib/locale/C/help/dtadmin/disk.hlp
+l desktop /usr/X/lib/locale/C/help/dtadmin/PackageMgr.hlp=/usr/X/lib/locale/C/help/dtadmin/pkgset.hlp
+l desktop /usr/X/lib/locale/C/help/dtadmin/Appl-n_Setup.hlp=/usr/X/lib/locale/C/help/dtadmin/pkgset.hlp
+l desktop /usr/X/lib/locale/C/help/dtadmin/dashboard.hlp=/usr/X/lib/locale/C/help/dtadmin/dashbrd.hlp
+l desktop /usr/X/lib/locale/C/help/dtadmin/System_Status.hlp=/usr/X/lib/locale/C/help/dtadmin/dashbrd.hlp
+l desktop /usr/X/lib/locale/C/help/dtmail/dtmail.hlp=/usr/X/lib/locale/C/help/dtmail/mail.hlp
+l desktop /usr/X/lib/locale/C/help/dtadmin/prtsetup.hlp=/usr/X/lib/locale/C/help/dtadmin/printer.hlp
+l desktop /usr/X/lib/locale/C/help/dtadmin/PrtMgr.hlp=/usr/X/lib/locale/C/help/dtadmin/printuse.hlp
+l desktop /usr/X/lib/locale/C/help/dtadmin/DialupMgr.hlp=/usr/X/lib/locale/C/help/dtadmin/DialMgr.hlp
+l desktop /usr/X/lib/locale/C/help/dtadmin/dtcopy.hlp=/usr/X/lib/locale/C/help/dtadmin/remotsys.hlp
+l desktop /usr/X/lib/locale/C/help/dtadmin/nview.hlp=/usr/X/lib/locale/C/help/dtadmin/remotsys.hlp
+l desktop /usr/X/lib/locale/C/help/dtadmin/dtcall.hlp=/usr/X/lib/locale/C/help/dtadmin/qdial.hlp
+l desktop /usr/X/lib/locale/C/help/dtadmin/fontmgr.hlp=/usr/X/lib/locale/C/help/dtadmin/font.hlp
+l desktop /usr/X/lib/locale/C/help/dtadmin/File_Sharing.hlp=/usr/X/lib/locale/C/help/dtadmin/FileShar.hlp
+l desktop /usr/X/lib/locale/C/help/xterm/xterm.hlp=/usr/X/lib/locale/C/help/xterm/term.hlp

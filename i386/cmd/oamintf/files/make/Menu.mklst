@@ -1,0 +1,17 @@
+#ident	"@(#)filemgmt:i386/cmd/oamintf/files/make/Menu.mklst	1.2.2.1"
+#ident	"$Header: $"
+
+################################################################################
+#	Module Name: Menu.mklst
+################################################################################
+menu="Device Drive Choices"
+
+close=`rm /tmp/${VPID}mklst`
+
+
+`$OAMBASE/bin/devlst "$ARG1" "$ARG2" >/tmp/${VPID}mklst`
+
+`sort /tmp/${VPID}mklst | regex '^([^:][^:]*)$0:([^:][^:]*)$1' 'name="$m0"
+description="$m1"
+action=`set -l "Form_Choice=$m0"`CLOSE'`
+

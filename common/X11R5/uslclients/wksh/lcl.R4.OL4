@@ -1,0 +1,63 @@
+#	Copyright (c) 1991, 1992 UNIX System Laboratories, Inc.
+#	All Rights Reserved     */
+
+#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+#	UNIX System Laboratories, Inc.
+#	The copyright notice above does not evidence any
+#	actual or intended publication of such source code.
+
+#ident	"@(#)wksh:lcl.R4.OL4	1.1"
+
+#
+# Standard X Libraries
+#
+
+XROOT = /usr/X
+XINC = $(XROOT)/include
+XLIB = $(XROOT)/lib
+X11LIB = -lX11
+XtLIB  = -lXt
+XmuLIB = $(XLIB)/libXmu.a
+
+#
+# Other libraries needed for linking
+#
+
+OTHERLIBS = -lnsl -ldl -lw -lgen -lforce
+
+#
+# OPEN LOOK Libraries
+#
+
+XolLIB = -lXol
+
+#
+# MOTIF Libraries
+#
+
+MrmLIB = -lMrm
+XmLIB  = -lXm
+
+#
+# Standard user level compilation flags for X programs,
+# with variations for MOTIF or OPEN LOOK
+#
+
+LDFLAGS =
+
+SUBCFLAGS = -O
+
+XFLAGS = -DUSG -Datt -DSYSV -DSVR4_0 -D__TIMEVAL__
+
+UFLAGS = $(XFLAGS) -DKSHELL -DUSER_PROMPT -DTEST_CODE -DSVR4_USER
+
+CFLAGS = $(SUBCFLAGS) -I. $(XKSHINCLUDES) -I$(XINC) $(UFLAGS)
+
+MO_CFLAGS = $(CFLAGS) $(MO_UFLAGS)
+OL_CFLAGS = $(CFLAGS) $(OL_UFLAGS)
+
+#
+# Dynamic Library Definitions
+#
+
+LIB_KIND = .so

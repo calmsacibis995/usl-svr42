@@ -1,0 +1,3 @@
+#ident	"@(#)pkg.nsu:common/pkg/nsu/depend	1.1.1.3"
+#ident	"$Header: depend 1.1 91/07/01 $"
+P	base	Base System

@@ -1,0 +1,3 @@
+#ident	"@(#)uts-x86:net/loopback/ticots.cf/Node	1.2"
+#ident	"$Header: $"
+clone	ticots	c	ticots

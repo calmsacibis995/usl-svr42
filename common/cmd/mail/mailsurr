@@ -1,0 +1,132 @@
+#ident	"@(#)mail:common/cmd/mail/mailsurr	1.11.2.9"
+# @(#)mailsurr	2.21 'attmail mail(1) command'
+#
+# /etc/mail/mailsurr MUST exist in order to send remote mail.
+#
+# Entries are of the form:
+# 'Originator RE' 'Recipient RE' 'Command Field'
+# See mailsurr(4) for details.
+##################################################################
+
+####
+#### Part 1
+####
+#### Accepts and Denies should go here
+####
+
+# Prevent all shell meta-characters
+#
+'.+'	'.*[`;&|^<>()].*'	'Deny No Shell Metacharacters'
+'.+'	'!*#.*'			'Deny No Shell Metacharacters'
+
+####
+#### Part 2
+####
+#### Address translations should go here.
+#### Do the appropriate mapping between various addressing schemes.
+#### All remote mail should leave this section preceded with a 
+#### single "!". (Addresses coming directly from mail are
+#### guaranteed not to have leading !'s.)
+####
+
+# Collapse bang address loops that go through two or more hops
+#
+'.+'	'[^!@%]+![^@%]+![^@%]+'	'Translate T=1;B=*; R=|uucollapse' '%n'
+
+# Map domain-routed domain addresses. That is, map all names of
+# the form @domain1[,@domain2]*:user@domain3 -> domain1!...
+#
+'.+'	'@([^:,]+)[:,](.+)'	'Translate R=!\\1!\\2'
+
+# Map all names of the form user@host -> host!user
+# The default is to give @ precedence over anything else.
+# If you choose to give ! precedence over @, swap the next two lines.
+#
+'.+'	'([^!].*)@(.+)'		'Translate R=!\\2!\\1'
+'.+'	'([^!].*)!(.+)'		'Translate R=!%n'
+
+# Map all names of the form user%host (without any other ! or @) -> host!user
+#
+'.+'	'([^!].*)%%(.+)'	'Translate R=!\\2!\\1'
+
+# Run all (apparently) local names through the mail alias processor.
+#
+'.+'	'[^!]+'			'Translate T=1;B=*; R=|mailalias -P%L! -P%U! -P%L\%D! -P%U\%D! -S@%U\%D -S@%L\%D -S@%L -S@%U -r -p' '%n'
+
+# Map all names of the form local-machine!user -> user
+# Map all names of the form uname!user -> user
+# Then loop back through from the top.
+#
+'.+'	'!%L!(.+)'		'Translate R=\\1'
+'.+'	'!%U!(.+)'		'Translate R=\\1'
+
+# Map all names of the form host.uucp!user -> host!user
+# Map all names of the form host.local-domain!user -> host!user
+#	(host must not have a . in it)
+# Comment out if you do not want these translations.
+#
+'.+'	'!([^!]+)\\.uucp!(.+)'	'Translate R=!\\1!\\2'
+'.+'	'!([^!.]+)%D!(.+)'	'Translate R=!\\1!\\2'
+
+# If you wish to support a user name space of user@local-domain in
+# addition to user@host.local-domain, then add the following translation,
+# where DOMAIN is the local domain, and HOST.DOMAIN is where to send the
+# mail. Note that %D contains a leading dot, so it cannot be used in the
+# first regular expression.
+#
+#'.+'	'!DOMAIN!(.+)'		'Translate R=!HOST%D!\\1'
+
+####
+#### Part 3
+####
+#### Delivery commands should go here. All addresses going
+#### remote should begin with a single "!".
+####
+
+# Check for binary mail. Uncomment this if you want to use it.
+#
+#'.+'	'!([^!]+)!.+'		'< F=*;C=0; ckbinarsys -t %C -s \\1'
+
+# For remote mail via uucp and smtp. Uucp is first because
+# it is more universal and handles binary mail properly.
+#
+# If DNS is not used, use "smtpqer -N". If DNS is used, remove the "-N".
+#
+'.+'	'!([^!]+)!(.+)'		'< B=1024; uux -a %R -p -- \\1!rmail' '(\\2)'
+#'.+'	'!([^!]+)!(.+)'		'< B=4096; smtpqer -N %R \\1' '\\2'
+
+####
+#### Part 3b
+####
+#### Smarter-host processing
+####
+
+# If none of the above work, then ship remote mail off to a smarter host.
+# Make certain that SMARTERHOST= is defined within /etc/mail/mailcnfg.
+# If there is no smarter host, then routed mail fails here.
+#
+#'.+'	'!(.+)'			'Translate T=1; R=!%X!\\1'
+
+# If CLUSTER is set to the same as SMARTERHOST, such as when many sites
+# share the same mailcnfg file, then use something like this instead
+# and define x=alternate-smarter-host in the mailcnfg file. This entry
+# assumes the use of uucp.
+#
+#'.+'	'!(.+)'			'< sh -c "if [ \"%X\" != \"%U\" ]; then uux -a%R - %X!rmail '(\\1)'; else uux -a%R - %x!rmail '(\\1)';fi"'
+
+# If you have a flat name space across multiple machines, but user-names only
+# exist on disjoint machines, this entry will forward any name not known
+# locally off to the given host.
+#
+#'.+'	'[^!@]+'		'Translate T=1;B=*; R=|localmail -p -S @HOST.DOMAIN' '%n'
+
+####
+#### Part 4
+####
+#### Postprocessing commands should go here.
+####
+
+# Log mail delivery
+#
+#'.+'	'.+'	'> W=1;B=*; maillog -o /var/mail/:log' '-O %O %R %n %H %l --'
+#'.+'	'.+'	'Errors W=1;B=*; maillog -o /var/mail/:errors' '-O %O %R %n %H %l --'

@@ -1,0 +1,786 @@
+#ident	"@(#)pkg.eth:request	1.25"
+#ident	"$Header: $"
+
+trap 'exit 3' 15
+
+reset_board ()
+{
+	[ "$UPDEBUG" = YES ] && set -x
+	DRV=$1
+	case $DRV in
+	IMXLAN586)	echo "IMXLAN586_NUM=\"0\"" >> $RSPDIR/boards ;;
+	IE6)		echo "IE6_NUM=\"0\"" >> $RSPDIR/boards ;;
+	EL16_AT)	echo "EL16_AT_NUM=\"0\"" >> $RSPDIR/boards ;;
+	EL16_MCA)	echo "EL16_MCA_NUM=\"0\"" >> $RSPDIR/boards ;;
+	EE16)		echo "EE16_NUM=\"0\"" >> $RSPDIR/boards ;;
+	WD_AT)		echo "WD_AT_NUM=\"0\"" >> $RSPDIR/boards ;;
+	WD_MCA)		echo "WD_MCA_NUM=\"0\"" >> $RSPDIR/boards ;;
+	esac
+	[ "$UPDEBUG" = YES ] && goany
+}
+
+check_get_parameters ()
+{
+	[ "$UPDEBUG" = YES ] && set -x
+	unset INT_CHOICES NVECT IRQ BNO DRV AVAIL_INTVS 
+	unset CABLETYPE ZWS
+
+	DRV=$1
+	BNO=$2
+	CABLETYPE=$3
+	ZWS=$4
+
+	[ "$UPDEBUG" = YES ] && goany
+
+	export DRV BNO
+	check_interrupt $DRV $BNO
+	[ $? -eq 1 ] && {
+		reset_board $DRV # cancel installation for this board!
+		menu_colors warn
+		menu -r -f ${MENUDIR}/menu.err -o /tmp/$$.parmerr </dev/tty
+		. /tmp/$$.parmerr
+		rm -f /tmp/$$.parmerr
+		[ "$REPLY" = "Y" -o "$REPLY" = "" ] && {
+		
+			[ "$UPDEBUG" = YES ] && goany
+
+			menu -c
+			exit 1
+		}
+		return 1
+	}
+
+	[ "$UPDEBUG" = YES ] && goany
+
+	. /tmp/$$.chkintv
+	rm -f /tmp/$$.chkintv
+
+	export INT_CHOICES NVECT IRQ AVAIL_INTVS
+
+	unset IOADDR_CHOICES NIOADDR IO_FILE
+	# check i/o addresses if /tmp/$DRV.ioaddr exists
+	[ -f /tmp/$DRV.ioaddr ] && {
+		check_addresses $DRV $BNO
+		[ $? -eq 1 ] && {
+			reset_board $DRV
+			menu_colors warn
+			menu -r -f ${MENUDIR}/menu.err -o /tmp/$$.parmerr </dev/tty
+			. /tmp/$$.parmerr
+			rm -f /tmp/$$.parmerr
+			[ "$REPLY" = "Y" -o "$REPLY" = "" ] && exit 1
+			return 1
+		}
+		. /tmp/$$.chkaddr
+		export IOADDR_CHOICES NIOADDR IOADDR IO_FILE
+		rm -f /tmp/$$.chkaddr
+	}
+	unset RAMADDR_CHOICES NRAMADDR RAM_FILE
+	[ "$UPDEBUG" = YES ] && goany
+
+	# check ram addresses if /tmp/$DRV.ramaddr exists
+	[ -f /tmp/$DRV.ramaddr ] && {
+		check_addresses $DRV $BNO RAM
+		[ $? -eq 1 ] && {
+			reset_board $DRV
+			menu_colors warn
+			menu -r -f ${MENUDIR}/menu.err -o /tmp/$$.parmerr </dev/tty
+			. /tmp/$$.parmerr
+			rm -f /tmp/$$.parmerr
+			[ "$REPLY" = "Y" -o "$REPLY" = "" ] && exit 1
+			return 1
+		}
+		. /tmp/$$.chkaddr
+		export RAMADDR_CHOICES NRAMADDR RAMADDR RAM_FILE
+		rm -f /tmp/$$.chkaddr
+	}
+	[ "$UPDEBUG" = YES ] && goany
+
+	export CABLETYPE ZWS
+	menu_colors regular
+	menu -r -f ${MENUDIR}/menu.param -o $RSPDIR/${DRV}.${BNO} 2>/tmp/$$.e.irq </dev/tty
+	. $RSPDIR/${DRV}.${BNO}
+
+	echo "$IRQ " >>/tmp/$$.newintv
+	[ "$IRQ" = "2" ] && echo "IRQ=9" >>$RSPDIR/$DRV.$BNO
+
+	[ "$IOADDR" ] && echo "$IOADDR" >>/tmp/$$.ioaddr
+
+	[ "$RAMADDR" ] && echo "$RAMADDR" >>/tmp/$$.ramaddr
+	[ "$CABLETYPE" ] && {
+		[ "$CABLETYPE" = AUI ] && CABLE=1
+		[ "$CABLETYPE" = BNC ] && CABLE=0
+		echo "CABLE=$CABLE" >>$RSPDIR/${DRV}.${BNO}
+	}
+	[ "$ZWS" ] && {
+		[ "$ZWS" = Disable ] && Z_W_S=0
+		[ "$ZWS" = Enable ]  && Z_W_S=1
+		echo "Z_W_S=$Z_W_S" >>$RSPDIR/${DRV}.${BNO}
+	}
+
+	rm -f /tmp/$DRV.intv /tmp/$DRV.ioaddr /tmp/$DRV.ramaddr 
+	rm -f /tmp/$DRV.ioavail /tmp/$DRV.ramavail 
+
+	[ "$UPDEBUG" = YES ] && goany
+
+}
+
+check_interrupt () {
+	DRV=$1
+	case $DRV in
+		"IMXLAN586")	DRVNAME=imx586 ;;
+		"IE6")		DRVNAME=ie6 ;;
+		"EE16")		DRVNAME=ee16 ;;
+		"EL16_AT")	DRVNAME=el16 ;;
+		"EL16_MCA")	DRVNAME=el16 ;;
+		"WD_AT")	DRVNAME=wd ;;
+		"WD_MCA")	DRVNAME=wd ;;
+	esac
+	BNO=$2
+	INTVFL=/tmp/$DRV.intv
+	INT_CHOICES="//"
+	AVAIL_INTVS=
+	# validate the list of interrupt vectors and the default intv
+	NVECT=0
+	for j in `cat $INTVFL`
+	do
+		[ "$UPDEBUG" = YES ] &&  goany
+		# if $j is already selected - don't include in list
+		[ -f /tmp/$$.newintv ] && {
+			grep "^$j " /tmp/$$.newintv > /dev/null
+			[ $? = 0 ] && continue  
+		}
+		[ $j -eq 2 ] && j=9
+		[ "$UPDEBUG" = YES ] &&  goany
+		# if $j is already in use - don't include in list
+		${CONFBIN}/idcheck -v $j
+		rc=$?
+		# $rc > 0 and < 100 means this intv is in use
+		[ $rc -gt 0 -a $rc -lt 100  ] && {
+			rc1=1
+			rc2=1
+			[ "$PKGINSTALL_TYPE" = NEWINSTALL ] && continue
+			# check "reusables" file for available interrupts
+			[ -f $UPGRADE_STORE/$$.reusables ] && {
+				grep "^$j " $UPGRADE_STORE/$$.reusables >/dev/null 2>&1
+				rc1=$?
+			}
+			# check upgrade file for like adaptors
+			[ -f $UPGRADE_STORE/$$.[1-6].$DRVNAME ] && {
+				grep "^$j " $UPGRADE_STORE/$$.[1-6].$DRVNAME >/dev/null 2>&1
+				rc2=$?
+			}
+			[ $rc1 -eq 0 -o $rc2 -eq 0 ] || continue
+		}
+		[ "$UPDEBUG" = YES ] &&  goany
+		[ $j -eq 9 ] && j=2
+		AVAIL_INTVS="$AVAIL_INTVS $j"
+		[ $NVECT = 0 ] && NEW_DFLT_INTV=$j
+		NVECT=`expr $NVECT + 1`
+		INT_CHOICES="${INT_CHOICES}${j}::${j}//"
+	done
+	[ "$AVAIL_INTVS" ] || {
+		ERR="1" export ERR INTVFL
+
+		[ "$UPDEBUG" = YES ] && goany
+
+		return 1
+	}
+	AVAIL_INTVS="$AVAIL_INTVS "
+	echo "$AVAIL_INTVS" | grep " $DFLT_INTV " > /dev/null
+	[ $? = 0 ] || DFLT_INTV=$NEW_DFLT_INTV
+	IRQ=$DFLT_INTV
+	echo "AVAIL_INTVS=\"$AVAIL_INTVS\"" >/tmp/$$.chkintv
+	echo "IRQ=\"$IRQ\"" >>/tmp/$$.chkintv
+	echo "INT_CHOICES=\"$INT_CHOICES\"" >>/tmp/$$.chkintv
+	echo "NVECT=\"$NVECT\"" >>/tmp/$$.chkintv
+
+	[ "$UPDEBUG" = YES ] && goany
+
+	return 0
+}
+
+check_addresses() {
+	DRV=$1
+	case $DRV in
+		"IMXLAN586")	DRVNAME=imx586 ;;
+		"IE6")		DRVNAME=ie6 ;;
+		"EE16")		DRVNAME=ee16 ;;
+		"EL16_AT")	DRVNAME=el16 ;;
+		"EL16_MCA")	DRVNAME=el16 ;;
+		"WD_AT")	DRVNAME=wd ;;
+		"WD_MCA")	DRVNAME=wd ;;
+	esac
+	BNO=$2
+	ADDR_TYPE=I/O
+	DFLT_ADDR=$IOADDR
+	LIST=/tmp/$DRV.ioaddr
+	ADDRESSES=/tmp/$$.ioavail
+	SELECTED_ADDRS=/tmp/$$.ioaddr
+	OPT=-a
+	[ "$3" ] && {
+		ADDR_TYPE=$3
+		DFLT_ADDR=$RAMADDR
+		LIST=/tmp/$DRV.ramaddr
+		SELECTED_ADDRS=/tmp/$$.ramaddr
+		ADDRESSES=/tmp/$$.ramavail
+		OPT=-c
+	}
+	rm -f $ADDRESSES
+	ADDR_CHOICES="//"
+	NADDR=0
+
+	while read A
+	do
+		[ "$UPDEBUG" = YES ] && goany
+		[ "$A" ] || continue
+		set $A
+		SADR=$1
+		EADR=$2
+		[ -f $SELECTED_ADDRS ] && {
+			grep "^${SADR} " $SELECTED_ADDRS > /dev/null
+			# if $A is already selected - don't include in list
+			[ $? = 0 ] && continue  
+			grep " ${EADR}$" $SELECTED_ADDRS > /dev/null
+			# if $A is already selected - don't include in list
+			[ $? = 0 ] && continue  
+			[ "$UPDEBUG" = YES ] &&  goany
+		}
+		${CONFBIN}/idcheck $OPT -l$SADR -u$EADR
+		rc=$?
+		[ $rc -gt 0  -a $rc -lt 100 ] && {
+			rc1=1
+			rc2=1
+			rc3=1
+			[ $PKGINSTALL_TYPE = NEWINSTALL ] && continue 
+			[ -f $UPGRADE_STORE/$$.[1-6].$DRVNAME ] && {
+				grep " $SADR $EADR" $UPGRADE_STORE/$$.[1-6].$DRVNAME >/dev/null
+				rc1=$?
+			}
+			[ -f $UPGRADE_STORE/$$.reusables ] && {
+				grep "$SADR" $UPGRADE_STORE/$$.reusables >/dev/null
+				rc2=$?
+				grep "$EADR" $UPGRADE_STORE/$$.reusables >/dev/null
+				rc3=$?
+			}
+			[ $rc1 -eq 0 -o \( $rc2 -eq 0 -a $rc3 -eq 0 \) ] || continue
+			[ "$UPDEBUG" = YES ] &&  goany
+		}
+		[ "$UPDEBUG" = YES ] && goany
+		echo "$SADR $EADR" >> $ADDRESSES
+		[ $NADDR = 0 ] && NEW_DFLT_ADDR="$A"
+		NADDR=`expr $NADDR + 1`
+		ADDR_CHOICES="${ADDR_CHOICES}${A}//"
+		echo "NEW_DFLT_ADDR=\"$NEW_DFLT_ADDR\"" >/tmp/$$.savaddrs
+		echo "NADDR=$NADDR" >>/tmp/$$.savaddrs
+		echo "ADDR_CHOICES=\"${ADDR_CHOICES}\"" >>/tmp/$$.savaddrs
+	done <$LIST
+
+	[ "$UPDEBUG" = YES ] && goany
+
+	[ -f "$ADDRESSES" ] || {
+		ERR="2" export ERR ADDR_TYPE LIST
+
+		[ "$UPDEBUG" = YES ] && goany
+
+		return 1
+	}
+	. /tmp/$$.savaddrs
+	rm -f /tmp/$$.savaddrs
+	grep "$DFLT_ADDR" $ADDRESSES > /dev/null
+	[ $? = 0 ] || DFLT_ADDR="$NEW_DFLT_ADDR"
+	[ "$UPDEBUG" = YES ] && goany
+	[ "$ADDR_TYPE" = "I/O" ] && {
+		echo "IO_FILE=\"$ADDRESSES\"" >/tmp/$$.chkaddr
+		echo "IOADDR=\"$DFLT_ADDR\"" >>/tmp/$$.chkaddr
+		echo "IOADDR_CHOICES=\"$ADDR_CHOICES\"" >>/tmp/$$.chkaddr
+		echo "NIOADDR=\"$NADDR\"" >>/tmp/$$.chkaddr
+
+		[ "$UPDEBUG" = YES ] && goany
+
+		return 0
+	}
+	echo "RAM_FILE=\"$ADDRESSES\"" >/tmp/$$.chkaddr
+	echo "RAMADDR=\"$DFLT_ADDR\"" >>/tmp/$$.chkaddr
+	echo "RAMADDR_CHOICES=\"$ADDR_CHOICES\"" >>/tmp/$$.chkaddr
+	echo "NRAMADDR=\"$NADDR\"" >>/tmp/$$.chkaddr
+
+	[ "$UPDEBUG" = YES ] && goany
+
+	return 0
+}
+
+initialize ()
+{
+	BUS=
+	IMXLAN586_NUM=0
+	IE6_NUM=0
+	EL16_AT_NUM=0
+	EL16_MCA_NUM=0
+	EE16_NUM=0
+	WD_AT_NUM=0
+	WD_MCA_NUM=0
+}
+
+get_configured_cable_type () {
+	[ "$UPDEBUG" = YES ] && set -x
+
+	DRV=$1
+	grep "^#define CABLE_TYPE	" ${PACKDIR}/$DRV/space.c >/tmp/$$.cab
+	read junk CABLE </tmp/$$.cab
+	[ "$CABLE" ] || return
+	CAB=BNC
+	[ "$CABLE" = 1 ] && CAB=AUI
+	echo $CAB >$UPGRADE_STORE/$$.cab.$DRV
+}
+get_configured_zws () {
+	[ "$UPDEBUG" = YES ] && set -x
+
+	DRV=$1
+	grep "^#define ZWS	" ${PACKDIR}/$DRV/space.c >/tmp/$$.zws
+	read junk Z_W_S </tmp/$$.zws
+	[ "$Z_W_S" ] || return
+	ZWS=Disable
+	[ "$Z_W_S" = 1 ] && ZWS=Enable
+	echo $ZWS >$UPGRADE_STORE/$$.zws.$DRV
+}
+find_existing_config ()
+{
+############# Begin UPGRADE AND OVERLAY #######################
+
+[ "$UPDEBUG" = YES ] && set -x
+
+export INSTALL_MODE PKGINSTALL_TYPE AUTOMERGE
+#  set INSTALL_MODE to CUSTOM, if not set
+[ "$INSTALL_MODE" ] || INSTALL_MODE=CUSTOM
+UPGRADE_STORE=/var/sadm/upgrade
+
+PKGINSTALL_TYPE=NEWINSTALL
+#is it upgrade or overlay?
+#	${SCRIPTS}/chkpkgrel returns 2 if installed pkg is DESTINY
+#					4 if installed pkg is V4
+#					1 if installed pkg if UNK version
+#					0 if pkg is not installed
+${SCRIPTS}/chkpkgrel
+PKGVERSION=$?
+case $PKGVERSION in
+	2)	PKGINSTALL_TYPE=OVERLAY	;;
+	4)	PKGINSTALL_TYPE=UPGRADE	;;
+	*)	;;
+esac
+
+# 'eth' package did not exist for Version 4. Instead, V4 had imx586, wd, and
+# ie6. On an upgraded V4 box, chkpkgrel causes PKGINSTALL_TYPE to be set to
+# NEWINSTALL for eth. We'll check to see if any of V4 imx586, ie6, or wd 
+# are installed and reset PKGINSTALL_TYPE to UPGRADE
+
+[ "$PKGINSTALL_TYPE" = NEWINSTALL ] && {
+	for i in imx586 wd ie6
+	do
+		PKGINFO=/var/sadm/pkg/$i/pkginfo
+
+		[ -f $PKGINFO ] || continue
+
+		# we'll have to remove the v4 ethernet packages in
+		# postinstall. pkgrm does not work within pkgadd. 
+		# Therefore we'll remove and removef the files in postinstall
+		case $i in
+			imx586)	>/tmp/rm.imx586 ;;
+			    wd)	>/tmp/rm.wd ;;
+			   ie6)	>/tmp/rm.ie6 ;;
+		esac
+
+		PKGINSTALL_TYPE=UPGRADE
+	done
+}
+
+echo PKGINSTALL_TYPE=\"${PKGINSTALL_TYPE}\" >> ${POST_FILE}
+echo INSTALL_MODE=\"${INSTALL_MODE}\" >> ${POST_FILE}
+
+[ "$UPDEBUG" = YES ] && goany
+#
+# Check in /etc/conf/sdevice.d for existing config.
+#
+
+SD=/etc/conf/sdevice.d
+[ -d $SD ] ||  {
+	echo "$PKGINST request - $SD missing"
+	exit 1
+}
+# find the number of configured boards of each type and save in *_NUM
+# Also save in *_CONF to later know how many to unconfigure
+# Save configured intrs and address in $UPGRADE_STORE/$$.<drv>
+
+OFS=$IFS
+IFS="	"	#tab
+for D in imx586 ie6 ee16 el16 wd
+do
+	[ -f $SD/$D ] || continue
+
+	N=1
+	grep "^${D}	" $SD/$D >/tmp/$$.UPG.$D 2>/dev/null
+	while read Dev Config Unit Ipl Itype Vector Sioa Eioa Scma Ecma Dma
+	do
+		[ "$Config" = N ] && continue
+		echo "$Vector $Sioa $Eioa $Scma $Ecma" >>$UPGRADE_STORE/$$.$N.$D
+		[ "$D" = el16 -o "$D" = wd ] && \
+			[ $Sioa = 0 -a $Eioa = 0 ] && echo "BUS=MCA" >/tmp/$$.bus
+		echo $N >/tmp/$$.UPG.brds
+		N=`expr $N + 1`
+	done </tmp/$$.UPG.$D
+	[ "$UPDEBUG" = YES ] && goany
+	[ -f /tmp/$$.UPG.brds ] || continue
+	[ -f /tmp/$$.bus ] && . /tmp/$$.bus
+	rm -f /tmp/$$.bus
+	case $D in
+		imx586)	read IMXLAN586_NUM </tmp/$$.UPG.brds
+			;;
+		ie6)	read IE6_NUM </tmp/$$.UPG.brds
+			get_configured_cable_type $D
+			;;
+		el16)	[ "$BUS" = "MCA" ] && {
+				read EL16_MCA_NUM </tmp/$$.UPG.brds
+			}
+			[ "$BUS" ] || {
+				read EL16_AT_NUM </tmp/$$.UPG.brds
+				get_configured_zws $D
+			}
+			get_configured_cable_type $D
+			;;
+		ee16)	read EE16_NUM </tmp/$$.UPG.brds
+			get_configured_cable_type $D
+			;;
+		wd)	[ "$BUS" = "MCA" ] && {
+				read WD_MCA_NUM </tmp/$$.UPG.brds
+			}
+			[ "$BUS" ] || {
+				read WD_AT_NUM </tmp/$$.UPG.brds
+			}
+			;;
+	esac
+	rm -f /tmp/$$.UPG.brds
+done
+
+IFS=$OFS
+
+[ "$UPDEBUG" = YES ] && goany
+
+############# End UPGRADE AND OVERLAY #######################
+}
+
+##  main ()
+
+#
+#  Make sure LANG environment variable is set.  If it's not set
+#  coming in to this request script, then default to the C-locale.
+#
+[ ${LANG} ] || LANG="C"
+export LANG
+
+#
+#  Set up to use menu_colors; default to C-locale if ${LANG}'s dir has
+#  no menu_colors.sh
+#
+if [ -f /etc/inst/locale/${LANG}/menus/menu_colors.sh ]
+then
+	. /etc/inst/locale/${LANG}/menus/menu_colors.sh
+else
+	. /etc/inst/locale/C/menus/menu_colors.sh
+fi
+
+SCRIPTS=/usr/sbin/pkginst
+. ${SCRIPTS}/updebug 
+[ "$UPDEBUG" = YES ] && set -x
+
+MENUDIR=/etc/inst/locale/${LANG}/menus/eth
+
+mkdir -p ${MENUDIR} 1>/dev/null 2>/dev/null
+cp ${REQDIR}/eth/* ${MENUDIR} 1>/dev/null 2>/dev/null
+
+CONFBIN=/etc/conf/bin
+PACKDIR=/etc/conf/pack.d
+CONFBIN=/etc/conf/bin
+VFILE=/tmp/varfile
+rm -rf $VFILE
+POST_FILE=$1
+rm -rf $POST_FILE
+RSPDIR=/var/sadm/eth_resp
+rm -rf $RSPDIR		
+mkdir -p $RSPDIR
+
+[ "$UPDEBUG" = YES ] && goany
+
+initialize	# initialize the number of boards of each type to 0
+export IMXLAN586_NUM IE6_NUM EL16_AT_NUM EE16_NUM WD_AT_NUM 
+export EL16_MCA_NUM WD_MCA_NUM
+
+find_existing_config   # check what is already configured
+
+# save *_NUM for check later on
+OLD_EE16_NUM=$EE16_NUM
+OLD_EL16_AT_NUM=$EL16_AT_NUM
+OLD_EL16_MCA_NUM=$EL16_MCA_NUM
+OLD_IE6_NUM=$IE6_NUM
+OLD_IMXLAN586_NUM=$IMXLAN586_NUM
+OLD_WD_AT_NUM=$WD_AT_NUM
+OLD_WD_MCA_NUM=$WD_MCA_NUM
+
+# find out how many boards of what type to be installed
+menu_colors regular
+menu -r -f ${MENUDIR}/menu.eth -o $RSPDIR/boards 2>/tmp/$$.e.brds </dev/tty
+. $RSPDIR/boards
+
+# check if any existing adaptors were unconfigured and, if so, free up the
+# relevant parameters by removing the appropriate upgrade files in
+# $UPGRADE_STORE, and creating a new file that will be parsed in the
+# check_parameter functions
+
+[ $OLD_EE16_NUM -gt 0 -a $EE16_NUM -eq 0 ] && {
+	cat $UPGRADE_STORE/$$.[0-6].ee16 >> $UPGRADE_STORE/$$.reusables
+	rm -f $UPGRADE_STORE/$$.[0-6].ee16
+}
+[ $OLD_EL16_AT_NUM -gt 0 -a $EL16_AT_NUM -eq 0 ] && {
+	cat $UPGRADE_STORE/$$.[0-6].el16 >> $UPGRADE_STORE/$$.reusables
+	rm -f $UPGRADE_STORE/$$.[0-6].el16
+}
+[ $OLD_EL16_MCA_NUM -gt 0 -a $EL16_MCA_NUM -eq 0 ] && {
+	cat $UPGRADE_STORE/$$.[0-6].el16 >> $UPGRADE_STORE/$$.reusables
+	rm -f $UPGRADE_STORE/$$.[0-6].el16
+}
+[ $OLD_IE6_NUM -gt 0 -a $IE6_NUM -eq 0 ] && {
+	cat $UPGRADE_STORE/$$.[0-6].ie6 >> $UPGRADE_STORE/$$.reusables
+	rm -f $UPGRADE_STORE/$$.[0-6].ie6
+}
+[ $OLD_IMXLAN586_NUM -gt 0 -a $IMXLAN586_NUM -eq 0 ] && {
+	cat $UPGRADE_STORE/$$.[0-6].imx586 >> $UPGRADE_STORE/$$.reusables
+	rm -f $UPGRADE_STORE/$$.[0-6].imx586
+}
+[ $OLD_WD_AT_NUM -gt 0 -a $WD_AT_NUM -eq 0 ] && {
+	cat $UPGRADE_STORE/$$.[0-6].wd >> $UPGRADE_STORE/$$.reusables
+	rm -f $UPGRADE_STORE/$$.[0-6].wd
+}
+[ $OLD_WD_MCA_NUM -gt 0 -a $WD_MCA_NUM -eq 0 ] && {
+	cat $UPGRADE_STORE/$$.[0-6].wd >> $UPGRADE_STORE/$$.reusables
+	rm -f $UPGRADE_STORE/$$.[0-6].wd
+}
+unset OLD_EE16_MCA_NUM OLD_EL16_AT_NUM OLD_EL16_MCA_NUM OLD_IE6_NUM
+unset OLD_IMXLAN586_NUM OLD_WD_AT_NUM OLD_WD_MCA_NUM
+
+MULT_BOARDS=0 export MULT_BOARDS
+count=0
+count=`expr $count + $IMXLAN586_NUM`
+count=`expr $count + $IE6_NUM`
+count=`expr $count + $EL16_AT_NUM`
+count=`expr $count + $EL16_MCA_NUM`
+count=`expr $count + $EE16_NUM`
+count=`expr $count + $WD_AT_NUM`
+count=`expr $count + $WD_MCA_NUM`
+[ $count -gt 1 ] && MULT_BOARDS=1
+[ $count -eq 0 ] && {
+
+	[ "$UPDEBUG" = YES ] && goany "0 boards selected - exit 1"
+
+	menu -c
+	exit 1
+}
+unset count
+
+[ "$UPDEBUG" = YES ] && goany
+# start the script to handle driver specific configurations
+#
+NUM=1
+DRV=IMXLAN586
+while [ $NUM -le "$IMXLAN586_NUM" ]
+do
+	echo "2 3 4 5 7 10 12 15" >/tmp/$DRV.intv
+	DFLT_INTV=12
+	ADDR_LIST=/tmp/$DRV.ramaddr
+	echo "0C0000 0C7FFF\n0C8000 0CFFFF\n0D0000 0D7FFF" >$ADDR_LIST
+	echo "0D8000 0DFFFF\nF00000 F27FFF\nF40000 F67FFF" >>$ADDR_LIST
+	echo "F80000 FA7FFF\n" >>$ADDR_LIST
+	RAMADDR="0D0000 0D7FFF" # default ram addresses
+	[ -f $UPGRADE_STORE/$$.$NUM.imx586 ] && {
+		read DFLT_INTV Sioa Eioa SADDR EADDR <$UPGRADE_STORE/$$.$NUM.imx586
+		RAMADDR="$SADDR $EADDR"
+	}
+	check_get_parameters $DRV $NUM 
+	NUM=`expr $NUM + 1`
+done
+	
+[ "$UPDEBUG" = YES ] && goany
+
+NUM=1
+DRV=IE6
+while [ $NUM -le "$IE6_NUM" ]
+do
+	echo "2 3 4 5" >/tmp/$DRV.intv
+	DFLT_INTV=3
+	ADDR_LIST=/tmp/$DRV.ioaddr
+	echo "250 25F\n280 28F\n2A0 2AF\n2E0 2EF" >$ADDR_LIST
+	echo "300 30F\n310 31F\n330 33F\n350 35F" >>$ADDR_LIST
+	IOADDR="300 30F" #default io addresses
+	[ -f $UPGRADE_STORE/$$.$NUM.ie6 ] && {
+		read DFLT_INTV SADDR EADDR Scma Ecma <$UPGRADE_STORE/$$.$NUM.ie6
+		IOADDR="$SADDR $EADDR"
+	}
+	CAB=BNC
+	[ -f $UPGRADE_STORE/$$.cab.ie6 ] && {
+		read CAB <$UPGRADE_STORE/$$.cab.ie6
+	}
+	check_get_parameters $DRV $NUM $CAB
+	NUM=`expr $NUM + 1`
+done
+
+	
+[ "$UPDEBUG" = YES ] && goany
+
+NUM=1
+DRV=EE16
+while [ $NUM -le "$EE16_NUM" ]
+do
+	echo "2 3 4 5 10 11" >/tmp/$DRV.intv
+	DFLT_INTV=5
+	ADDR_LIST=/tmp/$DRV.ioaddr
+	echo "200 20F\n210 21F\n220 22F\n230 23F" >$ADDR_LIST
+	echo "240 24F\n250 25F\n260 26F\n270 27F" >>$ADDR_LIST
+	echo "300 30F\n310 31F\n320 32F\n330 33F" >>$ADDR_LIST
+	echo "340 34F\n350 35F\n360 36F\n370 37F" >>$ADDR_LIST
+	IOADDR="300 30F" #default io addresses
+	[ -f $UPGRADE_STORE/$$.$NUM.ee16 ] && {
+		read DFLT_INTV SADDR EADDR Scma Ecma <$UPGRADE_STORE/$$.$NUM.ee16
+		IOADDR="$SADDR $EADDR"
+	}
+	CAB=AUI
+	[ -f $UPGRADE_STORE/$$.cab.ee16 ] && {
+		read CAB <$UPGRADE_STORE/$$.cab.ee16
+	}
+	check_get_parameters $DRV $NUM $CAB
+	NUM=`expr $NUM + 1`
+done
+
+	
+[ "$UPDEBUG" = YES ] && goany
+
+NUM=1
+DRV=EL16_AT
+while [ $NUM -le "$EL16_AT_NUM" ]
+do
+	echo "2 3 5 7 10 11 12 15" >/tmp/$DRV.intv
+	DFLT_INTV=3
+	ADDR_LIST=/tmp/$DRV.ioaddr
+	echo "200 20F\n210 21F\n220 22F\n230 23F" >$ADDR_LIST
+	echo "240 24F\n250 25F\n260 26F\n280 28F" >>$ADDR_LIST
+	echo "2A0 2AF\n2B0 2BF\n2C0 2CF\n2D0 2DF" >>$ADDR_LIST
+	echo "2E0 2EF\n300 30F\n310 31F\n320 32F" >>$ADDR_LIST
+	echo "330 33F\n340 34F\n350 35F\n360 36F" >>$ADDR_LIST
+	echo "380 38F\n390 39F\n3A0 3AF\n3E0 3EF" >>$ADDR_LIST
+	IOADDR="300 30F" #default io addresses
+	RAM_ADDR_LIST=/tmp/$DRV.ramaddr
+	echo "C0000 CFFFF\nC8000 D7FFF\nD0000 DFFFF" > $RAM_ADDR_LIST
+	echo "F00000 F0FFFF\nF20000 F2FFFF\nF40000 F4FFFF" >>$RAM_ADDR_LIST
+	echo "F60000 F6FFFF\nF80000 F8FFFF\nC0000 C3FFF" >>$RAM_ADDR_LIST
+	echo "C8000 CBFFF\nD0000 D3FFF\nD8000 DBFFF" >>$RAM_ADDR_LIST
+	echo "C0000 C7FFF\nC8000 CFFFF\nD0000 D7FFF" >>$RAM_ADDR_LIST
+	echo "D8000 DFFFF\nC0000 CBFFF\nC8000 D3FFF\nD0000 DBFFF" >>$RAM_ADDR_LIST
+	RAMADDR="C0000 CFFFF" # default ram addresses
+	[ -f $UPGRADE_STORE/$$.$NUM.el16 ] && {
+		read DFLT_INTV Sioa Eioa Scma Ecma <$UPGRADE_STORE/$$.$NUM.el16
+		IOADDR="$Sioa $Eioa"
+		RAMADDR="$Scma $Ecma"
+	}
+	CAB=AUI
+	[ -f $UPGRADE_STORE/$$.cab.el16 ] && {
+		read CAB <$UPGRADE_STORE/$$.cab.el16
+	}
+	ZWS=Disable
+	[ -f $UPGRADE_STORE/$$.zws.el16 ] && {
+		read ZWS <$UPGRADE_STORE/$$.zws.el16
+	}
+	check_get_parameters $DRV $NUM $CAB $ZWS
+	NUM=`expr $NUM + 1`
+done
+
+	
+[ "$UPDEBUG" = YES ] && goany
+
+NUM=1
+DRV=EL16_MCA
+while [ $NUM -le "$EL16_MCA_NUM" ]
+do
+	echo "2 3 7 12" >/tmp/$DRV.intv
+	DFLT_INTV=3
+	[ -f $UPGRADE_STORE/$$.$NUM.el16 ] && {
+		read DFLT_INTV Sioa Eioa Scma Ecma <$UPGRADE_STORE/$$.$NUM.el16
+	}
+	CAB=AUI
+	[ -f $UPGRADE_STORE/$$.cab.el16 ] && {
+		read CAB <$UPGRADE_STORE/$$.cab.el16
+	}
+	check_get_parameters $DRV $NUM $CAB
+	NUM=`expr $NUM + 1`
+done
+
+	
+[ "$UPDEBUG" = YES ] && goany
+
+NUM=1
+DRV=WD_MCA
+while [ $NUM -le "$WD_MCA_NUM" ]
+do
+	echo "3 4 10 15" >/tmp/$DRV.intv
+	DFLT_INTV=3
+	[ -f $UPGRADE_STORE/$$.$NUM.wd ] && {
+		read DFLT_INTV Sioa Eioa Scma Ecma <$UPGRADE_STORE/$$.$NUM.wd
+	}
+	check_get_parameters $DRV $NUM
+	NUM=`expr $NUM + 1`
+done
+
+	
+[ "$UPDEBUG" = YES ] && goany
+
+NUM=1
+DRV=WD_AT
+while [ $NUM -le "$WD_AT_NUM" ]
+do
+	echo "2 3 4 5 6 7" >/tmp/$DRV.intv
+	DFLT_INTV=3
+	ADDR_LIST=/tmp/$DRV.ioaddr
+	echo "200 21F\n220 23F\n240 25F\n260 27F\n280 29F\n2A0 2BF" >$ADDR_LIST
+	echo "2C0 2DF\n2E0 2FF\n300 31F\n320 33F\n340 35F\n360 37F" >>$ADDR_LIST
+	echo "380 39F\n3A0 3BF\n3C0 3DF\n3E0 3FF" >>$ADDR_LIST
+	IOADDR="280 29F"
+	RAM_ADDR=/tmp/$DRV.ramaddr
+	echo "80000 81FFF\n84000 85FFF\n88000 89FFF\n8C000 8DFFF" >$RAM_ADDR
+	echo "A0000 A1FFF\nA4000 A5FFF\nA8000 A9FFF\nAC000 ADFFF" >>$RAM_ADDR
+	echo "B0000 B1FFF\nB4000 B5FFF\nB8000 B9FFF\nBC000 BDFFF" >>$RAM_ADDR
+	echo "C0000 C1FFF\nC4000 C5FFF\nC8000 C9FFF\nCA000 CBFFF" >>$RAM_ADDR
+	echo "CC000 CDFFF\nD0000 D1FFF\nD4000 D5FFF\nD8000 D9FFF" >>$RAM_ADDR
+	echo "DC000 DDFFF\nE0000 E1FFF\nE4000 E5FFF\nE8000 E9FFF" >>$RAM_ADDR
+	echo "EC000 EDFFF\nF0000 F1FFF\nF4000 F5FFF\nF8000 F9FFF" >>$RAM_ADDR
+	echo "FC000 FDFFF" >>$RAM_ADDR
+	RAMADDR="D8000 D9FFF"
+	[ -f $UPGRADE_STORE/$$.$NUM.wd ] && {
+		read DFLT_INTV Sioa Eioa Scma Ecma <$UPGRADE_STORE/$$.$NUM.wd
+		IOADDR="$Sioa $Eioa"
+		RAMADDR="$Scma $Ecma"
+	}
+	check_get_parameters $DRV $NUM
+	NUM=`expr $NUM + 1`
+done
+
+	
+[ "$UPDEBUG" = YES ] && goany
+
+# Set "CLASSES" variable to speed up execution
+. $RSPDIR/boards
+[ $IMXLAN586_NUM -ne 0 ]  && CLASSES="imx586 ${CLASSES}"
+[ $IE6_NUM -ne 0 ] && CLASSES="ie6 ${CLASSES}"
+[ $EL16_AT_NUM -ne 0 -o $EL16_MCA_NUM -ne 0 ] && CLASSES="el16 ${CLASSES}"
+[ $EE16_NUM -ne 0 ] && CLASSES="ee16 ${CLASSES}"
+[ $WD_AT_NUM -ne 0 -o $WD_MCA_NUM -ne 0 ] && CLASSES="wd ${CLASSES}"
+echo CLASSES=\"${CLASSES}\" >> ${POST_FILE}
+
+rm -f /tmp/$$.*
+rm -f $UPGRADE_STORE/$$.* 
+menu -c
+exit 0

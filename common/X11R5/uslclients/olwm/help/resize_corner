@@ -1,0 +1,7 @@
+Use the resize corners to expand or contract the area of a window.
+
+Move the pointer to any resize corner, press SELECT, and drag the pointer.
+The resize corner highlights and a bounding box is displayed to show you
+the location of the new window border.  Release SELECT. The window is
+redisplayed in the new size, and the contents adjust to fit within the
+borders of the window.

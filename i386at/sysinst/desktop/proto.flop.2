@@ -1,0 +1,147 @@
+#ident	"@(#)proto:desktop/proto.flop.2	1.3.4.34"
+#ident	"$Header: $"
+/dev/null
+2440 448
+d--775 0 3
+LABEL		---644 2 2 LABEL
+usr	d--775 0 3
+	share	d--775 0 2
+		lib	d--775 0 2
+		   terminfo	d--775 0 2
+		          A	   d--775 0 2
+				   ANSI   ---644 0 3 $ROOT/$MACH/usr/share/lib/terminfo/a/ansi
+				   AT386   ---644 0 3 $ROOT/$MACH/usr/share/lib/terminfo/A/AT386
+				   AT386-M   ---644 0 3 $ROOT/$MACH/usr/share/lib/terminfo/A/AT386-M
+			           $
+			        $
+			$
+		$
+	lib	d--775 0 2
+		libc.so.1 ---555 2 2 $ROOT/$MACH/usr/lib/libc.so.1
+		$
+	sbin	d--775 0 2
+		adpt_type	---555 2 2 $ROOT/$MACH/usr/sbin/adpt_type
+		disksetup      	---555 2 2 $ROOT/$MACH/usr/sbin/disksetup
+		fdisk      	---555 2 2 $ROOT/$MACH/usr/sbin/fdisk
+		check_devs	---555 2 2 desktop/ifiles/check_devs
+		menu		---555 2 2 $ROOT/$MACH/usr/sbin/menu
+		$
+	bin	d--775 2 2
+		chmod	---555 2 2 $ROOT/$MACH/usr/bin/chmod
+		chown 	---555 2 2 $ROOT/$MACH/usr/bin/chown
+		chgrp	---555 2 2 $ROOT/$MACH/usr/bin/chgrp
+		date	---555 2 2 $ROOT/$MACH/usr/bin/date
+		find	---555 2 2 $ROOT/$MACH/usr/bin/find
+		mail	---555 2 2 $ROOT/$MACH/sbin/sync
+		cpio	---555 2 2 $ROOT/$MACH/usr/bin/cpio.dy
+		grep	---555 0 2 $ROOT/$MACH/usr/bin/grep.dy
+		mkdir	---555 2 2 $ROOT/$MACH/usr/bin/mkdir
+		expr	---555 2 2 $ROOT/$MACH/usr/bin/expr.dy
+		mv	---555 2 2 $ROOT/$MACH/usr/bin/mv.dy
+		rm	---555 2 2 $ROOT/$MACH/usr/bin/rm.dy
+		stty	---555 2 2 $ROOT/$MACH/usr/bin/stty
+		true	---555 2 2 $ROOT/$MACH/usr/bin/true
+		ed	---555 2 2 $ROOT/$MACH/usr/bin/ed.dy
+		$
+	$
+etc	d--755 0 3
+	autodsk0.lay	---644 0 3 autodsk0.lay
+	autodsk1.lay	---644 0 3 autodsk1.lay
+	autofstype	---644 0 3 autofstype
+	disk.ele	---644 0 3 disk.ele
+	disk.elebig	---644 0 3 disk.elebig
+	disk.elesm	---644 0 3 disk.elesm
+	mod_register	---644 0 3 _mod_register
+	group   	---644 0 3 $ROOT/$MACH/etc/group
+	passwd		---444 0 3 $ROOT/$MACH/etc/passwd
+	shadow		---400 0 3 $ROOT/$MACH/etc/shadow
+	TIMEZONE	l--777 0 3 /TIMEZONE
+	boot		---444 2 2 $ROOT/$MACH/etc/boot
+	mip		---444 0 3 $ROOT/$MACH/etc/initprog/mip
+	sip		---444 0 3 $ROOT/$MACH/etc/initprog/sip
+	default	d--775 0 3
+			bfs	---444 0 3 $ROOT/$MACH/etc/default/bfs
+			fstyp	---444 0 3 $ROOT/$MACH/etc/default/fstyp
+			s5	---444 0 3 $ROOT/$MACH/etc/default/s5
+			sfs	---444 0 3 $ROOT/$MACH/etc/default/sfs
+			ufs	---444 0 3 $ROOT/$MACH/etc/default/ufs
+			vxfs	---444 0 3 $ROOT/$MACH/etc/default/vxfs
+	$
+	fs	d--755 0 3
+		s5	d--755 0 3
+			mkfs ---555 0 3 $ROOT/$MACH/etc/fs/s5/mkfs.dy
+		$
+	$
+	scsi	d--755 2 2
+		format.d d--755 2 2
+			sd00.0 ---555 2 2 $ROOT/$MACH/etc/scsi/format.d/sd00.0
+			sd01.1 ---555 2 2 $ROOT/$MACH/etc/scsi/format.d/sd01.1
+		$
+		tc.index	---555 2 2 $ROOT/$MACH/etc/scsi/tc.index
+	$
+	inst	d--755 2 2
+		scripts		d--777 2 2
+			common.sh	---555 2 2 desktop/fdscripts/common.sh
+			chkinsttyp.sh	---555 2 2 desktop/fdscripts/chkinsttyp.sh
+			fdisk.sh	---555 2 2 desktop/fdscripts/fdisk.sh
+			custom_fs.sh	---555 2 2 desktop/fdscripts/custom_fs.sh
+			getFloppy3.sh	---555 2 2 desktop/fdscripts/getFloppy3.sh
+			hdprepare.sh	---555 2 2 desktop/fdscripts/hdprepare.sh
+			initialize.sh	---555 2 2 desktop/fdscripts/initialize.sh
+			mv2swap.sh	---555 2 2 desktop/fdscripts/mv2swap.sh
+			partitions.sh	---555 2 2 desktop/fdscripts/partitions.sh
+			trap.sh	---555 2 2 desktop/fdscripts/trap.sh
+			updebug.sh	---555 2 2 $ROOT/$MACH/usr/sbin/pkginst/updebug
+			boot.LIST	---555 2 2 $ROOT/$MACH/etc/inst/up/patch/boot.LIST
+		$
+		locale   d--755 2 2
+			C	  d--755 2 2
+				LOC_PKG ---777 0 3 desktop/LOC_PKG
+				menus	  d--755 2 2
+					helphelp ---644 0 3 $ROOT/$MACH/etc/inst/locale/C/menus/helphelp
+					menu_colors.sh ---755 0 3 $ROOT/$MACH/etc/inst/locale/C/menus/menu_colors.sh
+					menu.errs ---644 0 3 $ROOT/$MACH/etc/inst/locale/C/menus/menu.errs
+					fd	  d--755 2 2
+						trap.1 ---777 0 3 desktop/ifiles/fd/trap.1
+						error.1 ---777 0 3 desktop/ifiles/fd/error.1
+						tmproot ---777 0 3 desktop/ifiles/fd/tmproot
+						unexpdisk ---777 0 3 desktop/ifiles/fd/unexpdisk
+						unexpdisk2 ---777 0 3 desktop/ifiles/fd/unexpdisk2
+						chkinst.3 ---777 0 3 desktop/ifiles/fd/chkinst.3
+						chkinst.4 ---777 0 3 desktop/ifiles/fd/chkinst.4
+						chkinst.5 ---777 0 3 desktop/ifiles/fd/chkinst.5
+						getFlop3.1 ---777 0 3 desktop/ifiles/fd/getFlop3.1
+						initial.1 ---777 0 3 desktop/ifiles/fd/initial.1
+						initial.2 ---777 0 3 desktop/ifiles/fd/initial.2
+						initial.3 ---777 0 3 desktop/ifiles/fd/initial.3
+						initial.4 ---777 0 3 desktop/ifiles/fd/initial.4
+						part.2 ---777 0 3 desktop/ifiles/fd/part.2
+						part.9 ---777 0 3 desktop/ifiles/fd/part.9
+						part.1 ---777 0 3 desktop/ifiles/fd/part.1
+						getFlop3.2 ---777 0 3 desktop/ifiles/fd/getFlop3.2
+						copyfiles.1 ---777 0 3 desktop/ifiles/fd/copyfiles.1
+						msg.err1_bflop ---777 0 3 desktop/ifiles/fd/msg.err1_bflop
+						msg.err2_bflop ---777 0 3 desktop/ifiles/fd/msg.err2_bflop
+						timezone.1 ---777 0 3 desktop/ifiles/fd/timezone.1
+						timezone.2 ---777 0 3 desktop/ifiles/fd/timezone.2
+					$
+				$
+			$
+		$
+	$
+$
+sbin	d--777 2 2
+	sh      	---555 2 2 $ROOT/$MACH/usr/bin/ksh
+	setclk		---555 2 2 $ROOT/$MACH/sbin/setclk
+	memsize      	---555 2 2 $ROOT/$MACH/sbin/memsize.dy
+	mknod      	---555 2 2 $ROOT/$MACH/sbin/mknod.dy
+	uadmin		---555 2 2 $ROOT/$MACH/sbin/uadmin.dy
+	sync		---555 2 2 $ROOT/$MACH/sbin/sync
+	stepper    	---555 0 2 desktop/ifiles/stepper
+	instcmd		---555 2 2 desktop/ifiles/instcmd
+	$
+var	d--755 0 3
+	adm	d--755 0 3
+		$
+	$
+$

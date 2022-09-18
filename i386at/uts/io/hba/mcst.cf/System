@@ -1,0 +1,5 @@
+*ident	"@(#)uts-x86at:io/hba/mcst.cf/System	1.5"
+*ident	"$Header: $"
+$version 1
+$loadable mcst
+mcst	Y	1	0	0	0	320	32f	0	0	3

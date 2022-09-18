@@ -1,0 +1,31 @@
+#ident	"@(#)oamintf:common/cmd/oamintf/edsysadm/Text.namerr	1.1.3.3"
+#ident  "$Header: Text.namerr 2.0 91/07/12 $"
+
+################################################################################
+#	Module Name: Text.newerr
+#	Date: November 1990
+################################################################################
+title="Error Attempting to Rename"
+
+framemsg=`readfile $INTFBASE/conf.msg`
+
+close=`/usr/bin/rm -f ${TESTBASE}/newerr`
+
+text="
+An error occurred in your attempt to rename a menu or task.
+
+`readfile ${TESTBASE}/newerr`
+"
+
+rows=5
+columns=60
+
+altslks
+
+name=CONT
+button=11
+action=CLOSE
+
+name=CANCEL
+button=14
+action=CLEANUP

@@ -1,0 +1,8 @@
+#ident	"@(#)uts-x86:proc/ipc/shm.cf/Mtune	1.2"
+#ident	"$Header: $"
+* Shared Memory Parameters ----------
+SHMMAX		524288	131072	2097152
+SHMMIN		1	1	1
+SHMMNI		100	100	100
+SHMSEG		6	6	15
+SHMALL		512	256	2048

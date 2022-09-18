@@ -1,0 +1,47 @@
+#define pkgmgr_format 1
+#define pkgmgr_width 32
+#define pkgmgr_height 32
+#define pkgmgr_ncolors 6
+#define pkgmgr_chars_per_pixel 1
+static char * pkgmgr_colors[] = {
+" " , "#E400E400E400",
+"." , "#000000000000",
+"X" , "#8A00AE00DB00",
+"o" , "#AA00AA00AA00",
+"O" , "#00000000E000",
+"+" , "#710071007100"
+} ;
+static char * pkgmgr_pixels[] = {
+"                                ",
+"                                ",
+"                                ",
+"                                ",
+"                                ",
+"    ...............             ",
+"    .XXXXXXXXXXXXXX.            ",
+"    ..XXXXXXXXXXXXXX.           ",
+"    .X................          ",
+"    .XX.XXXXXXXXXXXXXX.         ",
+"    .XX.XX.............         ",
+"    .XX.XX..............        ",
+"    .XX.XX..ooooooooooo.        ",
+"    .XX.XX..ooooooooooo.        ",
+"    .XX.XX..O.o..Oooooo.        ",
+"    .XX.XX..ooooooooooo.        ",
+"    .XX.XX..O...oOo+++oooo+.    ",
+"    .XX.XX..ooooooo+++oo.o+.    ",
+"    .XX.XX..O.o..Oo+++oo.o+.    ",
+"    .XX.XX..ooooooo+++oooo+.    ",
+"    .XX.XX..ooooooo++++++++.    ",
+"    .XX.XX..ooooooo++++++++.    ",
+"    .XX.XX..ooooooo++++++++.    ",
+"    .XX.XX..ooooooo++++++++.    ",
+"    .XX.XX..ooooooo.........    ",
+"    .XX.XX..ooooooooooo.        ",
+"     .X.XX..ooooooooooo.        ",
+"      ..XXX.............        ",
+"       ................         ",
+"                                ",
+"                                ",
+"                                "
+} ;

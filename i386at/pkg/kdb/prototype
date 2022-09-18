@@ -1,0 +1,56 @@
+#ident	"@(#)pkg.kdb:prototype	1.6.2.9"
+#ident 	"$Header: $"
+
+#	Copyright (c) 1990  Intel Corporation
+#	All Rights Reserved
+#
+#	INTEL CORPORATION PROPRIETARY INFORMATION
+#
+#	This software is supplied to AT & T under the terms of a license
+#	agreement with Intel Corporation and may not be copied nor
+#	disclosed except in accordance with the terms of that agreement.
+
+!CONFDIR=/etc/conf
+!PACKDIR=$CONFDIR/pack.d
+
+i kdb/menu.kdb=menu.kdb
+i pkginfo
+i request
+i postinstall
+i preremove
+i copyright
+i depend
+
+!default 0644 bin bin
+
+d none /etc	0775 bin bin
+d none /etc/conf	0775 bin bin
+d none /etc/conf/bin	0775 bin bin
+
+d none /sbin	0775 bin bin
+d none /tmp	? ? ?
+d none /tmp/kdb-util	0775 bin bin
+d none /tmp/kdb		775	bin	bin
+d none /usr	0775 bin bin
+d none /usr/include	0775 bin bin
+d none /usr/include/sys	0775 bin bin
+
+v none /tmp/kdb-util/Driver.o=$PACKDIR/kdb-util/Driver.o
+v none /tmp/kdb-util/Space.c=$PACKDIR/kdb-util/space.c
+v none /tmp/kdb-util/Stubs.c=$PACKDIR/kdb-util/stubs.c
+v none /tmp/kdb-util/Master=$CONFDIR/mdevice.d/kdb-util
+v none /tmp/kdb-util/System=$CONFDIR/sdevice.d/kdb-util
+
+v none /tmp/kdb/Driver.o=$PACKDIR/kdb/Driver.o
+v none /tmp/kdb/Stubs.c=$PACKDIR/kdb/stubs.c
+v none /tmp/kdb/Master=$CONFDIR/mdevice.d/kdb
+v none /tmp/kdb/System=$CONFDIR/sdevice.d/kdb
+
+f none /sbin/kdb	0755 bin bin 
+
+!default 0444 bin bin
+
+f none /usr/include/sys/kdebugger.h
+
+f none /usr/include/sys/xdebug.h
+

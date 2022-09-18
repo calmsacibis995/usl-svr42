@@ -1,0 +1,102 @@
+#ident	"@(#)face:OBJECTS/spell/Form.spell	1.3.4.3"
+#ident  "$Header: Form.spell 1.7 92/01/29 $"
+
+form=$$uxface:237:"Spell Checker"
+
+`set -l I18N_P="$$uxface:241:Pathname:";
+fmlmax -c 2 "$I18N_P" | set -l FCOL`
+
+help=open text OBJECTS/Text.h "$$uxface:238:HELP on Spell Checker" "spell/T.hspell1"
+autolayout=true
+
+framemsg=$$uxface:239:"Enter the full pathname of a file, then press SAVE when you complete the form."
+
+`if [ ! -x /usr/bin/spell -o -d /usr/bin/spell ];
+then
+	message $$uxface:240:"I can't find /usr/bin/spell. Perhaps the SPELL Utilities are not installed.";
+	echo "init=false";
+fi`
+
+altslks=true
+
+close=`unset -l IMSG IMSG1 IMSG2 TT;
+unset -l I18N_P`
+
+done=`unset -l I18N_P`open TEXT OBJECTS/spell/Text.spell "${F1}"
+
+name=$I18N_P
+nrow=0
+ncol=1
+fcol=$FCOL
+# frow=0
+# fcol=12
+rows=1
+columns=48
+scroll=true
+rmenu=const { `ls -F|fmlgrep -v [/*]` }
+valid=`indicator -w;
+if [ -z "${F1}" ];
+then
+	set -l TT="0" -l IMSG1=$$uxface:137:"This is a mandatory field.";
+	echo false;
+elif [ ! -f "${F1}" ];
+then
+	set -l TT="38" -l IMSG1=$$uxface:242:"is not a regular file or does not exist.";
+	echo false;
+elif [ ! -r "${F1}" ];
+then
+	set -l TT="42" -l IMSG1=$$uxface:243:"You do not have permission to read ";
+	echo false;
+elif [ ! -s "${F1}" ];
+then
+	set -l TT="68" -l IMSG1=$$uxface:244:"is empty.";
+	echo false;
+else
+	set -l TT="0";
+	echo true;
+fi;
+if [ "$TT" = "0" ] ;
+then
+	set -l IMSG="${IMSG1}";
+else
+	pathconv -t -l -n ${TT} -v ${F1} | set -l IMSG2;
+	if [ "${TT}" = "42" ] ;
+	then
+		set -l IMSG="${IMSG1} ${IMSG2}.";
+	else
+		set -l IMSG="${IMSG2} ${IMSG1}";
+	fi;
+fi`
+invalidmsg="${IMSG}"
+
+name=$$uxface:144:"HELP"
+button=9
+action=help
+
+name=$$uxface:145:"CHOICES"
+button=10
+action=choices
+
+name=$$uxface:146:"SAVE"
+button=11
+action=done
+
+name=$$uxface:147:"PREV-FRM"
+button=12
+action=prev-frm
+
+name=$$uxface:148:"NEXT-FRM"
+button=13
+action=next-frm
+
+name=$$uxface:149:"CANCEL"
+button=14
+action=close
+
+name=$$uxface:150:"CMD-MENU"
+button=15
+action=cmd-menu
+
+name=""
+button=16
+

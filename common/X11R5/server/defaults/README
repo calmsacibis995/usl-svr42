@@ -1,0 +1,375 @@
+
+/*
+ * This file has general information about USL's Xwin server and dynamic
+ * linking of display libararies at run time.
+ *
+ * Also, you will find information about setting high resolution 
+ * (800x600 and 1024x768) * for super VGA boards.
+ */
+
+INTRODUCTION:
+=============
+
+	USL's Xwin server is divided into two modules; 1. 'core' and
+	2. 'display'; The core is an executable file (/usr/X/bin/X) and
+	the display library is linked at run time. The display library can
+	be configured by the user.
+
+	/usr/X/defaults/Xwinconfig file has the appropriate information about
+	the type of video board present in the system and the resolution that
+	the user wants to run the server. For more information on the format
+	of Xwinconfig file, see the sub-section 'Xwinconfig'.
+
+	USL supports standard VGA (640x480 16 colors) and super VGA (800x600
+	and 1024x768 in both 16 and 256 colors) and the corresponding drivers 
+	are delivered with the product. Users who require high performance 
+	graphics cards should contact the vendor to find out if they provide 
+	the driver for USL's Xwin server. 
+
+	USL is currently working with many high performance graphics board
+	vendors so that the vendors can provide the run-time library with 
+	their hardware. 
+
+VGA World::
+===========
+
+	Since the only standard in the 'VGA world' is 640x480 16 colors, USL's
+	Xwin product is delivered to run in the default mode, ie: 640x480 
+	and 16 colors. Drivers for all the popular VGA cards are 
+	provided with the system.
+
+	It is STRONGLY RECOMENDED that the user install the product with the 
+	default mode, run all the required software and make sure 
+	everything runs fine; and then switch to a high res mode.
+
+	There are two VGA drawing libraries: libvga16.so and libvga256.so
+	A VGA drawing library is split up into two individual libraries, one
+	for actual drawing and one for initialization. The actual drawing
+	library (libvga16.so or libvga256.so) is common to all VGA cards,
+	irrespective of the vendor. But, the initialzation library
+	is different for each VGA vendor. USL provides 
+	'initialization' libraries for most of the popular VGA cards;
+	they are in '/usr/X/lib/vgainit/' directory.
+	The drawing libraries, 'libvga16.so' and 'libvga256.so' recognize
+	the names, 'libv16i.so.1' and 'libv256i.so.1' respectively.
+	The 'initialization' library that corresponds to the user's VGA card
+	is copied as libv16i.so.1 or libv256i.so.1. For example, if the user
+	has ET4000 based board, '/usr/X/lib/vgainit/et4k_16i.so' is copied
+	as '/usr/X/lib/libv16i.so.1' and '/usr/X/lib/vgainit/et4k_256i.so' is
+	copied as '/usr/X/lib/libv256i.so.1'.
+	'misc_16i.so and misc_256i.so' contain initialization for miscellaneous
+	VGA boards (mostly older super VGA boards).
+
+	See examples below on how to manually edit the Xwinconfig file and also
+	how to find out the various resolution+monitor combinations supported
+	by a particular initialization library.
+
+	In a NETWORK ENV:
+	-----------------
+	If the 'X' resource is mounted across a net work, and different users
+	have different VGA cards, remove the 'init' libs, (ie: libv16i.so.1
+	and libv256i.so.1) from /usr/X/lib and let the users have their own 
+	copies (depending on the VGA card) in '/usr/lib';
+	The directory, '/usr/lib' is searched after $LD_LIBRARY_PATH, so the
+	'initialization' libraries in '/usr/lib' will be used.
+	If you are a stand-alone user, you can have the 'initialization'
+	libaries in '/usr/X/lib' (default).
+
+	BE CAREFUL WHEN YOU SELECT THE HIGH RESOLUTION MODES. A WRONG 
+	COMBINATION CAN EITHER reboot the machine, or damage the monitor.
+	For example, if I have a Tseng Labs ET4000 base board and if you 
+	choose one of the selections from Trident, it might cause serious
+	problems.
+
+	Also whenever you select one of the high-res modes, run 'sync' a few
+	times before you start the server. This will minimize the damage in
+	case the system reboots.  
+
+
+	setvgamode utility:
+	-------------------
+	This utility sets up configuration file for high res modes.
+	Run this utility ONLY after you make sure everything works.
+	To select a high resolution mode, the user can run this
+	utility (/usr/X/adm/setvgamode) program or an advanced user
+	can manually edit the "/usr/X/defaults/Xwinconfig" file.
+
+	To run the '/usr/X/adm/setvgamode' utility, you must be
+	super-user (ie: root).
+
+	If 'setvgamode' is executed with '-default' flag, the default
+	Xwinconfig (640x480, 16 colors) is restored. If no flags are
+	given, the user is prompted with a list of VGA vendors; once a vendor
+	is selected, then the user is prompted with the resolutions and the
+	monitors supported by that vendor. After the appropriate selection
+	is made, the /usr/X/defaults/Xwinconfig file is generated and the
+	corresponding 'initialization' library is installed.
+
+	IF YOU WANT TO RESTORE THE DEFAULT Xwinconfig FILE, execute the foll:
+		'/usr/X/adm/setvgamode -default'
+
+	ex: (you have to be super-user)
+
+	/usr/X/adm/setvgamode
+
+
+	For the advance User: (to edit Xwinconfig manually) :
+	=====================================================
+
+	The first line without a '#' in the first column is treated as a
+	valid entry in Xwinconfig file.
+
+	The following are two sample entries in Xwinconfig file:
+
+display VGA16 StaticColor "VGA STDVGA 640x480 16 9.75x7.32" 0 /dev/console /usr/X/lib/libvga16.so
+
+display VGA16 StaticColor "ET4000 MULTISYNC 800x600 16 9.75x7.32" 0 /dev/console /usr/X/lib/libvga16.so
+
+display VGA256 PseudoColor "ET4000 MULTISYNC 1024x768 9.75x7.32" 0 /dev/console /usr/X/lib/libvga256.so
+
+
+	description of various fields:
+
+	1st field 	: type of device (for now always 'display')
+	2nd field	: video class (ex: VGA16, VGA256, XGA, 8514 etc)
+	3rd field	: color class (always StaticColor for VGA16 and 
+			  PsuedoColor for 256 and other high performance boards)
+
+	4th field	: information passed on to the 'display library' that
+			  is linked at run time. The format within the string
+			  is dependent on the display library and varies for
+			  different display boards. More info on the 4th field
+			  later.
+	5th field	: display number
+	6th field	: the actual device (in most cases /dev/console)
+	7th field	: the display library
+	
+
+	4th field for VGA16 :  
+	---------------------
+			ex: "ET4000 MULTISYNC 800x600 16 9.75x7.32"
+
+		1st field : entry for the combination of the monitor, 
+			    resolution and color.
+		2nd field : type of monitor
+		3rd field : resolution
+		4th field : number of colors (valid only for 16 color library; 
+			    for 256 this field doesn't exist; a 16 color library
+			    can support 2, 4 and 16 colors, but 256 library
+			    supports only 256 colors)
+		5th field : monitor size, ie: width x height
+
+
+	Example: 
+		In this example, let us say I have a Trident 8900 based board
+		and I want to run in 1024x768 mode and 16 colors.
+
+		cp /usr/X/lib/vgainit/t89_16i.so /usr/X/lib/libv16i.so.1
+		cp /usr/X/lib/vgainit/t89.16cfg /usr/X/defaults/Xwinconfig
+
+		Now edit /usr/X/defaults/Xwinconfig file and remove the '#'
+		sign in the 1st column in the line that has the 1024x768 entry.
+
+		The procedure is the same for 256 modes. (ie: copy t89_256i.so
+		and t89.256cfg files).
+
+		You can have both the entries (ie: for 16 and 256) in the
+		same config file and control the mode you run by commenting
+		and uncommenting the appropriate lines.
+		OR
+		if you want to have a private copy of the config files 
+		(avoids editing the Xwinconfig file), here is an example:
+
+		cp /usr/X/lib/vgainit/t89.16cfg $HOME/cfg16
+		cp /usr/X/lib/vgainit/t89.256cfg $HOME/cfg256
+
+		Now to run the server,
+
+		X -config $HOME/cfg16
+		OR
+		X -config $HOME/cfg256
+
+
+		to run in 256 color mode: (ET4000 board and MULTISYNC monitor):
+		---------------------------------------------------------------
+
+		1. cp /usr/X/lib/vgainit/et4k_256i.so /usr/X/lib/libv256i.so.1
+		2. cp /usr/X/lib/vgainit/et4k.256cfg $HOME/cfg256
+		   OR
+		   cp /usr/X/lib/vgainit/et4k.256cfg /usr/X/lib/Xwinconfig
+
+		Make sure the required line-entry is uncommented in the 			config file from step-2 above.
+
+	How do I know which resolution+monitor combinations are supported?
+	------------------------------------------------------------------
+
+	If the entry (the 1st field in the information passed to the display
+	library, see example below) is not known to the init driver, all the 
+	supported modes are printed on stdout. For example the following 
+	entries (foo) will print all the combinations of the supported modes 
+	and monitors for a given 16 and 256 drivers respectively.
+
+	16 color init driver:
+	---------------------
+display VGA16 StaticColor "foo MULTISYNC 800x600 16 9.75x7.32" 0 /dev/console /usr/X/lib/libvga16.so
+
+	256 color init driver:
+	---------------------
+display VGA256 PseudoColor "foo MULTISYNC 1024x768 9.75x7.32" 0 /dev/console /usr/X/lib/libvga256.so
+	
+Colormaps:
+==========
+	In 16 color mode, the server reads the "/usr/X/defaults/Xwincmaps" file
+	to fill up the static color map. Each line has a 'R', 'G', and 'B'
+	values. There are a few colormaps in the default Xwincmaps file, but the
+	user can create his/her own colormap in this file. The server takes
+	the first colormap without '#' in the first column as the valid colormap
+	data.
+
+Miscellaneous:
+==============
+
+	1. How can I run the server in background from console?
+	   You cannot run the server in background from 'ksh'. To run the
+	   server in background, do the following:
+
+		/bin/sh
+		/usr/X/bin/X &
+
+	2. How can I run the server in realtime ?
+	   The default is the 'fixed class' scheduler class for the server.
+	   The fixed class scheduler is a new class in SVR4 ES, that is in
+	   between time sharing class and real time class. To run the server
+	   in a particular scheduler class:
+
+	   olinit -serverclass <realtime|fixed|timeshare>
+
+	   To manually run X in a particular scheduler class :
+
+		priocntl -e -c FC -m 25 -p 25  X &
+
+	   In the above line, FC can be replaced with RT for realtime the server 
+	3. How do I switch VT's ?
+	   Hold 'control' and 'alt' keys down simultaneously and then hit
+	   'sys-req' (printscreen).
+	   Release the 'control' and 'alt' keys
+	   Press the 'p' key
+
+	   At this point, you should be back to console with login prompt.
+
+	4. The screen is scrambled and I cannot do anything ....
+	   This could happen if you have inconsistent entry in 
+	   /usr/X/defaults/Xwinconfig file. 
+	   Try to VT switch; if you get a 'login' prompt, login and kill the
+	   server process.
+	   Then execute the following:
+
+		/usr/X/adm/setvgamode -default
+
+	   The above command restores the default mode.
+	   
+	5. xterm pops up a window and disappears ....
+	   set CONSEM=yes; export CONSEM and then run xterm
+
+	6. olinit returns without anything happening on the screen ....
+	   Sometimes, if the server dies abruptly, (ie: server does not exit
+	   normally), some files are left out which might cause the new
+	   invocation of the server to think that there is a server running.
+	   To get around the problem:
+
+	   	rm -f /dev/X/*
+
+	   and then either login again or run olinit
+
+	7. Cannot run in high resolution modes as non super user on ET4000,
+	   or ATI boards ....
+	   Prior to SVR4.1ES, you have to be super user to run in 
+	   high-resolution modes on any ET4000 or ATI boards.
+	   You do not have to be a super-user in SVR4.1ES (> load P9).
+
+	8. on IBM microchannel machines with built in VGA, cannot see anything
+	   on the screen.
+	   You need to have the true IBM monitor to run VGA 640x480 mode.
+
+	9. The screen is distorted if I run in 256 color modes with Trident
+	   T8900C based VGA board.
+	   Some newer versions of Trident T8900C boards are different from the
+	   earlier versions; all the 256 color modes are broken in some of
+	   the newer versions of T8900C, but works fine on some. We are working
+	   with Trident Microsystems on this problem, until then you cannot
+	   run the server in 256 color modes with some of the T8900C boards.
+
+	10. If I run in 1024x768 modes, my font size too small.
+	    The default font size is 75dpi. You must have edited the Xwinconfig
+	    file manually. Edit '/usr/X/defaults/Xwinfont' file and change the
+	    75dpi to 100dpi. 
+
+	11. Killing the server from console
+	    DO NOT kill the server with '-9' signal; this may not restore the
+	    state properly. Allways do the following:
+
+			kill <server pid>
+			kill <server pid>
+
+	    if you do kill twice, it should kill the server without any side
+	    effects.
+
+	12. 'killall' puts X in a wierd state.
+	    killall kills all the user-level processes, including mousemgr.
+	    During 'VT switch', the server goes to sleep and waits for input
+	    from mousemgr (apart waiting for other signals). Since the mousemgr
+	    doesn't exist anymore, X goes into wait state with 'init' as the
+	    owner. To avoid this problem, first kill X and then run 'killall'
+	    If you already ran 'killall' and X is hanging around, start
+	    'mousemgr' and then kill X.
+
+	13. With certain VGA cards and monochrome (VGA compatible) monitors
+	    nothing is displayed on the screen. Why ?
+	    This could be hardware problem. Some VGA cards detect the type
+	    of monitor and accordingly initialize the hardware. Some cards
+	    fail to correctly detect the type of monitor. 
+	    The WORKAROUND for this type of problem is power-on the monitor
+	    AFTER the machine (PC) is powered-on.
+	    In other words, power-on the machine, wait for 10-15 seconds, and
+	    then power-on the monitor. When there is no monitor connected,
+	    all (allmost) VGA cards default to monochrome monitor.
+
+	14. Cannot run clients from remote machines.
+	    A few things to check:
+
+		Did you run xhost +<hostname> ?
+		Is there an entry "xserver0 6000/tcp" in /etc/services file ?
+		Can you do regular "rlogin" or "ping" between the two machines ?
+
+	    If you don't care for network security, you can disable checking by
+	    starting the server with "-xnetaccess off",
+		example: olinit -- -xnetaccess off
+			OR
+			X -xnetaccess off &
+
+	15. After "killall" command, there is X process hanging around which
+	    ties up one vt. 
+	    When you Vt-switch, X
+	    goes into 'sleep' state and waits for input from mousemgr before
+	    the server dies. But, the mousemgr is already killed, and init
+	    is the new owner of X. In this state X cannot be killed, but
+	    if the "/usr/lib/mousemgr" is started again, then X is killed
+	    immediately. 
+	    DO NOT run "killall" while X is running; first kill X and then
+	    run "killall" 
+		
+	16. System freezes randomly while running in 256 high res modes.
+	    Disable your Video BIOS from system setup. If the problem still
+	    persists, go to the next lower resolution. If it still persists,
+	    You might need a new initialization driver for your card.
+
+	17. The mouse drags slowly as if it tries to catch up ....
+	    (This problem is true on bus mouse only)
+	    Change the interrupt and try again; ie: run mouseadmin, remove
+	    the mouse, and attach the bus mouse again with a different
+	    interrupt.
+
+	18. Cannot run the server in realtime mode, eventhough -class realtime
+	    is specified.
+	    You need to have "cmds" pkg installed. This pkg has the utilities
+	    realated to realtime processes.

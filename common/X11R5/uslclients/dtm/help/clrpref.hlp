@@ -1,0 +1,159 @@
+#ident	"@(#)dtm:help/clrpref.hlp	1.9"
+^*version^1
+^*title^Color Preferences
+^:Color
+^*width^70
+^+DesktopMgr/help.defs
+^?Customizing window and workspace colors.
+^0^Color Preferences
+^$10
+Color Preferences
+
+Color Preferences allows you to change the colors of the windows and
+workspace area of the Desktop. You can choose colors for the various
+parts of the windows or select from among the several color-
+combinations supplied.
+
+The following window is provided for Color Preferences:
+
+        \k(Color Preferences Window)
+^1^Color Preferences Window
+^$20
+\k{Color Preferences}
+1. Color Preferences Window
+
+Use the Color Preferences Window to display the current color
+combination in a sample window and provides a color palette from which
+you choose colors. If you want, you can choose from among several
+preset color schemes.
+
+The first line of the Color Preferences window contains a CATEGORY
+button (arrow). This button lets you quickly switch Preferences
+categories (including preferences for Color, Desktop, Icons, Keyboard,
+Locale, Miscellaneous, and Mouse). When you click on the arrow, a menu
+appears with the Preferences categories listed. Click on the
+Preferences category you want or click on Next Page to get the next
+Preferences category in the list.
+
+The buttons available from the Color Preferences window are:
+
+        \k(Apply Button^^Apply ButtonColor)
+        \k(Reset Button^^Reset ButtonColor)
+        \k(Reset to Factory Button^^Reset to Factory ButtonColor)
+        \k(Cancel Button^^Cancel ButtonColor)
+        \k(Help Button^^Help ButtonColor)
+
+More information: \k(How to Change Colors)
+^2^How to Change Colors
+^$30
+1. \k{Color Preferences Window}
+   1.1 How to Change Colors
+
+The main part of the Color Preferences window is where you actually
+change colors. At the top of this section is the Color Combinations
+menu button.  To choose one of the preset color combinations, click
+on the arrow. A menu appears with a choice of color combinations.
+Click on the color combination you want. The change is immediately
+reflected in the sample window.
+
+To create your own color combination, use either the seven items
+farther down the window and/or the Color Sample window. You can
+change the color of any of the following screen areas: Workspace,
+Window Background, Input Window, Input Focus, Text Foreground, Text
+Background, and Help Highlighting.
+
+To select the area you want to change click on the text line or on the
+section of the sample window you want to change. Next, if your system
+displays only 16 colors, click on one of the colors under Color
+Choices. If your system displays 256 colors, use the sliders to create
+custom colors (move the mouse pointer over the slider, press and hold
+the left mouse button, move the slider, and release the mouse button).
+The change is immediately reflected in the sample window. You can
+change colors as many times as you like before you actually apply the
+change. Select Apply when you want to save and apply your changes.
+
+	\k(For limited color and grayscale displays)
+	\k(For full color and grayscale displays)
+	\k(For black and white displays)
+^3^For limited color and grayscale displays
+^$32
+1. \k{Color Preferences Window}
+   1.1 \k{How to Change Colors}
+       1.1.1 For limited color and grayscale displays
+
+In the Color Sample area, click the SELECT mouse button over the
+element you want to change. Then, in the color palette across the
+top of the property sheet, click SELECT over the color you want to
+give to the sample element. You can also click SELECT over one of
+the named elements in the 6-item list to the left. This is another
+way to select an element to color, instead of clicking in the
+Color Sample. You can also click ADJUST in the 6-item list to
+select more than one element to color simultaneously. (ADJUST
+doesn't work in the Color Sample.)  Note that you have select
+the Help Highlighting item to change it.
+
+^3^For full color and grayscale displays
+^$34
+1. \k{Color Preferences Window}
+   1.1 \k{How to Change Colors}
+        1.1.2 For full color and grayscale displays
+
+In the Color Sample area, click the SELECT mouse button over the
+element you want to change. Then, choose a color by moving the
+slider(s) at the top of the property sheet. For grayscale displays
+the single slider adjusts the shade of gray from black to white.
+For color displays, the sliders adjust the amounts of Red, Green,
+and Blue in the final color.
+
+^3^For black and white displays
+^$36
+1. \k{Color Preferences Window}
+   1.1 \k{How to Change Colors}
+       1.1.3 For black and white displays
+
+The possibilities are more limited; click SELECT on the box of
+your choice to get either ``white on black'' or ``black on white''
+windows.
+^2^Apply Button=Apply ButtonColor
+^$40
+1. \k{Color Preferences Window}
+   1.2 Apply Button
+
+The Apply button saves and applies all changes made in any preferences
+window. If you changed any colors, the changes are immediately applied
+to all Desktop applications, including those currently open. After
+applying the changes, the Color Preferences window closes.
+^2^Reset Button=Reset ButtonColor
+^$50
+1. \k{Color Preferences Window}
+   1.3 Reset Button
+
+The Reset button reverses any changes you have not yet applied in the
+Color Preferences window. The Color preferences window remains open.
+
+Note: The Reset button does not affect the saved values, which are
+changed only when the \k(Apply button^^Apply ButtonColor) is used.
+^2^Reset to Factory Button=Reset to Factory ButtonColor
+^$60
+1. \k{Color Preferences Window}
+   1.4 Reset to Factory Button
+
+The Reset to Factory button resets all colors to those originally set
+in the software. Use the \k(Apply button^^Apply ButtonColor) to have the factory colors take
+effect. The Color Preferences window remains open.
+
+Note: The Reset to Factory button does not affect the saved values,
+which are changed only when the Apply button is used.
+^2^Cancel Button=Cancel ButtonColor
+^$70
+1. \k{Color Preferences Window}
+   1.5 Cancel Button
+
+The Cancel button closes the Color Preferences window without making
+any changes.
+^2^Help Button=Help ButtonColor
+^$80
+1. \k{Color Preferences Window}
+   1.6 Help Button
+
+The Help button provides on-line help for the Color Preferences window.

@@ -1,0 +1,19 @@
+.\"ident	"@(#)olwm:olwm.man	1.1"
+
+.TH OLWM 1 "21 December 1988" "X Version 11"
+.SH NAME
+olwm - Open Look Window Manager
+.SH SYNOPSIS
+.B olwm
+.SH DESCRIPTION
+.B olwm
+is the AT&T window manager embodying the look and feel of Open Look.
+It allows the user to create, move, resize, raise, lower, iconify, and
+delete windows.
+.SH "SEE ALSO"
+X(1)
+.SH COPYRIGHT
+Copyright 1988, Massachusetts Institute of Technology.
+Copyright 1988, AT&T
+.br
+See \fIX(1)\fP for a full statement of rights and permissions.

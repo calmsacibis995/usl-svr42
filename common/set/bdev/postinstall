@@ -1,0 +1,105 @@
+#ident	"@(#)set:common/set/bdev/postinstall	1.1"
+#ident	"$Header: $"
+
+trap "rm -f /tmp/*$$; exit" 0 2
+
+rm -f /tmp/pkgfail
+
+#
+#  Postinstall script for set installation.  Reports, using
+#  the menu tool, on what packages installed correctly and
+#  what packages did not.
+#
+
+#
+#  Make sure LANG environment variable is set.  If it's not set
+#  coming into this script, then default to the C-locale.
+#
+[ ${LANG} ] || LANG="C"
+export LANG
+
+#
+#  If menus are not under the ${LANG} dirm then fall back to the C-locale.
+#
+if [ -d /etc/inst/locale/${LANG}/menus ]
+then
+	ROOTMENU=/etc/inst/locale/${LANG}/menus
+else
+	ROOTMENU=/etc/inst/locale/C/menus
+fi
+
+MENU_DIR=${ROOTMENU}/bdev
+UPGRADE_MSGS=${ROOTMENU}/upgrade
+UPGRADE_STORE=/var/sadm/upgrade
+
+[ -d ${MENU_DIR} ] || mkdir -p ${MENU_DIR}
+cp ${REQDIR}/bdev/set.* ${MENU_DIR} > /dev/null 2>&1
+cp ${MENU_DIR}/set.6 /tmp/set.6.$$ > /dev/null 2>&1
+
+while read PKGABBR PKGNAME
+do
+	pkginfo -i ${PKGABBR} > /dev/null 2>&1
+	if [ $? = 0 ]
+	then
+		#
+		#  Successful install.  Tack on to .top of /tmp/set.6
+		#
+		echo "\tSucceeded\t${PKGNAME}" >> /tmp/set.6.$$
+	else
+		#
+		#  Unsuccessful install.  Tack on to .top of /tmp/set.6
+		#  and touch pkgfail to let menu know that pkgs have failed.
+		#
+		> /tmp/pkgfail
+		echo "\tFailed\t\t${PKGNAME}" >> /tmp/set.6.$$
+	fi
+done < /tmp/name_final_y
+
+#
+# Use col -x to convert TABS to spaces to keep menu tool happy.
+#
+col -x < /tmp/set.6.$$ > /tmp/set.6 2>&1
+
+############### Begin UPGRADE/OVERLAY ############
+
+[ -f $UPGRADE_STORE/nomrg.list ] && {
+	# NOMRGLIST is the list of pkgs whose system files are not combined.
+	read NOMRGLIST <$UPGRADE_STORE/nomrg.list
+	rm -f $UPGRADE_STORE/nomrg.list
+
+	# NOMRGMSG is the name of the file containing the 'nomerge msg'
+	NOMRGMSG=$UPGRADE_MSGS/mergefiles.4
+
+	export NOMRGLIST NOMRGMSG
+}
+
+[ -f $UPGRADE_STORE/mrgfail.list ] && {
+	# MRGFAILLIST is the list of pkgs for which 'up_merge' failed
+	read MRGFAILLIST <$UPGRADE_STORE/mrgfail.list
+	rm -f $UPGRADE_STORE/mrgfail.list
+
+	#MRGFAILMSG is the name of the file containing 'up_merge failed' msg
+	MRGFAILMSG=$UPGRADE_MSGS/mergefiles.2
+
+	# MRGFAILFILES is the list of specific system files for various 
+	# pkgs for which  up_merge failed
+
+	MRGFAILFILES=$UPGRADE_STORE/mrgfail.files
+	export MRGFAILLIST MRGFAILMSG MRGFAILFILES
+}
+
+############### End UPGRADE/OVERLAY ############
+
+#
+#  Put the finishing touches on this menu
+#
+[ -f /tmp/pkgfail ] && echo  >> /tmp/set.6
+[ -f /tmp/pkgfail ] && echo "Details on any failures are detailed in electronic mail sent to the" >> /tmp/set.6
+[ -f /tmp/pkgfail ] && echo "login ID \"root\"" >> /tmp/set.6
+[ "${NOMRGLIST}" -o "${MRGFAILLIST}" ] && echo " " >> /tmp/set.6
+[ "${NOMRGLIST}" -o "${MRGFAILLIST}" ] && echo "Press the 'F1' key for information about your System Setup Files." >> /tmp/set.6
+echo  >> /tmp/set.6
+
+menu -f /tmp/set.6 -o /tmp/out < /dev/tty > /dev/tty 2> /dev/null
+
+rm -f $UPGRADE_STORE/mrgfail.files

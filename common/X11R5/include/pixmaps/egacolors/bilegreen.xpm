@@ -1,0 +1,19 @@
+#define bilegreen_format 1
+#define bilegreen_width 8
+#define bilegreen_height 8
+#define bilegreen_ncolors 2
+#define bilegreen_chars_per_pixel 1
+static char * bilegreen_colors[] = {
+" " , "#AAAAFFFF5555",
+"." , "#AAAA55550000"
+} ;
+static char * bilegreen_pixels[] = {
+" . . . .",
+". . . . ",
+" . . . .",
+". . . . ",
+" . . . .",
+". . . . ",
+" . . . .",
+". . . . "
+} ;

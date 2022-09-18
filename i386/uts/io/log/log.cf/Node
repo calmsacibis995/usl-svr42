@@ -1,0 +1,4 @@
+#ident	"@(#)uts-x86:io/log/log.cf/Node	1.2"
+#ident	"$Header: $"
+log	log	c	5	0	0	444
+log	conslog	c	0	0	0	222

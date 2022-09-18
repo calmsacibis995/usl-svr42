@@ -1,0 +1,27 @@
+#!/usr/bin/wksh -openlook
+
+VALUE=1
+
+selectCB() {	# $1 = widget handle of label
+	OlFlatGetValues $CB_WIDGET $CB_INDEX label:LABEL
+	case "$LABEL" in
+	Quit)
+		exit 0
+		;;
+	One)
+		OlFlatSetValues $CB_WIDGET $CB_INDEX label:"Two"
+		;;
+	Two)
+		OlFlatSetValues $CB_WIDGET $CB_INDEX label:"One"
+		;;
+	esac
+}
+  
+OlInitialize TOPLEVEL quit2 Quit2 "$@"
+
+XtCreateManagedWidget BUTTONS buttons flatButtons $TOPLEVEL \
+	itemFields:{label} items:{Quit},{One}
+XtSetValues $BUTTONS selectProc:selectCB
+
+XtRealizeWidget $TOPLEVEL
+XtMainLoop

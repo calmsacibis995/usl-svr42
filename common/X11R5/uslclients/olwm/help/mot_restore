@@ -1,0 +1,19 @@
+Restore
+
+	Use the Restore item to return the dimensions of the window
+	at the pointer location to the default window size. The
+	Restore button can be used for windows that have been
+	minimized (iconified) or maximized.
+
+From iconic (minimized) state:
+
+	When an application is started up as an icon, the first time
+	you restore it the application base window is displayed in a
+	location specified by the application. Subsequently, each time
+	you open an icon it is displayed in the same location and state
+	that it had when you iconified it.
+
+From maximized state:
+
+	When a window is restored from the maximized state, the window
+	is resized to the dimensions that it had prior to being maximized.

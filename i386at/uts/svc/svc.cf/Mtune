@@ -1,0 +1,34 @@
+#ident	"@(#)uts-x86at:svc/svc.cf/Mtune	1.6"
+#ident	"$Header: $"
+
+* Parameters for svc module ------------------
+NGROUPS_MAX	16	1	16
+* XENIX Parameters ------------------
+DSTFLAG		1	0	1
+TIMEZONE	480	0	1440
+* Resource Limit Parameters ------------------
+*
+* Default per process resource limits (set to 0x7FFFFFFF for infinite limit)
+* S prefix is for soft limits, H prefix is for hard limits
+*
+* CPULIM - maximum combined user and system time in seconds
+* FSZLIM - maximum file size in bytes
+* DATLIM - maximum writeable mapped memory (swap space) in bytes
+* STKLIM - maximum size of current stack in bytes
+* CORLIM - maximum size of core file in bytes
+* FNOLIM - maximum number of file descriptors
+* VMMLIM - maximum amount of simultaneously mapped virtual memory in bytes
+SCPULIM		0x7FFFFFFF	60		0x7FFFFFFF
+HCPULIM		0x7FFFFFFF	60		0x7FFFFFFF
+SFSZLIM		0x800000	0x100000	0x7FFFFFFF
+HFSZLIM		0x800000	0x100000	0x7FFFFFFF
+SDATLIM		0x1000000	0x1000000	0x7FFFFFFF
+HDATLIM		0x1000000	0x1000000	0x7FFFFFFF
+SSTKLIM		0x1000000	0x2000		0x7FFFFFFF
+HSTKLIM		0x1000000	0x2000		0x7FFFFFFF
+SCORLIM		0x100000	0x100000	0x7FFFFFFF
+HCORLIM		0x100000	0x100000	0x7FFFFFFF
+SFNOLIM		0x40		0x20		0x400
+HFNOLIM		0x400		0x20		0x400
+SVMMLIM		0x1000000	0x1000000	0x7FFFFFFF
+HVMMLIM		0x1000000	0x1000000	0x7FFFFFFF

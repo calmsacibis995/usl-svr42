@@ -1,0 +1,44 @@
+#ident	"@(#)oamintf:common/cmd/oamintf/softwaremgmt/remove/Help	1.1.7.2"
+#ident  "$Header: Help 2.0 91/07/12 $"
+
+ABSTRACT:
+	This task removes software packages from the system or
+	spooled on a device.
+
+pkgloc:Software Location
+	Enter the word "installed" to indicate that you want to
+	remove software which is currently installed on your system.
+	To remove software which is spooled, enter the device on
+	which the software resides (e.g., "diskette1" or "9track1".)
+	To indicate the default spool directory, enter "spool".
+
+pkgid:Package Selection
+	If you wish to remove a specific package, enter the package
+	instance identifier (e.g., "spell" or "rfs").  You may enter
+	multiple package identifiers by separating each one with a
+	comma (e.g., "spell,rfs,windowing".) To remove all instances of
+	a particular package, use a wildcard format (e.g. "dbase.*").
+
+	WARNING:  Do NOT remove package associated with the operation
+	of sysadm from within sysadm.  These include 'fmli', 'lp' and
+	'oam'.  If you want to remove these packages, it is HIGHLY
+	recommended that you use the 'pkgrm' command from outside of
+	sysadm.  If you wish to remove all packages (which includes the
+	packages necessary for sysadm to work) you can enter 'pkgrm all'
+	from the shell command line.  'All' is NOT a valid choice for a
+	package under remove.
+
+dftfile:Name of Admin File to be Used
+	Enter the name of an installation administration file to be
+	used instead of the default admin file.
+
+	The software removal task checks for errors during execution.
+	When a problem occurs, the task checks the admin file for
+	instructions on how to proceed.  The file defines values for
+	eleven parameters, each supplying a resolution to a potential
+	problem.
+
+	The system provides a default admin file name "default".  If
+	you want to assign different values for your default
+	parameters, you can create and use multiple admin files.
+

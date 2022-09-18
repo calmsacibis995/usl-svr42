@@ -1,0 +1,27 @@
+	{
+	"%s %s", /* Controller Name */
+	(CCAP_RETRY | CCAP_ERRCOR), /* capabilities */
+	0L,                     /* No memory address */
+	0L,                     /* No memory address */
+	0x%lx,                  /* Primary I/O space address (task file) */
+	0x%lx,                  /* Secondary I/O address(Fixed Disk Register) */
+	0,                      /* No DMA */
+	0,                      /* No DMA */
+	255,                    /* Max # of sector transfer count */
+	2,                      /* Up to 2 drives */
+	10,                     /* 100us drive switch delay */
+	%u,                      /* Start at minormap entry 0 (minor dev 0) */
+	512,                    /* Default sector size (all you get on AT) */
+	athd_bdinit,            /* init board function */
+	athd_drvinit,           /* init drive function */
+	athd_cmd,               /* command function */
+	NULL,                   /* no open function */
+	NULL,                   /* no close function */
+	NULL,                   /* No Master Interrupt */
+		{               /* Interrupt entries */
+		%u, athd_int,   /* First Hardware Interrupt */
+		},
+		{               /* Special IOCTL handlers */
+		0,              /* None present */
+		},
+	},

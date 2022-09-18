@@ -1,0 +1,15 @@
+#ident	"@(#)lp.admin:printers/reports/Text.form.stat	1.2.3.1"
+#ident  "$Header: Text.form.stat 2.0 91/07/12 $"
+
+#	Module Name: Text.form.stat 
+
+title="Form Status" 
+
+
+begrow=36
+begrow=1
+rows=10
+columns=40
+text="`if [ -n "$TFADMIN" ]; then $TFADMIN lpstat -f$ARG1;
+else lpstat -f$ARG1; fi`"
+

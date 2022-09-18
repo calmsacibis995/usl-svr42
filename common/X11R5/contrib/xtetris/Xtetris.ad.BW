@@ -1,0 +1,155 @@
+Xtetris.boxSize:	16
+Xtetris.eraseStipple:	stripe4
+Xtetris*Background:	black
+Xtetris*BorderColor:	white
+Xtetris*Font:	-*-helvetica-bold-r-*-*-*-120-*-*-*-*-*-*
+Xtetris.Frame*sensitive:	true
+Xtetris.Frame.Buttons*width:	80
+Xtetris.Frame.Buttons.NewGame.Label:	Reset
+Xtetris.Frame.Buttons.NewGame.fromHoriz:	Start
+Xtetris.Frame.Buttons.NewGame.fromVert:	Start
+Xtetris.Frame.Buttons.NewGame.horizDistance:	-82
+Xtetris.Frame.Buttons.NewGame.translations:	#augment \
+					<Btn1Down>,<Btn1Up>:NewGame() notify()
+Xtetris.Frame.Buttons.Pause.Label:	Stop
+Xtetris.Frame.Buttons.Pause.mapWhenManaged:	False
+Xtetris.Frame.Buttons.Pause.translations:	#override \
+					<Btn1Down>,<Btn1Up>:Pause()
+Xtetris.Frame.Buttons.Quit.Label:	Quit
+Xtetris.Frame.Buttons.Quit.fromHoriz:	Start
+Xtetris.Frame.Buttons.Quit.fromVert:	NewGame
+Xtetris.Frame.Buttons.Quit.horizDistance:	-82
+Xtetris.Frame.Buttons.Quit.sensitive:	True
+Xtetris.Frame.Buttons.Quit.translations:	#augment \
+					<Btn1Down>,<Btn1Up>:Quit() notify()
+Xtetris.Frame.Buttons.Scores.Label:	Scores
+Xtetris.Frame.Buttons.Scores.fromHoriz:	Start
+Xtetris.Frame.Buttons.Scores.fromVert:	Quit
+Xtetris.Frame.Buttons.Scores.horizDistance:	-82
+Xtetris.Frame.Buttons.Scores.translations:	#augment \
+					<Btn1Down>,<Btn1Up>:Scores() notify()
+Xtetris.Frame.Buttons.Start.Label:	Start
+Xtetris.Frame.Buttons.Start.resizeable:	True
+Xtetris.Frame.Buttons.Start.sensitive:	True
+Xtetris.Frame.Buttons.Start.translations:	#override \
+					<Btn1Down>,<Btn1Up>:Start()
+Xtetris.Frame.Buttons.borderWidth:	0
+Xtetris.Frame.Buttons.fromVert:	Status
+Xtetris.Frame.Buttons.hSpace:	0
+Xtetris.Frame.Buttons.vertDistance:	10
+Xtetris.Frame.Buttons.width:	100
+Xtetris.Frame.Canvas.fromHoriz:	TitleBar
+Xtetris.Frame.Canvas.fromVert:	TitleBar
+! Xtetris.Frame.Canvas.height:	480
+Xtetris.Frame.Canvas.height:	336
+Xtetris.Frame.Canvas.sensitive:	True
+Xtetris.Frame.Canvas.translations: \
+				      <Expose>:Refresh() \n\
+				      !Shift<Btn1Down>:RotateCCW() \n\
+				      !<Btn1Down>:MoveLeft() \n\
+				      !Shift<Btn3Down>:RotateCW() \n\
+				      !<Btn3Down>:MoveRight() \n\
+				      !Shift<Btn2Down>:Drop() \n
+Xtetris.Frame.Canvas.accelerators: \
+				      <Key>space:Drop() \n\
+				      <Key>h:MoveLeft() \n\
+				      <Key>q:Quit() \n\
+				      <Key>p:Pause() \n\
+				      <Key>s:Start() \n\
+				      <Key>r:NewGame() \n\
+				      <Key>Left:MoveLeft() \n\
+				      <Key>j:RotateCCW() \n\
+				      <Key>Down:RotateCW() \n\
+				      <Key>Begin:RotateCW() \n\
+				      <Key>k:RotateCW() \n\
+				      <Key>Up:RotateCCW() \n\
+				      <Key>l:MoveRight() \n\
+				      <Key>Right:MoveRight() \n
+Xtetris.Frame.Canvas.vertDistance:	-22
+Xtetris.Frame.Canvas.width:	160
+Xtetris.Frame.NextObject.borderWidth:	0
+Xtetris.Frame.NextObject.fromHoriz:	TitleBar
+Xtetris.Frame.NextObject.fromVert:	NextObjectLabel
+Xtetris.Frame.NextObject.height:	64
+Xtetris.Frame.NextObject.horizDistance:	-100
+Xtetris.Frame.NextObject.width:	64
+Xtetris.Frame.NextObject.translations: \
+				      <Expose>:Refresh() \n
+Xtetris.Frame.NextObjectLabel.Label:	Next Object
+Xtetris.Frame.NextObjectLabel.borderWidth:	0
+Xtetris.Frame.NextObjectLabel.fromVert:	TitleBar
+Xtetris.Frame.NextObjectLabel.vertDistance:	20
+Xtetris.Frame.NextObjectLabel.width:	100
+Xtetris.Frame.Shadow.fromHoriz:	TitleBar
+Xtetris.Frame.Shadow.fromVert:	Canvas
+Xtetris.Frame.Shadow.height:	16
+Xtetris.Frame.Shadow.width:	160
+Xtetris.Frame.Shadow.translations: \
+				      <Expose>:Refresh() \n
+Xtetris.Frame.Status*borderWidth:	0
+Xtetris.Frame.Status*displayCaret:	False
+Xtetris.Frame.Status.Game.resize:	True
+Xtetris.Frame.Status.Game.string:	"          "
+Xtetris.Frame.Status.Game.width:	80
+Xtetris.Frame.Status.Level.string:	Level: 0
+Xtetris.Frame.Status.Level.width:	80
+Xtetris.Frame.Status.Rows.resize:	True
+Xtetris.Frame.Status.Rows.string:	Rows: 0
+Xtetris.Frame.Status.Rows.width:	80
+Xtetris.Frame.Status.Score.resize:	True
+Xtetris.Frame.Status.Score.string:	Score: 0
+Xtetris.Frame.Status.Score.width:	80
+Xtetris.Frame.Status.borderWidth:	0
+Xtetris.Frame.Status.fromVert:	TitleBar
+Xtetris.Frame.Status.left:	ChainLeft
+Xtetris.Frame.Status.right:	ChainRight
+! Xtetris.Frame.Status.vertDistance:	175
+Xtetris.Frame.Status.vertDistance:	130
+Xtetris.Frame.Status.width:	100
+Xtetris.Frame.TitleBar.Font:	-*-new century schoolbook-*-i-*-*-*-120-*-*-*-*-*-*
+Xtetris.Frame.TitleBar.Label:	XTETRIS 2.4
+Xtetris.Frame.TitleBar.foreground:	white
+Xtetris.Frame.TitleBar.height:	20
+Xtetris.Frame.TitleBar.width:	100
+Xtetris.Object.stipple:	box16
+Xtetris.Object.Background:	black
+Xtetris.Score_frame.Score_panel.Done.sensitive:	True
+Xtetris.Score_frame.Score_panel.Done.translations:	#augment <Btn1Down>,<Btn1Up>:Done()\n
+Xtetris.Score_frame.Score_panel.Score_item.borderWidth:	0
+Xtetris.Score_frame.Score_panel.Score_item.displayCaret:	False
+Xtetris.Score_frame.Score_panel.Score_item.font:	-*-fixed-medium-r-*-*-*-120-*-*-*-*-*-*
+Xtetris.Score_frame.Score_panel.Score_item.resize:	True
+Xtetris.Score_frame.Score_panel.Score_item.resizeable:	True
+Xtetris.Score_frame.Score_panel.Score_item.Label:	Pos  Name             Score  Rows Lev Machine     When           
+! Xtetris.Score_frame.Score_panel.Score_item.width:	500
+Xtetris.Score_frame.Score_panel.Score_item.width:	480
+Xtetris.Score_panel.Done.sensitive:	True
+Xtetris.Score_panel.Done.translations:	#augment <Btn1Down>,<Btn1Up>:Done()\n
+!
+Xtetris*Foreground:	white
+Xtetris.Frame.Buttons*borderColor:	white
+Xtetris.Frame.Buttons.Pause.Background:	black
+Xtetris.Frame.Buttons.Pause.Foreground:	white
+Xtetris.Frame.Buttons.Start.Background:	black
+Xtetris.Frame.Buttons.Start.Foreground:	white
+Xtetris.Frame.Canvas.background:	black
+Xtetris.Frame.Shadow.background:	black
+Xtetris.Frame.Status.Game.Foreground:	white
+Xtetris.Frame.TitleBar.background:	black
+Xtetris.Frame.TitleBar.borderColor:	white
+Xtetris.Score_frame.Score_panel.Done.background:	black
+Xtetris.Score_panel.Done.background:	black
+Xtetris.object0.foreground:	white
+Xtetris.object0.background:	black
+Xtetris.object1.foreground:	white
+Xtetris.object1.background:	black
+Xtetris.object2.foreground:	white
+Xtetris.object2.background:	black
+Xtetris.object3.foreground:	white
+Xtetris.object3.background:	black
+Xtetris.object4.foreground:	white
+Xtetris.object4.background:	black
+Xtetris.object5.foreground:	white
+Xtetris.object5.background:	black
+Xtetris.object6.foreground:	white
+Xtetris.object6.background:	black

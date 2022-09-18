@@ -1,0 +1,12 @@
+*** Teardown.v	Mon Feb 24 11:31:13 1992
+--- Teardown.destiny	Mon Feb 24 11:32:05 1992
+***************
+*** 1,3 ****
+  #!/usr/bin/sh
+! #ident	"@(#)/usr/lib/uucp/Teardown.sl 1.1 4.0 05/29/91 47300 AT&T-USL"
+  
+--- 1,4 ----
+  #!/usr/bin/sh
+! #ident	"@(#)/usr/lib/uucp/Teardown.sl 1.2 4.1dt 05/28/92 40063 AT&T-USL"
+! #ident "$Header: Teardown 1.1 91/02/28 $"
+

@@ -1,0 +1,21 @@
+When you remove pop-up windows from the workspace, they do not close
+to an icon. The label on the top button of the pop-up window menu is
+Dismiss to show this distinction.
+
+The Dismiss submenu has two choices:
+
+		This Window
+		All Pop-ups
+
+When you use This Window, the pop-up window is dismissed. When you
+use All Pop-ups, all of the pop-up windows for the application are
+dismissed.  You can choose the default setting from the Dismiss
+submenu without displaying it by dragging MENU onto the Dismiss
+button stack and releasing MENU.
+
+To display the Dismiss submenu, drag MENU into the right half of the
+button stack. To choose a button from the Dismiss submenu, drag MENU
+onto a button and release MENU.
+
+When the pop-up window is not pinned up, it is dismissed after the
+command is successfully completed.

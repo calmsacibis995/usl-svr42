@@ -1,0 +1,13 @@
+INCLUDE system;
+INCLUDE dtadmin;
+
+CLASS DATA
+BEGIN
+     _FILETYPE   'DATA';
+     _CLASSNAME  'Datafile';
+     _ICONFILE   'datafile.icon';
+     MENU _Open  '##DROP(dtedit) || exec dtedit "%F" &';
+     MENU _Print 'cat "%F" | $XWINHOME/bin/wrap | $XWINHOME/bin/PrtMgr -p %_DEFAULT_PRINTER &';
+END
+
+INCLUDE system.post;

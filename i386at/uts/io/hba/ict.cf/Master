@@ -1,0 +1,4 @@
+*ident	"@(#)uts-x86at:io/hba/ict.cf/Master	1.2"
+*ident	"$Header: $"
+$version 1
+ict	ict_	o	0	0	0

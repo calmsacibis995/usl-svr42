@@ -1,0 +1,446 @@
+#ident	"@(#)pkg.cmds:i386/pkg/cmds/prototype	1.67"
+#ident	"$Header:  $"
+
+!PACKDIR=/etc/conf/pack.d
+!MASTDIR=/etc/conf/mdevice.d
+!SYSDIR=/etc/conf/sdevice.d
+!MTUNEDIR=/etc/conf/mtune.d
+!NODEDIR=/etc/conf/node.d
+
+! include lppost.proto
+
+i pkginfo
+i postinstall
+#i preinstall
+i preremove
+i copyright
+i depend
+#i request
+i dummy.pkginfo
+
+# for compatibility with pre-Destiny packages
+
+!DUMMY_PKGINFO=../usr/src/$WORK/pkg/cmds/dummy.pkginfo
+
+f none /var/sadm/pkg/ed/pkginfo=$DUMMY_PKGINFO 0644 root sys
+f none /var/sadm/pkg/fmli/pkginfo=$DUMMY_PKGINFO 0644 root sys
+
+
+#!PATCH_LOC=/etc/inst/up/patch
+
+# dirs
+
+d none  /etc 775  root sys
+d none  /etc/var 775  root sys
+d none  /etc/var/adm 775  root sys
+d none  /var 775  root sys
+d none  /var/adm 775  root sys
+
+#d none  /etc/conf 775  root  sys
+#d none  /etc/conf/mtune.d  775  root sys
+#d none  /etc/conf/node.d  775  root sys
+#d none  /etc/conf/pack.d  775  root sys
+d none	/etc/conf/pack.d/sxt 755 root sys
+#d none	/etc/conf/pack.d/rt 644 root sys
+#d none	/etc/conf/mdevice.d 644 root sys
+#d none	/etc/conf/sdevice.d 644 root sys
+
+d none	/etc/init.d  ? ? ?
+d none	/etc/rc2.d  ? ? ?
+d none  /etc/fs 775  root  sys
+d none  /etc/fs/s5 775  root  sys
+d none  /sbin 775  root  sys
+d none  /usr 775  root  sys
+d none  /usr/bin 775  root  sys
+d none  /usr/include 775  root  sys
+d none  /usr/include/sys 775  root  sys
+d none  /usr/include/sys/fs 775  root  sys
+d none  /usr/lib 775  root  sys
+d none  /usr/lib/acct 775  root  sys
+d none  /usr/lib/fs 775  root  sys
+d none  /usr/lib/fs/s5 775  root  sys
+d none  /usr/lib/fs/sfs 775  root  sys
+d none  /usr/lib/fs/ufs 775  root  sys
+d none  /usr/lib/fs/vxfs 775  root  sys
+d none  /usr/lib/mail 775  bin  mail
+d none  /usr/lib/uucp 775  uucp  uucp
+d none  /usr/sbin  775  root  sys
+d none  /usr/share  775  root  sys
+d none  /usr/share/lib 755  root  sys
+
+d none	/tmp	? ? ? 
+d none	/tmp/sxt	775 sys sys 
+d none	/tmp/prf	775 sys sys 
+d none	/tmp/rt	775 sys sys 
+
+d none  /var/adm/acct 775 adm adm
+d none  /var/adm/acct/nite 775 adm adm
+d none  /var/adm/acct/sum 775 adm adm
+d none  /var/adm/acct/fiscal 775 adm adm
+d none  /etc/acct 775 adm adm
+d none  /usr/lib/class/RT 775 root bin
+
+# kernel modules
+
+v none  /tmp/sxt/Driver.o=$PACKDIR/sxt/Driver.o 644 root sys
+v none  /tmp/sxt/Space.c=$PACKDIR/sxt/space.c 644 root sys
+#v none  /tmp/sxt/Stubs.c=$PACKDIR/sxt/stubs.c 644 root sys
+v none  /tmp/sxt/Master=$MASTDIR/sxt 644 root sys
+v none  /tmp/sxt/System=$SYSDIR/sxt 644 root sys
+v none  /tmp/sxt/Node=$NODEDIR/sxt 644 root sys
+v none  /tmp/sxt/Mtune=$MTUNEDIR/sxt 644 root sys
+
+v none  /tmp/prf/Driver.o=$PACKDIR/prf/Driver.o 644 root sys
+v none  /tmp/prf/Space.c=$PACKDIR/prf/space.c 644 root sys
+#v none  /tmp/prf/Stubs.c=$PACKDIR/prf/stubs.c 644 root sys
+#v none  /tmp/prf/Master=$MASTDIR/prf 644 root sys
+v none  /tmp/prf/System=$SYSDIR/prf 644 root sys
+v none  /tmp/prf/Node=$NODEDIR/prf 644 root sys
+v none  /tmp/prf/Mtune=$MTUNEDIR/prf 644 root sys
+
+v none  /tmp/rt/Driver.o=$PACKDIR/rt/Driver.o 644 root sys
+v none  /tmp/rt/Space.c=$PACKDIR/rt/space.c 644 root sys
+v none  /tmp/rt/Stubs.c=$PACKDIR/rt/stubs.c 644 root sys
+v none  /tmp/rt/Master=$MASTDIR/rt 644 root sys
+v none  /tmp/rt/System=$SYSDIR/rt 644 root sys
+
+# commands
+
+f none  /usr/lib/acct/acctcms  0555  bin  bin  
+f none  /usr/lib/acct/acctcon  0555  bin  bin  
+f none  /usr/lib/acct/acctcon1  0555  bin  bin  
+f none  /usr/lib/acct/acctcon2  0555  bin  bin  
+f none  /usr/lib/acct/acctdisk  0555  bin  bin  
+f none  /usr/lib/acct/acctdusg  0555  bin  bin  
+f none  /usr/lib/acct/acctmerg  0555  bin  bin  
+f none  /usr/lib/acct/accton  4555  root  adm  
+f none  /usr/lib/acct/acctprc  0555  bin  bin  
+f none  /usr/lib/acct/acctprc1  0555  bin  bin  
+f none  /usr/lib/acct/acctprc2  0555  bin  bin  
+f none  /usr/lib/acct/acctwtmp  0555  bin  bin  
+f none  /usr/lib/acct/bfsdiskusg  0555  bin  bin  
+f none  /usr/lib/acct/chargefee  0555  bin  bin  
+f none  /usr/lib/acct/ckpacct  0555  bin  bin  
+f none  /usr/lib/acct/closewtmp  0555  bin  bin  
+f none  /usr/lib/acct/diskusg  0555  bin  bin  
+f none  /usr/lib/acct/dodisk  0555  bin  bin
+f none  /usr/lib/acct/fwtmp  0555  bin  bin
+f none  /usr/lib/acct/lastlogin  0555  bin  bin
+f none  /usr/lib/acct/monacct  0555  bin  bin
+f none  /usr/lib/acct/nulladm  0555  bin  bin
+f none  /usr/lib/acct/prctmp  0555  bin  bin
+f none  /usr/lib/acct/prdaily  0555  bin  bin
+f none  /usr/lib/acct/prtacct  0555  bin  bin
+f none  /usr/lib/acct/ptecms.awk  0555  bin  bin
+f none  /usr/lib/acct/ptelus.awk  0555  bin  bin
+f none  /usr/lib/acct/remove  0555  bin  bin
+f none  /usr/lib/acct/runacct  0555  bin  bin
+f none  /usr/lib/acct/sfsdiskusg  0555  bin  bin
+f none  /usr/lib/acct/shutacct  0555  bin  bin
+f none  /usr/lib/acct/startup  0555  bin  bin
+f none  /usr/lib/acct/turnacct  0555  bin  bin
+f none  /usr/lib/acct/ufsdiskusg  0555  bin  bin
+f none  /usr/lib/acct/utmp2wtmp  0555  bin  bin
+f none  /usr/lib/acct/vxdiskusg  0555  bin  bin  
+f none  /usr/lib/acct/wtmpfix  0555  bin  bin
+f none 	/etc/init.d/acct  0444  root  adm  2 NULL NULL
+
+f none  /usr/bin/acctcom 0555    bin     sys 1 NULL NULL
+f none  /usr/bin/at             2555    bin     sys 1 NULL macread,dacread,macwrite,dacwrite
+f none  /usr/bin/atq            2555    bin     sys
+f none  /usr/bin/atrm           2555    bin     sys
+
+f none  /usr/bin/batch           2555    bin     sys
+f none  /usr/bin/banner          0555    bin     sys
+f none  /usr/bin/bc          0555    bin     sys
+f none  /usr/bin/bdiff	555 bin bin
+f none  /usr/bin/bfs	555 bin bin
+
+f none  /usr/bin/cal          0555    bin     sys
+
+f none  /usr/bin/calendar          0555    bin     sys
+
+f none  /usr/sbin/chroot 555      bin       bin     2 NULL filesys
+s none  /etc/chroot=/usr/sbin/chroot
+
+f none  /usr/sbin/crash	0555	bin	bin
+s none  /etc/crash=/usr/sbin/crash 	0555	bin	bin
+
+### moved /usr/bin/crontab to pkg.base
+#f none  /usr/bin/crontab        2555    bin     sys 1 NULL dacwrite,dacread,owner,setuid
+
+f none  /usr/bin/csplit	555	bin	bin
+
+f none  /usr/bin/csh	555 bin bin
+f none  /etc/cshrc	755 bin bin
+
+f none  /usr/bin/ct     6111    root    uucp 
+f none  /usr/bin/ctags	555 bin bin
+
+f none  /usr/sbin/dcopy	555 bin bin
+s none  /etc/dcopy=/usr/sbin/dcopy
+f none  /usr/lib/fs/s5/dcopy 0555 bin bin
+
+f none  /usr/bin/devfree 755 root sys
+f none  /usr/bin/devreserv 755 root sys
+
+f none  /usr/sbin/dfsck 555 bin bin
+s none  /etc/dfsck=/usr/sbin/dfsck
+
+## diff moved back from cmds into base
+##f none  /usr/bin/diff 0555 bin bin 1 NULL NULL
+
+f none  /usr/bin/diff3 0555 bin bin 1 NULL NULL
+f none  /usr/bin/dircmp 0555 bin bin 1 NULL NULL
+f none  /usr/lib/diff3prog 0555 bin bin 1 NULL NULL
+
+f none	/sbin/dumpcheck	0555 root sys  1 NULL NULL
+s none	/etc/dumpcheck=/sbin/dumpcheck	
+f none	/sbin/dumpsave	0744 root sys  1 NULL NULL
+s none	/etc/dumpsave=/sbin/dumpsave	
+
+# /sbin/memsize is installed from boot flops
+#f none	/sbin/memsize	544	root bin 1  NULL NULL
+s none	/etc/memsize=/sbin/memsize	
+
+f none  /usr/lib/fs/ufs/edquota  0555  bin  bin
+l none  /usr/sbin/edquota=/usr/lib/fs/ufs/edquota  0555  bin  bin
+
+f none  /usr/bin/env 0555 bin bin 1 NULL NULL
+f none  /usr/bin/factor 0555 bin bin 1 NULL NULL
+
+f none  /usr/sbin/ff 0555 bin bin
+s none  /etc/ff=/usr/sbin/ff
+f none  /usr/lib/fs/s5/ff 0555 bin bin
+f none  /usr/lib/fs/sfs/ff 0555 bin bin
+f none  /usr/lib/fs/ufs/ff 0555 bin bin
+f none  /usr/lib/fs/vxfs/ff 0555 bin bin
+
+f none  /usr/bin/file 0555 bin bin 1 NULL NULL
+
+f none  /usr/bin/fmli 0555 bin bin 1 NULL NULL
+f none  /usr/bin/vsig 0555 bin bin 1 NULL NULL
+
+f none  /usr/bin/fmt 0555 bin bin 1 NULL NULL
+f none  /usr/bin/fold 0555 bin bin 1 NULL NULL
+f none  /usr/sbin/fsba 0555 bin bin 1 NULL NULL
+s none  /etc/fsba=/usr/sbin/fsba
+
+f none  /etc/fs/s5/fsdb 0555 root sys
+s none  /usr/lib/fs/s5/fsdb=/etc/fs/s5/fsdb 0555 bin bin
+f none  /usr/lib/fs/sfs/fsdb 0555 bin bin
+f none  /usr/lib/fs/ufs/fsdb 0555 bin bin
+f none	/usr/lib/fs/vxfs/fsdb 0555 bin bin
+l none  /sbin/fsdb=/sbin/mkfs
+s none  /etc/fsdb=/sbin/fsdb
+
+f none  /usr/lbin/fsinfo 0555 bin bin 1 NULL NULL
+
+f none  /usr/bin/gcore 0555 bin bin 1 NULL NULL
+
+f none  /usr/bin/getdgrp 755 root sys
+f none  /usr/bin/getvol 755 root sys
+
+f none  /usr/bin/listdgrp 755 root sys
+
+f none  /usr/sbin/ldsysdump	0555	bin	bin
+s none  /etc/ldsysdump=/usr/sbin/ldsysdump	0555	bin	bin
+
+f none  /usr/bin/groups 0555 bin bin
+
+f none  /usr/bin/head 0555 bin bin 1 NULL NULL
+f none  /usr/bin/join 0555 bin bin 1 NULL NULL
+
+f none  /usr/bin/ksh	555 bin bin
+
+f none  /usr/bin/last 0555 bin bin 1 NULL NULL
+
+f none  /usr/sbin/link  500     root    bin 
+s none  /etc/link=/usr/sbin/link        500     root    bin
+
+v none  /etc/log/filesave.log=/dev/null  644 bin bin 2 NULL NULL
+
+f none  /usr/sbin/unlink        500     root    bin 
+s none  /etc/unlink=/usr/sbin/unlink    500     root    bin
+
+f none  /usr/bin/listusers 4555 root bin 1 macread NULL
+f none  /usr/bin/logins 0555 bin bin 2 NULL dacread
+f none  /usr/bin/logname 0555 bin bin 1 NULL NULL
+
+# not in the reqts.
+f none  /usr/sbin/lnsxts 0744 root root
+
+f none  /usr/bin/mkfifo 0555 root root 1 NULL NULL
+f none  /usr/bin/more 0555 bin bin 1 NULL NULL
+f none  /usr/lib/more.help 0644 bin bin 1 NULL NULL
+f none  /usr/sbin/mvdir 544     root    bin
+s none  /etc/mvdir=/usr/sbin/mvdir   
+f none  /usr/bin/nawk 0555 bin bin 1 NULL NULL
+
+f none  /usr/sbin/ncheck 0555	bin	bin	1	NULL	NULL
+s none  /etc/ncheck=/usr/sbin/ncheck
+f none  /usr/lib/fs/s5/ncheck 0555 bin bin
+f none  /usr/lib/fs/sfs/ncheck 0555 bin bin
+f none  /usr/lib/fs/ufs/ncheck 0555 bin bin
+f none  /usr/lib/fs/vxfs/ncheck 0555 bin bin
+
+f none  /usr/bin/newform 0555 bin bin 1 NULL NULL
+f none  /usr/bin/nice   0555 bin bin 1 NULL tshar
+f none  /usr/bin/nl 0555 bin bin 1 NULL NULL
+f none  /usr/bin/nohup  0555       bin       bin   1 NULL NULL
+f none  /usr/bin/notify  0555       bin       bin   1 NULL NULL
+
+f none  /usr/lib/mail/notify2 555 bin bin
+f none  /usr/bin/mesg 0555 bin bin
+
+f none  /usr/bin/od 0555 bin bin 1 NULL NULL
+
+l none  /usr/bin/page=/usr/bin/more 0555 bin bin 1 NULL NULL
+f none  /usr/bin/paste 0555 bin bin 1 NULL NULL
+
+f none  /usr/sbin/prfdc 0555 bin bin 1 NULL NULL
+s none  /etc/prfdc=/usr/sbin/prfdc 0555  bin  bin  1  NULL  NULL
+f none  /usr/sbin/prfld 0555 bin bin 1 NULL NULL
+s none  /etc/prfld=/usr/sbin/prfld 0555  bin  bin  1  NULL  NULL
+
+f none  /usr/sbin/prfpr 0555 bin bin 1 NULL NULL
+s none  /etc/prfpr=/usr/sbin/prfpr 0555  bin  bin  1  NULL  NULL
+
+f none  /usr/sbin/prfsnap 0555 bin bin 1 NULL NULL
+s none  /etc/prfsnap=/usr/sbin/prfsnap 0555  bin  bin  1  NULL  NULL
+f none  /usr/sbin/prfstat 0555 bin bin 1 NULL NULL
+s none  /etc/prfstat=/usr/sbin/prfstat 0555  bin  bin  1  NULL  NULL
+
+f none  /usr/lib/fs/ufs/quot	0555  bin  bin 
+l none  /usr/sbin/quot=/usr/lib/fs/ufs/quot  0555  bin  bin
+f none  /usr/lib/fs/ufs/quota	0555  bin  bin 
+l none  /usr/sbin/quota=/usr/lib/fs/ufs/quota  0555  bin  bin
+f none  /usr/lib/fs/ufs/quotacheck	0555  bin  bin 
+l none  /usr/sbin/quotacheck=/usr/lib/fs/ufs/quotacheck  0555  bin  bin
+f none  /usr/lib/fs/ufs/quotaon	0555  bin  bin 
+l none  /usr/sbin/quotaon=/usr/lib/fs/ufs/quotaon  0555  bin  bin
+l none  /usr/lib/fs/ufs/quotaoff=/usr/lib/fs/ufs/quotaon  0555  bin  bin
+l none  /usr/sbin/quotaoff=/usr/lib/fs/ufs/quotaon  0555  bin  bin
+f none  /usr/lib/fs/ufs/repquota  0555  bin  bin
+l none  /usr/sbin/repquota=/usr/lib/fs/ufs/repquota  0555  bin  bin
+
+f none  /usr/sbin/sadp 2555 bin sys 1 NULL NULL
+s none  /usr/bin/sadp=/usr/sbin/sadp 2555  bin  bin  1  NULL  NULL
+f none  /usr/sbin/sar 0555 bin sys 1 NULL NULL
+s none  /usr/bin/sar=/usr/sbin/sar 0555  bin  bin  1  NULL  NULL
+
+f none  /usr/bin/script 555 bin bin 5 owner,dev,macread,macwrite,setflevel NULL
+f none  /usr/bin/sdiff 0555 bin bin 1 NULL NULL
+
+f none  /usr/bin/shl 4755 root bin
+
+f none  /usr/bin/strchg 0555 root root 1 macwrite owner
+f none  /usr/bin/strconf 0555 root root 1 NULL NULL
+f none  /usr/bin/split 0555 bin bin 1 NULL NULL
+f none  /usr/bin/strings 0555 bin bin 1 NULL NULL
+f none  /usr/sbin/sttydefs 0755 root sys 1 NULL macwrite,setflevel,owner
+f none  /usr/bin/sum 0555 bin bin 1 NULL NULL
+f none  /usr/sbin/sysdef        0555       bin       bin  1 NULL dev,sysops,macread,dacread
+s none  /etc/sysdef=/usr/sbin/sysdef
+f none  /usr/sbin/swap 2755 bin sys
+s none  /etc/swap=/usr/sbin/swap
+
+f none  /usr/bin/tabs 0555 bin bin 1 NULL NULL
+f none  /usr/bin/time 0555 bin bin
+f none  /usr/bin/timex 0555 bin bin
+f none  /usr/bin/truss 0555 bin bin 
+f none  /usr/sbin/ttyconv 0555 root root
+f none  /usr/lib/fs/ufs/tunefs  0555  bin  bin
+l none  /usr/sbin/tunefs=/usr/lib/fs/ufs/tunefs  0555  bin  bin
+
+f none  /usr/bin/units 0555 bin bin 1 NULL NULL
+f none  /usr/bin/uudecode       0555    uucp    uucp
+f none  /usr/bin/uuencode       0555    uucp    uucp
+f none  /usr/bin/uuglist        0111    uucp    uucp
+f none  /usr/lib/uucp/uucheck   0110    uucp    uucp
+f none  /usr/bin/vacation 0555 bin bin 1 NULL NULL
+
+f none  /usr/sbin/volcopy 0555  bin  bin 2 NULL setflevel,sysops,macread,macwrite,dacread,dacwrite,dev
+s none  /etc/volcopy=/usr/sbin/volcopy 0555  bin  bin
+f none  /usr/lib/fs/sfs/volcopy 0555 bin bin
+f none  /usr/lib/fs/s5/volcopy 0555 bin bin
+f none  /usr/lib/fs/ufs/volcopy 0555 bin bin
+f none  /usr/lib/fs/vxfs/volcopy 0555 bin bin
+f none  /usr/lib/mail/vacation2 555 bin bin
+
+f none  /usr/sbin/whodo 555     root    bin 
+s none  /etc/whodo=/usr/sbin/whodo      555     root    bin
+
+f none  /usr/bin/write 2555 bin tty
+
+f none  /usr/sbin/zdump 0555 bin bin 1 NULL NULL
+f none  /usr/sbin/zic 0555 bin bin 1 NULL NULL
+
+# spell utilities (taken from spell add-on)
+
+d none  /usr/lib/spell  555     bin     bin
+d none  /usr/share/lib/spell    555     bin     bin
+f none  /usr/bin/spell 0555 bin bin 1 NULL NULL
+f none  /usr/bin/deroff 0555 bin bin 1 NULL NULL
+
+f none  /usr/share/lib/spell/compress	0555  bin bin
+
+f none  /usr/share/lib/spell/hlista             644     bin bin
+f none  /usr/share/lib/spell/hlistb             644     bin bin
+f none  /usr/share/lib/spell/hstop              644     bin bin
+v none  /var/adm/spellhist              666     bin     bin 5 NULL NULL
+f none  /usr/lib/spell/hashcheck	0555  bin  bin
+f none  /usr/lib/spell/hashmake		0555  bin  bin
+f none  /usr/lib/spell/spellin		0555  bin  bin
+f none  /usr/lib/spell/spellprog	0555  bin  bin
+# linked files
+s none  /usr/lib/spell/hstop=/usr/share/lib/spell/hstop
+s none  /usr/lib/spell/hlista=/usr/share/lib/spell/hlista
+
+
+
+# moved from usrenv into cmds; not in the reqts.
+f none	/usr/lib/calprog	555 bin bin
+f none 	/usr/lib/lib.b  	444 bin bin
+f none  /usr/share/lib/unittab	444 bin bin
+
+# moved from perf into cmds; not in the reqts.
+f none  /usr/lib/sa/sa1 	0555 bin bin 2 NULL  dev
+f none  /usr/lib/sa/sa2 	0555 bin bin 2 NULL  dev
+f none  /usr/lib/sa/sadc        2555    bin     sys  2 NULL dev
+f none	/etc/init.d/perf	0444 root sys 2 NULL NULL
+l none	/etc/rc2.d/S21perf=/etc/init.d/perf
+#e build /var/spool/cron/crontabs/sys=../../pkg/cmds/crontab 0644 sys  sys     2 NULL NULL
+v build /var/spool/cron/crontabs/sys=../usr/src/$WORK/pkg/cmds/crontab 0600 sys  sys     2 NULL NULL
+
+
+# headers 
+# bfs.h, bfs_compact.h, and sxt.h are already installed by pkg.base
+
+# devices
+# STREAMs sxt devices
+
+f none /usr/bin/cpset 0555 bin bin
+f none /usr/lib/class/RT/RTdispadmin 0555 bin bin 1 NULL rtime,sysops
+f none /usr/lib/class/RT/RTpriocntl 0555 bin bin 1 NULL rtime,owner,macread,macwrite
+
+!default 0444 root sys 1 NULL NULL
+
+f none /usr/include/sys/rt.h
+
+f none /usr/include/sys/rtpriocntl.h
+
+#########################
+# Upgrade installation
+# patch file(s)
+
+#!default 0755 root sys 1 NULL NULL
+
+#d none  $PATCH_LOC/etc/acct
+
+#!default 0644 root sys 1 NULL NULL
+
+#f none  $PATCH_LOC/etc/acct/holidays
+
+f none /usr/bin/adminrole 0700 root sys
+

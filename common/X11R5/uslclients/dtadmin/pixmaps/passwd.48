@@ -1,0 +1,62 @@
+#define passwd_format 1
+#define passwd_width 48
+#define passwd_height 48
+#define passwd_ncolors 5
+#define passwd_chars_per_pixel 1
+static char * passwd_colors[] = {
+" " , "#E400E400E400",
+"." , "#000000000000",
+"X" , "#E00000000000",
+"o" , "#0000E000E000",
+"O" , "#AA00AA00AA00"
+} ;
+static char * passwd_pixels[] = {
+" .............................................. ",
+" .                                            . ",
+" .                                          XX. ",
+" .     ......  .... ....         ..........XX . ",
+" .                               .ooooooooXX  . ",
+" .   ....  .... ..... ..         .oooooooXX.  . ",
+" .                               .ooooooXXX.  . ",
+" .     .. ...... .. ....        XXXooooXXXo.  . ",
+" .                               XXXooXXXoo.  . ",
+" .                               .XXXXXXooo.  . ",
+" .                               .oXXXXoooo.  . ",
+" .                               .ooXXooooo.  . ",
+" .                               ...........  . ",
+" .                                            . ",
+" .                                            . ",
+" .     ...                                    . ",
+" .    .OOO.                                   . ",
+" .   .OOOOO.                                  . ",
+" .   .OO..OO...............                 XX. ",
+" .  .OO.  .OOOOOOOOOOOOOOO.      ..........XX . ",
+" .  .OO.  .OOOOOOOOOOOOOOO.      .ooooooooXX  . ",
+" .  .OO.  .OO.......OOOO..       .oooooooXX.  . ",
+" .   .OO..OO.       .OO.         .ooooooXXX.  . ",
+" .   .OOOOO.      ..OOOO..      XXXooooXXXo.  . ",
+" .    .OOO.       .OOOOOO.       XXXooXXXoo.  . ",
+" .     ...        ........       .XXXXXXooo.  . ",
+" .                               .oXXXXoooo.  . ",
+" .                               .ooXXooooo.  . ",
+" .                               ...........  . ",
+" .                                            . ",
+" .                                            . ",
+" .                                            . ",
+" .                                            . ",
+" .                                            . ",
+" .                                          XX. ",
+" .     ......  .... ....         ..........XX . ",
+" .                               .ooooooooXX  . ",
+" .   ....  .... ..... ..         .oooooooXX.  . ",
+" .                               .ooooooXXX.  . ",
+" .     .. ...... .. ....        XXXooooXXXo.  . ",
+" .                               XXXooXXXoo.  . ",
+" .                               .XXXXXXooo.  . ",
+" .                               .oXXXXoooo.  . ",
+" .                               .ooXXooooo.  . ",
+" .                               ...........  . ",
+" .                                            . ",
+" .                                            . ",
+" .............................................. "
+} ;

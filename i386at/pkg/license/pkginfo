@@ -1,0 +1,15 @@
+#ident	"@(#)pkg.license:pkginfo	1.5"
+#ident	"$Header: $"
+
+#
+# "must" parameters
+#
+
+PKG="license"
+CLASSES="none"
+NAME="User Upgrade"
+RELEASE="4.2"
+VERSION="1"
+VENDOR="UNIX System Laboratories"
+CATEGORY=system
+PREDEPEND="license"

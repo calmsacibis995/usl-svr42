@@ -1,0 +1,47 @@
+#define noname_format 1
+#define noname_width  32
+#define noname_height 32
+#define noname_ncolors 6
+#define noname_chars_per_pixel 1
+static char *noname_colors[] = {
+"`", "#000000",
+"a", "#E4E4E4",
+"b", "#AAAAAA",
+"c", "#FFFFFF",
+"d", "#DBDBBA",
+"e", "#717171"
+} ;
+static char *noname_pixels[] = {
+"ccccccccccccccccccc```````cccccc",
+"ccccc``````````````bbbbbbb``cccc",
+"ccccc`bbbbbbbbbbbbbbbbbbbbb`cccc",
+"ccccc``````````````bbbbbbb``cccc",
+"ccccc`bbbbbbbbbbbbb```````b`cccc",
+"ccccc`bbbbbbbbbbbbbbbbbbbbb`cccc",
+"ccccc`bbbbbbbbbbb```````bbb`cccc",
+"ccc``````````````eeeeeee``b`cccc",
+"ccc`eeeeeeeeeeeeeeeeeeeee`b`cccc",
+"ccc``````````````eeeeeee``b```cc",
+"````eeeeeeeeeeeee```````e`b`aa``",
+"`aa`eeeeeeeeeeeeeeeeeeeee`b`aaa`",
+"````````````````````eeeee`b`aa``",
+"`ddddddddddddddddddd``````````d`",
+"`dddddddddddddddddddddddddddddd`",
+"`dddddddddddddddddddddddddddddd`",
+"`dddddddddddddddddddddddddddddd`",
+"`dddddddddddddddddddddddddddddd`",
+"`dddddddddddddddddddddddddddddd`",
+"`dddddddddddddddddddddddddddddd`",
+"`dddddddddddddddddddddddddddddd`",
+"`dddddddddddddddddddddddddddddd`",
+"`dddddddddddddddddddddddddddddd`",
+"`dddddddddddddddddddddddddddddd`",
+"`dddddddddddddddddddddddddddddd`",
+"`dddddddddddddddddddddddddddddd`",
+"`dddddddddddddddddddddddddddddd`",
+"`dddddddddddddddddddddddddddddd`",
+"`dddddddddddddddddddddddddddddd`",
+"`dddddddddddddddddddddddddddddd`",
+"`dddddddddddddddddddddddddddddd`",
+"````````````````````````````````"
+} ;

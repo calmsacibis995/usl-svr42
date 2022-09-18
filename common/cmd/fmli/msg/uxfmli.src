@@ -1,0 +1,365 @@
+Frame can not be displayed, it may be too large for the screen
+Too small, try again
+\n\n   The cancel command allows you to cancel a current command or\n   activity.\n\n   To use cancel choose one of the following options:\n\n 	 - Screen Labeled Key - Press CANCEL\n\n 	 - Command Menu - Select cancel + ENTER\n\n 	 - Typed Command - Type cancel + ENTER\n
+\n   The cleanup command cancels all frames on the screen,\n   excluding those frames that can only be canceled upon exit. \n\n   Use one of the following:\n\n 	 - Command Menu - Select cleanup + ENTER\n\n 	 - Typed Command - Type cleanup + ENTER\n
+The cmd-menu is a multi-column menu of the commands available.\nIt serves as a command reference list, a place from which you\ncan issue a command, or a place to get help on a specific\ncommand.\n
+\n   Use the exit command to cancel all frames and exit the application.\n\n   To exit use one of the following options:\n\n 	 - Command Menu - Select exit + ENTER\n\n 	 - Typed Command - Type exit + ENTER\n
+\n   The frm-mgmt command allows you to move and reshape frames.   It\n   also  supports  a  \\\"list\\\"  operation which lists for you all open\n   frames on the screen.  In the command syntax \\\"operation\\\"  refers\n   to \\\"move\\\", \\\"reshape\\\" or \\\"list\\\".\n\n     1.  To use the frm-mgmt command, choose one of the following.\n	 If  a frame number or name is not specified, the currently\n	 active frame is assumed to be the frame you would like to\n	 operate  on.\n\n	    - Screen Labeled Key - Press FRM-MGMT\n\n	    - Command Menu - Select frm-mgmt + ENTER\n\n	    - Typed Command - Type frm-mgmt [operation]\n			       [frame_#] + ENTER\n\n     2.  If an \\\"operation\\\" is not specified a pop-up  menu  frame\n	 will  appear  listing frm-mgmt operations.  You select\n	 the frame operation you want  to  perform  by  moving  the\n	 cursor  to the item and pressing ENTER or the ENTER screen\n	 labeled  key.   Pressing  the  CANCEL  screen  labeled  key\n	 cancels the frm-mgmt command.\n
+\n   The goto command allows you to move the cursor to another\n   open frame by specifying the frame number.\n\n     1.  To use the goto choose one of the following:\n\n	    - Command Menu - Select goto + ENTER\n\n	    - Typed Command - Type goto [frame_#] + ENTER\n\n     2.  If you use the goto command without specifying a frame\n	 number, you will be prompted for one.\n
+\n   The help command creates an active frame containing a text message\n   which  describes either the action you are trying to perform or the\n   current frame.  To exit the Help Facility press the CANCEL\n   screen labeled key.\n\n   To access help use one of the following options.  If no argument is\n   specified the system assumes you want help on the current frame or\n   on what you are currently doing.\n\n	 - Screen Labeled Key - Press HELP\n\n	 - Command Menu - Select help + ENTER\n\n	 - Typed command - Type help [command_name] + ENTER\n
+\n   The next-frm command allows you to move among frames according to\n   the order in which frames were opened.\n\n   To use next-frm choose one of the following options:\n\n 	 - Screen Labeled Key - Press NEXT-FRM\n\n 	 - Command Menu - Select next-frm + ENTER\n\n 	 - Typed Command - Type next-frm + ENTER\n
+\n   The prev-frm command allows you to move to the previous frame\n   according to the reverse order in which the frames were opened.\n\n   To use prev-frm choose one of the following options:\n\n 	 - Screen Labeled Key - Press PREV-FRM\n\n 	 - Command Menu - Select prev-frm + ENTER\n\n 	 - Typed Command - Type prev-frm + ENTER\n
+\n   The refresh command will simply redraw the screen.\n\n 	 - Command Menu - Select refresh + ENTER\n\n 	 - Typed Command - Type refresh + ENTER\n
+\n   The unix-system command invokes the shell command interpreter\n   defined in the environmental variable SHELL.\n\n   To invoke unix-system use one of the following options:\n\n 	 - Command Menu - Select unix-system + ENTER\n\n 	 - Typed Command - Type unix-system + ENTER\n\n   Your screen will be cleared of frames and the prompt\n   defined in the environmental variable PS1 will be displayed.\n\n   To return from the shell type exit or control-d at the prompt.\n   You will then be prompted to press ENTER to refresh the screen.\n
+\n\n   The update command is used to update the contents of a frame to\n   reflect changes made since the frame was  originally  opened.\n\n   To use the update command do one of the following options.  If a\n   frame  is  not  specified,  the current frame is assumed.\n\n 	 - Command Menu - Select update + ENTER\n\n 	 - Typed Command - Type update [ frame_number] + ENTER\n                  NOTE:  The frame_number is optional. If not\n                         specified, the default is the current\n                         frame. The frame number is specified\n                         as it is shown in the label of the frame\n                         to be updated.\n
+\n   The Frame Management menu allows you to list, move or reshape\n   open frames.  Selecting the list operation will cause a menu of\n   all of the open frames to be displayed.  You may make any frame\n   in the list current by moving to it in the menu and pressing ENTER.\n   Selecting the move operation will allow you to move the current\n   frame to any location on the display.  Selecting the reshape\n   operation will allow you to change the size and shape of the\n   frame.  Pressing the CANCEL key cancels the frm-mgmt command.\n
+\n   The Open Frames menu presents you with a list of all of the open\n   frames.  You may make any frame in the list current by moving to\n   in the menu and pressing ENTER.  Pressing the CANCEL key cancels\n   Open Frames menu.\n
+Permissions are wrong
+File does not exist
+Hardware error
+Arguments are too long
+File has been corrupted
+Software error
+Can't create another process
+Out of memory
+File already exists
+Improper name
+It is a directory
+Too many files in use on system
+Too many files in use by program
+System out of disk space
+Can't open file
+Invalid arguments
+Data has been corrupted
+Some necessary information is missing
+Software failure error
+Can't execute the program
+Can't create or remove file
+Input is not valid
+Frame not updated: definition file missing or not readable
+Can't open frame: definition file missing or not readable
+Relationship of values in 2 or more fields is not valid
+Can't match item starting with \"%.*s%c\"
+Can't match inactive menu item.
+Can't match item starting with \"%c\"
+cancel
+cleanup
+copy
+create
+delete
+display
+exit
+find
+frm-mgmt
+goto
+help
+move
+next-frm
+organize
+prev-frm
+print
+redescribe
+refresh
+rename
+run
+security
+show-path
+time
+undelete
+unix-system
+update
+unix
+Could not find help on that command
+Help Facility: \"%s\"
+CONTENTS
+There are no commands in the command menu
+Command Menu
+textframe: non-numeric columns ignored. 
+textframe: out-of-range columns ignored. 
+textframe: invalid lifetime ignored. 
+textframe: invalid position ignored. 
+textframe: non-numeric rows ignored. 
+textframe: out-of-range rows ignored. 
+textframe: illegal option ignored. 
+textframe: no text specified. 
+textframe: warning: extra arguments ignored. 
+Data file
+You do not have permission to access %s
+Suspended 
+Cannot print zero length files
+Empty Folder
+%s - From %s
+%s - From unknown
+Too many folders open. Close some, then try again.
+Could not open folder %s
+Can't move your %s
+Can't copy your %s
+Can't rename your %s
+Can't move a folder inside itself!
+Can't copy a folder inside itself!
+%1$s moved to the %2$s folder and named %3$s
+%1$s copied to the %2$s folder and named %3$s
+%1$s moved to the %2$s folder
+%1$s copied to the %2$s folder
+%1$s move failed to the %2$s folder
+%1$s copy failed to the %2$s folder
+%s rename failed
+Form
+can't close this frame
+Cannot display the previous page: page may be too large
+Cannot display the next page: page may be too large
+Choices\n
+There are no choices available
+Text
+Working
+error: initialization file missing or not readable
+error: commands file missing or not readable
+Menu
+That operation is not available in FACE
+%1$s renamed to %2$s
+%s is not a proper destination for move
+%s is not a proper destination for copy
+You are not allowed to delete your Filecabinet
+Press ENTER to empty your %s:
+WARNING: You are about to permanently remove all objects in your WASTEBASKET
+WARNING: The folder you are about to delete is not empty
+Press ENTER to delete %s:
+Undelete can only be used on objects in your WASTEBASKET
+Unable to find previous folder, use MOVE
+The character '|' is not allowed in description, try again
+Null strings are not allowed in description, try again
+%s does not exist.
+You do not have permission to search %s
+You do not have permission to modify %s
+You do not have permission to read %s
+Please re-enter value
+All objects in WASTEBASKET have been permanently removed
+Object name cannot contain space or tab characters\n
+Object name cannot have more than %d characters\n
+Can't create object: folder path length exceeds %d characters\n
+Object name cannot contain the special character '%c'
+Object name cannot contain the special character ^%c
+Object name cannot start with the character '%c'
+object exists in wastebasket
+An object with that name already exists
+An object with that name already exists in %s
+heuristics table
+heuristics magic number
+heuristics table function
+#\n# Object Definition Dump of object type %s\n
+# Dump date: %s#\n
+#\n# Part Definitions\n#\n
+#\n# Operation Definitions\n#\n
+File folder
+Standard file
+Executable
+Foreign file
+Command unknown, please try again
+Could not access %s
+Please enter scramble key: 
+Please enter unscramble key: 
+Please re-enter scramble key: 
+The two scramble keys are different.
+Encryption software not available
+Key does not unscramble %s
+prevpage
+nextpage
+enter
+CHG-KEYS
+MARK
+HELP
+CHOICES
+SAVE
+PREV-FRM
+NEXT-FRM
+CANCEL
+CMD-MENU
+ENTER
+PREVPAGE
+NEXTPAGE
+COPY
+MOVE
+DELETE
+RENAME
+CREATE
+SECURITY
+SELECT
+This terminal does not have usable default settings for its function keys;\nhowever, this application can download usable settings.\n\nIf you reply yes, function keys will work, BUT any values you may already \nhave programmed into them will be overwritten.\n\n
+If you reply no,  function keys may not work, and you must use CTRL-f1 \nthru CTRL-f8 to simulate the function keys.\n\nThis prompt will not occur if you set LOADPFK=YES or LOADPFK=NO in \nyour environment.\n\nDownload usable settings into the function keys [default is yes]? 
+yes
+process fork failed
+You are returning to a suspended activity. This activity\r\nmust be ended before you can complete logging out.\r\nPlease take whatever steps are necessary to end this\r\nactivity.\r\n\n
+You are returning to a suspended activity. \r\n
+\r\nPress ENTER to continue
+Too many suspended activities!  Use frm-mgmt list to resume and close some.
+Can't close this frame\n
+can't close %s
+can't make only %s current
+can't make %s current
+can't make only %s current
+Can't move an open object, close it first
+Can't copy an open object, close it first
+Can't rename an open object, close it first
+Can't delete an open object, close it first
+Can't move a folder with open sub-folders, close them first
+Can't copy a folder with open sub-folders, close them first
+Can't rename a folder with open sub-folders, close them first
+Can't delete a folder with open sub-folders, close them first
+No help available here
+Can't open the write pipe: 
+Can't open the read pipe: 
+Usage: 
+fmlcut [-s] [-d<char>] {-c<list> | -f<list>} file ...
+bad list for c/f option
+no delimiter
+no fields
+WARNING: cannot open %s\n
+line too long
+cannot handle multiple adjacent backspaces\n
+Syntax error - \";\" found after \"%s\"
+Syntax error - \"fi\" with no pending \"if\"
+Syntax error - \"fi\" with no pending \"then\"
+Syntax error - missing semi-colon after \"fi\" statement.
+Syntax error - \"then\" with no pending \"if\"
+Syntax error - \"then\" within \"then\"
+Syntax error - \"then\" within \"else\"
+Syntax error - \"then\" without a preceeding \"if\"
+Syntax error - \"else\" with no pending \"if\"
+Syntax error - \"else\" within \"else\"
+Syntax error - \"else\" with no pending \"then\"
+no
+WARNING: You are denying some permissions to yourself!
+Unable to change security on %s
+Internal error - \"if\" stack overflow
+Syntax error - \"elif\" with no pending \"if\"
+Syntax error - \"elif\" after an \"else\"
+Syntax error - \"elif\" with no pending \"then\"
+ terminated by signal: 
+ terminated by signal 
+Non-numeric argument
+Division by zero
+Too many '\\('s
+string too long\n
+RE error
+Syntax error
+syntax error
+Arguments invalid
+Path too long
+Name invalid
+Owner invalid
+Age invalid
+Range endpoint too large
+Bad number
+`\\digit' out of range
+No remembered search string
+'\\( \\)' imbalance
+Too many `\\(' s
+More than two numbers given in '\\{ \\}'
+'\\}' expected
+First number exceeds second in '\\{ \\}'
+'[ ]' imbalance
+Regular expression overflow
+Illegal byte sequence
+Regular expression error
+Usage: fmlgrep -hblcnsvi pattern file . . .\n
+fmlgrep: Cannot open %s: %s\n
+%s:
+%ld:
+RE error %d: %s\n
+not enough arguments
+extra args ignored
+not enough args
+warning: bad regex pattern
+Some necessary information is missing: arg to pathconv
+Data has been corrupted bad: -arg to pathconv
+Can't create another process\r\n
+error
+] missing; 
+argument expected; 
+test syntax error; 
+) expected; 
+test - unknown operator; 
+MAIL
+This frame can not be used as a destination
+Can't open from this menu
+Can't cancel from this menu
+Can't cleanup from this menu
+Can't copy from this menu
+Can't create from this menu
+Can't delete from this menu
+Can't display from this menu
+Can't enter from this menu
+Can't exit from this menu
+Can't help from this menu
+Can't organize from this menu
+Can't print from this menu
+Can't redescribe from this menu
+Can't refresh from this menu
+Can't rename from this menu
+Can't run from this menu
+Can't show path from this menu
+Can't undelete from this menu
+Can't update from this menu
+Can't save from this menu
+Can't press enter in this menu
+Command is not valid in this case
+%s is not displayable.
+The current frame must be a non-empty folder to use this command.
+object does not exist
+You may only organize File folders
+You do not have write permission to organize this folder
+You must open the File folder to organize
+Enter a frame number or path: 
+Can't find any frames\n
+Can't find frame \"%s\"\n
+\"To return, type 'exit' or control-d\nYou are in `pwd`\"
+Not enough arguments
+Unable to find a frame with that name
+Position bottom-right corner and press ENTER
+Position top-left corner and press ENTER
+file %s not recognized (use FMLI naming rules)
+No open operation defined for this object.
+No move operation defined for this object.
+Suspended %s
+Object %s is not a folder
+Command ignored: the ! prefix is disabled in this application
+Command ignored: open is disabled in this application
+Command '%s' not unique.  Type more of its name.
+Command ignored: run is disabled in this application
+You can only create new objects inside File folders
+You don't have permission to create objects in %s
+You cannot create objects in your WASTEBASKET
+Frame List
+Open Frames
+list
+list all frames
+move a frame
+reshape
+reshape a frame
+Forms cannot be reshaped
+Frame Management
+Unknown command or frame \"%s\" ignored
+Can't find frame \"%s\"
+Arguments to \"list\" ignored
+Unknown command \"%s\" ignored
+Bad argument to frmmgmt: try list, move or reshape
+usage: \n\n%s [-i init-file] [-c command-file] [-a alias-file] frame-definition-file ...\n\n
+The Form and Menu Language Interpreter (fmli) is a tool\nfor providing a user interface to your application.\nSee the SVR4 \"Programmer's Guide: Character User Interfaces\"\n
+Can't open initialization file \"%s\"\n
+Can't open commands file \"%s\"\n
+Can't open alias file \"%s\"\n
+Can't open frame definition file: \"%s\"\n
+\r\n\nYou are not allowed to suspend at this time.\r\n
+You are in the process of logging out of FACE.\r\n
+Please take steps to end the application program you are\n\rcurrently using.\n\r
+Wastebasket
+fmlmax: wrong number of arguments
+Open or navigate to the destination folder and press SELECT
+Enter the new object name: 
+Enter the new description: 
+Can't open frame: Permission denied
+Move to an item with arrow keys and press ENTER to select the item.
+Can't open frame: Frame definition file missing
+Frame not updated: Permission denied
+Frame not updated: Frame definition file missing
+No print operation defined for this object.

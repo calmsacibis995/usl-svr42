@@ -1,0 +1,39 @@
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+/**/#ident	"@(#)train:Imakefile	1.5"
+
+/**/#  Imakefile (Imakefile)
+/**/# 	Acc: 575322348 Fri Mar 25 14:45:48 1988
+/**/# 	Mod: 575294297 Fri Mar 25 06:58:17 1988
+/**/# 	Sta: 575294297 Fri Mar 25 06:58:17 1988
+/**/# 	Owner: 2011
+/**/# 	Group: 1985
+/**/# 	Permissions: 666
+
+
+/**/# 	START USER STAMP AREA
+
+
+/**/# 	END USER STAMP AREA
+
+#if !Release5
+EXTRA_LOAD_FLAGS =
+#endif
+
+EXTRA_LIBRARIES = -lnsl $(MEMUTILLIB)
+EXTENSIONLIB =
+LOCAL_LIBRARIES = $(XLIB)
+
+            SRCS = train.c passenger.c scores.c
+            OBJS = train.o passenger.o scores.o
+
+APP_NAME=train
+
+ComplexProgramTarget(train)

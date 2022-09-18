@@ -1,0 +1,38 @@
+   File Name		Archive #	Description
+-----------------------------------------------------------
+ Imakefile                  1	
+ MANIFEST                   1	This shipping list
+ Makefile.sunpro            1	
+ README                     1	
+ assert.h                   1	
+ cards.bm.aa                9	
+ cards.bm.ab                7	
+ copyright.h                2	
+ defs.h                     2	
+ doc.controls               2	
+ doc.examples               8	
+ doc.intro                  1	
+ doc.misc                   1	
+ doc.rules                  1	
+ doc.summary                1	
+ events.c                   2	
+ face.bm                    6	
+ gfx.c                      5	
+ globals.h                  1	
+ main.c                     1	
+ movelog.c                  3	
+ rank.bm                    1	
+ spider.bm                  1	
+ spider.c                   4	
+ spider.info                2	
+ spider.man                 1	
+ suit.bm                    1	
+ util.c                     1	
+ version.c                  1	
+ windows.c                  1	
+ xaw_stubs.c                2	
+ xaw_ui.c                   3	
+ xaw_ui.h                   1	
+ xv_stubs.c                 4	
+ xv_ui.c                    3	
+ xv_ui.h                    1	

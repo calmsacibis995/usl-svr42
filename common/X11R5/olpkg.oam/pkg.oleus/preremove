@@ -1,0 +1,136 @@
+#ident	"@(#)olpkg.oam:pkg.oleus/preremove	1.3"
+#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+#	Copyright (c) 1988, 1989, 1990 AT&T
+#	  All Rights Reserved
+
+#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+#	UNIX System Laboratories, Inc.
+#	The copyright notice above does not evidence any
+#	actual or intended publication of such source code.
+
+
+#
+#       AT&T OPEN LOOK End User System Release 4
+#
+
+TMP=/tmp/oleus.err
+TMPDIR=`pwd`
+XTOP=/usr/X
+XADMDIR=$XTOP/adm
+XINCDIR=$XTOP/include
+XLIBDIR=$XTOP/lib
+XBINDIR=$XTOP/bin
+XMANDIR=$XTOP/man
+NAME="AT&T OPEN LOOK End User System Release 4"
+echo "\n\tRemoving\n\t${NAME}\n\tpackage...\n"
+
+#
+# "stopXmtg" removes Xmtg from network listener's list of services.
+# "xwin stop" terminates the xdaemon process.
+#
+#/bin/sh /usr/X/lib/stopXmtg 2> /dev/null
+/etc/init.d/xdaemon stop        2> /dev/null
+
+FAILURE=1	# fatal error
+CONFDIR=/etc/conf
+CONFBIN=${CONFDIR}/bin
+
+NOTOOLS="ERROR: The Installable Driver feature has been removed. \
+The ${NAME} cannot be removed."
+
+# determine that ID/TP tools are available
+
+if [ ! -x ${CONFBIN}/idbuild -o ! -x ${CONFBIN}/idinstall ]
+then
+	message ${NOTOOLS}
+	exit $FAILURE
+fi
+
+rebuildflag=0
+echo "\n\tYou may optionally choose to restore the operating system"
+echo "\ttunable parameters to their state before the installation."
+echo "\tWARNING: restoring the parameters will cause the loss of"
+echo "\tchanges to tunable parameters made by software packages"
+echo "\tinstalled after $NAME."
+echo "\n\tStrike ENTER to continue removal without restoring,"
+echo "\tor ESC to restore the parameters:"
+message -c >/dev/null
+if [ $? = 1 ]
+then
+	if [ -f /etc/conf/cf.d/stune.noX ]
+	then
+		echo "\n\tRestoring tunable parameters."
+		echo "\tThis requires the kernel to be rebuilt; the"
+		echo "\trebuild will happen automatically."
+		rebuildflag=1
+		cp /etc/conf/cf.d/stune /etc/conf/cf.d/stune.yesX
+		cp /etc/conf/cf.d/stune.noX /etc/conf/cf.d/stune
+		chmod +r /etc/conf/cf.d/stune
+	else
+		echo "\n\tOriginal operating system parameters not found."
+		echo "\tThe operating system parameters will not change."
+	fi
+
+	rm -f /etc/conf/cf.d/stune.yesX /etc/conf/cf.d/stune.noX
+else
+	echo "\n\tTunable parameters will not be restored."
+fi
+
+#
+# Remove console emulator consem
+#
+CONNAME="Console Emulator"
+/etc/conf/bin/idcheck -p consem >/dev/null 2>&1
+if [ $? != 0 ]
+then
+	# It is there
+	echo "\n\tRemoving $CONNAME"
+	if [ $rebuildflag = 0 ]
+	then
+		echo "\tThis requires the kernel to be rebuilt; the"
+		echo "\trebuild will happen automatically."
+	fi
+	rebuildflag=1
+	removef -f /usr/include/sys/consem.h > /dev/null 2>&1
+	/etc/conf/bin/idinstall -d consem
+fi
+
+echo "\n\tNow removing End User System files..."
+
+#
+#     Special cases
+#
+
+Xhosts=n
+echo "\n\tDo you want to delete the current /etc/X0.hosts file (y/n) [n] ? \c"
+read Xhosts
+[ -z "$Xhosts" ] && Xhosts=n
+case ${Xhosts} in
+	n*|N*)
+		;;
+	*)
+		rm    -f /etc/X0.hosts
+		;;
+esac
+
+rm    -rf /dev/X 
+
+if [ $rebuildflag = 1 ]
+then
+	# rebuild for changes to take effect
+	
+	${CONFBIN}/idbuild
+	if [ "$?" -ne "0" ]
+	then
+		echo "\n\tAn error was encountered attempting to rebuild"
+		echo "\t the UNIX System kernel."
+		echo "\tThe kernel modifications were not changed, and"
+		echo "\t the UNIX System has not been modified."
+		exit ${FAILURE}
+	else
+		exit 10
+	fi
+else
+	exit 0
+fi
+

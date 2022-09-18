@@ -1,0 +1,12 @@
+#ident	"@(#)face:OBJECTS/Menu.users	1.5.4.2"
+#ident  "$Header: Menu.users 1.4 91/10/15 $"
+
+menu=$$uxface:435:"Other Users"
+help=OPEN TEXT OBJECTS/Text.h "$$uxface:491:HELP on Other Users" T.husers
+framemsg=$$uxface:399:"Move to an item with arrow keys and press ENTER to select the item."
+rows=18
+
+`sort +0 -1 -t: /etc/passwd | regex "^$LOGNAME:" "" "^vmsys:" "" "^oasys:" ""
+'^([^:][^:]*)$0:[^:]*:[0-9][0-9][0-9][0-9]*:[^:][^:]*:([^:]*)$1:([^:][^:]*)$2:.*$' 'name="$m0"
+description="$m1"
+action=OPEN DIRECTORY "$m2"'`

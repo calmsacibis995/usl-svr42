@@ -1,0 +1,35 @@
+#ident	"@(#)nadmin.rfs:other/rfs/id_map/bin/gid_map	1.4.5.1"
+#ident  "$Header: gid_map 2.0 91/07/12 $"
+if [ ! -d "/etc/rfs/auth.info" ]
+then
+	$TFADMIN /usr/bin/mkdir -p /etc/rfs/auth.info;
+	$TFADMIN /usr/bin/chmod 755 /etc/rfs/auth.info;
+	$TFADMIN /usr/bin/chgrp bin /etc/rfs/auth.info;
+fi;
+
+echo "$GMAP" >/usr/tmp/gtmp
+
+case "$GMAP" in
+"allguest") 	echo "global" > /etc/rfs/auth.info/gid.rules
+		$TFADMIN /usr/bin/chgrp bin /etc/rfs/auth.info/gid.rules
+		$TFADMIN /usr/sbin/idload
+		break
+		;;
+
+"0guest")	echo "global" > /etc/rfs/auth.info/gid.rules
+		echo "default transparent" >> /etc/rfs/auth.info/gid.rules
+		echo "exclude 0" >> /etc/rfs/auth.info/gid.rules
+		$TFADMIN /usr/bin/chgrp bin /etc/rfs/auth.info/gid.rules
+		$TFADMIN /usr/sbin/idload
+		break
+		;;
+
+"0to9guest")	echo "global" > /etc/rfs/auth.info/gid.rules
+		echo "default transparent" >> /etc/rfs/auth.info/gid.rules
+		echo "exclude 0-10" >> /etc/rfs/auth.info/gid.rules
+		$TFADMIN /usr/bin/chgrp bin /etc/rfs/auth.info/gid.rules
+		$TFADMIN /usr/sbin/idload
+		break
+		;;
+
+esac

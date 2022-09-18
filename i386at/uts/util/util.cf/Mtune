@@ -1,0 +1,8 @@
+#ident	"@(#)uts-x86at:util/util.cf/Mtune	1.2"
+#ident	"$Header: $"
+
+* Miscellaneous Parameters ---------------------
+PUTBUFSZ	2000	2000	10000
+DO386B1		2	0	2
+DO387CR3	2	0	2
+SANITYCLK	0	0	1

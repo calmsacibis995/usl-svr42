@@ -1,0 +1,12 @@
+#ident	"@(#)bnu.admin:common/cmd/bnu.admin/Helpol_r	1.2.2.3"
+#ident "$Header: Helpol_r 2.0 91/08/20 $"
+
+ABSTRACT:
+	The remove task allows you to tell your system which systems
+	not to contact.
+
+prmsys:System
+	Give the name of a system that you no longer want Basic
+	Networking not to contact automatically.  System information
+	will be listed for your confirmation before removal.
+

@@ -1,0 +1,6 @@
+#ident	"@(#)uts-x86:io/osm/osm.cf/Node	1.1"
+#ident	"$Header: $"
+
+osm	osm	c	0	0	3	644
+osm	osm1	c	1	0	3	644
+osm	osm2	c	2	0	3	644

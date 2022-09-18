@@ -1,0 +1,9 @@
+#!/sbin/sh
+
+#
+#ident	"@(#)pkging:i386/cmd/pkging/removepkg	1.2.4.2"
+#ident  "$Header: removepkg 1.2 91/07/08 $"
+#
+PATH=/sbin:/usr/sbin:/etc:/usr/bin
+export PATH
+sh -c "/usr/lbin/removepkg.r $*"

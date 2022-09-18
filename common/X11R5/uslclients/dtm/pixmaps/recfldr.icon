@@ -1,0 +1,47 @@
+#define recfldr_format 1
+#define recfldr_width 32
+#define recfldr_height 32
+#define recfldr_ncolors 6
+#define recfldr_chars_per_pixel 1
+static char * recfldr_colors[] = {
+" " , "#E400E400E400",
+"." , "#000000000000",
+"X" , "#DB00DB00BA00",
+"o" , "#710071007100",
+"O" , "#AA00AA00AA00",
+"+" , "#00000000E000"
+} ;
+static char * recfldr_pixels[] = {
+"                ..........      ",
+"               .XXXXXXXXXX.     ",
+"    ...........XXooXooXooXX...  ",
+"   .XXXXXXXXXXX.XXXXXXXXXX.XXX. ",
+"   .XXXXXXXXXXXX..........XXXXo.",
+"   .XXXXXXXXXXXXXXXXXXXXXXXXXXo.",
+"   .XXXXXXXXXXXXXXXXXXXXXXXXXXo.",
+"   .XXXXXXXXXXXXXXXXXXXXXXXXXXo.",
+"   .XXXXXXXXXXXXXooooOOOOOOo.Xo.",
+"   .XXXXXXXXXXXXXooooOOO..Oo.Xo.",
+"   .XXXXXXXXXXXXXooooOOO..Oo.Xo.",
+"   .XXXXXXXXXXXXXooooOOO..Oo.Xo.",
+" ................ooooOOOOOOo.Xo.",
+".................ooooOOOOOOo.Xo.",
+"..O.+.OOOOOOOOOOOooooooooooo.Xo.",
+"..OO.OOO.........ooooooooooo.Xo.",
+"..OOOOO.OOO.O+O..ooooooooooo.Xo.",
+"..OOOO.OOOOO.O.OOooooooooooo.Xo.",
+"..OOO.OOOOOOO.OOOooooooooooo.Xo.",
+"..OO.O...OOOOOO..ooooooooooo.Xo.",
+"..O.O.OOO.OOOO...............Xo.",
+"..O..OO.OO.OO...OO.OO..OO.XXXXo.",
+"..O.OO.O.OO.O..OO.O.OO..O.XXXXo.",
+"..O.O.OoO.O.O..O.OoO.O..O.XXXXo.",
+"..O.O.Ooo.O.O..O.Ooo.O..O.ooooo.",
+"..O.oO.O.OO.O..oO.O.oO..O.......",
+"..OO.oO.OO.OO...oO.OO..OO.oooooo",
+"..OOO.oOO.OOOO...oOO...OO.o     ",
+"..OOOO...OOOOOO.......OOO.o     ",
+"..ooOOOOOOOOOOOO.....OOoo.o     ",
+"..+oOOOOOOOOOOOOOOOOOOOo+.o     ",
+" .........................      "
+} ;

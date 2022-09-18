@@ -1,0 +1,22 @@
+#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+#	Copyright (c) 1984, 1985, 1986, 1987, 1988, 1989, 1990 AT&T
+#	  All Rights Reserved
+
+#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+#	UNIX System Laboratories, Inc.
+#	The copyright notice above does not evidence any
+#	actual or intended publication of such source code.
+
+
+
+#ident	"@(#)lp:terminfo/PS.ti	1.4.2.2"
+#ident  "$Header: PS.ti 1.2 91/06/27 $"
+PS|PSR|PS-b|PS-r|PS-br|Fake PostScript entry,
+        slines=\004,
+	u9=\004,
+	csnm=\004,
+	scs=\004,
+	cpi=null,
+	lpi=null,
+	cols#80,
+	lines#66,

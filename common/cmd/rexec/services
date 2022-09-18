@@ -1,0 +1,23 @@
+#ident	"@(#)rexec:services	1.7.2.1"
+#ident  "$Header: services 1.2 91/06/27 $"
+
+#
+# REXEC services file
+#
+# Fields: service name, service description, u-flag, service definition.
+#
+# Note: The service definition is shown before interpretation by REXEC.
+#	The percent character (%) is escaped when preceded by a backslash
+#	character or surrounded by a pair of unescaped single or double 
+#	quotes.
+#
+# name	description	u-flag	definition
+#
+# default services
+
+rx	Remote execution	-	%s -c \"%*\"
+rl	Remote login	u	%s -i
+rquery	List available services	-	/usr/lib/rexec/rxlist
+
+# other services
+

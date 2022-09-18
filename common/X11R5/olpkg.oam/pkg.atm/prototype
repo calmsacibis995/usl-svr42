@@ -1,0 +1,42 @@
+#ident	"@(#)olpkg.oam:pkg.atm/prototype	1.2"
+#	Copyright (c) 1990, 1991 UNIX System Laboratories, Inc.
+#	Copyright (c) 1988 AT&T
+#	  All Rights Reserved
+
+#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+#	UNIX System Laboratories, Inc.
+#	The copyright notice above does not evidence any
+#	actual or intended publication of such source code.
+
+
+i copyright
+i depend
+i pkginfo
+i postinstall
+i preremove
+
+!PKGINST=atm
+
+!default 0755 bin bin
+
+d enduser /usr ? ? ?
+
+d enduser /usr/X
+d enduser /usr/X/lib
+d enduser /usr/X/lib/fonts
+d enduser /usr/X/lib/fonts/mitType1
+d enduser /usr/X/lib/fonts/mitType1/afm
+
+!default 0644 bin bin
+
+f enduser /usr/X/lib/libatm.so
+
+f enduser /usr/X/lib/fonts/mitType1/UTBI____.pfa
+f enduser /usr/X/lib/fonts/mitType1/UTB_____.pfa
+f enduser /usr/X/lib/fonts/mitType1/UTI_____.pfa
+f enduser /usr/X/lib/fonts/mitType1/UTRG____.pfa
+v enduser /usr/X/lib/fonts/mitType1/fonts.dir
+f enduser /usr/X/lib/fonts/mitType1/afm/UTBI____.afm
+f enduser /usr/X/lib/fonts/mitType1/afm/UTB_____.afm
+f enduser /usr/X/lib/fonts/mitType1/afm/UTI_____.afm
+f enduser /usr/X/lib/fonts/mitType1/afm/UTRG____.afm

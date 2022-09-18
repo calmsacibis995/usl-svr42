@@ -1,0 +1,4 @@
+#ident	"@(#)uts-x86at:io/qt/qt.cf/System	1.4"
+#ident	"$Header: $"
+$version 1
+qt	N	1	6	1	5	300	301	0	0	1

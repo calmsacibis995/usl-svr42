@@ -1,0 +1,117 @@
+		  III.   T H E   S P I D E R   P R O G R A M
+
+The stack of cards in the upper left of the Spider window represents
+the undealt cards (initially the full deck; later the "Hand").  The
+eight outlines to the right mark where the eight suits will go as you
+remove them from the tableau.  The rest of the window is initially
+empty until you start a game.
+
+To start a game, press the [New Game] button or click either the left
+mouse button over the undealt cards.  Playing the game is handled
+entirely within the main window; the control panel provides a few
+ancillary functions, described later.  First, the main window:
+
+If you press the left mouse button anywhere within or below a column of
+cards, it says you want to move as many cards as possible from that
+column.  If you then move the mouse to another column and let up on the
+button, the program moves as many cards as it can from the first column
+to the second.  (If there is no such legal move, the program says so.)
+Note that, unless the destination column is empty (i.e., a "space"),
+there is at most one choice for the number of cards to move.
+
+If you instead use the second mouse button to select within a column,
+it says you want to move the card you're pointing at plus any cards
+covering it.  If these cards cannot be moved as a unit (i.e., they are
+not a sequence within a suit), the program says so.  Again, if you move
+the mouse to another column and release the button, the program moves
+as the selected cards to the destination.  The only time you need to
+use this method (instead of using left) is if you're moving cards into
+a space AND you wish to move fewer than the maximum permitted.
+
+If you click the left button over a single column, the program tries to
+move the specified cards to "the obvious place" by trying the following
+choices, in order: (1) remove them if they form a completed suit, else
+(2) move them onto a card of the same suit, else (3) move them onto a
+card of a different suit, else (4) move them into a space.  If it can't
+do any of these, it complains.
+
+You can also remove a completed suit by selecting all 13 cards (using
+the left button), moving the mouse into the region of outlines above
+the tableau, and releasing the button.
+
+To deal a new round, click any button on the facedown stack in the
+upper left.  The window footer shows you how many more deals remain.
+Remember that all spaces must be filled before you can deal a new
+round.
+
+If you click with any mouse button in the outline region where the
+removed suits go, the program will tell you which suits (if any) have
+enough cards face-up to form a complete sequence of thirteen.
+
+The game also has a control panel for performing some less frequent
+operations.  Many of these also have keyboard accelerators:
+
+[New Game], N or n:	Throws away the current game and start a new one.
+
+[Backup: One Move], U or u: Undo the last move.  If you undo a move
+that revealed a previously unknown card, the program will chastise you.
+
+[Backup: Start Over], A or a: Play the same hand again.  This will
+restart the game with the initial deck, discarding what you've already
+done.
+
+[Backup: Replay], R or r:	Show all the moves made so far.  This can take
+a while, so any key or button press will abort it.
+
+[Expand], E or e: Expand column.  This prompts the user to select a
+column, which is then displayed in textual form.  This is useful when
+the window cannot be made larger and the columns are very large.
+
+[Locate], F or f:  tries to find a specified card or cards among the
+face-up cards in the tableau.  First specify the name of the card to
+look for by putting the rank and suit in the Name item.  (The ranks are
+A, 2, 3, ..., 10, J, Q, or K; you can also use T for 10.  Suits are C,
+D, H, and S.  Lower-case is permitted.)  If you omit the suit, [Locate]
+will look for all cards of the specific rank that are not already
+covered by a card of the next lower rank.  (Such cards are called
+"unused", "free", or "available".)  For example, if you want to move a
+9 out of some pile, you need either a space or a free 10 onto which to
+move it, so you could use [Locate] to find all free 10s.
+
+[Score], S or s:	Shows the current score.
+
+[File] is a stack; the default is [Save in File], which writes a file
+containing the current state of the game, including the original deck and all
+the moves made so far.  The name of the file is taken from the Name item.
+The file also includes a human-readable text representation of the current
+tableau, similar to those that appear in the examples below.
+
+[File: Resume from File] reads a file created by the [File: Save in File]
+command.  The name of the file is taken from the Name item.  It can also read
+various partial files; in particular, if all but the first line of the file
+has been deleted, it will restore the most recent position and, if possible,
+the original deck (in case you want to Start Over), but it will not be able
+to Back Up over the moves.
+
+[File: Resume from Selection] restores a position represented by the current
+text selection.  This is useful for loading positions from section IV, below.
+
+The window also understands these additional keyboard commands:
+
+D or d: Deals a new round.
+
+L or l: Loads a saved game from the current PRIMARY selection.  If the
+selection is a file name, it will be loaded from that file.  Otherwise
+it will attempt to load the selection as position.  This is useful for
+loading positions from the examples in section IV.
+
+W or w: Saves the current position in the filename contained in the
+PRIMARY selection.
+
+?: Gives a move suggestion.  This isn't necessarily the best move, but
+may be helpful for beginners.
+
+#: Displays some game statatistics.
+
+Q: Quit.
+

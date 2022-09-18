@@ -1,0 +1,5 @@
+#ident	"@(#)uts-x86at:io/dlpi_ether/imx586.cf/Master	1.2"
+#ident	"$Header: $"
+$version 1
+$entry init intr
+imx586	imx586	Sc	0	0	0-4

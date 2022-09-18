@@ -1,0 +1,50 @@
+#ident	"@(#)oamintf:common/cmd/oamintf/sched/Text.display	1.2"
+#ident	"$Header: $"
+
+title="Display Scheduled Tasks"
+altslks
+
+close=`rm -f $ARG1`
+
+begrow=any
+begcol=any
+rows=9
+columns=`longline`
+
+`message "Strike the CONT function key to continue."`
+
+text="`readfile $ARG1`"
+
+name=CONT
+button=9
+action=return cancel
+
+name=""
+button=10
+action=nop
+
+name=NEXTPAGE
+button=11
+action=return nextpage
+
+name=PREVPAGE
+button=12
+action=return prevpage
+
+name=""
+button=13
+action=nop
+
+name=CANCEL
+button=14
+action=return cancel
+
+name=CMD-MENU
+button=15
+action=cmd-menu
+
+name=""
+button=16
+action=nop
+
+`indicator -w`

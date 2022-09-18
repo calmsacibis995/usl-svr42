@@ -1,0 +1,4 @@
+#ident	"@(#)uts-x86:mem/kma.cf/System	1.3"
+#ident	"$Header: $"
+$version 1
+kma	Y	0	0	0	0	0	0	0	0	-1

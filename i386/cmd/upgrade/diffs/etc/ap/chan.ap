@@ -1,0 +1,7 @@
+*** ./etc/ap/chan.ap	Wed Feb  5 18:29:15 1992
+--- ../p8.save/./etc/ap/chan.ap	Wed Feb  5 18:29:12 1992
+***************
+*** 1 ****
+! #ident	"@(#)autopush:i386/chan.ap	1.1.1.1"
+--- 1 ----
+! #ident	"@(#)/etc/ap/chan.ap.sl 1.1 4.1dt 10/03/91 58153 AT&T-USL"

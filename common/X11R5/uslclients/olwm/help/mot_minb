@@ -1,0 +1,18 @@
+Minimize Button:
+
+	Use the Minimize button to change the visual representation
+	of the base window at the pointer location to an icon. When
+	an application base window is minimized, its associated
+	transient (pop-up) windows are also unmapped.
+
+To Minimize, click SELECT:
+
+	To minimize a window containing a minimize button, move the
+	mouse pointer into the area enclosed by the minimize button,
+	and click SELECT while the pointer is inside this area. The
+	window, it's associated transient windows, and all windows
+	in the same window group as the window will be unmapped.
+	The icon representing the minimized application will appear
+	at the next available position on the screen according to
+	the icon positioning resource.
+

@@ -1,0 +1,4 @@
+#ident	"@(#)uts-x86:io/async/async.cf/Master	1.3"
+#ident	"$Header: $"
+$version 1
+async	aio	o	0	0	0

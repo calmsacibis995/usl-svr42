@@ -1,0 +1,5 @@
+#ident	"@(#)uts-x86at:io/kdvm/kdvm.cf/Master	1.4"
+#ident	"$Header: $"
+$version 1
+$entry open close ioctl
+kdvm	kdvm_	cork	0	0	20

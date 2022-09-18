@@ -1,0 +1,27 @@
+#ident	"@(#)olpkg.oam:pkg.desk/preinstall	1.3"
+#ident	"$Header: $"
+
+############# Begin UPGRADE AND OVERLAY #######################
+
+SCRIPTS=/usr/sbin/pkginst
+
+#  The volatile files saved for ${PKGINST} will be listed in 
+#  /var/sadm/upgrade/${PKGINST}.sav
+
+#  The initial V4 volatile files list for ${PKGINST} should be in 
+#  /etc/inst/up/patch/${PKGINST}.LIST
+
+[ "$PKGINSTALL_TYPE" = NEWINSTALL ] || {
+
+	${SCRIPTS}/pkgsavfiles ${PKGINST}
+
+	#  final list of volatile files to be saved is /tmp/${PKGINST}.sav
+	#  pkgsavefiles returns 1, if nothing to be merged.
+
+	[  $? = 1 ] && AUTOMERGE=NULL
+}
+
+############# End  UPGRADE AND OVERLAY #######################
+
+export AUTOMERGE
+exit 0

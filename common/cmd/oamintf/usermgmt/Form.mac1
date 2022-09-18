@@ -1,0 +1,86 @@
+#ident	"@(#)oamintf:common/cmd/oamintf/usermgmt/Form.mac1	1.1.5.2"
+#ident  "$Header: Form.mac1 2.0 91/07/12 $"
+
+form="Add Security Level Information"
+
+framemsg=`readfile $INTFBASE/form.msg`
+
+help=OPEN TEXT $INTFBASE/Text.itemhelp $LININFO
+
+close=`unset -l UADDARGS; /usr/bin/rm -f $UADDERR`
+
+done=`test -n "$FLVLS" && set -l ALLARGS="$UADDARGS $UADDARGSAUD -h$FLVLS";
+	test -n "$F2" && set -l ALLARGS="$ALLARGS -v$F2";
+	test -n "$F3" && set -l ALLARGS="$ALLARGS -w$F3";
+	message -f "Adding "$NUSER" to the system.";
+	if [ -n "$TFADMIN" ]; then shell "$TFADMIN useradd $!UADDARGS $!NUSER" >/dev/null 2>$UADDERR;
+	else shell "useradd $!UADDARGS $!NUSER" >/dev/null 2>$UADDERR; fi;
+	unset -l UADDARGS ;
+	if [ "$RET" -eq "0" ]; then
+		set -l CMD="OPEN FORM $OBJ_DIR/Form.addpswd $NUSER";
+	else
+		set -l CMD="OPEN TEXT $OBJ_DIR/Text.ausrnok $NUSER";
+	fi;
+	unset -l ALLARGS -l UADDARGSAUD; 
+`$CMD
+
+
+# Get current alias info (both ways - got to get lids and aliases)
+`lvlname |sed '/^Levels:/d;/^$/d;/^Classifications/,$ d;s/^[0-9]*:*//;s/::.*$//'>/tmp/$VPID.levels`
+
+#  $F1
+name=Security level(s) or alias(es):
+lininfo=Form.mac1:seclvl
+nrow=1
+ncol=3
+frow=1
+fcol=35
+rows=1
+columns=40
+scroll=true
+value=`/usr/bin/defadm useradd DEFLVL|fmlcut -d= -f2`
+rmenu=OPEN MENU $OBJ_DIR/Menu.lvls
+valid=`message -f "Please wait."; echo "$F1" |sed 's/,/ /g' | set -l LVLS;
+	if [ -n "$LVLS" ]; then
+	    if regex -v "$LVLS" '.* .*'; then
+	       valforloop "$LVLS" "grep \$i /tmp/$VPID.levels";
+	    else grep $LVLS /tmp/$VPID.levels;
+	    fi;
+	    echo "$F1" |sed 's/,/ -h /g' | set -l FLVLS;
+fi`
+invalidmsg=const "Error - Enter an existing qualified level name or alias"
+fieldmsg= const "Press the CHOICES function key. Press SAVE when you complete the form."
+
+#  $F2
+name=Default Login Level:
+lininfo=Form.mac2:loglvl
+nrow=2
+ncol=3
+frow=2
+fcol=24
+rows=1
+columns=40
+scroll=true
+value=`/usr/bin/defadm useradd DEFLVL|fmlcut -d= -f2`
+rmenu={ `cat /tmp/$VPID.levels` }
+valid=`test -n "$F2" && grep $F3 /tmp/$VPID.levels`
+invalidmsg=const "Error - Enter an existing qualified level name or alias"
+fieldmsg= const "Press the CHOICES function key. Press SAVE when you complete the form."
+
+#  $F3
+name=Home directory level:
+lininfo=Form.mac2:hlevel
+nrow=3
+ncol=3
+frow=3
+fcol=25
+rows=1
+columns=40
+scroll=true
+value=`/usr/bin/defadm useradd DEFLVL|fmlcut -d= -f2`
+rmenu={ `cat /tmp/$VPID.levels` }
+valid=`test -n "$F3" && grep $F3 /tmp/$VPID.levels`
+invalidmsg=const "Error - Enter an existing qualified level name or alias"
+fieldmsg= const "Press the CHOICES function key. Press SAVE when you complete the form."
+
+#EOF

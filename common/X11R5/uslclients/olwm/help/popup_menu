@@ -1,0 +1,60 @@
+You use the pop-up Window menu to dismiss selected pop-up windows,
+to move them to the back of the workspace, to refresh windows,
+and to locate the base window that owns the pop-up windows.
+You can view and choose from menus in three ways using the
+MENU mouse button:
+
+		Press-Drag-Release
+		Click-Move-Click
+		Pinning the Window menu to the workspace
+
+Using Press-Drag-Release:
+
+	To use press-drag release, move the pointer to the pop-up
+	window background, press MENU, drag the pointer to the
+	control you want, and release MENU. To see the menu under
+	the Dismiss button stack, drag the pointer onto the right
+	half of the button stack. To use the default setting,
+	release MENU. To use a different setting, drag the pointer
+	is on the control you want in the Dismiss submenu and release
+	MENU. The control is executed and the menu is dismissed. If
+	you do not want to choose a control, move the pointer off the
+	menu and release the mouse button.
+
+Using Click-Move-Click:
+
+	To use click-move-click, move the pointer to the pop-up
+	window background and click MENU. The menu is displayed
+	and stays on the screen. Move the pointer to the control
+	you want and click SELECT or MENU. The control is executed
+	and the menu is dismissed. If you do not want to choose a
+	control, move the pointer off the menu and click SELECT or
+	MENU to dismiss the menu without choosing a control.
+
+Using the Pushpin To pin up the menu:
+
+	Press MENU and drag the pointer to the pushpin. When the
+	pin pops into the hole, release MENU. The menu becomes a
+	pop-up window, and you choose from it in the same way you
+	use controls in the control area of a window:
+		click SELECT to use a button or execute the
+		default choice from the menu under a button
+		stack, move the pointer to a button stack
+		and press MENU to display the button stack menu.
+
+Changing the Default Setting:
+
+	Each menu in a menu group has a default setting, which is
+	shown by a default ring. You can change the default setting
+	for any menu using the steps below:
+
+		Press the default modifier key and MENU
+
+		Drag the pointer from control to control. The default
+		ring follows the pointer.
+
+When the default ring is on the control you want to use as the default,
+release MENU and then release the modifier key.
+
+If you release the modifier key first and then release MENU, in addition
+to setting the default, the command is executed.

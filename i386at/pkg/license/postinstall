@@ -1,0 +1,73 @@
+#ident	"@(#)pkg.license:postinstall	1.7"
+#ident	"$Header: $"
+
+FLG=0
+case `uname -r` in
+	4.*)	continue
+		;;
+	*)	FLG=1
+		;;
+esac
+
+if [ "$FLG" = "1" ]
+then echo "The ${NAME} can only \
+be installed on a Release 4 system with a version number of 1 or higher."
+	exit 1;
+fi
+
+cd /var/sadm/pkg/${PKG}/install
+echo "/usr/bin/defadm shutdown grace=0;" > preremove
+echo "cd `pwd`; ./Remove" >> preremove
+chmod 755 preremove
+
+cd /tmp
+./update
+if [ $? != 0 ]
+then exit 1
+fi
+/etc/conf/bin/idtune NPROC 200
+/etc/conf/bin/idbuild 2> /tmp/err.3.2.2
+if [ $? != 0 ]
+then ./update 16
+     echo "The installation of the ${NAME} was not successful.\n\n\
+Look at /tmp/err.3.2.2 for possible reasons."
+     exit 1
+fi
+./update 1 2 3 > /dev/null 2>&1
+TNAME=$?
+mv /tmp/update /var/sadm/pkg/${PKG}/install/Remove
+if [ "$TNAME" != "0" ]
+then
+   if [ "$TNAME" = "100" ]
+   then SNAME="Unlimited"
+   else SNAME="$TNAME"
+   fi
+   HERE=`pwd`
+   cd /usr/options
+   for i in *
+   do
+      grep "^UNIX System V/386 Release 4.0 $SNAME User License Package" $i > /dev/null 2>&1
+      if [ $? = 0 ]
+      then KEY2=$i
+           break
+      fi
+   done
+   if [ -n "$KEY2" ]
+   then 
+   rm -f /usr/lib/installed/Remove/"${KEY2}" /usr/lib/installed/Files/"${KEY2}" /usr/options/"${KEY2}"
+   fi
+   cd $HERE
+fi
+
+## shutdown's grace period is changed from 0 (default) to 60 seconds 
+## If pkg.license is removed, grace is changed back to 0 (preremove file above)
+/usr/bin/defadm shutdown grace=60
+
+rm -f /tmp/err.3.2.2
+echo "The ${NAME} has now been successfully installed.\n\n\
+The new user configuration will take effect the next time you reboot the UNIX System."
+
+removef ${PKGINST}  /tmp/update > /dev/null 2>&1
+removef -f ${PKGINST}
+
+exit 10

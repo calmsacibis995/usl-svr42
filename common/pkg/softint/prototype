@@ -1,0 +1,71 @@
+#ident	"@(#)pkg.softint:common/pkg/softint/prototype	1.10"
+#ident "$Header: $"
+
+# packaging and installation scripts
+
+i pkginfo
+i postinstall
+i copyright
+i depend
+
+# directories
+d none /usr    ?       ?       ?       1 NULL NULL
+d none /usr/bin        ?       ?       ?       1 NULL NULL
+d none /usr/lib	0755 root sys 1 NULL NULL
+d none /usr/lib/locale	0777 root sys 1 NULL NULL
+d none /usr/lib/locale/Xopen	0777 root sys 1 NULL NULL
+d none /usr/lib/locale/Xopen1	0777 root sys 1 NULL NULL
+d none /usr/lib/locale/C	0755 root sys 1 NULL NULL
+d none /usr/lib/locale/C/MSGFILES	0755 root sys 1 NULL NULL
+d none /usr/lib/locale/Xopen/LC_MESSAGES 0777 root sys 1 NULL NULL
+d none /usr/lib/locale/Xopen1/LC_MESSAGES 0777 root sys 1 NULL NULL
+d none /usr/lib/locale/TZ	 0755 root sys 1 NULL NULL
+d none /usr/lib/locale/C/LC_MESSAGES 0755 root sys 1 NULL NULL
+
+# commands
+f none /usr/bin/pkgmk 555 bin bin
+f none /usr/bin/pkgproto 555 bin bin
+f none /usr/bin/pkgtrans 555 bin bin
+
+f none    /usr/bin/chrtbl 555 bin bin
+f none    /usr/bin/colltbl 555 bin bin
+f none    /usr/bin/exstr 555 bin bin
+f none    /usr/bin/gencat 555 bin bin
+
+f none    /usr/bin/kbdcomp 555 bin bin
+
+f none    /usr/bin/mkmsgs 555     root    root 1 NULL NULL
+f none    /usr/bin/montbl 555 bin bin
+
+f none    /usr/bin/srchtxt 555 bin bin
+f none    /usr/bin/wchrtbl 555 bin bin
+
+f none	  /usr/lib/locale/C/LC_TIME 444	root	bin 1 NULL NULL
+f none    /usr/lib/locale/C/montbl_C 444  root    bin 1 NULL NULL
+f none    /usr/lib/locale/C/colltbl_C 444 root    bin 1 NULL NULL
+f none    /usr/lib/locale/C/chrtbl_C 444  root    bin 1 NULL NULL
+f none    /usr/lib/locale/C/time_C 444    root    bin 1 NULL NULL
+f none    /usr/lib/locale/TZ/asia 644     bin     bin 1 NULL NULL
+f none    /usr/lib/locale/TZ/australasia  644     bin     bin 1 NULL NULL
+f none    /usr/lib/locale/TZ/etcetera     644     bin     bin 1 NULL NULL
+f none    /usr/lib/locale/TZ/europe       644     bin     bin 1 NULL NULL
+f none    /usr/lib/locale/TZ/northamerica 644     bin     bin 1 NULL NULL
+f none    /usr/lib/locale/TZ/pacificnew   644     bin     bin 1 NULL NULL
+f none    /usr/lib/locale/TZ/southamerica 644     bin     bin 1 NULL NULL
+
+# libraries
+!default 0644 bin bin
+
+f none /usr/lib/libadm.a 
+f none  /usr/lib/libnls.a
+f none  /usr/lib/libsocket.a
+f none /usr/lib/libiaf.a  
+f none /usr/lib/libmail.a
+f none /usr/lib/libw.a 
+f none /usr/lib/libp/libw.a
+f none /usr/lib/libia.a  0444 bin bin
+f none /usr/lib/libx.a 
+f none /usr/lib/libxcurses.a  
+f none /usr/lib/libxtermlib.a  
+l none /usr/lib/libxtermcap.a=/usr/lib/libxtermlib.a
+

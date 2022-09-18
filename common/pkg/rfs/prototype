@@ -1,0 +1,359 @@
+#ident	"@(#)pkg.rfs:common/pkg/rfs/prototype	1.27"
+#ident	"$Header: $"
+#
+# information files
+#
+
+i pkginfo
+i depend
+i preinstall
+i postinstall
+i preremove
+i copyright
+i rfs/menu.rfs=menu.rfs
+i request
+i response
+
+!PATCH_LOC=/etc/inst/up/patch
+
+#
+# package object files and directories
+#
+!default	775	root	sys
+
+d	none	/etc	?	?	?
+d	none	/etc/conf	?	?	?
+d	none	/etc/conf/pack.d	?	?	?
+d	none	/etc/conf/pack.d/rfs	-	-	-
+d	none	/etc/conf/mdevice.d	?	?	?
+d	none	/etc/conf/sdevice.d	?	?	?
+d	none	/etc/conf/mtune.d	?	?	?
+d	none	/etc/dfs	?	?	?
+d	none	/etc/fs	?	?	?
+d	none	/etc/fs/rfs	-	-	-	2 NULL NULL
+d	none	/etc/init.d	?	?	?
+d	none	/etc/master.d	?	?	?
+d	none	/etc/rc0.d	?	?	?
+d	none	/etc/rc1.d	?	?	?
+d	none	/etc/rc2.d	?	?	?
+d	none	/etc/rc3.d	?	?	?
+d	none	/etc/rfs	-	-	-	1 NULL NULL
+d	none	/usr	?	?	?
+d	none	/usr/lib	?	?	?
+d	none	/usr/lib/fs	?	?	?
+d	none	/usr/lib/fs/rfs	-	-	-	1 NULL NULL
+d	none	/usr/lib/rfs	-	-	-	2 NULL NULL
+d	none	/usr/bin	?	?	?
+d	none	/usr/net	?	?	?
+d	none	/usr/net/servers	-	-	-	2 NULL NULL
+d	none	/usr/net/servers/rfs	-	-	-	2 NULL NULL
+d	none	/var/adm	?	?	?
+d	none	/var/adm/net	-	-	-	2 NULL NULL
+d	none	/var/adm/net/servers	-	-	-	2 NULL NULL
+d	none	/var/adm/net/servers/rfs	-	-	-	2 NULL NULL
+d	none	/usr/sbin	?	?	?
+d	none	/tmp	?	?	?
+d 	none	/tmp/rfs	-	-	-
+d	none	/var	?	?	?
+d	none	/var/spool	?	?	?
+d	none	/var/spool/cron	?	?	?
+d	none	/var/spool/cron/crontabs	?	?	?
+
+!default	444	root	root	2	NULL	NULL
+v	none	/tmp/rfs/rfs.Driver.o=/etc/conf/pack.d/rfs/Driver.o
+v	none	/tmp/rfs/rfs.Space.c=/etc/conf/pack.d/rfs/space.c
+v	none	/tmp/rfs/rfs.Stubs.c=/etc/conf/pack.d/rfs/stubs.c
+v	none	/tmp/rfs/rfs.Master=/etc/conf/mdevice.d/rfs
+v	none	/tmp/rfs/rfs.System=/etc/conf/sdevice.d/rfs
+v	none	/tmp/rfs/rfs.Mtune=/etc/conf/mtune.d/rfs
+
+!default	444	root	sys	2	NULL	NULL
+f	none	/usr/sbin/rmount	555	root	sys	1 NULL NULL
+s	none	/etc/rmount=/usr/sbin/rmount	555	root	sys	1 NULL NULL
+f	none	/usr/sbin/rmountall	555	root	sys
+s	none	/etc/rmountall=/usr/sbin/rmountall	544	root	sys
+f	none	/usr/sbin/rumountall	555	root	sys
+s	none	/etc/rumountall=/usr/sbin/rumountall	544	root	sys
+
+!default	444	root	sys	2	NULL	NULL	
+f	none	/etc/init.d/adv
+f	none	/etc/init.d/fumounts
+f	none	/etc/init.d/rfs
+f	none	/etc/init.d/rumounts
+l	none	/etc/rc0.d/K50fumounts=/etc/init.d/fumounts
+l	none	/etc/rc0.d/K60rumounts=/etc/init.d/rumounts
+l	none	/etc/rc0.d/K65rfs=/etc/init.d/rfs
+l	none	/etc/rc1.d/K50fumounts=/etc/init.d/fumounts
+l	none	/etc/rc1.d/K60rumounts=/etc/init.d/rumounts
+l	none	/etc/rc1.d/K65rfs=/etc/init.d/rfs
+l	none	/etc/rc2.d/K30fumounts=/etc/init.d/fumounts
+l	none	/etc/rc2.d/K40rumounts=/etc/init.d/rumounts
+l	none	/etc/rc2.d/K50rfs=/etc/init.d/rfs
+l	none	/etc/rc3.d/S21rfs=/etc/init.d/rfs
+
+
+
+!default	555	bin	bin	2	NULL	allprivs
+s	none	/usr/bin/adv=/usr/sbin/adv
+s	none	/usr/bin/dname=/usr/sbin/dname
+f	none	/usr/sbin/fumount
+s	none	/usr/bin/fumount=/usr/sbin/fumount
+s	none	/usr/bin/fusage=/usr/sbin/fusage	2555	bin  sys
+f	none	/usr/sbin/idload
+s	none	/usr/bin/idload=/usr/sbin/idload
+f	none	/usr/sbin/nsquery 	4555	root bin	1	allprivs	NULL
+s	none	/usr/bin/nsquery=/usr/sbin/nsquery 	4555	root bin
+f	none	/usr/sbin/rfadmin	- - -			1 NULL allprivs
+s	none	/usr/bin/rfadmin=/usr/sbin/rfadmin
+f	none	/usr/sbin/rfpasswd
+s	none	/usr/bin/rfpasswd=/usr/sbin/rfpasswd
+f	none	/usr/sbin/rfstart
+s	none	/usr/bin/rfstart=/usr/sbin/rfstart
+f	none	/usr/sbin/rfstop
+s	none	/usr/bin/rfstop=/usr/sbin/rfstop
+f	none	/usr/sbin/rmntstat
+s	none	/usr/bin/rmntstat=/usr/sbin/rmntstat
+f	none	/usr/sbin/unadv
+s	none	/usr/bin/unadv=/usr/sbin/unadv
+f	none	/usr/lib/fs/rfs/dfmounts
+f	none	/usr/lib/fs/rfs/dfshares	4555 root bin	1 NULL allprivs
+f	none	/usr/lib/fs/rfs/share		- - -		1 NULL allprivs
+f	none	/usr/lib/fs/rfs/unshare
+f	none	/etc/fs/rfs/mount
+
+# moved from base pkg 
+s 	none 	/usr/lib/fs/rfs/mount=/etc/fs/rfs/mount
+
+f	none	/etc/rfs/rfuadmin	554 	bin	bin
+f	none	/etc/rfs/rmnttry	555	root	sys
+f	none	/etc/rfs/rumount	555	root	sys
+f	none	/usr/lib/rfs/nserve	550 	bin	bin
+s	none	/etc/rfs/nserve=/usr/lib/rfs/nserve	550 	bin	bin
+f	none	/usr/lib/rfs/TPnserve	550 	bin	bin
+s	none	/etc/rfs/TPnserve=/usr/lib/rfs/TPnserve	550 	bin	bin
+f	none	/usr/lib/rfs/rfudaemon	550 	bin	bin
+s	none	/etc/rfs/rfudaemon=/usr/lib/rfs/rfudaemon	550 	bin	bin
+f	none	/usr/net/servers/rfs/rfsetup 	550	root 	adm
+#
+#	fixed:  macread
+#	inher:  all other privileges
+!default	555	bin	bin	1	macread owner,audit,compat,dacread,dacwrite,dev,filesys,macwrite,mount,multidir,setflevel,setplevel,setspriv,setuid,sysops,setupriv,driver,rtime,macupgrade,fsysrange,auditwr,tshar,plock
+f	none	/usr/sbin/adv
+f	none	/usr/sbin/dname	
+f	none	/usr/sbin/fusage	2555	bin	sys
+f	none	/etc/rfs/rmount		 555	root	sys
+#
+#	Crontab and Kernel master file changes
+#
+!default	600	root	sys	2	NULL	NULL
+
+e	build	/var/spool/cron/crontabs/root=../usr/src/$WORK/pkg/rfs/crontab
+
+
+#
+#	Simple admin. scripts
+#
+
+!ADMIN=/usr/sadm/sysadm/menu/netservices/remote_files
+!default	755	root	sys	2	NULL	NULL
+
+d	OAMadmin	$ADMIN
+d	OAMadmin	$ADMIN/local
+d	OAMadmin	$ADMIN/local/rfs
+d	OAMadmin	$ADMIN/local/rfs/bin
+d	OAMadmin	$ADMIN/other
+d	OAMadmin	$ADMIN/other/rfs
+d	OAMadmin	$ADMIN/other/rfs/HELP
+d	OAMadmin	$ADMIN/other/rfs/control
+d	OAMadmin	$ADMIN/other/rfs/control/bin
+d	OAMadmin	$ADMIN/other/rfs/id_map
+d	OAMadmin	$ADMIN/other/rfs/id_map/bin
+d	OAMadmin	$ADMIN/other/rfs/net
+d	OAMadmin	$ADMIN/other/rfs/net/bin
+d	OAMadmin	$ADMIN/other/rfs/system
+d	OAMadmin	$ADMIN/other/rfs/system/bin
+d	OAMadmin	$ADMIN/remote
+d	OAMadmin	$ADMIN/remote/rfs
+d	OAMadmin	$ADMIN/remote/rfs/bin
+d	OAMadmin	$ADMIN/setup
+d	OAMadmin	$ADMIN/setup/rfs
+
+##
+## rfs admin shell scripts
+##
+
+!default	755	bin	bin	2	NULL	NULL
+f	OAMadmin	$ADMIN/local/rfs/bin/auto_attr
+f	OAMadmin	$ADMIN/local/rfs/bin/auto_mod
+f	OAMadmin	$ADMIN/local/rfs/bin/imm_attr
+f	OAMadmin	$ADMIN/local/rfs/bin/imm_mod
+f	OAMadmin	$ADMIN/local/rfs/bin/ls_resource
+f	OAMadmin	$ADMIN/local/rfs/bin/rf_list
+f	OAMadmin	$ADMIN/local/rfs/bin/rf_share
+f	OAMadmin	$ADMIN/local/rfs/bin/rf_unshare
+f	OAMadmin	$ADMIN/other/rfs/control/bin/get_tps
+f	OAMadmin	$ADMIN/other/rfs/control/bin/get_second
+f	OAMadmin	$ADMIN/other/rfs/control/bin/ns_pass
+f	OAMadmin	$ADMIN/other/rfs/control/bin/rfs_stop
+f	OAMadmin	$ADMIN/other/rfs/control/bin/rfs_run
+f	OAMadmin	$ADMIN/other/rfs/id_map/bin/gid_map
+f	OAMadmin	$ADMIN/other/rfs/id_map/bin/uid_map
+f	OAMadmin	$ADMIN/other/rfs/net/bin/rfs_net
+f	OAMadmin	$ADMIN/other/rfs/net/bin/set_tp
+f	OAMadmin	$ADMIN/other/rfs/system/bin/getaddr
+f	OAMadmin	$ADMIN/other/rfs/system/bin/call_addr
+f	OAMadmin	$ADMIN/other/rfs/system/bin/find_trans
+f	OAMadmin	$ADMIN/other/rfs/system/bin/get_tps
+f	OAMadmin	$ADMIN/other/rfs/system/bin/line_num
+f	OAMadmin	$ADMIN/other/rfs/system/bin/act_nserve
+f	OAMadmin	$ADMIN/other/rfs/system/bin/add_member
+f	OAMadmin	$ADMIN/other/rfs/system/bin/add_passwd
+f	OAMadmin	$ADMIN/other/rfs/system/bin/ck_primary
+f	OAMadmin	$ADMIN/other/rfs/system/bin/del_member
+f	OAMadmin	$ADMIN/other/rfs/system/bin/del_passwd
+f	OAMadmin	$ADMIN/other/rfs/system/bin/get_passwd
+f	OAMadmin	$ADMIN/other/rfs/system/bin/get_primary
+f	OAMadmin	$ADMIN/other/rfs/system/bin/primary
+f	OAMadmin	$ADMIN/other/rfs/system/bin/rfs_nserve
+f	OAMadmin	$ADMIN/remote/rfs/bin/auto_attr
+f	OAMadmin	$ADMIN/remote/rfs/bin/auto_mod
+f	OAMadmin	$ADMIN/remote/rfs/bin/auto_unmount
+f	OAMadmin	$ADMIN/remote/rfs/bin/curr_attr
+f	OAMadmin	$ADMIN/remote/rfs/bin/imm_mod
+f	OAMadmin	$ADMIN/remote/rfs/bin/ls_remote
+f	OAMadmin	$ADMIN/remote/rfs/bin/ls_resource
+f	OAMadmin	$ADMIN/remote/rfs/bin/remote_mount
+f     	OAMadmin        $ADMIN/remote/rfs/bin/remote_mnt2
+
+##
+##	fmli scripts for rfs admin
+##
+
+!default	644	bin	bin	2	NULL	NULL
+f	OAMadmin	$ADMIN/Help
+f	OAMadmin	$ADMIN/other/Help
+f	OAMadmin	$ADMIN/other/rfs/Help
+f	OAMadmin	$ADMIN/other/rfs/control/Help
+f	OAMadmin	$ADMIN/other/rfs/id_map/Help
+f	OAMadmin	$ADMIN/other/rfs/net/Help
+f	OAMadmin	$ADMIN/other/rfs/system/Help
+f	OAMadmin	$ADMIN/setup/rfs/Help
+f	OAMadmin	$ADMIN/local/Help
+f	OAMadmin	$ADMIN/local/rfs/Help
+f	OAMadmin	$ADMIN/remote/rfs/Help
+f	OAMadmin	$ADMIN/remote/Help
+f	OAMadmin	$ADMIN/local/rfs/Form.list
+f	OAMadmin	$ADMIN/local/rfs/Form.modify
+f	OAMadmin	$ADMIN/local/rfs/Form.modify2
+f	OAMadmin	$ADMIN/local/rfs/Form.modify3
+f	OAMadmin	$ADMIN/local/rfs/Form.share
+f	OAMadmin	$ADMIN/local/rfs/Form.share2
+f	OAMadmin	$ADMIN/local/rfs/Form.unshar2
+f	OAMadmin	$ADMIN/local/rfs/Form.unshar3
+f	OAMadmin	$ADMIN/local/rfs/Form.unshare
+f	OAMadmin	$ADMIN/local/rfs/Text.list
+f	OAMadmin	$ADMIN/local/rfs/Text.shmsg
+f	OAMadmin	$ADMIN/other/rfs/Menu.rfs
+f	OAMadmin	$ADMIN/other/rfs/control/Form.start
+f	OAMadmin	$ADMIN/other/rfs/control/Form.start2
+f	OAMadmin	$ADMIN/other/rfs/control/Form.stop
+f	OAMadmin	$ADMIN/other/rfs/control/Menu.control
+f	OAMadmin	$ADMIN/other/rfs/control/Menu.passctl
+f	OAMadmin	$ADMIN/other/rfs/control/Text.check
+f	OAMadmin	$ADMIN/other/rfs/control/Text.msg
+f	OAMadmin	$ADMIN/other/rfs/id_map/Form.display
+f	OAMadmin	$ADMIN/other/rfs/id_map/Form.set
+f	OAMadmin	$ADMIN/other/rfs/id_map/Form.set2
+f	OAMadmin	$ADMIN/other/rfs/id_map/Form.set3
+f	OAMadmin	$ADMIN/other/rfs/id_map/Form.set4
+f	OAMadmin	$ADMIN/other/rfs/id_map/Menu.idmap
+f	OAMadmin	$ADMIN/other/rfs/id_map/Text.display
+f	OAMadmin	$ADMIN/other/rfs/net/Menu.netwk
+f	OAMadmin	$ADMIN/other/rfs/net/Menu.set
+f	OAMadmin	$ADMIN/other/rfs/net/Text.display
+f	OAMadmin	$ADMIN/other/rfs/net/Text.msg
+f	OAMadmin	$ADMIN/other/rfs/system/Form.lsname
+f	OAMadmin	$ADMIN/other/rfs/system/Form.p_add
+f	OAMadmin	$ADMIN/other/rfs/system/Form.p_rem
+f	OAMadmin	$ADMIN/other/rfs/system/Form.rf_add
+f	OAMadmin	$ADMIN/other/rfs/system/Form.rf_add2
+f	OAMadmin	$ADMIN/other/rfs/system/Form.rf_rem
+f	OAMadmin	$ADMIN/other/rfs/system/Form.rf_rem2
+f	OAMadmin	$ADMIN/other/rfs/system/Form.set
+f	OAMadmin	$ADMIN/other/rfs/system/Menu.member
+f	OAMadmin	$ADMIN/other/rfs/system/Menu.system
+f	OAMadmin	$ADMIN/other/rfs/system/Menu.transp
+f	OAMadmin	$ADMIN/other/rfs/system/Text.display
+f	OAMadmin	$ADMIN/other/rfs/system/Text.generic
+f	OAMadmin	$ADMIN/other/rfs/system/Text.lshost
+f	OAMadmin	$ADMIN/other/rfs/system/Text.lssrvr
+f	OAMadmin	$ADMIN/remote/rfs/Menu.choice
+f	OAMadmin	$ADMIN/remote/rfs/Form.domain
+f	OAMadmin	$ADMIN/remote/rfs/Form.list
+f	OAMadmin	$ADMIN/remote/rfs/Form.modify
+f	OAMadmin	$ADMIN/remote/rfs/Form.modify2
+f	OAMadmin	$ADMIN/remote/rfs/Form.modify3
+f	OAMadmin	$ADMIN/remote/rfs/Form.mount
+f	OAMadmin	$ADMIN/remote/rfs/Form.unmnt2
+f	OAMadmin	$ADMIN/remote/rfs/Form.unmnt3
+f	OAMadmin	$ADMIN/remote/rfs/Form.unmount
+f	OAMadmin	$ADMIN/remote/rfs/Text.list
+f	OAMadmin	$ADMIN/remote/rfs/Text.mount
+f	OAMadmin	$ADMIN/setup/rfs/Menu.setup
+
+f 	OAMadmin	$ADMIN/other/rfs/HELP/control.help
+f 	OAMadmin	$ADMIN/other/rfs/HELP/id_map.help
+f 	OAMadmin	$ADMIN/other/rfs/HELP/netwk.help
+f 	OAMadmin	$ADMIN/other/rfs/HELP/system.help
+
+#!default        0775    root    sys     4 NULL NULL
+#
+f none /usr/include/sys/fs/rf_acct.h
+
+f none /usr/include/sys/fs/rf_vfs.h
+
+f none /usr/include/sys/rf_adv.h
+
+f none /usr/include/sys/rf_cirmgr.h
+
+f none /usr/include/sys/rf_comm.h
+
+f none /usr/include/sys/rf_debug.h
+
+f none /usr/include/sys/rf_messg.h
+
+f none /usr/include/sys/rf_sys.h
+
+f none /usr/include/sys/hetero.h
+
+f none /usr/include/sys/idtab.h
+
+f none /usr/include/sys/nserve.h
+
+#####################
+#  headers not in /usr/include/sys; need to modify some makefiles
+#  to install there?
+
+
+########################
+# Upgrade installation
+# patch files
+
+!default 0755 root sys 1 NULL NULL
+
+d none  $PATCH_LOC/etc/rfs
+d none  $PATCH_LOC/etc/tcp
+d none  $PATCH_LOC/etc/auth.info
+
+!default 0644 root sys 1 NULL NULL
+
+f none	$PATCH_LOC/etc/rfs/tcp/master.master
+f none	$PATCH_LOC/etc/rfs/tcp/rfmaster
+f none	$PATCH_LOC/etc/rfs/tcp/loc.passwd
+f none	$PATCH_LOC/etc/rfs/auth.info/gid.rules
+f none	$PATCH_LOC/etc/rfs/auth.info/uid.rules
+f none	$PATCH_LOC/etc/rfs/auth.info/.<uid.rules>
+f none	$PATCH_LOC/etc/rfs/auth.info/.<gid.rules>
+f none	$PATCH_LOC/etc/rfs/domain
+f none	$PATCH_LOC/etc/rfs/netspec
+

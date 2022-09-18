@@ -1,0 +1,47 @@
+#define modem_format 1
+#define modem_width 32
+#define modem_height 32
+#define modem_ncolors 6
+#define modem_chars_per_pixel 1
+static char * modem_colors[] = {
+" " , "#E400E400E400",
+"." , "#000000000000",
+"X" , "#E00000000000",
+"o" , "#0000E000E000",
+"O" , "#AA00AA00AA00",
+"+" , "#710071007100"
+} ;
+static char * modem_pixels[] = {
+"  ............................  ",
+"  .                         X.  ",
+"  .  .... ...        ......X .  ",
+"  .                  .ooooXX .  ",
+"  .   .......        .oooXX. .  ",
+"  .                  XXoXXo. .  ",
+"  .     ... .        .XXXoo. .  ",
+"  .                  .oXooo. .  ",
+"  .  ............... ....... .  ",
+"  . .OOOOOOOOOOOOOOO.        .  ",
+"  ..OOOO...OOO...OOOO.       .  ",
+"  ..++++.O.....O.++++.       .  ",
+"  .......OOOOOOO......       .  ",
+"  .    .OOOOOOOOO.           .  ",
+"  .   .OOO.O.O.OOO.          .  ",
+"  .  .OOOOOOOOOOOOO.         .  ",
+"  . .OOOOO.O.O.OOOOO.        .  ",
+"  . .OOOOOOOOOOOOOOO.        .  ",
+"  . .+++++++++++++++.        .  ",
+"  . .+++++++++++++++.        .  ",
+"  . .+++++++++++++++.        .  ",
+"  . O...............O        .  ",
+"  .                         X.  ",
+"  .  ........        ......X .  ",
+"  .                  .ooooXX .  ",
+"  .   . .....        .oooXX. .  ",
+"  .                  XXoXXo. .  ",
+"  .    ... ..        .XXXoo. .  ",
+"  .                  .oXooo. .  ",
+"  .                  ....... .  ",
+"  .                          .  ",
+"  ............................  "
+} ;

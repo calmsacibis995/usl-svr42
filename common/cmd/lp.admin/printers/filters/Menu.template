@@ -1,0 +1,9 @@
+#ident	"@(#)lp.admin:printers/filters/Menu.template	1.4.3.1"
+#ident  "$Header: Menu.template 2.0 91/07/12 $"
+
+menu="Existing option templates for filter $ARG1"
+multiselect=true
+framemsg='MARK templates to keep then press ENTER'
+done=`getitems "," | set -l Form_Choice`close
+
+`indicator -w;fmlgrep ":$ARG1:" /etc/lp/filter.table | fmlcut -d: -f9 - | /usr/bin/tr ',' '\012' | /usr/bin/sort | regex '^(.*)$0$' 'name=$m0'`

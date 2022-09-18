@@ -1,0 +1,358 @@
+#ident	"@(#)olpkg.oam:pkg.olxt/prototype	1.9"
+#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+#	Copyright (c) 1988, 1989, 1990 AT&T
+#	  All Rights Reserved
+
+#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+#	UNIX System Laboratories, Inc.
+#	The copyright notice above does not evidence any
+#	actual or intended publication of such source code.
+
+
+i depend
+i pkginfo
+i copyright
+i postinstall
+
+!PACKDIR=$ROOT/usr/src/X11R4/olpkg.oam
+!XHW=$ROOT/usr/src/X11R4/contrib/clients/xhw
+!OAMBASE=/usr/sadm/sysadm
+!PKGINST=olxt
+!PKGSAV=/var/sadm/pkg/$PKGINST/save
+
+!default 0755 bin bin
+
+d toolkit /usr ? ? ?
+d toolkit /usr/X
+d toolkit /usr/X/adm
+d toolkit /usr/X/bin
+d toolkit /usr/X/include
+d toolkit /usr/X/include/X11
+d toolkit /usr/X/include/X11/Xaw
+d toolkit /usr/X/include/X11/Xmu
+d toolkit /usr/X/include/X11/extensions
+d toolkit /usr/X/include/Xol
+d toolkit /usr/X/lib
+d toolkit /usr/X/lib/bitmaps
+d toolkit /usr/X/lib/tutorial
+d toolkit /usr/X/lib/tutorial/XPM
+d toolkit /usr/X/lib/tutorial/Xol
+d toolkit /usr/X/lib/tutorial/xhw
+
+!default 0644 bin bin
+
+f toolkit /usr/X/adm/olxt.compress=$PACKDIR/tmp/olxt.compress 0644 root sys
+f toolkit /usr/X/lib/libXau.a.Z
+f toolkit /usr/X/lib/libX11.a.Z
+f toolkit /usr/X/lib/libXt.a.Z
+f toolkit /usr/X/lib/libXmu.a.Z
+f toolkit /usr/X/lib/libXaw.a.Z
+f toolkit /usr/X/lib/libXol.a.Z
+f toolkit /usr/X/lib/liblocal.a.Z
+f toolkit /usr/X/lib/libXdmcp.a.Z
+f toolkit /usr/X/lib/libXext.a.Z
+
+f toolkit /usr/X/lib/tutorial/XPM/README
+f toolkit /usr/X/lib/tutorial/XPM/xpm.c
+f toolkit /usr/X/lib/tutorial/XPM/xpm.h
+
+f toolkit /usr/X/bin/s_button 0755 bin bin
+f toolkit /usr/X/bin/s_composite 0755 bin bin
+f toolkit /usr/X/bin/s_menu 0755 bin bin
+f toolkit /usr/X/bin/s_sampler 0755 bin bin
+f toolkit /usr/X/lib/tutorial/Xol/form.help
+f toolkit /usr/X/lib/tutorial/Xol/icon.xpm
+f toolkit /usr/X/lib/tutorial/Xol/statictext.tex
+f toolkit /usr/X/lib/tutorial/Xol/s_button.c
+f toolkit /usr/X/lib/tutorial/Xol/s_composite.c
+f toolkit /usr/X/lib/tutorial/Xol/s_menu.c
+f toolkit /usr/X/lib/tutorial/Xol/s_sampler.c
+
+f toolkit /usr/X/lib/tutorial/xhw/xhw.c=$XHW/xhw.c
+f toolkit /usr/X/lib/tutorial/xhw/xhwTK.c=$XHW/xhwTK.c
+
+f toolkit /usr/X/include/X11/Composite.h
+f toolkit /usr/X/include/X11/CompositeP.h
+f toolkit /usr/X/include/X11/ConstrainP.h
+f toolkit /usr/X/include/X11/Constraint.h
+f toolkit /usr/X/include/X11/Core.h
+f toolkit /usr/X/include/X11/CoreP.h
+f toolkit /usr/X/include/X11/DECkeysym.h
+f toolkit /usr/X/include/X11/Intrinsic.h
+f toolkit /usr/X/include/X11/IntrinsicP.h
+f toolkit /usr/X/include/X11/Object.h
+f toolkit /usr/X/include/X11/ObjectP.h
+f toolkit /usr/X/include/X11/Quarks.h
+f toolkit /usr/X/include/X11/RectObj.h
+f toolkit /usr/X/include/X11/RectObjP.h
+f toolkit /usr/X/include/X11/Shell.h
+f toolkit /usr/X/include/X11/ShellP.h
+f toolkit /usr/X/include/X11/StringDefs.h
+l toolkit /usr/X/include/X11/Atoms.h=/usr/X/include/X11/StringDefs.h
+f toolkit /usr/X/include/X11/Vendor.h
+f toolkit /usr/X/include/X11/VendorP.h
+f toolkit /usr/X/include/X11/X.h
+f toolkit /usr/X/include/X11/XSetParms.h
+f toolkit /usr/X/include/X11/XWDFile.h
+f toolkit /usr/X/include/X11/Xargs.h
+f toolkit /usr/X/include/X11/Xatom.h
+f toolkit /usr/X/include/X11/Xauth.h
+f toolkit /usr/X/include/X11/Xdmcp.h
+f toolkit /usr/X/include/X11/Xinput.h
+f toolkit /usr/X/include/X11/Xlib.h
+f toolkit /usr/X/include/X11/Xlibint.h
+f toolkit /usr/X/include/X11/Xlibos.h
+f toolkit /usr/X/include/X11/Xmd.h
+f toolkit /usr/X/include/X11/Xos.h
+f toolkit /usr/X/include/X11/Xprint.h
+f toolkit /usr/X/include/X11/Xproto.h
+f toolkit /usr/X/include/X11/Xprotostr.h
+f toolkit /usr/X/include/X11/Xresource.h
+f toolkit /usr/X/include/X11/Xstreams.h
+f toolkit /usr/X/include/X11/Xutil.h
+f toolkit /usr/X/include/X11/ap_keysym.h
+f toolkit /usr/X/include/X11/copyright.h
+f toolkit /usr/X/include/X11/cursorfont.h
+f toolkit /usr/X/include/X11/keysym.h
+f toolkit /usr/X/include/X11/keysymdef.h
+f toolkit /usr/X/include/X11/xtestext1.h
+
+f toolkit /usr/X/include/X11/Xaw/Template.c
+f toolkit /usr/X/include/X11/Xaw/AsciiSink.h
+f toolkit /usr/X/include/X11/Xaw/AsciiSinkP.h
+f toolkit /usr/X/include/X11/Xaw/AsciiSrc.h
+f toolkit /usr/X/include/X11/Xaw/AsciiSrcP.h
+f toolkit /usr/X/include/X11/Xaw/AsciiText.h
+f toolkit /usr/X/include/X11/Xaw/AsciiTextP.h
+f toolkit /usr/X/include/X11/Xaw/Box.h
+f toolkit /usr/X/include/X11/Xaw/BoxP.h
+f toolkit /usr/X/include/X11/Xaw/Cardinals.h
+f toolkit /usr/X/include/X11/Xaw/Clock.h
+f toolkit /usr/X/include/X11/Xaw/ClockP.h
+f toolkit /usr/X/include/X11/Xaw/Command.h
+f toolkit /usr/X/include/X11/Xaw/CommandP.h
+f toolkit /usr/X/include/X11/Xaw/Dialog.h
+f toolkit /usr/X/include/X11/Xaw/DialogP.h
+f toolkit /usr/X/include/X11/Xaw/Form.h
+f toolkit /usr/X/include/X11/Xaw/FormP.h
+f toolkit /usr/X/include/X11/Xaw/Grip.h
+f toolkit /usr/X/include/X11/Xaw/GripP.h
+f toolkit /usr/X/include/X11/Xaw/Label.h
+f toolkit /usr/X/include/X11/Xaw/LabelP.h
+f toolkit /usr/X/include/X11/Xaw/List.h
+f toolkit /usr/X/include/X11/Xaw/ListP.h
+f toolkit /usr/X/include/X11/Xaw/Logo.h
+f toolkit /usr/X/include/X11/Xaw/LogoP.h
+f toolkit /usr/X/include/X11/Xaw/Mailbox.h
+f toolkit /usr/X/include/X11/Xaw/MailboxP.h
+f toolkit /usr/X/include/X11/Xaw/MenuButtoP.h
+f toolkit /usr/X/include/X11/Xaw/MenuButton.h
+f toolkit /usr/X/include/X11/Xaw/Paned.h
+f toolkit /usr/X/include/X11/Xaw/PanedP.h
+f toolkit /usr/X/include/X11/Xaw/Scroll.h
+f toolkit /usr/X/include/X11/Xaw/Scrollbar.h
+f toolkit /usr/X/include/X11/Xaw/ScrollbarP.h
+f toolkit /usr/X/include/X11/Xaw/Simple.h
+f toolkit /usr/X/include/X11/Xaw/SimpleMenP.h
+f toolkit /usr/X/include/X11/Xaw/SimpleMenu.h
+f toolkit /usr/X/include/X11/Xaw/SimpleP.h
+f toolkit /usr/X/include/X11/Xaw/Sme.h
+f toolkit /usr/X/include/X11/Xaw/SmeBSB.h
+f toolkit /usr/X/include/X11/Xaw/SmeBSBP.h
+f toolkit /usr/X/include/X11/Xaw/SmeLine.h
+f toolkit /usr/X/include/X11/Xaw/SmeLineP.h
+f toolkit /usr/X/include/X11/Xaw/SmeP.h
+f toolkit /usr/X/include/X11/Xaw/StripCharP.h
+f toolkit /usr/X/include/X11/Xaw/StripChart.h
+f toolkit /usr/X/include/X11/Xaw/Template.h
+f toolkit /usr/X/include/X11/Xaw/TemplateP.h
+f toolkit /usr/X/include/X11/Xaw/Text.h
+f toolkit /usr/X/include/X11/Xaw/TextP.h
+f toolkit /usr/X/include/X11/Xaw/TextSink.h
+f toolkit /usr/X/include/X11/Xaw/TextSinkP.h
+f toolkit /usr/X/include/X11/Xaw/TextSrc.h
+f toolkit /usr/X/include/X11/Xaw/TextSrcP.h
+f toolkit /usr/X/include/X11/Xaw/Toggle.h
+f toolkit /usr/X/include/X11/Xaw/ToggleP.h
+f toolkit /usr/X/include/X11/Xaw/VPaned.h
+f toolkit /usr/X/include/X11/Xaw/Viewport.h
+f toolkit /usr/X/include/X11/Xaw/ViewportP.h
+f toolkit /usr/X/include/X11/Xaw/XawInit.h
+
+f toolkit /usr/X/include/X11/Xmu/Atoms.h
+f toolkit /usr/X/include/X11/Xmu/CharSet.h
+f toolkit /usr/X/include/X11/Xmu/CloseHook.h
+f toolkit /usr/X/include/X11/Xmu/Converters.h
+f toolkit /usr/X/include/X11/Xmu/CurUtil.h
+f toolkit /usr/X/include/X11/Xmu/CvtCache.h
+f toolkit /usr/X/include/X11/Xmu/DisplayQue.h
+f toolkit /usr/X/include/X11/Xmu/Drawing.h
+f toolkit /usr/X/include/X11/Xmu/Error.h
+f toolkit /usr/X/include/X11/Xmu/Initer.h
+f toolkit /usr/X/include/X11/Xmu/Misc.h
+f toolkit /usr/X/include/X11/Xmu/StdCmap.h
+f toolkit /usr/X/include/X11/Xmu/StdSel.h
+f toolkit /usr/X/include/X11/Xmu/SysUtil.h
+f toolkit /usr/X/include/X11/Xmu/WinUtil.h
+f toolkit /usr/X/include/X11/Xmu/Xct.h
+f toolkit /usr/X/include/X11/Xmu/Xmu.h
+
+f toolkit /usr/X/include/X11/extensions/XShm.h
+f toolkit /usr/X/include/X11/extensions/Xext.h
+f toolkit /usr/X/include/X11/extensions/shape.h
+f toolkit /usr/X/include/X11/extensions/xtestext1.h
+
+f toolkit /usr/X/include/Xol/StringList
+f toolkit /usr/X/include/Xol/AbbrevMenP.h
+f toolkit /usr/X/include/Xol/AbbrevMenu.h
+f toolkit /usr/X/include/Xol/AbbrevStac.h
+f toolkit /usr/X/include/Xol/AcceleratP.h
+f toolkit /usr/X/include/Xol/Accelerate.h
+f toolkit /usr/X/include/Xol/Arrow.h
+f toolkit /usr/X/include/Xol/ArrowP.h
+f toolkit /usr/X/include/Xol/BaseWindoP.h
+f toolkit /usr/X/include/Xol/BaseWindow.h
+f toolkit /usr/X/include/Xol/BulletinBP.h
+f toolkit /usr/X/include/Xol/BulletinBo.h
+f toolkit /usr/X/include/Xol/Button.h
+f toolkit /usr/X/include/Xol/ButtonP.h
+f toolkit /usr/X/include/Xol/ButtonStac.h
+f toolkit /usr/X/include/Xol/Caption.h
+f toolkit /usr/X/include/Xol/CaptionP.h
+f toolkit /usr/X/include/Xol/Category.h
+f toolkit /usr/X/include/Xol/CategoryP.h
+f toolkit /usr/X/include/Xol/ChangeBar.h
+f toolkit /usr/X/include/Xol/CheckBox.h
+f toolkit /usr/X/include/Xol/CheckBoxP.h
+f toolkit /usr/X/include/Xol/ColorChip.h
+f toolkit /usr/X/include/Xol/ControlArP.h
+f toolkit /usr/X/include/Xol/ControlAre.h
+f toolkit /usr/X/include/Xol/Converters.h
+f toolkit /usr/X/include/Xol/DisplayP.h
+f toolkit /usr/X/include/Xol/Dynamic.h
+f toolkit /usr/X/include/Xol/DynamicI.h
+f toolkit /usr/X/include/Xol/DynamicP.h
+f toolkit /usr/X/include/Xol/Error.h
+f toolkit /usr/X/include/Xol/EventObj.h
+f toolkit /usr/X/include/Xol/EventObjP.h
+f toolkit /usr/X/include/Xol/ExclusiveP.h
+f toolkit /usr/X/include/Xol/Exclusives.h
+f toolkit /usr/X/include/Xol/FCheckBox.h
+f toolkit /usr/X/include/Xol/FCheckBoxP.h
+f toolkit /usr/X/include/Xol/FColors.h
+f toolkit /usr/X/include/Xol/FColorsP.h
+f toolkit /usr/X/include/Xol/FExclusivP.h
+f toolkit /usr/X/include/Xol/FExclusive.h
+f toolkit /usr/X/include/Xol/FMcomm.h
+f toolkit /usr/X/include/Xol/FNonexcluP.h
+f toolkit /usr/X/include/Xol/FNonexclus.h
+f toolkit /usr/X/include/Xol/Flat.h
+f toolkit /usr/X/include/Xol/FlatP.h
+f toolkit /usr/X/include/Xol/Font.h
+f toolkit /usr/X/include/Xol/FooterPanP.h
+f toolkit /usr/X/include/Xol/FooterPane.h
+f toolkit /usr/X/include/Xol/Form.h
+f toolkit /usr/X/include/Xol/FormP.h
+f toolkit /usr/X/include/Xol/Gauge.h
+f toolkit /usr/X/include/Xol/GaugeP.h
+f toolkit /usr/X/include/Xol/Help.h
+f toolkit /usr/X/include/Xol/HelpP.h
+f toolkit /usr/X/include/Xol/ListPane.h
+f toolkit /usr/X/include/Xol/ListPaneP.h
+f toolkit /usr/X/include/Xol/Mag.h
+f toolkit /usr/X/include/Xol/MagP.h
+f toolkit /usr/X/include/Xol/Manager.h
+f toolkit /usr/X/include/Xol/ManagerP.h
+f toolkit /usr/X/include/Xol/Menu.h
+f toolkit /usr/X/include/Xol/MenuButtoP.h
+f toolkit /usr/X/include/Xol/MenuButton.h
+f toolkit /usr/X/include/Xol/MenuP.h
+f toolkit /usr/X/include/Xol/NonexclusP.h
+f toolkit /usr/X/include/Xol/Nonexclusi.h
+f toolkit /usr/X/include/Xol/Notice.h
+f toolkit /usr/X/include/Xol/NoticeP.h
+f toolkit /usr/X/include/Xol/OblongButP.h
+f toolkit /usr/X/include/Xol/OblongButt.h
+f toolkit /usr/X/include/Xol/OlClients.h
+f toolkit /usr/X/include/Xol/OlClientsP.h
+f toolkit /usr/X/include/Xol/OlCursors.h
+f toolkit /usr/X/include/Xol/OlStrings.h
+f toolkit /usr/X/include/Xol/OlXlibExt.h
+f toolkit /usr/X/include/Xol/Olg.h
+f toolkit /usr/X/include/Xol/OpenLook.h
+f toolkit /usr/X/include/Xol/OpenLookP.h
+f toolkit /usr/X/include/Xol/OpenLookI.h
+f toolkit /usr/X/include/Xol/PopupWindP.h
+f toolkit /usr/X/include/Xol/PopupWindo.h
+f toolkit /usr/X/include/Xol/Primitive.h
+f toolkit /usr/X/include/Xol/PrimitiveP.h
+f toolkit /usr/X/include/Xol/Pushpin.h
+f toolkit /usr/X/include/Xol/PushpinP.h
+f toolkit /usr/X/include/Xol/RectButtoP.h
+f toolkit /usr/X/include/Xol/RectButton.h
+f toolkit /usr/X/include/Xol/RubberTilP.h
+f toolkit /usr/X/include/Xol/RubberTile.h
+f toolkit /usr/X/include/Xol/Scrollbar.h
+f toolkit /usr/X/include/Xol/ScrollbarP.h
+f toolkit /usr/X/include/Xol/ScrolledWP.h
+f toolkit /usr/X/include/Xol/ScrolledWi.h
+f toolkit /usr/X/include/Xol/ScrollingL.h
+f toolkit /usr/X/include/Xol/ScrollingP.h
+f toolkit /usr/X/include/Xol/Slider.h
+f toolkit /usr/X/include/Xol/SliderP.h
+f toolkit /usr/X/include/Xol/SourceP.h
+f toolkit /usr/X/include/Xol/StaticTexP.h
+f toolkit /usr/X/include/Xol/StaticText.h
+f toolkit /usr/X/include/Xol/Stub.h
+f toolkit /usr/X/include/Xol/StubP.h
+f toolkit /usr/X/include/Xol/Text.h
+f toolkit /usr/X/include/Xol/TextEdit.h
+f toolkit /usr/X/include/Xol/TextEditP.h
+f toolkit /usr/X/include/Xol/TextField.h
+f toolkit /usr/X/include/Xol/TextFieldP.h
+f toolkit /usr/X/include/Xol/TextP.h
+f toolkit /usr/X/include/Xol/TextPane.h
+f toolkit /usr/X/include/Xol/TextPaneP.h
+f toolkit /usr/X/include/Xol/TextPosP.h
+f toolkit /usr/X/include/Xol/Util.h
+f toolkit /usr/X/include/Xol/VendorI.h
+f toolkit /usr/X/include/Xol/VirtualP.h
+f toolkit /usr/X/include/Xol/WSMcomm.h
+f toolkit /usr/X/include/Xol/array.h
+f toolkit /usr/X/include/Xol/buffutil.h
+f toolkit /usr/X/include/Xol/memutil.h
+f toolkit /usr/X/include/Xol/regexp.h
+f toolkit /usr/X/include/Xol/strutil.h
+f toolkit /usr/X/include/Xol/textbuff.h
+
+f toolkit /usr/X/lib/bitmaps/busycurs.h
+f toolkit /usr/X/lib/bitmaps/busymask.h
+f toolkit /usr/X/lib/bitmaps/copymsk.h
+f toolkit /usr/X/lib/bitmaps/copysrc.h
+f toolkit /usr/X/lib/bitmaps/dupcurs.h
+f toolkit /usr/X/lib/bitmaps/dupmask.h
+f toolkit /usr/X/lib/bitmaps/hugeIn.h
+f toolkit /usr/X/lib/bitmaps/hugeOut.h
+f toolkit /usr/X/lib/bitmaps/largeIn.h
+f toolkit /usr/X/lib/bitmaps/largeOut.h
+f toolkit /usr/X/lib/bitmaps/larrowOff.h
+f toolkit /usr/X/lib/bitmaps/larrowOn.h
+f toolkit /usr/X/lib/bitmaps/mediumIn.h
+f toolkit /usr/X/lib/bitmaps/mediumOut.h
+f toolkit /usr/X/lib/bitmaps/morearrow.h
+f toolkit /usr/X/lib/bitmaps/movcurs.h
+f toolkit /usr/X/lib/bitmaps/movemsk.h
+f toolkit /usr/X/lib/bitmaps/movesrc.h
+f toolkit /usr/X/lib/bitmaps/movmask.h
+f toolkit /usr/X/lib/bitmaps/pancurs.h
+f toolkit /usr/X/lib/bitmaps/panmask.h
+f toolkit /usr/X/lib/bitmaps/quescurs.h
+f toolkit /usr/X/lib/bitmaps/quesmask.h
+f toolkit /usr/X/lib/bitmaps/rarrowOff.h
+f toolkit /usr/X/lib/bitmaps/rarrowOn.h
+f toolkit /usr/X/lib/bitmaps/smallIn.h
+f toolkit /usr/X/lib/bitmaps/smallOut.h
+f toolkit /usr/X/lib/bitmaps/stdcurs.h
+f toolkit /usr/X/lib/bitmaps/stdmask.h
+f toolkit /usr/X/lib/bitmaps/targcurs.h
+f toolkit /usr/X/lib/bitmaps/targmask.h

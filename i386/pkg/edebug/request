@@ -1,0 +1,61 @@
+#ident	"@(#)pkg4.i386:edebug/request	1.1.1.3"
+#
+#	Does user want to install graphical interface ?
+#
+#
+#  Make sure LANG environment variable is set.  If it's not set
+#  coming in to this request script, then default to the C-locale.
+#
+[ ${LANG} ] || LANG="C"
+export LANG
+
+#
+#  Do we have Desktop Metaphor installed?
+#
+`pkginfo -i desktop > /dev/null 2>&1`
+HAS_DTM=$?
+
+
+#
+#  Set defaults:
+#       default is 'y' for installing graphical interface
+#       if DTM not installed and INSTALL_MODE is CUSTOM, then
+#       'n' is the default
+#
+
+DTINSTALL="y"
+
+[ "${HAS_DTM}" != "0" ] && DTINSTALL="n"
+
+export DTINSTALL
+
+DIR=/etc/inst/locale/$LANG/menus/edebug
+[ -d $DIR ] || mkdir -p $DIR
+cp $REQDIR/edebug/menu.edebug $DIR
+
+#
+#  Set up to use menu_colors; default to C-locale if ${LANG}'s dir has
+#  no menu_colors.sh
+#
+if [ -f /etc/inst/locale/${LANG}/menus/menu_colors.sh ]
+then
+        . /etc/inst/locale/${LANG}/menus/menu_colors.sh
+else
+        . /etc/inst/locale/C/menus/menu_colors.sh
+fi
+
+menu_colors regular
+menu -f ${DIR}/menu.edebug -o $1 2>/dev/null
+
+. $1
+
+CLASSES="none"
+if [ "$DTINSTALL" = "y" ]
+then
+	CLASSES=$CLASSES" edbgdt"
+fi
+cat >$1 <<!
+DTINSTALL=$DTINSTALL
+CLASSES='$CLASSES'
+!
+exit 0

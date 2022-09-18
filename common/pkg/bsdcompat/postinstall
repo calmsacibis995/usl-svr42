@@ -1,0 +1,15 @@
+#ident	"@(#)pkg.bsdcompat:postinstall	1.2.5.3"
+#ident	"$Header: $"
+
+installf $PKGINST /usr/options/$PKG.name
+echo $NAME > /usr/options/$PKG.name
+echo "BSD compatibility package" > /usr/options/compat.name
+installf $PKGINST /usr/options/compat.name
+cd /usr/ucblib/reftools/papers; ./runinv >/dev/null
+/usr/ucb/newaliases -oA/usr/ucblib/aliases >/dev/null 2>&1
+
+installf ${PKGINST} /usr/ucblib/reftools/papers/Ind.ia
+installf ${PKGINST} /usr/ucblib/reftools/papers/Ind.ib
+installf ${PKGINST} /usr/ucblib/reftools/papers/Ind.ic
+installf -f ${PKGINST}
+exit 0

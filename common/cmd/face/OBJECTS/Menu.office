@@ -1,0 +1,36 @@
+#ident	"@(#)face:OBJECTS/Menu.office	1.6.4.2"
+#ident  "$Header: Menu.office 1.5 91/10/15 $"
+
+menu=$$uxface:434:"Office of $LOGNAME"
+
+help=OPEN TEXT OBJECTS/Text.h "$$uxface:475:HELP on Office" T.hoffice
+
+framemsg=$$uxface:399:"Move to an item with arrow keys and press ENTER to select the item."
+
+name=$$uxface:476:"Filecabinet: $HOME"
+action=OPEN DIRECTORY $HOME
+
+name=$$uxface:435:"Other Users"
+action=OPEN MENU OBJECTS/Menu.users
+
+name=$$uxface:436:"Preferences"
+action=OPEN MENU OBJECTS/pref/Menu.pref
+
+name=$$uxface:477:'Programs Administration ( MS-DOS )'
+action=OPEN MENU OBJECTS/dos/Menu.install
+show=`test -f /usr/vpix/dosinst`
+
+name=`if [ -f /usr/vpix/dosinst ];
+then
+	echo $$uxface:478:'Programs Administration ( UNIX )';
+else
+	echo $$uxface:445:'Programs Administration';
+fi`
+action=OPEN MENU OBJECTS/programs/Menu.install "HOME"
+
+name=$$uxface:480:"Wastebasket"
+action=OPEN DIRECTORY $HOME/WASTEBASKET
+
+name=""
+button=8
+action=nop

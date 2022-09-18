@@ -1,0 +1,118 @@
+#ident	"@(#)face:OBJECTS/Form.org	1.8.4.4"
+
+form="$$uxface:261:Organize `pathconv -t -v $ARG1`"
+framemsg=$$uxface:79:"Press CHOICES to select, then press SAVE when you complete the form."
+
+help=OPEN TEXT OBJECTS/Text.h "$$uxface:78:'HELP on' $TITLE" T.horg"$ITEM"
+autolayout=true
+
+`set -l I18N_LF="$$uxface:179:long form";
+set -l I18N_NAD="$$uxface:180:name and description";
+set -l I18N_NO="$$uxface:182:name only";
+set -l I18N_NAM="$$uxface:181:name and marks";
+set -l I18N_W="$$uxface:262:wastebasket";
+set -l I18N_A="$$uxface:183:alphabetical";
+set -l I18N_ABD="$$uxface:184:alphabetical by description";
+set -l I18N_LRF="$$uxface:185:least recent first";
+set -l I18N_MRF="$$uxface:186:most recent first";
+set -l YES="$$uxface:61:yes";
+set -l NO="$$uxface:56:no";
+set -l I18N_DO="$$uxface:265:Default Organization:";
+set -l I18N_FDF="$$uxface:196:Folder Display Format:";
+set -l I18N_FDO="$$uxface:267:Folder Display Order:";
+fmlmax "$I18N_DO" "$I18N_FDF" "$I18N_FDO" | set -l FCOL;
+fmlmax -l "$I18N_LF" "$I18N_NAD" "$I18N_NAM" "$I18N_NO" "$I18N_W" | set -l FCOL1;
+fmlmax -l "$I18N_A" "$I18N_ABD" "$I18N_LRF" "$I18N_MRF" | set -l FCOL2;
+fmlmax -l "$YES" "$NO" | set -l YESCOL`
+
+#close=`message $$uxface:263:"Organization has been updated.";sleep 3`
+
+close=`unset -l I18N_LF -l I18N_NAD -l I18N_NO -l I18N_NAM -l I18N_W;
+unset -l I18N_A -l I18N_ABD -l I18N_LRF -l I18N_MRF -l I18N_DO;
+unset -l I18N_FDF -l I18N_FDO -l FCOL -l FCOL1 -l FCOL2`
+
+done=`indicator -w;
+if [ ${F1} = $NO ];
+then
+	regex -v "$F2" 
+		"^$I18N_NO\$" '0' 
+		"^$I18N_LF\$" '8' 
+		"^$I18N_W\$" '10' 
+		"^$I18N_NAM\$" '2000' 
+		'.*' '4' | set -f$ARG1/.pref DISPMODE; 
+	regex -v "$F3" 
+		"^$I18N_MRF\$" '2' 
+		"^$I18N_LRF\$" '1002' 
+		"^$I18N_ABD\$" '800' 
+		'.*' '1' | set -f$ARG1/.pref SORTMODE; 
+else
+	unset -f$ARG1/.pref DISPMODE -f$ARG1/.pref SORTMODE;
+	if [ "$ARG1" = "$HOME/WASTEBASKET" ];
+	then
+		set -f$ARG1/.pref DISPMODE=10;
+	fi;
+fi;
+unset -l I18N_LF -l I18N_NAD -l I18N_NO -l I18N_NAM -l I18N_W;
+unset -l I18N_A -l I18N_ABD -l I18N_LRF -l I18N_MRF -l I18N_DO;
+unset -l I18N_FDF -l I18N_FDO;
+touch $ARG1; 
+test -w $ARG1 || message -f $$uxface:264:"You don't have permission to organize ${ARG1}";`
+
+name=$I18N_DO
+nrow=1
+ncol=1
+rows=1
+columns=$YESCOL
+fcol=$FCOL
+# frow=1
+# fcol=24
+rmenu={ $YES $NO }
+menuonly=true
+value=const $NO
+lininfo=`set -l TITLE="$$uxface:266:Default Organization" -l ITEM=3`
+
+name=$I18N_FDF
+inactive=`regex -v "${F1}" $NO false $YES true`
+nrow=3
+ncol=1
+rows=1
+columns=$FCOL1
+# scroll=true
+# frow=3
+# fcol=24
+`if regex -v "${ARG1}" '^.*WASTEBASKET$';
+then
+	echo 'rmenu={ "$I18N_LF" "$I18N_NAD" "$I18N_NAM" "$I18N_NO" "$I18N_W" }';
+else
+	echo 'rmenu={ "$I18N_LF" "$I18N_NAD" "$I18N_NAM" "$I18N_NO" }';
+fi`
+lininfo=`set -l TITLE="$$uxface:197:Folder Display Format" -l ITEM=1`
+menuonly=true
+value=const `regex -v "${($ARG1/.pref)DISPMODE:-$DISPLAYMODE}" 
+		'^0$' "$I18N_NO" 
+		'^8$' "$I18N_LF" 
+		'^10$' "$I18N_W" 
+		'^2000$' "$I18N_NAM" 
+		'.*' "$I18N_NAD"`
+
+name=$I18N_FDO
+inactive=`regex -v "${F1}" $NO false $YES true`
+nrow=5
+ncol=1
+rows=1
+columns=$FCOL2
+# scroll=true
+# frow=5
+# fcol=24
+rmenu={ "$I18N_A" "$I18N_ABD" "$I18N_LRF" "$I18N_MRF" }
+lininfo=`set -l TITLE="$$uxface:199:Folder Display Order" -l ITEM=2`
+menuonly=true
+value=const `regex -v "${($ARG1/.pref)SORTMODE:-$SORTMODE}" 
+		'^2$'  "$I18N_MRF"
+		'^1002$' "$I18N_LRF"
+		'^800$'  "$I18N_ABD"
+		'.*'  "$I18N_A"`
+
+name=$$uxface:93:"RESET"
+button=8
+action=reset

@@ -1,0 +1,48 @@
+#ident	"@(#)proto:desktop/fdscripts/INSTALL	1.3.2.18"
+
+# This file is run by stepper to control the flow of installation.
+# The format of the file is:
+
+# <text for stepper cmd>|arg|<type>|comment
+# where type is one of:
+# u|U -- unmount command
+# S -- set foreground/background color on terminal
+# b -- prompt for HBAs 
+# C -- shell script to run, not interruptible
+# c -- shell script to run, interruptible
+# E -- shell environment variable set
+# i -- script to run when stepper receives a SIGINT
+# X -- change root
+# n -- load new stepper file
+
+/dev/dsk/f0 /mnt | 2 | u | UMOUNT THE FIRST FLOPPY 
+7 1|2|S| set fg/bg color
+/dev/dsk/c0t0d0s5 /MOUNTED_ROOT|1|U| umount /dev/dsk/0s5 when overlay failed
+/dev/dsk/f0t /dev/dsk/f1t /etc/loadmods /etc/conf/mod.d/ /MOUNTED_ROOT |1|b| hbas and flop2
+####SET DEBUG ON |1|O| SET DEBUG ON. small o for resetting debug
+/sbin/sh /etc/inst/scripts/trap.sh|1|i|Trap handling routine
+TERM=AT386|0|E| set TERM
+PATH=:/usr/bin:/sbin:/etc:/usr/sbin:|0|E| set PATH
+SCRIPTS=/etc/inst/scripts|0|E| set SCRIPTS
+MOUNTED_ROOT=/MOUNTED_ROOT|0|E| set MOUNTED_ROOT
+/sbin/sh /etc/inst/scripts/initialize.sh|0|c|Set up environment/initial checks
+/sbin/sh /etc/inst/scripts/fdisk.sh|0|c|/sbin/sh fdisk.sh
+/sbin/sh /etc/inst/scripts/chkinsttyp.sh|0|c|Check os type(new/unix/otheros)
+/sbin/sh /etc/inst/scripts/partitions.sh|0|c|Create partitions on the disk(s)
+/sbin/sh /etc/inst/scripts/hdprepare.sh|0|c|Create file systems on the disk(s)
+/sbin/sh /etc/inst/scripts/mv2swap.sh|0|C|Move contents of floppy 2 to HD
+/dev/dsk/f0t /MOUNTED_ROOT|0|U| UMOUNT the second boot floppy
+/dev/dsk/c0t0d0s5 /MOUNTED_ROOT|0|mc| MOUNT the pseudo root FS
+/sbin/sh /etc/inst/scripts/getFloppy3.sh /MOUNTED_ROOT|0|c| mount 3rd floppy
+PATH=:/usr/bin:/sbin:/etc:/usr/sbin:|0|E| set PATH
+/sbin/sh /tmp/disksetup.sh|0|C|Create file systems on the disk(s)
+HDROOT=/mnt|0|E| set HDROOT
+/sbin/sh /etc/inst/scripts/chkunixrel.sh|0|c|Chk UNIX rel(unk/v4/destiny)
+/sbin/sh /etc/inst/scripts/overlaychk.sh|0|c|Do up-n-over chks(mount_fs/space)
+/sbin/sh /etc/inst/scripts/setinsttyp.sh|0|c|Set install type(new/upgrade/overlay - for new goback )
+/sbin/sh /etc/inst/scripts/overlaysav.sh|0|c|savefiles/makevfstab for upnover
+/sbin/sh /etc/inst/scripts/copy2hd.sh|0|C|/sbin/sh copy2hd.sh
+/dev/dsk/c0t0d0s5 /MOUNTED_ROOT|0|U| UMOUNT the pseudo root FS
+/dev/swap|0|d| Delete the RAMD swap
+/mnt|0|X| change root to /HDROOT
+/INSTALL | 0 | n | read in the hd scripts entries

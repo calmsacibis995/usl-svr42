@@ -1,0 +1,12 @@
+#ident	"@(#)portmgmt:common/cmd/portmgmt/port_monitors/Text.pm_list	1.1.5.2"
+#ident  "$Header: Text.pm_list 2.1 91/09/06 $"
+
+title=List Port Monitors
+lifetime=shortterm
+framemsg="Press [CANCEL] to return to the port monitor list."
+
+text="`readfile $ARG1`"
+
+columns=55
+rows=18
+

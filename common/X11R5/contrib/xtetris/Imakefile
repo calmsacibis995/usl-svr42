@@ -1,0 +1,62 @@
+/**/#ident	"@(#)r4xtetris:Imakefile	1.5"
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+
+#define Color			/* Undefine for black/white machines */
+#undef  SgidGames		/* Define if you want a secure scores file. */
+#define ScoreDir $(USRLIBDIR)   /* Directory for the score file. */
+#define ScoreFile xtetris-scores/* Filename for the score file. */
+#define BitmapDir $(XWINHOME)/include/X11/bitmaps /* May need to change this to
+				       /usr/include/X11/bitmaps, if you get a
+				       message like "can't convert string
+				       'box19' to pixmap." */
+#ifdef SgidGames
+   SGIDFLAGS = -m 2555 -g games
+   SCOREFLAGS = -m 464 -g games
+#else
+   SGIDFLAGS =
+   SCOREFLAGS = -m 666 
+#endif
+
+        BITMAPS = stripe4 box16 box19
+        DEFINES = -DHIGH_SCORE_TABLE=\"$(XWINLIBDIR)/xtetris-scores\"
+           SRCS = draw.c     main.c     score.c    support.c \
+                  init.c     notify.c   shape.c    window.c
+
+AllTarget(xtetris)
+NormalProgramTarget(xtetris,\
+         main.o init.o shape.o support.o notify.o window.o score.o draw.o,\
+	 XawClientDepLibs Xtetris.ad,XawClientLibs,-lm)
+InstallProgramWithFlags(xtetris,$(BINDIR),$(SGIDFLAGS))
+InstallManPage(xtetris,$(MANDIR))
+InstallAppDefaults(Xtetris)
+
+/* A brief comment about the following line:  There is a bug in the Imakefile
+   for Xmu which does not set BITMAPDIR to $(INCDIR)/bitmaps.  Instead it
+   always points to /usr/include/X11/bitmaps.  If you haven't fixed this 
+   problem, and you have X11R4 installed in a funny place, you may wish to 
+   change the following line to use "/usr/include/X11/bitmaps" instead.  
+      -- Dan Greening */
+
+InstallMultipleFlags($(BITMAPS),$(INCDIR)/bitmaps,-m 444)
+InstallMultipleFlags(ScoreFile,$(USRLIBDIR),$(SCOREFLAGS))
+
+#ifdef Color
+COLORDEF = clr
+#else
+COLORDEF = BW
+#endif
+Xtetris.ad: Xtetris.ad.clr Xtetris.ad.BW
+	$(RM) Xtetris.ad
+	$(CP) Xtetris.ad.$(COLORDEF) Xtetris.ad
+clean::
+	$(RM) Xtetris.ad
+
+DependTarget()

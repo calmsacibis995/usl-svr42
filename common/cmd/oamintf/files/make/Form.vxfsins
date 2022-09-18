@@ -1,0 +1,51 @@
+#ident	"@(#)filemgmt:common/cmd/oamintf/files/make/Form.vxfsins	1.2"
+
+# Copyright (c) 1991, 1992 VERITAS Software Corporation.  ALL RIGHTS RESERVED.
+# UNPUBLISHED -- RIGHTS RESERVED UNDER THE COPYRIGHT
+# LAWS OF THE UNITED STATES.  USE OF A COPYRIGHT NOTICE
+# IS PRECAUTIONARY ONLY AND DOES NOT IMPLY PUBLICATION
+# OR DISCLOSURE.
+# 
+# THIS SOFTWARE CONTAINS CONFIDENTIAL INFORMATION AND
+# TRADE SECRETS OF VERITAS SOFTWARE.  USE, DISCLOSURE,
+# OR REPRODUCTION IS PROHIBITED WITHOUT THE PRIOR
+# EXPRESS WRITTEN PERMISSION OF VERITAS SOFTWARE.
+# 
+#               RESTRICTED RIGHTS LEGEND
+# USE, DUPLICATION, OR DISCLOSURE BY THE GOVERNMENT IS
+# SUBJECT TO RESTRICTIONS AS SET FORTH IN SUBPARAGRAPH
+# (C) (1) (ii) OF THE RIGHTS IN TECHNICAL DATA AND
+# COMPUTER SOFTWARE CLAUSE AT DFARS 252.227-7013.
+#               VERITAS SOFTWARE
+# 4800 GREAT AMERICA PARKWAY, SUITE 420, SANTA CLARA, CA 95054
+
+# Portions Copyright 1992, 1991 UNIX System Laboratories, Inc.
+# Portions Copyright 1990 - 1984 AT&T
+# All Rights Reserved
+
+Form="Create a File System (make)"
+
+lifetime=shortterm
+help=OPEN TEXT $INTFBASE/Text.itemhelp $LININFO
+
+begrow=10
+begcol=1
+
+done=`message "Creating a vxfs file system on $DEVICE. Please Wait...";
+       	$OAMBASE/bin/mkfs_vxfs $BLOCKSIZE $DEVICE $BLOCKS $LABEL $MNTPT 2>\&1 >/dev/null;
+	set -l CMD="OPEN TEXT $OBJ_DIR/Text.make";
+	`$CMD
+
+name="has the diskette been inserted in the driver ?"
+nrow=1
+ncol=1
+frow=1
+fcol=48
+rows=1
+columns=10
+value=yes
+rmenu={ yes }
+menuonly=true
+choicemsg="Please insert diskette in drive, enter 'yes' and press SAVE."
+invalidmsg="Please insert diskette in drive, enter 'yes' and press SAVE."
+

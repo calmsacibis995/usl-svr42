@@ -1,0 +1,7 @@
+#ident  "@(#)set:common/set/util/preinstall	1.3"
+#ident  "$Header: $"
+
+for PKG in $PKGLIST
+do
+	echo "$PKG" >>$SETLIST
+done

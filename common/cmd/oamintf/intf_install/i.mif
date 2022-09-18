@@ -1,0 +1,26 @@
+#ident	"@(#)oamintf:common/cmd/oamintf/intf_install/i.mif	1.1.3.3"
+#ident  "$Header: i.mif 2.0 91/07/12 $"
+
+# Class action script for sysadm installation package
+
+while read SRC DEST
+do
+	if [ $SRC = /dev/null ]
+	then
+		if [ "$QUIETMODE" != "true" ]
+		then
+			echo "$DEST"
+		fi
+	else
+		cp $SRC $DEST
+		if [ "$QUIETMODE" != "true" ]
+		then
+			echo "$DEST"
+		fi
+	fi
+done
+
+[ "$1" = "ENDOFCLASS" ] && /usr/lbin/intf_inst || exit $?
+
+exit 0
+

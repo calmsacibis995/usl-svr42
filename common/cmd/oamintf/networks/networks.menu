@@ -1,0 +1,5 @@
+#ident	"@(#)oamintf:common/cmd/oamintf/networks/networks.menu	1.2.1.2"
+#ident  "$Header: networks.menu 2.0 91/07/12 $"
+#menu#Network Administration
+#help#networks.help^Network Management
+#life#permanent

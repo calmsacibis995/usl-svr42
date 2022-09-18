@@ -1,0 +1,11 @@
+_XmbTextListToTextProperty
+__XrmInitParseInfo
+_Ximp_init_locale
+_Ximp_load_codeset_data
+_Ximp_NCompareISOLatin1
+_Ximp_CompareISOLatin1
+_Ximp_destroy
+_Ximp_mbinit
+_Ximp_mbfinish
+_Ximp_strtostr
+_Ximp_cstostring

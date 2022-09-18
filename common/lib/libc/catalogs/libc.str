@@ -1,0 +1,98 @@
+/*	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.	*/
+/*	Copyright (c) 1988, 1990 AT&T	*/
+/*	  All Rights Reserved  	*/
+
+/*	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF     	*/
+/*	UNIX System Laboratories, Inc.                     	*/
+/*	The copyright notice above does not evidence any   	*/
+/*	actual or intended publication of such source code.	*/
+
+#ident	"@(#)catalogs:libc.str	1.1"
+Illegal option -- %c\n
+Option requires an argument -- %c\n
+: 
+UNKNOWN SIGNAL
+Hangup
+Interrupt
+Quit
+Illegal Instruction
+Trace/Breakpoint Trap
+Abort
+Emulation Trap
+Arithmetic Exception
+Killed
+Bus Error
+Segmentation Fault
+Bad System Call
+Broken Pipe
+Alarm Clock
+Terminated
+User Signal 1
+User Signal 2
+Child Status Changed
+Power-Fail/Restart
+Window Size Change
+Urgent Socket Condition
+Pollable Event
+Stopped (signal)
+Stopped (user)
+Continued
+Stopped (tty input)
+Stopped (tty output)
+Virtual Timer Expired
+Profiling Timer Expired
+Cpu Limit Exceeded
+File Size Limit Exceeded
+process breakpoint
+process trace
+illegal opcode
+illegal operand
+illegal addressing mode
+illegal trap
+privileged opcode
+privileged register
+co-processor
+bad stack
+integer divide by zero
+integer overflow
+floating point divide by zero
+floating point overflow
+floating point underflow
+floating point inexact result
+invalid floating point operation
+floating point subscript out of range
+address not mapped to object
+invalid permissions
+invalid address alignment
+non-existent physical address
+object specific
+child has exited
+child was killed
+child has coredumped
+traced child has trapped
+child has stopped
+stopped child has continued
+input available
+output possible
+message available
+I/O error
+high priority input available
+device disconnected
+ ( from process %d )
+SEV = %d
+TO FIX
+ERROR
+HALT
+WARNING
+INFO
+Syntax error - cannot backup
+Yacc initialization error
+Yacc stack overflow
+Syntax error
+Fmt error, no tab after %son line %d\n
+Not enough memory for magic table: %s\n
+%s:\t
+Cannot open magic file <%s>: %s\n
+Cannot close %s: %s\n
+level	off	type	opcode	value	string\n
+

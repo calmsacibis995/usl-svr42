@@ -1,0 +1,50 @@
+#define sun_format 1
+#define sun_width 32
+#define sun_height 32
+#define sun_ncolors 9
+#define sun_chars_per_pixel 1
+static char * sun_colors[] = {
+" " , "#FFFFAAAA0000",
+"." , "#000000000000",
+"X" , "#FFFFFFFF0000",
+"o" , "#FFFF00000000",
+"O" , "#0000FFFFFFFF",
+"+" , "#FFFFFFFFFFFF",
+"@" , "#0000AAAAFFFF",
+"#" , "#00000000FFFF",
+"$" , "#00000000AAAA"
+} ;
+static char * sun_pixels[] = {
+"  .XXXXXX.XXXXX.XXXXX.XXXXXX.   ",
+"   .XXXXX.XXXXX.XXXXX.XXXXX.    ",
+"    .XXXXX.XXXX.XXXX.XXXXX.     ",
+"     .XXXX.XXXX.XXXX.XXXX.      ",
+"      .XXXX.XXX.XXX.XXXX.      .",
+".      .XXX.XXX.XXX.XXX.     .. ",
+" ..     .XXX.XX.XX.XXX.     .   ",
+"   .     .XX.XX.XX.XX.    ..    ",
+"    ..    .XX.....XX.    .      ",
+"      ..   ..ooooo..   ..       ",
+"        . .ooooooooo. .         ",
+"....     .ooooooooooo.     .....",
+"    .... .ooooooooooo. ....     ",
+"        .ooooooooooooo.         ",
+"        .ooooooooooooo.         ",
+".........o..o.ooo...o...........",
+"OOOOOOOOO.XX. .o.   .OOOOOOOOOOO",
+"OOOOOOOOOO..O.X.o...OOOOOOOOO...",
+".....OOOOOOOO.XX.+++....OOOO.@@@",
+"@@@@@..OOOOO.+.XX...OOOOOOO.@@@@",
+"@@@@@@@.....+.XX.++.O.......@@@@",
+"@@@@@@@@@@@@.@.XX..+.@@@@@@.....",
+"....@@@@@@@@..X..++++...@..#####",
+"####..@@@@@.XX.  ....@@@.#######",
+"###.@@@....+.XX..@@@@...########",
+"####..@@@@.++.XXX....+++.#####..",
+"######.@.@@.++.XXXXXX..###....$$",
+"#######.+..++.X...X...+...$$$$$$",
+"...####..+.+.+.   .@@@.###......",
+"$$$.##.++++++++...+...+..#######",
+"$$$$.##.......+++++++++++.......",
+"$$$$$..$$$.###.++++++++...$$$$$$"
+} ;

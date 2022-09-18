@@ -1,0 +1,5 @@
+#ident  "@(#)cs:cs/log_files/auth	1.1.2.2"
+#ident  "$Header: auth 1.2 91/06/26 $"
+#
+#host	service	trans.	auth	imposer
+#			scheme	role

@@ -1,0 +1,17 @@
+#ident	"@(#)r4xlock:xlock.script	1.1"
+#/bin/sh
+ptstty="/dev/pts"
+LOGTTY=`tty`
+smask=`umask`
+umask 000
+echo ${LOGTTY} > /tmp/ttyfile
+umask ${smask}
+if
+grep ${ptstty}  /tmp/ttyfile > /dev/null
+then 
+#	echo "You are running in an xterm so exec xlock only"
+	.Xlock $*
+else
+#	echo "need to exec an xterm " 
+	exec  xterm -e .Xlock $*
+fi

@@ -1,0 +1,8 @@
+#ident	"@(#)nadmin.nfs:local/nfs/Text.list	1.1.4.1"
+#ident  "$Header: Text.list 2.0 91/07/12 $"
+title="Resources Automatically-Currently Shared via Network File System"
+
+`readfile $INTFBASE/display.msg | message -p`
+
+text="`readfile $ARG1`"
+columns=70

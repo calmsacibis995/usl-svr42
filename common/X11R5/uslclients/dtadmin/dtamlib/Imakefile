@@ -1,0 +1,36 @@
+/**/#ident	"@(#)dtadmin:dtamlib/Imakefile	1.10"
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+
+#define PassCDebugFlags 'CDEBUGFLAGS=$(CDEBUGFLAGS)'
+
+         SRCS = \
+		dtamICCCM.c\
+		dtambuf.c\
+		owner.c\
+		p3open.c
+
+         OBJS = \
+		dtamICCCM.o\
+		dtambuf.o\
+		owner.o\
+		p3open.o
+
+      HEADERS = \
+		owner.h\
+		dtamlib.h 
+
+     INCLUDES = -I$(LIBSRC) -I$(LIBSRC)/Xol
+
+NormalLibraryTarget(dtam,$(OBJS))
+
+DependTarget()
+
+install:: all

@@ -1,0 +1,40 @@
+#ident	"@(#)face:src/oam/Menu.users	1.1.5.3"
+#ident  "$Header: Menu.users 1.4 91/10/15 $"
+
+menu=$$uxface:550:"FACE User Administration"
+
+framemsg=$$uxface:529:"Move the cursor to the item you want and press ENTER to select it."
+
+help=OPEN TEXT $INTFBASE/Text.oamhelp $!LININFO 
+
+lifetime=permanent
+
+
+
+name=$$uxface:531:"add"
+description=$$uxface:555:"Add FACE Environment for a UNIX System User"
+lininfo="/usr/sadm/sysadm/add-ons/face/applmgmt/FACE/users/add \"$$uxface:555:Add FACE Environment for a UNIX System User\"" add
+action=`set -l OBJ_DIR=/usr/sadm/sysadm/add-ons/face/applmgmt/FACE/users/add
+`OPEN FORM /usr/sadm/sysadm/add-ons/face/applmgmt/FACE/users/add/Form.define
+
+
+name=$$uxface:532:"list"
+description=$$uxface:556:"List FACE Users on This System"
+lininfo="/usr/sadm/sysadm/add-ons/face/applmgmt/FACE/users/list \"$$uxface:556:List FACE Users on This System\"" list
+action=`set -l OBJ_DIR=/usr/sadm/sysadm/add-ons/face/applmgmt/FACE/users/list
+`OPEN MENU /usr/sadm/sysadm/add-ons/face/applmgmt/FACE/users/list/Menu.ulist
+
+
+name=$$uxface:534:"modify"
+description=$$uxface:308:"Modify FACE Environment for a FACE User"
+lininfo="/usr/sadm/sysadm/add-ons/face/applmgmt/FACE/users/modify \"$$uxface:308:Modify FACE Environment for a FACE User\"" modify
+action=`set -l OBJ_DIR=/usr/sadm/sysadm/add-ons/face/applmgmt/FACE/users/modify
+`OPEN FORM /usr/sadm/sysadm/add-ons/face/applmgmt/FACE/users/modify/Form.mod
+
+
+name=$$uxface:535:"remove"
+description=$$uxface:312:"Remove FACE Environment for a FACE User"
+lininfo="/usr/sadm/sysadm/add-ons/face/applmgmt/FACE/users/remove \"$$uxface:312:Remove FACE Environment for a FACE User\"" remove
+action=`set -l OBJ_DIR=/usr/sadm/sysadm/add-ons/face/applmgmt/FACE/users/remove
+`OPEN FORM /usr/sadm/sysadm/add-ons/face/applmgmt/FACE/users/remove/Form.undefine
+

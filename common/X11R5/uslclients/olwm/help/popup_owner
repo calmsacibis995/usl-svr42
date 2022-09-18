@@ -1,0 +1,6 @@
+Use the Owner? button to identify the base window that originated the
+pop-up window. The title bar of the originating base window flashes
+and comes to the front of the screen.
+
+Drag MENU onto the item and release MENU to locate the owner of the
+pop-up window at the pointer location.

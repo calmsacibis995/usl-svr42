@@ -1,0 +1,60 @@
+#ident	"@(#)pkg4.i386:edebug/prototype	1.13"
+i copyright
+i pkginfo
+i edebug/menu.edebug=menu.edebug
+i request
+i postinstall
+i postremove
+i space
+i response
+
+d none edebug						0755 bin bin
+d none /usr						?   ?   ?
+d none /usr/ccs						0755 bin bin
+d none /usr/ccs/bin					0755 bin bin
+f none /usr/ccs/bin/debug 				0755 bin bin
+d none /usr/ccs/lib					0755 bin bin
+f none /usr/ccs/lib/follow 				0755 bin bin
+f none /usr/ccs/lib/debug_alias 			0444 bin bin
+d none /usr/ccs/lib/tutorial 				0755 bin bin
+f none /usr/ccs/lib/tutorial/files 			0444 bin bin
+f none /usr/ccs/lib/tutorial/macro.c 			0444 bin bin
+f none /usr/ccs/lib/tutorial/macro.h 			0444 bin bin
+f none /usr/ccs/lib/tutorial/main.c 			0444 bin bin
+f none /usr/ccs/lib/tutorial/sget.c 			0444 bin bin
+f none /usr/ccs/lib/tutorial/test1 			0444 bin bin
+f none /usr/ccs/lib/tutorial/test2 			0444 bin bin
+f none /usr/ccs/lib/tutorial/walk.c 			0444 bin bin
+d none /usr/ccs/lib/tutorial/src			0755 bin bin
+f none /usr/ccs/lib/tutorial/src/file1			0444 bin bin
+f none /usr/ccs/lib/tutorial/src/s.main.c		0444 bin bin
+f none /usr/ccs/lib/tutorial/src/testfile		0444 bin bin
+f edbgdt /usr/ccs/lib/debug.ol.ui 			0755 bin bin
+d edbgdt /usr/X						0755 bin bin
+d edbgdt /usr/X/lib					0755 bin bin
+d edbgdt /usr/X/lib/locale				0755 bin bin
+d edbgdt /usr/X/lib/locale/C				0755 bin bin
+d edbgdt /usr/X/lib/locale/C/help			0755 bin bin
+d edbgdt /usr/X/lib/locale/C/help/debug			0755 bin bin
+f edbgdt /usr/X/lib/locale/C/help/debug/debug.help 	0444 bin bin
+f edbgdt /usr/X/lib/locale/C/help/debug/context.help 	0444 bin bin
+f edbgdt /usr/X/lib/locale/C/help/debug/command.help 	0444 bin bin
+f edbgdt /usr/X/lib/locale/C/help/debug/debug.defs 	0444 bin bin
+f edbgdt /usr/X/lib/locale/C/help/debug/dis.help 	0444 bin bin
+f edbgdt /usr/X/lib/locale/C/help/debug/event.help 	0444 bin bin
+f edbgdt /usr/X/lib/locale/C/help/debug/popup.help 	0444 bin bin
+f edbgdt /usr/X/lib/locale/C/help/debug/source.help 	0444 bin bin
+d edbgdt /usr/X/lib/classdb				0755 bin bin
+f edbgdt /usr/X/lib/classdb/debug.cdb 			0644 bin bin
+d edbgdt /usr/X/lib/pixmaps				0755 bin bin
+f edbgdt /usr/X/lib/pixmaps/debug.32 			0644 bin bin
+f edbgdt /usr/X/lib/pixmaps/debug.48 			0644 bin bin
+d edbgdt /usr/X/lib/pixmasks				0755 bin bin
+f edbgdt /usr/X/lib/pixmasks/debug.32 			0644 bin bin
+d edbgdt /usr/X/lib/bitmaps				0755 bin bin
+f edbgdt /usr/X/lib/bitmaps/debug.32 			0644 bin bin
+d edbgdt /usr/X/desktop					0755 bin bin
+d edbgdt /usr/X/desktop/PackageMgr			0755 bin bin
+f edbgdt /usr/X/desktop/PackageMgr/edebug 		0644 bin bin
+d edbgdt /usr/X/desktop/Applications			0755 bin bin
+s edbgdt /usr/X/desktop/Applications/Debug=/usr/ccs/bin/debug

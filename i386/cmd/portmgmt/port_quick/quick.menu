@@ -1,0 +1,7 @@
+#ident	"@(#)portmgmt:i386/cmd/portmgmt/port_quick/quick.menu	1.2"
+#ident	"$Header: $"
+#menu#Quick Terminal Setup
+#life#permanent
+
+add^Add a Terminal to a Port^Form.add
+remove^Remove a Terminal from a Port^Form.rm

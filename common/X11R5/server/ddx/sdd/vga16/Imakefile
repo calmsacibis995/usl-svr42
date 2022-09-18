@@ -1,0 +1,162 @@
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+#ident	"@(#)vga16:vga16/Imakefile	1.25"
+
+#include <Server.tmpl>
+#if Release5
+#include <sv4Lib.rules>
+
+/*
+ * Debugging the server with dynamically linked library is sometimes a pain...
+ * To statically link libvga16.a into the server:
+ *
+ * #undef XWINSharedDisplayLibrary
+ *
+ * and do:
+ *	make clean
+ *	make Makefile
+ *	make
+ *	cd ../../.. (ie: to the server dir)
+ *	make Xwin_a (make sure SDD=.....libvga16.a in the server/Makefile)
+ */
+/* #undef XWINSharedDisplayLibrary */
+
+/*
+ *  	compilation option forced to -Xa, since -Xc does not recognize "asm"
+ *	keyword, which is called by "sys/inline.h" and used in all the files in
+ *	this directory
+ *
+ *  The reason to define .c.o: here is that the $(CCOPTIONS) is passed on 
+ *  command line from server dir, so there is no easy way to overwrite the default
+ *  option (-Xc). Eventhough CFLAGS has -Xc, since we are forcing -Xa after CFLAGS,
+ *  all other previously defined -X options are ignored.
+ */
+.c.o:
+	$(RM) $@
+	${CC} -KPIC $(CFLAGS) -Xa -c $*.c
+#endif
+
+NONPROFTMP=cat
+PROFTMP=m4 m4.def mcount.def 
+ASMTMP=$(NONPROFTMP)
+
+SRCS =	 vga.c vgaconfig.c vgadata.c vgags.c vgacolor.c \
+	 vgabitblt.c vgabltcopy.c vgablthelp.c vgastplblt.c vgarop.c \
+	 vgadlfont.c \
+	 vgacurs.c \
+	 vgapixel.c vgapoints.c \
+	 vgafill.c vgabigstpl.c vgabigtile.c \
+	 vgasl.c \
+	 vgaline.c vgalnclip.c \
+	 vgaasm.s egaasm.s vgabytefl.s \
+	 vtio.c vtio_dyn.c vgacache.c
+
+OBJS =   vga.o vgaconfig.o vgadata.o vgags.o vgacolor.o \
+	 vgabitblt.o vgabltcopy.o vgablthelp.o vgastplblt.o vgarop.o \
+	 vgadlfont.o \
+	 vgacurs.o \
+	 vgapixel.o vgapoints.o \
+	 vgafill.o vgabigstpl.o vgabigtile.o \
+	 vgasl.o \
+	 vgaline.o vgalnclip.o \
+	 vgaasm.o egaasm.o vgabytefl.o \
+	 vgacache.o
+
+   INCLUDES = -I.  -I../../si -I../../../../X11 -I../../../include -I/usr/include
+   INCLUDES = -I../../../include -I../../si
+
+     LFLAGS = -buxz
+
+#if XWINSharedDisplayLibrary
+#define IHaveSubdirs
+SUBDIRS = INIT
+MakeSubdirs($(SUBDIRS))
+DependSubdirs($(SUBDIRS))
+INIT_OBJ = vtio_dyn.o
+
+#if Release5
+
+SHLIBLDFLAGS = ./INIT/libv16i.so
+SharedLibraryTarget1(vga16,1,$(OBJS) $(INIT_OBJ),.,.)
+#else
+SHAREDOBJS = $(OBJS) $(INIT_OBJ)
+SHLIBFLAGS = ./INIT/libv16i.so
+SharedLibraryObjectRule()
+all:: libvga16.so
+SharedLibraryTarget1(vga16, $(SHAREDOBJS))
+SpecialObjectRule(.c.o,,-KPIC)
+#endif
+
+#else
+
+INIT_OBJ = vtio.o
+CDEBUGFLAGS = -O -DNO_ALLOCA
+NormalLibraryObjectRule()
+all:: libvga16.a
+NormalLibraryTarget(vga16, $(OBJS) $(INIT_OBJ))
+#endif
+
+#if XWINSharedDisplayLibrary
+SFLAGS= -KPIC
+#endif
+
+egaasm.o:	egaasm.s
+	$(ASMTMP) egaasm.s > tmp.c
+	$(CC) -P $(INCLUDES) tmp.c
+	sed -e "/^\#ident/d" -e "s/\% /\%/g" tmp.i > tmp.s
+	$(CC) -c -O $(SFLAGS) tmp.s
+	mv tmp.o egaasm.o
+	@if [ -d shared ]; then \
+		$(CC) -c -O -KPIC tmp.s; \
+		$(MV) tmp.o ./shared/egaasm.o; \
+	fi
+	/bin/rm -f tmp.s tmp.c tmp.i
+
+vgaasm.o:	vgaasm.s
+	$(ASMTMP) vgaasm.s > tmp.c
+	$(CC) -P $(INCLUDES) tmp.c
+	sed -e "/^\#ident/d" -e "s/\% /\%/g" tmp.i > tmp.s
+	$(CC) -c -O $(SFLAGS) tmp.s
+	mv tmp.o vgaasm.o
+	@if [ -d shared ]; then \
+		$(CC) -c -O -KPIC tmp.s; \
+		$(MV) tmp.o ./shared/vgaasm.o; \
+	fi
+	/bin/rm -f tmp.s tmp.c tmp.i
+
+vgabytefl.o:	vgabytefl.s
+	$(ASMTMP) vgabytefl.s > tmp.c
+	$(CC) -P $(INCLUDES) tmp.c
+	sed -e "/^\#ident/d" -e "s/\% /\%/g" tmp.i > tmp.s
+	$(CC) -c -O $(SFLAGS) tmp.s
+	mv tmp.o vgabytefl.o
+	@if [ -d shared ]; then \
+		$(CC) -c -O -KPIC tmp.s; \
+		$(MV) tmp.o ./shared/vgabytefl.o; \
+	fi
+	/bin/rm -f tmp.s tmp.c tmp.i
+
+/*
+ * There seem to be a timing problem with ALR/EISA boxes. The problem seem
+ * to be externo the server. The problem goes away if either the CPU
+ * is slowed down or compile vga.c without -O. Until the problem is fixed,
+ * turn off -O on vga.c. Also see MR ul92-18282
+ */
+#ifndef UTSXENV
+vga.o:	vga.c
+	$(CC) -c -DNO_ALLOCA $(CCOPTIONS) $(ALLDEFINES) vga.c
+#endif
+
+DependTarget()
+
+#if XWINSharedDisplayLibrary
+install:: all
+	$(INSTALL) $(INSTALLFLAGS) libvga16.so $(USRLIBDIR)
+#endif

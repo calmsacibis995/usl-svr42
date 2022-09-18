@@ -1,0 +1,12 @@
+*** root.v4	Mon Feb 24 15:33:35 1992
+--- root.destiny	Mon Feb 24 15:42:54 1992
+***************
+*** 1 ****
+! #ident	"@(#)/var/spool/cron/crontabs/root.sl 1.1 4.0 05/29/91 38455 AT&T-USL"
+--- 1,6 ----
+! #ident	"@(#)adm:common/cmd/.adm/root   1.1.10.1"
+! #ident  "$Header: root 1.2 91/07/24 $"
+! #
+! # The root crontab should be used to perform accounting data collection.
+! #
+! 1,30 * * * * $TFADMIN /usr/bin/ps -a >/dev/null

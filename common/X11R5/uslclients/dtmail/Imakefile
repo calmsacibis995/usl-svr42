@@ -1,0 +1,114 @@
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+/**/#ident	"@(#)dtmail:Imakefile	1.29"
+
+#ifdef Release5
+#include <sv4Lib.tmpl>
+#endif
+
+#define PassCDebugFlags 'CDEBUGFLAGS=$(CDEBUGFLAGS)'
+
+           STAR = *
+      DNDLIBSRC = $(LIBSRC)/DnD
+         DNDLIB = $(DNDLIBSRC)/libDnD.so
+       DTLIBSRC = $(LIBSRC)/Dt
+      DTILIBSRC = $(USLCLIENTSRC)/libDtI
+          DTLIB = $(DTLIBSRC)/libDt.so
+         DTILIB = $(DTILIBSRC)/libDtI.so
+       GIZMOSRC = $(LIBSRC)/Gizmo
+       GIZMOLIB = $(GIZMOSRC)/libGizmo.so
+
+#if defined(SYSV) || defined(SystemV4)
+        HELPDIR = $(USRLIBDIR)/locale/C/help
+#else
+        HELPDIR = $(LIBDIR)/C/help
+#endif
+
+          DEBUG = 
+    CDEBUGFLAGS = -O
+
+SRCS1 = \
+	alias.c \
+	aliasedit.c \
+	aliasfile.c \
+	aliasshow.c \
+	aliastbl.c \
+	delete.c \
+	error.c \
+	file.c \
+	io.c \
+	ListGizmo.c \
+	mail.c \
+	main.c \
+	manage.c \
+	menus.c \
+	p3open.c \
+	popups.c \
+	read.c \
+	readprop.c \
+	RMailGizmo.c \
+	SendGizmo.c \
+	send.c \
+	sendlist.c \
+	sendprop.c \
+	stat.c \
+	TextGizmo.c
+
+OBJS1 = $(SRCS1:.c=.o)
+
+HDRS1 = \
+	ListGizmo.h \
+	RMailGizmo.h \
+	SendGizmo.h \
+	TextGizmo.h \
+	mail.h
+
+          PROG1 = dtmail
+
+           OBJS = $(OBJS1)
+           SRCS = $(SRCS1)
+           HDRS = $(HDRS1)
+          PROGS = $(PROG1)
+
+       INCLUDES = -I$(LIBSRC) -I$(LIBSRC)/Xol \
+                  -I$(DTLIBSRC) \
+                  -I$(DNDLIBSRC) \
+                  -I$(DTILIBSRC) \
+                  -I$(GIZMOSRC)
+LOCAL_LIBRARIES = $(DNDLIB) $(DTLIB) $(DTILIB) $(WSMLIB) $(GIZMOLIB) XolClientLibs
+  SYS_LIBRARIES = -lgen
+        DEPLIBS = $(DNDLIB) $(DTLIB) $(DTILIB) $(WSMLIB) $(GIZMOLIB) XolClientDepLibs
+
+all:: $(PROGS)
+
+NormalProgramTarget($(PROG1),$(OBJS1),$(DEPLIBS),$(LOCAL_LIBRARIES),$(SYS_LIBRARIES))
+
+/*
+ * FIX: when the Imake rules are fixed
+ */
+clobber:: clean
+	$(RM) $(PROGS)
+
+InstallProgram($(PROG1),$(BINDIR))
+InstallManPage($(PROG1),$(BINDIR))
+
+InstallMultiple(bitmaps/$(STAR),$(USRLIBDIR)/bitmaps)
+InstallMultiple(pixmaps/$(STAR),$(USRLIBDIR)/pixmaps)
+InstallMultiple(pixmasks/$(STAR),$(USRLIBDIR)/pixmasks)
+
+InstallMultipleHelpFiles(help/$(STAR).hlp,$(HELPDIR)/dtmail)
+
+InstallDesktopClient($(BINDIR)/$(PROG1),$(DESKTOPDIR)/Applications/Mail)
+
+CleanTarget()
+
+DependTarget()
+
+LintTarget()

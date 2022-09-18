@@ -1,0 +1,24 @@
+*** login.v4	Mon Feb 24 17:20:56 1992
+--- login.destiny	Mon Feb 24 17:20:21 1992
+***************
+*** 1 ****
+! #ident	"@(#)/etc/default/login.sl 1.1 4.0 05/29/91 65046 AT&T-USL"
+--- 1,2 ----
+! #ident	"@(#)/etc/default/login.sl 1.7 4.1dt 01/31/92 32269 AT&T-USL"
+! #ident "$Header: /sms/sinixV5.4es/rcs/s19-full/usr/src/cmd/login/login.dfl,v 1.1 91/02/28 17:45:11 ccs Exp $"
+***************
+*** 4 ****
+! ULIMIT=16384
+--- 5 ----
+! #ULIMIT=4096
+***************
+*** 7 ****
+! ALTSHELL=YES
+--- 8 ---
+! ALTSHELL=YES
+***************
+*** 8 ****
+--- 8,10 ----
+  ALTSHELL=YES
++ MANDPASS=NO
++ UMASK=077

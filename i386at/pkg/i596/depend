@@ -1,0 +1,4 @@
+#ident	"@(#)pkg.i596:depend	1.1"
+#ident  "$Header: $"
+P  nsu		Networking Support Utilities
+

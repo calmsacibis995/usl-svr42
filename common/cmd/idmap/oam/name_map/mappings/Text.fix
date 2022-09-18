@@ -1,0 +1,22 @@
+#ident	"@(#)idmap:oam/name_map/mappings/Text.fix	1.1.1.1"
+#ident "$Header: /sms/sinixV5.4es/rcs/s19-full/usr/src/cmd/idmap/oam/name_map/mappings/Text.fix,v 1.1 91/02/28 17:36:02 ccs Exp $"
+
+################################################################################
+#
+#	Module Name: Text.fix
+#
+#	Functional Description: This text reports status of scheme fix
+#			
+################################################################################
+
+title="Fix Mappings in a Scheme"
+
+begrow=any
+begcol=any
+
+rows=10
+columns=50
+
+text=`ARG3 of scheme $ARG4`
+
+`readfile $INTFBASE/display.msg | message -s`

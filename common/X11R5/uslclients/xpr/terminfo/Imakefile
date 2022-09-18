@@ -1,0 +1,100 @@
+/**/#ident	"@(#)xpr:terminfo/Imakefile	1.8"
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+/**/#
+/**/# Makefile for the Terminfo entries delivered with xpr
+/**/#
+
+
+USRLIB	=	$(USRLIBDIR)
+TERMINFO=	$(USRLIBDIR)/terminfo
+
+/**/#
+/**/# IFDIR is relative to $(TERMINFO)
+/**/#
+IFDIR	=	if
+
+WORKDIR	=	./working
+
+DMODES	=	u=rwx,go=rx
+FMODES	=	ugo=r
+
+
+SRCS	= \
+		citoh.ti \
+		daisy.ti \
+		dec.ti \
+		epson.ti \
+		hplaser.ti \
+		paintjet.ti \
+		ibm.ti \
+		postscript.ti \
+		attp.ti
+
+IFSRCS	= \
+		postscript.if
+
+
+/**/#
+/**/# The tic program will get use= references from previously
+/**/# compiled entries found in $TERMINFO, if any. But this may
+/**/# screw things up because we want the use= references to
+/**/# come from the new source files. Thus we compile the entries
+/**/# into a temporary directory that is initially empty.
+/**/#
+all:		$(WORKDIR)
+
+$(WORKDIR):	$(SRCS) $(IFSRCS)
+	if [ -d $(WORKDIR) ]; \
+	then \
+		rm -fr $(WORKDIR); \
+	fi
+	mkdir $(WORKDIR)
+	for ti in $(SRCS); \
+	do \
+		TERMINFO=$(WORKDIR) tic -v $$ti; \
+	done
+	if [ ! -d $(IFDIR) ]; \
+	then \
+		mkdir $(WORKDIR)/$(IFDIR); \
+		chmod $(DMODES) $(WORKDIR)/$(IFDIR); \
+	fi
+	for if in $(IFSRCS); \
+	do \
+		cp $$if $(WORKDIR)/$(IFDIR); \
+		chmod $(FMODES) $(WORKDIR)/$(IFDIR)/$$if; \
+	done
+
+install::	all
+	-if [ ! -d $(TERMINFO) ]; \
+	then \
+		mkdir -p $(TERMINFO) > /dev/null; \
+	fi
+	if expr "$(TERMINFO)" : '^\.*' >/dev/null; \
+	then \
+		dir=`pwd`/$(TERMINFO); \
+		cd $(WORKDIR); \
+		find . -print | cpio -dump $$dir >/dev/null; \
+	else \
+		cd $(WORKDIR); \
+		find . -print | cpio -dump $(TERMINFO) >/dev/null; \
+	fi
+
+clean::
+	rm -fr $(WORKDIR)
+
+clobber::	clean
+
+strip:
+
+listsource:
+	@ls Makefile $(SRCS) $(IFSRCS)
+
+NoDepend()

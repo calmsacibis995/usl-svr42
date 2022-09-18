@@ -1,0 +1,160 @@
+#ifndef NOIDENT
+#ident	"@(#)olpixmap:pixmsgstrs	1.9"
+#endif
+
+/*
+ * This file contains all the message
+ * strings for the OPEN LOOK OlPixmap client.
+ * 
+ */
+
+String OleMbadCommandLine_usage = "Usage: %s [-iconmenu] [-options ...] [filename]" ;
+
+String OleMfixedString_appName 		= "Pixmap Editor" ;
+String OleMfixedString_circles 		= "Circles" ;
+String OleMfixedString_lines 		= "Lines" ;
+String OleMfixedString_ovals 		= "Ovals" ;
+String OleMfixedString_pixels 		= "Pixels" ;
+String OleMfixedString_rectangles 	= "Rectangles" ;
+String OleMfixedString_segments 	= "Segments" ;
+String OleMfixedString_squares 		= "Squares" ;
+String OleMfixedString_text 		= "Text" ;
+String OleMfooterMsg_clear		= "Sweep out area to clear." ;
+String OleMfooterMsg_copy       	= "Sweep out area to copy from." ;
+String OleMfooterMsg_copy2		= "Select point for upper-left of the \
+new copy." ; 
+String OleMfooterMsg_fill       	= "Select point within area to fill." ;
+String OleMfooterMsg_recolor		= "Select a pixel containing the \
+color to be changed." ;
+String OleMfooterMsg_move       	= "Sweep out area to move." ;
+String OleMfooterMsg_move2		= "Select point for upper-left of new \
+position." ; 
+String OleMfooterMsg_roll		= "Select point for NEW upper-left \
+corner of pixmap." ;
+
+String OleMfixedString_sfile		= "%s: File" ;
+String OleMfixedString_fileName		= "File Name: " ;
+
+String OleMfooterMsg_badBrowse		= "Invalid browse request." ;
+String OleMfooterMsg_badFormat		= "Input file \"%s\" is not in a valid \
+format." ; 
+String OleMfooterMsg_cancelBrowse	= "Browse cancelled." ;
+String OleMfooterMsg_cancelOpen		= "Open cancelled." ;
+String OleMfooterMsg_error		= "Program error: default taken." ;
+String OleMfooterMsg_new		= "New Pixmap." ;
+String OleMfooterMsg_noFile		= "Can't open file \"%s\" for reading -- \
+%s." ;
+String OleMfooterMsg_noMemory		= "Can't allocate memory for operation." ;
+String OleMfooterMsg_noPermission	= "Can't rename/write file \"%s\" -- \
+%s." ;
+String OleMfooterMsg_noSave		= "Current pixmap changes not saved..." ;
+String OleMfooterMsg_open		= "Pixmap opened." ;
+String OleMfooterMsg_save		= "Pixmap was saved." ;
+
+
+String OleMfixedString_edit		= "Edit" ;     
+String OleMfixedString_draw		= "Draw" ;
+String OleMfixedString_palette		= "Palette" ;  
+
+
+String OleMfixedString_pixmap		= "Pixmap" ;
+/* This next string is only here for a localizer to see.  There is no need */
+/* for this string in this file, but it should be adapted for olpix_msgs. */
+/*String OleMfixedString_untitled		= "Untitled.xpm" ;*/
+
+
+String OleMfixedString_dashed		= "Dashed" ;
+String OleMfixedString_filled		= "Filled" ;
+String OleMfixedString_grid		= "Grid:" ;
+String OleMfixedString_hollow		= "Hollow" ;
+String OleMfixedString_interiors	= "Object Interiors:" ;
+String OleMfixedString_linestyle	= "Line Style:" ;
+String OleMfixedString_linewidth	= "Line Width:" ;
+String OleMfixedString_off		= "Off" ;
+String OleMfixedString_on		= "On" ;
+String OleMfixedString_pixheight	= "Pixmap Height:" ;
+String OleMfixedString_pixwidth		= "Pixmap Width:" ;
+String OleMfixedString_solid		= "Solid" ;
+String OleMfixedString_sprops		= "%s: Properties" ;
+String OleMfooterMsg_badHW		= "Invalid value for pixmap width \
+or height." ;
+
+
+String OleMfixedString_browse	= "Browse..." ;
+String OleMfixedString_open	= "Open..." ;
+String OleMfixedString_save	= "Save" ;
+String OleMfixedString_saveAs	= "Save As..." ;
+
+
+String OleMfixedString_showPixmap	= "Show Pixmap" ;
+String OleMfixedString_zoom 		= "Zoom" ;
+String OleMfixedString_zoomIn 		= "Zoom In" ;
+String OleMfixedString_zoomOut 		= "Zoom Out" ;
+
+/* From edit menu */
+String OleMfixedString_fill 		= "Fill" ;
+String OleMfixedString_recolor 		= "Recolor" ;
+String OleMfixedString_clear 		= "Clear" ;
+String OleMfixedString_copy 		= "Copy" ;
+String OleMfixedString_move 		= "Move" ;
+String OleMfixedString_roll 		= "Roll" ;
+
+String OleMmnemonic_fill 		= "F" ;
+String OleMmnemonic_recolor 		= "R" ;
+String OleMmnemonic_clear 		= "l" ;
+String OleMmnemonic_copy 		= "C" ;
+String OleMmnemonic_move 		= "M" ;
+String OleMmnemonic_roll 		= "O" ;
+
+/* File control area */
+String OleMmnemonic_browse	= "B" ;
+String OleMmnemonic_open	= "O" ;
+String OleMmnemonic_save	= "S" ;
+String OleMmnemonic_saveAs	= "A" ;
+
+/* notice control area */
+/* String OleMfixedString_save 		= "Save" ; */
+String OleMfixedString_discard 		= "Discard" ;
+String OleMfixedString_cancel 		= "Cancel" ;
+
+/* String OleMmnemonic_save	= "S" ; */
+String OleMmnemonic_discard	= "D" ;
+String OleMmnemonic_cancel	= "C" ;
+
+String OleMmnemonic_showPixmap		= "S" ;
+String OleMmnemonic_zoom 		= "Z" ;
+String OleMmnemonic_zoomIn		= "I" ;
+String OleMmnemonic_zoomOut 		= "O" ;
+
+/* from main window i - edit, draw and pallette are done; just file, view,
+ * properties
+ */
+String OleMfixedString_file 		= "File" ;
+String OleMfixedString_view 		= "View" ;
+String OleMfixedString_properties	= "Properties..." ;
+String OleMfixedString_options		= "Options..." ;
+
+String OleMmnemonic_file 		= "F" ;
+String OleMmnemonic_view 		= "V" ;
+String OleMmnemonic_properties		= "P" ;
+String OleMmnemonic_options		= "O" ;
+
+String OleMmnemonic_palette 		= "L" ;
+String OleMmnemonic_edit		= "E" ;
+String OleMmnemonic_draw		= "D" ;
+
+String OleMmnemonic_pixels		= "P" ;
+String OleMmnemonic_text		= "T" ;
+String OleMmnemonic_lines		= "L" ;
+String OleMmnemonic_segments		= "S" ;
+String OleMmnemonic_ovals		= "O" ;
+String OleMmnemonic_circles		= "C" ;
+String OleMmnemonic_rectangles		= "R" ;
+String OleMmnemonic_squares		= "Q" ;
+
+String OleMmnemonic_interiors		= "O" ;
+String OleMmnemonic_linewidth		= "L" ;
+String OleMmnemonic_linestyle		= "S" ;
+String OleMmnemonic_grid		= "G" ;
+String OleMmnemonic_pixwidth		= "W" ;
+String OleMmnemonic_pixheight		= "H" ;

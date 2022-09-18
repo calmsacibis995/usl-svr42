@@ -1,0 +1,9 @@
+#ident	"@(#)nametoaddr:common/lib/nametoaddr/oam/name_to_addr/Help	1.1.3.3"
+#ident "$Header: /sms/sinixV5.4es/rcs/s19-full/usr/src/lib/nametoaddr/oam/name_to_addr/Help,v 1.1 91/02/28 21:03:06 ccs Exp $"
+ABSTRACT:
+	This menu item allows you to add machine addresses
+	and service port information for the protocols that
+	exist on this machine.  Once added, applications
+	can obtain the addresses of machines and services
+	via the name to address mapping facility.
+

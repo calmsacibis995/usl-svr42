@@ -1,0 +1,19 @@
+#define darkgrey_format 1
+#define darkgrey_width 8
+#define darkgrey_height 8
+#define darkgrey_ncolors 2
+#define darkgrey_chars_per_pixel 1
+static char * darkgrey_colors[] = {
+" " , "#AAAAAAAAAAAA",
+"." , "#000000000000"
+} ;
+static char * darkgrey_pixels[] = {
+" . . . .",
+". . . . ",
+" . . . .",
+". . . . ",
+" . . . .",
+". . . . ",
+" . . . .",
+". . . . "
+} ;

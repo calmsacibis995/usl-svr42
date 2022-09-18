@@ -1,0 +1,9 @@
+This directory has changed as follows since R3:
+
+     o	All text fonts now have XLFD names.
+     o	New fixed-width Clean family of fonts available.
+     o	New Kanji and Kana fonts.
+     o	New DECwindows fonts.
+     o	New OPEN LOOK fonts.
+     o	Nil2 resurrected.
+     o	lots of convenient aliases.

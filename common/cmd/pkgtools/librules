@@ -1,0 +1,147 @@
+#			Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+#			Copyright (c) 1984, 1985, 1986, 1987, 1988, 1989, 1990 AT&T
+#			  All Rights Reserved
+
+#			THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+#			UNIX System Laboratories, Inc.
+#			The copyright notice above does not evidence any
+#			actual or intended publication of such source code.
+
+
+#ident	"@(#)pkgtools:librules	1.3"
+
+INC = /usr/include
+
+CPU = i386
+MACH = work
+RELEASE =
+VERSION =
+
+TOOLS = 
+PFX =
+SGS =
+LIBELF =	-lelf
+
+AR = $(PFX)ar
+AS = $(PFX)as
+CC = $(PFX)cc
+LD = $(PFX)ld
+M4 = $(PFX)m4
+MAKE = $(PFX)make
+MCS = $(PFX)mcs
+LEX = $(PFX)lex -l/usr/ccs/lib/lex/ncform
+LINT = $(PFX)lint
+LORDER = $(PFX)lorder
+NM = $(PFX)nm
+STRIP = $(PFX)strip
+SIZE = $(PFX)size
+TIC = tic
+TSORT = $(PFX)tsort
+YACC = $(PFX)yacc -p/usr/ccs/lib/yaccpar
+
+INS = install
+SYMLINK = :
+
+SHELL = /bin/sh
+
+ARFLAGS = -rv
+ASFLAGS = -m
+CFLAGS = -O
+LDFLAGS = -s
+LFLAGS =
+LINTFLAGS =
+YFLAGS =
+
+CCSTYPE = ELF
+
+OWN	=	bin
+GRP	=	bin
+
+HCC = cc
+HAR = ar
+HAS = as
+HLD = ld
+HNM = nm
+
+#	The following are for compatibility
+#	but should be deleted-not necessary
+CP = cp
+RM = rm
+SH = sh
+MV = mv
+LN = ln
+
+DEV1 =
+DEV2 =
+
+GLOBALDEF =
+GLOBALINC = -I $(BASE)/include -I$(INC)
+DEFLIST = \
+	$(DEV1) \
+	$(LOCALDEF) \
+	$(LOCALINC) \
+	$(GLOBALDEF) \
+	$(GLOBALINC) \
+	$(DEV2)
+
+NOSHLIBS = -dn
+ROOTLIBS = $(NOSHLIBS)
+PERFLIBS = $(SHLIBS)
+SHLIBS =
+LDLIBS =
+
+BIN		=	$(ROOT)/$(MACH)/usr/bin
+CCSBIN		=	$(ROOT)/$(MACH)/usr/ccs/bin
+CCSLIB		=	$(ROOT)/$(MACH)/usr/ccs/lib
+CONF		=	$(ROOT)/$(MACH)/etc/conf
+ETC		=	$(ROOT)/$(MACH)/etc
+LIB		=	$(ROOT)/$(MACH)/usr/lib
+LIBP		=	$(ROOT)/$(MACH)/usr/lib/libp
+SBIN		=	$(ROOT)/$(MACH)/sbin
+USR		=	$(ROOT)/$(MACH)/usr
+USRADM		=	$(ROOT)/$(MACH)/usr/adm
+USRADMIN 	=	$(ROOT)/$(MACH)/usr/admin
+USRBIN		=	$(ROOT)/$(MACH)/usr/bin
+USRLIB		=	$(ROOT)/$(MACH)/usr/lib
+USRLBIN		=	$(ROOT)/$(MACH)/usr/lbin
+USRNET		=	$(ROOT)/$(MACH)/usr/net
+USRSBIN		=	$(ROOT)/$(MACH)/usr/sbin
+USRSADM 	= 	$(ROOT)/$(MACH)/usr/sadm
+USRSHARE	=	$(ROOT)/$(MACH)/usr/share
+USRNSERVE 	=	$(ROOT)/$(MACH)/usr/nserve
+VAR		=	$(ROOT)/$(MACH)/var
+
+MAKEARGS = \
+	ROOT='$(ROOT)' \
+	INC='$(INC)' \
+	AR='$(AR)' \
+	AS='$(AS)' \
+	CC='$(CC)' \
+	LD='$(LD)' \
+	M4='$(M4)' \
+	MAKE='$(MAKE)' \
+	MCS='$(MCS)' \
+	LEX='$(LEX)' \
+	LINT='$(LINT)' \
+	LORDER='$(LORDER)' \
+	NM='$(NM)' \
+	STRIP='$(STRIP)' \
+	SIZE='$(SIZE)' \
+	TSORT='$(TSORT)' \
+	YACC='$(YACC)' \
+	INS='$(INS)' \
+	ARFLAGS='$(ARFLAGS)' \
+	ASFLAGS='$(ASFLAGS)' \
+	CFLAGS='$(CFLAGS)' \
+	LDFLAGS='$(LDFLAGS)' \
+	LFLAGS='$(LFLAGS)' \
+	LINTFLAGS='$(LINTFLAGS)' \
+	YFLAGS='$(YFLAGS)' \
+	DEV1='$(DEV1)' \
+	DEV2='$(DEV2)'
+
+.c.o:
+	$(CC) $(CFLAGS) $(DEFLIST) -c $<
+
+.s.o:
+	$(AS) $(ASFLAGS) -o $@ -- $(LOCALDEF) $(GLOBALDEF) $<

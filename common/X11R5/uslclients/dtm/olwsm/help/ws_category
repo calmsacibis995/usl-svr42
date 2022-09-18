@@ -1,0 +1,26 @@
+The Workspace Properties window gives you access to several \
+elements of the OPEN LOOK environment that you can adjust to fit \
+your needs and customs.
+
+You choose a category of elements to peruse and perhaps change, \
+by picking from the workspace menu, or by picking from the \
+CATEGORY menu you see in the window. Both menus have the same \
+choices, although the workspace menu is organized a differently \
+to make it a little easier to get to some of the choices.
+
+If you are using the ``SELECT Displays Default'' feature of the \
+mouse, you can click SELECT on the CATEGORY button to step through \
+each of the property categories or ``property sheets''.
+
+Each property sheet has a set of controls, or type-in fields, \
+or pictures, that you can change to customize the interface.
+
+As you make changes in the property sheets, ``diff-marks'' \
+or change bars will appear on the left side of the sheet to show \
+you where you have made changes so far. \
+If you move to another property sheet and you have changes on the \
+previous sheet, \
+the CATEGORY button will display a change bar as a clue that there \
+are more changes pending than what you see in front of you. \
+As an additional clue, the ``Apply'' button at the bottom of the \
+window changes to ``Apply All'' (as in ``apply all changes'').

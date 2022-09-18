@@ -1,0 +1,6 @@
+Minimize:
+
+	Use the Minimize item to change the visual representation
+	of the base window at the pointer location to an icon.
+	When an application base window is minimized, its
+	associated pop-up (transient) windows are also unmapped.

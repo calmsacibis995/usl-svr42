@@ -1,0 +1,10 @@
+*** inet.v4/protocols	Mon Jun 15 11:40:57 1992
+--- inet.p13/protocols	Mon Jun 15 11:53:21 1992
+***************
+*** 1,2 ****
+! #ident	"@(#)cmd-inet:etc/protocols	1.1"
+  
+--- 1,3 ----
+! #ident	"@(#)/etc/inet/protocols.sl 1.2 4.1dt 05/28/92 43430 AT&T-USL"
+! #ident "$Header: /sms/sinixV5.4es/rcs/s19-full/usr/src/cmd/cmd-inet/etc/protocols,v 1.1 91/02/28 16:30:45 ccs Exp $"
+  

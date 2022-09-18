@@ -1,0 +1,60 @@
+#ident	"@(#)olpkg.oam:pkg.dtxt/preinstall	1.5"
+#ident	"$Header: $"
+
+old_pkgs()
+{
+	unset OLEUS OLXT
+	[ -d /var/sadm/pkg/oleus ] && {
+		OLEUS="YES"
+		echo "oleus	Open Look End User System" > /tmp/oleus.xx
+	}
+	[ -d /var/sadm/pkg/olxt ] && {
+		OLXT="YES"
+		echo "olxt	Open Look  X Toolkit" > /tmp/olxt.xx
+	}
+	[ "$OLEUS" ] || [ "$OLXT" ] && return 1
+	return 0
+}
+
+[ -d /dev/X ] && rm -rf /dev/X
+
+############# Begin UPGRADE AND OVERLAY #######################
+
+SCRIPTS=/usr/sbin/pkginst
+
+#  The volatile files saved for ${PKGINST} will be listed in 
+#  /var/sadm/upgrade/${PKGINST}.sav
+
+#  The initial V4 volatile files list for ${PKGINST} should be in 
+#  /etc/inst/up/patch/${PKGINST}.LIST
+
+[ "$PKGINSTALL_TYPE" = NEWINSTALL ] || {
+
+	${SCRIPTS}/pkgsavfiles ${PKGINST}
+
+	#  final list of volatile files to be saved is /tmp/${PKGINST}.sav
+	#  pkgsavefiles returns 1, if nothing to be merged.
+
+	[  $? = 1 ] && AUTOMERGE=NULL
+}
+
+############# End  UPGRADE AND OVERLAY #######################
+old_pkgs
+OLD_RET=$?
+[ "$OLD_RET" = "0" ] && REMOVE=No
+PKGOLXT="0"
+PKGOLEUS="0"
+[ "$REMOVE" = "Yes" ] && {
+	[ -s /tmp/oleus.xx ] && {
+		PKGOLEUS=1
+		$SCRIPTS/olscripts 2 oleus /tmp/oleusfiles > /dev/null 2>&1
+	}
+	[ -s /tmp/olxt.xx ] && {
+		PKGOLXT=1
+		$SCRIPTS/olscripts 2 olxt /tmp/olxtfiles > /dev/null 2>&1
+	}
+}
+	 
+
+export AUTOMERGE PKGOLXT PKGOLEUS FILELIST
+exit 0

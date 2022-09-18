@@ -1,0 +1,26 @@
+#ident	"@(#)face:OBJECTS/dos/Menu.install	1.1.4.2"
+#ident  "$Header: Menu.install 1.5 91/10/29 $"
+
+menu=$$uxface:401:"MS-DOS Programs Administration"
+
+help=OPEN TEXT OBJECTS/Text.h "$$uxface:571:HELP on MS-DOS Programs Administration" dos/T.sadm 
+
+framemsg=$$uxface:399:"Move to an item with arrow keys and press ENTER to select the item."
+
+`set -l NARG1="${ARG1:-HOME}"`
+
+name=$$uxface:232:"Add Programs"
+action=OPEN FORM OBJECTS/dos/Form.add "${NARG1}"
+
+name=$$uxface:402:"List Programs"
+action=OPEN MENU OBJECTS/dos/Menu.list "" "${NARG1}" "2" $$uxface:403:"List MS-DOS Programs"
+
+name=$$uxface:236:"Modify Programs"
+action=OPEN MENU OBJECTS/dos/Menu.list "-m" "${NARG1}" "1" $$uxface:119:"Modify MS-DOS Programs"
+
+name=$$uxface:404:"Remove Programs"
+action=OPEN MENU OBJECTS/dos/Menu.list "-d" "${NARG1}" "3" $$uxface:405:"Remove MS-DOS Programs"
+
+name=""
+button=8
+action=nop

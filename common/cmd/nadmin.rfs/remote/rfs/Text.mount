@@ -1,0 +1,8 @@
+#ident	"@(#)nadmin.rfs:remote/rfs/Text.mount	1.2.4.1"
+#ident  "$Header: Text.mount 2.0 91/07/12 $"
+title="Mounts a Remote Resource Automatically-Immediately via RFS"
+
+`readfile $INTFBASE/display.msg | message -p`
+
+text="`readfile  $ARG1`"
+columns=40

@@ -1,0 +1,18 @@
+When you have made changes to a properties window but have not
+applied those changes, the label on the top button stack of the
+pop-up window menu is Cancel to show you that the changes to the
+properties window will be discarded when you dismiss it. The Cancel
+submenu has two choices:
+
+		This Window
+		All Pop-ups
+
+When you use This Window, the properties window is dismissed.
+When you use All Pop-ups, the properties window, and the rest of
+the pop-up windows for the application are dismissed. You can choose
+the default setting from the Cancel submenu without displaying it by
+dragging MENU onto the Cancel button stack and releasing MENU. To
+display the Cancel submenu, drag MENU into the right half of the
+button stack.  To choose a button from the Cancel submenu, drag MENU
+onto a button and release MENU. When the pop-up window is not pinned
+up, it is dismissed after the command is successfully completed.

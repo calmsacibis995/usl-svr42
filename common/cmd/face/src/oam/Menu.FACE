@@ -1,0 +1,46 @@
+#ident	"@(#)face:src/oam/Menu.FACE	1.2.4.3"
+#ident  "$Header: Menu.FACE 1.4 91/10/15 $"
+
+menu=$$uxface:541:"Framed Access Command Environment Administration"
+
+framemsg=$$uxface:529:"Move the cursor to the item you want and press ENTER to select it."
+
+help=OPEN TEXT $INTFBASE/Text.oamhelp $!LININFO 
+
+`echo $VMSYS | set -l OVMSYS;
+fmlgrep '^vmsys:' /etc/passwd | fmlcut -f6 -d: | set -l VMSYS;
+echo $VMSYS | set -e VMSYS`
+
+close=`set -l VMSYS=$OVMSYS -e VMSYS=$OVMSYS`close
+
+name=$$uxface:542:"mail_services"
+description=$$uxface:543:"Mail Services Administration"
+lininfo="/usr/sadm/sysadm/add-ons/face/applmgmt/FACE/mail_services \"$$uxface:543:Mail Services Administration\"" mail_services
+action=`set -l OBJ_DIR=/usr/sadm/sysadm/add-ons/face/applmgmt/FACE/mail_services
+`OPEN MENU /usr/sadm/sysadm/add-ons/face/applmgmt/FACE/mail_services/Menu.mail
+
+name=$$uxface:544:"programs"
+description=$$uxface:545:"Global Program Administration"
+lininfo="/usr/sadm/sysadm/add-ons/face/applmgmt/FACE/programs \"$$uxface:545:Global Program Administration\"" programs
+action=`set -l OBJ_DIR=/usr/sadm/sysadm/add-ons/face/applmgmt/FACE/programs
+`OPEN MENU /usr/sadm/sysadm/add-ons/face/applmgmt/FACE/programs/Menu.programs
+
+name=$$uxface:546:"dos_programs"
+description=$$uxface:530:"Global MS-DOS Program Administration"
+lininfo="/usr/sadm/sysadm/add-ons/face/applmgmt/FACE/dos_programs \"$$uxface:530:Global MS-DOS Program Administration\"" dos_programs
+action=`set -l OBJ_DIR=/usr/sadm/sysadm/add-ons/face/applmgmt/FACE/dos_programs
+`OPEN MENU /usr/sadm/sysadm/add-ons/face/applmgmt/FACE/dos_programs/Menu.dos
+show=`test -f /usr/vpix/dosinst`
+
+name=$$uxface:547:"spell_checker"
+description=$$uxface:548:"Spell Checker Administration"
+lininfo="/usr/sadm/sysadm/add-ons/face/applmgmt/FACE/spell_checker \"$$uxface:548:Spell Checker Administration\"" spell_checker
+action=`set -l OBJ_DIR=/usr/sadm/sysadm/add-ons/face/applmgmt/FACE/spell_checker
+`OPEN MENU /usr/sadm/sysadm/add-ons/face/applmgmt/FACE/spell_checker/Menu.spell
+
+name=$$uxface:549:"users"
+description=$$uxface:550:"FACE User Administration"
+lininfo="/usr/sadm/sysadm/add-ons/face/applmgmt/FACE/users \"$$uxface:550:FACE User Administration\"" users
+action=`set -l OBJ_DIR=/usr/sadm/sysadm/add-ons/face/applmgmt/FACE/users
+`OPEN MENU /usr/sadm/sysadm/add-ons/face/applmgmt/FACE/users/Menu.users
+

@@ -1,0 +1,21 @@
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+/**/#ident	"@(#)r5xlsclients:Imakefile	1.1"
+XCOMM $XConsortium: Imakefile,v 1.5 91/07/17 16:07:41 gildea Exp $
+        DEPLIBS = $(DEPXMULIB) $(DEPXLIB)
+LOCAL_LIBRARIES = $(XMULIB) $(XLIB) $(XTOOLLIB)
+           SRCS = xlsclients.c 
+           OBJS = xlsclients.o 
+
+#undef InstallManPage
+#define InstallManPage(file,dest)  /* as nothing */
+
+ComplexProgramTarget(xlsclients)
+InstallManPageLong(xlscli,$(MANDIR),xlsclients)

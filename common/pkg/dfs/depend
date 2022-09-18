@@ -1,0 +1,4 @@
+#ident	"@(#)pkg.dfs:common/pkg/dfs/depend	1.2.1.4"
+#ident	"$Header: depend 1.1 91/07/01 $"
+
+P  base         Base System

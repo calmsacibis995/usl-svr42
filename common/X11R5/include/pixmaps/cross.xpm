@@ -1,0 +1,45 @@
+#define cross_format 1
+#define cross_width 32
+#define cross_height 32
+#define cross_ncolors 4
+#define cross_chars_per_pixel 1
+static char * cross_colors[] = {
+" " , "#0000AAAA0000",
+"." , "#0000FFFF0000",
+"X" , "#FFFF0000FFFF",
+"o" , "#AAAA0000AAAA"
+} ;
+static char * cross_pixels[] = {
+"  ....XXXXXoooooooooXXXXX....   ",
+"   ....XXXXXoooooooXXXXX....    ",
+"    ....XXXXXoooooXXXXX....    .",
+".    ....XXXXXoooXXXXX....    ..",
+"..    ....XXXXXoXXXXX....    ...",
+"...    ....XXXXXXXXX....    ....",
+"....    ....XXXXXXX....    ....X",
+"X....    ....XXXXX....    ....XX",
+"XX....    ....XXX....    ....XXX",
+"XXX....    ....X....    ....XXXX",
+"XXXX....    .......    ....XXXXo",
+"oXXXX....    .....    ....XXXXoo",
+"ooXXXX....    ...    ....XXXXooo",
+"oooXXXX....    .    ....XXXXoooo",
+"ooooXXXX....  ...  ....XXXXooooo",
+"oooooXXXX.............XXXXoooooo",
+"oooooXXXX.............XXXXoooooo",
+"ooooXXXX....  ...  ....XXXXooooo",
+"oooXXXX....    .    ....XXXXoooo",
+"ooXXXX....    ...    ....XXXXooo",
+"oXXXX....    .....    ....XXXXoo",
+"XXXX....    .......    ....XXXXo",
+"XXX....    ....X....    ....XXXX",
+"XX....    ....XXX....    ....XXX",
+"X....    ....XXXXX....    ....XX",
+"....    ....XXXXXXX....    ....X",
+"...    ....XXXXXXXXX....    ....",
+"..    ....XXXXXoXXXXX....    ...",
+".    ....XXXXXoooXXXXX....    ..",
+"    ....XXXXXoooooXXXXX....    .",
+"   ....XXXXXoooooooXXXXX....    ",
+"  ....XXXXXoooooooooXXXXX....   "
+} ;

@@ -1,0 +1,20 @@
+#ident	"@(#)uts-x86:io/xt/xt.cf/Node	1.1"
+#ident	"$Header: $"
+
+xt	xt/000	c	0	0	3	600
+xt	xt/001	c	1	0	3	600
+xt	xt/002	c	2	0	3	600
+xt	xt/003	c	3	0	3	600
+xt	xt/004	c	4	0	3	600
+xt	xt/005	c	5	0	3	600
+xt	xt/006	c	6	0	3	600
+xt	xt/007	c	7	0	3	600
+
+xt	xt000	c	0	0	3	600
+xt	xt001	c	1	0	3	600
+xt	xt002	c	2	0	3	600
+xt	xt003	c	3	0	3	600
+xt	xt004	c	4	0	3	600
+xt	xt005	c	5	0	3	600
+xt	xt006	c	6	0	3	600
+xt	xt007	c	7	0	3	600

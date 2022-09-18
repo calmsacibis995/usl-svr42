@@ -1,0 +1,12 @@
+#ident  "@(#)set:common/set/network/pkginfo	1.3"
+#ident  "$Header: $"
+
+PKG=network
+PKG=network
+PREDEPEND=
+VERSION="1"
+RELEASE="4.2"
+NAME="Networking Set"
+CATEGORY=set
+VENDOR="UNIX System Laboratories"
+CLASSES=none

@@ -1,0 +1,10 @@
+An icon is a small window containing a glyph representing an application
+that has been Minimized.  To restore an application in iconic state, move
+the pointer onto the icon and click SELECT to display the Window menu,
+and choose Restore by moving the pointer above the Restore menu item
+and clicking SELECT.
+
+To move an icon, move the pointer onto the icon, press SELECT, drag the
+pointer to a new location, and release SELECT. The icon will snap to the
+nearest allowable position (grid) on the screen. Icons may not be moved
+off the screen, nor may they.

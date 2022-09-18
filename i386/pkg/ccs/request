@@ -1,0 +1,81 @@
+#ident	"@(#)pkg4.i386:ccs/request	1.7"
+trap 'trap 1 2 3 15; exit 3' 1 2 3 15
+#-------
+# This request script sets the parameter CORESIDENT for the use of the
+# other installation scripts.
+#
+# Its value is "y" if there is an existing COFF-based compilation system we 
+# have to make coresident with the one being installed.
+# Otherwise, its value is "n".
+#-------
+
+#-------
+# Make sure LANG environment variable is set.  If it's not set
+# coming in to this request script, then default to the C-locale.
+#-------
+
+[ ${LANG} ] || LANG="C"
+export LANG
+
+#-------
+# This part examines whether there is a version of cc that we can
+# relocate.
+#-------
+
+CORESIDENT=n
+
+OCC=/bin/cc
+if	[ -x "$OCC" ]
+then
+	case "`$OCC -V </dev/null 2>&1`"
+	{
+	*"C Software Development System 4."*	|\
+	*"C Compilation System, Issue 4"*	)
+		CORESIDENT=y
+		;;
+	}
+fi
+
+#-------
+# If there is one, then ask how to set CORESIDENT.
+# Otherwise, don't bother the poor user.
+#-------
+DIR=/etc/inst/locale/{LANG}/menus/ccs
+[ -d ${DIR} ] || mkdir -p ${DIR}
+cp ${REQDIR}/ccs/menu* ${DIR} > /dev/null 2>&1
+
+if [ "${CORESIDENT}" = "y" ]
+then
+
+	#-------
+	# Set up to use menu_colors; default to C-locale if ${LANG}'s
+	# dir has no menu_colors.sh
+	#-------
+
+	if [ -f /etc/inst/locale/${LANG}/menus/menu_colors.sh
+	then
+		. /etc/inst/locale/${LANG}/menus/menu_colors.sh
+	else
+		. /etc/inst/locale/C/menus/menu_colors.sh
+	fi
+
+	menu_colors regular
+	menu -f ${DIR}/menu.ccs -o /tmp/out 2> /dev/null
+	. /tmp/out
+	
+	if [ ${RETURN_VALUE} = 1 ]
+	then
+		CORESIDENT=y
+	else
+		CORESIDENT=n
+	fi
+
+else
+	menu -f ${DIR}/menu.ccs.1 -o /tmp/out 2> /dev/null
+fi
+
+cat >${1:-/dev/tty} <<!
+CORESIDENT='$CORESIDENT'
+!
+
+exit 0

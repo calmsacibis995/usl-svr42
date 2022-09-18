@@ -1,0 +1,5 @@
+#ident	"@(#)pkg.rpc:common/pkg/rpc/depend	1.2.4.3"
+#ident  "$Header: $"
+
+P  base         Base System
+P  nsu		Network Support Utilities

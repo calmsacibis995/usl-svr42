@@ -1,0 +1,45 @@
+#ident	"@(#)mk:i386at/:mkX	1.7"
+#ident	"$Header: $"
+#
+#	Build Graphics Source (X)
+#
+trap "exit 1" 1 2 3 15
+
+# call is ./:mkX $ROOT $MACH $WORK $TOOLS $PFX
+
+Root=$1
+Mach=$2
+Work=$3
+Tools=$4
+Pfx=$5
+
+cd ${Root}/usr/src/${Work}/X11R5
+
+ROOT=${Root}
+MACH=${Mach}
+WORK=${Work}
+TOOLS=${Tools}
+PFX=${Pfx}
+export ROOT MACH WORK TOOLS PFX
+
+${Tools}/usr/ccs/bin/${Pfx}env ${Pfx}make install
+
+#
+#	Build the graphic portion of the CCS debugger
+#	Chances are most was already made, but without
+#	graphics.  We don't care, we'll make all, anyhow.
+#	NOTE: :mknatccs MUST be executed before this.
+#
+
+cd ${Root}/usr/src/${Work}/cmd/debug
+
+${Tools}/usr/ccs/bin/${Pfx}env ${Pfx}make -f debug.mk install
+
+if [ -f ${Root}/usr/src/${Work}/X11R5/motif/GO ]
+then
+	cd ${Root}/usr/src/${Work}/X11R5/motif
+	chmod 0755 GO
+	${Tools}/usr/ccs/bin/${Pfx}env ./GO
+fi
+
+exit 0

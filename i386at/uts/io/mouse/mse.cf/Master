@@ -1,0 +1,5 @@
+#ident	"@(#)uts-x86at:io/mouse/mse.cf/Master	1.4"
+#ident	"$Header: $"
+$version 1
+$entry open close read write ioctl
+mse	mse	c	0	0	0

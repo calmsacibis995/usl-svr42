@@ -1,0 +1,7 @@
+#ident	"@(#)bnu:Permissions	2.2.2.2"
+#ident "$Header: Permissions 1.1 91/02/28 $"
+# This entry for public login.
+# It provides the default permissions.
+# See the Basic Networking Utilities Guide for more information.
+
+LOGNAME=nuucp

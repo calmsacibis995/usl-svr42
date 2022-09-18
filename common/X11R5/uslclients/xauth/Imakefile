@@ -1,0 +1,31 @@
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+/**/#ident	"@(#)xauth:Imakefile	1.1"
+#if SystemV
+     BUTIL_SRCS = butil.c
+     BUTIL_OBJS = butil.o
+#else
+     BUTIL_SRCS = 
+     BUTIL_OBJS = 
+#endif
+
+#ifdef Release5
+DEPLIBS = $(DEPXAUTHLIB) $(DEPXLIB) $(DEPXMULIB) $(DEPXTOOLLIB)
+LOCAL_LIBRARIES = $(XAUTHLIB) $(XLIB) $(XMULIB) $(XTOOLLIB)
+#else
+DEPLIBS = $(DEPXAUTHLIB) $(DEPXMULIB)
+LOCAL_LIBRARIES = $(XAUTHLIB) $(XMULIB)
+#endif
+           SRCS = xauth.c gethost.c process.c parsedpy.c $(BUTIL_SRCS) 
+           OBJS = xauth.o gethost.o process.o parsedpy.o $(BUTIL_OBJS) 
+        DEFINES = ConnectionFlags $(SIGNAL_DEFINES)
+
+ComplexProgramTarget(xauth)
+

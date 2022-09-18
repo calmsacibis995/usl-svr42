@@ -1,0 +1,39 @@
+Use the Keyboard System Functions property sheet to bind keys to \
+system ``accelerators.'' These are the keys you can use to quickly \
+move or close a window, quit an application, remove a popup, \
+or access a menu.
+
+To change a binding, click SELECT over the current binding \
+(or move the focus highlight with the TAB key to the current binding), \
+then press the backslash (\) key and immediately press the key \
+you want to bind to the operation. You can include ``modifers'' \
+such as Shift, Alt, and Control (or Ctrl) in the binding.
+
+Usually an operation needs only a single binding. \
+However, some operations (Default Action is a good example) may \
+need two bindings. An Alternate Key Sequence (or binding) is \
+needed whenever the Primary Key Sequence would be misinterpreted \
+or ``consumed'' as a different operation. The Return key, for example, \
+is often bound to the Default Action operation, but it is also used \
+to end each line of a multi-line document or file. \
+Because you may wish to invoke the ``default action'' while typing \
+in a document, you may find it useful having an alternate key for \
+Default Action.
+
+Click SELECT on the Apply (or Apply All) button to save all changes \
+made to all property sheets.  \
+The Reset button can be used to reset the property sheet settings \
+to reflect the currently saved values.  \
+The Reset To Factory button can be used to reset \
+the property sheet settings to the factory defaults.  \
+Note that Reset and Reset to Factory do not affect the saved \
+property values; \
+the saved values are changed only when Apply is SELECTed.  \
+Also, Reset and Reset to Factory only reset the properties on \
+the current property sheet.
+
+The property window is automatically dismissed if not pinned \
+when Apply is chosen.
+
+Applied changes go into effect immediately, and are reflected \
+in all OPEN LOOK applications, including those already launched.

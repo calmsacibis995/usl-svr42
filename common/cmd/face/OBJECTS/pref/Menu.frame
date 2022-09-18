@@ -1,0 +1,81 @@
+#ident	"@(#)face:OBJECTS/pref/Menu.frame	1.7.4.3"
+#ident  "$Header: Menu.frame 1.4 91/10/15 $"
+
+menu=$$uxface:432:"Choices"
+lifetime=shortterm
+
+framemsg=$$uxface:399:"Move to an item with arrow keys and press ENTER to select the item."
+
+name=$$uxface:433:"Filecabinet"
+action=`pathconv -f -v filecabinet | set -l Form_Choice`close
+
+name=$$uxface:369:"Mail Services"
+action=`pathconv -f -v mail_services | set -l Form_Choice`close
+show=`set -l present=false;
+if [ -r $VMSYS/lib/services -a -f $VMSYS/lib/services
+  -a -s $VMSYS/lib/services ];
+then
+	if fmlgrep 'name="$$uxface:369:Mail Services"' $VMSYS/lib/services > /dev/null;
+	then
+		set -l present=true;
+	fi;
+fi`${present}
+
+name=$$uxface:434:"Office of $LOGNAME"
+action=`pathconv -f -v office | set -l Form_Choice`close
+
+#name=$$uxface:435:"Other Users"
+#action=`pathconv -f -v other_users | set -l Form_Choice`close
+
+name=$$uxface:436:"Preferences"
+action=`pathconv -f -v preferences | set -l Form_Choice`close
+
+name=$$uxface:406:"Printer Operations"
+action=`pathconv -f -v printer_operations | set -l Form_Choice`close
+show=`test -d /etc/lp`
+
+name=$$uxface:437:"Programs"
+action=`pathconv -f -v programs | set -l Form_Choice`close
+show=`set -l present=false;
+if [ -r $VMSYS/lib/services -a -f $VMSYS/lib/services
+  -a -s $VMSYS/lib/services ];
+then
+	if fmlgrep 'name=' $VMSYS/lib/services > /dev/null;
+	then
+		set -l present=true;
+	fi;
+fi;
+if [ "$present" = "false" -a -r $HOME/pref/services
+-a -f $HOME/pref/services -a -s $HOME/pref/services ];
+then
+	if fmlgrep 'name=' $HOME/pref/services > /dev/null;
+	then
+		set -l present=true;
+	fi;
+fi`${present}
+
+#name=Programs Administration
+#action=`pathconv -f -v programs_administration | set -l Form_Choice`close
+
+#name=Wastebasket
+#action=`pathconv -f -v wastebasket | set -l Form_Choice`close
+
+name=""
+button=1
+action=nop
+
+name=""
+button=4
+action=nop
+
+name=""
+button=5
+action=nop
+
+name=""
+button=7
+action=nop
+
+name=""
+button=8
+action=nop

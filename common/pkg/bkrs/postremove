@@ -1,0 +1,12 @@
+#ident	"@(#)pkg.bkrs:common/pkg/bkrs/postremove	1.3"
+#ident	"$Header: $"
+
+# now, replace the 3.2 versions of the commands
+
+ln -s /usr/bin/.backup /usr/bin/backup > /dev/null 2>&1
+ln -s /usr/bin/.restore /usr/bin/restore > /dev/null 2>&1
+
+ln -s /usr/sbin/.backup /usr/sbin/backup > /dev/null 2>&1
+ln -s /usr/sbin/.restore /usr/sbin/restore > /dev/null 2>&1
+
+ln -s /sbin/.restore /sbin/restore > /dev/null 2>&1 

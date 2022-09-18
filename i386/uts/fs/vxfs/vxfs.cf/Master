@@ -1,0 +1,6 @@
+# @(#)usr/src/i386/uts/fs/vxfs/vxfs.cf/Master	1.1 01 Mar 1992 16:18:17 - 
+#ident	"@(#)uts-x86:fs/vxfs/vxfs.cf/Master	1.2"
+#ident	"$Header: $"
+$version 1
+$entry init
+vxfs	vxfs	F	0	0	0

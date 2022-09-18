@@ -1,0 +1,16 @@
+#ident	"@(#)uts-x86:io/prf/prf.cf/Master	1.8"
+#ident	"$Header: $"
+#
+# version id
+#
+$version 1
+
+#
+# entry points
+#
+$entry  init read write ioctl
+
+#
+# Device  Prefix Characteristics Order	B-Major C-Major
+# -----------------------------------------------------
+prf	prf	cok	0	0	6

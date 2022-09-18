@@ -1,0 +1,11 @@
+#ident	"@(#)face:src/oam/dos/Menu.del	1.1.4.2"
+#ident  "$Header: Menu.del 1.4 91/10/15 $"
+
+menu=$$uxface:528:"Remove Global MS-DOS Programs"
+
+help=open TEXT $INTFBASE/Text.itemhelp F1
+
+framemsg=$$uxface:529:"Move the cursor to the item you want and press ENTER to select it."
+
+`fmlgrep '^vmsys:' /etc/passwd | fmlcut -f6 -d: | set -e VMSYS;
+$VMSYS/bin/listserv -p -d VMSYS`

@@ -1,0 +1,5 @@
+#ident	"@(#)proto:desktop/hdscripts/intr.links	1.1"
+sbin/su
+etc/sulogin
+sbin/sleep
+sbin/initprivs

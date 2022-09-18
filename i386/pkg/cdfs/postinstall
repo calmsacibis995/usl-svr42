@@ -1,0 +1,139 @@
+#	Copyright (c) 1991, 1992  Intel Corporation
+#	All Rights Reserved
+#
+#	INTEL CORPORATION CONFIDENTIAL INFORMATION
+#
+#	This software is supplied to USL under the terms of a license 
+#	agreement with Intel Corporation and may not be copied nor 
+#	disclosed except in accordance with the terms of that agreement.
+
+#ident	"@(#)pkg.cdfs:i386/pkg/cdfs/postinstall	1.7"
+#ident	"$Header: $"
+
+# Install a module.  $1 is the module name.
+
+do_install() {
+	ERR=/tmp/${1}.err
+	OPTS=""	
+	IDCOMPS="Driver.o Master System Mfsys Sfsys Rc Node Space.c"
+	if
+		[ -f ${1}.Dr ]
+	then
+		mv ${1}.Dr Driver.o
+	fi
+	if
+		[ -f ${1}.Sp ]
+	then
+		mv ${1}.Sp Space.c
+	fi
+	if
+		[ -f ${1}.Ma ]
+	then
+		grep -v "^[\*#]ident" ${1}.Ma > Master
+		rm -rf ${1}.Ma
+	fi
+	if
+		[ -f ${1}.Sy ]
+	then
+		grep -v "^[\*#]ident" ${1}.Sy |
+			sed "${SEDCMD1}"  > System
+		rm -rf ${1}.Sy
+	fi
+	if
+		[ -f ${1}.Mf ]
+	then
+		grep -v "^[\*#]ident" ${1}.Mf > Mfsys
+		rm -rf ${1}.Mf
+	fi
+	if
+		[ -f ${1}.Sf ]
+	then
+		grep -v "^[\*#]ident" ${1}.Sf |
+			sed "${SEDCMD2}" > Sfsys
+		rm -rf ${1}.Sf
+	fi
+	if
+		[ -f ${1}.No ]
+	then
+		grep -v "^[\*#]ident" ${1}.No > Node
+		rm -rf ${1}.No
+	fi
+	if
+		[ -f ${1}.Rc ]
+	then
+		grep -v "^[\*#]ident" ${1}.Rc > Rc
+		rm -rf ${1}.Rc
+	fi
+	${CONFBIN}/idcheck -p ${1} > ${ERR} 2>&1
+	RET=$?
+	if [ ${RET} = 0 ] || [ ${RET} = 8 ]
+	then
+		${CONFBIN}/idinstall -P ${PKGINST} -a ${1} > ${ERR} 2>&1
+		RET=$?
+	else
+		${CONFBIN}/idinstall -P ${PKGINST} -u ${1} > ${ERR} 2>&1
+		RET=$?
+	fi
+	rm -rf ${IDCOMPS}
+	if [ ${RET} != 0 ]
+	then
+		message "The installation cannot be completed due to \
+an error in the driver installation during the installation of the ${1} \
+module of the ${NAME}.  The file ${ERR} contains the errors."
+			exit ${FAILURE}
+	fi
+	rm -rf ${ERR}
+}
+
+FAILURE=1	# fatal error
+
+CONFDIR=/etc/conf
+CONFBIN=${CONFDIR}/bin
+
+NOTOOLS="ERROR: The Installable Driver feature has been removed. \
+The ${NAME} cannot be installed."
+
+SEDCMD1="s/[	 ]N[	 ]/	Y	/"
+SEDCMD2="s/[	 ]N/	Y/"
+
+cd /var/sadm/pkg/${PKG}/install
+
+errflag=0
+
+VOLATILES=`echo /tmp/cdfs/*`
+
+# Determine that ID tools are available.
+
+if [ ! -x ${CONFBIN}/idbuild -o ! -x ${CONFBIN}/idinstall \
+		-o ! -x ${CONFBIN}/idcheck ]
+then
+	message ${NOTOOLS}
+	exit $FAILURE
+fi
+
+for MODULE in cdfs 
+do
+	cd /tmp/cdfs
+	do_install ${MODULE}
+done
+
+# Rebuild for changes to take effect.
+
+TMP=/tmp/cdfs.$$
+${CONFBIN}/idbuild 2>${TMP}
+if [ "$?" -ne "0" ]
+then
+	echo "The attempt to rebuild the kernel has failed. Errors have been written"
+	echo "to the file " ${TMP}
+	exit ${FAILURE}
+fi
+
+removef ${PKGINST} ${VOLATILES} >/dev/null 2>&1
+removef ${PKGINST} /tmp/cdfs >/dev/null 2>&1
+removef -f ${PKGINST} >/dev/null 2>&1
+
+# End with installf -f and exit message (required reboot).
+
+installf -f $PKGINST
+exit 	10
+

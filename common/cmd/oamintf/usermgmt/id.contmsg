@@ -1,0 +1,5 @@
+#ident	"@(#)oamintf:common/cmd/oamintf/usermgmt/id.contmsg	1.2.5.2"
+#ident  "$Header: id.contmsg 2.0 91/07/12 $"
+
+Press [CHG KEYS] to change to the alternate SLK's then
+press [CONT] to continue or [QUIT] to quit.

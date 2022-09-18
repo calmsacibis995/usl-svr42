@@ -1,0 +1,25 @@
+#	Copyright (c) 1991, 1992  Intel Corporation
+#	All Rights Reserved
+
+#	INTEL CORPORATION CONFIDENTIAL INFORMATION
+
+#	This software is supplied to USL under the terms of a license
+#	agreement with Intel Corporation and may not be copied nor
+#	disclosed except in accordance with the terms of that agreement.
+
+#ident	"@(#)pkg.cdfs:common/pkg/cdfs/pkginfo	1.5"
+#ident	"$Header: $"
+
+#
+# 	CDFS pkginfo
+#
+PKG="cdfs"
+NAME="CD-ROM File System"
+VERSION="1"
+CATEGORY="system,utilities"
+CLASSES="none"
+MAXINST="1"
+ISTATES="S s 1"
+RSTATES="S s 1"
+VENDOR="UNIX System Laboratories"
+RELEASE="4.2"

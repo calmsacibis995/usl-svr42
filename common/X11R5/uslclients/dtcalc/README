@@ -1,0 +1,12 @@
+#ident	"@(#)dtcalc:README	1.1"
+
+NOTE: The following files are identical to the X11R5 version of
+xcalc. If you have need to fiddle with these files, you may want
+to also fiddle with the xcalc files. Or even better, maybe the
+bug you're trying to fix has already been fixed in a newer
+version of xcalc!
+
+actions.c
+actions.h
+math.c
+xcalc.h

@@ -1,0 +1,13 @@
+#ident	"@(#)pkg.cmds:common/pkg/cmds/pkginfo	1.6"
+#ident  "$Header: $"
+
+# BASEDIR=/
+CATEGORY="system"
+CLASSES="none build post" 
+MAXINST=1
+NAME="Advanced Commands"
+PKG="cmds"
+PREDEPEND=""
+VENDOR="UNIX System Laboratories"
+VERSION="1"
+RELEASE="4.2"

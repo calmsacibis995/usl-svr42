@@ -1,0 +1,19 @@
+#define bluegreen_format 1
+#define bluegreen_width 8
+#define bluegreen_height 8
+#define bluegreen_ncolors 2
+#define bluegreen_chars_per_pixel 1
+static char * bluegreen_colors[] = {
+" " , "#0000FFFF0000",
+"." , "#00000000FFFF"
+} ;
+static char * bluegreen_pixels[] = {
+" . . . .",
+". . . . ",
+" . . . .",
+". . . . ",
+" . . . .",
+". . . . ",
+" . . . .",
+". . . . "
+} ;

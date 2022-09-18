@@ -1,0 +1,8 @@
+#ident	"@(#)vi:PRESERVE	1.1.2.1"
+#ident "$Header: /sms/sinixV5.4es/rcs/s19-full/usr/src/cmd/vi/PRESERVE,v 1.1 91/02/28 20:17:50 ccs Exp $"
+
+#
+# script to move editing files into /usr/preserve
+#
+
+/usr/lib/expreserve -

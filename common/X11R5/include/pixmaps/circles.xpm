@@ -1,0 +1,51 @@
+#define circles_format 1
+#define circles_width 32
+#define circles_height 32
+#define circles_ncolors 10
+#define circles_chars_per_pixel 1
+static char * circles_colors[] = {
+" " , "#FFFFFFFF0000",
+"." , "#0000AAAAFFFF",
+"X" , "#FFFF00000000",
+"o" , "#000000000000",
+"O" , "#00000000FFFF",
+"+" , "#AAAA0000AAAA",
+"@" , "#0000FFFF0000",
+"#" , "#FFFFAAAA0000",
+"$" , "#0000AAAA0000",
+"%" , "#FFFF0000FFFF"
+} ;
+static char * circles_pixels[] = {
+" ..XX         XXX  ooo       .. ",
+"..XXX         XXX      OOOOO  ..",
+".  XXX       XXX      OOOOOOO  .",
+"   XXXX     XXXX     OOOOOOOOO  ",
+"    XXXXXXXXXXX +++  OOO   OOO  ",
+"     XXXXXXXXX +++++ OOO   OOO  ",
+"XX    XXXXXX   +++++ OOO   OOOXX",
+"XXXX           +++++ OOOOOOOOOXX",
+"XXXXX           +++   OOOOOOOXXX",
+"  XXXXOOOOO  @@@@@@@   OOOOOX   ",
+"   XXOOOOOOO@@@@@@@@@    XXX    ",
+"    OOOOOOOOO@@@@@@@@@  XXX     ",
+"    OOO   OOO@@@@@@@@@@ XXX     ",
+"    OOO   OOO@@###@@@@@ XXX     ",
+"    OOO   OOO@#####@@@@ XXX     ",
+"    OOOOOOOOO@#####@@@@ XXX     ",
+"   XXOOOOOOO@@#####@@@@  XXX    ",
+"  XXXXOOOOO@@@@###@@@@@  XXXX   ",
+"XXXXX     @@@@@$$$$@@@@   XXXXXX",
+"XXXX       @@@$$$$$$@@     XXXXX",
+"XX     ooo  @$$$$$$$$  ooo   XXX",
+"       o o   $$$@@$$$  o o      ",
+" +++   ooo   $$$  $$$  ooo      ",
+"+++++        $$$  $$$           ",
+"+++++  XXXXX $$$$$$$$   %%%     ",
+"+++++XXXXXXXXX$$$$$$   %%%%%    ",
+" +++XXXXXXXXXXX$$$$   %%%%%%%   ",
+"   XXXX     XXXX      %%% %%%   ",
+"   XXX       XXX      %%%%%%%   ",
+". XXX         XXX      %%%%%   .",
+"..XXX         XXX  ooo  %%%   ..",
+" ..XX         XXX  o o       .. "
+} ;

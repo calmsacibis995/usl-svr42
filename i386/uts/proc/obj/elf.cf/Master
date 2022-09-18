@@ -1,0 +1,5 @@
+#ident	"@(#)uts-x86:proc/obj/elf.cf/Master	1.5"
+#ident	"$Header: $"
+$version 1
+$entry exec core
+elf	elf	ero	30	0	0

@@ -1,0 +1,49 @@
+#ident	"@(#)set:common/set/bdev/prototype	1.2"
+#ident	"$Header: $"
+
+i pkginfo 
+i preinstall 
+i response
+i setinfo
+i set.1
+i set.2
+i set.3
+i set.4
+i set.5
+i set.6
+i postinstall
+#i preremove
+i setsize
+
+!PKGSRCLOC=../../pkg
+!SETSRCLOC=../../set
+
+i request=$SETSRCLOC/fnd/request
+i copyright=$SETSRCLOC/fnd/copyright
+
+i softint/copyright=$PKGSRCLOC/softint/copyright 
+i softint/pkginfo=$PKGSRCLOC/softint/pkginfo 
+i softint/depend=$PKGSRCLOC/softint/depend
+
+i kdb/menu.kdb=$PKGSRCLOC/kdb/menu.kdb
+i kdb/request=$PKGSRCLOC/kdb/request
+i kdb/response=$PKGSRCLOC/kdb/response 
+i kdb/copyright=$PKGSRCLOC/kdb/copyright 
+i kdb/pkginfo=$PKGSRCLOC/kdb/pkginfo 
+i kdb/depend=$PKGSRCLOC/kdb/depend 
+
+i ccs/menu.ccs=$PKGSRCLOC/ccs/menu.ccs
+i ccs/menu.ccs.1=$PKGSRCLOC/ccs/menu.ccs.1
+i ccs/request=$PKGSRCLOC/ccs/request
+i ccs/response=$PKGSRCLOC/ccs/response
+i ccs/copyright=$PKGSRCLOC/ccs/copyright
+i ccs/pkginfo=$PKGSRCLOC/ccs/pkginfo
+#i ccs/depend=$PKGSRCLOC/ccs/depend
+
+i edebug/menu.edebug=$PKGSRCLOC/edebug/menu.edebug
+i edebug/copyright=$PKGSRCLOC/edebug/copyright
+i edebug/pkginfo=$PKGSRCLOC/edebug/pkginfo
+#i edebug/depend=$PKGSRCLOC/edebug/depend
+i edebug/request=$PKGSRCLOC/edebug/request
+i edebug/response=$PKGSRCLOC/edebug/response
+

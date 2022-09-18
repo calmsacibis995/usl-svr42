@@ -1,0 +1,3 @@
+#ifndef NOIDENT
+#ident	"@(#)olam:olam.ad	1.3"
+#endif

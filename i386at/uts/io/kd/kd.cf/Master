@@ -1,0 +1,5 @@
+#ident	"@(#)uts-x86at:io/kd/kd.cf/Master	1.5"
+#ident	"$Header: $"
+$version 1
+$entry init start 
+kd	kd	kSrc	0	0	30

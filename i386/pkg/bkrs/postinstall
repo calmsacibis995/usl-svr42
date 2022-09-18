@@ -1,0 +1,14 @@
+#ident	"@(#)pkg.bkrs:i386/pkg/bkrs/postinstall	1.1.2.3"
+#ident	"$Header: $"
+
+#
+# Link in the 4.0 backup and restore commands
+#
+
+#if [ ! -z "`echo ${CLASSES} | grep extended`" ]
+#then
+#	ln -s /usr/sbin/backup /usr/bin/backup >/dev/null 2>&1
+#	ln -s /sbin/restore /usr/bin/restore  >/dev/null 2>&1
+#fi
+
+exit 0

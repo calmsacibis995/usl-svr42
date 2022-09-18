@@ -1,0 +1,37 @@
+#ident	"@(#)face:src/filecab/standard/.faceprofile	1.5.4.3"
+#ident  "$Header: .faceprofile 1.5 91/10/17 $"
+export PATH TERM IDENTIFY VMSYS OASYS
+VMSYS=`sed -n -e '/^vmsys:/s/^.*:\([^:][^:]*\):[^:]*$/\1/p' /etc/passwd`
+OASYS=`sed -n -e '/^oasys:/s/^.*:\([^:][^:]*\):[^:]*$/\1/p' /etc/passwd`
+PATH=$VMSYS/lbin:$VMSYS/bin:$OASYS/bin:$HOME/bin:$PATH
+IDENTIFY=$OASYS/bin
+
+while :
+do
+	if [ -z "$TERM" -o "$TERM" = "unknown" -o "$TERM" = "ansi" ]
+	then
+
+		echo "TERM=\c"
+		read TERM
+		if [ -z "$TERM" ]
+		then
+			eval "`termtest`"
+			if [ -z "$TERM" ]
+			then
+				gettxt uxface:74 "Cannot determine terminal type - please enter terminal name\n"
+				continue
+			fi
+		fi
+	fi
+	if [ -r /usr/lib/terminfo/?/"$TERM" ]
+	then
+		break
+	else
+		gettxt uxface:75 "The terminal '$TERM' is unknown - please try a different response\n"
+		TERM=""
+	fi
+done
+tput init; stty tab3
+if $VMSYS/bin/chkperm -t invoke -u ${LOGNAME}
+then exec face
+fi

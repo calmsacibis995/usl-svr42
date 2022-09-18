@@ -1,0 +1,23 @@
+#ident	"@(#)mk:i386at/:mkmerge	1.3"
+#ident "$Header: $"
+#
+#	Merge common (common) and family files into target directory.
+#	The files that are linked are listed in the .common and .<family> files.
+#	These could be used to unlink the files from the target directory.
+#
+#	This version of :mkmerge does not conform to the requirements.
+
+trap "exit 1" 1 2 3 15
+
+#
+#	We'll use the `-h' (symbolic link) option
+#
+#	-m switch must be used with -h for the 'make depend' facility.
+#
+
+Mach=`dirname $0`
+
+exec ${Mach}/mkmerge/mkmerge -h "$@"
+
+echo "$0: exec of ${Mach}/mkmerge/mkmerge failed"
+exit 1

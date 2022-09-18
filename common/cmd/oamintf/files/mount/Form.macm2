@@ -1,0 +1,71 @@
+#ident	"@(#)filemgmt:common/cmd/oamintf/files/mount/Form.macm2	1.1.4.2"
+#ident  "$Header: Form.macm2 2.0 91/07/12 $"
+Form=Mount a File System 
+help=OPEN TEXT $INTFBASE/Text.itemhelp $LININFO
+
+`readfile $INTFBASE/form.msg | message -p`
+
+done=`indicator -w;
+	message -f "Checking file system before mounting. Please Wait...";
+	unset -l LEVEL;test -n "$F4" && set -l LEVEL="-l$F4";
+	$OAMBASE/bin/checkfilsys "$F1" "$ARG4" "$ARG5" "$F2" "$F3" "$LEVEL">/dev/null;
+	set -l CMD="OPEN TEXT $OBJ_DIR/Text.mountok";
+	`$!CMD
+
+# get levels for validation later
+`lvlname |/usr/bin/sed '/^Classifications:/,$ d;/^Levels:/d;/^$/d;s/^[0-9]*::*//;s/::/z/;s/$/z/'>/tmp/$VPID.lvls`
+
+
+name="File System Type (IMPORTANT: DO NOT GUESS):" 
+lininfo=Form.macm2:F1
+nrow=1
+ncol=1
+frow=1
+fcol=45
+rows=1
+columns=14
+rmenu={ `message -w; $OAMBASE/bin/sysfs;` }
+value="$ARG1"
+menuonly=true
+invalidmsg="Press CHOICES to select valid response."
+
+name="Read and Write Privileges:"
+lininfo=Form.macm2:F2
+nrow=2
+ncol=1
+frow=2
+fcol=28
+rows=1
+columns=10
+rmenu={ read/write read-only }
+value="$ARG2"
+menuonly=true
+invalidmsg="Press CHOICES to select valid response."
+
+name="Should setuid programs be allowed:"
+lininfo=Form.macm2:F3
+nrow=3
+ncol=1
+frow=3
+fcol=36
+rows=1
+columns=3
+rmenu={ yes no na }
+menuonly=true
+value="$ARG3"
+invalidmsg="Press CHOICES to select valid response."
+
+#F4
+name="File system security level ceiling:"
+lininfo=Form.macm2:F4
+nrow=4
+ncol=1
+frow=4
+fcol=37
+rows=1
+columns=20
+scroll=TRUE
+valid=`test -z "$F4" || fmlgrep "${F4}z" /tmp/$VPID.lvls`
+invalidmsg="Error - Enter a valid level name or alias."
+fieldmsg="Enter a valid level name or alias."
+

@@ -1,0 +1,20 @@
+#ident	"@(#)oamintf:common/cmd/oamintf/softwaremgmt/Menu.pkg	1.2.3.2"
+#ident  "$Header: Menu.pkg 2.0 91/07/12 $"
+
+menu="Choices"
+multiselect=TRUE
+framemsg=`readfile $INTFBASE/msmenu.msg`
+
+done=`getitems "," | set -l "Form_Choice"`CLOSE
+
+`pkginfo -L $ARG1 | regex '^(.*)$0' 'name="$m0"
+'`
+
+name=
+button=1
+action=
+
+name=
+button=7
+action=
+

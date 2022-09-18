@@ -1,0 +1,24 @@
+.\"ident	"@(#)olps:olprintscreen.	1.1"
+.TH OLPRINTSCREEN 1 "1 December 1989" "OPEN LOOK(tm) 2.0"
+.SH NAME
+olprintscreen - OPEN LOOK(tm) Print Screen application
+.SH SYNOPSIS
+.B olprintscreen &
+.SH DESCRIPTION
+\fIolprintscreen\fP is the OPEN LOOK Print Screen client.
+.br
+The Print Screen application gives you a menu selection with
+the ability to display, capture, and print all or portions of
+a window or screen.
+.PP
+.SH EXAMPLES
+olprintscreen &
+.PP
+.SH "SEE ALSO"
+OPENLOOK(1), xwd, xwud, xpr, lp
+.SH COPYRIGHT
+Copyright 1989, AT&T
+.br
+See \fIOPENLOOK(1)\fP for a full statement of rights and permissions.
+.SH AUTHOR
+Henry Yen, AT&T

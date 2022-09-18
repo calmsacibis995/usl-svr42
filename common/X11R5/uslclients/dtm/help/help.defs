@@ -1,0 +1,235 @@
+#ident	"@(#)dtm:help/help.defs	1.22"
+^=Active Icon
+A minimized application window. Actived Icons are normally located
+along the bottom edge of the Desktop.
+^=
+^=Adobe Type Manager
+Adobe Type Manager is an outline font renderer that reads outline
+font programs (in the Type 1 format) and renders bitmapped fonts on the fly for a
+particular point size and screen resolution.  Adobe Type Manager is a trademark of
+Adobe Systems Incorporated.
+^=
+^=advertise
+When many computers are networked together, you can advertise your files
+and folders, that is, you can offer your files and folders to other computers for their
+use. When another computer connects an advertised file or folder, they use it as
+if it was actually on their machine like the rest of their files and folders.
+^=
+^=AFM
+AFM is an acronym for Adobe Font Metrics.  These metrics are contained in files
+with the standard suffix ".afm" and contain information of importance to WYSIWYG
+applications for generating their printed output.  They are not used by the outline font
+renderer for creating the bitmapped fonts used for screen display.
+^=
+^=ATM
+ATM is an acronym for Adobe Type Manager and a trademark of Adobe Systems
+Inc.
+^=
+^=bitmapped font
+A font (a typeface at a particular pointsize) in the form of an array of
+bits or pixels than can be displayed relatively quickly on a computer display.  Bitmapped
+fonts are generated for a specific resolution, such as 72 dots per inch (typical of
+most displays).  Also known as a screen font.
+^=
+^=button
+A button is an area in a window, with a label, that is used to request an action
+within that window. There are several types of buttons.  If a button has elipses (three
+dots) following the label, the button brings up a window.  If the button has an arrow
+following it, it brings up a menu.  If the button has nothing following it, it performs
+the indicated action.
+^=
+^=clipboard
+The clipboard is a temporary holding area for text that has been highlighted
+and either cut (with the Cut menu option) or copied (with the Copy menu option) from a
+file in the Text Editor window.  It is simply an area of memory that holds the information.
+Because this is not a permanent storage area, the information in the clipboard is lost
+when you exit the Text Editor.  To retrieve the text, use the Paste menu option.
+^=
+^=connect
+When many computers are networked together, you can connect share-items
+that are made available from remote systems. When you connect a remote share-item,
+you can use it as if it was actually on your system like the rest of your files and
+folders.
+^=
+^=default
+A default is something that is already selected for you, either by an installation
+procedure or by you in a previous step.  For example, a default printer is the printer
+that jobs go to if you don't specify a printer at the time you're printing a file.  You
+would select a default printer during printer setup.
+^=
+^=double-click
+A double-click is when you point with the mouse and press the SELECT
+button twice rapidly.
+^=
+^=drag-and-drop
+Drag-and-drop is pointing to an icon with the mouse, pressing and
+holding the SELECT button, moving the mouse and dragging the icon to another
+location, then releasing the button to drop the icon at the new location.
+^=
+^=file
+A file is a collection of information stored on your computer.  Data and program
+files are the most common types.
+^=
+^=file system
+A file system is a collection of files and folders along with the structure
+that holds them together.
+^=
+^=folder
+A folder is a container, and may contain files and other folders.  It is used to
+organize files and folders by grouping them under one name.  For example, the
+folder called reports may contain several files such as report1, report2,
+and so on.
+^=
+^=font
+Traditionally, in the terminology of the typesetting profession, a font is a typeface
+at a single point size.  However, in the computer business, the term font has come to
+mean any of the following: typeface family, typeface, or font.  An example of a font,
+in the traditional sense of the term, is:  Helvetica Italic 18 point.
+^=
+^=foundry
+Foundry refers to the organization that designed a typeface.  The term dates
+from the era when type was poured or cast in lead.
+^=
+^=F3
+F3 is the name of the format of outline fonts accepted by the TypeScaler outline
+font renderer.
+^=
+^=group
+A group is a set of users on your system that are assigned a common name,
+such as doc for all the users in the documentation department.  This set of users
+would all be able to act on files and folders that were assigned to that group.  For
+example, the owner of a file might be able to read, write, and execute a file, but
+the group members would only be able to read and execute the file.  This means that
+only the owner could change the file while all group members could run it.
+^=
+^=icon
+An icon is a pictorial representation of a file, folder or closed process.
+^=
+^=ISO Latin 1
+ISO Latin 1 is a standard character set defined by the International
+Organization for Standardization (ISO).  It contains most of the characters used in
+the alphabets of western European European nations.  Type 1 outline fonts that you
+can buy and display on this system often contain all the characters in the ISO
+Latin 1 character set.
+^=
+^=login
+A login is the name you use to identify yourself to your computer.  For example,
+you might use your initials for your login.  Then at the login prompt, you would enter
+your initials and then your password.  The system checks its files and if your password
+matched the one on file for your initials, it allows you onto the system.
+^=
+^=metacharacter
+Metacharacters are a set of characters that have special meaning to the
+UNIX system shell.  They include the asterisk (*), question mark (?), and square brackets
+( [ ] ).  Metacharacters are used in patterns to match file names.
+
+For example, "t*" (t followed by an asterisk) matches all files beginning with the letter t.
+^=
+^=outline font
+An outline font is a typeface defined mathematically in terms of the curves
+of each character and expressed as a program in a special language (an outline font
+format).  Outline fonts can be rendered on-the-fly by software known as an outline
+font renderer.  Same as scalable font.
+^=
+^=outline font renderer
+An outline font renderer is software that reads outline font
+programs and creates bitmapped fonts at any point size, for a given display
+resolution.
+^=
+^=path
+A file's path indicates where it is located on your computer system.  The path
+consists of a series of folder names separated by slashes (/).  For example,
+/home/zorb/bin/smaker indicates that the file smaker is located in the bin directory,
+which is located in the zorb directory, which is located in the home directory,
+which is located off of root (the beginning of the file structure).
+
+When a path begins with a slash, it called an absolute path, because it begins at the
+beginning of the file structure.  If a path is given without a slash at the beginning,
+such as bin/smaker, it is called a relative path, because the path is relative to
+another folder.  The path bin/smaker only makes sense if you are located in the
+folder zorb.
+^=
+^=PFA
+PFA is the most common suffix used in the file name of files on this system
+containing Type 1 outline fonts in an ASCII, uncompressed form; most of the data
+in a PFA file is encrypted even though it is ASCII.
+^=
+^=PFB
+PFB is the suffix used in the file name of files containing Type 1 outline fonts
+in a binary, compressed form.  
+^=
+^=pinned
+Some windows, when you're in OPEN LOOK mode, pop up with a push pin
+in the lefthand corner.  Clicking SELECT on this pin makes the window stay displayed
+after using its buttons.  If the window in not pinned, the window closes after
+certain of its buttons are used.
+
+Pinning a window is useful when you want to do several tasks with a window.  This lets
+you avoid repeatedly opening the window each time you use it.
+^=
+^=point size
+Point size is a measurement  used for fonts.  There are about 72 points to
+the inch.
+^=
+^=queue
+The queue, or print queue, is the list of jobs waiting to be printed.  When new
+print requests are sent to a printer, they are added to the end of the queue.
+^=
+^=select
+To select an item from the screen with the mouse, position the cursor over the
+item and press and release the SELECT (left) mouse button one time without moving
+the mouse.
+^=
+^=share-item
+A share-item is either a file or folder that is advertised, that is, made available
+to other computers. Through a network, other computers connect the share-item.  The
+share-item then appears as if it is really part of the computer that is connecting it.
+Using a share-item in this way is an effecient way of sharing files and folders among
+everyone on a network.
+^=
+^=single click
+Single click is the same as select, that is, to select an item from the screen
+with the mouse, position the cursor over the item and press and release the
+SELECT (left) mouse button one time without moving the mouse.
+^=
+^=style
+The aspect of typefaces from a single typeface family that distinguishes them from
+each other.  Style variations include such elements as weight (Bold, Demi), slant (Italic),
+and width (Condensed, ExtraWide).
+^=
+^=text file
+A text file, also known as an ASCII file, is a file that contains only the printable
+characters from the ASCII character set.  These characters include the alphabet,
+numbers, and normal punctuation marks.  Control characters are not usually included
+in text files.
+
+An example of a text file is your .profile file, located in your home directory. This file can
+easily be read by a text editor.
+^=
+^=typeface
+A typeface is one member of a typeface family with a specific style.  An
+example of a typeface, in the traditional sense of the term, is: Helvetica Italic. Note:
+in the computer industry, the term typeface is rarely distinguished from typeface
+family or font.
+^=
+^=typeface family
+Typeface family refers to a class of typefaces with the same general
+design and appearance, but with different members (typefaces) in varying styles.  An
+example of a typeface family, in the traditional sense of the term, is: Helvetica.  Note:
+in the computer industry, the term typeface family is rarely distinguished from
+the terms typeface or font.
+^=
+^=TypeScaler
+A TypeScaler is the outline font renderer that can read outline fonts in the
+F3 format.  TypeScaler is registered trademark of Sun Microsystems, Incorporated.
+^=
+^=Type 1
+Type 1 is a format for outline fonts.  Adobe Type Manager reads outline fonts in
+this format, as do PostScript printers.
+^=
+^=XLFD
+XLFD is the acronym for X Logical Font Description, a set of naming and
+property conventions used by the X Window System to describe fonts.  The XLFD name
+can be shown for the current font in the Font Setup Window by selecting the View/Font
+Name/XLFD button combination.
+^=

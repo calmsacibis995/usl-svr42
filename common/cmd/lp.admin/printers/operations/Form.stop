@@ -1,0 +1,15 @@
+#ident	"@(#)lp.admin:printers/operations/Form.stop	1.1.4.1"
+#ident  "$Header: Form.stop 2.0 91/07/12 $"
+
+#######################################################
+#
+#       Module Name: printer_service/service/Form.stop
+#       Author: David C. Miller
+#       Date: July 1988
+#
+#######################################################
+
+form=Stop the Print Service
+
+help=OPEN TEXT $INTFBASE/Text.oamhelp $PRINTSERV/HELP/service/stop.help "Stop the Print Service"
+

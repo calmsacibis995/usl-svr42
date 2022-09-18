@@ -1,0 +1,162 @@
+/*	Copyright (c) 1991, 1992  Intel Corporation	*/
+/*	All Rights Reserved	*/
+/*	*/
+/*	INTEL CORPORATION CONFIDENTIAL INFORMATION	*/
+/*	*/
+/*	This software is supplied to USL under the terms of a license   */ 
+/*	agreement with Intel Corporation and may not be copied nor         */
+/*	disclosed except in accordance with the terms of that agreement.   */	
+%s (High-Sierra format)\n
+%s (ISO-9660 format)\n
+%s (Unrecognized format)\n
+%s is already mounted, %s is busy,\n\tor allowable number of mount points exceeded.\n
+%s is corrupted and needs checking.\n
+%s is not a block device.\n
+%s is not a cdfs file system.\n
+%s is not a directory\n\tor a component of %s is not a directory.\n
+%s is write-protected.\n
+%s option specified more than once.\n
+%s options are mutually exclusive.\n
+%s or %s:  No such file or directory,\n\tor no previous mount was performed.\n
+%s\n
+	(File name version numbers and separators \";\") will be removed.)\n
+Administrative feature settings for the CD-ROM on %s:\n
+	(File names will be converted to lower case, and the separator \".\" will\n	be removed if there is no file name extension.)\n
+Directory search permission comes from:  %s.\n
+Buffer overflow while building option list!\n
+Buffer overflow while building RRIP option list!\n
+Buffer overflow while building RRIP command string!\n
+Buffer overflow while building XCDR option list!\n
+Buffer overflow while building XCDR command string!\n
+CDFS is read-only: Either '-r' or '-o ro' is required.\n
+Cannot 'stat' mounted file system.\n
+Cannot access mount point: %s\n
+Cannot close mount table file.\n
+Cannot close temporary mount table file.\n
+Cannot create temporary mount table (%s).\n
+Cannot lock mount table (%s).\n
+Cannot mount: %s\n
+Unable to open device: %s\n
+Cannot open device map file: %s\n
+Cannot open group ID map file: %s\n
+Cannot open mount table (%s) for reading.\n
+Cannot open user ID map file: %s\n
+Cannot rename temporary mount table file.\n
+Entry too long in %s file.\n
+Current group ID mappings (from : to) are:\n
+Current mappings of devices under %s:\n
+Current user ID mappings (from : to) are:\n
+Data Length:  %u byte(s)\n
+File not previously mapped, cannot unmap: %s\n
+Default directory permissions:  %4o\n
+Default file permissions:  %4o\n
+Default group ID:  %d\n
+Default user ID:  %d\n
+Directory ID Length:  %u byte(s)\n
+Directory ID:  %.31s\n
+Directory Record Length:  %u bytes\n
+File section %d has no system use area or SUSP is disabled.\n
+File section %d invalid.\n
+File section has no XAR.\n
+Name conversion:  %s.\n
+Error building RRIP command-line.\n
+Error building XCDR command-line.\n
+Error closing file: %s\n
+Error processing RRIP options.\n
+Error processing XCDR options.\n
+Extended Attribute Record for %s:\n
+Extent Location:  Logical block %lu\n
+Extraneous argument(s) starting with: %s\n
+File Creation Date and Time:  %s\n
+File Effective Date and Time:  %s\n
+File Expiration Date and Time:  %s\n
+File Flags:  0x%.2X\n
+File ID Length:  %u byte(s)\n
+File ID:  %.37s\n
+File Modification Date and Time:  %s\n
+No device mappings on system.\n
+File Unit Size:  %u bytes\n
+Need to specify a file or directory.\n
+No such file: %s\n
+Not a device file: %s\n
+Too few entries in %s file.\n
+Group ID:  %hu\n
+Incorrect map entry at line %u in file %s\n
+Incorrect unmap entry at line %u in file %s\n
+Too many entries in %s file.\n
+Interleave Gap Size:  %u logical block(s)\n
+Too many entries in file %s, %d allowed.\n
+Write permission is invalid and is being ignored.\n
+Invalid option: -%1s\n
+Invalid permission mode: %1s\n
+Invalid permission operator: %1s\n
+Invalid group %s at line %u in file %s\n
+Length of Application Use:  %hu\n
+Length of Escape Sequences:  %hu\n
+Cannot open mount table (%s) to update.\n
+There are no group ID mappings defined.\n
+There are no user ID mappings defined.\n
+Extra arguments at end of command.\n
+Invalid user %s at line %u in file %s\n
+Missing permission operator: +, -, or =.\n
+Missing special file argument.\n
+Mount point argument is missing.\n
+Must be a privileged user.\n
+Usage: %s [ -s number ] [ -b ] <file>\n
+Directory Record for %s:\n
+No such device: %s\n
+No such group: %s\n
+No such user: %s\n
+Not a mount point: %s\n
+Options -%1s and -%1s are mutually exclusive.\n
+Owner ID:  %hu\n
+Parent Directory Number:  %hu\n
+Path Table Record for directory %s:\n
+Need to specify a directory.\n
+Permission bits:  0x%.4X (or %.3o)\n
+Need to specify a file or directory or a block device.\n
+\nRRIP Options:\n
+RRIP extension requires the SUSP extension.\n
+Record Attributes:  %hu\n
+Record Format:  %hu\n
+Record Length:  %hu bytes\n
+Recording Date and Time:  %s\n
+Mode not recognized
+\t[uidmap=<file>][gidmap=<file>][nmconv=<token>][dsearch=<token>]\n
+Volume Sequence Number:  %hu\n
+\t[devmap=<file>]\n
+\nMandatory options: '-r' or '-o ro'\n
+Default options: '-o suid,susp,rrip'\n
+Wrong number of fields on line %u in file %s\n
+XAR Length:  %u logical block(s)\n
+XAR Version:  %hu\n
+Unable to access media.\n
+Sig Len Ver     Data\n
+Special file and mount point arguments are missing.\n
+Comply with CDFS usage:\n
+System ID:  %.32s\n
+\n%s [-F %s] [generic_opts] [-o <CDFS_opts>] {special | mount_point}\n
+System Use Field Length:  %u byte(s)\n
+System Use Fields for file %s:\n
+System Use Fields for section %d of file %s:\n
+System Use:  %.64s\n
+Unable to allocate %d bytes of memory.\n
+Unable to locate end of mount table file.\n
+Unrecognized %s-specific (-o) suboption: '%s'\n
+%s [-F %s] [generic_opts] [-o <CDFS_opts>] special mount_point\n
+Usage: %s [ -m mapfile | -u unmapfile ] [ -c ]\n
+Usage: %s [ -b ] <file>\n
+Usage: %s [ -u owner ] [ -g group ] [ -F mode ]\n	[ -D mode ] [ -U umfile ] [ -G gmfile ] [ -c | -l | -m ] [ -x | -s ]\n	<mount_point>\n
+Usage: %s [-v] special\n
+\nwhere <CDFS_opts> include:\n
+User ID mapping %u unused.\n
+\nBasic Options:\n
+\t[ro][suid|nosuid][lsectsz=<value>]\n
+\t[[susp[rrip|norrip]|nosusp]|noextend]\n
+\nXCDR Options:\n
+\t[uid=<UID>][gid=<GID>][fperm=<perm>][dperm=<perm>]\n
+Too many ID mappings: %d allowed.\n
+No path table entry for this directory.\n
+Usage: %s [ -b ] <dir>\n
+File has no system use area or SUSP is disabled.\n
+Too many device mappings, %d allowed.\n

@@ -1,0 +1,46 @@
+#ident	"@(#)olpkg.oam:pkg.desk/request	1.6"
+#ident	"$Header: $"
+
+############# Begin UPGRADE AND OVERLAY #######################
+
+#  set INSTALL_MODE to CUSTOM, if not set
+[ "$INSTALL_MODE" ] || INSTALL_MODE=CUSTOM
+SCRIPTS=/usr/sbin/pkginst
+
+PKGINSTALL_TYPE=NEWINSTALL
+#is it upgrade or overlay?
+#	${SCRIPTS}/chkpkgrel returns 2 if installed pkg is DESTINY
+#					4 if installed pkg is V4
+#					1 if installed pkg if UNK version
+#					0 if pkg is not installed
+${SCRIPTS}/chkpkgrel
+PKGVERSION=$?
+case $PKGVERSION in
+	2)	PKGINSTALL_TYPE=OVERLAY	;;
+	4)	PKGINSTALL_TYPE=UPGRADE	;;
+	*)	;;
+esac
+
+[ "$PKGINSTALL_TYPE" = NEWINSTALL ] || {
+
+	AUTOMERGE=Yes
+	[ "$INSTALL_MODE" = CUSTOM ] && {
+		# do this till the new menu tool is in place
+		# this scripts returns 0 for mergefiles, 1 for donot merge
+
+		${SCRIPTS}/chkmrgfiles "${NAME}"
+		[ $? = 1 ] && AUTOMERGE=No
+	}
+
+}
+
+[ "$AUTOMERGE" ] || AUTOMERGE=NULL
+
+export INSTALL_MODE PKGINSTALL_TYPE AUTOMERGE
+cat > $1 << !
+AUTOMERGE='$AUTOMERGE'
+PKGINSTALL_TYPE='$PKGINSTALL_TYPE'
+INSTALL_MODE='$INSTALL_MODE'
+!
+
+exit 0

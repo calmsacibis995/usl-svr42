@@ -1,0 +1,25 @@
+*** Devconfig.v4	Thu May 14 18:59:21 1992
+--- Devconfig.p13	Thu May 14 18:59:39 1992
+***************
+*** 1 ****
+! #ident	"@(#)bnu:Devconfig	1.3"
+--- 1,2 ----
+! #ident	"@(#)/etc/uucp/Devconfig.sl 1.3 4.1dt 05/28/92 44739 AT&T-USL"
+! #ident "$Header: Devconfig 1.1 91/02/28 $"
+***************
+*** 29,30 ****
+! #	Note: The tirdwr module is part of the NSU package.  Other 
+  #	modules needed to provide tty capabilities must be supplied by the
+--- 30,36 ----
+! #	To use "cu" over the TCP/IP network use one of the entries
+! #	below, depending on the device type you need:
+! #               service=cu      device=TCP  push=ntty:tirdwr
+! #               service=cu      device=CS  push=ntty:tirdwr
+! #
+! #	Note: The tirdwr and ntty modules are part of the NSU package.  Other 
+  #	modules needed to provide tty capabilities must be supplied by the
+***************
+*** 32 ****
+--- 38,39 ----
+  #
++ service=cu      device=CS  push=ntty:tirdwr

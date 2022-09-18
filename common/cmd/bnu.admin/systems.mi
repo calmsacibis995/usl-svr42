@@ -1,0 +1,5 @@
+#ident	"@(#)bnu.admin:common/cmd/bnu.admin/systems.mi	1.2.1.2"
+#ident "$Header: systems.mi 2.0 91/08/20 $"
+main:network_services:basic_networking:systems:add^Adds Systems to the Basic Networking Database^Form.addsys
+main:network_services:basic_networking:systems:list^Lists Systems Known to Basic Networking^Form.listsys
+main:network_services:basic_networking:systems:remove^Removes Systems from the Basic Networking Database^Form.rmsys

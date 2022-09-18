@@ -1,0 +1,68 @@
+#ident	"@(#)nadmin.rfs:local/rfs/bin/rf_share	1.2.7.1"
+#ident  "$Header: rf_share 2.0 91/07/12 $"
+/usr/bin/rm /usr/tmp/sh_msg$$ 2>/dev/null
+if [ "$EXPL" ]
+then
+	CMD1="$TFADMIN /usr/sbin/share -F rfs -d \"$EXPL\" "
+# This will not be executed here .. it will be put in dfstab 
+# hence do not need TFADMIN
+	CMD3="/usr/sbin/share -F rfs -d \"$EXPL\" "
+else
+	CMD1="$TFADMIN /usr/sbin/share -F rfs "
+# This will not be executed here .. it will be put in dfstab 
+# hence do not need TFADMIN
+	CMD3="/usr/sbin/share -F rfs "
+fi
+
+if [ "$CLIENT" ]
+then
+	CLIST=`echo "$CLIENT" | /usr/bin/tr -s '\012' ':'`
+	CMD2="-o $ACC=$CLIST $DIR $RES"
+else
+	CMD2="-o $ACC $DIR $RES"
+fi
+
+# Create directory if it doesn't exist - don't exit here if
+# directory cannot be made.  If this is an immediate share, the
+# share command will fail - if this is an automatic share,
+# they can create the directory later
+
+if [ ! -d "$DIR" ]
+then
+	$TFADMIN /usr/bin/mkdir -p $DIR 2>/dev/null
+fi
+
+if [ "$IMM" = "yes" ]
+then
+	eval `echo "$CMD1" "$CMD2"` 2>/usr/tmp/sh_err$$
+	if [ $? -eq 0 ]
+	then
+		echo "\nThe local directory $DIR is being shared with remote systems as $RES via RFS." >> /usr/tmp/sh_msg$$
+	else
+		echo "ERROR:  $DIR cannot be shared immediately as $RES via RFS." >/usr/tmp/sh_msg$$
+		/usr/bin/sed s"/^.*://" < /usr/tmp/sh_err$$>> /usr/tmp/sh_msg$$
+	fi
+fi
+
+if [ "$AUTO" = "yes" ]
+then
+	/usr/bin/sed "s/^#.*//g" /etc/dfs/dfstab | /usr/bin/tr -s '\011' '\040' >/usr/tmp/fs_$$
+ 	/usr/bin/grep "[ ]$DIR[ ]" /usr/tmp/fs_$$ >/dev/null
+	if [ $? -eq 0 ]
+	then
+		echo "\nThe directory $DIR is currently being shared automatically.  Use the local_resources_modify task to change." >> /usr/tmp/sh_msg$$
+	else
+ 		/usr/bin/egrep "[ ]$RES$" /usr/tmp/fs_$$ >/dev/null
+		if [ $? -eq 0 ]
+		then
+			echo "\nResource name $RES is currently being shared automatically.  Use the local_resources_modify task to change." >> /usr/tmp/sh_msg$$
+		else
+			$TFADMIN cp /etc/dfs/dfstab /usr/tmp/dfstab_$$
+			echo "$CMD3" "$CMD2" >> /usr/tmp/dfstab_$$
+			$TFADMIN cp /usr/tmp/dfstab_$$ /etc/dfs/dfstab
+			echo "\nThe local directory $DIR will be shared automatically with remote systems as $RES when RFS begins operation." >> /usr/tmp/sh_msg$$
+		fi
+	fi
+fi
+
+echo $$

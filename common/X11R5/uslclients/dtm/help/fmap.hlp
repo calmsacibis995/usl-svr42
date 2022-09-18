@@ -1,0 +1,353 @@
+#ident  "@(#)dtm:help/fmap.hlp	1.13"
+^*version^1
+^:Folder_Map
+^*title^Folder Map
+^*width^70
+^+DesktopMgr/help.defs
+^?Displaying tree view of file system.
+^0^Folder Map
+^$10
+Folder Map
+
+Use the Folder Map to display the relationships between the \d(folders^folder)
+on your system. When you first open a Folder Map window, you see all
+the folders available from your UNIX Desktop window. Folder Map lets
+you perform operations such as:
+
+   o \k(Copy folders^DesktopMgr/folder.hlp^File: Copy Window)
+
+   o \k(Rename folders^DesktopMgr/folder.hlp^File: Rename Window)
+
+   o \k(Move folders^DesktopMgr/folder.hlp^File: Move Window)
+
+   o \k(Link folders^DesktopMgr/folder.hlp^File: Link Window)
+
+   o \k(Set properties of folders^DesktopMgr/folder.hlp^Desktop: File Properties Window)
+
+   o \k(Open folders^^Open)
+
+More information:
+
+        \k(Folder Map Window)
+^1^Folder Map Window
+^$20
+\k{Folder Map}
+1. Folder Map Window
+
+Use the Folder Map window to display a "tree" structure of the folders
+in your UNIX Desktop window. A maximum of three levels is displayed.
+
+Using the Folder Map you quickly can navigate through and open any
+folder on your system (if you have permission to do so). You also can 
+do all basic folder manipulation procedures, such as copying, moving,
+and deleting folders. For information on using files and folders, see
+the Folder Reference Page.
+
+The \d(buttons^button) available from the Folder Map window are:
+
+        \k(File Button)\t\t\k(View Button)
+        \k(Edit Button)\t\t\k(Help Button)
+
+Note: Not all menu items under a button are always selectable. Some
+menu items are only selectable if a folder is selected in the Folder
+Map window.
+
+More Information: \k(Using Files and Folders^DesktopMgr/folder.hlp^Using Files and Folders)
+^2^File Button
+^$30
+1. \k{Folder Map Window}
+   1.1 File Button
+
+The File button lets you do basic operations, such as Open, Copy, and
+Move for files and folders. Clicking on the File button displays a
+menu with the following options:
+
+        \k(Open)\t\k(Copy)
+        \k(Move)\t\k(Link)
+        \k(Delete)\t\k(Print)
+        \k(Properties)\t\k(Exit)
+^3^Open
+^$40
+1. \k{Folder Map Window}
+   1.1 \k{File Button}
+       1.1.1 Open
+
+The Open menu option lets you open the selected folder. This has the
+same effect as \d(double-clicking^double-click) on the folder. When you open a folder
+icon, a folder window appears for that folder.
+^3^Copy
+^$50
+1. \k{Folder Map Window}
+   1.1 \k{File Button}
+       1.1.2 Copy
+
+The Copy menu option lets you copy a folder and its contents to
+another folder. First select the icon of the folder you want to copy
+from the Folder Map window. Next, click on the Copy menu option to
+bring up the File: Copy window.
+
+More information: \k(File: Copy Window^DesktopMgr/folder.hlp^File: Copy Window)
+^3^Rename
+^$60
+1. \k{Folder Map Window}
+   1.1 \k{File Button}
+       1.1.3 Rename
+
+The Rename menu option lets you change the name of a folder. Clicking
+on the Rename menu option displays the File: Rename window.
+
+More information: \k(File: Rename Window^DesktopMgr/folder.hlp^File: Rename Window)
+^3^Move
+^$70
+1. \k{Folder Map Window}
+   1.1 \k{File Button}
+       1.1.4 Move
+
+The Move menu option lets you move a folder and its contents to
+another folder. First select the icon of the folder you want to move
+from the Folder Map window. Next, click on the Move menu option to
+bring up the File: Move window.
+
+More information: \k(File: Move Window^DesktopMgr/folder.hlp^File: Move Window)
+^3^Link
+^$80
+1. \k{Folder Map Window}
+   1.1 \k{File Button}
+       1.1.5 Link
+
+The Link menu option lets you link a folder to another folder so that
+it is available from more than one location. First select the icon of
+the folder you want to link from the Folder Map window. Next, click on
+the Link menu option to display the File: Link window.
+
+More information: \k(File: Link Window^DesktopMgr/folder.hlp^File: Link Window)
+^3^Delete
+^$90
+1. \k{Folder Map Window}
+   1.1 \k{File Button}
+       1.1.6 Delete
+
+The Delete menu option lets you remove the selected folder(s). The
+deleted folders are moved to the wastebasket, where they eventually
+are deleted according to your wastebasket deletion schedule.
+
+More information: \k(Wastebasket Window^DesktopMgr/wb.hlp^Wastebasket)
+^3^Print
+^$100
+1. \k{Folder Map Window}
+   1.1 \k{File Button}
+       1.1.7 Print
+
+The Print menu option lets you send the selected icons to the
+\d(default) printer. This has the same effect as \d(dragging-and-dropping^drag-and-drop) an
+icon on the default printer icon.
+
+More information: \k(Printer Setup^dtadmin/printer.hlp^Printer Setup)
+^3^Properties
+^$110
+1. \k{Folder Map Window}
+   1.1 \k{File Button}
+       1.1.8 Properties
+
+The Properties menu option lets you view and set properties for the
+selected folder. First select a folder's icon from the Folder Map
+window. Next, click on the Properties menu option to display the
+Desktop: File Properties window.
+
+More information: \k(Desktop: File Properties Window^DesktopMgr/folder.hlp^Desktop: File Properties Window)
+^3^Exit
+^$120
+1. \k{Folder Map Window}
+   1.1 \k{File Button}
+       1.1.9 Exit
+
+The Exit menu item closes the Folder Map window.
+^2^Edit Button
+^$210
+1. \k{Folder Map Window}
+   1.2 Edit Button
+
+The Edit button lets you select or unselect icons and undo the most
+recent Copy, Move, or Link action. Clicking on the Edit button brings
+up a menu with the following options:
+
+        \k(Select All)
+        \k(Unselect All)
+        \k(Undo)
+^3^Select All
+^$220
+1. \k{Folder Map Window}
+   1.2 \k{Edit Button}
+       1.2.1 Select All
+
+The Select All menu option selects all icons in the window. After you
+click on Select All, you can use operations under the File button to
+move, copy, or do other operations on the entire set of folders.
+^3^Unselect All
+^$230
+1. \k{Folder Map Window}
+   1.2 \k{Edit Button}
+       1.2.2 Unselect All
+
+The Unselect All menu option unselects all folders currently selected
+in the window.
+^3^Undo
+^$240
+1. \k{Folder Map Window}
+   1.2 \k{Edit Button}
+       1.2.3 Undo
+
+The Undo menu option lets you undo the previous Copy, Move, or Link
+command.
+^2^View Button
+^$130
+1. \k{Folder Map Window}
+   1.3 View Button
+
+The View button lets you change what folders are displayed in the
+Folder Map window. Clicking on the View button displays a menu with
+the following options:
+
+        \k(Show Folders)
+        \k(Hide Folders)
+        \k(Show All Levels)
+        \k(Start Here)
+        \k(Start at /home/login_ID)
+        \k(Start at Other)
+        \k(Next Level Up)
+^3^Show Folders
+^$140
+1. \k{Folder Map Window}
+   1.3 \k{View Button}
+       1.3.1 Show Folders
+
+The Show Folders menu option displays one more level of folders for
+the selected folder.
+^3^Hide Folders
+^$150
+1. \k{Folder Map Window}
+   1.3 \k{View Button}
+       1.3.2 Hide Folders
+
+The Hide Folders menu option lets you hide all levels of folders below
+the selected folder.
+^3^Show All Levels
+^$160
+1. \k{Folder Map Window}
+   1.3 \k{View Button}
+       1.3.3 Show All Levels
+
+The Show All Levels menu option lets you display all levels of folders
+below the selected folder.
+^3^Start Here
+^$170
+1. \k{Folder Map Window}
+   1.3 \k{View Button}
+       1.3.4 Start Here
+
+The Start Here menu option lets you select the starting point for the
+Folder Map window. The selected folder becomes the first folder in the
+window (in the upper left corner).
+^3^Start at /home/login_ID
+^$180
+1. \k{Folder Map Window}
+   1.3 \k{View Button}
+       1.3.5 Start at /home/login_ID
+
+The Start at /home/login_ID menu option lets you display the Folder
+Map window starting at your home folder.
+^3^Start at Other
+^$190
+1. \k{Folder Map Window}
+   1.3 \k{View Button}
+       1.3.6 Start at Other
+
+The Start at Other menu option lets you specify a specific folder for
+the beginning of the Folder Map window. Clicking on the Start at Other
+menu option displays the Folder: Open window.
+
+More information: \k(Folder: Open Window)
+^3^Next Level Up
+^$200
+1. \k{Folder Map Window}
+   1.3 \k{View Button}
+       1.3.7 Next Level Up
+
+The Next Level Up menu option shifts the view in the Folder Map window
+so that the parent folder for the folder currently shown in the upper
+left corner becomes the beginning of the folder map.
+^2^Help Button
+^$250
+1. \k{Folder Map Window}
+   1.4 Help Button
+
+The Help button provides on-line help for the Folder Map. Clicking on
+the Help button displays a menu with the following options:
+
+        \k(Folder Map^^Folder MapFM)
+        \k(Table of Contents)
+        \k(Help Desk)
+^3^FolderMap=Folder MapFM
+^$260
+1. \k{Folder Map Window}
+   1.4 \k{Help Button}
+       1.4.1 FolderMap
+
+The Folder Map menu option provides on-line help for the Folder Map
+window.
+^3^Table of Contents
+^$270
+1. \k{Folder Map Window}
+   1.4 \k{Help Button}
+       1.4.2 Table of Contents
+
+The Table of Contents menu option displays the list of help topics
+available for the Folder Map window.
+^3^Help Desk
+^$280
+1. \k{Folder Map Window}
+   1.4 \k{Help Button}
+       1.4.3 Help Desk
+
+The Help Desk menu option opens the Help Desk window. From there, you
+can select an icon for which you want on-line help.
+^1^Folder: Open Window
+^$300
+\k{Folder Map Window}
+2. Folder: Open Window
+
+Use the Folder: Open window to start the Folder Map with a different
+folder.
+
+The current path is given on the Path line of the Folder: Open window.
+Click on a folder name from the Folder(s) box with which to begin the
+Folder Map. The Path line changes to indicate the folder (use the
+scrollbar, if present, to view additional folders). Alternatively,
+enter the name (and, if necessary, the path) of the folder with which
+to begin the Folder Map.
+
+The buttons available from the Folder: Open window are:
+
+        \k(Open Button^^Open ButtonOW)
+        \k(Cancel Button^^Cancel ButtonOW)
+        \k(Help Button^^Help ButtonOW)
+^2^Open Button=Open ButtonOW
+^$310
+2. \k{Folder: Open Window}
+   2.1 Open Button
+
+The Open button redraws the Folder Map beginning with the folder
+specified.
+^2^Cancel Button=Cancel ButtonOW
+^$320
+2. \k{Folder: Open Window}
+   2.2 Cancel Button
+
+The Cancel button closes the Folder: Open window without changing the
+starting folder of the Folder Map.
+^2^Help Button=Help ButtonOW
+^$330
+2. \k{Folder: Open Window}
+   2.3 Help Button
+
+The Help button provides on-line help for the Folder: Open window.

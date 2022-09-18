@@ -1,0 +1,87 @@
+#ident	"@(#)face:OBJECTS/Form.send	1.6.4.2"
+#ident  "$Header: Form.send 1.5 92/01/17 $"
+
+form="$ARG1 $$uxface:131:Mail"
+
+help=open text OBJECTS/Text.h "$$uxface:78:'HELP on' $T" "$F"
+autolayout=true
+
+framemsg=$$uxface:79:"Press CHOICES to select, then press SAVE when you complete the form."
+
+altslks=true
+
+`set -l EFRAME=false;
+set -l I18N_T="$$uxface:135:To:";
+fmlmax "$I18N_T" | set -l FCOL`
+
+close=`indicator -w; rm -f /tmp/f.mx.${VPID};
+unset -l I18N_T -l FCOL`
+
+done=`run -n -t$$uxface:275:"Suspended Send Mail" /bin/sh -c "/usr/bin/mailx ${F1} 2>/tmp/f.mx.${VPID}";
+	if [ -s /tmp/f.mx.${VPID} ];
+	then
+		if [ "${EFRAME}" = "false" ];
+		then
+			echo "OPEN TEXT OBJECTS/Text.merror /tmp/f.mx.${VPID}";
+		else
+			echo "update OBJECTS/Text.merror true";
+		fi;
+	else
+		if [ "${EFRAME}" = "false" ];
+		then
+			echo "close OBJECTS/Form.send";
+		else
+			echo "close OBJECTS/Text.merror OBJECTS/Form.send";
+		fi;
+	fi;
+	unset -l I18N_T -l FCOL`
+
+name=$I18N_T
+nrow=0
+ncol=1
+fcol=$FCOL
+# frow=0
+# fcol=5
+rows=1
+columns=48
+scroll=true
+rmenu=const { `sort +0 -1 -t: /etc/passwd | regex '^([^:][^:]*)$0:[^:]*:[0-9][0-9][0-9][0-9]*:[^:][^:]*:[^:]*:[^:][^:]*:.*$' '$m0'` }
+lininfo=`set -l T="$$uxface:276:Send Mail" -l F=T.hsend1`
+valid=`regex -v "${F1}" '^.+$' true '.*' false`
+invalidmsg=$$uxface:137:"This is a mandatory field."
+
+name=$$uxface:144:"HELP"
+button=9
+action=help
+
+name=$$uxface:145:"CHOICES"
+button=10
+action=choices
+
+name=$$uxface:146:"SAVE"
+button=11
+action=done
+
+name=$$uxface:147:"PREV-FRM"
+button=12
+action=prev-frm
+
+name=$$uxface:148:"NEXT-FRM"
+button=13
+action=next-frm
+
+name=$$uxface:149:"CANCEL"
+button=14
+action=`if [ "${EFRAME}" = "false" ];
+	then
+		echo "close OBJECTS/Form.send";
+	else
+		echo "close OBJECTS/Text.merror OBJECTS/Form.send";
+	fi`
+
+name=$$uxface:150:"CMD-MENU"
+button=15
+action=cmd-menu
+
+name=""
+button=16

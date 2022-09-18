@@ -1,0 +1,14 @@
+#ident	"@(#)uts-x86at:io/asy/iasy.cf/Node	1.1"
+#ident	"$Header: $"
+iasy	tty00	c	0
+iasy	term/00	c	0
+iasy	tty00s	c	0
+iasy	tty00h	c	1
+iasy	term/00s	c	0
+iasy	term/00h	c	1
+iasy	tty01	c	2
+iasy	term/01	c	2
+iasy	tty01s	c	2
+iasy	tty01h	c	3
+iasy	term/01s	c	2
+iasy	term/01h	c	3

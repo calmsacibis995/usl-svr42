@@ -1,0 +1,4 @@
+#ident	"@(#)uts-x86:io/clone/clone.cf/Master	1.4"
+#ident	"$Header: $"
+$version 1
+clone	cln	kSco	0	0	7

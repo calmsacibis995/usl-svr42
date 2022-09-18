@@ -1,0 +1,12 @@
+#ident	"@(#)nametoaddr:common/lib/nametoaddr/oam/name_to_addr/inet/Text.s_success	1.1.4.3"
+#ident "$Header: /sms/sinixV5.4es/rcs/s19-full/usr/src/lib/nametoaddr/oam/name_to_addr/inet/Text.s_success,v 1.1 91/02/28 21:03:29 ccs Exp $"
+title="Internet Protocol Success"
+columns=55
+rows=7
+text="
+The service name entered has succussfully been added to
+
+	/etc/services
+
+You may now now return to the previous menu.
+"

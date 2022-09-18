@@ -1,0 +1,47 @@
+Mouse Damping Factor:
+	The number of pixels you can move the pointer before a drag is \
+initiated.  In other words, pressing and releasing a mouse button \
+before moving the pointer by this amount results in the press/release \
+combination being interpreted as a single logical mouse CLICK.
+
+Multi-Click Timeout:
+	Time interval used to group successive mouse clicks as a single \
+logical action.  For example, if two mouse clicks occur within this time \
+interval and the pointer motion does not exceed the Mouse Damping Factor, \
+the mouse click pair is interpreted as a double-click.
+
+Drag Right Distance:
+	If a MenuButton is in a "Press-Drag-Release" menu and the pointer \
+is dragged this many pixels to the right, the MenuButton's \
+submenu will be displayed.  Note: drag-right distance does not apply to \
+MenuButtons that are in "Click-Move-Click" menus or to MenuButtons that \
+are not in menus.
+
+Menu Mark Region:
+	Each MenuButton has an active region associated with it that displays \
+the submenu regardless whether you drag the pointer to the right.  This region \
+is located at the extreme right of a MenuButton and its extent (in pixels) \
+is determined by this setting.
+	The Menu Mark Region setting also is used to dismiss menus.  For \
+example, if a menu cascade is in "Press-Drag-Release" mode and the pointer is \
+dragged in and then out the left side of the last menu in the cascade, \
+the last menu is dismissed if the pointer continues to the left by \
+the amount of the this setting.
+
+Click SELECT on the Apply (or Apply All) button to save all changes \
+made to all property sheets.  \
+The Reset button can be used to reset the property sheet settings \
+to reflect the currently saved values.  \
+The Reset To Factory button can be used to reset \
+the property sheet settings to the factory defaults.  \
+Note that Reset and Reset to Factory do not affect the saved \
+property values; \
+the saved values are changed only when Apply is SELECTed.  \
+Also, Reset and Reset to Factory only reset the properties on \
+the current property sheet.
+
+The property window is automatically dismissed if not pinned \
+when Apply is chosen.
+
+Applied changes go into effect immediately, and are reflected \
+in all OPEN LOOK applications, including those already launched.

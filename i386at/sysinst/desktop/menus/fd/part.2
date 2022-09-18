@@ -1,0 +1,98 @@
+#ident	"@(#)proto:desktop/menus/fd/part.2	1.7"
+#ident	"$Header: $"
+#
+# Menu description file format
+#
+# Lines beginning with '#' are comments
+#
+# format string for page numbering - 1st %d is current pg and 2nd is total pgs
+.pageno
+Page %d of %d
+#
+# string that appears in the upper left corner
+.ul
+UNIX System Installation
+#
+# The banner for the help_within_help screen
+.hhelp_ban
+Instructions
+#
+# The banner for the help screen
+.helpbanner
+Help: Secondary Hard Disk Partitioning
+#
+# string that appears in the upper right corner
+.ur
+Secondary Hard Disk Partitioning
+#
+# string that appears in the lower left corner
+#.ll
+#THIS SPACE INTENTIONALLY LEFT BLANK.
+#
+# string that appears in the lower right corner
+.lr
+Del=Cancel  F1=Help
+#
+# text for above the menu form (used to be -s strings)
+.top
+You may use a partition of your secondary hard disk for the UNIX System.
+If you choose to use a partition of your secondary hard disk, you will be
+shown a screen that will allow you to partition your secondary hard disk.
+
+WARNING:  All files in any partition(s) you delete will be destroyed.
+
+`if [ "${SIZE_WARN}" = "No" ] ; then echo "If you choose to create a UNIX System partition on your secondary hard disk, \c"; fi`
+`if [ "${SIZE_WARN}" = "No" ] ; then echo "it must be at least 40 MBs. \c"; fi`
+`if [ "${SIZE_WARN}" = "Yes" ] ; then echo "The current partitioning is unacceptable for one of the following reasons: \c"; fi`
+`if [ "${SIZE_WARN}" = "Yes" ] ; then echo " \c"; fi`
+`if [ "${SIZE_WARN}" = "Yes" ] ; then echo "  o  There is no UNIX System partition \c"; fi`
+`if [ "${SIZE_WARN}" = "Yes" ] ; then echo "  o  The UNIX System partition is not \"Active\" \c"; fi`
+`if [ "${SIZE_WARN}" = "Yes" ] ; then echo "  o  The UNIX System partition is less than 40 MBs \c"; fi`
+#
+# This is the "options" string for menus.
+.optstring
+Your options are:
+#
+# Delimiter for form - the contents of this section are the same as
+# the contents of a file specified w/-f options, autodetects whether its
+# a form or a menu.
+.form
+Do not use a partition of the secondary hard disk for the UNIX System.
+Use a partition of the secondary hard disk for the UNIX System.
+#
+# This is the prompt string for a MENU only.
+.selection
+Press '1' or '2' followed by 'ENTER':
+#
+# This is the text for beneath the menu (used to be -i strings)  Now we
+# can include text underneath the menu selection line, because of .selection
+#
+# Help text.  This can also be done using I/O redirection; if aline begins
+# with a <, the rest of the line is considered to be a filename and is
+# read in as though it were part of the file.  If the file contains other
+# .keywords, or `backticks` or <redirection, these will not be processed.
+.help
+For detailed instructions, press the 'F1' (or '?') key at any time.
+
+Partitioning your secondary hard disk divides it into a number of partitions
+(or "parts").  Each partition can be used for a different operating system.
+
+To use a partition of the secondary hard disk for the UNIX System, it must 
+be "Active" and at least 40 MBs.
+
+WARNING:  If you delete any partition(s), all files in the deleted partitions
+will be destroyed.
+#
+# This is the instructions (help banner) for the help screens.
+.helpinst
+ESC=Exit help  F1=Instructions  Del=Cancel  1=Forward  2=Backward
+.hhelpinst
+ESC=Exit instructions  Del=Cancel  1=Forward  2=Backward
+#
+# This is the "Working..." flag that flashes on the screen if the -r
+# option is specified on the command line.
+#.working
+#THIS SPACE INTENTIONALLY LEFT BLANK.
+#
+# This is an optional keyword for the end of input
+.end

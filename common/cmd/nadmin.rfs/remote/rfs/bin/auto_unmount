@@ -1,0 +1,6 @@
+#ident	"@(#)nadmin.rfs:remote/rfs/bin/auto_unmount	1.2.5.1"
+#ident  "$Header: auto_unmount 2.0 91/07/12 $"
+/usr/bin/egrep -v "^$RES[ 	]+-[ 	]+$DIR[ 	]+rfs[ 	]+-[ 	]+yes" /etc/vfstab > /usr/tmp/vfstab$$
+echo "$RES" "$DIR" >>/usr/tmp/xxx
+$TFADMIN /usr/bin/cp /etc/vfstab /etc/o.vfstab
+$TFADMIN /usr/bin/cp /usr/tmp/vfstab$$ /etc/vfstab

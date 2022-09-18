@@ -1,0 +1,4 @@
+#ident	"@(#)uts-x86at:io/event/event.cf/System	1.1"
+#ident	"$Header: $"
+$version 1
+event	Y	16	0	0	0	0	0	0	0	-1

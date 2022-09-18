@@ -1,0 +1,185 @@
+#ident	"@(#)messages:uxaudit/msgs	1.1.1.3"
+#ident  "$Header: msgs 1.1 91/06/28 $"
+/*	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.	*/
+/*	Copyright (c) 1984, 1985, 1986, 1987, 1988, 1989, 1990 AT&T	*/
+/*	  All Rights Reserved  	*/
+
+/*	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF     	*/
+/*	UNIX System Laboratories, Inc.                     	*/
+/*	The copyright notice above does not evidence any   	*/
+/*	actual or intended publication of such source code.	*/
+
+usage: auditcnv\n
+file %s does not exist\n
+cannot access file %s\n
+cannot create audit mask file\n
+audit mask file already exists\n
+/etc/security/ia/audit created\n
+unable to stat() %s, errno = %d\n
+a default audit mask of none was set for all users\n
+invalid max_size value specified\n
+max_size value applies only to regular files\n
+invalid high water mark specified\n
+\"-%s\" option not allowed while auditing enabled\n
+cannot open/access path or device %s\n
+\"%s\" is not an executable file\n
+usage: auditlog [-P path][-p node][-v high_water][-x max_size]\n
+\t\t\t\t[-s|-d|[[-A next_path][-a next_node][-n pgm]]]\n
+Permission denied\n
+argvtostr() failed\n
+unable to allocate space\n
+auditctl() failed ASTATUS, errno = %d\n
+auditlog() failed ALOGGET, errno = %d\n
+auditbuf() failed ABUFGET, errno = %d\n
+auditlog() failed ALOGSET, errno = %d\n
+auditbuf() failed ABUFSET, errno = %d\n
+Audit Log File Size Must Be >= %d (%d byte)blocks\n
+Audit Buffer High Water Mark Must Be >= 0 or <= %d bytes\n
+event log node must be < %d characters\n
+event log node may not contain a slash\n
+full pathname not specified\n
+pathname component to long\n
+\"%s\" is not a regular file\n
+cannot access %s\n
+check the value of the %s parameter in the /etc/default/audit file\n
+system service not installed\n
+%s() failed, errno = %d\n
+Current Status of Auditing:\t\t\tON \n
+Current Status of Auditing:\t\t\tOFF \n
+Current Event Log In Use:\t\t\t
+Current Audit Buffer High Water Mark:\t\t
+%d bytes\n
+Current Maximum File Size Setting:\t\t
+%d blocks\n
+none\n
+Action To Be Taken Upon Full Event Log:\t\t
+system shutdown
+log switch
+auditing disabled
+Action To Be Taken Upon Error:\t\t\t
+Next Event Log To Be Used:\t\t\t
+Program To Run When Event Log Is Full:\t\t
+usage: auditmap [-m dirname]\n
+Unable to create the auditmap file\n
+Invalid full path or pathname %s specified\n
+%s is not writable\n
+auditctl() failed ASTATUS\n
+malloc() failed\n
+%s file busy\n
+fcntl() failed\n
+\"%s\" not written to audit map file \"%s\"\n
+stat() failed\n
+Auditing disabled\n
+Auditing already disabled\n
+auditctl() failed AUDITOFF, errno = %d\n
+usage: auditoff\n
+usage: auditon\n
+cannot access event log
+Auditing already enabled\n
+Auditing enabled %s\n
+the maximum (999) number of audit event log files for a given day exist\n
+exec of %s failed\n
+none or invalid AUDIT_LOGERR=value found in %s\n
+none or invalid AUDIT_LOGFULL=value found in %s\n
+none or invalid AUDIT_DEFPATH=value found in %s\n
+fork() failed\n
+unable to malloc space\n
+Internal error, errno = %d\n
+unable to stat audit log file path \"%s\"\n
+unable to change owner and group of audit log file %s\n
+auditing abnormally terminated %s\n
+usage: auditfltr [[-iN] [-oX]] | [-iX -oN]\n
+conversion type %s is not supported\n
+invalid combination of conversion types\n
+input file is in invalid format\n
+XDR encryption of an audit record field failed\n
+XDR decryption of an audit record field failed\n
+invalid outcome specified \n
+invalid privilege \"%s\" supplied\n
+additional options required\n
+invalid option combination %s, %s\n
+auditing currently disabled, logfile must be specified\n
+start time must be earlier than the end time \n
+event type or class %s does not exist\n
+full pathname must be specified for %s\n
+invalid time format\n
+maximum security level does not dominate minimum security level\n
+invalid object type specified: %s\n
+auditing disabled\n
+cannot open auditmap directory %s\n
+Option requires an argument -- %s\n
+all event log files specified are inaccessible\n
+invalid minimum security level specified\n
+invalid maximum security level specified\n
+bad log record type %d\n
+bad map record type %d\n
+log file's format or byte ordering(%s) is not readable in current architecture\n
+invalid argument given to %s option\n
+too many levels specified\n
+argument list for option %s too long\n
+chmod(2) failed for temporary file, errno = %d\n
+error manipulating file\n
+could not get buffer attributes\n
+could not get current log attributes\n
+could not determine status of auditing\n
+security level specified does not exist in map\n
+machines for log file \"%s\" (%s) and map file (%s) do not match\n
+no match found in event log file(s)\n
+event log file %s does not exist\n
+log file \"%s\" ignored\n
+event log file(s) are not in sequence or missing\n
+user id %d does not exist in audit map \n
+user id %s does not exist in audit map \n
+data in audit buffer will not be immediately displayed\n
+cannot open audit map file %s\n
+the ltdb files are missing or incomplete in the auditmap directory\n
+cannot read and write character special device simultaneously\n
+misformed miscellaneous record\n
+keyword \"%s\" should not be used in conjunction with individual privileges\n
+missing pathname for process P%d\n
+process information for P%d is incomplete\n
+usage:\n
+    auditrpt [-o] [-i] [-b | -w] [-e [!]event[,...]] [-u user[,...]]\n
+             [-f object_id[,...]] [-t object_type[,...]] [-s time]\n
+             [-h time] [-l level | -r levelmin-levelmax] [-a outcome]\n
+             [-m map] [-p all|priv[,...]] [-v subtype] [log [...]]\n
+Command Line Entered: 
+\nDATE: %s%s, 
+LOG NUMBER: %03d, 
+AUDIT VERSION: %s\n
+\nMACHINE ID: %s\n
+invalid options -o, -l, -r\n
+invalid or inactive user \"%s\" specified\n
+invalid or inactive user \"%d\" specified\n
+auditing is not enabled\n
+no current object levels in effect\n
+invalid security level \"%s\" specified\n
+maximum security level does not dominate minimum security level \"%s-%s\"\n
+system defined level limit exceeded, level \"%s\" not set\n
+no object level event type(s) or class(es) in effect\n
+level %s is not currently in effect.\n
+LTDB is inaccessible\n
+lvlin() error, error = %d\n
+lvlout() error, error = %d\n
+auditevt() failed AGETSYS, errno = %d\n
+auditevt() failed ASETSYS, errno = %d\n
+auditevt() failed AGETUSR, errno = %d\n
+auditevt() failed ASETUSR, errno = %d\n
+auditevt() failed ACNTLVL, errno = %d\n
+auditevt() failed AGETLVL, errno = %d\n
+auditevt() failed ASETLVL, errno = %d\n
+opendir() failed for directory /proc \n
+usage: auditset [-d [-u user[,...] | -a]]\n
+\n auditset [-s [operator]event[,...]] [[-u user[,...]  | -a] -e[operator]event[,...]]\n
+usage: auditset [-d [-u user[,...] | -a] [-m]]\n
+          [-o [operator]event[,...]] [-l [operator]level] [-r [operator]levelmin-levelmax]\n
+\nUser Audit Criteria:  Auditing not enabled\n
+\nUser Audit Criteria:\n
+\tUNKNOWN:\t
+ none 
+ all 
+\nObject Level Audit Criteria: 
+System Audit Criteria:\n\tsystem:
+%s is not readable\n
+unable to rename file %s to %s\n
+Current Event Log:\t\t\t\t

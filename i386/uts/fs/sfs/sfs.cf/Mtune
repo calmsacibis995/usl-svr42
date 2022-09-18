@@ -1,0 +1,5 @@
+#ident	"@(#)uts-x86:fs/sfs/sfs.cf/Mtune	1.2"
+#ident	"$Header: $"
+* SFS Parameters ------------------------
+SFSNINODE	300	100	1300
+NDQUOT		200	100	400

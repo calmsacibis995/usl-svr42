@@ -1,0 +1,2 @@
+#ident	"@(#)bkrs:common/cmd/bkrs/rsstatus.d/table	1.1"
+#ENTRY FORMAT=jobid:type:object:fdate:target:refsname:redev:muid:uid:method:moption:dgroup:ddevice:dlabel:tlabel:dchar:archdate:tmstate:tmdate:tmoname:tmodev:tmstimulus:tmsucceeded:status:explanation

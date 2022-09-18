@@ -1,0 +1,15 @@
+#ident	"@(#)pkg.base:i386/pkg/base/protos/sysinst	1.2.7.4"
+#ident "$Header: /sms/sinixV5.4es/rcs/s19-full/usr/src/pkg/core/protos/sysinst,v 1.1 91/02/28 21:29:30 ccs Exp $"
+
+v sysinst /etc/inittab 0444 bin bin
+f sysinst /usr/bin/false 0555 root sys
+l sysinst /usr/bin/iAPX286=/usr/bin/false
+l sysinst /usr/bin/i286=/usr/bin/false
+l sysinst /usr/bin/mc68k=/usr/bin/false
+l sysinst /usr/bin/pdp11=/usr/bin/false
+l sysinst /usr/bin/u370=/usr/bin/false
+l sysinst /usr/bin/u3b=/usr/bin/false
+l sysinst /usr/bin/u3b15=/usr/bin/false
+l sysinst /usr/bin/u3b2=/usr/bin/false
+l sysinst /usr/bin/u3b5=/usr/bin/false
+l sysinst /usr/bin/vax=/usr/bin/false

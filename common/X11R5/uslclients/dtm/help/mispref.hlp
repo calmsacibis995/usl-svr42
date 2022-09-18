@@ -1,0 +1,217 @@
+#ident	"@(#)dtm:help/mispref.hlp	1.10"
+^*version^1
+^*title^Miscellaneous Preferences
+^:Miscellaneous
+^*width^70
+^+DesktopMgr/help.defs
+^?Specifying beep, window layering, etc. preferences.
+^0^Miscellaneous Preferences
+^$10
+Miscellaneous Preferences
+
+Use Miscellaneous Preferences to change the settings for the
+computer's beep, window layering, what happens when you press the
+SELECT mouse button ("click on"), and other miscellaneous properties.
+
+The following window is provided for Miscellaneous Preferences:
+
+        \k(Miscellaneous Preferences Window)
+^1^Miscellaneous Preferences Window
+^$20
+\k{Miscellaneous Preferences}
+1. Miscellaneous Preferences Window
+
+Use the Miscellaneous Preferences window to change the settings for
+these preferences: Beep, Window Layering, SELECT Mouse Press, Help
+Model, Input Area, Mnemonics, and Accelerators.
+
+The first line of the Miscellaneous Preferences window contains a
+CATEGORY button (arrow). This button lets you quickly switch
+Preferences categories (including preferences for Color, Desktop,
+Icons, Keyboard, Locale, Miscellaneous, and Mouse). When you click on
+the arrow, a menu appears with the Preferences categories listed.
+Click on the Preferences category you want or click on Next Page to
+get the next Preferences category in the list.
+
+The buttons available from the Miscellaneous Preferences window are:
+
+        \k(Apply Button^^Apply ButtonMisc)
+        \k(Reset Button^^Reset ButtonMisc)
+        \k(Reset to Factory Button^^Reset to Factory ButtonMisc)
+        \k(Cancel Button^^Cancel ButtonMisc)
+        \k(Help Button^^Help ButtonMisc)
+
+More information: \k(How to change Miscellaneous Preferences)
+^2^How to change Miscellaneous Preferences
+^$30
+1. \k{Miscellaneous Preferences Window}
+   1.1 How to change Miscellaneous Preferences
+
+The following preferences can be changed through the Miscellaneous
+Preferences window:
+
+        \k(Beep)
+        \k(Window Layering)
+        \k(SELECT Mouse Press)
+        \k(Help Model)
+        \k(Input Area)
+        \k(Mnemonics)
+        \k(Accelerators)
+^3^Beep
+^$40
+1. \k{Miscellaneous Preferences Window}
+   1.1 \k{How to change Miscellaneous Preferences}
+       1.1.1 Beep
+
+The Beep setting lets you choose to have your computer beep at you
+Always, for Notices Only, or Never. If you select the Always option,
+your computer beeps at incorrect keystrokes, mouse clicks, and when
+notices (message and error windows) appear. The Never option turns off
+the beep.
+^3^Window Layering
+^$50
+1. \k{Miscellaneous Preferences Window}
+   1.1 \k{How to change Miscellaneous Preferences}
+       1.1.2 Window Layering
+
+The Window Layering setting lets you choose how windows are layered.
+They can be layered either individually or as a group. When windows
+are layered as a group, pop up windows always stay in front of their
+main windows and are moved as a group whenever you move the main
+window.
+^3^SELECT Mouse Press
+^$60
+1. \k{Miscellaneous Preferences Window}
+   1.1 \k{How to change Miscellaneous Preferences}
+       1.1.3 SELECT Mouse Press
+
+The SELECT Mouse Press preference, when you're in OPEN LOOK mode, lets
+you choose between Displays Default and Displays Menu for the action
+that occurs when you click on a button that brings up a menu.
+Normally, when you click on a button that has a pop-up menu, a menu
+pops up. However, if you change the setting to Displays Default,
+clicking on the button causes the default action (usually the first
+item on the menu) to be displayed instead of the menu. To see the menu
+when this preference is set to Displays Default, you must click the
+MENU mouse button. In Motif mode, this setting can only be Displays
+Menu.
+^3^Help Model
+^$70
+1. \k{Miscellaneous Preferences Window}
+   1.1 \k{How to change Miscellaneous Preferences}
+       1.1.4 Help Model
+
+The Help Model setting lets you choose between Input Focus and
+Pointer as the indicator for requesting help with the Help key (nor-
+mally set to function key F1). Normally, the F1 function key gives you
+on-line help on the area of a window under the mouse pointer. If you
+change this preference to Input Focus, the F1 function key displays
+help on the area of the window that has input focus as determined by
+the Input Area setting.
+^3^Input Area
+^$80
+1. \k{Miscellaneous Preferences Window}
+   1.1 \k{How to change Miscellaneous Preferences}
+       1.1.5 Input Area
+
+The Input Area setting determines how something is given input focus.
+You can choose between Click SELECT and Move Pointer. Normally, you
+must click on something in a window (such as a button) to give it
+input focus. If you change this preference to Pointer, the input focus
+moves when you move the mouse pointer.
+^3^Mnemonics
+^$90
+1. \k{Miscellaneous Preferences Window}
+   1.1 \k{How to change Miscellaneous Preferences}
+       1.1.6 Mnemonics
+
+The Mnemonics setting lets you choose how mnemonics are displayed on
+your screen. You can choose Off, On- Underline, On- Highlight, or On-
+Don't Show.
+
+Mnemonics are short-cut keystrokes that cause an action to occur when
+a pop-up menu is visible. For example, notice that the buttons across
+the top of a window each have one letter underlined. The underlined
+letter is the mnemonic. Pressing the Alt key and the underlined letter
+selects that option, as if you had clicked on it.
+
+The options for the Mnemonics preference are:
+
+   o Off: When you change the Mnemonics preference to Off, you cannot
+     use the keyboard to start an action, that is, mnemonics are
+     turned off.
+
+   o On- Underline: This is the normal setting for Mnemonics prefer-
+     ence. One letter of each word is underlined to indicate the
+     mnemonic.
+
+   o On- Highlight: This option displays one letter of each word is
+     displayed in reverse video to indicate the mnemonic.
+
+   o On- Don't Show: With this option, mnemonics still work, but they
+     are not indicated on the screen.
+^3^Accelerators
+^$100
+1. \k{Miscellaneous Preferences Window}
+   1.1 \k{How to change Miscellaneous Preferences}
+       1.1.7 Accelerators
+
+The Accelerators setting lets you choose how accelerators are
+displayed on your screen. You can choose between Off, On- Show, and
+On- Don't Show.
+
+Accelerators are short-cut keystrokes that cause an action to occur
+when a pop-up menu is not visible. Accelerators are similar to mnemon-
+ics except that they work even when the pop-up menu is not visible.
+For example, click on the button that brings up the window menu (above
+the word File in any folder window). Notice that across from each word
+is a keystroke combination. These keystrokes are the accelerators.
+They are active even when this menu is not visible. For instance, you
+can press ALT F9 at any time to minimized the active window to an
+Active Icon on the Desktop.
+^2^Apply Button=Apply ButtonMisc
+^$110
+1. \k{Miscellaneous Preferences Window}
+   1.2 Apply Button
+
+The Apply button saves and applies all changes made in any preferences
+window. If you made any changes, they are immediately applied to all
+Desktop applications, including those currently open. After applying
+the changes, the Miscellaneous Preferences window closes.
+^2^Reset Button=Reset ButtonMisc
+^$120
+1. \k{Miscellaneous Preferences Window}
+   1.3 Reset Button
+
+The Reset button reverses any changes you have not yet applied in the
+Miscellaneous Preferences window. The Miscellaneous Preferences window
+remains open.
+
+Note: The Reset button does not affect the saved values, which are
+changed only when the \k(Apply button^^Apply ButtonMisc) is used.
+^2^Reset to Factory Button=Reset to Factory ButtonMisc
+^$130
+1. \k{Miscellaneous Preferences Window}
+   1.4 Reset to Factory Button
+
+The Reset to Factory button resets all characteristics in the
+Miscellaneous Preferences window to those originally set in the
+software. Use the \k(Apply button^^Apply ButtonMisc) to have the original characteristics
+take effect. The Miscellaneous Preferences window remains open.
+
+Note: The Reset to Factory button does not affect the saved values,
+which are changed only when the Apply button is used.
+^2^Cancel Button=Cancel ButtonMisc
+^$140
+1. \k{Miscellaneous Preferences Window}
+   1.5 Cancel Button
+
+The Cancel button closes the Miscellaneous Preferences window without
+making any changes.
+^2^Help Button=Help ButtonMisc
+^$150
+1. \k{Miscellaneous Preferences Window}
+   1.6 Help Button
+
+The Help Button provides on-line help for the Miscellaneous
+Preferences window.

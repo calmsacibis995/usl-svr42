@@ -1,0 +1,19 @@
+#define lightgrey_format 1
+#define lightgrey_width 8
+#define lightgrey_height 8
+#define lightgrey_ncolors 2
+#define lightgrey_chars_per_pixel 1
+static char * lightgrey_colors[] = {
+" " , "#AAAAAAAAAAAA",
+"." , "#FFFFFFFFFFFF"
+} ;
+static char * lightgrey_pixels[] = {
+" . . . .",
+". . . . ",
+" . . . .",
+". . . . ",
+" . . . .",
+". . . . ",
+" . . . .",
+". . . . "
+} ;

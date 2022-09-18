@@ -1,0 +1,83 @@
+#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+#	Copyright (c) 1988, 1989, 1990 AT&T
+#	  All Rights Reserved
+
+#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+#	UNIX System Laboratories, Inc.
+#	The copyright notice above does not evidence any
+#	actual or intended publication of such source code.
+
+#ident	"@(#)nameserver:xdaemon.rc	1.4"
+
+USAGE="usage: $0 start|stop"
+
+if [ $# -ge 1 ]; then
+  arg=$1
+else
+  echo $USAGE 1>&2
+  exit 2
+fi
+
+if [ ! -d /usr/bin ]; then
+  exit 2
+fi
+
+set `who -r`
+if [ $8 != "0" ]
+then
+  exit 2
+fi
+RELEASE=`uname -r | cut -d. -f1`
+
+if [ "$RELEASE" = "3" ]; then
+   DAEMONPATH=/usr/X/lib/xdaemon
+   DAEMONNAME=xdaemon
+else
+   DAEMONPATH=/usr/X/lib/xntad
+   DAEMONNAME=xntad
+fi
+
+# extract value of NONAMESERVER from /etc/profile if
+# it is present.  Assume value will be 0 or 1.
+NONAMESERVER=1
+noname=`grep "NONAMESERVER=" /etc/profile`
+if [ $? = 0 ]
+then
+	NONAMESERVER=`expr "$noname" : '.*NONAMESERVER=\(.\).*'`
+fi
+export NONAMESERVER
+
+case $arg in
+  start)
+  if [ "$RELEASE" = "3" ] ; then
+    for i in `/bin/find /usr/X/lib/net -type d ! -name net -print`
+    do
+      basename=`basename ${i}`
+      if [ -c "/dev/${basename}" ]; then
+        have_nets=T
+        break
+      fi
+    done
+  else 
+    have_nets=T
+  fi
+
+    if [ "${have_nets}" ]; then
+      $DAEMONPATH &
+    fi
+    ;;
+  stop)
+    grepstring=$DAEMONNAME'[	]*$'
+    daemons=`ps -e | grep "$grepstring" |
+             sed 's/^[ 	]*\([0-9][0-9]*\)[ 	].*/\1/'`
+    if [ "${daemons}" ]; then
+      kill -15 ${daemons} 2>/dev/null
+      sleep 10
+      kill -9 ${daemons} 2>/dev/null
+    fi
+    ;;
+  *)
+    echo $USAGE 1>&2
+    exit 2
+    ;;
+esac

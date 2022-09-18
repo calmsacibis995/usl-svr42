@@ -1,0 +1,108 @@
+display VGA16 StaticColor "VGA STDVGA 640x480 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display EGA StaticColor "EGA STDEGA 640x350 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display VGA16 StaticColor "CIRRUS MULTISYNC 720x540 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display VGA16 StaticColor "CIRRUS MULTISYNC 800x600 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display VGA16 StaticColor "STBVGA MULTISYNC 800x560 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display VGA16 StaticColor "STBVGA MULTISYNC 800x600 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display VGA16 StaticColor "STBVGA MULTISYNC 960x720 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display VGA16 StaticColor "STBVGA INTERLACED 1024x768 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display VGA16 StaticColor "STBVGA MULTISYNC 1024x768 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display VGA16 StaticColor "SIGMA/H MULTISYNC 800x560 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display VGA16 StaticColor "SIGMA/H MULTISYNC 800x600 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display VGA16 StaticColor "QVGA MULTISYNC 800x560 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display VGA16 StaticColor "QVGA MULTISYNC 800x600 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display VGA16 StaticColor "QVGA FIXEDFREQ 1024x768 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display VGA16 StaticColor "MICRO3 MULTISYNC 800x560 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display VGA16 StaticColor "MICRO3 MULTISYNC 800x600 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display VGA16 StaticColor "MICRO3 FIXEDFREQ 1024x768 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display VGA16 StaticColor "HP16 MULTISYNC 800x600 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display VGA16 StaticColor "PVGA1A MULTISYNC 800x600 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display VGA16 StaticColor "VDC600 MULTISYNC 800x600 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display VGA16 StaticColor "DELL MULTISYNC 720x540 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display VGA16 StaticColor "DELL MULTISYNC 800x600 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display VGA16 StaticColor "VRAM STDVGA 640x480 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display VGA16 StaticColor "VRAM MULTISYNC 720x540 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display VGA16 StaticColor "VRAM MULTISYNC 800x600 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display VGA16 StaticColor "VRAMa MULTISYNC 800x600 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display VGA16 StaticColor "VRAM MULTISYNC 1024x768 2 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display VGA16 StaticColor "VRAMa MULTISYNC 1024x768 4 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display VGA16 StaticColor "ORVGA MULTISYNC 800x600 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display VGA16 StaticColor "ORVGA INTERLACED 1024x768 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display VGA16 StaticColor "ORVGA MULTISYNC 1024x768 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display VGA16 StaticColor "ORVGA FIXEDFREQ 800x600 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display VGA16 StaticColor "ORVGA FIXEDFREQ 1024x768 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display VGA16 StaticColor "ORVGA800 MULTISYNC 800x600 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display VGA16 StaticColor "TVGA MULTISYNC 800x560 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display VGA16 StaticColor "TVGA MULTISYNC 800x600 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display VGA16 StaticColor "TVGA INTERLACED 1024x768 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display VGA16 StaticColor "TVGA MULTISYNC 1024x768 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display VGA16 StaticColor "GVGA MULTISYNC 800x600 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display VGA16 StaticColor "GVGA INTERLACED 1024x768 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display VGA16 StaticColor "GVGA MULTISYNC 1024x768 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display EGA StaticColor "PEGA STDEGA 640x480 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display EGA StaticColor "GEGA STDEGA 640x480 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display EGA StaticColor "GEGA STDEGA 800x600 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display EGA StaticColor "VEGA MULTISYNC 720x540 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display EGA StaticColor "VEGA MULTISYNC 800x600 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display VGA16 StaticColor "ATIVGA MULTISYNC 800x600 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display VGA16 StaticColor "ATIVGA4 MULTISYNC 800x600 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display VGA16 StaticColor "ATIVGA5 MULTISYNC 800x600 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display VGA16 StaticColor "ATIVGA+ MULTISYNC 800x600 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display VGA16 StaticColor "FASTWRITE STDVGA 640x480 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display VGA16 StaticColor "FASTWRITE MULTISYNC 720x540 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display VGA16 StaticColor "FASTWRITE MULTISYNC 800x600 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display VGA16 StaticColor "FASTWRITEa MULTISYNC 800x600 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display VGA16 StaticColor "FASTWRITE MULTISYNC 1024x768 2 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display VGA16 StaticColor "FASTWRITEa MULTISYNC 1024x768 4 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display EGA StaticColor "EGAPAN STDEGA 1024x480 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display EGA StaticColor "EGAPAN STDEGA 640x800 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display EGA StaticColor "EGAPAN STDEGA 800x600 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display VGA16 StaticColor "VGAPAN STDVGA 1024x480 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display VGA16 StaticColor "VGAPAN STDVGA 640x800 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display VGA16 StaticColor "VGAPAN STDVGA 800x600 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display EGA StaticColor "PEGAPAN STDEGA 1024x480 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display EGA StaticColor "PEGAPAN STDEGA 640x800 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display EGA StaticColor "PEGAPAN STDEGA 800x600 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display EGA StaticColor "GEGAPAN STDEGA 1024x480 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display EGA StaticColor "GEGAPAN STDEGA 640x800 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display EGA StaticColor "GEGAPAN STDEGA 1024x350 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display VGA16 StaticColor "1024i MULTISYNC 720x540 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display VGA16 StaticColor "1024i MULTISYNC 800x600 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display VGA16 StaticColor "1024i MULTISYNC 1024x768 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display VGA16 StaticColor "1024ia MULTISYNC 1024x768 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display VGA16 StaticColor "PVGA1024 MULTISYNC 800x600 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display VGA16 StaticColor "PVGA1024 MULTISYNC 1024x768 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display VGA16 StaticColor "ET4000 MULTISYNC 800x600 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display VGA16 StaticColor "ET4000a MULTISYNC 800x600 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display VGA16 StaticColor "MICRO4 MULTISYNC 800x600 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display VGA16 StaticColor "MICRO4a MULTISYNC 800x600 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display VGA16 StaticColor "ORIIVGA MULTISYNC 800x600 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display VGA16 StaticColor "ORIIVGAa MULTISYNC 800x600 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display VGA16 StaticColor "STBVGA+ MULTISYNC 800x600 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display VGA16 StaticColor "T89VGA MULTISYNC 800x600 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display VGA16 StaticColor "T89VGAa MULTISYNC 800x600 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display VGA16 StaticColor "T89VGA INTERLACED 1024x768 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display VGA16 StaticColor "T89VGA MULTISYNC 1024x768 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display VGA16 StaticColor "T88VGA MULTISYNC 800x600 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display VGA16 StaticColor "T88VGA MULTISYNC 1024x768 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display VGA16 StaticColor "LEGEND MULTISYNC 800x600 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+#display VGA16 StaticColor "LEGENDa MULTISYNC 800x600 16 9.75x7.32" 0 /dev/console lib/libvga16.so
+
+#
+# NOTE: A valid entry is the first line that does not have a '#' 
+#	sign as the first char is taken as 'THE ENTRY'; So, to use
+#	an entry just comment (#) the lines before the required line.
+#	Try to keep the required entry at the top of the file; this
+# 	saves start up time especially with huge config files. (like this one)
+#
+#	To use your own config file, you can run the server with:
+#
+#		X -config $HOME/mycfg &
+#		OR
+#		olinit -- -config $HOME/mycfg
+#
+# If you want to know the valid entries for the installed init 
+# driver (/lib/libv16i.so.1), make a fake entry in the 2nd field (ex: replace
+# VGA with FOO) and try to run the server; all the valid entries
+# with the supported resolutions are printed on stderr.
+#

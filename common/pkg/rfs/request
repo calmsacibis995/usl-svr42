@@ -1,0 +1,119 @@
+#ident	"@(#)pkg.rfs:common/pkg/rfs/request	1.27"
+#ident	"$Header: $"
+
+#
+#  Main routine
+#  
+
+#
+#  Make sure LANG environment variable is set.  If it's not set
+#  coming in to this request script, then default to the C-locale.
+#
+[ "$LANG" ] || LANG="C"
+export LANG
+
+SCRIPTS=/usr/sbin/pkginst
+. ${SCRIPTS}/updebug
+[ "$UPDEBUG" = YES ] && set -x
+
+MENU_RESP=$1
+[ ! "${MENU_RESP}" ] && {
+	echo No response file given.  Usage: $0 response-file
+	exit 1
+}
+
+############# Begin UPGRADE AND OVERLAY #######################
+
+export PKGINSTALL_TYPE AUTOMERGE INSTALL_MODE
+
+#  set INSTALL_MODE to CUSTOM, if not set
+[ "$INSTALL_MODE" ] || INSTALL_MODE=CUSTOM
+
+PKGINSTALL_TYPE=NEWINSTALL
+#is it upgrade or overlay?
+${SCRIPTS}/chkpkgrel
+PKGVERSION=$?
+case $PKGVERSION in
+	2)	PKGINSTALL_TYPE=OVERLAY	;;
+	4)	PKGINSTALL_TYPE=UPGRADE	;;
+	*)	;;
+esac
+AUTOMERGE=NULL
+
+[ "$PKGINSTALL_TYPE" = NEWINSTALL ] || AUTOMERGE=Yes	
+[ "$PKGINSTALL_TYPE" = OVERLAY ] && REINSTALL=YES	
+export REINSTALL
+
+############# End  UPGRADE AND OVERLAY #######################
+
+DIR=/etc/inst/locale/$LANG/menus/rfs
+
+[ -d ${DIR} ] || mkdir -p ${DIR}
+
+cp ${REQDIR}/rfs/* ${DIR}
+
+#
+#  Set defaults:
+#	If SVR4.2 OAM is installed, default is 'yes' for auto/custom modes.
+#	If OAM is not installed, default is no for custom install mode
+#		and yes for auto install mode.
+#	Otherwise  OAM is not offered
+#
+
+#
+#  Do we have OA&M Package installed?
+#
+${SCRIPTS}/chkpkgrel oam
+USE_OAM=$?
+
+OAM=YES
+
+# offer oam w/ default=No if no oam is installed  in INSTALL_MODE=CUSTOM
+
+[ "${USE_OAM}" = "0" ] && OAM="NO"
+
+# don't offer oam if non SVR4.2 OAM  is installed.
+
+[ "${USE_OAM}" = "1" -o "${USE_OAM}" = "4" ] &&  unset OAM
+
+export OAM  REINSTALL
+
+#
+#  Set up to use menu_colors 
+#
+F=/etc/inst/locale/$LANG/menus/menu_colors.sh
+[ -f $F ] || F=/etc/inst/locale/C/menus/menu_colors.sh
+. $F
+
+[ "$OAM" -o "$PKGINSTALL_TYPE" != NEWINSTALL ] && {
+
+	menu_colors regular
+	menu -f ${DIR}/menu.rfs -o ${MENU_RESP} 2>/dev/null
+
+	. ${MENU_RESP}
+}
+
+unset CLASSES
+
+[ "$REINSTALL" != NO ] && CLASSES="none build"
+
+[ "${OAM}" = "YES" ] && CLASSES=${CLASSES}" OAMadmin"
+
+# if nothing to install, exit w/ code 77 for pkging tools to exit gracefully.
+
+[ "$CLASSES" ] || exit 77
+
+echo CLASSES=\"${CLASSES}\" >> ${MENU_RESP}
+
+############# Begin  UPGRADE AND OVERLAY #######################
+
+echo AUTOMERGE=\"${AUTOMERGE}\" >> ${MENU_RESP}
+echo PKGINSTALL_TYPE=\"${PKGINSTALL_TYPE}\" >> ${MENU_RESP}
+echo INSTALL_MODE=\"${INSTALL_MODE}\" >> ${MENU_RESP}
+echo REINSTALL=\"${REINSTALL}\" >> ${MENU_RESP}
+
+############# End  UPGRADE AND OVERLAY #######################
+
+[ "$UPDEBUG" = YES ] && goany
+
+exit 0

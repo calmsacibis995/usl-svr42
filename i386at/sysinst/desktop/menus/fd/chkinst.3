@@ -1,0 +1,112 @@
+#ident	"@(#)proto:desktop/menus/fd/chkinst.3	1.6"
+#ident	"$Header: $"
+#
+# Menu description file format
+#
+# Lines beginning with '#' are comments
+#
+# format string for page numbering - 1st %d is current pg and 2nd is total pgs
+.pageno
+Page %d of %d
+#
+# string that appears in the upper left corner
+.ul
+UNIX System Installation
+#
+# The banner for the help_within_help screen
+.hhelp_ban
+Instructions
+#
+# The banner for the help screen
+.helpbanner
+Help: Files Detected Warning
+#
+# string that appears in the upper right corner
+.ur
+Files Detected Warning
+#
+# string that appears in the lower left corner
+#.ll
+#THIS SPACE INTENTIONALLY LEFT BLANK.
+#
+# string that appears in the lower right corner
+.lr
+Del=Cancel  F1=Help
+#
+# text for above the menu form (used to be -s strings)
+.top
+WARNING:  Files have been detected in the active partition(s) of your
+hard disk(s).
+
+You have the option of selecting a destructive installation at this
+point.  You should only choose a destructive installation if you don't
+want to save any files in your active partition.
+
+If you elect to attempt a non-destructive installation, your hard disk(s)
+will be checked further to determine if a non-destructive installation
+is possible.
+
+If you are restarting an interrupted installation, you should choose
+non-destructive installation.
+#
+# This is the "options" string for menus.
+.optstring
+Your options are:
+#
+# Delimiter for form - the contents of this section are the same as
+# the contents of a file specified w/-f options, autodetects whether its
+# a form or a menu.
+.form
+Attempt a non-destructive installation.
+Perform a destructive installation.  This will destroy all files.
+#
+# This is the prompt string for a MENU only.
+.selection
+Type '1' or '2' followed by 'ENTER':
+#
+# This is the text for beneath the menu (used to be -i strings)  Now we
+# can include text underneath the menu selection line, because of .selection
+#.bottom
+#THIS SPACE INTENTIONALLY LEFT BLANK.
+#
+# Help text.  This can also be done using I/O redirection; if aline begins
+# with a <, the rest of the line is considered to be a filename and is
+# read in as though it were part of the file.  If the file contains other
+# .keywords, or `backticks` or <redirection, these will not be processed.
+.help
+For detailed instructions, press the 'F1' (or '?') key at any time.
+
+UNIX System files have been detected in the active partition(s) of
+your hard disk(s) - possibly from an earlier version of the UNIX System.
+A destructive installation will destroy all files in the active partition(s)
+of your hard disk(s).  You should only choose a destructive installation
+if the active partition(s) of your hard disk(s) do not contain any
+files that you wish to save.  If you elect to attempt a non-destructive
+installation, your hard disk(s) will be checked further to determine
+if a non-destructive installation is possible.  If a non-destructive
+installation is impossible, you will be given the choice of canceling
+the installation; changing the partition(s) on your hard disk(s); or
+changing the active partition(s) of your hard disk(s).
+
+If you have previously started to install the UNIX System and interrupted
+that installation, you can restart it by choosing to do a non-destructive
+installation.  When you reach the Package Selection screen, you can
+choose to not install the packages that you have already successfully
+installed by setting the install field to "No".
+#
+# This is the instructions (help banner) for the help screens.
+.helpinst
+ESC=Exit help  F1=Instructions  Del=Cancel  1=Forward  2=Backward
+.hhelpinst
+ESC=Exit instructions  Del=Cancel  1=Forward  2=Backward
+#
+# This is the "Working..." flag that flashes on the screen if the -r
+# option is specified on the command line.
+#.working
+#THIS SPACE INTENTIONALLY LEFT BLANK.
+#
+# This is an optional keyword for the end of input
+.working
+Working...
+.end
+

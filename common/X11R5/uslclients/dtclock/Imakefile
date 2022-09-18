@@ -1,0 +1,122 @@
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+/**/#ident	"@(#)dtclock:Imakefile	1.13"
+
+#ifdef Release5
+#include <sv4Lib.tmpl>
+#endif
+
+#define PassCDebugFlags 'CDEBUGFLAGS=$(CDEBUGFLAGS)'
+
+           STAR = *
+      DNDLIBSRC = $(LIBSRC)/DnD
+         DNDLIB = $(DNDLIBSRC)/libDnD.so
+       DTLIBSRC = $(LIBSRC)/Dt
+      DTILIBSRC = $(USLCLIENTSRC)/libDtI
+          DTLIB = $(DTLIBSRC)/libDt.so
+         DTILIB = $(DTILIBSRC)/libDtI.so
+       GIZMOSRC = $(LIBSRC)/Gizmo
+       GIZMOLIB = $(GIZMOSRC)/libGizmo.so
+
+#if defined(SYSV) || defined(SystemV4)
+        HELPDIR = $(USRLIBDIR)/locale/C/help
+#else
+        HELPDIR = $(LIBDIR)/C/help
+#endif
+
+         SHELL1 = cronedit.sh
+         SHELL2 = alarm.sh
+
+          DEBUG = 
+    CDEBUGFLAGS = -O
+
+   SRCS1     = setalarm.c prop.c clock.c crontab.c
+   OBJS1     = setalarm.o prop.o clock.o crontab.o
+   HDRS1     = setalarm.h prop.h clock.h crontab.h
+   PROG1     = dtclock
+
+   SRCS2     = alarm.c crontab.c
+   OBJS2     = alarm.o crontab.o
+   HDRS2     = alarm.h crontab.h
+   PROG2     = dtalarm
+
+#ifdef UNIT_TEST
+   SRCS3     = helptst.c
+   OBJS3     = helptst.o
+   HDRS3     = helptst.h
+   PROG3     = dthelptst
+#else
+   SRCS3     =
+   OBJS3     =
+   HDRS3     =
+   PROG3     =
+#endif
+
+   OBJS      = $(OBJS1) $(OBJS2)
+   SRCS      = $(SRCS1) $(SRCS2)
+   HDRS      = $(HDRS1) $(HDRS2)
+   PROGS     = $(PROG1) $(PROG2)
+
+   OBJS      = $(OBJS1) $(OBJS2) $(OBJS3)
+   SRCS      = $(SRCS1) $(SRCS2) $(SRCS3)
+   HDRS      = $(HDRS1) $(HDRS2) $(HDRS3)
+   PROGS     = $(PROG1) $(PROG2) $(PROG3)
+
+
+/*
+ * FIX: once the imake bug is fixed realign these lines in the right place
+ */
+
+OBJS = $(SRCS:.c=.o)
+HEADERS = $(SRCS:.c=.o)
+
+       INCLUDES = -I$(LIBSRC) -I$(LIBSRC)/Xol \
+                  -I$(DTLIBSRC) \
+                  -I$(DNDLIBSRC) \
+                  -I$(DTILIBSRC) \
+                  -I$(GIZMOSRC)
+LOCAL_LIBRARIES = $(DNDLIB) $(DTLIB) $(DTILIB) $(WSMLIB) $(GIZMOLIB) XolClientLibs
+        DEPLIBS = $(DNDLIB) $(DTLIB) $(DTILIB) $(WSMLIB) $(GIZMOLIB) XolClientDepLibs
+  SYS_LIBRARIES = -lgen
+
+all:: $(PROGS)
+
+NormalProgramTarget($(PROG1),$(OBJS1),$(DEPLIBS),$(LOCAL_LIBRARIES),$(SYS_LIBRARIER))
+NormalProgramTarget($(PROG2),$(OBJS2),$(DEPLIBS),$(LOCAL_LIBRARIES),$(SYS_LIBRARIER))
+#ifdef UNIT_TEST
+NormalProgramTarget($(PROG3),$(OBJS3),$(DEPLIBS),$(LOCAL_LIBRARIES),$(SYS_LIBRARIER))
+#endif
+
+clobber:: clean
+	$(RM) $(PROGS)
+
+/* FIX: remove? InstallAppDefaults(dtclock) */
+
+InstallProgram($(PROG1),$(BINDIR))
+InstallManPage($(PROG1),$(BINDIR))
+
+InstallProgram($(PROG2),$(BINDIR))
+InstallManPage($(PROG2),$(BINDIR))
+
+InstallNonExecFile($(SHELL1),$(BINDIR))
+InstallNonExecFile($(SHELL2),$(BINDIR))
+
+InstallMultiple(bitmaps/$(STAR),$(USRLIBDIR)/bitmaps)
+InstallMultiple(pixmaps/$(STAR),$(USRLIBDIR)/pixmaps)
+InstallMultiple(pixmasks/$(STAR),$(USRLIBDIR)/pixmasks)
+InstallMultipleHelpFiles(help/$(STAR).hlp,$(HELPDIR)/dtclock)
+
+InstallDesktopClient($(BINDIR)/$(PROG1),$(DESKTOPDIR)/Applications/Clock)
+
+CleanTarget()
+
+DependTarget()
+
+LintTarget()

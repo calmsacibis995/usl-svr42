@@ -1,0 +1,118 @@
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+/**/#ident	"@(#)dtedit:Imakefile	1.18"
+
+#ifdef Release5
+#include <sv4Lib.tmpl>
+#endif
+
+#define PassCDebugFlags 'CDEBUGFLAGS=$(CDEBUGFLAGS)'
+
+           STAR = *
+      DNDLIBSRC = $(LIBSRC)/DnD
+         DNDLIB = $(DNDLIBSRC)/libDnD.so
+       DTLIBSRC = $(LIBSRC)/Dt
+      DTILIBSRC = $(USLCLIENTSRC)/libDtI
+          DTLIB = $(DTLIBSRC)/libDt.so
+         DTILIB = $(DTILIBSRC)/libDtI.so
+       GIZMOSRC = $(LIBSRC)/Gizmo
+       GIZMOLIB = $(GIZMOSRC)/libGizmo.so
+
+#if defined(SYSV) || defined(SystemV4)
+        HELPDIR = $(USRLIBDIR)/locale/C/help
+#else
+        HELPDIR = $(LIBDIR)/C/help
+#endif
+
+          DEBUG = 
+    CDEBUGFLAGS = -O
+
+          SRCS1 = \
+		 Margin.c \
+		 editor.c \
+                 menu.c \
+                 file.c \
+                 edit.c \
+                 view.c \
+                 help.c \
+                 prop.c \
+                 find.c \
+                 quit.c
+
+          OBJS1 = \
+		 Margin.o \
+		 editor.o \
+                 menu.o \
+                 file.o \
+                 edit.o \
+                 view.o \
+                 help.o \
+                 prop.o \
+                 find.o \
+                 quit.o
+
+          HDRS1 = \
+		 Margin.h \
+		 editor.h \
+                 menu.h \
+                 file.h \
+                 edit.h \
+                 view.h \
+                 help.h \
+                 prop.h \
+                 find.h \
+                 quit.h
+
+          PROG1 = dtedit
+
+           OBJS = $(OBJS1)
+           SRCS = $(SRCS1)
+           HDRS = $(HDRS1)
+          PROGS = $(PROG1)
+
+       INCLUDES = -I./ -I$(LIBSRC) -I$(LIBSRC)/Xol \
+                  -I$(DTLIBSRC) \
+                  -I$(DNDLIBSRC) \
+                  -I$(DTILIBSRC) \
+                  -I$(GIZMOSRC)
+LOCAL_LIBRARIES = $(DNDLIB) $(DTLIB) $(DTILIB) $(WSMLIB) $(GIZMOLIB) XolClientLibs
+  SYS_LIBRARIES = -lgen
+        DEPLIBS = $(DNDLIB) $(DTLIB) $(DTILIB) $(WSMLIB) $(GIZMOLIB) XolClientDepLibs
+
+all:: $(PROGS)
+
+NormalProgramTarget($(PROG1),$(OBJS1),$(DEPLIBS),$(LOCAL_LIBRARIES),$(SYS_LIBRARIES))
+
+/*
+ * FIX: when the Imake rules are fixed
+ */
+clobber:: clean
+	$(RM) $(PROGS)
+
+all::
+	$(CC) -O -o wrap wrap.c
+
+InstallProgram($(PROG1),$(BINDIR))
+InstallProgram(wrap,$(BINDIR))
+InstallManPage($(PROG1),$(BINDIR))
+
+InstallMultiple(bitmaps/$(STAR),$(USRLIBDIR)/bitmaps)
+InstallMultiple(pixmaps/$(STAR),$(USRLIBDIR)/pixmaps)
+InstallMultiple(pixmasks/$(STAR),$(USRLIBDIR)/pixmasks)
+
+InstallMultipleHelpFiles(help/$(STAR).hlp,$(HELPDIR)/dtedit)
+
+InstallDesktopClient($(BINDIR)/$(PROG1),$(DESKTOPDIR)/Applications/Text_Editor)
+
+CleanTarget()
+
+DependTarget()
+
+LintTarget()

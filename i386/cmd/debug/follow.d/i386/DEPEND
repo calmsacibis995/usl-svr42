@@ -1,0 +1,7 @@
+#ident	"@(#)debugger:follow.d/i386/DEPEND	1.2"
+
+follow.o:	../common/follow.c
+	$(CC_CMD) -c  ../common/follow.c
+
+OBJECTS	=  \
+	follow.o 

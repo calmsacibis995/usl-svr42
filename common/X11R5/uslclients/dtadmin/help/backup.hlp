@@ -1,0 +1,526 @@
+#ident	"@(#)dtadmin:help/backup.hlp	1.12"
+^*version^1
+^*title^Backup-Restore
+^:Backup-Restore
+^*width^70
+^+DesktopMgr/help.defs
+^?Backup-Restore management
+^0^Backup-Restore
+^$10
+Backup-Restore
+
+Use Backup-Restore to back up to and restore files and folders from
+floppy disk, cartridge tapes and other files and folders. When you
+\d(double-click) on the Backup-Restore icon, the Backup window appears.
+You must use the icon menu to display the Restore window.
+
+The following windows are provided for Backup-Restore (note that the
+Task Scheduler window is used for scheduling backups):
+
+        \k(Backup Window)
+
+        \k(Backup: Open Script Window)
+
+        \k(Backup: Save Script Window)
+
+        \k(Restore Window)
+
+        \k(Task Scheduler: Add Task Window^dtsched/sched.hlp^Task Scheduler: Edit Properties Window)
+^1^Backup Window
+^$20
+\k{Backup-Restore}
+1. Backup Window
+
+Use the Backup window to back up \d(files^file) and \d(folders^folder) from your hard
+disk to floppy disk, cartridge tapes and other files and folders.
+Cartridge tapes typically hold 60 to 120 MB of data; high-density
+floppy disks, on the other hand, hold only 1.2 or 1.4 MB of data.
+
+The Backup window lets you choose where to back up to, the type of
+backup, and whether or not you want to save the file list.
+
+   o Backup To: The Backup To line lets you change the media used for
+     the backup. Click on the arrow to display a menu then click on
+     one of the backup media options. You can choose File, Cartridge
+     Tape (if available), Disk A, or Disk B (if available).
+
+     - File: This option lets you create one large archive file
+       containing all the files you want to back up. When you choose
+       File, a Target File text box appears beneath the Backup to
+       line. Enter a file name for the large file you want to create
+       in this text box.  This option is useful when you want to back
+       up files to another system to which you are connected.
+
+     - Cartridge Tape: This option lets you back up to cartridge tape.
+       This option is available only if your computer is equipped with
+       a cartridge tape drive.
+
+     - Disk A: This option is what is shown when the Backup window
+       first appears. Most personal computers are equipped with at
+       least one floppy drive, often designated as drive A (if you
+       have more than one floppy drive, check the user's manual that
+       came with your computer to determine which one is drive A).
+
+     - Disk B: This option is available if your computer has two or
+       more floppy drives (check the user's manual that  came with
+       your computer to determine which floppy drive is drive B).
+
+   o Backup Type: The Backup Type line lets you choose between three
+     types of backup: Complete, Incremental, and Selected Files.
+
+     - Complete: This option backs up all of your files and folders
+       for the Backup Class selected.
+
+     - Incremental: This option backs up only those files that have
+       changed since the last backup you performed for the Backup
+       Class selected. By using the Incremental option, you save time
+       and floppy disk or tape space.
+
+     - Selected Files: This option lets you choose specific file to
+       back up within the Backup Class selected. After clicking on
+       Selected Files, open the folder containing the files or folders
+       you want to back up. \d(Drag-and-drop^drag-and-drop) the desired icons into the
+       box at the bottom of the window.
+
+   o Backup Class: The Backup Class line lets you choose between three
+     classes of files to back up: Full System, Personal, and Other
+     Users.
+
+     - Full System: The option backs up all of the files and folders
+       on your system.
+
+     - Personal: This option backs up just your files and folders.
+
+     - Other Users: This option enables you to select another users's
+       files and folders to backup. When you click on Other Users, the
+       Backup: User List window appears. Click on the user name for
+       the files and folders you want to backup. To cancel your
+       request for selecting a user's files and folders, click on
+       Cancel. For on-line help on the Backup: User List window, click
+       on help.
+
+   o Save File List: The Save File List option lets you choose to save
+     a list of every file being backed up (a backup log). If you
+     specify folders to be backed up, the list includes the names of
+     the files inside the folders, not just the names of the folders.
+     Use the backup log to check whether or not certain files were
+     backed up on a given date.
+
+     If you're performing a backup for the Personal Backup Class, the
+     file list is saved in a file called backuplog, located in your
+     Desktop window. For the Full System and Other Users Backup
+     Classes, the backuplog file is located in the /etc folder.
+
+The buttons available from the Backup window are:
+
+        \k(File Button^^File ButtonBW)
+        \k(Backup Button^^Backup ButtonBW)
+        \k(Help Button^^Help ButtonBW)
+^2^File Button=File ButtonBW
+^$30
+1. \k{Backup Window}
+   1.1 File Button
+
+Use the File button to open and save files that contain a description
+of the backup options you choose; also use the File button to exit
+from the Backup window. Clicking on the File button displays a menu
+with the following options:
+
+        \k(Open^^OpenBW)
+        \k(Save^^SaveBW)
+        \k(Save As^^Save AsBW)
+        \k(Exit^^ExitBW)
+^3^Open=OpenBW
+^$40
+1. \k{Backup Window}
+   1.1 \k{File Button^^File ButtonBW}
+       1.1.1 Open
+
+The Open menu option lets you open a file that contains the options
+used in a previous back up. Clicking on the Open menu option brings
+up the Backup: Open Script window.
+
+More information: \k(Backup: Open Script Window)
+^3^Save=SaveBW
+^$50
+1. \k{Backup Window}
+   1.1 \k{File Button^^File ButtonBW}
+       1.1.2 Save
+
+The Save menu option lets you save a log of the current backup
+specification. If the current backup specification doesn't already
+have a file name, the Backup: Save Script window appears.
+
+More information: \k(Backup: Save Script Window)
+^3^Save As=Save AsBW
+^$60
+1. \k{Backup Window}
+   1.1 \k{File Button^^File ButtonBW}
+       1.1.3 Save As
+
+The Save As menu option is similar to the Save menu option except that
+you specify the name of the file to which you want to save your backup
+options. Clicking on the Save As menu option displays the Backup:
+Save Script window.
+
+More information: \k(Backup: Save Script Window)
+^3^Exit=ExitBW
+^$70
+1. \k{Backup Window}
+   1.1 \k{File Button^^File ButtonBW}
+       1.1.4 Exit
+
+The Exit menu option closes the Backup window.
+^2^Backup Button=Backup ButtonBW
+^$80
+1. \k{Backup Window}
+   1.2 Backup Button
+
+The Backup button gives you a choice of starting the backup immedi-
+ately or scheduling it for a later time.
+
+Note: Before a backup begins, the floppy disk is checked to see
+whether it is opened as a folder or contains data. If the floppy disk
+is opened as a folder, a notice appears indicating that you must close
+all windows accessing files on the floppy disk and that you must close
+the floppy disk folder. Click on the notice's Exit button to close the
+notice. If the floppy disk contains data, a notice appears with 2
+buttons: Overwrite and Exit. Click on the Overwrite button to
+overwrite (and destroy) the data on the floppy or click on the Exit
+button to cancel the backup request.
+
+Clicking on the Backup button displays a menu with the following
+options:
+
+        \k(Immediate^^ImmediateBW)
+        \k(Schedule^^ScheduleBW)
+        \k(Exclude^^ExcludeBW)
+^3^Immediate=ImmediateBW
+^$90
+1. \k{Backup Window}
+   1.2 \k{Backup Button^^Backup ButtonBW}
+       1.2.1 Immediate
+
+The Immediate menu option begins the backup process immediately. The
+selected files are copied to the floppy disk or cartridge tape, as
+indicated on the Backup To line in the Backup window.
+^3^Schedule=ScheduleBW
+^$100
+1. \k{Backup Window}
+   1.2 \k{Backup Button^^Backup ButtonBW}
+       1.2.2 Schedule
+
+The Schedule menu option allows you to set the time for doing an
+automatic, unattended backup. Clicking on the Schedule menu option
+displays the Task Scheduler: Add Task window with the task name
+filled in. This window is identical to the Task Scheduler: Edit
+Properties window.
+
+More information: \k(Task Scheduler: Add Task Window^dtsched/sched.hlp^Task Scheduler: Edit Properties Window)
+^3^Exclude=ExcludeBW
+^$110
+1. \k{Backup Window}
+   1.2 \k{Backup Button^^Backup ButtonBW}
+       1.2.3 Exclude
+
+The Exclude menu option lets you remove file or folder icons from the
+Backup window. Use this option when you drag-and-drop a file or folder
+to this window and then change your mind about backing it up. The
+Exclude menu option can only be used when the backup type is Selected
+Files. The option is inactive (dimmed) if another backup type is
+selected, or the backup type is Selected Files but no file or folder
+icon is selected.
+^2^Help Button=Help ButtonBW
+^$120
+1. \k{Backup Window}
+   1.3 Help Button
+
+The Help button provides on-line help for Backup. Clicking on the Help
+button displays a menu with the following options:
+
+        \k(Backup-Restore^^Backup-RestoreBW)
+        \k(Table of Contents^^Table of ContentsBW)
+        \k(Help Desk^^Help DeskBW)
+^3^Backup-Restore=Backup-RestoreBW
+^$130
+1. \k{Backup Window}
+   1.3 \k{Help Button^^Help ButtonBW}
+       1.3.1 Backup-Restore
+
+The Backup-Restore menu option provides on-line help for the Backup-
+Restore window.
+^3^Table of Contents=Table of ContentsBW
+^$140
+1. \k{Backup Window}
+   1.3 \k{Help Button^^Help ButtonBW}
+       1.3.2 Table of Contents
+
+The Table of Contents menu option displays the list of help topics
+available for the Backup-Restore window.
+^3^Help Desk=Help DeskBW
+^$150
+1. \k{Backup Window}
+   1.3 \k{Help Button^^Help ButtonBW}
+       1.3.3 Help Desk
+
+The Help Desk menu option opens the Help Desk window. From there, you
+can click on the icon for which you want on-line help.
+^1^Backup: Open Script Window
+^$160
+\k{Backup-Restore}
+2. Backup: Open Script Window
+
+Use the Backup: Open Script window to open a file containing a
+previously saved backup specification. Backup specifications include a
+list of files saved from a previous backup as well as the options you
+chose for that backup.
+
+The current \d(path) is shown at the top of the window. Below that is
+the File text box, where you can enter a file name. If you don't see
+the file you want, select a folder from the list in the Folder(s) box
+(as you do so, the path at the top of the window changes) and then
+select a file from the File(s) box. Use the scrollbars (if present)
+to view additional files and folders.
+
+The buttons available from the Backup: Open Script window are:
+
+        \k(Open Button^^Open ButtonOF)
+        \k(Cancel Button^^Cancel ButtonOF)
+        \k(Help Button^^Help ButtonOF)
+^2^Open Button=Open ButtonOF
+^$170
+2. \k{Backup: Open Script Window}
+   2.1 Open Button
+
+The Open button opens the selected file and displays the backup
+specification it contains. The Backup: Open Script window closes.
+^2^Cancel Button=Cancel ButtonOF
+^$180
+2. \k{Backup: Open Script Window}
+   2.2 Cancel Button
+
+The Cancel button closes the Backup: Open Script window without open-
+ing any files.
+^2^Help Button=Help ButtonOF
+^$190
+2. \k{Backup: Open Script Window}
+   2.3 Help Button
+
+The Help button provides on-line help for the Backup: Open Script
+window.
+^1^Backup: Save Script Window
+^$200
+\k{Backup-Restore}
+3. Backup: Save Script Window
+
+Use the Backup: Save Script window to save a backup specification so
+that you can use it to back up the same files, with the same options,
+in the future. If the list has already been saved, you can save it to
+its current name, or you can choose a new name for the file.
+
+The current \d(path) is shown at the top of the window. Below that is
+the File text box, where you can enter a file name. Alternatively, you
+can select a folder from the list in the Folder(s) box (as you do so,
+the path at the top of the window changes) and then select a file from
+the list in the File(s) text box. Use the scrollbar (if present) to
+view additional files and folders.
+
+The buttons available from the Backup: Save Script window are:
+
+        \k(Save Button^^Save ButtonSF)
+        \k(Cancel Button^^Cancel ButtonSF)
+        \k(Help Button^^Help ButtonSF)
+^2^Save Button=Save ButtonSF
+^$210
+3. \k{Backup: Save Script Window}
+   3.1 Save Button
+
+The Save button saves the backup specification to the file name
+selected in the File(s) box or entered in the File text box.
+
+^2^Cancel Button=Cancel ButtonSF
+^$220
+3. \k{Backup: Save Script Window}
+   3.2 Cancel Button
+
+The Cancel button closes the Backup: Save Script window.
+^2^Help Button=Help ButtonSF
+^$230
+3. \k{Backup: Save Script Window}
+   3.3 Help Button
+
+The Help button provides on-line help for the Backup: Save Script
+window.
+^1^Restore Window
+^$240
+\k{Backup-Restore}
+4. Restore Window
+
+Use the Restore window to copy \d(files^file) and \d(folders^folder) from floppy disks or
+cartridge tapes back to your hard disk.
+
+The Restore window lets you choose specific files to restore, where
+to restore them from, and whether to overwrite files if they exist.
+
+   o Restore From: This line lets you select the media used for the
+     restore. Click on the arrow to view a menu with restore media
+     options. You can choose File, Cartridge Tape (if available),
+     Disk A, or Disk B (if available).
+
+     - File: This option lets you restore files from one large backup
+       archive file created with the Backup window. When you choose
+       File, a Target File text box appears. Enter the name of the
+       desired backup archive file in this text box.
+
+     - Cartridge Tape: This option lets you restore from cartridge
+       tape. This option is available only if your computer is
+       equipped with a cartridge tape drive.
+
+     - Disk A: This option is what is shown when the Restore window
+       first appears. Most personal computers are equipped with at
+       least one floppy drive, often designated as drive A (if you
+       have more than one floppy drive, check the user's manual that
+       came with your computer to determine which one is drive A).
+
+     - Disk B: This option is available if your computer has two floppy
+       drives (check the user's manual that  came with your computer
+       to determine which floppy drive is drive B).
+
+   o Overwrite files if they exist: This line lets you choose whether
+     you want to overwrite files on your hard disk with files of the
+     same name from the restore. To allow overwriting, click on the
+     box on this line.
+
+   o Files: The box at the bottom of the Restore window displays the
+     files to be restored when you click on the \k(Show Files^^Show FilesRW) menu option
+     (under the \k(Actions button^^Actions ButtonRW).
+
+     When the list of files to restore is displayed, all files are
+     automatically selected. You can click on specific files to
+     unselect them so they are not restored. Use the scrollbar (if
+     present) to view addition files.
+
+     Note: When there are too many files and folders to conveniently
+     scroll through, the files and folders are divided into groups and
+     two additional buttons appear in the Restore window: Prev Group
+     and Next Group. Use these buttons to display the previous and
+     next group of files.
+
+The Restore window appears when you click MENU on the Backup-Restore
+icon and then click on the Restore menu item on the the Backup-Restore
+icon menu.
+
+The buttons available from the Restore window are:
+
+        \k(Actions Button^^Actions ButtonRW)
+        \k(Edit Button^^Edit ButtonRW)
+        \k(Help Button^^Help ButtonRW)
+^2^Actions Button=Actions ButtonRW
+^$250
+4. \k{Restore Window}
+   4.1 Actions Button
+
+The Actions button lets you begin a restore, display files on a floppy
+disk or cartridge tape, and exit from the Restore window. Clicking on
+the Actions button displays a menu with the following options:
+
+        \k(Restore^^RestoreRW)
+        \k(Show Files^^Show FilesRW)
+        \k(Exit^^ExitRW)
+^3^Restore=RestoreRW
+^$260
+4. \k{Restore Window}
+   4.1 \k{Actions Button^^Actions ButtonRW}
+       4.1.1 Restore
+
+The Restore menu option copies the files from the floppy disk or
+cartridge tape to your hard disk. If you selected specific files to
+restore, only those files are copied. Otherwise, all the files on the
+disk or tape are copied.
+^3^Show Files=Show FilesRW
+^$270
+4. \k{Restore Window}
+   4.1 \k{Actions Button^^Actions ButtonRW}
+       4.1.2 Show Files
+
+The Show Files menu option displays in the box at the bottom of the
+Restore window the files on the floppy disk, cartridge tape or archive
+file. Every file displayed is selected (highlighted) indicating that
+they are all going to be restored. Click on individual files to
+unselect them if you don't want all the files restored.
+^3^Exit=ExitRW
+^$280
+4. \k{Restore Window}
+   4.1 \k{Actions Button^^Actions ButtonRW}
+       4.1.3 Exit
+
+The Exit menu option closes the Restore window.
+^2^Edit Button=Edit ButtonRW
+^$290
+4. \k{Restore Window}
+   4.2 Edit Button
+
+The Edit button lets you select or unselect all files from the floppy
+disk or cartridge tape to restore. When you click on the \k(Show Files^^Show FilesRW)
+menu option under the Actions button, all files are selected to be
+restored. If you want only a few files restored, click on the
+\k(Unselect All^^Unselect AllRW) menu option and then click on the specific files you want
+restored.
+
+Clicking on the Edit button displays a menu with the following
+options:
+
+        \k(Select All^^Select AllRW)
+        \k(Unselect All^^Unselect AllRW)
+^3^Select All=Select AllRW
+^$300
+4. \k{Restore Window}
+   4.2 \k{Edit Button^^Edit ButtonRW}
+       4.2.1 Select All
+
+The Select All menu option selects all files on the floppy disk or
+cartridge tape to be copied to the hard disk.
+^3^Unselect All=Unselect AllRW
+^$310
+4. \k{Restore Window}
+   4.2 \k{Edit Button^^Edit ButtonRW}
+       4.2.2 Unselect All
+
+The Unselect All menu option unselects all the files previously
+selected to be copied from the floppy disk or cartridge tape to the
+hard disk.
+^2^Help Button=Help ButtonRW
+^$320
+4. \k{Restore Window}
+   4.3 Help Button
+
+The Help button provides on-line help for the Restore window. Clicking
+on the Help button displays a menu with the following options:
+
+        \k(Backup-Restore^^Backup-RestoreRW)
+        \k(Table of Contents^^Table of ContentsRW)
+        \k(Help Desk^^Help DeskRW)
+^3^Backup-Restore=Backup-RestoreRW
+^$330
+4. \k{Restore Window}
+   4.3 \k{Help Button^^Help ButtonRW}
+       4.3.1 Backup-Restore
+
+The Backup-Restore menu option provides on-line help for the Backup-
+Restore window.
+^3^Table of Contents=Table of ContentsRW
+^$340
+4. \k{Restore Window}
+   4.3 \k{Help Button^^Help ButtonRW}
+       4.3.2 Table of Contents
+
+The Table of Contents menu option displays the list of help topics
+available for Backup-Restore.
+^3^Help Desk=Help DeskRW
+^$350
+4. \k{Restore Window}
+   4.3 \k{Help Button^^Help ButtonRW}
+       4.3.3 Help Desk
+
+The Help Desk menu option opens the Help Desk window. From there, you
+can click on the icon for which you want on-line help.

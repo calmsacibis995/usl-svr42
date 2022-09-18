@@ -1,0 +1,10 @@
+#ident	"@(#)pkg.bsdcompat:pkginfo	1.1.8.7"
+#ident	"$Header: $"
+
+PKG="bsdcompat"
+VERSION="1"
+NAME="BSD Compatibility"
+CATEGORY="system"
+CLASSES="none"
+PREDEPEND=bsdcompat
+VENDOR="UNIX System Laboratories"

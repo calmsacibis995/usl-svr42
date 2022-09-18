@@ -1,0 +1,37 @@
+.\"ident	"@(#)r5muncher:muncher.man	1.1"
+.TH MUNCHER 1 "Release 4" "X Version 11"
+.SH NAME
+muncher \- draw interesting patterns in an X window
+.SH SYNOPSIS
+.B muncher
+[-option ...]
+.SH OPTIONS
+.TP 8
+.B \-r
+display in the root window
+.TP 8
+.B \-s \fIseed\fB
+seed the random number seed
+.TP 8
+.B \-v
+run in verbose mode
+.TP 8
+.B \-q
+run in quite mode
+.TP 8
+.B \-geometry \fIgeometry\fB
+define the initial window geometry; see \fIX(1)\fP.
+.TP 8
+.B \-display \fIdisplay\fB
+specify the display to use; see \fIX(1)\fP.
+.SH DESCRIPTION
+.I Muncher
+draws some interesting patterns in a window.
+.SH "SEE ALSO"
+X(1)
+.SH BUGS
+There are no known bugs.  There are lots of lacking features.
+.SH COPYRIGHT
+Copyright 1988, Massachusetts Institute of Technology.
+.br
+See \fIX(1)\fP for a full statement of rights and permissions.

@@ -1,0 +1,9 @@
+#ident  "@(#)set:common/set/graphics/setinfo	1.7"
+#ident  "$Header: $"
+
+# Format for the setinfo file.  	Field separator is: <tab>
+# pkg   parts   default category	pkg full-name
+# abbr          y/n
+
+dtclients	2	y	graphics	Applications and Demos
+dtxtfonts	10	y	graphics	XWIN GWS Fonts

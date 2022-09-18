@@ -1,0 +1,86 @@
+/**/#ident	"@(#)dtadmin:dialup/Imakefile	1.37"
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+
+#define PassCDebugFlags 'CDEBUGFLAGS=$(CDEBUGFLAGS)'
+
+         PROG1 = DialupMgr
+         SRCS1 =main.c init.c list.c property.c file.c find.c items.c \
+		device.c getdevice.c warning.c iproperty.c container.c \
+		spool.c control.c modem.c port.c speed.c caption.c update.c \
+		utils.c edit.c footer.c view.c buttons.c dial.c \
+		install.c message.c help.c
+OBJS1 = $(SRCS1:.c=.o)
+
+         PROG2 = dtmsg
+         SRCS2 = dtmessage.c readfile.c
+OBJS2 = $(SRCS2:.c=.o)
+
+         PROG3 = nview
+         SRCS3 = nview.c parse.c utils.c help.c
+OBJS3 = $(SRCS3:.c=.o)
+
+         PROG4 = dtcopy
+         SRCS4 = dtcopy.c parse.c utils.c message.c help.c
+OBJS4 = $(SRCS4:.c=.o)
+
+         PROG5 = dtcall
+         SRCS5 = dtcall.c parse.c utils.c message.c help.c
+OBJS5 = $(SRCS5:.c=.o)
+
+SHELL1 = addttymon
+SHELL2 = delttymon
+
+   DTCLIENTSLIB = $(USLCLIENTSRC)/libDtI
+       DTLIBSRC = $(LIBSRC)/Dt
+      DTILIBSRC = $(DTCLIENTSLIB)
+     DTAMLIBSRC = ../dtamlib
+        DTAMLIB = $(DTAMLIBSRC)/libdtam.a
+         DTILIB = $(DTILIBSRC)/libDtI.so
+          DTLIB = $(DTLIBSRC)/libDt.so
+
+       INCLUDES = -I$(LIBSRC) -I$(XOLLIBSRC) -I$(DTILIBSRC) -I$(USLCLIENTSRC) -I$(LIBSRC)/Gizmo
+LOCAL_LIBRARIES = $(DTAMLIB) $(DTILIB) $(DTLIB) $(LIBSRC)/Gizmo/libGizmo.so XolClientLibs
+        DEPLIBS = $(DTAMLIB) $(DTILIB) $(DTLIB) $(LIBSRC)/Gizmo/libGizmo.so XolClientDepLibs
+  SYS_LIBRARIES = -lgen -lm
+
+       DEPLIBS1 = $(DEPLIBS)
+       DEPLIBS2 = $(DEPLIBS)
+       DEPLIBS3 = $(DEPLIBS)
+       DEPLIBS4 = $(DEPLIBS)
+       DEPLIBS5 = $(DEPLIBS)
+       OBJS     = $(OBJS1) $(OBJS2) $(OBJS3) $(OBJS4) $(OBJS5)
+       SRCS     = $(SRCS1) $(SRCS2) $(SRCS3) $(SRCS4) $(SRCS5)
+       PROGRAMS = $(PROG1) $(PROG2) $(PROG3) $(PROG4) $(PROG5)
+
+all:: $(PROGRAMS)
+
+NormalProgramTarget($(PROG1),$(OBJS1),$(DEPLIBS1),$(LOCAL_LIBRARIES),$(SYS_LIBRARIES))
+NormalProgramTarget($(PROG2),$(OBJS2),$(DEPLIBS2),$(LOCAL_LIBRARIES),$(SYS_LIBRARIES))
+NormalProgramTarget($(PROG3),$(OBJS3),$(DEPLIBS3),$(LOCAL_LIBRARIES),$(SYS_LIBRARIES))
+NormalProgramTarget($(PROG4),$(OBJS4),$(DEPLIBS4),$(LOCAL_LIBRARIES),$(SYS_LIBRARIES))
+NormalProgramTarget($(PROG5),$(OBJS5),$(DEPLIBS5),$(LOCAL_LIBRARIES),$(SYS_LIBRARIES))
+
+InstallProgram($(PROG1),$(BINDIR))
+InstallProgram($(PROG2),$(DESKTOPDIR)/rft)
+InstallProgram($(PROG3),$(DESKTOPDIR)/rft)
+InstallProgram($(PROG4),$(DESKTOPDIR)/rft)
+InstallProgram($(PROG5),$(DESKTOPDIR)/rft)
+InstallNonExecFile($(SHELL1),$(DTADMDIR))
+InstallNonExecFile($(SHELL2),$(DTADMDIR))
+InstallDesktopClient($(BINDIR)/$(PROG1),$(DESKTOPDIR)/System_Setup/Dialup_Setup)
+
+InstallMultiple(Modems,$(DESKTOPDIR)/DialupMgr)
+
+CleanTarget()
+
+DependTarget()
+
+LintTarget()

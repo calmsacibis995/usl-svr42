@@ -1,0 +1,45 @@
+#ident "@(#)proto:desktop/menus/hd/kdb.obsol	1.8"
+#ident "$Header: $"
+.pageno
+Page %d of %d
+.ul
+UNIX System Foundation Set Installation
+.hhelp_ban
+Instructions
+.helpbanner
+Help: Incompatible Packages
+.ur
+Incompatible Packages
+.ll
+.lr
+F1=Help
+.top
+WARNING: In order to successfully install your UNIX System, the following
+packages have been removed from your computer:
+
+< /tmp/kdb.obs
+
+These packages were removed because these versions will not work with the
+new UNIX System.  You must install versions of these packages that are
+compatible with your new UNIX System.
+.form
+ENTER
+.selection
+Press 'ENTER' to continue.
+.help
+For detailed instructions, press the 'F1' (or '?') key at any time.
+
+Some applications or packages contain components that will only work with
+certain versions of the UNIX System.  Your computer has packages installed
+that will not work correctly with the UNIX SVR4.2 System that you are
+installing.  In order for the installation process to run successfully,
+these packages are being removed from your computer.  You will need to
+install new versions of these packages in order to use the applications
+they provide.
+.helpinst
+ESC=Exit help  F1=Instructions  1=Forward  2=Backward
+.hhelpinst
+ESC=Exit instructions  1=Forward  2=Backward
+.working
+Working...
+.end

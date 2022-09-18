@@ -1,0 +1,9 @@
+#ident	"@(#)initpkg:common/cmd/initpkg/init.d/uucp	1.2.6.2"
+#ident "$Header: /sms/sinixV5.4es/rcs/s19-full/usr/src/cmd/initpkg/init.d/uucp,v 1.1 91/02/28 17:37:20 ccs Exp $"
+#	Clean-up uucp locks, status, and temporary files
+
+set `/sbin/who -r`
+if [ "$9" = "S" -o "$9" = "1" ]
+then
+	/usr/bin/rm -rf /usr/spool/locks/*
+fi

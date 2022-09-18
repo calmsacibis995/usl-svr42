@@ -1,0 +1,20 @@
+#ident	"@(#)libnsl:common/lib/libnsl/cs/csmsgs	1.1.3.1"
+#ident "$Header: /sms/sinixV5.4es/rcs/s19-full/usr/src/lib/libnsl/cs/csmsgs,v 1.1 91/02/28 20:50:34 ccs Exp $"
+cs_connect(): No Error
+cs_connect(): System Error
+cs_connect(): No Memory
+cs_connect(): Authentication scheme specified by server is not acceptable
+cs_connect(): Connection to service failed
+cs_connect(): Error in invoking authentication scheme
+cs_connect(): Authentication scheme unsuccessful
+cs_connect(): Could not obtain address of service over any transport
+cs_connect(): Could not create CS pipe
+cs_connect(): Could not mount remote stream to CS pipe
+cs_connect(): Could not push CONNLD
+cs_connect(): Could not fork CS child request
+cs_connect(): Could not chdir
+cs_connect(): Network configuration database not set up correctly
+cs_connect(): TLI failure: t_open failed
+cs_connect(): TLI failure: t_bind failed
+cs_connect(): TLI failure: t_connect failed
+cs_connect(): TLI failure: t_alloc failed

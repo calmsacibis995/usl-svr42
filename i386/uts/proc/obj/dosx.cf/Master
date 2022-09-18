@@ -1,0 +1,7 @@
+#ident	"@(#)uts-x86:proc/obj/dosx.cf/Master	1.1"
+#ident	"$Header: $"
+$version 1
+
+$entry exec core
+
+dosx	dosx_	eo	5	0	0

@@ -1,0 +1,208 @@
+#ident	"@(#)pkg.cmds:i386/pkg/cmds/postinstall	1.19"
+#ident	"$Header: $"
+
+do_install(){
+	ERR=/tmp/${1}.err
+	IDCOMPS="Driver.o Master System Space.c Stubs.c Mtune Node"
+
+	${CONFBIN}/idcheck -p ${1} > ${ERR} 2>&1
+	RET=$?
+	if [ ${RET} = 0 ] || [ ${RET} = 8 ]
+	then
+		${CONFBIN}/idinstall -P ${PKGINST} -a ${1} > ${ERR} 2>&1
+		RET=$?
+	else
+		${CONFBIN}/idinstall -P ${PKGINST} -u ${1} > ${ERR} 2>&1
+		RET=$?
+	fi
+	rm -rf ${IDCOMPS}
+	if [ ${RET} != 0 ]
+	then
+		message "The installation cannot be completed due to \
+an error in the driver installation during the installation of the ${1} \
+module of the ${NAME}.  The file ${ERR} contains the errors."
+		exit ${FAILURE}
+	fi
+	rm -rf ${ERR}
+}
+
+CONFDIR=/etc/conf
+CONFBIN=${CONFDIR}/bin
+FAILURE=1		#exit code if anything goes wrong
+
+installf ${PKGINST} /usr/sbin/labelit=/sbin/mkfs s
+installf ${PKGINST} /sbin/labelit=/usr/sbin/labelit s
+installf ${PKGINST} /etc/labelit=/sbin/labelit s
+
+### Install drivers
+###  Any modules installed in /tmp should be added to
+###  the removef loop below.
+
+for MODULE in sxt prf rt 
+do
+	cd /tmp/${MODULE}
+	do_install ${MODULE}
+done
+
+# rebuild for changes to take effect
+
+TMP=/tmp/cmds.$$
+/etc/conf/bin/idbuild 
+
+##########
+# moved from pkg.lp/postinstall
+
+ETCLP=/etc/lp
+USRSBIN=/usr/sbin
+USRLIB=/usr/lib
+LPADMIN=${USRSBIN}/lpadmin
+LPFILTER=${USRSBIN}/lpfilter
+LPSCHED=${USRLIB}/lp/lpsched
+LPSHUT=${USRSBIN}/lpshut
+ACCEPT=${USRSBIN}/accept
+REJECT=${USRSBIN}/reject
+LPSTAT=${USRBIN}/lpstat
+DUMPOLP=${USRSBIN}/dumpolp
+ENABLE=${USRBIN}/enable
+DISABLE=${USRBIN}/disable
+TMP=/tmp/cmds.err
+
+##########
+#
+# ``Compile'' the filter table entries. This is a tad
+# complicated, because we want to preserve the original
+# filter.table and filter.table.i entries.
+#
+# Note: We do this whether or not we are installing any particular
+# sub-package (e.g. PostScript), so that it gets done in one place.
+# The OAM installation process won't install a class not listed
+# in the $CLASSES variable, so we won't be compiling anything
+# we shouldn't.
+##########
+
+FILTERTABLE=${ETCLP}/filter.table
+FILTERTABLE_I=${ETCLP}/filter.table.i
+FDTMP=${ETCLP}/fd
+FILTERTABLE_TMP=${FDTMP}/filter.table
+
+if ls ${FDTMP}/*.fd >/dev/null 2>&1
+then
+	#####
+	#
+	# The regular filter table:
+	#####
+
+	# first create a list of filter table entries
+	rm -f /tmp/FDLIST
+	for fd in \
+		${FDTMP}/dpost.fd \
+		${FDTMP}/postdaisy.fd \
+		${FDTMP}/postdmd.fd \
+		${FDTMP}/postplot.fd \
+		${FDTMP}/posttek.fd 
+	do
+       		echo "${fd}" >> /tmp/FDLIST
+	done
+
+	while read fd
+	do
+		filter=`expr "${fd}" : '.*/\([^/]*\)\.fd$'`
+		${LPFILTER} -f ${filter} -F ${fd} 2>>${TMP}
+	done < /tmp/FDLIST
+
+	#####
+	#
+	# The ``factory installed'' filter table:
+	#####
+	mv ${FILTERTABLE} ${FILTERTABLE_TMP}
+	mv ${FILTERTABLE_I} ${FILTERTABLE} 2>/dev/null
+
+	while read fd
+	do
+		filter=`expr "${fd}" : '.*/\([^/]*\)\.fd$'`
+		${LPFILTER} -f ${filter} -F ${fd} 2>>${TMP}
+	done < /tmp/FDLIST
+
+	mv ${FILTERTABLE} ${FILTERTABLE_I}
+	mv ${FILTERTABLE_TMP} ${FILTERTABLE}
+
+	removef ${PKGINST} - < /tmp/FDLIST 2>/dev/null
+
+	while read fd
+	do
+		rm -f ${fd}
+	done < /tmp/FDLIST
+fi
+#removef ${PKGINST} ${FDTMP} >/dev/null
+
+
+# If we are installing the PostScript filters, et al, then we need
+# to compile the troff font-width tables.
+##########
+FONTDIR=/usr/lib/font
+DEVPOST=${FONTDIR}/devpost
+CHARLIB=${DEVPOST}/charlib
+MAKEDEV=${FONTDIR}/makedev
+LINKFILE=${DEVPOST}/LINKFILE
+ASCII="DESC ? ??"
+FULLASCII="${DEVPOST}/DESC ${DEVPOST}/? ${DEVPOST}/??"
+
+cd ${DEVPOST}
+
+#
+# Upgrade/Overlay supprt requires we remove the links that were made
+# the first time through here.  Otherwise, we get warnings from the
+# installf and the contents file gets updated incorrectly.
+#
+
+`grep "^rm" ${LINKFILE}`
+
+${MAKEDEV} ${ASCII} >/dev/null 2>&1
+
+(
+	for file in *.out
+        do
+        	echo "${DEVPOST}/${file} f 444 lp lp"
+        done
+        sed -n -e "s;^ln \(.*\) \(.*\);${DEVPOST}/\2=${DEVPOST}/\1 l;p" <${LINKFILE}
+) | installf ${PKGINST} -
+
+#####
+#
+# Remove the font-width-table source, add in the compiled.
+#####
+removef ${PKGINST} ${FULLASCII} >/dev/null
+rm -f ${FULLASCII}
+#####
+#
+# Remove tools no longer needed.
+#####
+removef ${PKGINST} ${MAKEDEV} ${LINKFILE} 2>/dev/null
+rm -f ${MAKEDEV} ${LINKFILE}
+
+
+### Remove temporary modules installed in /tmp
+
+rm -f ${TMP}  > /dev/null 2>&1
+
+rm -f /tmp/MOD_FILES
+for MODULE in sxt prf rt
+do
+	echo "/tmp/${MODULE}/Driver.o\n\
+/tmp/${MODULE}/Space.c\n\
+/tmp/${MODULE}/Stubs.c\n\
+/tmp/${MODULE}/Master\n\
+/tmp/${MODULE}/System\n\
+/tmp/${MODULE}/Mtune\n\
+/tmp/${MODULE}/Node\n\
+/tmp/${MODULE}" >> /tmp/MOD_FILES
+done
+
+removef ${PKGINST} - < /tmp/MOD_FILES 2>/dev/null
+removef -f ${PKGINST} 2>/dev/null
+rm -f /tmp/MOD_FILES
+installf -f ${PKGINST}
+
+errflag=`expr ${errflag:=0} + 10`
+exit ${errflag}
+

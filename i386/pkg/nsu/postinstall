@@ -1,0 +1,636 @@
+#ident	"@(#)pkg.nsu:i386/pkg/nsu/postinstall	1.20.24.26"
+#ident	"$Header: $"
+
+SCRIPTS=/usr/sbin/pkginst
+. ${SCRIPTS}/updebug
+
+[ "$UPDEBUG" = YES ] && {
+	set -x
+	goany
+}
+
+error() {
+	[ "$UPDEBUG" = YES ] && set -x
+	errflag=1
+	case $1 in
+	1)
+		echo ERROR: drvinstall on $2 failed
+		;;
+	2)
+		echo ERROR: could not create $2
+		;;
+	3)
+		echo ERROR: could not create pseudo-terminal slave devices
+		;;
+	4)
+		echo ERROR: copy failed
+		;;
+	5)
+		# message put out elsewhere
+		;;
+	6)
+		echo ERROR: installation error
+		;;
+	7)
+		echo ERROR:  mkboot on KERNEL failed
+		;;
+	*)
+		echo ERROR: undefined error
+		;;
+	esac
+}
+
+# install a module.  $1 is the module name
+
+do_install() {
+	[ "$UPDEBUG" = YES ] && set -x
+	ERR=/tmp/${1}.err
+	IDCOMPS="Driver.o Master System Mfsys Sfsys Rc Node Space.c"
+	if
+		[ -f ${1}.Dr ]
+	then
+		mv ${1}.Dr Driver.o
+	fi
+	if
+		[ -f ${1}.Sp ]
+	then
+		mv ${1}.Sp Space.c
+	fi
+	if
+		[ -f ${1}.Ma ]
+	then
+		grep -v "^[\*#]ident" ${1}.Ma > Master
+		rm -rf ${1}.Ma
+	fi
+	if
+		[ -f ${1}.Sy ]
+	then
+		grep -v "^[\*#]ident" ${1}.Sy |
+			sed "${SEDCMD1}"  > System
+		rm -rf ${1}.Sy
+	fi
+	if
+		[ -f ${1}.Mf ]
+	then
+		grep -v "^[\*#]ident" ${1}.Mf > Mfsys
+		rm -rf ${1}.Mf
+	fi
+	if
+		[ -f ${1}.Sf ]
+	then
+		grep -v "^[\*#]ident" ${1}.Sf |
+			sed "${SEDCMD2}" > Sfsys
+		rm -rf ${1}.Sf
+	fi
+	if
+		[ -f ${1}.No ]
+	then
+		grep -v "^[\*#]ident" ${1}.No > Node
+		rm -rf ${1}.No
+	fi
+	if
+		[ -f ${1}.Rc ]
+	then
+		grep -v "^[\*#]ident" ${1}.Rc > Rc
+		rm -rf ${1}.Rc
+	fi
+	${CONFBIN}/idcheck -p ${1} > ${ERR} 2>&1
+	RET=$?
+	if [ ${RET} = 0 ] || [ ${RET} = 8 ]
+	then
+		${CONFBIN}/idinstall -P ${PKGINST} -a ${1} > ${ERR} 2>&1
+		RET=$?
+	else
+		${CONFBIN}/idinstall -P ${PKGINST} -u ${1} > ${ERR} 2>&1
+		RET=$?
+	fi
+	rm -rf ${IDCOMPS}
+	if [ ${RET} != 0 ]
+	then
+		message "The installation cannot be completed due to \
+an error in the driver installation during the installation of the ${1} \
+module of the ${NAME}.  The file ${ERR} contains the errors."
+			exit ${FAILURE}
+	fi
+	rm -rf ${ERR}
+}
+
+
+# main()
+
+############# Begin UPGRADE AND OVERLAY #######################
+
+# V4 _pmtab is corrupted. line 1 and line 3 both are "# VERSION=4"
+# Get rid of the 3rd line for dbfconv to work for upgrade
+# and get rid of any blank lines also.
+# The correct solution would be for dbfconv to deal with garbage.
+
+remove_3rd_line ()
+{
+	[ "$UPDEBUG" = YES ] && set -x
+#	$1 is oldcopy
+#	$2 is new copy
+
+	echo "# VERSION=4" >$2
+	cat $1 | grep -v "^# VERSION=4$" | grep -v "^[ 	]*$" >> $2
+
+	[ "$UPDEBUG" = YES ] && goany
+}
+
+UPINSTALL=/etc/inst/up
+UPGRADE_STORE=/var/sadm/upgrade
+UPGFILE=$UPGRADE_STORE/${PKGINST}.env
+
+[ "$PKGINSTALL_TYPE" ] || {
+	[ -f $UPGFILE ] && . $UPGFILE
+}
+
+############# End UPGRADE AND OVERLAY #######################
+
+FAILURE=1	# fatal error
+
+CONFDIR=/etc/conf
+CONFBIN=${CONFDIR}/bin
+
+NOTOOLS="ERROR: The Installable Driver feature has been removed. \
+The ${NAME} cannot be installed."
+
+SEDCMD1="s/[	 ]N[	 ]/	Y	/"
+SEDCMD2="s/[	 ]N/	Y/"
+
+cd /var/sadm/pkg/${PKG}/install
+
+errflag=0
+
+
+# determine that ID/TP tools are available
+
+if
+	[ ! -x ${CONFBIN}/idbuild -o ! -x ${CONFBIN}/idinstall \
+		-o ! -x ${CONFBIN}/idcheck ]
+then
+	message ${NOTOOLS}
+	exit $FAILURE
+fi
+
+#
+#	change levels of awk to SYS_PUBLIC so that OA&M works
+#	for nametoaddr (cannot use chlvl)
+#	awk is only a link to oawk so need to actually chlvl of oawk
+
+installf $PKGINST /usr/bin/oawk f \? \? \? 1 \? \?
+
+#
+#	need allprivs on rc2 for network startup (cannot use filepriv)
+
+installf $PKGINST /sbin/rc2 f \? \? \? \? \? allprivs
+
+if pkginfo -i es >/dev/null 2>&1
+then
+	USR_PUTDEV="range=SYS_RANGE_MAX-SYS_RANGE_MIN state=pub_priv
+		mode=static ual_enable=y other=>y startup=y
+		startup_level=USER_LOGIN startup_owner=root>rw-
+		startup_group=other>rw- startup_other=>rw-"
+else
+	USR_PUTDEV=""
+fi
+export USR_PUTDEV
+
+VOLATILES=`echo /tmp/nsu/*`
+cd /tmp/nsu
+# install drivers/modules
+
+for MODULE in sockmod timod tirdwr pckt ntty
+do
+	do_install ${MODULE}
+done
+# update the ptm and ptem files under sdevice.d to specify the number
+# of pseudo terminals selected by the user and saved in PTNUM
+for i in ptm ptem
+do
+	if [ -f "${i}.Sy" ]
+	then
+		line=`grep "^$i[	 ]" $i.Sy 2>/dev/null`
+		set - $line
+		DEFAULT=$3
+		if [ "$DEFAULT" -ne "$PTNUM" ]
+		then
+			ed - $i.Sy 1>/dev/null 2>&1 <<-!
+				/^$i[ 	]/
+				s/$DEFAULT/$PTNUM/
+				.
+				w
+			!
+		fi
+	fi
+done
+# The following is done only if PTNUM > 0
+
+if
+	[ "$PTNUM" -gt 0 ]
+then
+
+	# add /dev/ptmx as major(clone), minor(ptm)
+
+	echo "clone	ptmx	c	ptm" > /tmp/nsu/ptm.No
+
+	# (re-)configure pseudo-terminal master device
+
+	installf ${PKGINST} /dev/pts d 755 root root 4 NULL NULL || error 2 /dev/pts
+	/sbin/putdev -a pseudo_master cdevlist=/dev/ptmx \
+		desc="pseudo terminal master" $USR_PUTDEV >/dev/null 2>&1
+
+	TEMP=0
+	until
+		[ "$TEMP" -eq "$PTNUM" ]
+	do
+		echo "pts	pts/${TEMP}	c	${TEMP}" >> /tmp/nsu/pts.No
+		TEMP=`expr $TEMP + 1`
+	done
+
+	> /tmp/nsu/pts.Rc
+	echo "if [ -c /dev/pts000 ]" >> /tmp/nsu/pts.Rc
+	echo "then" >> /tmp/nsu/pts.Rc
+	echo "exit" >> /tmp/nsu/pts.Rc
+	echo "fi" >> /tmp/nsu/pts.Rc
+	echo "cd /dev/pts" >> /tmp/nsu/pts.Rc
+	echo "for i in *" >> /tmp/nsu/pts.Rc
+	echo "do" >> /tmp/nsu/pts.Rc
+	STRING="NUM=\`echo \$i | awk '{printf(\"%.3d\",\$1)}'\`"
+	echo "$STRING" >> /tmp/nsu/pts.Rc
+	echo "ln \$i /dev/pts\${NUM} >> /dev/null 2>&1" >> /tmp/nsu/pts.Rc
+	echo "done" >> /tmp/nsu/pts.Rc
+	
+
+	for MODULE in ptm ptem pts
+	do
+		do_install ${MODULE}
+	done
+	
+fi
+
+#	configure loopback transport providers
+
+for MODULE in ticlts ticots ticotsor
+do
+	do_install ${MODULE}
+done
+
+
+# create the NET role; if it is already there, ignore error
+#/usr/bin/adminrole -n NET > /dev/null 2>&1
+
+#	put /usr/bin/cp in NET role with privs .. so that OA&M works
+#	and host files may be updated
+#	cp is needed by nsu and dfs, so both postinstalls add it
+#	ignoring error.  The packages can then remain independent.
+
+#adminrole -a cp:/usr/bin/cp:macwrite:dacwrite:macread:dacread NET 2>/dev/null 1>&1
+
+#The following for-loop assigns the commands to the NET role.  Privileges
+#are gotten right from /etc/security/tcb/privs.
+#
+#for cmd in /usr/sbin/pmadm /usr/sbin/nlsadmin /usr/sbin/sacadm \
+#	/usr/sbin/keymaster /usr/sbin/idadmin \
+#	/usr/sbin/rxservice /usr/bin/cat /usr/lib/saf/dbfconv
+#do
+#	base=`basename $cmd`
+#	privs=`
+#	egrep ":${cmd}$" /etc/security/tcb/privs| #Find command in tcb database
+#	sed 's/^.*%inher,\(.*\):.*/\1/p' |	  # get the set of inher privs
+#	sed 's/^.*%fixed,\(.*\):.*//p' |	  # delete the fixed privs
+#	sed 's/,/:/gp'				  # changed ,'s to :'s
+#	`
+#	if [ -z "$privs" ]
+#	then
+#		if [ ! -f $cmd ]
+#			then	echo "Warning: $cmd not found on the system.\c"
+#				echo "	Not adding to TFM."
+#				continue
+#			else	adminrole -a $base:$cmd NET >/dev/null 2>&1
+#		fi
+#	else
+#		adminrole -a $base:$cmd:$privs NET >/dev/null 2>&1
+#	fi
+#done
+
+############# Begin UPGRADE AND OVERLAY #######################
+
+[ "$AUTOMERGE" = "No" ] && rm -f $BASEDIR/etc/netconfig
+
+############# End UPGRADE AND OVERLAY #######################
+
+if [ ! -s $BASEDIR/etc/netconfig ]
+then
+	echo "#
+#	The Network Configuration File.
+#
+# Each entry is of the form:
+#
+# network_id semantics flags protofamily protoname device nametoaddr_libs
+#" >$BASEDIR/etc/netconfig
+fi
+
+if grep '[ 	]loopback[ 	][ 	]*-[ 	][ 	]*/dev/ticlts[ 	]' $BASEDIR/etc/netconfig >/dev/null 2>&1
+then
+	: Already there!
+else
+	echo "ticlts	   tpi_clts	  v	loopback	-	/dev/ticlts	/usr/lib/straddr.so" >>$BASEDIR/etc/netconfig
+fi
+
+if grep '[ 	]loopback[ 	][ 	]*-[ 	][ 	]*/dev/ticots[ 	]' $BASEDIR/etc/netconfig >/dev/null 2>&1
+then
+	: Already there!
+else
+	echo "ticots	   tpi_cots	  v	loopback	-	/dev/ticots	/usr/lib/straddr.so" >>$BASEDIR/etc/netconfig
+fi
+
+if grep '[ 	]loopback[ 	][ 	]*-[ 	][ 	]*/dev/ticotsord[ 	]' $BASEDIR/etc/netconfig >/dev/null 2>&1
+then
+	: Already there!
+else
+	echo "ticotsord  tpi_cots_ord	  v	loopback	-	/dev/ticotsord	/usr/lib/straddr.so" >>$BASEDIR/etc/netconfig
+fi
+
+# WARNING: This and all other packages using the netconfig file
+#	installf specifies a seperate class, volatile, and 1 (i.e. SYS_PUBLIC)
+installf -c nsunetcnfg $PKGINST $BASEDIR/etc/netconfig \
+	 v 0644 root other 1 NULL NULL
+
+#
+#	create the hosts and services files for the loopback drivers...
+#
+
+UNAME=`/usr/bin/uname -n`
+
+for i in ticots ticotsord ticlts
+do
+
+	############# Begin UPGRADE AND OVERLAY #######################
+	
+	[ "$AUTOMERGE" = "No" ] && {
+
+		rm -f /etc/net/$i/services /etc/net/$i/hosts
+	}
+	
+	############# End UPGRADE AND OVERLAY #######################
+
+
+	grep '^rpcbind	rpc' /etc/net/$i/services >/dev/null 2>&1
+	if [ $? != 0 ]
+	then
+		echo "rpcbind	rpc" >>/etc/net/$i/services
+	fi
+
+	grep '^keyserv	keyserv' /etc/net/$i/services >/dev/null 2>&1
+	if [ $? != 0 ]
+	then
+		echo "keyserv	keyserv" >>/etc/net/$i/services
+	fi
+
+	grep '^listen	serve' /etc/net/$i/services >/dev/null 2>&1
+	if [ $? != 0 ]
+	then
+		echo "listen	serve" >>/etc/net/$i/services
+	fi
+
+	grep '^statd	statd' /etc/net/$i/services >/dev/null 2>&1
+	if [ $? != 0 ]
+	then
+		echo "statd	statd" >>/etc/net/$i/services
+	fi
+
+	grep '^lockd	lockd' /etc/net/$i/services >/dev/null 2>&1
+	if [ $? != 0 ]
+	then
+		echo "lockd	lockd" >>/etc/net/$i/services
+	fi
+
+	grep '^nfsd	nfsd' /etc/net/$i/services >/dev/null 2>&1
+	if [ $? != 0 ]
+	then
+		echo "nfsd	nfsd" >>/etc/net/$i/services
+	fi
+
+	grep '^reportscheme	reportscheme' /etc/net/$i/services >/dev/null 2>&1
+	if [ $? != 0 ]
+	then
+		echo "reportscheme	reportscheme" >>/etc/net/$i/services
+	fi
+
+	#
+	#	update the hosts files for the loopback drivers...
+	#
+
+	grep $UNAME /etc/net/$i/hosts >/dev/null 2>&1
+	if [ $? != 0 ]
+	then
+		echo "$UNAME	$UNAME" >>/etc/net/$i/hosts
+	fi
+
+	#
+	#	update the files within OAM
+	#
+
+	installf $PKGINST $BASEDIR/etc/net/$i/hosts v 0644 root sys 1 NULL NULL
+	installf $PKGINST $BASEDIR/etc/net/$i/services v 0644 root sys 1 NULL NULL
+
+done
+
+#
+#	Install listen id (if not there) and fix up files.
+#	Also allow root to execute listen with appropriate privileges.
+#
+/usr/sbin/useradd  -u 37 -g 4 -c "Network Admin" -d /usr/net/nls listen \
+	>/dev/null 2>&1
+/usr/bin/adminuser -a listen:/usr/lib/saf/listen:allprivs root >/dev/null 2>&1
+if [ "$?" -ne 0 ]
+then
+	/usr/bin/adminuser -n -a listen:/usr/lib/saf/listen:allprivs root >/dev/null 2>&1
+fi
+STEM=$BASEDIR/etc/saf
+sacadm -L -t listen 2>/dev/null | cut -f1 -d: >/tmp/listeners
+#
+#	convert the listener files that are already under SAF
+#	control
+#
+for i in `cat /tmp/listeners`
+do
+	if [ -f $STEM/$i/_pmtab ]
+	then
+		
+		cp $STEM/$i/_pmtab $STEM/$i/_opmtab || error 4
+		[ "$PKGINSTALL_TYPE" = UPGRADE ] && \
+			remove_3rd_line $STEM/$i/_pmtab $STEM/$i/_opmtab
+		/usr/lib/saf/dbfconv $STEM/$i/_opmtab $STEM/$i/_pmtab
+		if [ $? -ne 0 ]
+		then
+			error 5
+			echo "ERROR: listener database conversion failed"
+		fi
+	fi
+done
+#
+#	now convert any old style listeners into new format
+#
+sacadm -L 2>/dev/null | cut -f1 -d: >/tmp/pms
+LHOME=$BASEDIR/usr/net/nls
+for i in $LHOME/*
+do
+	NETSPEC=`basename $i`
+	if test -d $i
+	then
+		grep $NETSPEC /tmp/listeners >/dev/null
+		if [ $? -eq 0 ]
+		then
+#
+#	old listener has already been converted
+#
+			continue
+		fi
+#
+#	does another port monitor exist with this name?
+#
+		grep $NETSPEC /tmp/pms >/dev/null
+		if [ $? -eq 0 ]
+		then
+			error 5
+			echo "ERROR: can not convert $NETSPEC listener to new format, tag already exists"
+			continue
+		fi
+#
+#	ok to create new port monitor
+#
+		COMMAND=/usr/lib/saf/listen
+		if [ $NETSPEC = starlan ]
+		then
+			COMMAND="$COMMAND -m slan"
+		fi
+		sacadm -a -p $NETSPEC -t listen -c "$COMMAND $NETSPEC" -v `/usr/sbin/nlsadmin -V` -y "$NETSPEC listener"
+		if [ $? -ne 0 ]
+		then
+			error 5
+			echo "ERROR: can not create new port monitor entry for $NETSPEC"
+			continue
+		fi
+#
+#	convert the database file and put it in the right place
+#
+		if test -f $i/dbf
+		then
+			cp $i/dbf /tmp/$$.dbf
+			[ "$PKGINSTALL_TYPE" = UPGRADE ] && \
+				remove_3rd_line $i/dbf  /tmp/$$.dbf
+			/usr/lib/saf/dbfconv /tmp/$$.dbf $STEM/$NETSPEC/_pmtab
+			if [ $? -ne 0 ]
+			then
+				error 5
+				echo "ERROR: listener database conversion failed"
+			else
+				sacadm -x -p $NETSPEC
+			fi
+		fi
+	fi
+done
+rm /tmp/listeners
+rm /tmp/pms
+#
+# leave symbolic (and hard) links around for compatibility
+#
+if [ -d $LHOME ]
+then
+	if [ -f $LHOME/listen ]
+	then
+        	rm $LHOME/listen
+	fi
+	if [ -f $LHOME/dbfconv ]
+	then
+        	rm $LHOME/dbfconv
+	fi
+	if [ -f $LHOME/nlps_server ]
+	then
+        	rm $LHOME/nlps_server
+	fi
+        ln -s $BASEDIR/usr/lib/saf/listen $LHOME/listen
+        ln -s $BASEDIR/usr/lib/saf/dbfconv $LHOME/dbfconv
+        ln -s $BASEDIR/usr/lib/saf/nlps_server $LHOME/nlps_server
+	installf ${PKGINST} $BASEDIR/usr/bin/nlsadmin=$BASEDIR/usr/sbin/nlsadmin l || error
+fi
+
+
+#
+#	Initialize reportscheme service codes for all installed 
+#	transport providers.
+#	Note: pmadm adds the entry to all currently defined listeners.
+#
+NLS=/usr/sbin/nlsadmin
+
+pmadm -a -t listen -s reportscheme -i root -v `$NLS -V` -y "reportscheme service; execute ONLY with NULL authentication scheme" -m "`$NLS -c /usr/sbin/reportscheme`" >/dev/null 2>&1
+
+#
+#	add entries to /etc/security/MLD/nsu for multi-level directories
+#
+echo "/var/iaf/cr1" >>/etc/security/MLD/nsu
+installf ${PKGINST} /etc/security/MLD/nsu f 0644 root sys 2 NULL NULL
+
+#
+#	finished installing files: tell OAM
+#
+installf -f $PKGINST || error 6
+
+#
+#	make a new UNIX(R)
+#
+# rebuild for changes to take effect 
+# but do it only if no other pkgs in the set are being installed
+
+TMP=/tmp/nsu.$$
+${CONFBIN}/idbuild 2>>${TMP}
+if
+	[ "$?" -ne "0" ]
+then
+	echo "An error has occurred during the rebuild of the UNIX System."
+	echo "Errors have been written to the file " ${TMP}
+	exit ${FAILURE}
+fi
+
+
+installf -f ${PKGINST} || error 6
+
+rm -f ${TMP} 1>/dev/null 2>&1
+removef ${PKGINST} ${VOLATILES} >/dev/null 2>&1
+removef ${PKGINST} /tmp/nsu >/dev/null 2>&1
+removef -f ${PKGINST} >/dev/null 2>&1
+
+errflag=`expr ${errflag:=0} + 10`
+
+
+############# Begin UPGRADE AND OVERLAY #######################
+
+
+[ "$AUTOMERGE" = NULL ] || {
+#	If AUTOMERGE=Yes, ${SCRIPTS}/pkgmrgconf will 
+#	merge the config files listed in $UPGRADE_STORE/${PKGINST}.sav.
+#	If merge failed, it informs user which files the merge failed.
+
+#	If AUTOMERGE=No, ${SCRIPTS}/pkgmrgconf will 
+#	inform user where there old config files live and that
+#	the system will use new versions of the config. files
+
+	${SCRIPTS}/pkgmrgconf "${PKGINST}" "$AUTOMERGE" "$NAME"
+}
+
+# See comment in request script concerning this file
+
+rm -f $UPINSTALL/ptm
+
+# cleanup patch files from /var/sadm/install/contents and rm them
+
+${SCRIPTS}/up_cleanup "${PKGINST}"
+
+[ "$UPDEBUG" = YES ] && goany
+
+############# End   UPGRADE AND OVERLAY #######################
+#
+
+exit $errflag

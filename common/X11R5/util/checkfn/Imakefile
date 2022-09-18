@@ -1,0 +1,18 @@
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+/**/#ident	"@(#)r5util:checkfn/Imakefile	1.1"
+XCOMM $XConsortium: Imakefile,v 1.6 91/07/16 23:07:29 gildea Exp $
+           SRCS = checkfn.c
+           OBJS = checkfn.o 
+
+all:: checkfn
+
+SingleProgramTarget(checkfn,$(OBJS),NullParameter,NullParameter)
+DependTarget()

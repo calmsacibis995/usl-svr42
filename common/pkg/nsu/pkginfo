@@ -1,0 +1,18 @@
+#ident	"@(#)pkg.nsu:common/pkg/nsu/pkginfo	1.3.6.8"
+#ident  "$Header: $"
+
+ARCH=
+CATEGORY="system"
+CLASSES="none pt"
+DESC=
+EMAIL=
+HOTLINE=
+MAXINST=1
+NAME="Network Support Utilities"
+ORDER=
+PKG="nsu"
+PREDEPEND="nsu"
+PSTAMP=
+VENDOR="UNIX System Laboratories"
+VERSION="1"
+VSTOCK=

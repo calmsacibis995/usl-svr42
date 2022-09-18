@@ -1,0 +1,79 @@
+#ident	"@(#)pkg.eth:preinstall	1.6"
+#ident	"$Header: $"
+
+unconfig ()
+{
+	[ "$UPDEBUG" = YES ] && set -x
+	SD=/etc/conf/sdevice.d
+	for i in imx586 ee16 ie6 el16 wd
+	do
+		[ -f $SD/$i ] && {
+			grep -v "^$i	[YN]	" $SD/$i >/tmp/$$.$i
+			mv /tmp/$$.$i $SD/$i
+		}
+		[ "$UPDEBUG" = YES ] && goany
+	done
+}
+
+# remove files listed for pkg arg_1 in 'contents'.
+remove_files ()
+{
+	[ "$UPDEBUG" = YES ] && set -x
+
+	CONTENTS=/var/sadm/install/contents
+	PKG=$1
+	# FILELIST is used in postinstall also.
+	FILELIST=/tmp/v4.$PKG.list
+	grep " $PKG[ :]" $CONTENTS > /tmp/$$.rmlist
+	grep " $PKG$" $CONTENTS >> /tmp/$$.rmlist
+	cat /tmp/$$.rmlist | cut -f1 -d" " | /usr/bin/sort -r > $FILELIST
+	rm -f /tmp/$$.rmlist
+	[ -s $FILELIST ] && {
+		while read filename
+		do
+			[ -d "$filename" ] && rmdir $filename 2>/dev/null
+			[ -f "$filename" ] && rm -f $filename
+		done < $FILELIST
+	}
+}
+
+rm_v4_eth_pkgs ()
+{
+	[ "$UPDEBUG" = YES ] && set -x
+
+	# /tmp/rm.[imx586|wd|ie6] was created if v4 pkgs were detected
+
+	# remove_files takes one arg:  pkg_name
+	# It removes files pertaining to pkg_name
+
+	for i in imx586 ie6 wd
+	do
+		[ -f /tmp/rm.$i ] || continue
+	
+		remove_files  $i
+
+		[ "$UPDEBUG" = YES ] && goany
+
+		find /etc/conf -name $i -exec rm -rf {} \;
+
+		[ "$UPDEBUG" = YES ] && goany
+	done
+	
+}
+
+#main ()
+
+SCRIPTS=/usr/sbin/pkginst
+
+. $SCRIPTS/updebug
+
+[ "$UPDEBUG" = YES ] && set -x && goany
+
+# unconfigure eth drivers
+
+# remove V4 ethernet packages: imx586, ie6, wd
+rm_v4_eth_pkgs
+
+unconfig
+
+exit 0	# required

@@ -1,0 +1,16 @@
+#ident	"@(#)proto:desktop/menus/fd/hba.error	1.4"
+
+ WARNING:  One of the following errors has occurred; no diskette was inserted,
+ an incorrect or damaged diskette was inserted, both drives have a diskette
+ inserted, or the diskette was inserted incorrectly.
+
+ If you would like to try another Host Bus Adapter diskette, remove any
+ diskette(s) in the diskette drive(s) and insert the new diskette now.
+
+ For more information, see the Installation Guide.
+
+ Otherwise, if you do not have (or do not need to use) a Host Bus Adapter
+ diskette, insert the diskette labeled "Boot Floppy 2 of 3" now.
+
+
+ Press 'ENTER' to continue.

@@ -1,0 +1,88 @@
+X11 Based Tetris / Version 2.4
+
+INSTALLATION
+
+1. Make sure you have X11 release 4, and make sure that "xmkmf" is in your
+   path somewhere (probably at /usr/bin/X11/xmkmf).
+
+2. Edit the switches at the top of Imakefile as necessary.
+
+3. I assume you want to use your installed libraries and include
+   files.  So type
+
+      xmkmf
+      make depend
+
+   If you don't have "xmkmf" (this seems almost impossible, if you have
+   X11R4), hack up the Makefile included with the source.
+
+4. Install it.
+
+      (become root or something)
+      make install
+
+5. Now, if you get bored with playing the game, you can look in the file
+   TODO, for a list of things Dan wanted to put in, but didn't because he
+   wanted to get back to simulated annealing and VLSI placement
+   (his PhD topic).  This was just a little diversion.  
+
+   If you do anything listed in the "TODO" file, please send your changes
+   to dgreen@cs.ucla.edu.
+
+6. If you fix ANYTHING, please send a diff file to me.  The address:
+
+     dgreen@cs.ucla.edu
+
+WHODUNNIT
+
+  This version of xtetris has accumulated the work of several individuals.
+
+  Adam Marguilies <vespa@ssyx.ucsc.edu> wrote the first non-graphics version.
+
+  Phill Everson <everson@cs.bris.ac.uk> and Martyn Shortley 
+  <shortley@cs.bris.ac.uk> posted a later non-graphics version of tetris to
+  comp.sources.games in March 1989. 
+
+  Didier Tallot <tallot@bdblues.altair.fr> built an X11 graphics xtetris from
+  the non-graphics tetris around 29 May, 1989.  It used the unsupported 
+  Xw (HP) widget set.
+
+Xtetris 2.0 and 2.1:
+
+  Dan Greening <dgreen@cs.ucla.edu> rewrote much of the xtetris code to
+    a. Eliminate use of the unsupported Xw widget set, and use Xaw.
+    b. Speed up drawing, and legality calculations.
+    c. Move format, color specifications, key bindings, button bindings,
+       and other parameters into the "application defaults" file.
+    d. Make appropriate buttons appear when usable and disappear when unusable.
+    e. Use X11R4.
+  
+  Janet L. Carson added assignable colors for the objects, and supplied a
+  black/white application defaults file.
+
+Xtetris 2.2: 
+
+  Bill Kucharski and Tony Cooper fixed a couple of bugs.  Chris Thewalt 
+  merged the color and b/w files.
+
+  Dan Greening sped up the drawing code even more.
+
+Xtetris 2.3:
+
+  Greg Rogers added the (scary!) speed option.  If you have a high speed 
+  machine, like an IBM RS-6000, just try to run it with -speed 100.
+  Dan Greening fixed minor bugs.
+
+Xtetris 2.4:
+
+  Evan Harris fixed a long-standing memory leak (caused by a bug in
+  asciiTextWidgets).  Many thanks.
+
+WHERE WILL IT RUN
+
+  The current version, 2.4, has been tested on color IBM RS-6000s
+  using an X11R3 server and X11R4 libraries, color and b/w Sparcstations,
+  color RTs running Unix 4.3, and a color HPUX 6.5 9000/350.  It REQUIRES X11 
+  release 4 libraries and include files.  It should run on any
+  processor which has these installed.
+

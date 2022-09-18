@@ -1,0 +1,46 @@
+#ident	"@(#)pkg.kdb:request	1.6"
+#ident	"$Header: $"
+
+trap 'exit 3' 15
+
+#
+#  Make sure LANG environment variable is set.  If it's not set
+#  coming in to this request script, then default to the C-locale.
+#
+[ ${LANG} ] || LANG="C"
+export LANG
+
+#
+# Prompt script to determine whether user wants kdb security mode or not
+#
+DIR=/etc/inst/locale/${LANG}/menus/kdb
+[ -d ${DIR} ] || mkdir ${DIR}
+cp ${REQDIR}/kdb/menu* ${DIR}
+
+#
+#  Set up to use menu_colors; default to C-locale if ${LANG}'s dir has
+#  no menu_colors.sh
+#
+if [ -f /etc/inst/locale/${LANG}/menus/menu_colors.sh ]
+then
+	. /etc/inst/locale/${LANG}/menus/menu_colors.sh
+else
+	. /etc/inst/locale/C/menus/menu_colors.sh
+fi
+
+menu -f ${DIR}/menu.kdb -o /tmp/out 2> /dev/null
+. /tmp/out
+
+if [ "$RETURN_VALUE" = "1" ]
+then
+	KDBSECURITY=1
+	s1=off; v1=0
+	s2=on; v2=1
+else
+	KDBSECURITY=0
+	s1=on; v1=1
+	s2=off; v2=0
+fi
+
+echo "KDBSECURITY=$KDBSECURITY" >> $1
+exit 0

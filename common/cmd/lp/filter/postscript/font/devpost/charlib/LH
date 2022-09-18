@@ -1,0 +1,4 @@
+%ident	"@(#)lp:filter/postscript/font/devpost/charlib/lh	1.2"
+/build_lh {
+pop
+gsav

@@ -1,0 +1,62 @@
+#ident	"@(#)debugger:libcmd/i386/DEPEND	1.1"
+
+Execute.o:	 $(PRODINC)/common/Itype.h $(PRODINC)/common/Link.h
+Execute.o:	 $(PRODINC)/common/Parser.h ../common/Scanner.h
+Execute.o:	 ../common/Shell.h $(PRODINC)/common/global.h
+Execute.o:	 $(PRODINC)/common/str.h $(PRODINC)/common/sync_line.h
+Execute.o:	 ../common/Execute.C
+	$(CPLUS_CMD) -c ../common/Execute.C
+
+Help.o:		../common/Help.C
+	$(CPLUS_CMD) -c ../common/Help.C
+
+Input.o:	 $(PRODINC)/common/Interface.h $(PRODINC)/common/Itype.h
+Input.o:	 $(PRODINC)/common/global.h ../common/Input.C
+Input.o:	 $(INC)/sys/errno.h
+Input.o:	 $(INC)/sys/signal.h
+	$(CPLUS_CMD) -c ../common/Input.C
+
+Keyword.o:		../common/Keyword.C
+	$(CPLUS_CMD) -c ../common/Keyword.C
+
+Location.o:		../common/Location.C
+	$(CPLUS_CMD) -c ../common/Location.C
+
+
+Parser.o:	 $(PRODINC)/common/Input.h $(PRODINC)/common/Interface.h
+Parser.o:	 $(PRODINC)/common/Itype.h $(PRODINC)/common/Link.h
+Parser.o:	 $(PRODINC)/common/Parser.h ../common/Scanner.h
+Parser.o:	 $(PRODINC)/common/str.h ../common/Parser.C
+	$(CPLUS_CMD) -c ../common/Parser.C
+
+Scanner.o:	 $(PRODINC)/common/Interface.h $(PRODINC)/common/Itype.h
+Scanner.o:	 $(PRODINC)/common/Link.h ../common/Scanner.h
+Scanner.o:	 $(PRODINC)/common/str.h ../common/Scanner.C
+	$(CPLUS_CMD) -c ../common/Scanner.C
+
+Shell.o:	 ../common/Shell.h $(PRODINC)/common/global.h
+Shell.o:	 ../common/Shell.C
+Shell.o:	 $(INC)/signal.h
+Shell.o:	 $(INC)/sys/procset.h
+Shell.o:	 $(INC)/sys/select.h
+Shell.o:	 $(INC)/sys/signal.h
+Shell.o:	 $(INC)/sys/types.h
+	$(CPLUS_CMD) -c ../common/Shell.C
+
+systable.o:	 ../common/systable.C 
+	$(CPLUS_CMD) -c ../common/systable.C
+
+sysmach.o:	sysmach.C
+	$(CPLUS_CMD) -c sysmach.C
+
+OBJECTS	=  \
+	Execute.o \
+	Help.o \
+	Input.o \
+	Keyword.o \
+	Location.o \
+	Parser.o \
+	Scanner.o \
+	Shell.o \
+	systable.o \
+	sysmach.o

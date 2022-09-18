@@ -1,0 +1,8 @@
+#ident	"@(#)localedef:common/cmd/localedef/colltbl/colltbl_C	1.1.2.1"
+#ident "$Header: /sms/sinixV5.4es/rcs/s19-full/usr/src/cmd/localedef/colltbl/colltbl_C,v 1.1 91/02/28 17:44:39 ccs Exp $"
+
+# codeset for "C" locale
+
+codeset		LC_COLLATE
+
+order is	\001;...;\377

@@ -1,0 +1,6 @@
+Use the Quit item to exit the application and remove the window or icon
+from the workspace.
+
+If you have made changes to the application that have not been saved,
+a Notice is displayed asking you if you want to save the changes.
+Drag MENU onto the button and release MENU to quit the application.

@@ -1,0 +1,19 @@
+#define puce_format 1
+#define puce_width 8
+#define puce_height 8
+#define puce_ncolors 2
+#define puce_chars_per_pixel 1
+static char * puce_colors[] = {
+" " , "#AAAA0000AAAA",
+"." , "#AAAA55550000"
+} ;
+static char * puce_pixels[] = {
+" . . . .",
+". . . . ",
+" . . . .",
+". . . . ",
+" . . . .",
+". . . . ",
+" . . . .",
+". . . . "
+} ;

@@ -1,0 +1,76 @@
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+/**/#ident	"@(#)libDtI:Imakefile	1.29"
+
+#if Release5
+#define DoNormalLib     NO
+#define DoSharedLib     YES
+#include <Library.tmpl>
+#include <sv4Lib.tmpl>
+#endif
+
+       INCLUDES = -I$(LIBSRC) -I$(LIBSRC)/Xol -I$(LIBSRC)/Dt
+   INSTALLFLAGS = $(INSTINCFLAGS)
+        LIBNAME = DtI
+          SHLIB = DtI
+            LIB = lib$(LIBNAME).so
+         MALLOC =
+#if !SystemV4
+         MALLOC = malloc.o
+#endif
+
+           SRCS = \ 
+                  FIconBox.c \
+                  HyperText.c \
+                  HyperText0.c \
+                  container.c \
+                  devtab.c \
+        	  diagnose.c \
+                  drawicon.c \
+		  dtamgettxt.c \
+                  dtutil.c \
+                  extern.c \
+                  fileclass.c \
+                  icon_proc.c \
+                  iconmask.c \
+                  mapfile.c \
+                  mountdev.c \
+                  misc.c \
+                  objutil.c \
+                  p_cache.c \
+                  propEH.c \
+                  sizeicon.c \
+                  stub.c \
+		  xy.c
+
+OBJS = $(SRCS:.c=.o)
+
+SHAREDOBJS = $(OBJS)
+
+#if Release5
+LibraryObjectRule()
+
+SharedLibraryTarget($(LIBNAME),$(SODTREV),$(OBJS),.,.)
+
+FurSharedLibraryTarget($(LIBNAME),$(SODTREV),$(OBJS),.,.)
+
+InstallSharedLibrary($(LIBNAME),$(SODTREV),$(USRLIBDIR))
+InstallFurLibrary($(LIBNAME),$(SODTREV),$(USRLIBDIR))
+#else
+all:: libDtI.so
+
+SharedLibrayObjectRule()
+SharedLibraryTarget($(LIBNAME),$(SHAREDOBJS),,)
+InstallLibrary($(LIBNAME),$(USRLIBDIR))
+#endif
+
+LintLibraryTarget(DtI,$(SRCS))
+
+DependTarget()

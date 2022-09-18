@@ -1,0 +1,27 @@
+#define smprt_format 1
+#define smprt_width 18
+#define smprt_height 12
+#define smprt_ncolors 6
+#define smprt_chars_per_pixel 1
+static char * smprt_colors[] = {
+" " , "#E400E400E400",
+"." , "#000000000000",
+"X" , "#710071007100",
+"o" , "#AA00AA00AA00",
+"O" , "#E7009E007900",
+"+" , "#00000000E000"
+} ;
+static char * smprt_pixels[] = {
+"                  ",
+"     .........    ",
+"    .XXXXXXXXX.   ",
+"   X.X       X.X  ",
+"   XX.X.X.X.X.XX  ",
+"   XoooooOOOOooX  ",
+"   XoooooO++OooX  ",
+"   XXXXXXXXXXXXX  ",
+"   X...........X  ",
+"    XXXXXXXXXXX   ",
+"     XXXXXXXXX    ",
+"                  "
+} ;

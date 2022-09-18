@@ -1,0 +1,31 @@
+#ident	"@(#)adm:common/cmd/.adm/datemsk	1.1"
+#ident "$Header: /sms/sinixV5.4es/rcs/s19-full/usr/src/cmd/passmgmt/datemsk,v 1.1 91/02/28 19:23:51 ccs Exp $"
+%m/%d/%y %I:%M:%S %p
+%m/%d/%y %H:%M:%S
+%m/%d/%y %I:%M %p
+%m/%d/%y %H:%M
+%m/%d/%y %I %p
+%m/%d/%y %H
+%m/%d/%y
+%m/%d
+%b %d, %Y %H:%M:%S %p
+%b %d, %Y %I:%M:%S
+%B %d, %Y %H:%M:%S %p
+%B %d, %Y %I:%M:%S
+%b %d, %Y %H:%M %p
+%b %d, %Y %I:%M
+%B %d, %Y %H:%M %p
+%B %d, %Y %I:%M
+%b %d, %Y %H %p
+%b %d, %Y %I
+%B %d, %Y %H %p
+%B %d, %Y %I
+%b %d, %Y
+%B %d, %Y
+%b %d
+%B %d
+%m%d11/14/90M%y
+%m%d11/14/90M%Y
+%m%d11/14/90M
+%m%d%H
+%m%d

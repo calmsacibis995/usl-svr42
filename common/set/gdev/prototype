@@ -1,0 +1,38 @@
+#ident	"@(#)set:common/set/gdev/prototype	1.1"
+#ident	"$Header: $"
+
+i pkginfo 
+i preinstall 
+i response
+i setinfo
+i set.1
+i set.2
+i set.3
+i set.4
+i set.5
+i set.6
+i postinstall
+#i preremove
+i setsize
+
+!XPKGSRCLOC=../../X11R5/olpkg.oam
+!SETSRCLOC=../../set
+
+i request=$SETSRCLOC/fnd/request
+i copyright=$SETSRCLOC/fnd/copyright
+
+i dtxtdev/depend=$XPKGSRCLOC/pkg.dtxtdev/depend
+i dtxtdev/copyright=$XPKGSRCLOC/pkg.dtxtdev/copyright
+i dtxtdev/pkginfo=$XPKGSRCLOC/pkg.dtxtdev/pkginfo
+#i dtxtdev/depend=$XPKGSRCLOC/pkg.dtxtdev/depend
+
+i dtoldev/depend=$XPKGSRCLOC/pkg.dtoldev/depend
+i dtoldev/copyright=$XPKGSRCLOC/pkg.dtoldev/copyright
+i dtoldev/pkginfo=$XPKGSRCLOC/pkg.dtoldev/pkginfo
+#i dtoldev/depend=$XPKGSRCLOC/pkg.dtoldev/depend
+
+i desksup/depend=$XPKGSRCLOC/pkg.desksup/depend
+i desksup/copyright=$XPKGSRCLOC/pkg.desksup/copyright
+i desksup/pkginfo=$XPKGSRCLOC/pkg.desksup/pkginfo
+#i desksup/depend=$XPKGSRCLOC/pkg.desksup/depend
+

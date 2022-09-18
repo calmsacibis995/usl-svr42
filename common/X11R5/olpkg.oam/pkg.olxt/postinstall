@@ -1,0 +1,31 @@
+#ident	"@(#)olpkg.oam:pkg.olxt/postinstall	1.2"
+#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+#	Copyright (c) 1988, 1989, 1990 AT&T
+#	  All Rights Reserved
+
+#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+#	UNIX System Laboratories, Inc.
+#	The copyright notice above does not evidence any
+#	actual or intended publication of such source code.
+
+
+#
+#	AT&T OPEN LOOK X Toolkit
+#
+
+TEMPLATE=/usr/X/adm/olxt.compress
+
+for i in `cat $TEMPLATE`
+do
+	uncompress $i.Z
+	removef  $PKGINST $i.Z
+	installf $PKGINST $i f 0644 bin bin
+done						>/dev/null 2>&1
+
+rm -f $TEMPLATE
+removef $PKGINST $TEMPLATE			>/dev/null 2>&1
+
+removef  -f $PKGINST		   		>/dev/null 2>&1
+installf -f $PKGINST				>/dev/null 2>&1
+
+exit ${errflag}

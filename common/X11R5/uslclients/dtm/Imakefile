@@ -1,0 +1,129 @@
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+/**/#ident	"@(#)dtm:Imakefile	1.62.1.41"
+
+#if Release5
+#include <sv4Lib.tmpl>
+#endif
+
+#define IHaveSubdirs
+#define PassCDebugFlags 'CDEBUGFLAGS=$(CDEBUGFLAGS)'
+
+        SUBDIRS = olwsm
+           STAR = *
+   INSTDATFLAGS = -m 0666
+       DTLIBSRC = $(LIBSRC)/Dt
+          DTLIB = $(DTLIBSRC)/libDt.so
+       GIZMOSRC = $(LIBSRC)/Gizmo
+       GIZMOLIB = $(GIZMOSRC)/libGizmo.so
+      DTILIBSRC = $(USLCLIENTSRC)/libDtI
+         DTILIB = $(DTILIBSRC)/libDtI.so
+         WSMLIB = olwsm/libolwsm.a
+      CCOPTIONS = $(FURCCOPTIONS)
+
+          SRCS = binder.c \
+		 CListGizmo.c \
+		 d_cache.c \
+                 dflt_fc.c \
+		 dm_cbs.c \
+                 dm_util.c \
+                 dnd_util.c \
+                 drawlnicon.c \
+                 drawutil.c \
+                 dt_prop.c \
+                 dtinfo.c \
+                 dtm.c \
+                 dm_exit.c \
+                 dtmReqProc.c \
+                 error.c \
+                 f_new.c \
+                 f_cbs.c \
+                 f_create.c \
+                 f_dnd.c \
+                 f_layout.c \
+                 f_proc.c \
+                 f_prop.c \
+                 f_sync.c \
+                 f_task.c \
+                 f_tree.c \
+                 f_update.c \
+                 f_view.c \
+                 fclassdb.c \
+                 fn_devtab.c \
+                 fn_finder.c \
+                 fn_popen.c \
+		 FormGizmo.c \
+                 hReqProc.c \
+                 h_app.c \
+                 h_cbs.c \
+                 h_desk.c \
+                 h_file.c \
+                 h_sect.c \
+                 h_util.c \
+                 h_win.c \
+                 hd_cbs.c \
+                 hd_util.c \
+                 init.c \
+                 readdb.c \
+                 session.c \
+		 StatGizmo.c \
+		 SWinGizmo.c \
+                 wb.c \
+                 wbReqProc.c \
+                 wb_cbs.c \
+                 wb_prop.c \
+                 wb_util.c
+
+OBJS = $(SRCS:.c=.o)
+
+#if UslLocalityTuning
+FUR_ARCHIVES = $(WSMLIB)
+#endif
+       
+       INCLUDES = -I./ -I$(LIBSRC) -I$(XOLLIBSRC) -I$(DTLIBSRC) -I$(DTILIBSRC) -I$(GIZMOSRC)
+LOCAL_LIBRARIES = $(DTLIB) $(DTILIB) $(WSMLIB) $(GIZMOLIB) XolClientLibs
+        DEPLIBS = $(DTLIB) $(DTILIB) $(WSMLIB) $(GIZMOLIB) XolClientDepLibs
+  SYS_LIBRARIES = -lgen
+
+
+MakeSubdirs($(SUBDIRS))
+DependSubdirs($(SUBDIRS))
+
+install:: all
+
+ComplexProgramTarget(dtm)
+
+#if UslLocalityTuning
+FurComplexProgramTarget(dtm)
+
+install:: dtm
+	$(INSTALL) -c $(INSTPGMFLAGS)  dtm.F $(DESTDIR)$(BINDIR)
+	$(MV) $(DESTDIR)$(BINDIR)/dtm $(DESTDIR)$(BINDIR)/dtm.nf
+	$(MV) $(DESTDIR)$(BINDIR)/dtm.F $(DESTDIR)$(BINDIR)/dtm
+#endif
+
+InstallAppDefaults(DesktopMgr)
+
+InstallMultiple(Help_Desk,$(DESKTOPDIR))
+	$(CHMOD) 777 $(DESTDIR)$(DESKTOPDIR)/Help_Desk
+
+InstallMultiple(.dtfclass .lastsession,$(DESKTOPDIR))
+InstallMultiple(system system.post development,$(USRLIBDIR)/classdb)
+InstallMultiple(bitmaps/$(STAR),$(USRLIBDIR)/bitmaps)
+InstallMultiple(pixmaps/$(STAR),$(USRLIBDIR)/pixmaps)
+InstallMultiple(pixmasks/$(STAR),$(USRLIBDIR)/pixmasks)
+InstallMultiple(cursors/$(STAR),$(USRLIBDIR)/bitmaps)
+InstallMultiple(curmasks/$(STAR),$(USRLIBDIR)/bitmasks)
+
+#if defined(SYSV) || defined(SystemV4)
+InstallMultipleHelpFiles(help/$(STAR),$(USRLIBDIR)/locale/C/help/DesktopMgr)
+#else /* SYSV */
+InstallMultipleHelpFiles(help/$(STAR),$(LIBDIR)/locale/C/help/DesktopMgr)
+#endif /* SYSV */

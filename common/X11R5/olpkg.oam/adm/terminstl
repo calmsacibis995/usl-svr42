@@ -1,0 +1,37 @@
+#ident	"@(#)olpkg.oam:adm/terminstl	1.2"
+#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+#	Copyright (c) 1988, 1989, 1990 AT&T
+#	  All Rights Reserved
+
+#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+#	UNIX System Laboratories, Inc.
+#	The copyright notice above does not evidence any
+#	actual or intended publication of such source code.
+
+
+cd /usr/X/lib/terminfo/ti
+TERMINFO=/usr/X/lib/terminfo
+PKGINST=oleus
+export TERMINFO
+for i in *.ti
+do
+	tic $i  >/dev/null 2>&1 
+done
+(cd /usr/X/lib;find terminfo -type f -print >/tmp/tlist.$$)
+
+[ -s /tmp/tlist.$$ ] && echo "Installing the following terminfo entries:\n"
+while read name
+do
+	case $name in
+	 */ti/*) continue;;
+	esac
+	[ -f /usr/lib/$name ] || {
+		echo "/usr/lib/$name"
+		(cd /usr/X/lib;echo $name |cpio -pdmu /usr/lib ) >/dev/null 2>&1
+		installf $PKGINST /usr/lib/$name f 644 bin bin
+		
+	}
+done < /tmp/tlist.$$
+installf -f  -c enduser $PKGINST 
+rm -f /tmp/tlist.$$
+

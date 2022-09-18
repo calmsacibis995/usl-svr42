@@ -1,0 +1,4 @@
+#ident	"@(#)uts-x86:vpix/vpix.cf/System	1.2"
+#ident	"$Header: $"
+$version 1
+vx	Y	1	0	0	0	0	0	0	0	-1

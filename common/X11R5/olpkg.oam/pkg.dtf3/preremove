@@ -1,0 +1,24 @@
+#ident	"@(#)olpkg.oam:pkg.dtf3/preremove	1.4"
+#	Copyright (c) 1990, 1991 UNIX System Laboratories, Inc.
+#	Copyright (c) 1988 AT&T
+#	  All Rights Reserved
+
+#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+#	UNIX System Laboratories, Inc.
+#	The copyright notice above does not evidence any
+#	actual or intended publication of such source code.
+
+
+#
+#       USL Typescaler/F3 Outline Font Technology"
+#
+
+NAME="USL TypeScaler Fonts"
+echo "\n\tRemoving\n\t${NAME}\n\tpackage...\n"
+
+#
+# We need to remove some lines from /usr/X/defaults/Xwinfont
+#
+sed -e 's;,lib/fonts/folio;;p' -e '/^startrenderer=f3b/d' -e '/^sharedlib-filename=libfolio.so/d' < /usr/X/defaults/Xwinfont >/tmp/Xwinfont
+cp /tmp/Xwinfont /usr/X/defaults/Xwinfont
+rm /tmp/Xwinfont

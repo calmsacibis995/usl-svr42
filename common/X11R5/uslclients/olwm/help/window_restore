@@ -1,0 +1,8 @@
+Use the Restore Size item to return the dimensions of the window at
+the pointer location to the default window size.
+
+The Restore Size command does not return windows to an iconic state.
+Drag MENU onto the item and release MENU to restore the size of the
+window at the pointer location to the default size. You can use the
+Restore Size command without displaying the Window menu by moving
+the pointer onto the window background and double-clicking SELECT.

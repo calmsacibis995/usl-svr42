@@ -1,0 +1,21 @@
+#ident	"@(#)nadmin.rfs:other/rfs/system/bin/del_passwd	1.5.5.1"
+#ident  "$Header: del_passwd 2.0 91/07/12 $"
+
+DOM=`$TFADMIN /usr/sbin/dname -d`
+
+echo "The following systems have been deleted from the domain password file:\n" >/usr/tmp/gone_$$
+
+for system  in `echo $MEMBERS`;  do
+	{
+	echo "^$system:" >> /usr/tmp/temp_$$
+	echo "$system" >>/usr/tmp/gone_$$
+	}
+done
+/usr/bin/egrep -v -f/usr/tmp/temp_$$  /etc/rfs/auth.info/$DOM/passwd  > /usr/tmp/passwd_$$
+
+$TFADMIN /usr/bin/cp /etc/rfs/auth.info/$DOM/passwd /etc/rfs/auth.info/$DOM/o.passwd
+$TFADMIN /usr/bin/cp /usr/tmp/passwd_$$ /etc/rfs/auth.info/$DOM/passwd
+
+$TFADMIN /usr/bin/chmod 0600 /etc/rfs/auth.info/$DOM/passwd
+
+echo $$

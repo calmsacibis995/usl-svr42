@@ -1,0 +1,14 @@
+vtbold       -misc-fixed-bold-r-normal--13-120-75-75-c-80-iso8859-1
+fixed        -misc-fixed-medium-r-semicondensed--13-120-75-75-c-60-iso8859-1
+6x12         -misc-fixed-medium-r-semicondensed--12-110-75-75-c-60-iso8859-1
+6x13         -misc-fixed-medium-r-semicondensed--13-120-75-75-c-60-iso8859-1
+7x14         -misc-fixed-medium-r-normal--14-130-75-75-c-70-iso8859-1
+8x13         -misc-fixed-medium-r-normal--13-120-75-75-c-80-iso8859-1
+8x13bold     -misc-fixed-bold-r-normal--13-120-75-75-c-80-iso8859-1
+
+-misc-fixed-medium-r-semicondensed--12-90-100-100-c-60-iso8859-1 -misc-fixed-medium-r-semicondensed--12-110-75-75-c-60-iso8859-1
+-misc-fixed-medium-r-semicondensed--13-100-100-100-c-60-iso8859-1 -misc-fixed-medium-r-semicondensed--13-120-75-75-c-60-iso8859-1
+-misc-fixed-medium-r-normal--13-100-100-100-c-80-iso8859-1 -misc-fixed-medium-r-normal--13-120-75-75-c-80-iso8859-1
+-misc-fixed-bold-r-normal--13-100-100-100-c-80-iso8859-1 -misc-fixed-bold-r-normal--13-120-75-75-c-80-iso8859-1
+-misc-fixed-medium-r-normal--14-110-100-100-c-70-iso8859-1 -misc-fixed-medium-r-normal--14-130-75-75-c-70-iso8859-1
+

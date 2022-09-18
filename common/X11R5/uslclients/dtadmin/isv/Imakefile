@@ -1,0 +1,41 @@
+/**/#ident	"@(#)dtadmin:isv/Imakefile	1.5"
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+
+#define PassCDebugFlags 'CDEBUGFLAGS=$(CDEBUGFLAGS)'
+
+/*
+ * LinkInstalledFile - link a file in the installed place
+ */
+#ifndef LinkInstalledFile
+#define LinkInstalledFile(dir,src,dest)					@@\
+install:: 								@@\
+	$(RM) dir/dest							@@\
+	$(LN) dir/src dir/dest
+#endif
+
+all:: dtfilter dtisv dtprinter
+
+NormalProgramTarget(dtfilter,dtfilter.o,$(DEPLIBS),$(LOCAL_LIBRARIES),$(SYS_LIBRARIES))
+NormalProgramTarget(dtisv,dtisv.o,$(DEPLIBS),$(LOCAL_LIBRARIES),$(SYS_LIBRARIES))
+NormalProgramTarget(dtprinter,dtprinter.o,$(DEPLIBS),$(LOCAL_LIBRARIES),$(SYS_LIBRARIES))
+
+InstallProgram(dtfilter,$(DTADMDIR))
+InstallProgram(dtisv,$(DTADMDIR))
+InstallProgram(dtprinter,$(DTADMDIR))
+
+LinkInstalledFile($(DTADMDIR),dtisv,dtmodem)
+LinkInstalledFile($(DTADMDIR),dtisv,dttypes)
+
+CleanTarget()
+
+DependTarget()
+
+LintTarget()

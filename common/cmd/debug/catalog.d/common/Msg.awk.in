@@ -1,0 +1,2229 @@
+#ident	"@(#)debugger:catalog.d/common/Msg.awk.in	1.29"
+
+# This file is the input to Msg.awk, the awk script that creates Msgtypes.h,
+# Mcatalog, and Mtable.c.
+
+# Msgtypes.h
+#	defines the enum Msg_id, that lists the types of message passed
+#	between the debugger engine and the user interface.  These describe the
+#	actual contents of the message, not the protocol.
+
+# Mtable.c
+#	contains the initialization code for the table used to format
+#	the messages.  Since each message is translated into a call to printf
+#	for the command line interface, the arguments must always appear in the
+#	specified order
+
+# Mcatalog
+#	contains the format strings, one per line, and is the input
+#	to mkmsgs to create a message database.
+
+# ------ WARNING -------
+# Messages in an existing catalog cannot be modified or removed,
+# because we have no control over the translated catalogs,
+# also, calls to gettxt have hard-coded numbers in them.
+# Messages MUST stay in the same order - after the first release
+# the catalog probably should not be machine generated
+
+# The format of each non-comment line in this file is:
+# msg_class	msg_id	translate?	format_string
+# 
+# The translate field is "yes" if the field must be translated,
+# the awk script supplies the index numbers
+# Note that everything on the line after the translate field is part
+# of the format string, and that the awk script supplies the quotes
+# Note also that multiple whitespace characters become one space in
+# the output - use \t or format modifiers to make things line up
+#
+# Help messages (MSGCL_help) are special.  The message here is the 
+# format string and may span multiple lines.  The format string
+# itself begins on a new line after the message identifier.  Remember
+# that since the message is a printf format strings '%' chars
+# are interpreted as format specifiers.
+
+	# syncronization messages
+MSGCL_info	MSG_sync_request	no
+MSGCL_info	MSG_sync_response	no
+MSGCL_info	MSG_cmd_complete	no
+MSGCL_info	MSG_quit		no
+MSGCL_info	MSG_script_on		no
+MSGCL_info	MSG_script_off		no
+MSGCL_info	MSG_assoc_cmd		no
+
+	# cmd message from the ui to debug
+MSGCL_info	MSG_command		no	%s
+
+	# line echoed by debug - generated while in scripts
+	# input line  args: prompt string, cmd line
+MSGCL_info	MSG_input_line		no	%s%s
+
+	# extra newline for formatting
+MSGCL_info	MSG_newline		no	\n
+
+	# print the string as is, without formatting
+MSGCL_info	MSG_asis	no	%s
+
+	# messages from the main driver
+MSGCL_info	MSG_usage_cmdline	yes	Usage:\n%s [common_options] [[-f all|none|procs] [-r] cmd_line]\n
+MSGCL_info	MSG_usage_grab	yes 	%s [common_options] [-f all|none|procs] [-l load_file] process...\n
+MSGCL_info	MSG_usage_core	yes 	%s [common_options] -c core_file object\n
+MSGCL_info	MSG_usage_common	yes 	\ \ \ \ \ \ \ common_options: [-V] [-i c|x] [-X opt] [-d defaults] [-s path] [-Ya|f|g,dir]\n
+MSGCL_info	MSG_version	no 	%s: %s%s\n
+
+	# messages for new lwp
+	# create args: program name, process name
+MSGCL_info	MSG_createp	yes	New program %s (process %s) created\n
+MSGCL_info	MSG_oldargs	no	%s\n
+MSGCL_info	MSG_proc_killed	yes	%s killed\n
+MSGCL_info	MSG_proc_exec	yes	Process %s exec'd; new executable is %s, program %s\n
+MSGCL_info	MSG_proc_fork	yes	Process %s forked; new process %s now controlled\n
+MSGCL_info	MSG_new_core	yes	Core image of %s (process %s) created\n
+MSGCL_info	MSG_grab_proc	yes	New program %s (process %s) grabbed\n
+
+MSGCL_info	MSG_new_pty	yes	Program I/O redirected to pseudo-terminal %s\n
+	# ps command: current indicator (*), program name, process, pid,
+	#		function, file, line, command
+MSGCL_info	MSG_ps_header	yes	Program \ \ \ \ ID \ \ \ \ \ \ \ \ Pid State \ \ \ Function \ \ Location \ \ \ \ \ \ \ Command\n
+MSGCL_info	MSG_ps_core	yes	%s%-10.10s %-7.7s %6d Core \ \ \ \ %-10.10s %-15.15s %s\n
+MSGCL_info	MSG_ps_dead	yes	\ %-10.10s \ \ \ \ \ \ \ \ \ \ \ \ -1 Dead \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  \ \ \ \ \ \ \ \ \ \ \ %s\n
+MSGCL_info	MSG_ps_release	yes	\ %-10.10s \ \ \ \ \ \ \ \ \ \ \ \ -1 Released \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  \ \ \ \ \ \ \ \ \ \ \ %s\n
+MSGCL_info	MSG_ps_running	yes	%s%-10.10s %-7.6s %6d Running \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  \ \ \ \ \ \ \ \ \ \ \ %s\n
+MSGCL_info	MSG_ps_stepping	yes	%s%-10.10s %-7.7s %6d Stepping \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  \ \ \ \ \ \ \ \ \ \ \ %s\n
+MSGCL_info	MSG_ps_unknown	yes	%s%-10.10s %-7.7s %6d Unknown \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  \ \ \ \ \ \ \ \ \ \ \ %s\n
+MSGCL_info	MSG_ps_stopped	yes	%s%-10.10s %-7.7s %6d Stopped \ %-10.10s %-15.15s %s\n
+
+	# map args: start addr, end addr, size, access permissions, object file
+MSGCL_info	MSG_map		no	%#.8x..%#.8x\t%#.8x\t%.6s\t%s\n
+MSGCL_info	MSG_map_header	yes	Address Map for %s\n Address Range\t\tSize\t\tAccess\tObject File\n
+
+MSGCL_info	MSG_prompt	no	%s
+
+	# events display
+MSGCL_info	MSG_events		yes	Events for %s, program %s\n
+MSGCL_info	MSG_events_proto	yes	Events for (dead) program %s\n
+MSGCL_info	MSG_event_header	yes	\ \ ID \ \ \ \ \ Type \ \ \ \ \ \ Count Condition \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Command List\n
+MSGCL_info	MSG_event_header_f	yes	\ \ ID \ \ \ \ \ Type \ \ \ \ \ \ Count Condition\n
+MSGCL_info	MSG_stop_event		yes	[%.4d]%s%s STOP \ \ \ \ \ \ %5d %-30s %s\n
+MSGCL_info	MSG_stop_event_f	yes	[%.4d]%s%s STOP \ \ \ \ \ \ %5d %s\n\tObject list:\t%s\n\tCommand:\t%s\n
+MSGCL_info	MSG_syscall_event	yes	[%.4d]%s%s SYSCALL %-2s %5d %-30s %s\n
+MSGCL_info	MSG_syscall_event_f	yes	[%.4d]%s%s SYSCALL %-2s %5d %s\n\tObject list:\t%s\n\tCommand:\t%s\n
+MSGCL_info	MSG_signal_event	yes	[%.4d]%s%s SIGNAL \ \ \ \ \ \ \ \ \ \ %-30s %s\n
+MSGCL_info	MSG_signal_event_f	yes	[%.4d]%s%s SIGNAL \ \ \ \ \ \ \ \ \ \ %s\n\tObject list:\t%s\n\tCommand:\t%s\n
+MSGCL_info	MSG_onstop_event	yes	[%.4d] %s ONSTOP \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ %s\n
+MSGCL_info	MSG_onstop_event_f	yes	[%.4d] %s ONSTOP\n\tObject list:\t%s\n\tCommand:\t%s\n
+MSGCL_info	MSG_signal_header	yes	Signal Disposition for %s, program %s\n
+MSGCL_info	MSG_sig_caught		yes	%4d\tsig%-7s\tcaught\n
+MSGCL_info	MSG_sig_ignored		yes	%4d\tsig%-7s\tignored\n
+MSGCL_info	MSG_event_assigned	yes	EVENT [%d] assigned\n
+MSGCL_info	MSG_bkpt_set		no	%#x %d %s
+MSGCL_info	MSG_bkpt_set_addr	no	%#x
+MSGCL_info	MSG_event_disabled	no	%d %#x
+MSGCL_info	MSG_event_enabled	no	%d %#x
+MSGCL_info	MSG_event_deleted	no	%d %#x
+MSGCL_info	MSG_event_changed	no	%d
+
+	# process state, produced by LWP::stateinfo()
+MSGCL_info	MSG_es_stepped		yes	STEPPED %s
+MSGCL_info	MSG_step_not_done	yes	STEPPED %s
+MSGCL_info	MSG_es_suspend		yes	SUSPENDED %s
+MSGCL_info	MSG_es_signal		yes	SIGNALED %d (%s) in %s
+MSGCL_info	MSG_es_sysent		yes	SYSTEM CALL ENTRY %d (%s) in %s
+MSGCL_info	MSG_es_sysxit		yes	SYSTEM CALL EXIT %d (%s) in %s
+MSGCL_info	MSG_es_core		yes	CORE FILE
+MSGCL_info	MSG_es_stop		yes	STOP EVENT TRIGGERED: %s%sin %s
+MSGCL_info	MSG_core_state		yes	Signal: %s\n
+MSGCL_info	MSG_core_state_addr	yes	Signal: %s\tFault address: %#x\n
+
+
+	# change of current process, program, lwp
+MSGCL_info	MSG_new_context		yes	Current process is now %s, program %s\n
+MSGCL_info	MSG_no_process		yes	No more processes\n
+MSGCL_info	MSG_proc_exit		yes	Process %s has exited\n
+	# releasing a process
+MSGCL_info	MSG_release_run		yes	Releasing and running process %s\n
+MSGCL_info	MSG_release_suspend	yes	Releasing and suspending process %s\n
+MSGCL_info	MSG_release_core	yes	Releasing core image %s\n
+MSGCL_info	MSG_proc_start		no	%#x
+MSGCL_info	MSG_proc_stop_fcall	no	%#x
+MSGCL_info	MSG_rename		no	%s %s
+MSGCL_info	MSG_set_frame		no	%#x %d
+MSGCL_info	MSG_set_language	no	%s
+MSGCL_info	MSG_jump		no	%#x %#x %s %d\n
+
+	# current location, also produced by LWP::stateinfo()
+	# args: function, file
+MSGCL_info	MSG_loc_sym_file	yes	\ [%s() in %s]\n
+MSGCL_info	MSG_loc_sym		no	\ [%s()]\n
+MSGCL_info	MSG_loc_unknown		no	\n
+
+	# source line, args: line #, source line
+MSGCL_info	MSG_line_no_src	yes	%d:\t<no source text available>\n
+MSGCL_info	MSG_line_src	no	%d:\t%s\n
+MSGCL_info	MSG_disassembly	no	\t%#x %s\n
+MSGCL_info	MSG_dis_line	no	[%d]\t%#x %s\n
+MSGCL_info	MSG_dis_header	yes	Disassembly for %s, Program %s\n
+MSGCL_info	MSG_source_file	no	%s
+
+	# register contents
+MSGCL_info	MSG_int_reg_newline	no	%s\t0x%.8x\n
+MSGCL_info	MSG_int_reg		no	%s\t0x%.8x\t
+MSGCL_info	MSG_flt_reg		no	%s %s\n
+MSGCL_info	MSG_reg_header	yes	Register Contents for %s, program %s\n
+
+	# process I/O
+MSGCL_info	MSG_proc_output		no	%s> %s
+
+	# alias args: alias name, token string
+MSGCL_info	MSG_alias		no	%s => %s\n
+
+	# Raw dump
+MSGCL_info	MSG_raw_dump_header	yes	Raw Dump for %s, Program %s\n
+MSGCL_info	MSG_raw_dump		no	%s\n
+
+	# Stack trace
+MSGCL_info	MSG_stack_header	yes	Stack Trace for %s, Program %s\n
+MSGCL_info	MSG_stack_frame		no	[%d] %s(
+MSGCL_info	MSG_stack_arg		no	%s%s=%s
+MSGCL_info	MSG_stack_arg2		no	%s%#x
+MSGCL_info	MSG_stack_arg3		yes	%spresumed: %#x
+MSGCL_info	MSG_stack_frame_end_1	no	)\t[%s@%d]\n
+MSGCL_info	MSG_stack_frame_end_2	no	)\t[%#x]\n
+	# print expression
+MSGCL_info	MSG_print_header	no	%s: \ 
+MSGCL_info	MSG_print_val		no	%s
+
+	# messages from symbols
+MSGCL_info	MSG_sym_header		yes	Symbols for %s, Program %s\nName \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Location \ \ \ \ \ \ \ \ Line\n
+MSGCL_info	MSG_sym_type_header	yes	Symbols for %s, Program %s\nName \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Location \ \ \ \ \ \ \ \ Line \ Type\n
+MSGCL_info	MSG_sym_type_val_header	yes	Symbols for %s, Program %s\nName \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Location \ \ \ \ \ \ \ \ Line \ Type \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Value\n
+MSGCL_info	MSG_sym_val_header	yes	Symbols for %s, Program %s\nName \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Location \ \ \ \ \ \ \ \ Line \ Value\n
+MSGCL_info	MSG_symbol		no	%-20.20s %-15.15s %5.5s\n
+MSGCL_info	MSG_symbol_type		no	%-20.20s %-15.15s %5.5s \ %s\n
+MSGCL_info	MSG_symbol_type_assume	yes	%-20.20s %-15.15s %5.5s \ %s (assumed)\n
+MSGCL_info	MSG_symbol_val		no	%-20.20s %-15.15s %5.5s \ %s\n
+MSGCL_info	MSG_symbol_val_assume	yes	%-20.20s %-15.15s %5.5s \ %-11s (assuming int)\n
+MSGCL_info	MSG_symbol_type_val	no	%-20.20s %-15.15s %5.5s \ %-20.20s %s\n
+MSGCL_info	MSG_symbol_type_val_assume	yes	%-20.20s %-15.15s %5.5s \ %-3.3s (assumed) \ \ \ \ \ \ \ %s\n
+MSGCL_info	MSG_function		no	%s\n
+	# working directory
+MSGCL_info	MSG_pwd			no	%s\n
+MSGCL_info	MSG_cd			no	%s\n
+
+	# unclassified error messages
+MSGCL_error	ERR_asis		no	%s
+
+	# specific error messages
+MSGCL_error	ERR_internal	yes	Inconsistent state in function %s at line %d\n
+	# messages from libexecon
+MSGCL_error	ERR_step_watch		yes	Stepping %s to watch stop expression\n
+MSGCL_error	ERR_running_proc	yes	Cannot start %s, it is already executing\n
+MSGCL_error	ERR_core_cant_run	yes	Cannot start %s, it is a core file\n
+MSGCL_error	ERR_core_cant_stop	yes	Cannot stop %s, it is a core file\n
+MSGCL_error	ERR_cant_restart	yes	Cannot restart execution of %s\n
+MSGCL_error	ERR_sys_cant_stop	yes	Cannot stop %s\n
+MSGCL_error	ERR_no_signals		yes	Cannot set signal state in %s\n
+MSGCL_error	ERR_no_syscalls		yes	Cannot trace system calls in %s\n
+MSGCL_error	ERR_sys_no_faults	yes	Cannot set fault tracing in %s\n
+MSGCL_error	ERR_sys_no_breakpt	yes	Cannot set breakpoint at %#x in %s\n
+MSGCL_error	ERR_sys_breakpt		yes	Cannot remove breakpoint at %#x in %s\n
+MSGCL_error	ERR_breakpt_bad_addr	yes	Invalid address for breakpoint in %s: %#x\n
+MSGCL_error	ERR_sys_cancel_sig	yes	Cannot cancel signal in process %s\n
+MSGCL_error	ERR_no_follower		yes	Cannot run follower process (%s): %s\n
+MSGCL_error	ERR_fork_failed		yes	Fork failed in creating process: %s\n
+MSGCL_error	ERR_fork_child_lost	yes	Process %s forked: could not control child: %s\n
+MSGCL_error	ERR_vfork_restart	yes	Process has vforked; restart both parent and child to avoid deadlock\n
+MSGCL_error	ERR_proc_exec		yes	Process %s exec'd: could not control new executable\n
+MSGCL_error	ERR_used_name		yes	Program name %s already in use; using %s\n
+MSGCL_error	ERR_no_access		yes	Could not access %s\n
+MSGCL_error	ERR_no_event_id		yes	No active event with id %d\n
+MSGCL_error	ERR_bad_event_id	yes	Invalid form for event id: \"%s\"\n
+MSGCL_error	ERR_sys_pty_setup	yes	Could not set up pseudo-terminal: %s\n
+MSGCL_error	ERR_sys_pty_read	yes	Could not read from pseudo-terminal %s: %s\n
+MSGCL_error	ERR_sys_map		yes	Cannot read process memory map: %s\n
+MSGCL_error	ERR_branch_tbl		yes	Cannot find branch table in %s\n
+MSGCL_error	ERR_stop_expr		yes	Cannot evaluate stop expression in %s\n
+MSGCL_error	ERR_expr_scope		yes	Cannot find scope for stop expression in %s\n
+MSGCL_error	ERR_return_addr		yes	Cannot find return address for function in process: %s\n
+MSGCL_error	ERR_core_format		yes	Core file format problem\n
+MSGCL_error	ERR_core_access		yes	Problem accessing core file %s\n
+MSGCL_error	ERR_core_truncated	yes	Core file truncated\n
+MSGCL_error	ERR_core_write_regs	yes	Cannot write to core file registers\n
+MSGCL_error	ERR_read_reg		yes	Cannot read registers for %s\n
+MSGCL_error	ERR_write_reg		yes	Cannot write registers for %s\n
+MSGCL_error	ERR_proc_read		yes	Problem reading from process %s, address %#x\n
+MSGCL_error	ERR_proc_write		yes	Problem writing to process %s, address %#x\n
+MSGCL_error	ERR_stop_intr		yes	Stop directive for process %d has been interrupted\nProcess is running but will be stopped\n
+MSGCL_error	ERR_no_segment		yes	Cannot find memory segment for address %#x in process %s\n
+MSGCL_error	ERR_no_match		yes	No matching object for item in process list: %s\n
+MSGCL_error	ERR_shlib_open		yes	Could not open shared library %s: %s\n
+MSGCL_error	ERR_proc_setid		yes	Cannot control process %d: it has executed a setuid or setgid program\n
+MSGCL_error	ERR_proc_io		yes	Error on I/O to process %d\n
+MSGCL_error	ERR_proc_unknown	yes	System error attempting to control process %d\n
+MSGCL_error	ERR_bkpt_data		yes	Breakpoint set on data address %#x in %s\n
+MSGCL_error	ERR_watch_text		yes	Watchpoint set on text address %#x in %s\n
+MSGCL_error	ERR_event_copy		yes	Could not copy event %d to process %s\n
+MSGCL_error	ERR_event_reset		yes	Could not reset event %d in process %s\n
+MSGCL_error	ERR_nested_variable	yes	Unsupported: debugger variable %s as value of debugger variable %s\n
+
+	# messages from libsymbol
+MSGCL_error	ERR_bad_debug_entry	yes	Unrecognized debugging information at offset %#x\n
+MSGCL_error	ERR_debug_entry		yes	Unrecognized debugging information\n
+MSGCL_error	ERR_loc_too_complex	yes	Location description too complex\n
+MSGCL_error	ERR_obj_version		yes	Unknown object file version %d\n
+MSGCL_error	ERR_obj_file_type	yes	Bad object file type %d\n
+MSGCL_error	ERR_no_dashg		yes	No debugging information in %s\n
+MSGCL_error	ERR_obj_file_read	yes	Cannot read %d bytes from object file at offset %#x\n
+MSGCL_error	ERR_assign_coercion	yes	Coercing incompatible pointer types\n
+MSGCL_error	ERR_type_assumed	yes	No type information for %s, assuming int\n
+MSGCL_error	ERR_obj_file_form	yes	Invalid object file format\n
+MSGCL_error	ERR_wrong_mach		yes	Object file for wrong machine type\n
+MSGCL_error	ERR_build_type		yes	Cannot build type description\n
+
+	# error messages from libint
+MSGCL_error	ERR_no_gui		yes	Cannot invoke %s (Window Interface)\n
+MSGCL_error	ERR_bad_dashi		yes	Illegal interface specification: -i%s\n
+MSGCL_error	ERR_newer_file		yes	%s newer than %s\n
+
+	# error messages from libcmd
+MSGCL_error	ERR_no_while		yes	No pending while loop\n
+MSGCL_error	ERR_event_op_bad_cmd	yes	Illegal command to %s\n
+MSGCL_error	ERR_event_op_list	yes	Missing event list to %s\n
+MSGCL_error	ERR_cant_eval_expr	yes	Could not evaluate expression\n
+MSGCL_error	ERR_no_proc		yes	No process\n
+MSGCL_error	ERR_already_logging	yes	Logging already enabled\n
+MSGCL_error	ERR_no_log_file		yes	No previous logon command\n
+MSGCL_error	ERR_cant_create_file	yes	Could not create %s: %s\n
+MSGCL_error	ERR_cant_append		yes	Cannot append to %s: %s\n
+MSGCL_error	ERR_line_too_long	yes	Line too long\n
+MSGCL_error	ERR_alias_name		yes	\"%s\" is an alias name\n
+MSGCL_error	ERR_cmd_name		yes	\"%s\" is a built-in command name\n
+MSGCL_error	ERR_unmatch_brack	yes	Unmatched bracket\n
+MSGCL_error	ERR_unmatch_paren	yes	Unmatched parenthesis\n
+MSGCL_error	ERR_unmatch_brace	yes	Unmatched brace\n
+MSGCL_error	ERR_bad_plist		yes	Malformed process list\n
+MSGCL_error	ERR_no_alias		yes	%s: No such alias\n
+MSGCL_error	ERR_grab_dashl		yes	Only one live object allowed with -l option\n
+MSGCL_error	ERR_no_prev_cmd		yes	No previous command to substitute for !\n
+MSGCL_error	ERR_shell_cmd		yes	Shell command failed with signal %d\n
+MSGCL_error	ERR_shell_cmd_core	yes	Shell command failed with signal %d - core dumped\n
+MSGCL_error	ERR_user_var_defined	yes	User variable %s is undefined\n
+MSGCL_error	ERR_dashi_cmd		yes	Option -i illegal with associated command\n
+
+# ^ in syntax msg
+MSGCL_error	ERR_cmd_pointer		no	%s\n
+MSGCL_error	ERR_bad_token		yes	Unrecognized character at %s\n
+MSGCL_error	ERR_bad_string		yes	Unmatched quote at %s\n
+MSGCL_error	ERR_bad_number		yes	Ill-formed numeric constant at %s\n
+MSGCL_error	ERR_bad_character	yes	Ill-formed character constant at %s\n
+MSGCL_error	ERR_null_filename	yes	Null filename at %s\n
+MSGCL_error	ERR_no_shell_cmd	yes	Shell command expected at %s\n
+MSGCL_error	ERR_multiple_io		yes	Multiple I/O redirection at %s\n
+MSGCL_error	ERR_dup_option		yes	Duplicated option at %s\n
+MSGCL_error	ERR_bad_option		yes	Invalid option %s at %s\n
+MSGCL_error	ERR_missing_option	yes	Option expected at %s\n
+MSGCL_error	ERR_option_mix		yes	Options %s and %s are mutually exclusive\n
+MSGCL_error	ERR_opt_combo_exec	yes	The %s option is illegal with %s\n
+MSGCL_error	ERR_dashf_arg		yes	Illegal argument to -f\n
+MSGCL_error	ERR_missing_proc	yes	Process name expected at %s\n
+MSGCL_error	ERR_missing_string	yes	String expected at %s\n
+MSGCL_error	ERR_missing_number	yes	Decimal number expected at %s\n
+MSGCL_error	ERR_missing_location	yes	Location expected at %s\n
+MSGCL_error	ERR_missing_arg		yes	Argument expected at %s\n
+MSGCL_error	ERR_missing_file	yes	File name expected at %s\n
+MSGCL_error	ERR_missing_cmd		yes	Command expected at %s\n
+MSGCL_error	ERR_missing_signal	yes	Signal expected at %s\n
+MSGCL_error	ERR_missing_expr	yes	Expression expected at %s\n
+MSGCL_error	ERR_missing_p_expr	yes	Parenthesized expression expected at %s\n
+MSGCL_error	ERR_missing_block	yes	Command or block expected at %s\n
+MSGCL_error	ERR_missing_event_num	yes	Event number expected at %s\n
+MSGCL_error	ERR_missing_event	yes	Event number or command expected at %s\n
+MSGCL_error	ERR_missing_id		yes	Identifier expected at %s\n
+MSGCL_error	ERR_debug_id_dollar	yes	Debugger user names must begin with '$'\n
+MSGCL_error	ERR_too_many_args	yes	Too many arguments at %s\n
+MSGCL_error	ERR_loc_syntax		yes	Location syntax error at %s\n
+MSGCL_error	ERR_dup_signal		yes	Duplicated signal at %s\n
+MSGCL_error	ERR_bad_syscall		yes	Invalid system call specification at %s\n
+MSGCL_error	ERR_unexpected_arg	yes	Unexpected argument at %s\n
+MSGCL_error	ERR_bad_arg		yes	Invalid argument at %s\n
+MSGCL_error	ERR_missing_event_exp	yes	Event expression expected at %s\n
+MSGCL_error	ERR_parser_internal	yes	Inconsistent state in parser at %s\n
+MSGCL_error	ERR_unfinished_cmd	yes	Unfinished command\n
+MSGCL_error	ERR_alias_recursion	yes	Alias recursion at %s\n
+MSGCL_error	ERR_syntax_error	yes	Syntax error at %s\n
+MSGCL_error	ERR_bad_keyword		yes	Unrecognized keyword at %s\n
+MSGCL_error	ERR_extra_curly		yes	Unexpected '}'\n
+MSGCL_error	ERR_active_event	yes	No active event with specified id\n
+MSGCL_error	ERR_change_dashc	yes	Count is ignored for onstop and signal events\n
+MSGCL_error	ERR_pwd_fail		yes	Could not determine current working directory: %s\n
+MSGCL_error	ERR_cwd_fail		yes	Could not change working directory to %s: %s\n
+MSGCL_error	ERR_no_new_dir		yes	No directory given and HOME not set\n
+
+
+	# error messages from debug.d
+MSGCL_error	ERR_sys_no_alias	yes	Could not open default alias file %s: %s\n
+MSGCL_error	ERR_multiple_opts	yes	Multiple %s options given; using first\n
+MSGCL_error	ERR_cannot_recover	yes	debug: internal error - cannot recover\n
+MSGCL_error	ERR_opt_combo	yes	%s: the %s option is illegal with %s\n
+MSGCL_error	ERR_create_dashl	yes	%s: the -l option is illegal with a command line\n
+MSGCL_error	ERR_grab_dashr	yes	%s: the -r option is illegal with a live process\n
+MSGCL_error	ERR_bad_cmd_arg	yes	%s: illegal argument to %s option\n
+
+	# error messages from libutil
+MSGCL_error	ERR_cant_open	yes	Cannot open %s: %s\n
+MSGCL_error	ERR_cant_grab	yes	Could not grab %s\n
+MSGCL_error	ERR_cannot_change	yes	Cannot change event %d; one of its processes is not active\n
+MSGCL_error	ERR_opt_change	yes	The %s option is illegal for this type of event\n
+MSGCL_error	ERR_no_previous_create	yes	No previous create command\n
+MSGCL_error	ERR_sys_pipe	yes	Could not create pipeline: %s\n
+MSGCL_error	ERR_create_fail	yes	Create failed: all resulting processes killed\n
+MSGCL_error	ERR_byte_order	yes	Cannot determine byte order of host machine\n
+MSGCL_error	ERR_pty_exist	yes	No such pseudo-terminal: %s\n
+MSGCL_error	ERR_object_unknown	yes	No object named %s exists\n
+MSGCL_error	ERR_prog_no_pty	yes	Program has no associated pseudo-terminal\n
+MSGCL_error	ERR_no_source	yes	Source file %s not found\n
+MSGCL_error	ERR_bad_list_loc	yes	Invalid location specification for list command\n
+MSGCL_error	ERR_no_cur_src	yes	No current source file\n
+MSGCL_error	ERR_no_lines	yes	No lines in %s\n
+MSGCL_error	ERR_only_n_lines	yes	Only %d lines in %s\n
+MSGCL_error	ERR_no_re_match	yes	No match for regular expression\n
+MSGCL_error	ERR_bad_re	yes	Invalid regular expression\n
+MSGCL_error	ERR_no_previous_re	yes	No previous regular expression\n
+MSGCL_error	ERR_frame_range	yes	Frame number %d out of range for process %s\n
+MSGCL_error	ERR_sys_kill	yes	Could not kill process %s: %s\n
+MSGCL_error	ERR_no_entry	yes	No entry \"%s\" exists\n
+MSGCL_error	ERR_may_be_overload	yes	Using %s for %s: there may be other overloaded instances\n
+MSGCL_error	ERR_no_source_info	yes	No source information for %s\n
+MSGCL_error	ERR_unknown_language	yes	Unknown source language: %s\n
+MSGCL_error	ERR_name_in_use	yes	Program name \"%s\" already in use\n
+MSGCL_error	ERR_no_such_prog	yes	No active processes for program %s\n
+MSGCL_error	ERR_evaluation	yes	evaluation failed
+MSGCL_error	ERR_unexpected_tag	yes	Unexpected symbol tag %d\n
+MSGCL_error	ERR_no_sym_info	yes	Cannot get symbol information for process %s\n
+MSGCL_error	ERR_eval_fail_expr	yes	Evaluation of %s failed\n
+MSGCL_error	ERR_invalid_num		yes	Invalid number for set expression\n
+MSGCL_error	ERR_debug_var_set	yes	Debugger variable %s is read-only\n
+MSGCL_error	ERR_debug_var_val	yes	Invalid value for debugger variable %s\n
+MSGCL_error	ERR_no_line		yes	Line information has no address for file %s line %d\n
+MSGCL_error	ERR_get_addr		yes	Cannot get address for symbol %s\n
+MSGCL_error	ERR_loc_debug_var	yes	Invalid debugger variable %s in location specification\n
+MSGCL_error	ERR_active_func	yes	No active function named %s\n
+MSGCL_error	ERR_invalid_op_running	yes	Invalid operation on running object %s\n
+MSGCL_error	ERR_invalid_op_dead	yes	Invalid operation on dead process %s\n
+MSGCL_error	ERR_invalid_op_core	yes	Invalid operation on core file %s\n
+MSGCL_error	ERR_concat		yes	Cannot use concatenation in this assignment\n
+MSGCL_error	ERR_string_req		yes	String required in this context\n
+MSGCL_error	ERR_non_local_jump	yes	Location given for %s is outside the current function.\n
+MSGCL_error	ERR_print_format	yes	Illegal format string to print command: %s\n
+MSGCL_error	ERR_print_width		yes	Requested field width in print command too large: %d\n
+
+	# error messages from libmachine
+MSGCL_error	ERR_get_text	yes	Invalid text address %#x\n
+MSGCL_error	ERR_unknown_opcode	yes	Unknown opcode at address %#x\n
+MSGCL_error	ERR_dis_text	yes	Problem disassembling probably not text section\n
+        # messages from libexp
+#
+# from CCresolve.C
+#
+MSGCL_error     ERR_lhs_novalue		yes     Left side of operator %s has no value\n
+MSGCL_error     ERR_rhs_novalue		yes     Right side of operator %s has no value\n
+MSGCL_error     ERR_un_novalue		yes     Operand of %s operator has no value\n
+MSGCL_error     ERR_lhs_not_integral        yes     Left side of operator %s not integral type\n
+MSGCL_error     ERR_rhs_not_integral        yes     Right side of operator %s not integral type\n
+MSGCL_error     ERR_un_not_integral        yes     Operand of %s operator not integral type\n
+MSGCL_error     ERR_lhs_arithmetic        yes     Left side of operator %s not scalar type\n
+MSGCL_error     ERR_rhs_arithmetic        yes     Right side of operator %s not arithmetic type\n
+MSGCL_error     ERR_un_arithmetic        yes     Operand of %s operator not arithmetic type\n
+MSGCL_error     ERR_lhs_scalar        yes     Left side of operator %s not scalar type\n
+MSGCL_error     ERR_rhs_scalar        yes     Right side of operator %s not scalar type\n
+MSGCL_error     ERR_un_scalar        	yes     Operand of %s operator not scalar type\n
+MSGCL_error     ERR_not_lvalue      	 yes    Left side of operator %s not an lvalue\n
+MSGCL_error     ERR_non_pointer_lhs     yes     Left side of operator %s not a pointer\n
+MSGCL_error     ERR_lhs_not_struct   	yes     Left side of operator %s does not reference a structure type\n
+MSGCL_error     ERR_invalid_op_type     yes     Operand of %s operator has invalid type\n
+MSGCL_error     ERR_operand_not_ptr     yes     Operand of %s operator not a pointer\n
+MSGCL_error     ERR_no_addr             yes     Cannot determine address of operand of %s operator\n
+MSGCL_error     ERR_lhs_not_ptr    	yes     Left side of %s operator not a pointer or array\n
+MSGCL_error     ERR_lhs_binop_type	yes     Left side of binary %s operator has invalid type\n
+MSGCL_error     ERR_rhs_binop_type	yes     Right side of binary %s operator has invalid type\n
+MSGCL_error     ERR_incomp_type_ptr     yes     Operands of %s operator are pointers to incompatible types\n
+MSGCL_error     ERR_illegal_ptr_sub     yes     Illegal pointer subtraction\n
+MSGCL_error     ERR_incomp_type         yes     Operands of %s operator have incompatible types\n
+MSGCL_error     ERR_opd_not_lvalue      yes     %s operator: operand assigned to is not a modifiable lvalue\n
+MSGCL_error     ERR_no_type             yes     No type information for '%s'\n
+MSGCL_error     ERR_cond_not_scalar     yes     Conditional expression in '?:' operator is not a scalar type\n
+MSGCL_error     ERR_cond_incomp_types   yes     'condition ? a : b', types of a and b are incompatible\n
+MSGCL_error     ERR_invalid_lhs_cast    yes     Left side of cast does not specify a valid type\n
+MSGCL_error     ERR_rhs_cast_novalue    yes     Right side of cast does not have a value\n
+MSGCL_error     ERR_invalid_cast        yes     Cannot cast right side operand to type of left side operand\n
+MSGCL_error     ERR_invalid_type        yes     Invalid type\n
+#
+MSGCL_error     ERR_not_function        yes     '%s' is not a function, cannot call\n
+MSGCL_error     ERR_type_mismatch       yes     Arguments passed to %s do not match formal parameter types\n
+MSGCL_error     ERR_toomany_args        yes     Too many arguments in call to %s\n
+MSGCL_error     ERR_not_enough_args     yes     Not enough arguments in call to %s\n
+MSGCL_error     ERR_unknown_debug_var   yes     Unknown debugger variable: %s\n
+MSGCL_error     ERR_no_symbol_info      yes     No symbol information for '%s'\n
+MSGCL_error     ERR_invalid_name        yes     '%s' is not the name of a structure or union\n
+MSGCL_error     ERR_invalid_enum_name   yes     '%s' is not the name of an enumeration\n
+MSGCL_error     ERR_opr_not_supported   yes     Operator %s not supported\n
+MSGCL_error     ERR_C_conversion  	 yes    Type conversion not legal in ANSI/ISO C\n
+MSGCL_error     ERR_arg_eval  		 yes    Cannot evaluate argument to function call\n
+MSGCL_error     ERR_call_stack  	 yes    Problem setting up stack for function call in %s\n
+MSGCL_error     ERR_restore_stack  	 yes    Could not restore stack correctly after function call in %s\n
+MSGCL_error     ERR_format_spec  	 yes    Illegal format specifier%s\n
+MSGCL_error     ERR_short_read  	 yes    Formatted print string too long, truncated\n
+MSGCL_error     ERR_float_eval  	 yes    Floating point error encountered; cannot evaluate\n
+MSGCL_error     ERR_quote_match  	 yes    String or character constant does not end\n
+MSGCL_error     ERR_escape  		 yes    Non-standard escape sequence \\%s\n
+MSGCL_error     ERR_newline_string 	 yes    Newline found in string constant\n
+MSGCL_error     ERR_float_const 	 yes    Malformed floating-point constant\n
+MSGCL_error     ERR_syntax 		 yes    %s at ^\n
+MSGCL_error     ERR_syntax_loc 		 no     %s\n
+MSGCL_error     ERR_stop_operator 	 yes    Operator %s not allowed in stop expression\n
+MSGCL_error     ERR_stop_func 		 yes    Function address constant; illegal in this type of stop expression\n
+MSGCL_error     ERR_export_type		 yes    Cannot export %s; it is not a user-defined variable\n
+MSGCL_error     ERR_putenv		 yes    Could not add %s to environment\n
+MSGCL_error     ERR_int_overflow	 yes    Integer constant overflow: %s\n
+MSGCL_error     ERR_comment_form	 yes    Malformed comment\n
+MSGCL_error     ERR_debug_var_form	 yes    Illegal form for debugger variable\n
+MSGCL_error     ERR_ellipsis	 	yes    Illegal ellipsis notation \'..\' - use \'...\'\n
+MSGCL_error     ERR_octal_const	 	yes    Illegal digit(s) found in octal constant\n
+MSGCL_error     ERR_illegal_char 	yes    Illegal character %s\n
+MSGCL_error     ERR_parameter_type 	yes    No type information for parameters of %s\n
+MSGCL_error     ERR_operator_support 	yes    Operator %s not supported; operator ignored\n
+MSGCL_error     ERR_prototype 		yes    Illegal function prototype\n
+MSGCL_error     ERR_class_ref		yes    Left side of operator %s does not reference a class object\n
+MSGCL_error     ERR_rhs_not_ptr		yes    Right side of operator %s not a pointer\n
+MSGCL_error     ERR_ref_ref_val		yes    Expression a->*b; cannot evaluate b\n
+MSGCL_error     ERR_id_qualifiers	yes    Invalid identifier qualification\n
+MSGCL_error     ERR_func_qualifier	yes    Function %s in qualifier is not an active function\n
+MSGCL_error     ERR_frame_qualifier	yes    Frame qualifier %d out of range for active stack frames\n
+MSGCL_error     ERR_block_source	yes    No source information for block at line %d\n
+MSGCL_error     ERR_line_not_block	yes    Line number %d does not specify a block\n
+MSGCL_error     ERR_block_not_current	yes    Line number %d does not specify a block in the current function\n
+MSGCL_error     ERR_not_typedef		yes    Identifier %s is not a typedef\n
+MSGCL_error     ERR_ambiguous_call	yes    Ambiguous call to overloaded function %s\n
+MSGCL_error     ERR_store_class		yes    Storage class of object ignored\n
+MSGCL_error     ERR_type_convert	yes    Cannot do type conversion\n
+MSGCL_error     ERR_array_bounds	yes    Array index %d beyond high bound for array (%d)\n
+MSGCL_error     ERR_enum_val		yes    No value for enumeration literal %s\n
+MSGCL_error     ERR_obj_info		yes    Cannot determine address or type of %s\n
+MSGCL_error     ERR_assign_left_value	yes    Cannot get value for left side of assignment statement\n
+MSGCL_error     ERR_assign_right_value	yes    Cannot get value for right side of assignment statement\n
+MSGCL_error     ERR_ptr_dereference	yes    Dereference of pointer failed\n
+MSGCL_error     ERR_select_lvalue	yes    Cannot determine location for enclosing object in member selection\n
+MSGCL_error     ERR_select_register	yes    Cannot handle structure or union in register\n
+MSGCL_error     ERR_select_member	yes    Cannot determine location for member %s\n
+MSGCL_error     ERR_not_member		yes    Selected member does not represent a valid field in the structure, class or union\n
+MSGCL_error     ERR_element_size	yes    Array element size unknown\n
+MSGCL_error     ERR_index_value		yes    Cannot get value of array index\n
+MSGCL_error     ERR_sizeof		yes    Cannot compute size of object\n
+MSGCL_error     ERR_reg_addr		yes    Cannot take address of register\n
+MSGCL_error     ERR_op_left_side	yes    Cannot get value for left side operand of %s\n
+MSGCL_error     ERR_op_right_side	yes    Cannot get value for right side operand of %s\n
+MSGCL_error     ERR_op_unary		yes    Cannot get value for operand of %s\n
+MSGCL_error     ERR_pointer_arith	yes    Cannot do pointer arithmetic on operand of unknown size\n
+MSGCL_error     ERR_assume_size		yes    Cannot determine size of object, assuming %d\n
+#
+# Messages from libedit
+MSGCL_error     ERR_fc_syntax  		yes     Illegal syntax for fc command\n
+MSGCL_error     ERR_fc_range  		yes     Number out of range for fc command\n
+MSGCL_error     ERR_fc_found  		yes     Previous command not found\n
+#
+# Help command support
+#
+# Headers, etc.
+MSGCL_info	MSG_help_hdr_commands	yes	Debugger Commands:\n
+MSGCL_info	MSG_help_hdr_topics	yes	Other Topics:\n
+MSGCL_info	MSG_help_hdr_sigs	yes	Valid signals:\n
+MSGCL_info	MSG_help_hdr_sys	yes	Valid system call names:\n
+MSGCL_info	MSG_help_get_alias	yes	Type \'alias\' to see the current aliases.\n
+MSGCL_info	MSG_help_get_help	yes	Type \'help <topic>\' for specifics of a command or topic.\n
+MSGCL_info	MSG_help_topics		no	%s\n
+MSGCL_info	MSG_signame		no	%2d %-12.12s
+MSGCL_info	MSG_sys_name		no	%3d %-17.17s
+MSGCL_error	ERR_help_bad_cmd	yes	No such command or topic: %s\n
+MSGCL_error	ERR_help_no_help	yes	No help available for %s\n
+#
+# Actual help messages
+#
+MSGCL_help	MSG_help_bang	yes
+NAME\n\
+! - execute a shell command.\n\
+\nSYNOPSIS\n\
+! cmd_line \n\
+!!\n\
+\nDESCRIPTION\n\
+Execute a shell command.\n\
+The rest of the line is passed to the shell for\n\
+interpretation.  In particular, redirection is NOT\n\
+done by the debugger, but by the shell.\n\
+The $SHELL variable, if set, contains the full path name of\n\
+the shell to be used.  If $SHELL is not set, /usr/bin/sh is used.\n\
+The debugger waits for the command to finish, but does not take\n\
+control of the resulting processes.\n\
+\n\
+!! specifies that the last shell command should be re-executed.\n\
+\nSEE ALSO\n\
+create, redirection\n
+
+MSGCL_help	MSG_help_alias	yes
+NAME\n\
+alias - add, list, or remove aliases.\n\
+\nSYNOPSIS\n\
+alias name tokens ...\n\
+alias [name]\n\
+alias -r name\n\
+\nDESCRIPTION\n\
+The first form makes \"name\" an alias for the \"tokens\".\n\
+All characters up to the carriage return or comment are taken to be part\n\
+of the definition.  Existing aliases or debugger commands may be\n\
+redefined to an alias name.  Once defined, using an alias is\n\
+equivalent to typing the sequence of tokens it replaces.\n\
+\n\
+Alias definitions may contain the special identifiers $1, $2, ...\n\
+Each such special identifier $n in an alias definition\n\
+is replaced by the nth argument in the alias invocation, where\n\
+the arguments are numbered beginning at 1.  Each argument must\n\
+be preceded by whitespace and is terminated by whitespace, a newline,\n\
+the comment character (#) or the beginning of a block ({).\n\
+The special identifiers $1, $2, ... will not be replaced within a\n\
+quoted string.\n\
+\n\
+If an alias definition contains the special identifier $#, it will\n\
+be replaced during invocation of the alias with the number of\n\
+arguments actually used during the current alias invocation.\n\
+If an alias definition contains the special identifier $*, it will\n\
+be replaced during invocation of the alias with a list of all\n\
+arguments passed during the current alias invocation, each separated\n\
+from the next by a single space.\n\
+\n\
+With no arguments, alias lists all of the current aliases.\n\
+With a single name, it shows the alias for that name.\n\
+\n\
+With the -r option, alias removes any existing alias for the name.\n\
+\nEXAMPLES\n\
+alias\n\
+alias i\n\
+alias i step -i\n\
+alias edit list $1@1\n\
+alias print_list while($1) { print *$1; set $1 = $1->next }\n\
+alias b if ($# > 0) { stop $* } else { stop %%list_file@%%list_line }\n\
+alias -r i\n
+
+MSGCL_help	MSG_help_stop	yes
+NAME\n\
+stop - set or list stop events.\n\
+\nSYNOPSIS\n\
+stop [-p proclist] [[-q] [-c count] stop_expr [command]]\n\
+stop [-p proclist]\n\
+\nDESCRIPTION\n\
+A stop event specifies some condition in the address space\n\
+of a program that will cause the debugger to stop the program's\n\
+execution.   A \"stop_expr\" is one or more expressions linked with the special\n\
+&& (and) or || (or) operators.  Each expression can be either:\n\
+\n\
+1) location\n\ 
+\tA location in the program's text - these are like\n\
+\ttraditional breakpoints;\n\
+\n\
+2) (expr)\n\
+\tAn expression in the current language - this type of stop\n\
+\texpression becomes true when the expression becomes true;\n\
+\n\
+3) *lvalue\n\
+\tA location in the program's data that can be modified -\n\
+\tthis type of expression becomes true when the value changes.\n\
+\n\
+stop_expr's are evaluated continuously by the debugger when the subject\n\
+process is running.  When the entire expression becomes true,\n\
+the debugger announces the occurrence of the event and executes\n\
+the optional associated \"command\".\n\
+\n\
+See stop_expr for more details.\n\
+\n\
+The -q option specifies that the debugger will not announce the event.\n\
+\n\
+The -c option specifies that the event will not trigger for the first\n\
+\"count\" times the stop_expr becomes true.\n\
+\n\
+The second form of the stop command lists all stop events for\n\
+the indicated processes.\n\
+\n\
+Unlike most other commands, if no -p option is given to the stop\n\
+command, its actions apply to all processes derived from the current\n\
+program (%%program).\n\
+\nEXAMPLES\n\
+stop myfile.c@230\n\
+stop *bar\n\
+stop (x == 5)\n\
+stop foo && (a > 7)\n\
+stop (a == 4) || (b == 7)\n\
+\nSEE ALSO\n\
+%%program, %%verbose, assoccmd, delete, disable, enable, events,\n\
+expr, location, proclist, scope, stop_expr\n
+
+
+MSGCL_help	MSG_help_break	yes
+NAME\n\
+break - break out of while loop.\n\
+\nSYNOPSIS\n\
+break\n\
+\nDESCRIPTION\n\
+The break command causes the debugger to exit from the innermost\n\
+enclosing while loop.\n\
+\nEXAMPLES\n\
+while($i < 10) { if (x[$i] == $myvar) break; set $i = $i + 1 }\n\
+\nSEE ALSO\n\
+continue, while\n
+
+
+MSGCL_help	MSG_help_cont	yes
+NAME\n\
+continue - continue next iteration of while loop.\n\
+\nSYNOPSIS\n\
+continue\n\
+\nDESCRIPTION\n\
+The continue command causes the debugger to begin execution of the\n\
+next iteration of the innermost enclosing while loop.\n\
+Execution begins with re-evaluation of the loop expression.\n\
+\nEXAMPLES\n\
+while (i < 20) { step; if (i %% 2) continue; p i, x[i] }\n\
+\nSEE ALSO\n\
+break, while\n
+
+
+MSGCL_help	MSG_help_cancel	yes	
+NAME\n\
+cancel - cancel pending signals.\n\
+\nSYNOPSIS\n\
+cancel [-p proclist] [signal ...]\n\
+\nDESCRIPTION\n\
+The specified \"signals\" are cancelled in the named processes (%%proc by\n\
+default).  If any of the signals have been intercepted by the\n\
+debugger in any of the named processes, then those signals will not be\n\
+received by those processes when they resume execution.\n\
+If no signals are given, all pending signals for the named processes\n\
+will be cancelled.\n\
+\nEXAMPLES\n\
+cancel\n\
+cancel segv\n\
+cancel -p all sigfpe sigemt\n\
+\nSEE ALSO\n\
+kill, proclist, signal, signames\n
+
+
+MSGCL_help	MSG_help_create	yes	
+NAME\n\
+create - create and control one or more new processes.\n\
+\nSYNOPSIS\n\
+create [-dr] [-f all|none|procs] [cmd_line]\n\
+\nDESCRIPTION\n\
+Create takes a shell-style command line and creates one or\n\
+more processes.  The command line may include input and/or output\n\
+redirection and may include a shell pipe.  All resulting processes\n\
+are stopped at the starting address specified by the object file.\n\
+To create and run a process, type \"create ...\" and then \"run\". \n\
+\n\
+If no arguments are given, the previous \"cmd_line\" is reused.  Any\n\
+processes created from previous invocations of that cmd_line are killed.\n\
+\n\
+Each process created is given a debugger process identifier.\n\
+The process may be referenced by that identifier, or by its system\n\
+process id in commands that take a -p option.  The first process\n\
+created in a pipeline becomes the current process (%%proc).\n\
+All processes created from a single executable (via fork(2)) may\n\
+also be referenced by the name of that executable (program name).\n\
+\n\
+If -r is given, the input and output of the process\n\
+are redirected to a pseudo-terminal.  All output is labeled with the\n\
+name of that pseudo-terminal.  If it is necessary to give that process\n\
+input, the \"input\" command must be used.  The -d option specifies\n\
+no redirection.  If neither option is given, the mode specified by\n\
+%%redir is used (by default, no redirection).\n\
+\n\
+If -f is given with an argument of \"none\", the debugger will not\n\
+follow the child processes of any created processes that\n\
+fork.  If -f is given with arguments of either \"all\" or \"procs\"\n\
+all child processes will be controlled by the debugger (these\n\
+processes can be released from debugger control using \"release\").\n\
+If no -f is given, the debugger behavior is governed by %%follow\n\
+(default is follow all children).\n\
+\nEXAMPLES\n\
+create\n\
+create -f none myprog 1 2 3\n\
+create myprog 1 2 3 | myfilter1 | myfilter2\n\
+\nSEE ALSO\n\
+!, %%follow, %%program, %%redir, grab, input, procname,\n\
+rename, release\n
+
+
+MSGCL_help	MSG_help_delete	yes
+NAME\n\
+delete - delete events.\n\
+\nSYNOPSIS\n\
+delete event_num ...\n\
+delete -a [-p proclist] [event_type]\n\
+\nDESCRIPTION\n\
+The first form deletes the events corresponding to the given event numbers.\n\
+\n\
+The second form deletes all events of the\n\
+specified event_type (all types, if none is specified) \n\
+in the specified processes (the current process if\n\
+none is specified).  \"event_type\" may be one of \"onstop\",\n\
+\"signal\", \"stop\" or \"syscall\".\n\
+
+\nEXAMPLES\n\
+delete 1 3 5\n\
+delete -a -p p1\n\
+delete -a stop\n\
+delete -a syscall\n\
+\nSEE ALSO\n\
+change, disable, enable, events, onstop, proclist,\n\
+signal, stop, syscall\n
+
+
+MSGCL_help	MSG_help_dis	yes
+NAME\n\
+dis - disassemble machine instructions.\n\
+\nSYNOPSIS\n\
+dis [-p proclist] [-c instr_count] [location]\n\
+\nDESCRIPTION\n\
+Disassembles \"instr_count\" instructions\n\
+in each specified process (default %%proc).\n\
+If no instr_count is given, the count defaults to %%num_lines.\n\
+%%num_lines starts out at 10 and may be changed.\n\
+\n\
+If a \"location\" is given,\n\
+disassembly begins at the given location in each specified process.\n\
+If no location is given, the first dis after an event triggers\n\
+or after %%frame is reset will start at %%loc.\n\
+Subsequent dis commands will continue from the address\n\
+just beyond the last instruction displayed by the previous dis.\n\
+\nEXAMPLES\n\
+dis\n\
+dis -c 20 main\n\
+dis file.c@10\n\
+\nSEE ALSO\n\
+%%frame, %%loc, %%num_lines, dump, location, print, proclist\n
+
+
+MSGCL_help	MSG_help_disable	yes
+NAME\n\
+disable - disable events.\n\
+\nSYNOPSIS\n\
+disable event_num ...\n\
+disable -a [-p proclist] [event_type]\n\
+\nDESCRIPTION\n\
+The first form disables the events corresponding to the given event numbers.\n\
+\n\
+The second form disables all events of the\n\
+specified event_type (all types, if none is specified) in the\n\
+specified processes (the current process, if none is specified).\n\
+\"event_type\" may be one of \"onstop\", \"signal\", \"stop\"\n\
+or \"syscall\".\n\
+\n\
+Disabled events have no affect on the processes they apply to,\n\
+but are not deleted.  The may be reinstated with \"enable\".\n\
+\nEXAMPLES\n\
+disable 3 5\n\
+disable -a -p p1\n\
+disable -a onstop\n\
+disable -a signal\n\
+\nSEE ALSO\n\
+change, delete, enable, events, onstop, proclist, signal,\n\
+stop, syscall\n
+
+MSGCL_help	MSG_help_dump	yes	
+NAME\n\
+dump - display contents of memory.\n\
+\nSYNOPSIS\n\
+dump [-p proclist] [-c byte_count] location\n\
+\nDESCRIPTION\n\
+Dump displays the contents of memory for each specified process\n\
+(default %%proc).\n\
+It displays \"byte_count\" (%%num_bytes, by default) bytes, 16 bytes per\n\
+line, in hexadecimal and ASCII, starting at the address\n\
+given by \"location\".\n\
+\n\
+%%num_bytes starts out at 256 and may be changed.\n\
+\nEXAMPLES\n\
+dump -c 16 myptr\n\
+dump %%esp\n\
+dump 0x80001248\n\
+\nSEE ALSO\n\
+%%num_bytes, dis, location, print, proclist\n
+
+
+MSGCL_help	MSG_help_enable	yes
+NAME\n\
+enable - enable events.\n\
+\nSYNOPSIS\n\
+enable event_num ...\n\
+enable -a [-p proclist] [event_type]\n\
+\nDESCRIPTION\n\
+The first form enables the events corresponding to the given event numbers.\n\
+\n\
+The second form enables all events of the\n\
+specified type (all types, if none is specified) in\n\
+the specified processes (the current process, if none is specified).\n\
+\"event_type\" may be one of \"onstop\", \"signal\", \"stop\"\n\
+or \"syscall\".\n\
+\n\
+Only disabled events may be enabled.  Once enabled, an event\n\
+will once again affect the process it is defined in.\n\
+\nEXAMPLES\n\
+enable 3 5\n\
+enable -a -p p1\n\
+enable -a stop\n\
+enable -a signal\n\
+\nSEE ALSO\n\
+change, delete, disable, events, onstop, proclist, signal,\n\
+stop, syscall\n
+
+
+MSGCL_help	MSG_help_event	yes
+NAME\n\
+events - list events.\n\
+\nSYNOPSIS\n\
+events [-p proclist] [event_num ...]\n\
+\nDESCRIPTION\n\
+With no arguments, events lists all stop events, signal actions, system call\n\
+actions, and onstop actions for the current process.\n\
+With the -p option, it lists\n\
+the events associated with the given processes.\n\
+\n\
+If one or more event numbers are given,\n\
+events gives a full listing of the specified events.  The full\n\
+listing includes all processes for which the event is set and\n\
+the complete associated command block, if any.\n\
+\nEXAMPLES\n\
+events\n\
+events -p p1,p2\n\
+events 3\n\
+\nSEE ALSO\n\
+change, delete, disable, enable, onstop, proclist, signal,\n\
+stop, syscall\n
+
+
+MSGCL_help	MSG_help_grab	yes
+NAME\n\
+grab - take control of live process or core image\n\
+\nSYNOPSIS\n\
+grab  [-f all|none|procs] [-l load_file] live_object ...\n\
+grab -c corefile objectfile\n\
+\nDESCRIPTION\n\
+The first form takes one or more process specifiers; debug\n\
+will attempt to take control of each process specified (control\n\
+is granted only if you have the right permissions).\n\
+Each process may be specified as either a\n\
+/proc pathname or a process id.\n\
+\n\
+The -l option specifies an alternate object file to use for loading\n\
+symbols for the process.  If the -l option is used, only one\n\
+process may be specified.\n\
+\n\
+If -f is given with an argument of \"none\", the debugger will not\n\
+follow the child processes of any grabbed process that\n\
+forks.  If -f is given with arguments of either \"all\" or \"procs\"\n\
+all child processes will be controlled by the debugger (these\n\
+processes can be released from debugger control using \"release\").\n\
+If no -f is given, the debugger behavior is governed by %%follow\n\
+(default is follow all children).\n\
+\n\
+The second form opens a core file and its corresponding\n\
+object file for examination.\n\
+Grabbed core images may be examined using all of the commands\n\
+available for examining live processes, but may not be altered\n\
+or run.\n\
+\n\
+Grabbed processes, like created ones,\n\
+are assigned a debugger process identifier and may be referenced\n\
+by either this identifier, by their system process id\n\
+or by the name of the program from which they derive.  The first\n\
+process grabbed is made the current process (%%proc).\n\
+\nEXAMPLES\n\
+grab 123\n\
+grab -f procs /proc/123 3455\n\
+grab -l myobject /proc/3455\n\
+grab -c core.save myobject\n\
+\nSEE ALSO\n\
+%%follow, %%proc, %%program, create, procname, release, rename\n
+
+
+MSGCL_help	MSG_help_help	yes
+NAME\n\
+help - ask for help.\n\
+\nSYNOPSIS\n\
+help [topic]\n\
+\nDESCRIPTION\n\
+\"topic\" may be any alias, command name, or help topic.\n\
+If no topic is specified, the list of available\n\
+commands and topics is displayed.\n\
+\nEXAMPLES\n\
+help\n\
+help stop\n\
+help b\n\
+help location\n
+
+
+MSGCL_help	MSG_help_if	yes
+NAME\n\
+if - conditional branch.\n\
+\nSYNOPSIS\n\
+if (expr) cmd\n\
+if (expr) cmd else cmd\n\
+\nDESCRIPTION\n\
+The \"expr\" is evaluated in the current language (%%db_lang or %%lang)\n\
+in the context of the current process (%%proc).\n\
+If it evaluates to true, the \"then-part\" is\n\
+executed.  Otherwise, the \"else-part,\" if present, is executed.  \"cmd\" may\n\
+be either a simple command or a block.\n\
+\nEXAMPLES\n\
+stop  file.c@myfunc { if (x < 10) run; else print x }\n\
+\nSEE ALSO\n\
+%%db_lang, %%lang, block, expr, scope, while\n
+
+
+MSGCL_help	MSG_help_input	yes
+NAME\n\
+input - send input to a process.\n\
+\nSYNOPSIS\n\
+input [-p proc_name|-r pseudo-tty] [-n] string\n\
+\nDESCRIPTION\n\
+If a process was created using \"create -r\", its input and output,\n\
+along with the I/O of any other processes derived from the same program,\n\
+has been redirected to a pseudo-terminal.  To send input to such a\n\
+process, the input command must be used.\n\
+\n\
+\"pseudo-tty\" is the name of the pseudo-terminal to which the input\n\
+should be directed.  The debugger labels all redirected process output\n\
+with the pseudo-terminal name.  Alternatively, a process or\n\
+program name may be given.\n\
+If no process or pseudo-tty is given, the pseudo-tty associated with\n\
+the current program is assumed.\n\
+\n\
+The input \"string\" is sent to the specified\n\
+pseudo-terminal, or to the pseudo-terminal associated with the \n\
+specified process or program.\n\
+A new-line is appended to the string, unless the -n option is given.\n\
+\nEXAMPLES\n\
+input -r pts1 \"here is a string\"\n\
+input -p myprog \"here is another one\"\n\
+\nSEE ALSO\n\
+%%redir, create\n
+
+
+MSGCL_help	MSG_help_jump	yes	
+NAME\n\
+jump - change the process program counter.\n\
+\nSYNOPSIS\n\
+jump [-p proclist] location\n\
+\nDESCRIPTION\n\
+A process must be suspended before this command may be successfully applied\n\
+to it.  jump sets the program counter for the named processes (%%proc by\n\
+default) to the address specified by the \"location\".\n\
+When the process resumes execution, it will start from this address.\n\
+\n\
+The location may be any address within the text of the specified process,\n\
+but extreme care should be taken.  jump does not attempt to adjust\n\
+the process stack if the address is outside of the current function.\n\
+Care must also be taken in jumping around code that might have\n\
+important side effects.\n\
+\nSYNOPSIS\n\
+jump 10\n\
+jump -p p2 main+8\n\
+\nSEE ALSO\n\
+location, proclist\n
+
+
+MSGCL_help	MSG_help_kill	yes	
+NAME\n\
+kill - send a signal to a process\n\
+\nSYNOPSIS\n\
+kill [-p proclist] [signal]\n\
+\nDESCRIPTION\n\
+The named processes (default is %%proc) are sent \"signal\".\n\
+Signals may be given by number or by name.  A signal name\n\
+may be given with or without the initial \"SIG\" prefix.  Case\n\
+is not significant.  If no signal is given, kill uses SIGKILL.\n\
+\nEXAMPLES\n\
+kill -p all\n\
+kill sigfpe\n\
+kill -p p3 8\n\
+\nSEE ALSO\n\
+cancel, proclist, signal, signames\n
+
+
+MSGCL_help	MSG_help_list	yes	
+NAME\n\
+list - display source lines.\n\
+\nSYNOPSIS\n\
+list [-c count] [proc_id@][file_name@]func_name\n\
+list [-c count] [proc_id@][file_name@]line_num\n\
+list [-c count] /regexp/\n\
+list [-c count] ?regexp?\n\
+list [-c count]\n\
+\nDESCRIPTION\n\
+The first four forms specify starting points for the display.\n\
+The first two allow the specification of process, file, function\n\
+and line number.  The third form finds the next line which matches the\n\
+ed(1)-style regular expression.  The fourth form searches backwards from\n\
+the current line.  The closing slash or question mark may be omitted,\n\
+unless another command follows on the same line.\n\
+The last form continues the display from the file and line where\n\
+the previous list left off, or from %%file@%%line after\n\
+an event triggers or %%frame is reset.\n\
+\n\
+If a count is given, that many lines are displayed,\n\
+otherwise, %%num_lines lines are displayed.\n\
+%%num_lines starts out at 10 and may be changed.\n\
+\n\
+After a block of lines is displayed, %%list_file is set to the name\n\
+of the file displayed and %%list_line is set to the number of the last\n\
+source line displayed.\n\
+\nEXAMPLES\n\
+list -c 20\n\
+list myfile@1\n\
+list myfunc\n\
+list /x/\n\
+list ?foobar\n\
+list /\n\
+\nSEE ALSO\n\
+%%file, %%frame, %%line, %%list_file, %%list_line, location,\n\
+print, regexp\n
+
+MSGCL_help	MSG_help_map	yes	
+NAME\n\
+map - display virtual address map.\n\
+\nSYNOPSIS\n\
+map [-p proclist]\n\
+\nDESCRIPTION\n\
+Display the virtual address map for one or more processes.\n\
+With no argument, displays the map for the current process (%%proc).\n\
+With the -p option, displays the map for each process represented by\n\
+the given set of processes.\n\
+\nSEE ALSO\n\
+create, grab, proclist\n
+
+
+MSGCL_help	MSG_help_symbols	yes	
+NAME\n\
+symbols - display symbol names, values and types.\n\
+\nSYNOPSIS\n\
+symbols [-p proclist] [-o object] [-n filename] [-dfgltuv] [pattern]\n\
+\nDESCRIPTION\n\
+Display list of variable names visible from the current frame (%%frame).\n\
+With no options (or the -l option), displays the local names defined\n\
+in the current function (%%func).\n\
+The -f option displays only the visible names which are local to\n\
+the current file (%%file).  If a \"filename\" is given with the -n\n\
+option, that file's symbols are displayed instead.\n\
+The -g option displays only the visible global names defined in\n\
+the current object (executable file or shared library).\n\
+When used with the -o option, the -g option\n\
+displays the global names defined in a specified object.\n\
+The -d option display debugger built-in variables.\n\
+The -u option displays the debugger-maintained, user variables.\n\
+\n\
+If an sh(1)-style pattern is given, it further restricts the\n\
+display to consist of only those names which match the pattern.\n\
+\n\
+The -t option displays symbol types in addition to names.\n\
+The -v option displays symbol values.\n\
+\nEXAMPLES\n\
+symbols -ftv\n\
+symbols -g -o libc.so.1 exec*\n\
+\nSEE ALSO\n\
+%%file, %%frame, %%func, pattern, proclist\n
+
+
+MSGCL_help	MSG_help_print	yes	
+NAME\n\
+print - print value of an expression.\n\
+\nSYNOPSIS\n\
+print [-p proclist] [-f format] expr, ...\n\
+\nDESCRIPTION\n\
+Display results of evaluating a comma-separated list of expressions.\n\
+The expressions are evaluated in the context of the given processes (default\n\
+is %%proc).  The -f option requires a format (which see).\n\
+The expressions may contain program variables, built-in debugger variables\n\
+(%%line, for example), and user-defined variables ($myvar, $HOME).\n\
+Evaluating a function call results in the debugger creating a stack\n\
+frame for that function and executing it.  Debugger events are disabled\n\
+during the function's execution.\n\
+Expressions are evaluated in the current\n\
+language (%%lang or %%db_lang).  A space is printed after each expression, and a\n\
+newline is added at the end, unless a format is specified.\n\
+\n\
+The \"set\" command may also be used to evaluate language expressions.\n\
+\"set\" does not print out the result of an expression, however.\n\
+It is used mainly to evaluate an expression for side effects, such\n\
+as assignment.\n\
+\nEXAMPLES\n\
+print %%line, %%file, %%func\n\
+print \"a[i] == \", a[i]\n\
+print *ptr->next\n\
+print -f \"0x%%x\\n\" main\n\
+print myfunc(1, 2, 3)\n\
+\nSEE ALSO\n\
+%%db_lang, %%lang, expr, format, proclist, scope, set\n
+
+MSGCL_help	MSG_help_ps	yes	
+NAME\n\
+ps - process status.\n\
+\nSYNOPSIS\n\
+ps [-p proclist]\n\
+\nDESCRIPTION\n\
+List status of controlled processes.\n\
+If no -p option is given, lists status of all controlled processes.\n\
+The current process (%%proc) is marked with an asterisk (*).\n\
+\nSEE ALSO\n\
+proclist\n
+
+MSGCL_help	MSG_help_pwd	yes	
+NAME\n\
+pwd - print current working directory.\n\
+\nSYNOPSIS\n\
+pwd\n\
+\nDESCRIPTION\n\
+pwd prints the debugger's current working directory.\n\
+\nSEE ALSO\n\
+cd\n
+
+MSGCL_help	MSG_help_quit	yes	
+NAME\n\
+quit - exit from the debugger.\n\
+\nSYNOPSIS\n\
+quit\n\
+\nDESCRIPTION\n\
+Exit from the debugger.\n\
+All controlled processes are killed (if they were created)\n\
+or released and run (if they were grabbed).\n\
+\nSEE ALSO\n\
+release\n
+
+MSGCL_help	MSG_help_release	yes	
+NAME\n\
+release - release one or more controlled processes.\n\
+\nSYNOPSIS\n\
+release [-s] [-p proclist]\n\
+\nDESCRIPTION\n\
+The named processes (%%proc by default) are no longer controlled\n\
+or monitored by the debugger.  With the -s option, each process\n\
+is released in a stopped state; otherwise each process is released\n\
+and allowed to run.  A process may be released even if it was not\n\
+grabbed by the debugger; i.e., created processes may also be released.\n\
+Such a process, however, will be killed when the debugger exits.\n\
+\nEXAMPLES\n\
+release -p p1\n\
+release -s\n\
+\nSEE ALSO\n\
+proclist, quit\n
+
+MSGCL_help	MSG_help_run	yes	
+NAME\n\
+run - set process running.\n\
+\nSYNOPSIS\n\
+run [-p proclist] [-bfr] [-u location]\n\
+\nDESCRIPTION\n\
+Set the specified list of processes (%%proc by default) running.\n\
+The -f option (the default) specifies that the debugger will\n\
+execute the process in the foreground, i.e. it will\n\
+wait until the processes stops before returning control to the user.\n\
+The -b option specifies background execution (no waiting).\n\
+Control returns immediately to the user, and the process is started.\n\
+\n\
+The -r option causes the process to run until the current function returns.\n\
+The -u option specifies a \"location\" to run to.\n\
+\nEXAMPLES\n\
+run -p all -b\n\
+run -r\n\
+run -u 108\n\
+\nSEE ALSO\n\
+%%wait, location, proclist, step\n
+
+MSGCL_help	MSG_help_script	yes	
+NAME\n\
+script - execute a debugger command script.\n\
+\nSYNOPSIS\n\
+script [-q] fname\n\
+\nDESCRIPTION\n\
+Read and execute debugger commands from a file.\n\
+Commands are echoed before execution, unless the -q option is given.\n\
+Scripts may nest.\n
+
+MSGCL_help	MSG_help_set	yes	
+NAME\n\
+set - modify a debugger or program variable.\n\
+\nSYNOPSIS\n\
+set [-p proclist] debug_or_user_var [=] expr [,expr...]\n\
+set [-p proclist] language_expression\n\
+\nDESCRIPTION\n\
+The set command has two forms.  The first is used to assign a new\n\
+value to a debugger-built-in variable or debugger-maintained user\n\
+variable (e.g. %%lang, or $foo).  The legal values of expr\n\
+depend on the variable.  Some, like %%lang, take a specially defined\n\
+series of names.  Others can take any debugger or language\n\
+expression that can be converted to a string value.\n\
+In the case of a (comma-separated) list of strings and user\n\
+variables, the string values of these expressions are concatenated.\n\
+See \"help\" on each debugger variable for specific legal values.\n\
+\n\
+In the second form, set may be used to evaluate any language expression, \n\
+although its typical use would be to evaluate an assignment expression.\n\
+If more than one process is specified, the command is evaluated\n\
+in the context of each process, in turn.\n\
+\nEXAMPLES\n\
+set %%global_path = %%global_path, \":src/new/mydir\"\n\
+set -p all %%path = \"mydir\"\n\
+set %%frame 2\n\
+set %%eax = 0x3421\n\
+set x = 3\n\
+set myfunc(a, b)\n\
+\nSEE ALSO\n\
+%%db_lang, %%lang, expr, proclist, scope, uservars\n
+
+
+MSGCL_help	MSG_help_signal	yes	
+NAME\n\
+signal - set or list signal actions for a process.\n\
+\nSYNOPSIS\n\
+signal [-p proclist] [-iq] [signal ... [command]]\n\
+\nDESCRIPTION\n\
+When a signal is posted to a process, the debugger, by default, intercepts the\n\
+signal and announces its occurrence.  The signal can then be cancelled\n\
+using the \"cancel\" command, or the process can continue and receive the signal.\n\
+The -i option with one or more signal names or numbers (see \"kill\")\n\
+specifies that the debugger will ignore those signals (not intercept them\n\
+for the the list of processes given by proclist.\n\
+A signal name may be given with or without the initial \"SIG\" \n\
+prefix.  Case is not significant.  Specifying the signal again\n\
+without the -i option re-establishes the default\n\
+action for that signal.\n\
+\n\
+If a command is given with a set of signals, the debugger\n\
+establishes an event for that set.  This event may be deleted, disabled\n\
+or enabled, as can \"stop\", \"onstop\" and \"syscall\" events.  Multiple\n\
+events may be assigned for the same signal.  Deleting all events for a\n\
+given signal does not remove the default debugger action for that signal.\n\
+The -q option says that the signal event will not be announced.\n\
+\n\
+With no arguments, lists the signal actions for the\n\
+list of processes given by proclist.\n\
+\n\
+Unlike most other commands, if no -p option is given to the signal\n\
+command, its actions apply to all processes derived from the current\n\
+program (%%program).\n\
+\nEXAMPLES\n\
+signal -i fpe emt\n\
+signal SIGFPE\n\
+signal 8 { if (x == 0) cancel 8; run }\n\
+\nSEE ALSO\n\
+assoccmd, cancel, delete, disable, enable, kill, proclist, signames\n
+
+MSGCL_help	MSG_help_step	yes	
+NAME\n\
+step - single step a process.\n\
+\nSYNOPSIS\n\
+step [-p proclist] [-ibfoq] [-c count]\n\
+\nDESCRIPTION\n\
+The named processes (default %%proc) will be stepped \"count\" times (default 1).\n\
+An explicit count of 0 indicates step repeatedly, until interrupted or\n\
+stopped by an event.\n\
+\n\
+With the -i option, instruction step; otherwise statement step.\n\
+With the -o option, step over function calls (treat a subroutine as a single\n\
+instruction); otherwise step into function calls.\n\
+\n\
+The -f option (the default) specifies that the debugger will\n\
+wait until the process stops before returning control to the user;\n\
+i.e., it will run the process in the foreground.\n\
+The -b option specifies background execution (no wait).\n\
+The process is started, but control returns immediately to the user.\n\
+The -q option specifies quiet stepping; the debugger does not announce\n\
+the process id of the process stepped, or print the next source line.\n\
+\nEXAMPLES\n\
+step -io\n\
+step -b\n\
+step -p all -c 10\n\
+\nSEE ALSO\n\
+%%verbose, %%wait, process, proclist, run\n
+
+
+MSGCL_help	MSG_help_halt	yes	
+NAME\n\
+halt - stop a process running in the background.\n\
+\nSYNOPSIS\n\
+halt [-p proclist]\n\
+\nDESCRIPTION\n\
+The debugger directs each named process (%%proc by default) to\n\
+immediately suspend execution.  The request may not take effect\n\
+instantaneously, due to system latency and scheduling variations.\n\
+\n\
+\"halt\" is not useful on processes running in the foreground, since\n\
+the debugger does not return control to the user until such processes\n\
+stop.  To stop a process or set of processes running in the foreground\n\
+hit the interrupt key (usually \"delete\").\n\
+\nSEE ALSO\n\
+%%wait, proclist, run, step\n
+
+MSGCL_help	MSG_help_syscall	yes	
+NAME\n\
+syscall - set tracing of system calls.\n\
+\nSYNOPSIS\n\
+syscall [-p proclist] [[-eqx] [-c count] call ... [command]]\n\
+\nDESCRIPTION\n\
+Specify actions to take when a process enters or exits a system call.\n\
+With no arguments, lists current system call actions for the named processes.\n\
+\n\
+If one or more system call names or numbers are given,\n\
+the debugger will suspend the process on entry to (-e, default) and/or\n\
+exit from (-x) those system calls.  The system call event will be\n\
+announced and any associated \"commands\" executed.\n\
+\n\
+The -q option specifies quiet behavior - the event will not be announced.\n\
+The -c option specifies that the event will trigger \"count\" times\n\
+before the debugger suspends the process.  The process will be suspended\n\
+on each subsequent occurrence.\n\
+\n\
+Use \"help sysnames\" to get the list of valid system call names.\n\
+Case is not significant.\n\
+\n\
+Unlike most other commands, if no -p option is given to the syscall\n\
+command, its actions apply to all processes derived from the current\n\
+program (%%program).\n\
+\nEXAMPLES\n\
+syscall -c 10 write { if (fd == 5) run }\n\
+syscall -qx read\n\
+\nSEE ALSO\n\
+%%program, assoccmd, delete, disable, enable, events, proclist\n
+
+
+MSGCL_help	MSG_help_regs	yes	
+NAME\n\
+regs - display contents of processor registers.\n\
+\nSYNOPSIS\n\
+regs [-p proc_list]\n\
+\nDESCRIPTION\n\
+Displays in hexadecimal the contents of the processor\n\
+registers for the specified processes (default %%proc).\n\
+\nSEE ALSO\n\
+dis, dump, proclist\n
+
+
+MSGCL_help	MSG_help_stack	yes	
+NAME\n\
+stack - display function call backtrace.\n\
+\nSYNOPSIS\n\
+stack [-p proclist] [-f frame] [-c count]\n\
+\nDESCRIPTION\n\
+Displays active functions for the named processes (%%proc by default).\n\
+The functions are shown with their names, argument names and values\n\
+and the active line number or address within the function.\n\
+Function names, argument names and line numbers may not be available\n\
+if there is insufficient symbolic information.\n\ 
+\n\
+\"count\" is the number of frames to show.  If not given, shows entire stack.\n\
+The -f option specifies the frame number to begin the display with\n\
+Frames are numbered from 0 for the bottom of the stack (initial frame).\n\
+\nEXAMPLES\n\
+stack -p p2\n\
+stack -f 2 -c 3\n\
+\nSEE ALSO\n\
+proclist\n
+
+MSGCL_help	MSG_help_while	yes	
+NAME\n\
+while - conditional loop.\n\
+\nSYNOPSIS\n\
+while (expr) cmd\n\
+\nDESCRIPTION\n\
+The \"expr\" is evaluated in the current language (%%lang or %%db_lang)\n\
+in the context of the current process (%%proc).\n\
+If it evaluates to true, the \"cmd\" is executed.\n\
+The sequence is then repeated.  \"cmd\" may be a simple command or a block.\n\
+\nEXAMPLES\n\
+while ($foo < 10) { print $foo, a[$foo]; set $foo = $foo + 1 }\n\
+\nSEE ALSO\n\
+%%db_lang, %%lang, block, break, continue, expr, if, scope\n
+
+
+MSGCL_help	MSG_help_cd	yes	
+NAME\n\
+cd - change current working directory.\n\
+\nSYNOPSIS\n\
+cd [pathname]\n\
+\nDESCRIPTION\n\
+cd changes the debugger's current working directory to the directory\n\
+given by \"pathname\".  If no pathname is given, cd uses the\n\
+directory specified by the environment variable HOME.\n\
+\nSEE ALSO\n\
+pwd\n
+
+MSGCL_help	MSG_help_change	yes	
+NAME\n\
+change - modify an existing event.\n\
+\nSYNOPSIS\n\
+change event_num [-p proclist] [-evqx] [-c count]\n\
+\t[stop_expr|call...|signal...] [{commands}]\n\
+\nDESCRIPTION\n\
+event_num must come first and is the event number of an existing, valid event.\n\
+The other options allow you to modify the various attributes of that event:\n\
+1) the list of processes to which it applies (-p),\n\
+2) the verbosity (-q makes an event quiet, -v verbose),\n\
+3) for system calls, whether the event occurs on entry, exit or both (-ex),\n\
+4) for stop and system call events, the number of times the event\n\
+\toccurs before it is announced (-c),\n\
+5) and the expression, system call list or signal list associated with an event.\n\
+6) the associated commands (must be surrounded by curly braces {}),\n\
+\nEXAMPLES\n\
+change 3 -q\n\
+change 5 -p p2 -c 10\n\
+change 7 { print \"x == \", x }\n\
+change 9 -x write\n\
+\nSEE ALSO\n\
+assoccmd, delete, disable, enable, events, onstop,\n\
+proclist, signal, stop, syscall\n
+
+MSGCL_help	MSG_help_export	yes	
+NAME\n\
+export - add a name-value pair to the environment.\n\
+\nSYNOPSIS\n\
+export $username\n\
+\nDESCRIPTION\n\
+Export a debugger-maintained, user defined variable to the environment.\n\
+username (and its current value) become part of the environment that is\n\
+received by debugger-created processes.  If the value of $username changes,\n\
+it must be re-exported for the new value to become part of the environment.\n\
+Note that \"username\" is exported without the \"$\" prefix.\n\
+\nSEE ALSO\n\
+uservars\n
+
+MSGCL_help	MSG_help_fc	yes	
+NAME\n\
+fc - find, edit and re-execute commands\n\
+\nSYNOPSIS\n\
+fc [-e ename] [-nlr] [first [last]]\n\
+fc -e - [old=new] [command]\n\
+\nDESCRIPTION\n\
+\"fc\" provides ksh(1) style command editing and recall.\n\
+In the first form, a range of commands from \"first\" to \"last\"\n\
+is selected from the last HISTSIZE commands that were entered.\n\
+The arguments first and last may be specified as numbers or as strings.\n\
+A string is used to locate the most recent command starting with\n\
+the given string.  A negative number is used as an offset to the\n\
+current command number.\n\
+\n\
+If the -l option is given, the commands are listed on standard output.\n\
+Otherwise, the editor program \"ename\" is invoked on a temporary file\n\
+containing the commands.  If ename is not supplied, the value of the\n\
+environment variable FCEDIT (default /usr/bin/ed) is used as the\n\
+editor.  When editing is completed, the edited commands are executed.\n\
+\n\
+If first is not specified, the default is the previous command for\n\
+editing and -16 for listing.  The -r option reverses the order\n\
+of the commands; the -n option suppresses command numbers when listing.\n\
+\n\
+In the second form, the \"command\" is re-executed after the\n\
+substitution \"old=new\" is performed.  If command is not supplied,\n\
+the default is the previous command.\n\
+\nSEE ALSO\n\
+%%mode\n
+
+MSGCL_help	MSG_help_logoff	yes	
+NAME\n\
+logoff - stop session logging.\n\
+\nSYNOPSIS\n\
+logoff\n\
+\nDESCRIPTION\n\
+Turns off session logging.\n\
+\nSEE ALSO\n\
+logon\n
+
+
+MSGCL_help	MSG_help_logon	yes	
+NAME\n\
+logon - start session logging.\n\
+\nSYNOPSIS\n\
+logon [log_file]\n\
+\nDESCRIPTION\n\
+Start session logging.  All debugger output is sent to \"log_file\".\n\
+Each output line is preceded with a # (comment) sign.  Debugger\n\
+commands are also sent to log_file, but with no preceding #.\n\
+If no log_file is specified, the last log_file used in the current\n\
+debugging session is assumed.  New commands and outputs are appended\n\
+to this file.  Log files created by the debugger may be used as\n\
+debugger command scripts.\n\
+\nSEE ALSO\n\
+logoff, script\n
+
+
+MSGCL_help	MSG_help_onstop	yes	
+NAME\n\
+onstop - set action to perform when process stops.\n\
+\nSYNOPSIS\n\
+onstop [-p proclist] [command]\n\
+\nDESCRIPTION\n\
+Without a \"command\" argument, lists current onstop actions for the\n\
+list of processes specified in \"proclist\".\n\
+\n\
+\"command\" may be a single command or a command block.\n\
+If a command or block is given, each time a specified process stops,\n\
+the commands are executed (in the context of that process).  Stopping\n\
+includes single steps and stopping for another debugger event\n\
+(signal, syscall, stop).\n\
+\n\
+Unlike most other commands, if no -p option is given to the onstop\n\
+command, its actions apply to all processes derived from the current\n\
+program (%%program).\n\
+\nEXAMPLES\n\
+onstop -p p2\n\
+onstop { print i, x[i] }\n\
+\nSEE ALSO\n\
+%%program, delete, disable, enable, events, signal,\n\
+stop, syscall\n
+
+MSGCL_help	MSG_help_rename	yes	
+NAME\n\
+rename - change name by which a program is known.\n\
+\nSYNOPSIS\n\
+rename prog_name name\n\
+\nDESCRIPTION\n\
+When a process is grabbed or created, the name of the executable\n\
+from which the process was derived can be used to refer to all\n\
+processes derived from that executable, and can be used\n\
+in any proclist.  rename specifies a new name to use for that program.\n\
+\nSEE ALSO\n\
+create, grab, proclist, procname\n
+
+MSGCL_help	MSG_help_percent_file	yes	
+NAME\n\
+%%file - the current source file.\n\
+\nDESCRIPTION\n\
+%%file is set to the name of the source file associated with the\n\
+current frame, if known, whenever a process stops or %%frame is changed.\n\
+Each process has its own %%file.  The first \"list\" command after %%frame\n\
+is set will display source from %%file if no file name is specified.\n\
+You may not explicitly change %%file.\n\
+\nSEE ALSO\n\
+%%frame, %%line, %%list_file, %%list_line, list\n
+
+MSGCL_help	MSG_help_percent_follow	yes	
+NAME\n\
+%%follow - should the debugger follow child processes?\n\
+\nDESCRIPTION\n\
+The debugger controls processes for the user that were either created\n\
+by the debugger as the result of a \"create\" command, or taken over\n\
+while already executing as a result of the \"grab\" command.\n\
+If %%follow is set to either \"all\" or \"procs\", the debugger will\n\
+also take over control of the child processes of any controlled\n\
+processes that fork.  If %%follow is set to \"none\", no child\n\
+processes will be controlled.  The global mode set by %%follow\n\
+may be overridden on individual \"create\" or \"grab\" commands.\n\
+Any controlled process may be released from control with the\n\
+\"release\" command.\n\
+\n\
+The default for %%follow is \"all\".\n\
+\nSEE ALSO\n\
+create, grab, release, set\n
+
+MSGCL_help	MSG_help_percent_frame	yes	
+NAME\n\
+%%frame - the current frame number in the callstack.\n\
+\nSYNOPSIS\n\
+The default scope for source listings, symbol lookup, disassembly, and\n\
+expression evaluation.  %%frame is set to the number\n\
+of the topmost frame (counting from 0 for \"_start\") whenever a process\n\
+stops.  Each process has its own %%frame.  You may set %%frame explicitly\n\
+via the \"set\" command.  Setting %%frame will also reset the related\n\
+variables %%db_lang, %%file, %%func, %%line, and %%loc to maintain a\n\
+consistent view of the current context.\n\
+\nSEE ALSO\n\
+%%db_lang, %%file, %%func, %%line, %%loc\n
+
+
+MSGCL_help	MSG_help_percent_func	yes	
+NAME\n\
+%%func - the current function.\n\
+\nDESCRIPTION\n\
+%%func is set to the name of the function corresponding to the current frame\n\
+(%%frame) whenever a process stops or %%frame is changed.  Each process has\n\
+its own %%func.  You may set %%func explicitly via the \"set\" command,\n\
+but only to a function with an active frame in the stack;\n\
+%%frame (and the related variables %%db_lang, %%file, %%func, %%line, and %%loc)\n\
+will also be updated to reflect the new context.\n\
+\nSEE ALSO\n\
+%%frame\n
+
+
+MSGCL_help	MSG_help_percent_lang	yes	
+NAME\n\
+%%lang - the current language.\n\
+\nDESCRIPTION\n\
+The current language.  If set, overrides the value of %%db_lang.\n\
+Valid strings to assign to %%lang are:\n\
+\tC\tANSI C\n\
+\tC++\tC++ Release 2\n\
+If %%lang is not set, or is set to the null string (\"\") the debugger uses\n\
+%%db_lang as the current language.\n\
+Commands that use %%lang in evaluating expressions include if,\n\
+print, set, stop, while\n\
+\nSEE ALSO\n\
+%%db_lang, expr\n
+
+MSGCL_help	MSG_help_percent_loc	yes	
+NAME\n\
+%%loc - the current location.  \n\
+\nDESCRIPTION\n\
+The current point of execution, %%loc is set to the contents of the\n\
+\"program counter\" for the current frame whenever a process stops\n\
+or %%frame is changed.  Each process has its own %%loc.  You may\n\
+not explicitly change %%loc.  The first \"dis\" command after\n\
+%%frame is set will disassemble instructions starting at %%loc\n\
+if no location is given explicitly.\n\
+\nSEE ALSO\n\
+%%frame, dis\n
+
+MSGCL_help	MSG_help_percent_list_file	yes	
+NAME\n\
+%%list_file - the name of the file last listed.\n\
+\nDESCRIPTION\n\
+%%list_file keeps track of the last file displayed by the list command.\n\
+%%list_file changes whenever the list command is executed and is also\n\
+reset to the file name of the file containing\n\
+the current location (%%loc) in the current frame (%%frame) whenever\n\
+a process stops or %%frame is changed.  Each process has its own %%list_file.\n\
+\nSEE ALSO\n\
+%%file, %%frame, %%line, %%list_line, list\n
+
+MSGCL_help	MSG_help_percent_list_line	yes	
+NAME\n\
+%%list_line - the line number last listed.\n\
+\nDESCRIPTION\n\
+%%list_line keeps track of the last line displayed by the list command.\n\
+%%list_line changes whenever the list command is executed and is also\n\
+reset to the line number containing\n\
+the current location (%%loc) in the current frame (%%frame) whenever\n\
+a process stops or %%frame is changed.  Each process has its own %%list_line.\n\
+\nSEE ALSO\n\
+%%file, %%frame, %%line, %%list_file, list\n
+
+MSGCL_help	MSG_help_percent_line	yes	
+NAME\n\
+%%line - the current line number.\n\
+\nDESCRIPTION\n\
+%%line is set to the line number containing\n\
+the current location (%%loc) in the current frame (%%frame) whenever\n\
+a process stops or %%frame is changed.  Each process has its own %%line.\n\
+The first \"list\" command after %%frame is set will display\n\
+source starting at %%line if no location is specified.\n\
+You may set not set %%line explicitly.\n\
+\nSEE ALSO\n\
+%%frame, %%file, %%list_file, %%list_line, list\n
+
+MSGCL_help	MSG_help_percent_mode	yes	
+NAME\n\
+%%mode - the current line editing mode.\n\
+\nDESCRIPTION\n\
+Debug supports ksh(1) style command history and editing.  %%mode\n\
+is the editing mode used for command line editing.  %%mode is\n\
+set on startup to the value of the environment variable VISUAL,\n\
+or, if it does not exist, to the value of the environment\n\
+variable EDITOR.  It may be reset at any time using the \"set\"\n\
+command.  Valid values are \"vi\" and \"emacs\".\n\
+Setting %%mode to any other value will turn off command editing.\n\
+\nSEE ALSO\n\
+fc\n
+
+MSGCL_help	MSG_help_percent_path	yes	
+NAME\n\
+%%path - the local search path for source files.\n\
+\nDESCRIPTION\n\
+Each program has its own %%path.\n\
+The value of %%path must be a colon-separated list of directory names.\n\
+When the debugger attempts to display source lines from a file, it will\n\
+search the directories listed in %%path for a file of the proper name.\n\
+After searching the local path list for the given program, the debugger\n\
+will search its global path list (%%global_path).\n\
+\nSEE ALSO\n\
+%%global_path\n
+
+MSGCL_help	MSG_help_percent_proc	yes	
+NAME\n\
+%%proc - the current process.\n\
+\nDESCRIPTION\n\
+This variable contains the process name of the current process.\n\
+It may be set explicitly via the \"set\" command, or\n\
+implicitly via \"create\", \"grab\", or \"release\".\n\
+Setting %%proc also implicitly sets %%program and %%frame.\n\
+\nSEE ALSO\n\
+%%frame, %%program, proclist, procname\n
+
+MSGCL_help	MSG_help_percent_program	yes	
+NAME\n\
+%%program - the current program.\n\
+\nDESCRIPTION\n\
+This variable contains the program name of the program which\n\
+contains the current process (%%proc).  You may set it explicitly via\n\
+the \"set\" command, or implicitly via \"create\", \"grab\", or \"release\".\n\
+Programs are named by the executable file from which they derive\n\
+and may be renamed using the \"rename\" command.\n\
+Setting %%program also implicitly sets %%proc, and vice versa.\n\
+\nSEE ALSO\n\
+%%proc, proclist, procname\n\
+
+MSGCL_help	MSG_help_percent_prompt	yes	
+NAME\n\
+%%prompt - the debugger's prompt string.\n\
+\nDESCRIPTION\n\
+The debugger prompts for user input by printing the value of %%prompt.\n\
+The default value is \"debug> \".  You may change %%prompt with\n\
+the \"set\" command.\n
+
+MSGCL_help	MSG_help_percent_thisevent	yes	
+NAME\n\
+%%thisevent - the number of the event currently being handled.\n\
+\nDESCRIPTION\n\
+Within an associated command, %%thisevent will evaluate to the\n\
+event number of the event with which the commands are associated.\n\
+You may not explicitly modify the value of %%thisevent.\n\
+\nSEE ALSO\n\
+%%lastevent, assoccmd\n
+
+
+MSGCL_help	MSG_help_percent_lastevent	yes	
+NAME\n\
+%%lastevent - the number of the most recently created event.\n\
+\nDESCRIPTION\n\
+After a command which assigns an event number (stop, signal, syscall, or\n\
+onstop), %%lastevent will evaluate to the event number just assigned.\n\
+You may not explicitly modify the value of %%lastevent.\n\
+\nSEE ALSO\n\
+%%thisevent\n
+
+
+MSGCL_help	MSG_help_assoc	yes	
+NAME\n\
+assoccmd - a debugger command or block.\n\
+\nDESCRIPTION\n\
+Several commands take an optional associated command or command\n\
+block. This must appear last in the argument list and may\n\
+include commands with their own associated commands -- that is,\n\
+associated commands may be nested.  The command(s) will be \n\
+executed whenever the relevant event (stop, signal, etc.) occurs.\n\
+Within an associated command, %%thisevent contains the event\n\
+number of the event being handled.\n\
+The process that encountered the event is temporarily made current\n\
+while the commands are executed.\n\
+\nSEE ALSO\n\
+%%thisevent, block, onstop, signal, stop, syscall\n
+
+MSGCL_help	MSG_help_block	yes	
+NAME\n\
+block - a list of commands.\n\
+\nDESCRIPTION\n\
+A command or semicolon-separated list of commands enclosed\n\
+in curly braces.  Blocks may be used as assoccmds (which see)\n\
+or may appear independently of other commands.\n\
+Blocks may be used to group commands in order to redirect\n\
+their output with a single redirection (which see).\n\
+\nEXAMPLES\n\
+{ if (i) print *ptr; else print *mptr } > myfile\n\
+\nSEE ALSO\n\
+assoccmd, redirection\n
+
+MSGCL_help	MSG_help_format	yes	
+NAME\n\
+format - the form of the output for the \"print\" command.\n\
+\nDESCRIPTION\n\
+The format is a character string similar to that accepted by the\n\
+C language printf routine.\n\
+Each format specification may have the following form:\n\
+\t%%[flags][width][.[precision]][conversion_character]format_character\n\
+All fields have the same meaning they have in the printf routine.\n\
+Width and precision are limitied to 1024.\n\
+Printf positional parameters and the printf \'n\' format character\n\
+are not accepted.\n\
+Each format specification corresponds to one of the expressions\n\
+given in the print command, in the order in which they appear.\n\
+Characters that are not part of format specifications are printed as given.\n\
+Format characters have the following meanings:\n\
+\tc\tunsigned character\n\
+\td,i\tsigned decimal integer\n\
+\te,E\tfloating point in style [-]d.ddde+/-dd\n\
+\tf\tfloating point in style [-]ddd.dddd\n\
+\tg,G\tfloating point in either of above styles\n\
+\to\tunsigned octal integer\n\
+\tp\tvoid * (generic pointer; hexadecimal address)\n\
+\ts\tstring\n\
+\tu\tunsigned decimal integer\n\
+\tx,X\tunsigned hexadecimal integer\n\
+\tz\tdebugger default style for the expression\n\
+\t%%\t%%\n\
+\nSEE ALSO\n\
+print\n
+
+MSGCL_help	MSG_help_location	yes	
+NAME\n\
+location - an address in a process.\n\
+\nDESCRIPTION\n\
+The syntax for a location specifier is:\n\
+\taddress[+-constant]\n\
+\t[procname@][filename@]line\n\
+\t[procname@][filename@]function[+-constant]\n\
+where \"address\" is an octal or hexadecimal program address,\n\
+and \"constant\" is a decimal integer.\n\
+\nEXAMPLES\n\
+17\t\ta line number in the current file (%%file)\n\
+foo.c@17\ta line number in some other file\n\
+0x80801234\tan address\n\
+main\t\ta function name or label\n\
+main+3\t\tthree bytes after the label\n\
+p1@main\t\ta function name in a specified process\n\
+%%loc\t\tthe current location\n\
+%%line\t\tthe current file and line number\n\
+%%r0\t\ta register\n\
+%%r0+80\t\ta register plus offset\n\
+%%pc-4\t\ta register minus offset\n\
+$myvar\t\ta user-defined variable\n\
+\nSEE ALSO\n\
+%%file, %%line, %%loc, procname, scope, uservars\n
+
+MSGCL_help	MSG_help_proclist	yes	
+NAME\n\
+proclist - list of process names.\n\
+\nDESCRIPTION\n\
+A comma-separated list of procnames (which see).\n\
+Most commands accept a \"proclist\" using the -p option.\n\
+A proclist must not contain any blanks.\n\
+\nSEE ALSO\n\
+procname\n
+
+MSGCL_help	MSG_help_procname	yes	
+NAME\n\
+procname - a name which denotes a process or group of processes.\n\
+\nDESCRIPTION\n\
+A procname may consist of:\n\
+1) the keyword \"all\", denoting all controlled processes,\n\
+2) a user or debugger generated program name, denoting all processes\n\
+\tderived from that program,\n\
+3) a debugger generated process id of the form pn (e.g. p1, p2),\n\
+4) the debugger variable %%program, denoting all processes derived from\n\
+\tthe current program,\n\
+5) the debugger variable %%proc, denoting the current process,\n\
+6) a decimal integer, corresponding to the system process id of a\n\
+\tcontrolled process,\n\
+7) any user defined variable (e.g. $foo) that has an integer value,\n\
+\tinterpreted as a system process id,\n\
+8) any user defined variable that has a string value that can be\n\
+\tinterpreted as one of the above forms, or as a list of them.\n\
+\nSEE ALSO\n\
+proclist, %%proc, %%program, rename, uservars\n
+
+MSGCL_help	MSG_help_redir	yes	
+NAME\n\
+redirection - changing the destination of debugger output.\n\
+\nDESCRIPTION\n\
+Any command or block may be suffixed with a '>' and a filename, or a '|'\n\
+and a UNIX(r) System shell command line.  This has the effect of redirecting\n\
+the output of the command into the file, or piping it into the shell\n\
+command.  You may also use \">> filename\", which appends the output\n\
+to the file, rather than replacing its current contents, if any.\n\
+\nEXAMPLES\n\
+stack > save.stack\n\
+symbols -gtv | grep int | pg\n\
+\nSEE ALSO\n\
+block\n
+
+MSGCL_help	MSG_help_pattern	yes	
+NAME\n\
+pattern - a sh(1) style regular expression.\n\
+\nDESCRIPTION\n\
+A pattern used to filter the output of the \"symbols\" command.\n\
+\t*\tMatches any string, including the null string\n\
+\t?\tMatches any single character\n\
+\t[...]\tMatches any one of the enclosed characters,\n\
+\t\t\tranges are allowed, and ! as the first\n\
+\t\t\tcharacter indicates negation\n\
+\nSEE ALSO\n\
+symbols\n
+
+MSGCL_help	MSG_help_regexp	yes	
+NAME\n\
+regexp - an ed(1) style regular expression.\n\
+\nDESCRIPTION\n\
+A regular expression used to search for a pattern in a source file\n\
+by the \"list\" command.\n\
+\t.\tMatches any character except a newline\n\
+\t[...]\tMatches any one of the enclosed characters,\n\
+\t\t\tranges are allowed, and ^ indicates negation\n\
+\t*\tIndicates zero or more of the preceding RE\n\
+\t^\tMatches the null string at the beginning of a line\n\
+\t$\tMatches the null string at the end of a line\n\
+\t\\{m\\}\tIndicates exactly m occurrences of the preceding RE\n\
+\t\\{m,\\}\tIndicates at least m occurrences of the preceding RE\n\
+\t\\{m,n\\}\tIndicates m to n, inclusive, occurrences\n\
+\t\\(...\\)\tMatches the same thing as ... matches\n\
+\t\\digit\tMatches the nth parenthesized RE in the same expression\n\
+\t\\<\tMatches the null string at the beginning of a word\n\
+\t\\>\tMatches the null string at the end of a word\n\
+\nSEE ALSO\n\
+list\n
+
+MSGCL_help	MSG_help_uservars	yes	
+NAME\n\
+uservars - user defined, debugger maintained variables.\n\
+\nDESCRIPTION\n\
+Names which begin with a dollar sign ($) are reserved for the debugger user.\n\
+At startup, the debugger imports the shell environment as the initial set\n\
+of user-defined variables.  You may create a new variable via the \"set\"\n\
+command.  User-defined variables are of type \"string\"; they are converted\n\
+to numeric whenever necessary via strtol(3).\n\
+\nSEE ALSO\n\
+export, set\n
+
+MSGCL_help	MSG_help_percent_db_lang	yes	
+NAME\n\
+%%db_lang - the debugger's internal notion of the current language.\n\
+\nDESCRIPTION\n\
+%%db_lang is the language of the current object and is used by the\n\
+debugger in evaluating language expressions.  It is set by the debugger\n\
+based on information contained in the object file itself.\n\
+If the debugger cannot determine the language of the current object,\n\
+%%db_lang defaults to C.\n\
+Explicitly setting %%lang overrides the language of the current object.\n\
+Commands that use %%db_lang in evaluating expressions include if,\n\
+print, set, stop, while\n\
+\nSEE ALSO\n\
+%%lang, expr\n
+
+MSGCL_help	MSG_help_percent_global_path	yes	
+NAME\n\
+%%global_path - debugger\'s global search path.\n\
+\nDESCRIPTION\n\
+The value of %%global_path must be a colon-separated list of directory names.\n\
+When the debugger attempts to display source lines from a file, it will\n\
+search the directories listed in the local %%path for the given program\n\
+for a file of the proper name.\n\
+After searching the local path list for the given program, the debugger\n\
+will search its global path list (%%global_path).\n\
+%%global_path may also be set from the debugger command line with the -s option.\n\
+\nSEE ALSO\n\
+%%path\n
+
+MSGCL_help	MSG_help_percent_num_bytes	yes	
+NAME\n\
+%%num_bytes - default number of bytes to dump.\n\
+\nDESCRIPTION\n\
+If the \"dump\" command is not given a -c option, it dumps\n\
+%%num_bytes bytes.\n\
+The initial value of %%num_bytes is 256 and may be changed using\n\
+the \"set\" command.\n\
+\nSEE ALSO\n\
+dump\n
+
+MSGCL_help	MSG_help_percent_num_lines	yes	
+NAME\n\
+%%num_lines -- number of lines to display.\n\
+\nDESCRIPTION\n\
+If the \"dis\" or \"list\" commands are not given the -c option,\n\
+each displays %%num_lines lines.\n\
+The initial value of %%num_lines is 10 and may be changed using\n\
+the \"set\" command.\n\
+\nSEE ALSO\n\
+dis, list\n
+
+MSGCL_help	MSG_help_percent_result	yes	
+NAME\n\
+%%result - execution status of debugger commands.\n\
+\nDESCRIPTION\n\
+After each debugger command is executed, its result status is\n\
+stored in %%result.  0 indicates successful execution.  Non-zero\n\
+indicates an execution failure.\n
+
+MSGCL_help	MSG_help_percent_verbose	yes	
+NAME\n\
+%%verbose - verbosity level for debugger events.\n\
+\nDESCRIPTION\n\
+When a debugger-controlled process stops, the debugger normally prints\n\
+out a message indicating the reason for the stop, the process id\n\
+and the next source line.  %%verbose can be used to control this output.\n\
+Valid values are:\n\
+\tquiet\tno output is generated when a process stops\n\
+\tsource\tonly the next source line is displayed\n\
+\tevents\tif an event caused the stop, the event is also displayed\n\
+\t\t(does not include requested stops (halts or single steps)\n\
+\treason\treason for the stop, including events and requested stops\n\
+\tall\thighest verbosity level (currently same as reason)\n\
+\n\
+The default mode is \"reason\".\n\
+The quiet mode can also be specified as the -q option to certain\n\
+debugger commands.  These individual -q options override the %%verbose mode.\n\
+\nSEE ALSO\n\
+change, signal, step, stop, syscall\n
+
+MSGCL_help	MSG_help_percent_wait	yes	
+NAME\n\
+%%wait - synchronous or asynchronous command execution.\n\
+\nDESCRIPTION\n\
+When the debugger starts a process in motion, it normally\n\
+waits for the process to stop before returning control to the user.\n\
+Setting %%wait to \"background\", 0 or \"no\" causes the debugger \n\
+to enter asynchronous mode.  In asynchronous mode,\n\
+commands that set a process in motion return immediately to user\n\
+control, without waiting for the process to stop.  Setting %%wait to\n\
+\"foreground\", 1 or \"yes\" restores the default mode.\n\
+The global %%wait can be overridden by using the -f or -b options\n\
+to the run and step commands.\n\
+\nSEE ALSO\n\
+run, step\n
+
+MSGCL_help	MSG_help_stop_expr	yes	
+NAME\n\
+stop_expr - process address space event expressions.\n\
+\nDESCRIPTION\n\
+stop_exprs are special expressions accepted by the stop command.\n\
+A stop_expr consists of one or more stop_events, joined by the special\n\
+&& (and) or || (or) operators.  These operators are left-associative,\n\
+but the debugger does not guarantee the order in which their operands\n\
+are evaluated.  Each stop_event can be:\n\
+\tlocation\n\
+\t( expr )\n\
+\t*lvalue\n\
+\n\
+Each type of stop event has some action that will cause the event to\n\
+be noticed by the debugger.  When such an action occurs, the entire\n\
+stop expression is evaluated for \"truth\".  If true, the event triggers\n\
+in the normal way (the debugger informs the user of the event and\n\
+executes any associated commands).\n\
+\n\
+A \"location\" is an address in the process's text where the debugger\n\
+can set a breakpoint.  When the process reaches the specified location\n\
+the debugger notices the event.  For location stop_events that refer to\n\
+function names, the expression is true as long as that function is active.\n\
+For location stop_events that apply to a particular address or line\n\
+number, the expression is true only when the process is at that\n\
+address or line.  Type \"help location\" for the complete \n\
+location syntax.\n\
+\n\
+\"expr\" can be any valid expression in the current language (%%lang or %%db_lang).\n\
+The debugger notices the stop_event when any of the identifiers involved\n\
+in the expression changes value.  The entire expression is then evaluated\n\
+in the context of the current language.\n\
+\n\
+\"lvalue\" may be any expression in the current language that would be\n\
+valid on the left-hand side of an assignment statement in that language.\n\
+The debugger notices this event when the contents of the location change.\n\
+The change itself makes this kind of stop_event true.\n\
+\n\
+More powerful stop_exprs can be created by combining stop_events\n\
+using the special && (and) operator.  For example, to stop in function\n\
+a only when function b is also active, type \"stop a && b\".\n\
+To stop when the value of some expression x becomes true within\n\
+function y, type \"stop y && (x)\".\n\
+\nEXAMPLES\n\
+stop myfile.c@230\n\
+stop *bar\n\
+stop (x == 5)\n\
+stop foo && (a > 7)\n\
+stop (a == 4) || (b == 7)\n\
+\nSEE ALSO\n\
+%%db_lang, %%lang, expr, location, scope, stop\n
+
+MSGCL_help	MSG_help_percent_redir	yes	
+NAME\n\
+%%redir - should process I/O be redirected?\n\
+\nDESCRIPTION\n\
+%%redir governs the behavior of the create command.\n\
+By default, create does not redirect the I/O of the processes it creates,\n\
+unless given the -r option.\n\
+If %%redir is set to 1 or \"yes\", create will redirect process I/O,\n\
+unless given the -n option.\n\
+The default behavior may be restored by setting %%redir to 0 or \"no\".\n\
+\nSEE ALSO\n\
+create, grab, input\n
+
+
+MSGCL_help	MSG_help_expr	yes	
+NAME\n\
+expr - debugger expression\n\
+\nDESCRIPTION\n\
+Debugger expressions follow the syntax and semantics of the\n\
+current language (%%lang or %%db_lang).  The debugger accepts\n\
+expressions containing any combination of program variables or\n\
+functions, qualified names, built-in debugger variables and\n\
+user-defined debugger variables.  A qualified name specifies a\n\
+program identifier that may not be visible in the current context.\n\
+The syntax is:\n\
+\t[[process id]@][[file]@][[function]@][[line number]@]identifier\n\
+\t[[process id]@][[frame number]@]identifier\n\
+\n\
+The qualified name is evaluated left to right, and may be\n\
+disambiguated by supplying @'s as needed.  \"frame number\" and\n\
+\"function\" must refer to functions that are currently active.\n\
+\n\
+When the current language is C, debug supports evaluation of all\n\
+legal ANSI C expressions, except those involving macro expansion,\n\
+or structure, union or enumeration type declarations.  An example\n\
+of a type declaration in an expression is:\n\
+\t((struct { int i; char c; } *)p)->c = 'a';\n\
+\n\
+When the current language is C++, debug accepts a subset of C++\n\
+expressions, including:\n\
+\tall expressions accepted when the current language is C,\n\
+\texpressions using overloaded function names,\n\
+\texpressions using the scoping operator (::), and\n\
+\texpressions referencing non-virtual member functions.\n\
+\n\
+Expressions beginning with a dash (-) or containing character\n\
+sequences with special meanings to the debugger must be enclosed\n\
+in parens, square brackets or curly braces.  The special character\n\
+sequences are: >, >>, |, ||, &&, #, comma, semi-colon, newline.\n\
+\nSEE ALSO\n\
+%%db_lang, %%lang, if, print, scope, set, stop, stop_expr,\n\
+uservars, while\n
+
+MSGCL_help	MSG_help_scope	yes	
+NAME\n\
+scope - the visibility of a program identifier\n\
+\nDESCRIPTION\n\
+Debugger commands that accept locations or expressions may\n\
+reference identifiers in controlled programs: functions,\n\
+parameters, variables, labels, types, structure and union tags\n\
+and member names and enumeration literals.   Locations may also\n\
+reference source line numbers.  Whether a name is visible\n\
+to the debugger at any given time depends on the state of the\n\
+program at that time (context) and the amount of debugging\n\
+information provided to the debugger by that program.\n\
+\n\
+Source line numbers, names of variables local to a particular\n\
+function, parameter names, type names, structure and union tag\n\
+and member names and enumeration literals are available only if\n\
+the file in which they are referenced was compiled with the -g option\n\
+to the compiler.  Names of global and file static functions and\n\
+variables are available if the file defining them was compiled with -g\n\
+or the program's symbol table has not been stripped.\n\
+\n\
+Source line numbers and file static functions and variables\n\
+are visible only when the current context is within that file,\n\
+that is, when the program is stopped somewhere within code generated\n\
+from that file.  Function parameters are visible only when\n\
+the current context is within that function.  Local variables are\n\
+visible only when the current context is within the block that\n\
+defines them.\n\
+\n\
+Identifiers that are not visible in the current context may often\n\
+still be accessed in locations or expressions by using qualified\n\
+names.  See \"expr\" and \"location\" for the complete syntax.\n\
+\n\
+Symbols defined in shared libraries are not visible until those\n\
+libraries are loaded by the dynamic linker.  Typically, when\n\
+a program first starts up, only the symbols defined in the program\n\
+itself and those defined in libc.so are visible.  After stepping\n\
+the program to _start or beyond, other shared libraries are available.\n\
+Symbols from shared libraries loaded by calls to dlopen(3X) are\n\
+only available after the dlopen call.\n\
+\nSEE ALSO\n\
+%%frame, %%func, %%line, expr, location\n
+

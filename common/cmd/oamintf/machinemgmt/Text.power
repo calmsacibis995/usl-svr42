@@ -1,0 +1,31 @@
+#ident	"@(#)oamintf:common/cmd/oamintf/machinemgmt/Text.power	1.3.6.2"
+#ident  "$Header: Text.power 2.0 91/07/12 $"
+
+################################################################################
+#	Module Name: Text.power
+################################################################################
+title="Shut Down the Machine"
+
+framemsg=`readfile $INTFBASE/conf.msg`
+
+text="
+Users currently logged on:
+
+`/usr/bin/who`"
+
+rows=10
+columns=60
+
+altslks
+
+name=
+button=9
+action=nop
+
+name=CONT
+button=11
+action=OPEN FORM $OBJ_DIR/Form.power
+
+name=CANCEL
+button=14
+action=CLEANUP

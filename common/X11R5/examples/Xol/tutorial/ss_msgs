@@ -1,0 +1,29 @@
+*topLevel.title: s_sampler
+*scrollingList.itemLabel: ITEM %c
+
+*scrolledWindow.string: This text is in a\nstatictext widget\nin a scrolled window.\nYou can move it up\n and down or left\nand right with the\ntwo scrollbars.
+
+*footerMessage.pointerIn: Pointer entered STUB widget
+*footerMessage.pointerOut: Pointer left STUB widget
+*footerMessage.oblongButtonCB: OBLONGBUTTON callback
+*footerMessage.oblongGadgetCB: OBLONGBUTTONGADGET callback
+*footerMessage.nonExclusivesCB: [NON] EXCLUSIVES callback for button %d
+*footerMessage.popupApplyCB: POPUP apply callback
+*footerMessage.popupSetDefaultsCB: POPUP setdefaults callback
+*footerMessage.popupResetCB: POPUP reset callback
+*footerMessage.popupResetFactoryCB: POPUP resetfactory callback
+*footerMessage.flatSelectCB: FLAT select callback
+*footerMessage.buttonSelected: Button %d selected
+*footerMessage.goodBye: ADIOS !!!
+*footerMessage.scrollbarMoved: Form scrollbar moved to %d%%
+*footerMessage.scrolledWindowVSB: Scrolledwindow vertical scrollbar moved
+*footerMessage.scrolledWindowHSB: Scrolledwindow horizontal scrollbar moved
+*footerMessage.scrollingListMsg: SCROLLING LIST : Item label %s Data stored %d
+*footerMessage.textfieldMsg: TEXTFIELD User Input: %s\n
+
+*help.title: Toplevel Widget
+*notice.message: NOTICE WIDGET:\n Confirm EXIT
+*statictext.message: Statictext message for README\n
+*exclusives.label: Fewer
+*stub.label: STUB
+*flatcheckBox.label: CheckBox%d

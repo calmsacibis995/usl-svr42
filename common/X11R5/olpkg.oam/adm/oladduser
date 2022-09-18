@@ -1,0 +1,123 @@
+#ident	"@(#)olpkg.oam:adm/oladduser	1.2"
+#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+#	Copyright (c) 1988, 1989, 1990 AT&T
+#	  All Rights Reserved
+
+#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+#	UNIX System Laboratories, Inc.
+#	The copyright notice above does not evidence any
+#	actual or intended publication of such source code.
+
+
+VALUE="no"
+if [ "$1" = "" ]
+then
+	echo "\n\tEnter user login ID:  \c"
+	read LOGIN
+	if [ "$LOGIN" = "" ]
+	then
+		exit 0
+	fi
+elif [ "$1" = "-s" ]
+then
+	VALUE="yes"
+	if [ "$2" = "" ]
+	then
+		echo "\n\tEnter user login ID:  \c"
+		read LOGIN
+        	if [ "$LOGIN" = "" ]
+        	then
+			exit 0
+        	fi
+	else
+		LOGIN=$2
+	fi
+else
+	LOGIN=$1
+fi
+
+#
+# Now will validate login
+#
+
+VALIDATE=0
+PASS=`grep $LOGIN /etc/passwd | cut -d: -f1,6` 
+for ENTRY in $PASS
+do
+	FIRST=`echo $ENTRY | cut -d: -f1` 
+	if [ "$LOGIN" = "$FIRST" ]
+	then
+		VALIDATE=1
+	 	LOGINDIR=`echo $ENTRY | cut -d: -f2`
+		break
+	fi
+done
+if [ $VALIDATE = 0 ]
+then
+	echo "\n\tInvalid user login ID."  >& 2
+	exit 1
+fi
+if [ "$LOGINDIR" = "" ]
+then
+	echo "\n\tUser's home directory not found."  >& 2
+	exit 1
+fi
+
+#
+# Found the home directory, now check for directory and .profile permissions
+#
+
+if [ ! -r $LOGINDIR -o ! -w $LOGINDIR -o ! -x $LOGINDIR ]
+then
+	echo "\n\t$LOGINDIR does not exist, or has invalid permissions."  >& 2
+	exit 1
+fi
+
+cd $LOGINDIR
+if [ ! -f .profile ]
+then
+	echo > .profile
+else
+	if [ ! -r .profile -o ! -w .profile ]
+	then
+		echo "\n\tCannot modify $LOGINDIR/.profile."  >& 2
+		exit 1
+	fi
+fi
+#if [ -f .Xdefaults -a -r .Xdefaults ]
+#then
+#	cp   .Xdefaults  .Xdefaults-old
+#	echo "\n\tRenamed ${LOGIN}'s .Xdefaults file to .Xdefaults-old"
+#fi
+
+#
+# Make user an OPEN LOOK user, wiping out any previous OPEN LOOK files
+#
+
+cd /usr/X/adm
+if [ ! -r .olsetup -o ! -r .olinitrc ]
+then
+	echo "\n\tCannot access all necessary OPEN LOOK files from /usr/X/adm."  >& 2
+	exit 1
+fi
+cp .olsetup .olinitrc $LOGINDIR
+
+cd $LOGINDIR
+grep '. $HOME/.olsetup' .profile  > /dev/null 2>&1
+if [ $? != 0 ]
+then
+ed .profile >/dev/null <<!
+$
+a
+. \$HOME/.olsetup	 #!@ Do not edit this line !@
+.
+w
+q
+!
+fi
+
+/usr/X/adm/olsetvar OLINVOKE $VALUE $LOGIN
+chmod +r     .olsetup .olinitrc .profile  2> /dev/null
+chown $LOGIN .olsetup .olinitrc .profile  2> /dev/null
+exit 0
+

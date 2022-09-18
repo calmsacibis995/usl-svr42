@@ -1,0 +1,5 @@
+#ident	"@(#)uts-x86at:io/lp/lp.cf/Master	1.8"
+#ident	"$Header: $"
+$version 1
+$entry init intr
+lp	lp	kcS	0	0	4

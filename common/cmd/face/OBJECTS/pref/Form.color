@@ -1,0 +1,193 @@
+#ident	"@(#)face:OBJECTS/pref/Form.color	1.6.4.2"
+#ident  "$Header: Form.color 1.7 92/01/17 $"
+
+Form=$$uxface:151:"Color Attributes"
+
+help=open text OBJECTS/Text.h "$$uxface:78:'HELP on' $TITLE" pref/T.hcolor"$ITEM"
+autolayout=true
+
+`set -l I18N_TT="$$uxface:154:Title Text:";
+set -l I18N_FT="$$uxface:158:Frame Text:";
+set -l I18N_AFB="$$uxface:160:Active Frame Border:";
+set -l I18N_AFTB="$$uxface:162:Active Frame Title Bar:";
+set -l I18N_AFTT="$$uxface:165:Active Frame Title Text:";
+set -l I18N_IFB="$$uxface:168:Inactive Frame Border:";
+set -l I18N_IFTB="$$uxface:170:Inactive Frame Title Bar:";
+set -l I18N_IFTT="$$uxface:172:Inactive Frame Title Text:";
+set -l I18N_HB="$$uxface:174:Highlighted Bar:";
+set -l I18N_SLKB="$$uxface:176:Screen Label Key Bar:";
+fmlmax -c 2 "$I18N_TT" "$I18N_FT" "$I18N_AFB" "$I18N_AFTB" "$I18N_AFTT" "$I18N_IFB" "$I18N_IFTB" "$I18N_IFTT" "$I18N_HB" "$I18N_SLKB" | set -l FCOL`
+
+
+framemsg=$$uxface:152:"Press CHOICES to select a color, then press SAVE when you complete the form."
+
+close=`unset -l I18N_TT -l I18N_FT -l I18N_AFB -l I18N_AFTB -l I18N_AFTT -l I18N_IFB -l I18N_IFTB -l I18N_IFTT -l I18N_HB -l I18N_SLKB -l FCOL`
+
+done=`indicator -w;
+$VMSYS/bin/col2e "$F1" | set -f$HOME/pref/.colorpref banner_text;
+$VMSYS/bin/col2e "$F2" | set -f$HOME/pref/.colorpref window_text;
+$VMSYS/bin/col2e "$F3" | set -f$HOME/pref/.colorpref active_border;
+$VMSYS/bin/col2e "$F4" | set -f$HOME/pref/.colorpref active_title_bar;
+$VMSYS/bin/col2e "$F5" | set -f$HOME/pref/.colorpref active_title_text;
+$VMSYS/bin/col2e "$F6" | set -f$HOME/pref/.colorpref inactive_border;
+$VMSYS/bin/col2e "$F7" | set -f$HOME/pref/.colorpref inactive_title_bar;
+$VMSYS/bin/col2e "$F8" | set -f$HOME/pref/.colorpref inactive_title_text;
+$VMSYS/bin/col2e "$F9" | set -f$HOME/pref/.colorpref highlight_bar;
+$VMSYS/bin/col2e "$F10" | set -f$HOME/pref/.colorpref slk_bar;
+message $$uxface:153:"Color Attributes have been updated.";
+reinit $HOME/pref/.colorpref`nop
+
+name=$I18N_TT
+nrow=1
+ncol=1
+fcol=$FCOL
+# frow=1
+# fcol=29
+rows=1
+columns=10
+value=const `$VMSYS/bin/col2i ${($HOME/pref/.colorpref)banner_text:-cyan}`
+rmenu=OPEN MENU OBJECTS/pref/Menu.color "${($VMSYS/bin/initial)screen}" ""
+valid=`indicator -w;$VMSYS/bin/color_chk "$F1" "${($VMSYS/bin/initial)screen}" ""`
+invalidmsg=`regex -v "${RET}"
+		1 $$uxface:155:"This is not a valid color, please press CHOICES to select."
+		2 $$uxface:156:"This is not a visible color against the background, select another color."`
+lininfo=`set -l TITLE="$$uxface:157:Title Text" -l ITEM=1`
+
+name=$I18N_FT
+nrow=2
+ncol=1
+# frow=2
+# fcol=29
+rows=1
+columns=10
+value=const `$VMSYS/bin/col2i ${($HOME/pref/.colorpref)window_text:-cyan}`
+rmenu=OPEN MENU OBJECTS/pref/Menu.color "${($VMSYS/bin/initial)screen}" ""
+valid=`indicator -w;$VMSYS/bin/color_chk "$F2" "${($VMSYS/bin/initial)screen}" ""`
+invalidmsg=`regex -v "${RET}"
+		1 $$uxface:155:"This is not a valid color, please press CHOICES to select."
+		2 $$uxface:156:"This is not a visible color against the background, select another color."`
+lininfo=`set -l TITLE="$$uxface:159:Frame Text" -l ITEM=2`
+
+name=$I18N_AFB
+nrow=4
+ncol=1
+# frow=4
+# fcol=29
+rows=1
+columns=10
+value=const `$VMSYS/bin/col2i ${($HOME/pref/.colorpref)active_border:-red}`
+rmenu=OPEN MENU OBJECTS/pref/Menu.color "${($VMSYS/bin/initial)screen}" ""
+valid=`indicator -w;$VMSYS/bin/color_chk "$F3" "${($VMSYS/bin/initial)screen}" ""`
+invalidmsg=`regex -v "${RET}"
+		1 $$uxface:155:"This is not a valid color, please press CHOICES to select."
+		2 $$uxface:156:"This is not a visible color against the background, select another color."`
+lininfo=`set -l TITLE="$$uxface:161:Active Frame Border" -l ITEM=3`
+
+name=$I18N_AFTB
+nrow=5
+ncol=1
+# frow=5
+# fcol=29
+rows=1
+columns=10
+value=const `$VMSYS/bin/col2i ${($HOME/pref/.colorpref)active_title_bar:-red}`
+rmenu=vary OPEN MENU OBJECTS/pref/Menu.color "${($VMSYS/bin/initial)screen}" "${F5}"
+valid=`indicator -w;$VMSYS/bin/color_chk "${F4}" "${($VMSYS/bin/initial)screen}" "${F5}"`
+invalidmsg=`regex -v "${RET}"
+		1 $$uxface:155:"This is not a valid color, please press CHOICES to select."
+		2 $$uxface:156:"This is not a visible color against the background, select another color."
+		3 $$uxface:163:"This is not a visible color against the text, select another color."`
+lininfo=`set -l TITLE="$$uxface:164:Active Frame Title Bar" -l ITEM=4`
+
+name=$I18N_AFTT
+nrow=6
+ncol=1
+# frow=6
+# fcol=29
+rows=1
+columns=10
+value=const `$VMSYS/bin/col2i ${($HOME/pref/.colorpref)active_title_text:-cyan}`
+rmenu=vary OPEN MENU OBJECTS/pref/Menu.color "" "${F4}"
+valid=`indicator -w;$VMSYS/bin/color_chk "${F5}" "" "${F4}"`
+invalidmsg=`regex -v "${RET}"
+		1 $$uxface:155:"This is not a valid color, please press CHOICES to select."
+		3 $$uxface:166:"This is not a visible color against the bar, select another color."`
+lininfo=`set -l TITLE="$$uxface:167:Active Frame Title Text" -l ITEM=5`
+
+name=$I18N_IFB
+nrow=8
+ncol=1
+# frow=8
+# fcol=29
+rows=1
+columns=10
+value=const `$VMSYS/bin/col2i ${($HOME/pref/.colorpref)inactive_border:-blue}`
+rmenu=OPEN MENU OBJECTS/pref/Menu.color "${($VMSYS/bin/initial)screen}" ""
+valid=`indicator -w;$VMSYS/bin/color_chk "${F6}" "${($VMSYS/bin/initial)screen}" ""`
+invalidmsg=`regex -v "${RET}"
+		1 $$uxface:155:"This is not a valid color, please press CHOICES to select." 
+		2 $$uxface:156:"This is not a visible color against the background, select another color."`
+lininfo=`set -l TITLE="$$uxface:169:Inactive Frame Border" -l ITEM=6`
+
+name=$I18N_IFTB
+nrow=9
+ncol=1
+# frow=9
+# fcol=29
+rows=1
+columns=10
+value=const `$VMSYS/bin/col2i ${($HOME/pref/.colorpref)inactive_title_bar:-blue}`
+rmenu=vary OPEN MENU OBJECTS/pref/Menu.color "${($VMSYS/bin/initial)screen}" "${F8}"
+valid=`indicator -w;$VMSYS/bin/color_chk "${F7}" "${($VMSYS/bin/initial)screen}" "${F8}"`
+invalidmsg=`regex -v "${RET}"
+		1 $$uxface:155:"This is not a valid color, please press CHOICES to select."
+		2 $$uxface:156:"This is not a visible color against the background, select another color."
+		3 $$uxface:163:"This is not a visible color against the text, select another color."`
+lininfo=`set -l TITLE="$$uxface:171:Inactive Frame Title Bar" -l ITEM=7`
+
+name=$I18N_IFTT
+nrow=10
+ncol=1
+# frow=10
+# fcol=29
+rows=1
+columns=10
+value=const `$VMSYS/bin/col2i ${($HOME/pref/.colorpref)inactive_title_text:-cyan}`
+rmenu=vary OPEN MENU OBJECTS/pref/Menu.color "" "${F7}"
+valid=`indicator -w;$VMSYS/bin/color_chk "${F8}" "" "${F7}"`
+invalidmsg=`regex -v "${RET}"
+		1 $$uxface:155:"This is not a valid color, please press CHOICES to select."
+		3 $$uxface:166:"This is not a visible color against the bar, select another color."`
+lininfo=`set -l TITLE="$$uxface:173:Inactive Frame Title Text" -l ITEM=8`
+
+name=$I18N_HB
+nrow=12
+ncol=1
+# frow=12
+# fcol=29
+rows=1
+columns=10
+value=const `$VMSYS/bin/col2i ${($HOME/pref/.colorpref)highlight_bar:-blue}`
+rmenu=OPEN MENU OBJECTS/pref/Menu.color "${($VMSYS/bin/initial)screen}" "${($VMSYS/bin/initial)highlight_bar_text}"
+valid=`indicator -w;$VMSYS/bin/color_chk "${F9}" "${($VMSYS/bin/initial)screen}" "${($VMSYS/bin/initial)highlight_bar_text}"`
+invalidmsg=`regex -v "${RET}"
+		1 $$uxface:155:"This is not a valid color, please press CHOICES to select."
+		2 $$uxface:156:"This is not a visible color against the background, select another color."
+		3 $$uxface:163:"This is not a visible color against the text, select another color."`
+lininfo=`set -l TITLE="$$uxface:175:Highlighted Bar" -l ITEM=9`
+
+name=$I18N_SLKB
+nrow=13
+ncol=1
+# frow=13
+# fcol=29
+rows=1
+columns=10
+value=const `$VMSYS/bin/col2i ${($HOME/pref/.colorpref)slk_bar:-white}`
+rmenu=OPEN MENU OBJECTS/pref/Menu.color "${($VMSYS/bin/initial)screen}" "${($VMSYS/bin/initial)slk_text}"
+valid=`indicator -w;$VMSYS/bin/color_chk "${F10}" "${($VMSYS/bin/initial)screen}" "${($VMSYS/bin/initial)slk_text}"`
+invalidmsg=`regex -v "${RET}"
+		1 $$uxface:155:"This is not a valid color, please press CHOICES to select."
+		2 $$uxface:156:"This is not a visible color against the background, select another color."
+		3 $$uxface:163:"This is not a visible color against the text, select another color."`
+lininfo=`set -l TITLE="$$uxface:177:Screen Label Key Bar" -l ITEM=10`

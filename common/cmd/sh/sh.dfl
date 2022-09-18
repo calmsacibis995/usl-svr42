@@ -1,0 +1,3 @@
+#ident	"@(#)sh:common/cmd/sh/sh.dfl	1.1.1.1"
+#ident "$Header: /sms/sinixV5.4es/rcs/s19-full/usr/src/cmd/sh/sh.dfl,v 1.1 91/02/28 20:09:02 ccs Exp $"
+TIMEOUT=0

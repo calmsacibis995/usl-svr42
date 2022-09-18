@@ -1,0 +1,49 @@
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+/**/#ident	"@(#)olexamples:tutorial/Imakefile	1.21"
+
+#if Release5
+DTLIBSRC = $(TOP)/lib/Dt
+XolLIB_TO_USE = libOlit.so
+#else
+	DTLIBSRC = $(TOP)/clients/lib
+#endif
+DTLIB = $(DTLIBSRC)/libDt.so
+
+      COMPATLIB = libXol.so
+         XOLLIB = $(XOLLIBSRC)/$(XolLIB_TO_USE) $(XOLLIBSRC)/$(COMPATLIB)
+       INCLUDES = -I$(LIBSRC) -I$(DTLIBSRC)
+
+all:	s_button \
+	s_composite \
+	s_menu \
+	s_sampler
+
+NormalProgramTarget(s_button,s_button.o,XolClientDepLibs,XolClientLibs,$(SYS_LIBRARIES))
+NormalProgramTarget(s_composite,s_composite.o,XolClientDepLibs,XolClientLibs,$(SYS_LIBRARIES))
+NormalProgramTarget(s_menu,s_menu.o,XolClientDepLibs,XolClientLibs,$(SYS_LIBRARIES))
+NormalProgramTarget(s_sampler,s_sampler.o msgs.o,XolClientDepLibs,$(DTLIB) XolClientLibs,$(SYS_LIBRARIES))
+
+SRCS = s_button.c s_composite.c s_menu.c s_sampler.c msgs.c
+BINS = s_button s_composite s_menu s_sampler
+
+HELP_FILES =	tlevel.help\
+ 		stext.text
+
+InstallMultiple($(SRCS),$(USRLIBDIR)/tutorial/Xol)
+InstallMultiple($(BINS),$(BINDIR))
+
+#if defined(SYSV) || defined(SystemV4)
+InstallMultipleHelpFiles($(HELP_FILES),$(USRLIBDIR)/locale/C/help/s_sampler)
+#else 
+InstallMultipleHelpFiles($(HELP_FILES),$(LIBDIR)/C/help/s_sampler)
+#endif
+
+InstallAppDefaults(s_sampler)

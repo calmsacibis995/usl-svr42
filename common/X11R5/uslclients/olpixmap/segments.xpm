@@ -1,0 +1,47 @@
+#define segments_format 1
+#define segments_width 32
+#define segments_height 32
+#define segments_ncolors 6
+#define segments_chars_per_pixel 1
+static char * segments_colors[] = {
+" " , "#FFFFFFFFFFFF",
+"." , "#0000AAAAFFFF",
+"X" , "#AAAAFFFF5555",
+"o" , "#00000000FFFF",
+"O" , "#0000FFFFFFFF",
+"+" , "#00000000AAAA"
+} ;
+static char * segments_pixels[] = {
+"                                ",
+"                                ",
+"                                ",
+"         ..Xo                   ",
+"         ..Xoo                  ",
+"        ...Xoo                  ",
+"        ...Xooo                 ",
+"       .... oooo                ",
+"       ...   oooo               ",
+"       ...    oooo              ",
+"      ...      oooo             ",
+"      ...       oooo            ",
+"      ...        oooo           ",
+"     ...          oooo          ",
+"     ...           oooo         ",
+"    ....            oooo        ",
+"    ...              oooo       ",
+"    ...   OOOOO       oooo      ",
+"   ..XXOOOOOOOO        oooo     ",
+"    XOOOOOOOOOOO        oooo    ",
+"     OOOOO               oooo   ",
+"                          oooo  ",
+"                         XXXooo ",
+"               +++++++++++++XX  ",
+"      ++++++++++++++++++++++++  ",
+" ++++++++++++++++++++++++       ",
+" +++++++++++++++                ",
+"  ++++                          ",
+"                                ",
+"                                ",
+"                                ",
+"                                "
+} ;

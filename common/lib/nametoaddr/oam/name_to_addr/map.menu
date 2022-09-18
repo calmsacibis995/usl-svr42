@@ -1,0 +1,6 @@
+#ident	"@(#)nametoaddr:common/lib/nametoaddr/oam/name_to_addr/map.menu	1.2.3.4"
+#ident "$Header: /sms/sinixV5.4es/rcs/s19-full/usr/src/lib/nametoaddr/oam/name_to_addr/map.menu,v 1.1 91/02/28 21:04:01 ccs Exp $"
+#menu#Name to Address Mapping
+
+loopback^Local Loopback Protocol^loopback/Menu.loopback
+inet^Internet Protocols (TCP and UDP)^inet/Menu.inet

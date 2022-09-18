@@ -1,0 +1,69 @@
+#ident	"@(#)proto:desktop/menus/hd/install.7	1.10"
+#ident	"$Header: $"
+.pageno
+Page %d of %d
+.ul
+UNIX System Installation
+.hhelp_ban
+Instructions
+.helpbanner
+Help: Foundation Set Media Type
+.ur
+Foundation Set Media Type
+.lr
+Del=Cancel  F1=Help
+.top
+Software for the UNIX System is packaged in sets. Installation of the
+Foundation Set is required.  This software is shipped to you either on a
+second group of diskettes (different from the boot diskettes) or on a
+cartridge tape.  
+
+Select the drive you will be using to install the Foundation Set.
+.optstring
+Your choices are:
+.form
+`[ "${NF1}" = "1" ] && echo "Diskette Drive 1 \c"`
+`[ "${NF2}" = "1" ] && echo "Diskette Drive 2 \c"`
+`[ "${NC1}" = "1" ] && echo "Cartridge Tape Drive \c"`
+#The format of this menu file is key to its working with the
+#installation script hdscripts/install.sh.
+#
+#format for this menu file:
+#
+#:N<tag>:<text>
+#
+#where <tag> can be one of: F1, F2, C1 -- the text can change, but
+#the tag must remain the same.
+#
+.selection
+Press a number between 1 and `echo $MEDIA_CNT` followed by 'ENTER'.
+.help
+For detailed instructions, press the 'F1' (or '?') key at any time.
+
+The Installation Process needs to know where to look for the software
+that is to be installed.
+
+DISKETTE DRIVE OPTION
+
+If you received only diskettes with your UNIX System software package, 
+either 5-1/4" or 3-1/2", you should select a diskette drive option.  
+If you have only one diskette drive, it is usually named Drive 1.  If you
+have more than one diskette drive, the drive you use to boot the computer is 
+Drive 1.  A second drive, that is not used to boot the computer, is usually 
+named Drive 2.
+
+If you have previously used the computer for a DOS operating system, Drive 1
+would correspond to a DOS "disk A:"; Drive 2 to a DOS "disk B:".
+
+CARTRIDGE TAPES
+
+If you received a cartridge tape with your UNIX System software package, 
+you should select the "Cartridge Tape" option.  If you have only one tape 
+drive, it is usually named Drive 1.
+.helpinst
+ESC=Exit help  F1=Instructions  Del=Cancel  1=Forward  2=Backward
+.hhelpinst
+ESC=Exit Instructions  Del=Cancel  1=Forward  2=Backward
+.working
+Working...
+.end

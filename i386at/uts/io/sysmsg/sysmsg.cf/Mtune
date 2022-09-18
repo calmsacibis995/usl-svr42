@@ -1,0 +1,5 @@
+#ident	"@(#)uts-x86at:io/sysmsg/sysmsg.cf/Mtune	1.2"
+#ident	"$Header: $"
+CMF		1	0	1
+RCMF		0	0	1
+COM2CONS	0	0	1

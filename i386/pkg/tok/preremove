@@ -1,0 +1,49 @@
+#ident	"@(#)pkg.tok:preremove	1.5"
+#ident  "$Header: $"
+#	Copyright (c) 1990  Intel Corporation
+#	All Rights Rreserved
+#
+#	INTEL CORPORATION PROPRIETARY INFORMATION
+#
+#	This software is supplied to AT & T under the terms of a license 
+#	agreement with Intel Corporation and may not be copied nor 
+#	disclosed except in accordance with the terms of that agreement.
+#
+
+FAILURE=1	# fatal error
+REBUILD=0
+
+CONFDIR=/etc/conf
+CONFBIN=${CONFDIR}/bin
+
+
+NOTOOLS="ERROR: The Installable Driver feature has been removed. \
+The ${NAME} cannot be removed."
+
+if [ ! -x ${CONFBIN}/idbuild -o ! -x ${CONFBIN}/idinstall ]
+then
+	message ${NOTOOLS}
+	exit $FAILURE
+fi
+
+/etc/confnet.d/configure -r -d ibmtok_0 >/dev/null 2>&1
+/etc/confnet.d/configure -r -d ibmtok_1 >/dev/null 2>&1
+
+${CONFBIN}/idcheck -p ibmtok
+RES="$?"
+if [ "${RES}" -ne "100" -a "${RES}" -ne "0" ]
+then
+	${CONFBIN}/idinstall -P ${PKGINST} -d ibmtok
+	echo "Removing ${NAME} ibmtok module ..."
+	REBUILD=1
+fi
+
+${CONFBIN}/idbuild
+if [ "$?" -ne "0" ]
+then
+	exit ${FAILURE}
+else
+	exit 10
+fi
+
+exit 0

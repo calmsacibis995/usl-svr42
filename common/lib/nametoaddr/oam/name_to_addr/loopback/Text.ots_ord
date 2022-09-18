@@ -1,0 +1,18 @@
+#ident	"@(#)nametoaddr:common/lib/nametoaddr/oam/name_to_addr/loopback/Text.ots_ord	1.1.3.3"
+#ident "$Header: /sms/sinixV5.4es/rcs/s19-full/usr/src/lib/nametoaddr/oam/name_to_addr/loopback/Text.ots_ord,v 1.1 91/02/28 21:03:56 ccs Exp $"
+title="Loopback Protocol File Success"
+columns=55
+rows=13
+text="
+The service name entered already exists in
+
+	/etc/net/ticlts/services
+
+but has successfully been added to
+
+	/etc/net/ticots/services
+and
+	/etc/net/ticotsord/services
+
+You may now return to the previous menu.
+"

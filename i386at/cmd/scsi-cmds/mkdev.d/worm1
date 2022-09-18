@@ -1,0 +1,7 @@
+#ident	"@(#)scsi-cmds:i386at/cmd/scsi-cmds/mkdev.d/worm1	1.1"
+#ident  "$Header: $"
+QUERY	-
+POSTMSG	-
+DATA
+key	minor	mode	/dev/worm/	/dev/rworm/	/dev/worm/	/dev/rworm/
+MO	0+D*S	0666	cCtT		cCtT		-		wormN

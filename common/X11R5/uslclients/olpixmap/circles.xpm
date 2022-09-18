@@ -1,0 +1,46 @@
+#define circles_format 1
+#define circles_width 32
+#define circles_height 32
+#define circles_ncolors 5
+#define circles_chars_per_pixel 1
+static char * circles_colors[] = {
+" " , "#FFFFFFFFFFFF",
+"." , "#AAAA0000AAAA",
+"X" , "#FFFF00000000",
+"o" , "#FFFFAAAA0000",
+"O" , "#AAAA55550000"
+} ;
+static char * circles_pixels[] = {
+"                                ",
+"   ......                 XXXX  ",
+"  ........               XXXXXX ",
+" ..........              XXXXXX ",
+" ..........              XXXXXX ",
+" ..........              XXXXXX ",
+" ..........   oooooooooo  XXXX  ",
+" ..........  oooooooooooo       ",
+" ..........oooooooooooooooo     ",
+"  ........oooooooooooooooooo    ",
+"   ...... oooooooooooooooooo    ",
+"         oooooooooooooooooooo   ",
+"        oooooooooooooooooooooo  ",
+"        oooooooooooooooooooooo  ",
+"        oooooooooooooooooooooo  ",
+"        oooooooooooooooooooooo  ",
+"      OOOOOOOOoooooooooooooooo  ",
+"     OOOOOOOOOOooooooooooooooo  ",
+"    OOOOOOOOOOOOoooooooooooooo  ",
+"   OOOOOOOOOOOOOOooooooooooooo  ",
+"   OOOOOOOOOOOOOOooooooooooooo  ",
+"   OOOOOOOOOOOOOOooooooooooooo  ",
+"   OOOOOOOOOOOOOOooooooooooooo  ",
+"   OOOOOOOOOOOOOOoooooooooooo   ",
+"   OOOOOOOOOOOOOOooooooooooo    ",
+"   OOOOOOOOOOOOOOooooooooooo    ",
+"   OOOOOOOOOOOOOOoooooooooo     ",
+"    OOOOOOOOOOOOooooooooo       ",
+"     OOOOOOOOOOooooooooo        ",
+"      OOOOOOOO                  ",
+"                                ",
+"                                "
+} ;

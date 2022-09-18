@@ -1,0 +1,28 @@
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+/**/#ident	"@(#)olexamples:statictext/Imakefile	1.12"
+
+       INCLUDES = -I$(LIBSRC) 
+
+all:	unit_test1 \
+        unit_test2 \
+        unit_test3 \
+        unit_test4 \
+        unit_test5 \
+        unit_test6 \
+        unit_test7
+
+NormalProgramTarget(unit_test1, unit_test1.o, XolClientDepLibs, XolClientLibs, $(SYS_LIBRARIES))
+NormalProgramTarget(unit_test2, unit_test2.o, XolClientDepLibs, XolClientLibs, $(SYS_LIBRARIES))
+NormalProgramTarget(unit_test3, unit_test3.o, XolClientDepLibs, XolClientLibs, $(SYS_LIBRARIES))
+NormalProgramTarget(unit_test4, unit_test4.o, XolClientDepLibs, XolClientLibs, $(SYS_LIBRARIES))
+NormalProgramTarget(unit_test5, unit_test5.o, XolClientDepLibs, XolClientLibs, $(SYS_LIBRARIES))
+NormalProgramTarget(unit_test6, unit_test6.o, XolClientDepLibs, XolClientLibs, $(SYS_LIBRARIES))
+NormalProgramTarget(unit_test7, unit_test7.o, XolClientDepLibs, XolClientLibs, $(SYS_LIBRARIES))

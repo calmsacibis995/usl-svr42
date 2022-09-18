@@ -1,0 +1,63 @@
+#define recfldr48_format 1
+#define recfldr48_width 48
+#define recfldr48_height 48
+#define recfldr48_ncolors 6
+#define recfldr48_chars_per_pixel 1
+static char * recfldr48_colors[] = {
+" " , "#E400E400E400",
+"." , "#000000000000",
+"X" , "#DB00DB00BA00",
+"o" , "#710071007100",
+"O" , "#AA00AA00AA00",
+"+" , "#00000000E000"
+} ;
+static char * recfldr48_pixels[] = {
+"                      ...............           ",
+"                     .XXXXXXXXXXXXXXX.          ",
+"                    .XXXXXXXXXXXXXXXXX.         ",
+"    ................XXXoooXXoooXXoooXXX.......  ",
+"   .XXXXXXXXXXXXXXXX.XXXXXXXXXXXXXXXXX.XXXXXXX. ",
+"   .XXXXXXXXXXXXXXXXX.XXXXXXXXXXXXXXX.XXXXXXXXO.",
+"   .XXXXXXXXXXXXXXXXXX...............XXXXXXXXXO.",
+"   .XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXO.",
+"   .XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXO.",
+"   .XXXXXXXXXXXXXXXXXXXXXXoooooOOOOOOOOOOOoo.XO.",
+"   .XXXXXXXXXXXXXXXXXXXXXXoooooOOOOOOOOOOOoo.XO.",
+"   .XXXXXXXXXXXXXXXXXXXXXXoooooOOOOOO..OOOoo.XO.",
+"   .XXXXXXXXXXXXXXXXXXXXXXoooooOOOOOO..OOOoo.XO.",
+"   .XXXXXXXXXXXXXXXXXXXXXXoooooOOOOOO..OOOoo.XO.",
+"   .XXXXXXXXXXXXXXXXXXXXXXoooooOOOOOO..OOOoo.XO.",
+"   .XXXXXXXXXXXXXXXXXXXXXXoooooOOOOOO..OOOoo.XO.",
+"   .XXXXXXXXXXXXXXXXXXXXXXoooooOOOOOOOOOOOoo.XO.",
+"  ........................oooooOOOOOOOOOOOoo.XO.",
+" .........................oooooooooooooooooo.XO.",
+"......oo.oo.o.oooooooooo..oooooooooooooooooo.XO.",
+"....oo.oo...o.............oooooooooooooooooo.XO.",
+".o.O..+..OOo..............oooooooooooooooooo.XO.",
+".o.OOO.OOOo.OOOOOOO...OOOOoooooooooooooooooo.XO.",
+".o.OOO.OOo.OOOOOOO.ooo.OOOoooooooooooooooooo.XO.",
+".o.OOOOOo.OOOOOOOO.o.o.OOOoooooooooooooooooo.XO.",
+".o.OOOOo.OOOOOOOOO.ooo.OOOoooooooooooooooooo.XO.",
+".o.OOOOo.OOOOOOOOOO...OOOOoooooooooooooooooo.XO.",
+".o.OOOo.OOOOOOOOOOOOOOOOOOoooooooooooooooooo.XO.",
+".o.OOOo.OooooOOOOOOOOOOOo....................XO.",
+".o.OOo.O......oOOOOOOOOo............O.OO.XXXXXO.",
+".o.OOo...OOOOo.oOOOOOOo....OOOOO....O.OO.XXXXXO.",
+".o.Oo...OOOOOOo.oOOOOO....OOOOOOO.....OO.XXXXXO.",
+".o.Oo...OO...OOo.OOOOo...OOO...OOO....OO.XXXXXO.",
+".o.Oo..OO.OOO.OO.oOOO...OOO.OOO.OOO...OO.XXXXXO.",
+".o.Oo..O.OOOOO.O..OOO...OO.OOOOO.OO...OO.XXXXXO.",
+".o.Oo..O.Oo+oO.O..OOO...OO.Oo+oO.OO...OO.XXXXXO.",
+".o.Oo..O.Oo+oO.O..OOO...OO.Oo+oO.OO...OO.XXXXXO.",
+".o.Oo..OO.OOO.OO..OOO...OOO.OOO.OOO...OO.OOOOOO.",
+".o.OO...OO...OOo.oOOOo..OOOO...OOOO...OO........",
+".o.OOo..oOOOOOo..OOOOo...OOOOOOOOO...oOO.ooooooo",
+".o.OOOo...OOOo..oOOOOO....OOOOOOO....OOO.o      ",
+".o.OOOOo.......oOOOOOOo....OOOOO....oOOO.o      ",
+".o.OOOOOoo...ooOOOOOOOOo...........oOOOO.o      ",
+".o.OOOOOOOOOOOOOOOOOOOOOo.........oOOOOO.o      ",
+".o.OooOOOOOOOOOOOOOOOOOOOoo.....ooOOOooO.o      ",
+".o.OooOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOooO.o      ",
+" ..OooOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOooO.o      ",
+"  .......................................o      "
+} ;

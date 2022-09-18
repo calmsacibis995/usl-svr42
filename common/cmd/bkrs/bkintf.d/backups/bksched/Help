@@ -1,0 +1,10 @@
+#ident	"@(#)bkrs:common/cmd/bkrs/bkintf.d/backups/bksched/Help	1.3.6.2"
+#ident  "$Header: Help 1.3 91/09/11 $"
+
+ABSTRACT: Schedule Backups to Run Automatically
+	The "schedule" menu allows you to schedule backups to run
+	automatically.  You can add scheduled backups, change the
+	existing schedule, display the current schedule or remove
+	backups from the schedule.
+
+TITLE: Schedule Backups to Run Automatically

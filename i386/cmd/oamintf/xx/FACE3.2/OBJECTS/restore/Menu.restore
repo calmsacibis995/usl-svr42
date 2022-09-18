@@ -1,0 +1,17 @@
+#ident	"@(#)oamintf:i386/cmd/oamintf/xx/FACE3.2/OBJECTS/restore/Menu.restore	1.2"
+#ident	"$Header: $"
+
+menu="Restore from Removable Media"
+#help=open text $VMSYS/OBJECTS/Text.h "Restore" restore/T.hrestore
+
+name=Personal Restore
+action=nop
+show=false
+
+name=System Restore
+action=nop
+show=false
+
+name=""
+button=16
+

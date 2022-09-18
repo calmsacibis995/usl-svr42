@@ -1,0 +1,5 @@
+# @(#)usr/src/i386/uts/fs/vxfs/vxfs.cf/Mtune	1.5 28 Apr 1992 22:01:56 - 
+#ident	"@(#)uts-x86:fs/vxfs/vxfs.cf/Mtune	1.3"
+#ident	"$Header: $"
+* VXFS Parameters ------------------------
+VXFSNINODE	300	100	1300

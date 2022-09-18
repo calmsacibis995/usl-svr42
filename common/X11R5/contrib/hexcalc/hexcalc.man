@@ -1,0 +1,179 @@
+.\"ident	"@(#)r4hexcalc:hexcalc.man	1.1"
+.de EX		\"Begin example
+.ne 5
+.if n .sp 1
+.if t .sp .5
+.nf
+.in +.5i
+..
+.de EE
+.fi
+.in -.5i
+.if n .sp 1
+.if t .sp .5
+..
+.TH heXcalc 1 "1 October 1989" "X Version 11"
+.SH NAME
+heXcalc \- programmers calculator for X
+.SH SYNOPSIS
+.B heXcalc
+[standard X options]
+.SH DESCRIPTION
+.I heXcalc
+is a mutli-radix calculator that offers the standard C integer operations.
+.SH OPTIONS
+.PP
+.TP 8
+The standard X toolkit options.
+.SH OPERATION
+.PP
+.I Calculator Modes:
+The calculator operates in several modes. The modes are controlled by
+buttons on the calculator. The current mode setting is indicated by setting
+the corresponding button to "insensitive".
+
+.PP
+.I Pointer Usage:
+All operations are done with the Button1 (usually
+leftmost button on the pointer).  These can be changed using the
+translation manager.
+
+.PP
+.I button Usage:
+Most of the buttons are self
+explanatory (for C programmers).  The others are explained below.
+
+.PP
+.I 16/32
+buttons:
+These buttons toggle the calculator between 16 and 32 bit mode. 
+.PP
+.I sgn/usgn
+buttons:
+These buttons determine whether data is treated as signed
+(2's complement) or unsinged.
+
+.PP
+.I CE/C
+button:
+Clears the current entry without
+affecting other settings of the calculator.
+
+.PP 
+.I C
+button:
+Clears everything. 
+The display and memory are set to zero.  The mode is set to signed, 32
+bit decimal.
+
+.PP
+.SH KEYBOARD EQUIVALENTS
+All calculator buttons are also available from the keyboard.  The
+default bindings are shown below.  
+.PP
+.EX
+.I	Keyboard		Button
+
+	  (			(
+	  &			&
+	  ^			^
+	  )			)
+	  ^c			off
+	  H			hex
+	  O			oct
+	  D			dec
+	  B			bin
+	  R			Rcl
+	  S			Sto
+	  s			16
+	  l			32
+	  +			+
+	  -			-
+	  *			*
+	  /			/
+	  %			%
+	  >			>>
+	  <			<<
+	  0			0
+	  1			1
+	  2			2
+	  3			3
+	  4			4
+	  5			5
+	  6			6
+	  7			7
+	  8			8
+	  9			9
+	  a			a
+	  b			b
+	  c			c
+	  d			d
+	  e			e
+	  f			f
+	  ^h			Delete last digit (Not available via button)
+	  Delete		Delete last digit (Not available via button)
+	  =			=
+	 Return			=
+
+.EE
+
+You can rebind the keys to your
+liking using the X defaults file.  The action 'doKey("string")' makes
+the calculator behave as though the button labeled "string" was hit.  For
+example
+
+.PP
+.EX
+	<Key>Return:          DoKey(=)\n
+.EE
+binds the return key to act as though the equals button was pressed.
+
+.PP
+.SH RESOURCES
+heXcalc consists of a a vPaned widget ("wholePane") with two
+panes. The top pane is a label widget ("display"). The bottom half
+is a from widget ("buttonForm") holding the command widgets that
+make up the calculator buttons. The buttons are named in such that
+groups of buttons have the same name. This allows like buttons to be
+assigned similar colors with a single entry in the .Xdefaults file.
+These groups are:
+.PP
+.EX
+.I		Name			Buttons
+
+	baseKey		dec, hex, oct, bin
+	controlKey	off, C, CE/C
+	evalKey		(, ), =
+	sizeKey		16, 32
+	signKey		sgn, usgn
+	memKey		Stro, Rcl, Clr
+	shiftKey		<<, >>
+	digitKey		[0-9a-f]
+	arithKey		+, -, *, /
+	bitKey		~, |, &, ^
+	+/-			+/-
+.EE
+
+Two actions are supported. "DoKey" (described above) and "Delete" with
+deletes the last digit button pressed.
+
+.SH "SEE ALSO"
+X(1), xrdb(1), xaclc(1)
+.SH BUGS
+.PP
+Shift operations probably should have the shift count always interpreted
+as decimal.
+.PP 
+Overflow detection on input leaves something to be desired.
+.SH COPYRIGHT
+Copyright 1989, Tom Jarmolowski.
+.br
+See \fIX(1)\fP for a full statement of rights and permissions.
+.SH AUTHORS
+Tom Jarmolowski. GE Corp.
+.PP
+.SH ACKNOWLEDGMENTS
+This manual page, and the hexCalc icon are minimaly changed versions
+of those supplied by xcalc.
+
+

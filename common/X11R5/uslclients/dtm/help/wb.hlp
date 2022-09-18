@@ -1,0 +1,490 @@
+#ident	"@(#)dtm:help/wb.hlp	1.43"
+^*version^1
+^*title^Wastebasket
+^:Wastebasket
+^*width^70
+^+DesktopMgr/help.defs
+^?Managing deleted files
+^0^Wastebasket
+^$10
+Wastebasket
+
+\d(Files^file) and \d(folders^folder) you delete from the system are not immediately deleted
+(unless you change the \k(properties^^Wastebasket: Properties Window) of the Wastebasket window). Deleted
+files and folders go to a holding area called the wastebasket. Files
+and folders remain there for some time until they are permanently
+removed. When the wastebasket contains files or folders, the Empty
+Wastebasket Active icon changes to the Non-empty Wastebasket Active
+icon.
+
+The following windows are provided for the Wastebasket:
+
+   o \k(Wastebasket Window)
+
+   o \k(Wastebasket: File Properties Window)
+
+   o \k(Wastebasket: Properties Window)
+^1^Wastebasket Window
+^$20
+\k{Wastebasket}
+1. Wastebasket Window
+
+Use the Wastebasket window to display the \d(files^file) and \d(folders^folder) you have
+deleted from other folders. Notice that you can delete multiple files
+with the same name; they are assigned a numerical suffix to
+differentiate them.
+
+If you click MENU on an icon within the Wastebasket window, a menu
+appears with three options: Properties, Put Back, and Delete.
+
+   o The Properties menu option displays the Wastebasket: File
+     Properties window.
+
+   o The Put Back menu option restores the file or folder to its
+     original location.
+
+   o The Delete menu option permanently removes the file or folder
+     from the system.
+
+You can do the following from the Wastebasket window:
+
+   o Set when files in the Wastebasket are deleted
+
+   o Display file properties
+
+   o Permanently remove all or selected files and folders from the
+     Wastebasket
+
+   o Arrange and sort the icons in the Wastebasket
+
+   o Display help information about the Wastebasket
+
+The \d(buttons^button) available from the Wastebasket window are:
+
+        \k(Actions Button)\t\k(Edit Button)
+        \k(View Button)\t\t\k(Help Button)
+
+More information: \k(Wastebasket: File Properties Window)
+^2^Actions Button
+^$30
+1. \k{Wastebasket Window}
+   1.1 Actions Button
+
+The Actions button lets you control the timer, set properties, and
+empty the wastebasket. Clicking on the Actions button displays a menu
+with the following option:
+
+Note: The Actions menu reads either Suspend Timer or Resume Timer for
+the first item, depending on whether the timer is on or suspended.
+When the timer is on, Suspend Timer is the first option. When the
+timer is suspended, Resume Timer is the first option. When the timer
+is not set, this menu option is inactive (dimmed).
+
+        \k(Suspend/Resume Timer)
+        \k(Set Properties)
+        \k(Empty)
+        \k(Exit)
+^3^Suspend/Resume Timer
+^$40
+1. \k{Wastebasket Window}
+   1.1 \k{Actions Button}
+       1.1.1 Suspend/Resume Timer
+
+The Suspend/Resume Timer menu option stops and restarts the timer that
+controls how often files and folders are automatically removed from
+the wastebasket. The lower right corner of the Wastebasket window
+indicates whether the timer is on or suspended.
+
+When you open the Wastebasket window, the timer is automatically
+halted. This gives you a chance to undelete files before they are
+permanently deleted by the wastebasket.
+^3^Set Properties
+^$50
+1. \k{Wastebasket Window}
+   1.1 \k{Actions Button}
+       1.1.2 Set Properties
+
+The Set Properties menu option lets you set certain properties of the
+wastebasket. Selecting the Set Properties menu option displays the
+Wastebasket Properties window.
+
+More information: \k(Wastebasket: Properties Window)
+^3^Empty
+^$60
+1. \k{Wastebasket Window}
+   1.1 \k{Actions Button}
+       1.1.3 Empty
+
+The Empty menu option permanently removes all files and folders from
+the Wastebasket. Selecting the Empty menu option displays a notice
+asking you to confirm that you want to empty the Wastebasket.
+
+More information: \k(Empty Notice)
+^4^Empty Notice
+^$70
+1. \k{Wastebasket Window}
+   1.1 \k{Actions Button}
+       1.1.3 \k{Empty}
+             1.1.3.1 Empty Notice
+
+The Empty notice has three buttons: Yes, Cancel, and Help.
+
+   o Yes Button: This button empties the wastebasket. Once the
+     Wastebasket is emptied, you cannot recover the contents.
+
+   o Cancel Button: This button closes the notice without emptying the
+     wastebasket.
+
+   o Help Button: This button provides on-line help for the Empty
+     notice.
+^3^Exit
+^$80
+1. \k{Wastebasket Window}
+   1.1 \k{Actions Button}
+       1.1.4 Exit
+
+The Exit menu option closes the Wastebasket window.
+^2^Edit Button
+^$120
+1. \k{Wastebasket Window}
+   1.2 Edit Button
+
+The Edit button lets you select or unselect, put back, display proper-
+ties for, and permanently remove icons from the wastebasket. You also
+can view the properties of deleted files and folders. Clicking on the
+Edit button displays a menu with the following options:
+
+        \k(Select All)
+        \k(Unselect All)
+        \k(Properties)
+        \k(Put Back)
+        \k(Delete)
+^3^Select All
+^$130
+1. \k{Wastebasket Window}
+   1.2 \k{Edit Button}
+       1.2.1 Select All
+
+The Select All menu option selects all the icons in the Wastebasket
+window. Once you select the Select All menu option, you can use other
+operations under the Edit button to restore or remove the icons.
+
+^3^Unselect All
+^$140
+1. \k{Wastebasket Window}
+   1.2 \k{Edit Button}
+       1.2.2 Unselect All
+
+The Unselect All menu option unselects all icons currently selected in
+the Wastebasket window.
+^3^Properties
+^$150
+1. \k{Wastebasket Window}
+   1.2 \k{Edit Button}
+       1.2.3 Properties
+
+The Properties menu option displays a Wastebasket: File Properties
+window for each selected item.
+
+More information: \k(Wastebasket: File Properties Window)
+^3^Put Back
+^$160
+1. \k{Wastebasket Window}
+   1.2 \k{Edit Button}
+       1.2.4 Put Back
+
+The Put Back menu option returns all selected icons to the folder from
+which they were originally deleted.
+^3^Delete
+^$170
+1. \k{Wastebasket Window}
+   1.2 \k{Edit Button}
+       1.2.5 Delete
+
+The Delete menu option permanently removes all selected icons from the
+wastebasket. (A deleted icon cannot be brought back.)
+^2^View Button
+^$90
+1. \k{Wastebasket Window}
+   1.3 View Button
+
+The View button lets you change how files and folders are aligned and
+sorted in the Wastebasket window. Clicking on the View button displays
+a menu with the following options:
+
+        \k(Align)
+        \k(Sort)
+^3^Align
+^$100
+1. \k{Wastebasket Window}
+   1.3 \k{View Button}
+       1.3.1 Align
+
+The Align menu option aligns the icons in the Wastebasket window into
+straight rows and columns.
+^3^Sort
+^$110
+1. \k{Wastebasket Window}
+   1.3 \k{View Button}
+       1.3.2 Sort
+
+The Sort menu option lets you choose the order in which \d(files^file) and \d(folders^folder)
+are displayed in the Wastebasket window. Once you select Sort, choose
+from the following sorting options: Name, Size, Time, and Type.
+
+   o Name: This option sorts the files and folders alphabetically.
+     (Actually, the files and folders are sorted in ASCII order, so
+     file names beginning with punctuation precede files beginning
+     with capital letters, which precede files beginning with lower-
+     case letters.)
+
+   o Size: This option sorts the files and folders by their size. The
+     smallest is first; the largest is last.
+
+   o Time: This option sorts files and folders by the time they were
+     last changed. The file or folder changed most recently is first.
+
+   o Type: This option shows all folders first, then files, and then
+     programs.
+^2^Help Button
+^$180
+1. \k{Wastebasket Window}
+   1.4 Help Button
+
+The Help button provides on-line help for the Wastebasket window.
+Clicking on the Help button displays a menu with the following
+options:
+
+        \k(Wastebasket^^WastebasketWW)
+        \k(Table of Contents)
+        \k(Help Desk)
+^3^Wastebasket=WastebasketWW
+^$190
+1. \k{Wastebasket Window}
+   1.4 \k{Help Button}
+       1.4.1 Wastebasket
+
+The Wastebasket menu option provides on-line help for the Wastebasket
+window.
+^3^Table of Contents
+^$200
+1. \k{Wastebasket Window}
+   1.4 \k{Help Button}
+       1.4.2 Table of Contents
+
+The Table of Contents menu option displays the list of help topics
+available for the Wastebasket window.
+^3^Help Desk
+^$210
+1. \k{Wastebasket Window}
+   1.4 \k{Help Button}
+       1.4.3 Help Desk
+
+The Help Desk menu option opens the Help Desk window. From there, you
+can select the icon on which you want on-line help.
+^1^Wastebasket: File Properties Window
+^$220
+\k{Wastebasket}
+2. Wastebasket: File Properties Window
+
+Use the Wastebasket: File Properties window to display information
+about the deleted file or folder.
+
+The following information is displayed by the Wastebasket: File Pro-
+perties window:
+
+   o File Name: This line gives the name of the file or folder.
+
+   o No. of Hard Links: This line gives the number of hard links
+     between this and other files. One link indicates that the file is
+     not linked to any files other than itself.
+
+   o Original Location: This line shows the name of the folder from
+     which the file or folder was deleted.
+
+   o Owner: This line shows the owner of the file or folder.
+
+   o Group: This line shows the group to which the file or folder
+     belonged.
+
+   o Modification Time: This line shows the date and time the file was
+     last modified. For directories, this line shows the date and time
+     something in the directory was last modified.
+
+   o Time Deleted: This line shows the date and time the file or
+     folder was deleted to the wastebasket.
+
+   o Owner Access: This line shows the owner's access permissions of
+     the file or folder. The permissions indicate what the owner of
+     the file can do. For example, if this line says Read, Write,
+     Execute, the owner can read the file, write to the file, and
+     execute the file.
+
+   o Group Access: This line shows what access permissions other users
+     in the group have for this file or folder.
+
+   o Other Access: This line shows what access permissions users in
+     groups other than the file's group have for this file or folder.
+
+   o Icon Class Name: This line shows the class name of the file or
+     folder.
+
+   o Comments: This line shows any comments associated with the file
+     or folder.
+
+The \d(buttons^button) available from the Wastebasket: File Properties
+window are:
+
+        \k(Cancel Button^^Cancel ButtonFP)
+        \k(Help Button^^Help ButtonFP)
+^2^Cancel Button=Cancel ButtonFP
+^$230
+2. \k{Wastebasket: File Properties Window}
+   2.1 Cancel Button
+
+The Cancel button closes the Wastebasket: File Properties window.
+^2^Help Button=Help ButtonFP
+^$240
+2. \k{Wastebasket: File Properties Window}
+   2.2 Help Button
+
+The Help button provides on-line help for the Wastebasket: File
+Properties window.
+^1^Wastebasket: Properties Window
+^$250
+\k{Wastebasket}
+3. Wastebasket: Properties Window
+
+Use the Wastebasket: Properties Window to change the method and fre-
+quency for removing \d(files^file) and \d(folders^folder) from the Wastebasket.
+
+To change how files and folders are removed, select the method from
+the Clean Up Method options. If you chose By Timer, select the
+interval of time using the Delete Items After text box, arrows, and
+unit options.
+
+The \d(buttons^button) available from the Wastebasket Properties window are:
+
+        \k(Apply Button)\t\t\t\k(Reset Button)
+        \k(Reset To Factory Button)\t\k(Cancel Button^^Cancel ButtonPW)
+        \k(Help Button^^Help ButtonPW)
+
+More information:
+
+        \k(Clean Up Method)
+        \k(Delete Items After)
+^2^Clean Up Method
+^$260
+3. \k{Wastebasket: Properties Window}
+   3.1 Clean Up Method
+
+The Clean Up Method options determine how files and folders are
+removed from the Wastebasket. You have four options:
+
+        \k(By Timer)
+        \k(On Exit)
+        \k(Immediately)
+        \k(Never)
+^3^By Timer
+^$270
+3. \k{Wastebasket: Properties Window}
+   3.1 \k{Clean Up Method}
+       3.1.1 By Timer
+
+With the By Timer option, files and folders are automatically removed
+after the period of time set with the Remove Item After option.
+^3^On Exit
+^$280
+3. \k{Wastebasket: Properties Window}
+   3.1 \k{Clean Up Method}
+       3.1.2 On Exit
+
+With the On Exit option, all files and folders are removed from the
+wastebasket each time you exit the Desktop.
+^3^Immediately
+^$290
+3. \k{Wastebasket: Properties Window}
+   3.1 \k{Clean Up Method}
+       3.1.3 Immediately
+
+With the Immediately option, files and folders are removed from the
+wastebasket as soon as you delete the item from a folder. This means
+that you will not be able to undelete files and folders at a later time.
+If you select Immediately, and you already have files or folders in
+the wastebasket, a notice appears asking whether you want to delete
+the files.
+
+More information: \k(Items Due for Deletion Notice)
+^4^Items Due for Deletion Notice
+^$300
+3. \k{Wastebasket: Properties Window}
+   3.1 \k{Clean Up Method}
+       3.1.3 \k{Immediately}
+             3.1.3.2 Items Due for Deletion Notice
+
+The Items Due for Deletion notice appears when you select Immediately
+as the Clean Up Method. It warns you that items (files and/or folders)
+are due for deletion. You can choose to have them deleted or continue
+to hold them in the Wastebasket.
+
+The Items Due for Deletion notice has three buttons: Yes, No, and Help.
+
+   o Yes Button: This button deletes all items in the Wastebasket
+     immediately.
+
+   o No Button: This button closes the notice window without delet-
+     ing any files or folders.
+
+   o Help Button: This provides on-line help for the notice.
+^3^Never
+^$310
+3. \k{Wastebasket: Properties Window}
+   3.1 \k{Clean Up Method}
+       3.1.4 Never
+
+With the Never option, files and folders are not automatically removed
+from the wastebasket. You must specifically remove files and folders.
+^2^Delete Items After
+^$320
+3. \k{Wastebasket: Properties Window}
+   3.2 Delete Items After
+
+The Delete Items After option lets you set how frequently files and
+folders are automatically removed from the wastebasket. Click on the
+up and down arrows to adjust the timer interval. Next, choose the
+units by clicking on Minutes, Hours, or Days. The minimum value
+allowed is 1 minute; the longest interval is 31 days.
+^2^Apply Button
+^$330
+3. \k{Wastebasket: Properties Window}
+   3.3 Apply Button
+
+The Apply button immediately applies any changes made in the
+Wastebasket: Properties window.
+^2^Reset Button
+^$340
+3. \k{Wastebasket: Properties Window}
+   3.4 Reset Button
+
+The Reset button reverses any changes you have not yet applied.
+^2^Reset To Factory Button
+^$350
+3. \k{Wastebasket: Properties Window}
+   3.5 Reset To Factory Button
+
+The Reset To Factory button resets any changes you make to the values
+originally set in the software.
+^2^Cancel Button=Cancel ButtonPW
+^$360
+3. \k{Wastebasket: Properties Window}
+   3.6 Cancel Button
+
+The Cancel button closes the Wastebasket: Properties window without
+making any changes.
+^2^Help Button=Help ButtonPW
+^$370
+3. \k{Wastebasket: Properties Window}
+   3.7 Help Button
+
+The Help button provides on-line help for the Wastebasket: Properties
+window.

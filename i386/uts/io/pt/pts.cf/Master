@@ -1,0 +1,4 @@
+#ident	"@(#)uts-x86:io/pt/pts.cf/Master	1.3"
+#ident	"$Header: $"
+$version 1
+pts	pts	Skco	0	0	35

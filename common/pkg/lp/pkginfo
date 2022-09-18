@@ -1,0 +1,13 @@
+#ident	"@(#)pkg.lp:lp/pkginfo	1.15.1.8"
+#ident  "$Header: $"
+
+BASEDIR=""
+CATEGORY="system"
+CLASSES="none cron post"
+MAXINST="1"
+NAME="Printer Support"
+PKG="lp"
+PREDEPEND="lp"
+VENDOR="UNIX System Laboratories"
+VERSION="1"
+RELEASE="4.2"

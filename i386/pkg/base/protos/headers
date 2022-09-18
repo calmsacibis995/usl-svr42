@@ -1,0 +1,814 @@
+#ident	"@(#)pkg.base:i386/pkg/base/protos/headers	1.30"
+#ident	"$Header: $"
+
+# This headers prototype file is created by merging portions of
+# base/kernel prototype and system header pkg's prototype.
+# Some headers are added to /usr/include/sys. 
+
+!default 0775 root sys
+
+#d none /usr ?	?	?
+#d none /usr/include ?	?	?
+#d none /usr/include/arpa  ?	?	?
+#d none /usr/include/des  ?	?	?
+d none /usr/include/fs
+#d none /usr/include/net ?	?	?
+#d none /usr/include/netinet ?	?	?
+d none /usr/include/proc
+#d none /usr/include/protocols ?	?	?
+#d none /usr/include/rpc ?	?	?
+#d none /usr/include/rpcsvc ?	?	?
+#d none /usr/include/sys ?	?	?
+#d none /usr/include/sys/fs ?	?	?
+#d none /usr/include/vm ?	?	?
+d none /usr/include/sys/ws
+
+!default 0444 bin bin
+
+#############################
+f none /usr/include/des/des.h
+
+f none /usr/include/des/desdata.h
+
+f none /usr/include/des/softdes.h
+
+f none /usr/include/sys/lihdr.h
+
+#############################
+
+f none /usr/include/pn.h
+
+#############################
+
+f none /usr/include/klm/klm_prot.h
+
+#############################
+f none /usr/include/sys/acct.h
+
+f none /usr/include/acl.h
+f none /usr/include/sys/acl.h
+
+f none /usr/include/sys/alp.h
+
+f none /usr/include/sys/ascii.h
+
+f none /usr/include/sys/asy.h
+
+f none /usr/include/sys/asyncio.h
+
+f none /usr/include/sys/asyncsys.h
+
+f none /usr/include/sys/auditmdep.h
+
+f none /usr/include/sys/auxv.h
+
+#############################
+
+f none /usr/include/sys/bitmap.h
+
+f none /usr/include/sys/bitmasks.h
+
+f none /usr/include/sys/buf.h
+#############################
+
+f none /usr/include/sys/callo.h
+
+f none /usr/include/sys/chanmux.h
+
+f none /usr/include/sys/char.h
+
+f none /usr/include/sys/class.h
+
+f none /usr/include/sys/clock.h
+
+f none /usr/include/sys/cmn_err.h
+
+f none /usr/include/sys/conf.h
+
+f none /usr/include/sys/cram.h
+
+f none /usr/include/sys/cred.h
+#############################
+
+f none /usr/include/sys/ddi.h
+
+f none /usr/include/sys/ddi_i386at.h
+
+f none /usr/include/sys/debug.h
+
+f none /usr/include/sys/dir.h
+
+f none /usr/include/sys/dirent.h
+
+f none /usr/include/sys/disp.h
+
+f none /usr/include/sys/dl.h
+
+f none /usr/include/sys/dlpi.h
+
+f none /usr/include/sys/dma.h
+
+f none /usr/include/sys/dnlc.h
+#############################
+
+f none /usr/include/sys/elf.h
+
+f none /usr/include/sys/elftypes.h
+
+f none /usr/include/sys/elog.h
+
+f none /usr/include/sys/err.h
+
+f none /usr/include/sys/errno.h
+
+f none /usr/include/sys/ertyp.h
+
+f none /usr/include/sys/euc.h
+
+f none /usr/include/sys/eucioctl.h
+
+f none /usr/include/sys/exec.h
+#############################
+f none /usr/include/sys/fault.h
+
+f none /usr/include/sys/fblk.h
+
+f none /usr/include/sys/fbuf.h
+
+f none /usr/include/sys/fcntl.h
+
+f none /usr/include/sys/file.h
+
+f none /usr/include/sys/filio.h
+
+f none /usr/include/sys/filsys.h
+
+f none /usr/include/sys/flock.h
+
+#############################
+
+f none /usr/include/sys/fs/bfs.h
+
+f none /usr/include/sys/fs/bfs_compact.h
+
+f none /usr/include/sys/fs/fifonode.h
+
+f none /usr/include/sys/fs/namenode.h
+
+f none /usr/include/sys/fs/s5dir.h
+
+f none /usr/include/sys/fs/s5fblk.h
+
+f none /usr/include/sys/fs/s5filsys.h
+
+f none /usr/include/sys/fs/s5ino.h
+
+f none /usr/include/sys/fs/s5inode.h
+
+f none /usr/include/sys/fs/s5macros.h
+
+f none /usr/include/sys/fs/s5param.h
+
+f none /usr/include/sys/fs/sfs_fs.h
+
+f none /usr/include/sys/fs/sfs_fsdir.h
+
+f none /usr/include/sys/fs/sfs_inode.h
+
+f none /usr/include/sys/fs/sfs_quota.h
+
+f none /usr/include/sys/fs/sfs_tables.h
+
+f none /usr/include/sys/fs/snode.h
+
+f none /usr/include/sys/fs/ufs_fs.h
+
+f none /usr/include/sys/fs/ufs_fsdir.h
+
+f none /usr/include/sys/fs/ufs_inode.h
+
+f none /usr/include/sys/fs/ufs_quota.h
+
+f none /usr/include/sys/fs/xnamnode.h
+
+f none /usr/include/sys/fsid.h
+
+f none /usr/include/sys/fstyp.h
+
+#############################
+f none /usr/include/sys/had.h
+
+f none /usr/include/sys/hrtcntl.h
+
+f none /usr/include/sys/hrtsys.h
+
+#############################
+f none /usr/include/sys/iaf.h
+
+f none /usr/include/sys/immu.h
+
+f none /usr/include/sys/info.h
+
+f none /usr/include/sys/inline.h
+
+f none /usr/include/sys/ino.h
+
+f none /usr/include/sys/iobuf.h
+
+f none /usr/include/sys/ioccom.h
+
+f none /usr/include/sys/ioctl.h
+
+f none /usr/include/sys/ipc.h
+
+f none /usr/include/sys/ipcsec.h
+
+f none /usr/include/sys/jioctl.h
+
+f none /usr/include/sys/kmacct.h
+
+f none /usr/include/sys/kmem.h
+#############################
+f none /usr/include/sys/ldterm.h
+
+f none /usr/include/sys/list.h
+
+f none /usr/include/sys/lock.h
+
+f none /usr/include/sys/locking.h
+
+f none /usr/include/sys/log.h
+
+#############################
+f none /usr/include/mac.h
+f none /usr/include/sys/mac.h
+
+f none /usr/include/sys/macro.h
+
+f none /usr/include/sys/map.h
+
+f none /usr/include/sys/mirror.h
+
+f none /usr/include/sys/mkdev.h
+
+f none /usr/include/sys/mman.h
+
+f none /usr/include/sys/mntent.h
+
+f none /usr/include/sys/mnttab.h
+
+f none /usr/include/sys/mode.h
+
+f none /usr/include/sys/mount.h
+
+f none /usr/include/sys/msg.h
+
+#############################
+f none /usr/include/sys/netconfig.h
+
+f none /usr/include/nserve.h
+
+f none /usr/include/sys/nsxt.h
+
+#f none /usr/include/sys/nxt.h
+
+#f none /usr/include/sys/nxtproto.h
+
+#############################
+f none /usr/include/sys/open.h
+
+#############################
+f none /usr/include/sys/osocket.h
+
+f none /usr/include/sys/param.h
+
+f none /usr/include/sys/pathname.h
+
+f none /usr/include/sys/pfdat.h
+
+f none /usr/include/sys/poll.h
+
+f none /usr/include/sys/prf.h
+
+f none /usr/include/sys/priocntl.h
+
+f none /usr/include/sys/privilege.h
+
+f none /usr/include/sys/proc.h
+
+f none /usr/include/sys/procfs.h
+
+f none /usr/include/sys/procset.h
+
+f none /usr/include/sys/proctl.h
+
+f none /usr/include/sys/protosw.h
+
+f none /usr/include/sys/ptem.h
+
+f none /usr/include/sys/ptms.h
+
+#############################
+f none /usr/include/sys/reg.h
+
+f none /usr/include/sys/region.h
+
+f none /usr/include/sys/regset.h
+
+f none /usr/include/sys/resource.h
+
+#############################
+f none /usr/include/sys/sad.h
+
+f none /usr/include/sys/secsys.h
+
+f none /usr/include/sys/select.h
+
+f none /usr/include/sys/sem.h
+
+f none /usr/include/sys/sema.h
+
+f none /usr/include/sys/session.h
+
+f none /usr/include/sys/shm.h
+
+f none /usr/include/sys/siginfo.h
+
+f none /usr/include/sys/signal.h
+
+f none /usr/include/sys/swnotify.h
+
+f none /usr/include/sys/socket.h
+
+f none /usr/include/sys/socketvar.h
+
+f none /usr/include/sys/sockio.h
+
+f none /usr/include/sys/sockmod.h
+
+f none /usr/include/sys/spt.h
+
+f none /usr/include/sys/stat.h
+
+f none /usr/include/sys/statfs.h
+
+f none /usr/include/sys/statvfs.h
+
+f none /usr/include/sys/stermio.h
+
+f none /usr/include/sys/stream.h
+
+f none /usr/include/sys/strlog.h
+
+f none /usr/include/sys/strmdep.h
+
+f none /usr/include/sys/stropts.h
+
+f none /usr/include/sys/strstat.h
+
+f none /usr/include/sys/strsubr.h
+
+f none /usr/include/sys/strtty.h
+
+f none /usr/include/sys/swap.h
+
+f none /usr/include/sys/syscall.h
+
+f none /usr/include/sys/sysconfig.h
+
+f none /usr/include/sys/sysinfo.h
+
+f none /usr/include/sys/sysmacros.h
+
+f none /usr/include/sys/systeminfo.h
+
+f none /usr/include/sys/systm.h
+
+#############################
+f none /usr/include/sys/t_kuser.h
+
+f none /usr/include/sys/termio.h
+
+f none /usr/include/sys/termios.h
+
+f none /usr/include/sys/termiox.h
+
+f none /usr/include/sys/time.h
+
+f none /usr/include/sys/timeb.h
+
+f none /usr/include/sys/times.h
+
+f none /usr/include/tiuser.h
+f none /usr/include/sys/tiuser.h
+f none /usr/include/sys/ts.h
+
+f none /usr/include/sys/tspriocntl.h
+
+f none /usr/include/sys/ttold.h
+
+f none /usr/include/sys/tty.h
+
+f none /usr/include/sys/ttychars.h
+
+f none /usr/include/sys/ttydev.h
+
+f none /usr/include/sys/tuneable.h
+
+f none /usr/include/sys/types.h
+
+#############################
+
+f none /usr/include/sys/uadmin.h
+
+f none /usr/include/sys/ucontext.h
+
+f none /usr/include/sys/uio.h
+
+f none /usr/include/sys/ulimit.h
+
+f none /usr/include/sys/unistd.h
+
+f none /usr/include/sys/user.h
+
+f none /usr/include/sys/ustat.h
+
+f none /usr/include/sys/utime.h
+
+f none /usr/include/sys/utsname.h
+
+# added the file in /usr/include/sys
+
+f none /usr/include/sys/utssys.h
+
+f none /usr/include/sys/syslog.h
+
+f none /usr/include/sys/dpt.h
+
+f none /usr/include/sys/dpt_sdi.h
+
+f none /usr/include/sys/ict.h
+
+f none /usr/include/sys/mcis.h
+
+f none /usr/include/sys/xmap.h
+
+f none /usr/include/sys/kbd.h
+
+f none /usr/include/sys/kbduser.h
+
+f none /usr/include/sys/btc.h
+
+f none /usr/include/sys/kd_cgi.h
+
+f none /usr/include/sys/kd_btc.h
+
+f none /usr/include/sys/mse.h
+
+# remove all the qt stuff; replaced by ict
+#f none /usr/include/sys/qt.h
+
+#f none /usr/include/sys/qt_debug.h
+
+#f none /usr/include/sys/qt_globals.h
+
+f none /usr/include/sys/ramd.h
+
+f none /usr/include/sys/cd_ioctl.h
+
+#############################
+f none /usr/include/sys/var.h
+
+f none /usr/include/sys/vfs.h
+
+f none /usr/include/sys/vfstab.h
+
+f none /usr/include/sys/vm.h
+
+f none /usr/include/sys/vmmac.h
+
+f none /usr/include/sys/vmmeter.h
+
+f none /usr/include/sys/vmparam.h
+
+f none /usr/include/sys/vmsystm.h
+
+f none /usr/include/sys/vnode.h
+
+f none /usr/include/sys/vtoc.h
+
+#############################
+f none /usr/include/sys/wait.h
+
+#############################
+f none /usr/include/vm/anon.h
+
+f none /usr/include/vm/as.h
+
+f none /usr/include/vm/bootconf.h
+
+f none /usr/include/vm/cpu.h
+
+f none /usr/include/vm/debugger.h
+
+f none /usr/include/vm/faultcatch.h
+
+f none /usr/include/vm/faultcode.h
+
+f none /usr/include/vm/hat.h
+
+f none /usr/include/vm/kernel.h
+
+f none /usr/include/vm/mp.h
+
+f none /usr/include/vm/page.h
+f none /usr/include/sys/page.h=/dev/null
+
+f none /usr/include/vm/pte.h
+
+f none /usr/include/vm/pvn.h
+
+f none /usr/include/vm/reboot.h
+
+f none /usr/include/vm/rm.h
+
+f none /usr/include/vm/seg.h
+
+f none /usr/include/vm/seg_dev.h
+
+f none /usr/include/vm/seg_map.h
+
+f none /usr/include/vm/seg_u.h
+
+f none /usr/include/vm/seg_vn.h
+
+f none /usr/include/vm/trace.h
+
+f none /usr/include/vm/vm_hat.h
+
+f none /usr/include/vm/vmlog.h
+
+f none /usr/include/vm/vpage.h
+
+f none /usr/include/vm/seg_dummy.h
+
+f none /usr/include/vm/seg_kmem.h
+
+#############################
+# not in alphabeticall order
+
+f none /usr/include/sys/ad1542.h
+
+f none /usr/include/sys/aha.h
+
+f none /usr/include/sys/altsctr.h
+
+f none /usr/include/sys/alttbl.h
+
+f none /usr/include/sys/ansi.h
+
+f none /usr/include/sys/at_ansi.h
+
+f none /usr/include/sys/athd.h
+
+f none /usr/include/sys/badsec.h
+
+f none /usr/include/sys/bootcntl.h
+
+f none /usr/include/sys/bootinfo.h
+
+f none /usr/include/sys/brgmgr.h
+
+f none /usr/include/sys/cdrom.h
+
+f none /usr/include/sys/dcd.h
+
+f none /usr/include/sys/debugreg.h
+
+f none /usr/include/sys/dynstructs.h
+
+f none /usr/include/sys/elf_386.h
+
+f none /usr/include/sys/emap.h
+
+f none /usr/include/sys/evc.h
+
+f none /usr/include/sys/event.h
+
+f none /usr/include/sys/fd.h
+
+f none /usr/include/sys/fdisk.h
+
+f none /usr/include/sys/fp.h
+
+f none /usr/include/sys/gendev.h
+
+f none /usr/include/sys/gendisk.h
+
+f none /usr/include/sys/gentape.h
+
+f none /usr/include/sys/genvid.h
+
+f none /usr/include/sys/i8237A.h
+
+f none /usr/include/sys/inode.h
+
+f none /usr/include/sys/ipl.h
+
+f none /usr/include/sys/kb.h
+
+f none /usr/include/sys/kd.h
+
+f none /usr/include/sys/ksym.h
+
+f none /usr/include/sys/lp.h
+
+f none /usr/include/sys/mcdma.h
+
+f none /usr/include/sys/mcesdi.h
+
+f none /usr/include/sys/mcst.h
+
+f none /usr/include/sys/mod.h
+
+f none /usr/include/sys/moddefs.h
+
+f none /usr/include/sys/mouse.h
+
+f none /usr/include/sys/nmap.h
+
+f none /usr/include/sys/pic.h
+
+f none /usr/include/sys/pit.h
+
+f none /usr/include/sys/rtc.h
+
+f none /usr/include/sys/sc01.h
+
+f none /usr/include/sys/scl.h
+
+f none /usr/include/sys/scsi.h
+
+f none /usr/include/sys/scsicomm.h
+
+f none /usr/include/sys/sd.h
+
+f none /usr/include/sys/sd01.h
+
+f none /usr/include/sys/sd01_ioctl.h
+
+f none /usr/include/sys/sdi.h
+
+f none /usr/include/sys/sdi_edt.h
+
+f none /usr/include/sys/seg.h
+
+f none /usr/include/sys/st01.h
+
+f none /usr/include/sys/sw01.h
+
+f none /usr/include/sys/sxt.h
+
+f none /usr/include/sys/sysenvmt.h
+
+f none /usr/include/sys/sysi86.h
+
+f none /usr/include/sys/sysmsg.h
+
+f none /usr/include/sys/tape.h
+
+f none /usr/include/sys/tokens.h
+
+f none /usr/include/sys/trap.h
+
+f none /usr/include/sys/tss.h
+
+f none /usr/include/sys/un.h
+
+f none /usr/include/sys/v86.h
+
+f none /usr/include/sys/vc.h
+
+f none /usr/include/sys/vcpriocntl.h
+
+f none /usr/include/sys/vdc.h
+
+f none /usr/include/sys/vid.h
+
+f none /usr/include/sys/vt.h
+
+f none /usr/include/sys/wd7000.h
+
+f none /usr/include/sys/weitek.h
+
+f none /usr/include/sys/worm.h
+
+f none /usr/include/sys/ws/8042.h
+
+f none /usr/include/sys/ws/chan.h
+
+f none /usr/include/sys/ws/tcl.h
+
+f none /usr/include/sys/ws/ws.h
+
+f none /usr/include/sys/x.out.h
+
+f none /usr/include/sys/xque.h
+
+#f none /usr/include/sys/xt.h
+
+#f none /usr/include/sys/xtproto.h
+
+f none /usr/include/table.h
+f none /usr/include/userdefs.h
+
+f none /usr/include/vm/seg_objs.h
+
+f none /usr/include/vm/seg_vpix.h
+
+f none /usr/include/sys/fsinode.h
+
+f none /usr/include/sys/fc.h
+
+f none /usr/include/sys/fcpriocntl.h 444 bin bin 2 NULL NULL
+
+f none /usr/include/sys/iasy.h 
+
+f none /usr/include/sys/asyhp.h 
+
+f none /usr/include/sys/asyc.h 
+
+f none /usr/include/sys/fs/devmac.h
+
+f none /usr/include/sys/tp.h
+
+f none /usr/include/klm/lockmgr.h
+
+f none /usr/include/sys/netid.h
+
+f none /usr/include/sys/eisa.h
+
+#################################################################
+# files that are not in (but should be) in /usr/include/sys
+# need to change some make files to install there. 
+
+
+
+f none /usr/include/sys/moddrv.h 444 bin bin 2 NULL NULL
+f none /usr/include/sys/modfs.h 444 bin bin 2 NULL NULL
+f none /usr/include/sys/mod_intr.h 444 bin bin 2 NULL NULL
+f none /usr/include/sys/mod_k.h 444 bin bin 2 NULL NULL
+f none /usr/include/sys/mod_obj.h 444 bin bin 2 NULL NULL
+f none /usr/include/sys/module.h 444 bin bin 2 NULL NULL
+
+
+
+#################################################################
+## headers that need to be moved from base pkg  to other packages.
+
+#### is in the ACP pkg; .uts_hdr should also be moved there
+#f none /usr/include/sys/fs/xxfblk.h 
+#f  none /usr/include/sys/fs/xxfilsys.h 
+# no /usr/include/sys file; makefile should install it.
+
+
+
+#################################################################
+# not in alphabetical order
+
+f none /usr/include/archives.h
+
+f none /usr/include/deflt.h
+
+f none /usr/include/libw.h
+f none /usr/include/maillock.h
+f none /usr/include/std.h
+f none /usr/include/sum.h
+f none /usr/include/ia.h 
+f none /usr/include/lastlog.h
+f none /usr/include/priv.h
+f none /usr/include/getwidth.h
+f none /usr/include/wctype.h
+f none /usr/include/widec.h
+
+f none /usr/include/sys/fs/vx_bitmaps.h
+f none /usr/include/sys/fs/vx_buf.h
+f none /usr/include/sys/fs/vx_dir.h
+f none /usr/include/sys/fs/vx_ext.h
+f none /usr/include/sys/fs/vx_fs.h
+f none /usr/include/sys/fs/vx_inode.h
+f none /usr/include/sys/fs/vx_ioctl.h
+f none /usr/include/sys/fs/vx_log.h
+f none /usr/include/sys/fs/vx_param.h
+f none /usr/include/sys/fs/vx_proto.h
+f none /usr/include/sys/fs/vx_tran.h
+#################################################################
+
+# moved back into base as these are needed by space.c files
+
+f none /usr/include/netinet/in.h
+
+f none /usr/include/sys/byteorder.h
+
+f none /usr/include/net/if.h
+

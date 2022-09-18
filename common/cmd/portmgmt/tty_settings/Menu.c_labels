@@ -1,0 +1,8 @@
+#ident	"@(#)portmgmt:common/cmd/portmgmt/tty_settings/Menu.c_labels	1.1.5.1"
+#ident  "$Header: Menu.c_labels 2.0 91/07/13 $"
+
+menu="Existing ttylabels"
+
+`grep "^[^#]" /etc/ttydefs | fmlcut -d: -f1 | regex '^(.*)$0$' '
+name=" $m0 "
+action=`set -l "Form_Choice=$m0"`CLOSE'`

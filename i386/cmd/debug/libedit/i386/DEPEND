@@ -1,0 +1,71 @@
+#ident	"@(#)debugger:libedit/i386/DEPEND	1.1"
+
+debug_read.o:	../common/debug_read.C
+	$(CPLUS_CMD) -c ../common/debug_read.C
+
+defs.o:	  $(PRODINC)/common/edit.h ../common/defs.c ../common/sh_config.h
+	$(CC_CMD) -c ../common/defs.c
+
+edit.o:	  $(PRODINC)/common/edit.h ../common/edit.c ../common/history.h
+edit.o:	 ../common/io.h ../common/sh_config.h ../common/terminal.h
+edit.o:	 $(INC)/ctype.h
+edit.o:	 $(INC)/errno.h
+edit.o:	 $(INC)/fcntl.h
+edit.o:	 $(INC)/setjmp.h
+edit.o:	 $(INC)/signal.h
+edit.o:	 $(INC)/time.h
+edit.o:	 $(INC)/unistd.h
+	$(CC_CMD) -c ../common/edit.c
+
+editlib.o:	  $(PRODINC)/common/edit.h ../common/editlib.c
+editlib.o:	 ../common/history.h ../common/io.h ../common/sh_config.h
+editlib.o:	 ../common/terminal.h
+editlib.o:	 $(INC)/ctype.h
+editlib.o:	 $(INC)/fcntl.h
+editlib.o:	 $(INC)/setjmp.h
+editlib.o:	 $(INC)/signal.h
+editlib.o:	 $(INC)/time.h
+editlib.o:	 $(INC)/unistd.h
+	$(CC_CMD) -c ../common/editlib.c
+
+emacs.o:	  $(PRODINC)/common/edit.h ../common/emacs.c
+emacs.o:	 ../common/history.h ../common/io.h ../common/sh_config.h
+emacs.o:	 $(INC)/ctype.h
+emacs.o:	 $(INC)/fcntl.h
+emacs.o:	 $(INC)/setjmp.h
+emacs.o:	 $(INC)/signal.h
+emacs.o:	 $(INC)/time.h
+emacs.o:	 $(INC)/unistd.h
+	$(CC_CMD) -c ../common/emacs.c
+
+history.o:	  ../common/history.c ../common/history.h ../common/io.h
+history.o:	 ../common/sh_config.h
+history.o:	 $(INC)/ctype.h
+history.o:	 $(INC)/fcntl.h
+history.o:	 $(INC)/signal.h
+history.o:	 $(INC)/unistd.h
+	$(CC_CMD) -c ../common/history.c
+
+ksh_fc.o:	../common/ksh_fc.C
+	$(CPLUS_CMD) -c ../common/ksh_fc.C
+
+vi.o:	  $(PRODINC)/common/edit.h ../common/history.h ../common/io.h
+vi.o:	 ../common/sh_config.h ../common/terminal.h ../common/vi.c
+vi.o:	 $(INC)/ctype.h
+vi.o:	 $(INC)/errno.h
+vi.o:	 $(INC)/fcntl.h
+vi.o:	 $(INC)/setjmp.h
+vi.o:	 $(INC)/signal.h
+vi.o:	 $(INC)/time.h
+vi.o:	 $(INC)/unistd.h
+	$(CC_CMD) -c ../common/vi.c
+
+OBJECTS	=  \
+	debug_read.o\
+	edit.o \
+	editlib.o \
+	emacs.o \
+	ksh_fc.o \
+	history.o \
+	vi.o \
+	defs.o

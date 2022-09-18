@@ -1,0 +1,93 @@
+#ident	"@(#)face:OBJECTS/Menu.h6.list	1.3.4.2"
+#ident  "$Header: Menu.h6.list 1.4 91/10/15 $"
+
+menu=$$uxface:501:"Help Facility: Commands Overview"
+
+help=OPEN TEXT OBJECTS/Text.help T.h1.help "$$uxface:462:HELP on Using Help"
+
+framemsg=$$uxface:399:"Move to an item with arrow keys and press ENTER to select the item."
+
+begrow=current
+begcol=current
+
+name=$$uxface:502:"cancel"
+action=OPEN TEXT OBJECTS/Text.help cancel $$uxface:502:'cancel'
+
+name=$$uxface:503:"cleanup"
+action=OPEN TEXT OBJECTS/Text.help cleanup $$uxface:503:'cleanup'
+
+name=$$uxface:504:"copy"
+action=OPEN TEXT OBJECTS/Text.help copy $$uxface:504:'copy'
+
+name=$$uxface:505:"create"
+action=OPEN TEXT OBJECTS/Text.help create $$uxface:505:'create'
+
+name=$$uxface:506:"delete"
+action=OPEN TEXT OBJECTS/Text.help delete $$uxface:506:'delete'
+
+name=$$uxface:507:"display"
+action=OPEN TEXT OBJECTS/Text.help display $$uxface:507:'display'
+
+name=$$uxface:508:"exit"
+action=OPEN TEXT OBJECTS/Text.help exit $$uxface:508:'exit'
+
+name=$$uxface:509:"find"
+action=OPEN TEXT OBJECTS/Text.help find $$uxface:509:'find'
+
+name=$$uxface:510:"frm-mgmt"
+action=OPEN TEXT OBJECTS/Text.help frm-mgmt $$uxface:510:'frm-mgmt'
+
+name=$$uxface:511:"goto"
+action=OPEN TEXT OBJECTS/Text.help goto $$uxface:511:'goto'
+
+name=$$uxface:512:"help"
+action=OPEN TEXT OBJECTS/Text.help help $$uxface:512:'help'
+
+name=$$uxface:513:"move"
+action=OPEN TEXT OBJECTS/Text.help move $$uxface:513:'move'
+
+name=$$uxface:514:"next-frm"
+action=OPEN TEXT OBJECTS/Text.help next-frm $$uxface:514:'next-frm'
+
+name=$$uxface:515:"organize"
+action=OPEN TEXT OBJECTS/Text.help organize $$uxface:515:'organize'
+
+name=$$uxface:516:"prev-frm"
+action=OPEN TEXT OBJECTS/Text.help prev-frm $$uxface:516:'prev-frm'
+
+name=$$uxface:517:"print"
+action=OPEN TEXT OBJECTS/Text.help print $$uxface:517:'print'
+
+name=$$uxface:518:"redescribe"
+action=OPEN TEXT OBJECTS/Text.help redescribe $$uxface:518:'redescribe'
+
+name=$$uxface:519:"refresh"
+action=OPEN TEXT OBJECTS/Text.help refresh $$uxface:519:'refresh'
+
+name=$$uxface:520:"rename"
+action=OPEN TEXT OBJECTS/Text.help rename $$uxface:520:'rename'
+
+name=$$uxface:521:"run"
+action=OPEN TEXT OBJECTS/Text.help run $$uxface:521:'run'
+
+name=$$uxface:522:"security"
+action=OPEN TEXT OBJECTS/Text.help security $$uxface:522:'security'
+
+name=$$uxface:523:"show-path"
+action=OPEN TEXT OBJECTS/Text.help show-path $$uxface:523:'show-path'
+
+name=$$uxface:524:"time"
+action=OPEN TEXT OBJECTS/Text.help time $$uxface:524:'time'
+
+name=$$uxface:525:"undelete"
+action=OPEN TEXT OBJECTS/Text.help undelete $$uxface:525:'undelete'
+
+name=$$uxface:526:"unix-system"
+action=OPEN TEXT OBJECTS/Text.help unix $$uxface:526:'unix-system'
+
+name=$$uxface:527:"update"
+action=OPEN TEXT OBJECTS/Text.help update $$uxface:527:'update'
+
+name=$$uxface:355:"CONTENTS"
+button=8
+action=OPEN MENU OBJECTS/Menu.h0.toc

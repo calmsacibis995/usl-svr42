@@ -1,0 +1,58 @@
+#	Copyright (c) 1991, 1992  Intel Corporation
+#	All Rights Reserved
+#
+#	INTEL CORPORATION CONFIDENTIAL INFORMATION
+#
+#	This software is supplied to USL under the terms of a license 
+#	agreement with Intel Corporation and may not be copied nor 
+#	disclosed except in accordance with the terms of that agreement.
+
+#ident	"@(#)pkg.cdfs:i386/pkg/cdfs/preremove	1.5"
+#ident	"$Header: $"
+
+FAILURE=1			# Fatal error.
+
+REBUILD=0
+
+CONFBIN=/etc/conf/bin
+ERR=/tmp/cdfs.error
+
+NOTOOLS="ERROR: The Installable Driver feature has been removed.  \
+The ${NAME} cannot be removed."
+
+# Determine that ID tools are available.
+
+if [ ! -x ${CONFBIN}/idbuild -o ! -x ${CONFBIN}/idinstall \
+		-o ! -x ${CONFBIN}/idcheck ]
+then
+	message ${NOTOOLS}
+	exit $FAILURE
+fi
+
+for MODULE in cdfs 
+do
+	${CONFBIN}/idcheck -p ${MODULE}
+	RES="$?"
+	if [ "${RES}" -ne "100" -a "${RES}" -ne "0" ]
+	then
+		${CONFBIN}/idinstall -P ${PKGINST} -d ${MODULE}
+		REBUILD=1
+	fi
+done
+
+removef -f ${PKGINST}
+
+if [ "${REBUILD}" = "1" ]
+then
+	# Rebuild for changes to take effect.
+	
+	${CONFBIN}/idbuild
+	if [ "$?" -ne "0" ]
+	then
+		exit ${FAILURE}
+	else
+		exit 10
+	fi
+else
+	exit 0
+fi

@@ -1,0 +1,19 @@
+#ident	"@(#)nadmin.rfs:other/rfs/control/bin/rfs_stop	1.2.5.1"
+#ident  "$Header: rfs_stop 2.0 91/07/12 $"
+
+$TFADMIN /usr/sbin/rfadmin -q 2>/dev/null 1>&2
+if [ $? -eq 0  ]
+then
+	$TFADMIN /usr/sbin/unshareall -F rfs 2>/dev/null
+	$TFADMIN /usr/sbin/umountall -F rfs 2>/dev/null
+	$TFADMIN /usr/sbin/rfstop
+	if [ $? -eq 0 ]
+	then
+		echo "Remote File Sharing operations have been stopped." >/var/tmp/rfstop$$
+	else
+		echo "Remote File Sharing operations cannot be stopped.\nConsult your System Administrators Guide." >/var/tmp/rfstop$$
+	fi
+else
+	echo "Remote File Sharing operations cannot be stopped. \nRemote File Sharing is not running." >/var/tmp/rfstop$$
+fi
+echo $$

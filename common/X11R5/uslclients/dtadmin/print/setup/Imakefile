@@ -1,0 +1,83 @@
+/**/#ident	"@(#)dtadmin:print/setup/Imakefile	1.27"
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+
+#define PassCDebugFlags 'CDEBUGFLAGS=$(CDEBUGFLAGS)'
+
+         SRCS = \
+		prtsetup.c \
+		properties.c \
+		basic.c \
+		extended.c \
+		control.c \
+		remote.c \
+		lpsys.c \
+		error.c \
+		printer.c \
+		delete.c \
+		install.c \
+		drawicon.c
+
+         OBJS = \
+		prtsetup.o \
+		properties.o \
+		basic.o \
+		extended.o \
+		control.o \
+		remote.o \
+		lpsys.o \
+		error.o \
+		printer.o \
+		delete.o \
+		install.o \
+		drawicon.o
+
+  EXTRA_DEFINES = -DSVR4_1ES
+
+   DTCLIENTSLIB = $(USLCLIENTSRC)/libDtI
+       DTLIBSRC = $(LIBSRC)/Dt
+      DTILIBSRC = $(DTCLIENTSLIB)
+         DTILIB = $(DTILIBSRC)/libDtI.so
+          DTLIB = $(DTLIBSRC)/libDt.so
+
+#if UTSXENV
+          LPSRC = /x/DTXENV/lp
+#else
+          LPSRC = $(ROOT)/usr/src/$(WORK)/cmd/lp
+#endif
+          LPINC = $(LPSRC)/include
+       LPLIBSRC = $(LPSRC)/lib
+     LPLIBLPSRC = $(LPLIBSRC)/lp
+        LPLIBLP = $(LPLIBLPSRC)/liblp.a
+    LPLIBMSGSRC = $(LPLIBSRC)/msgs
+       LPLIBMSG = $(LPLIBMSGSRC)/liblpmsg.a
+    LPLIBACCSRC = $(LPLIBSRC)/access
+       LPLIBACC = $(LPLIBACCSRC)/liblpacc.a
+    LPLIBSYSSRC = $(LPLIBSRC)/systems
+       LPLIBSYS = $(LPLIBSYSSRC)/liblpsys.a
+    LPLIBOAMSRC = $(LPLIBSRC)/oam
+       LPLIBOAM = $(LPLIBOAMSRC)/liblpoam.a
+    LPLIBPRTSRC = $(LPLIBSRC)/printers
+       LPLIBPRT = $(LPLIBPRTSRC)/liblpprt.a
+
+LPLIBS = $(LPLIBPRT) $(LPLIBSYS) $(LPLIBMSG) $(LPLIBACC) $(LPLIBLP) $(LPLIBOAM)
+
+       INCLUDES = -I$(LIBSRC) -I$(LIBSRC)/Xol -I$(DTILIBSRC) -I$(USLCLIENTSRC) \
+		-I$(LPINC) -I$(DTLIBSRC)
+LOCAL_LIBRARIES = $(DTILIB) $(DTLIB) XolClientLibs $(LPLIBS)
+        DEPLIBS = $(DTILIB) $(DTLIB) XolClientDepLibs
+
+  SYS_LIBRARIES = -lgen -lm
+
+ComplexProgramTarget(prtsetup)
+
+InstallDesktopClient($(BINDIR)/prtsetup,$(DESKTOPDIR)/System_Setup/Printer_Setup)
+
+InstallMultiple(Printers,$(DESKTOPDIR)/PrintMgr)

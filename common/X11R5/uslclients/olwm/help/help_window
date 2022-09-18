@@ -1,0 +1,23 @@
+The Help window for each application displays help for the object under
+the pointer. To see more help text for the same application without
+dismissing the Help window, move the pointer to another object in the
+same application and press the HELP key again. The view in the
+magnifying glass changes, and appropriate help text is displayed in
+the pane of the same Help window.
+
+If you move the pointer to a different application window and press the
+HELP key without dismissing the original Help window, a second Help
+window is displayed.
+
+You dismiss a Help window by moving the pointer to the pushpin and
+clicking SELECT. Alternatively, you can move the pointer to the header
+of the Help window, press MENU, move the pointer onto the Dismiss
+item, and release MENU.
+
+Magnifying glass:
+
+     The view in the magnifying glass shows the object at the pointer
+     position when you pressed the HELP key.  To change the view in
+     the magnifying glass and display help text in the pane for the
+     new object, move the pointer to another object in the same
+     application and press the HELP key again.

@@ -1,0 +1,12 @@
+#ident	"@(#)pkg.face:pkginfo	1.6.1.6"
+#ident  "$Header: pkginfo 1.2 91/06/28 $"
+
+PKG="face"
+VERSION="1" 
+RELEASE="4.2"
+NAME="FACE"
+CLASSES="none OAMadmin OAMmif OAMintf"
+CATEGORY=system
+PREDEPEND=face
+VENDOR="UNIX System Laboratories"
+

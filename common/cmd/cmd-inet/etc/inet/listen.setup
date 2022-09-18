@@ -1,0 +1,242 @@
+#!/sbin/sh
+#ident	"@(#)cmd-inet:common/cmd/cmd-inet/etc/inet/listen.setup	1.10"
+#ident 	"$Header: $"
+
+#script will set up a destiny listener and its uucp access points
+#exit codes:
+#0	all worked
+#1	usage or uname -n was not found in /etc/hosts by nametoaddr
+#2	somehow listener database was not configurable
+#3	though listener is ok, an error happened to uucico set up
+#	and some uucp set up will not be attempted
+#4	though listener AND uucico are ok, an error happened.
+#	we will continue to try the rest of set up.
+RET_CODE=0	#hopefully never changes
+
+#
+#  This function gets passed the name of a file.  What it then does is
+#  collapse together any non-commented (#) lines that are continued by
+#  use of a backslash (\).  This makes it very easy to run sed on these
+#  lines later, without worrying about multiple line entries.
+#
+collapse()
+{
+	INFILE=$1
+	cp ${INFILE} /tmp/tmpsed
+	while (grep '^[^#].*\\$' /tmp/tmpsed)
+	do
+		ed - /tmp/tmpsed <<!
+/^[^#].*\\\\$
+s/\\\\//
+j
+w
+q
+!
+	done
+
+	cp /tmp/tmpsed ${INFILE}
+	rm -f /tmp/tmpsed 2>/dev/null
+}
+
+#nametoaddr sym_name
+# looks up the symbolic name
+#in /etc/inet/hosts file and returns the
+#numeric string address 
+nametoaddr () {
+	HOSTNAME="`echo $1 | /usr/bin/sed 's/\([].*[^/ ]\)/\\\\\1/g'`"
+	/usr/bin/sed -n -e "s/^\([0-9][0-9.]*\)[	 ][	 ]*${HOSTNAME}$/\1/p
+t quit
+s/^\([0-9][0-9.]*\)[	 ][	 ]*${HOSTNAME}[	 #].*$/\1/p
+t quit
+b
+: quit
+q" /etc/inet/hosts 2>/dev/null
+}
+
+#There was a fatal error - we can't set up the listener without an address!
+#Echo a msg, Send mail to the administrator, exit with error return.
+#usage: no_address_failure system_name
+no_address_failure () {
+OWNER=`/usr/bin/grep -l owner /usr/X/desktop/LoginMgr/Users/* 2>/dev/null|
+	/usr/bin/sed 's%.*/%%g'`
+/usr/bin/mail ${OWNER} root >/dev/null 2>&1 <<!
+Subject: TCP/IP Network Listener Configuration error, address not available
+
+The TCP/IP network listener were not able to be configured
+because no address has been specified for this machine, $1 .
+You can set up your machine address by using the
+Internet Setup icon in the System Setup folder of the
+Desktop Metaphor.
+
+If you do not have the Desktop Metaphor installed, please see
+the Network Adminstation documentation, Assigning IP Addresses
+to your Network Hosts and Setting up TCP/IP Files sections for
+details on how to setup your IP address in the /etc/inet/hosts
+file.  Then see the "Setting up the Listener" section of the
+documentation.
+!
+	#
+	#  Even though no address was found, we will still do all
+	#  the work of setting up the services with the SAC - just
+	#  set the return code here.
+	#
+	RET_CODE=1
+}
+
+UNAME=`/usr/bin/uname -n`
+IPADDR=`nametoaddr $UNAME`
+
+if [ "${IPADDR}" ]
+then
+	#
+	#  convert dotted decimal addr to hexadecimal (whew)
+	#
+	ADDR="`( echo 'a' ;
+	echo $IPADDR |
+	/usr/bin/sed -e 's%^%16 o %;s%\.% p %g;s%$% p%' | /usr/bin/dc ; 
+	echo '.\n1,$s/^[1-9A-F]\$/0&/\n,j\np\nQ' ) | /usr/bin/ed -s`"
+else
+	no_address_failure ${UNAME}
+fi
+
+
+# The following ( ) shell scripts are to capture WARNING
+# messages resulting from installing the package
+# in Maintenance mode (aka init S) when the sac
+# program is not running or has never yet been run.
+# The database files are correctly updated when these
+# error numbers are received, the messages usually read:
+#
+# warning - could not ascertain sac status
+# warning - port monitor, tcp is not running
+# 
+# use sacadm for -m inet/tcp0 option for uucp use
+# of subdevices
+
+ERR_LOG=/tmp/listen.err
+> ${ERR_LOG}
+
+#
+#  Always remove and add service for nlps
+#
+/usr/sbin/pmadm -r -s 0 -p tcp 2>/dev/null
+/usr/sbin/pmadm -a -p tcp -s 0 \
+	-i root -v `/usr/sbin/nlsadmin -V` \
+	-m `/usr/sbin/nlsadmin -c /usr/lib/saf/nlps_server \
+	-A \\\x00020ACE${ADDR}0000000000000000 2>/dev/null` 2>/dev/null
+PMRET=$?
+[ "${PMRET}" != "0" -a "${PMRET}" != "10" ] && {
+	echo "pmadm -a -p tcp failed (svc 0) - returned ${PMRET}" \
+		>>${ERR_LOG}
+	RET_CODE=2
+}
+
+#
+#  Always remove and add service for rfs
+#
+/usr/sbin/pmadm -r -s 105 -p tcp 2>/dev/null
+/usr/sbin/pmadm -a -p tcp -s 105 \
+	-i root -v `/usr/sbin/nlsadmin -V` \
+	-m `/usr/sbin/nlsadmin -c /usr/net/servers/rfs/rfsetup 2>/dev/null` \
+	-y "RFS Server" 2>/dev/null
+PMRET=$?
+[ "${PMRET}" != "0" -a "${PMRET}" != "10" ] && {
+	echo "pmadm -a -p tcp failed (svc 105, rfs) - returned ${PMRET}" \
+		>>${ERR_LOG}
+	RET_CODE=4
+}
+
+#
+#  if lp/lpd are in the _pmtab file (they would be put there by the netcmd
+#  package), then remove and replace them.
+#
+grep "^lp[d]*:" /etc/saf/tcp/_pmtab >/dev/null 2>&1
+[ "$?" = "0" ] && {
+	pmadm -r -p tcp -s lp > /dev/null 2>&1
+	pmadm -a -p tcp -s lp -i root -v `nlsadmin -V` -m `nlsadmin -o /var/spool/lp/fifos/listenS5 2>/dev/null` > /dev/null 2>&1
+
+	pmadm -r -p tcp -s lpd > /dev/null 2>&1
+	pmadm -a -p tcp -s lpd -i root -v `nlsadmin -V` -m `nlsadmin -o /var/spool/lp/fifos/listenBSD -A "\x00020203${ADDR}0000000000000000" 2>/dev/null` > /dev/null 2>&1
+}
+
+#
+#  uucico service - remove it and replace it
+#
+/usr/sbin/pmadm -r -s 10103 -p tcp 2>/dev/null
+/usr/sbin/pmadm -a -p tcp -s 10103 -i nuucp -m "`/usr/sbin/nlsadmin -c \"/usr/lib/uucp/uucico -r 0 -u nuucp -i TLI\" 2>/dev/null`" -v `/usr/sbin/nlsadmin -V` -y "uucp" 2>/dev/null
+PMRET=$?
+[ "${PMRET}" != "0" ] && {
+	echo "pmadm -a -p tcp failed (svc 10103, uucico) - returned ${PMRET}" \
+		>>${ERR_LOG}
+	RET_CODE=3
+}
+
+#
+#  cu service - remove it and replace it
+#
+/usr/sbin/pmadm -r -s cu -p tcp 2>/dev/null
+/usr/sbin/pmadm -a -p tcp -s cu -i root -m "`/usr/sbin/nlsadmin -c \"/usr/lib/saf/ttymon -g -h -m ntty,tirdwr,ldterm\" 2>/dev/null`" -v `/usr/sbin/nlsadmin -V` -fu -y"cu" 2>/dev/null
+PMRET=$?
+[ "${PMRET}" != "0" ] && {
+	echo "pmadm -a -p tcp failed (svc cu) - returned ${PMRET}" \
+		>>${ERR_LOG}
+	RET_CODE=4
+}
+
+#
+#  Delete TcpCico10103 line if it exists, and then
+#  add TcpCico line to Devices.tcp for uucp device
+#
+collapse /etc/uucp/Devices.tcp >/dev/null 2>&1
+sed -e "/^TcpCico10103/d" /etc/uucp/Devices.tcp > /tmp/Devices.tcp 2>/dev/null
+cp /tmp/Devices.tcp /etc/uucp/Devices.tcp 2>/dev/null
+echo "TcpCico10103,eg tcp - - TLI \D nls.uucico" >> /etc/uucp/Devices.tcp
+PMRET=$?
+[ ${PMRET} -ne 0 ] && {
+	echo "adding TcpCico10103 to /etc/uucp/Devices.tcp returned ${PMRET}" \
+		>>${ERR_LOG}
+	RET_CODE=4
+	/usr/sbin/installf inet /etc/uucp/Devices.tcp v 0644 uucp uucp 1 NULL NULL >/dev/null 2>&1
+}
+
+#
+#  Check to see if uucico is set up.  If not, set it up.  If it is
+#  set up, force Systems.tcp and Devices.tcp to be the first entries.
+#
+collapse /etc/uucp/Sysfiles >/dev/null 2>&1
+/usr/bin/grep '^[^#]*service=uucico[ 	]*systems=[^#]*Systems.tcp' \
+	/etc/uucp/Sysfiles >/dev/null 2>&1
+if [ $? -ne 0 ]
+then
+	echo "service=uucico  systems=Systems.tcp:Systems \
+		devices=Devices.tcp:Devices" >> /etc/uucp/Sysfiles
+	[ $? -ne 0 ] && {
+		echo "didn't create /etc/uucp/Sysfiles" >>${ERR_LOG}
+		RET_CODE=4
+	}
+else
+	PAT1="/^\([^#]*service=uucico\)/s/Systems.tcp://"
+	PAT2="/^\([^#]*service=uucico\)/s/:Systems.tcp//"
+	PAT3="/^\([^#]*service=uucico\)/s/Devices.tcp://"
+	PAT4="/^\([^#]*service=uucico\)/s/:Devices.tcp//"
+	PAT5="/^\([^#]*service=uucico\)/s/systems=/systems=Systems.tcp:/"
+	PAT6="/^\([^#]*service=uucico\)/s/devices=/devices=Devices.tcp:/"
+
+	#
+	#  Force Systems.tcp and Dialers.tcp to be the first relevant
+	#  entries by removing them forcibly and putting them in the
+	#  right place.
+	#
+	sed -e "${PAT1}" -e "${PAT2}" -e "${PAT3}" -e "${PAT4}" \
+		< /etc/uucp/Sysfiles > /tmp/Sysfiles 2>/dev/null
+
+	sed -e "${PAT5}" -e "${PAT6}" \
+		< /tmp/Sysfiles > /etc/uucp/Sysfiles 2>/dev/null
+
+	rm -f /tmp/Sysfiles
+fi
+
+if [ "noinstallf" != "$1" ]
+then	/usr/sbin/installf -f inet &
+fi
+exit $RET_CODE

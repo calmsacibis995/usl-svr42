@@ -1,0 +1,21 @@
+*** uucp.v4/Config	Tue Jun  9 19:30:27 1992
+--- uucp.p14/Config	Mon Jun  8 10:17:07 1992
+***************
+*** 1,2 ****
+! #ident	"@(#)/etc/uucp/Config.sl 1.1 4.0 05/29/91 52068 AT&T-USL"
+  #
+--- 1,3 ----
+! #ident	"@(#)/etc/uucp/Config.sl 1.2 4.1dt 05/28/92 28997 AT&T-USL"
+! #ident "$Header: Config 1.1 91/02/28 $"
+  #
+***************
+*** 18,19 ****
+--- 19,26 ----
+  #		<parameter>	<value>
++ #
++ #		AUTH		Is authentication required of remote execution
++ #				requests? <yes|req> or <no|opt>
++ #
++ #		KEYS		If authentication is required, which key
++ #				magagement scheme is to be used? <cr1>
+  #

@@ -1,0 +1,22 @@
+#ident	"@(#)oamintf:common/cmd/oamintf/usermgmt/Menu.mevts	1.1.2.2"
+#ident  "$Header: Menu.mevts 2.0 91/07/12 $"
+#	Module Name: Menu.mevts
+#	Description: This menu provides the user with a multiselect pop-up
+#		     menu for selection of audit events.
+
+menu="Valid Audit Events"
+multiselect=TRUE
+framemsg=`readfile $INTFBASE/msmenu.msg`
+
+done=`getitems "," | set -l "Form_Choice"`CLOSE
+
+`cat /tmp/$VPID.evts |regex '^(.*)$0' 'name="$m0"'`
+
+name=
+button=1
+action=
+
+name=
+button=7
+action=
+

@@ -1,0 +1,11 @@
+#ident	"@(#)set:common/set/gdev/pkginfo	1.1"
+#ident	"$Header: $"
+
+PKG=gdev
+PREDEPEND=
+VERSION="1"
+RELEASE="4.2"
+NAME="Graphical Applications Development Set"
+CATEGORY=set
+VENDOR="UNIX System Laboratories"
+CLASSES=none

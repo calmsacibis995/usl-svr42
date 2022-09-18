@@ -1,0 +1,76 @@
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+/**/#ident	"@(#)Gizmo:Imakefile	1.26"
+
+#if Release5
+
+#define DoNormalLib	NO
+#define DoSharedLib	YES
+#include <Library.tmpl>
+#include <sv4Lib.tmpl>
+
+#else
+
+#define DynamicLibraryObjectRule()                                      @@\
+.c.o:                                                                   @@\
+                $(CC) -c -KPIC $(CFLAGS) $<
+
+#define SharedLibraryTarget(libname,objlist,dependlib,otherlib)         @@\
+lib/**/libname/**/.so:: objlist dependlib                               @@\
+        $(RM) lib/**/libname/**/.so                                     @@\
+        $(CC) $(YFLAGS) -G objlist -o lib/**/libname/**/.so -h lib/**/libname/**/.so.1 $(SHLIBFLAGS) dependlib otherlib
+
+#endif
+
+
+    INCLUDES = -I$(LIBSRC) -I$(XOLLIBSRC)
+    DTLIBSRC = $(LIBSRC)/Dt
+   DTILIBSRC = $(USLCLIENTSRC)/libDtI
+
+    INCLUDES = -I$(LIBSRC) -I$(LIBSRC)/Xol -I$(DTLIBSRC) -I$(DTILIBSRC)
+     LIBNAME = Gizmo
+         LIB = lib$(LIBNAME).so
+
+        SRCS = \
+               FileGizmo.c   \
+               BaseWGizmo.c  \
+               ChoiceGizm.c  \
+               ListGizmo.c   \
+               InputGizmo.c  \
+               LabelGizmo.c  \
+               MenuGizmo.c   \
+               ModalGizmo.c  \
+               TimeGizmo.c   \
+               NumericGiz.c  \
+               PopupGizmo.c  \
+	       STextGizmo.c  \
+	       SpaceGizmo.c  \
+               Gizmos.c
+
+OBJS = $(SRCS:.c=.o)
+HEADERS = $(SRCS:.c=.h)
+
+#if Release5
+LibraryObjectRule()
+SharedLibraryTarget($(LIBNAME),$(SODTREV),$(OBJS),.,.)
+FurSharedLibraryTarget($(LIBNAME),$(SODTREV),$(OBJS),.,.)
+
+InstallSharedLibrary($(LIBNAME),$(SODTREV),$(USRLIBDIR))
+InstallFurLibrary($(LIBNAME),$(SODTREV),$(USRLIBDIR))
+#else
+all::	libGizmo.so
+DynamicLibraryObjectRule()
+SharedLibraryTarget($(LIBNAME),$(OBJS),,)
+InstallLibrary($(LIBNAME),$(USRLIBDIR))
+#endif
+
+InstallMultiple($(HEADERS),$(INCROOT)/Gizmo)
+
+DependTarget()

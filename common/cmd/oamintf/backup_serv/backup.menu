@@ -1,0 +1,7 @@
+#ident	"@(#)oamintf:common/cmd/oamintf/backup_serv/backup.menu	1.1.2.3"
+#ident  "$Header: backup.menu 2.0 91/07/12 $"
+#menu#Backup Service Management
+#help#bkup.help^Backup Service Management
+#life#permanent
+
+basic^Basic Backup Service^backup/basic/Menu.backup

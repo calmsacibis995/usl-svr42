@@ -1,0 +1,28 @@
+#ident	"@(#)bkrs:common/cmd/bkrs/bkexcept.d/table	1.1.3.2"
+#ident  "$Header: table 1.2 91/06/21 $"
+*/.news_time
+*/a.out
+*/core
+*/dead.letter
+*/ed.hup
+*/nohup.out
+*/tmp/*
+*.o
+/etc/mnttab
+/etc/save.d/timestamp*
+/etc/utmp
+/etc/wtmp
+/usr/adm/*
+/var/adm/*
+/usr/asp/*
+/usr/at/*
+/usr/crash/*
+/usr/games/*
+/usr/news/*
+/var/news/*
+/usr/rje/*
+/usr/spool/*
+/var/spool/*
+/usr/tmp/*
+/var/tmp/*
+/proc/*

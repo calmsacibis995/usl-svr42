@@ -1,0 +1,461 @@
+#!/usr/X/bin/wksh -openlook
+
+
+#	Copyright (c) 1991, 1992 UNIX System Laboratories, Inc.
+#	All Rights Reserved
+
+#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+#	UNIX System Laboratories, Inc.
+#	The copyright notice above does not evidence any
+#	actual or intended publication of such source code.
+
+#ident	"%W%"
+
+#
+# Major Variables:
+#
+# CARDDIR	The card directory, defaults to $HOME/cards
+# CARDFILE	The name of the cardfile currently being operated upon.
+# NCARDS	The number of cards in the current set
+# KEYS[]	Array of keynames, 0th is primary key
+# NKEYS		The number of keys
+#
+# Format of the Cards:
+#
+# There is one file that contains all the cards.  The first line of this
+# file is a specification of the key names.  The first key is the primary
+# key.  A control-A character (octal 01) is used to delimit the keys.
+#
+# The rest of the lines are control-A seperated fields.  Within the last
+# (multiline) field, the control-B character (octal 02) is used to delimit
+# lines.  In this way, we can use standard unix tools like sort, cut,
+# tr, and grep to operate on the file.
+
+CARDDIR="$HOME/cards"
+
+STDTFOPTS="-r -b -c"
+
+message() {	# $@= message to print in footer
+	sv $MSG string:"$@"
+}
+
+set_sensitivity() {
+	if [ "$CARDFILE" ]
+	then
+		unmap=""
+		map="$CRD $CRDHDR"
+		case "$NUMCARDS" in
+		0) sensitives="$Add"
+		   nonsensitives="$Search $Sort $Delete $Edit"
+		   if [ "$ADDMODE" != true ]
+		   then 
+			   pd "$SLPOP"
+			   unmap="$CRD $CRDHDR"
+			   map=""
+		   fi
+		   ;;
+		1) sensitives="$Add $Delete $Edit"
+		   nonsensitives="$Search $Sort"
+		   pu $SLPOP GrabNone
+		   ;;
+		*) sensitives="$Search $Sort $Add $Delete $Edit"
+		   nonsensitives=""
+		   pu $SLPOP GrabNone
+		esac
+		for i in $sensitives
+		do
+			sv $i sensitive:true
+		done
+		for i in $nonsensitives
+		do
+			sv $i sensitive:false
+		done
+		if [ "$map" ]
+		then mw $map
+		fi
+		if [ "$unmap" ]
+		then umw $unmap
+		fi
+	else
+		for i in $Search $Sort $Add $Delete $Edit
+		do
+			sv $i sensitive:false
+		done
+		sv $SL sensitive:false
+		umw $CRD
+		umw $CRDHDR
+	fi
+}
+
+set_editmode() {	# $1=true or false
+	if [ "$1" = true ]
+	then
+		mw $EDITCA
+		mw $CRDHDR
+		mw $CRD
+		edit=textedit
+	else
+		umw $EDITCA
+		edit=textread
+	fi
+	sv $INFOFLD sensitive:$1 editType:$edit
+	for i in 0 1 2 3
+	do
+		sv ${TXT[$i]} sensitive:"$1"
+		sv ${TXTEDIT[$i]} editType:$edit
+	done
+}
+
+disp_cardtitles() {
+	for i in 0 1 2 3
+	do
+		if ((i < NKEYS-1))
+		then 
+			mw ${CAP[$i]}
+			sv ${CAP[$i]} label:"${KEYS[$i]}" mnemonic:
+		else
+			umw ${CAP[$i]}
+		fi
+	done
+	mnsetup ${CAP[@]}
+}
+
+disp_card() {	# $1=primary key to display, or nothing for a new card
+	CURCARD="$1"
+	if [ "$1" ]
+	then
+		OLDIFS="$IFS"
+		IFS=""
+		grep "^$1" $CARDDIR/$CARDFILE | read R[0] R[1] R[2] R[3] R[4] R[5]
+		IFS="$OLDIFS"
+	else
+		unset R
+	fi
+	i=0
+	while ((i<NKEYS-1))
+	do
+		sv ${TXT[$i]} string:"${R[$i]}"
+		let i=i+1
+	done
+	T="${R[i]}" export T
+	sv $INFOFLD cursorPosition:0 selectStart:0 selectEnd:0 \
+		source:"`echo "$T" | tr "\02" "\012"`"
+	set_sensitivity
+}
+
+disp_cardfile() {	# no args, assumes major vars all set
+	slnoupdate "$SL"
+	sldel "$SL" all
+	i=0
+	sed -e 1,1d -e 's/.*$//' $CARDDIR/$CARDFILE > /tmp/card$$
+	sladd $SL -f /tmp/card$$
+	slupdate "$SL"
+	rm -f /tmp/card$$
+	# Display the first card
+	disp_cardtitles
+	disp_card "`sed -n -e '2,2s/.*$//p' $CARDDIR/$CARDFILE`"
+	NUMCARDS=`wc -l < $CARDDIR/$CARDFILE`
+	let NUMCARDS=NUMCARDS-1
+	message "Cardfile: \"$CARDFILE\"    Cards in set: ${NUMCARDS}"
+}
+
+read_cardfile() {	# $1=cardfile name
+	if [ ! -r $CARDDIR/$1 ]
+	then warn "Could not read cardfile $1" 
+	     return 1
+	fi
+	CARDFILE=$1
+	read K < $CARDDIR/$CARDFILE
+	NKEYS=0
+	unset KEYS
+	echo "$K" | tr "\01" "\012" | \
+		while read k
+		do
+			KEYS[$NKEYS]="$k"
+			let NKEYS=NKEYS+1
+		done
+	disp_cardfile
+}
+
+write_cardfile() {	No args, assumes current cardfile
+	echo "not implemented"
+}
+
+backup_cardfile() {
+	cp $CARDDIR/$CARDFILE $CARDDIR/.OLD$CARDFILE || \
+		warn "Could not create backup copy of cardfile"
+}
+
+restore_cardfile() {
+	cp $CARDDIR/.OLD$CARDFILE $CARDDIR/$CARDFILE || \
+		warn "Could not restore cardfile after error"
+}
+
+write_card() {	# $1=primary key, card to write is assumed currently displayed
+	gv ${TXT[0]} string:primary
+	if [ "$1" != "" -a  "$primary" != "$1" ]
+	then warn "Primary key changed value, old record deleted."
+	fi
+	if [ "$1" = "" -a "$primary" = "" ]
+	then warn "No Primary key! Cannot write card."
+	     return 1
+	fi
+	if [ ! "$1" ]
+	then
+		if grep "^$primary" >/dev/null 2>/dev/null $CARDDIR/$CARDFILE
+		then confirm "Primary key collides with another record.
+Replace it?" "write_card \"$primary\"" :
+                     return
+		fi
+	fi
+	backup_cardfile
+	> /tmp/card$$
+	add_card /tmp/card$$
+	if [ "$1" ]
+	then sed -e "s/^$1.*$/`cat /tmp/card$$`/" $CARDDIR/$CARDFILE > /tmp/newcard$$ && \
+		mv /tmp/newcard$$ $CARDDIR/$CARDFILE || warn "Unable to write card file"
+	else
+		cat /tmp/card$$ >> $CARDDIR/$CARDFILE
+	fi
+	rm -f /tmp/card$$
+	NEWCARD="$primary"
+}
+
+add_card() {	# $1=file to append card to
+	i=0
+	while ((i < NKEYS-1))
+	do
+		gv ${TXT[$i]} string:S
+		echo "$S\c" >> $1
+		let i=i+1
+	done
+	teecho $INFOFLD | tr "\012" "\02" >> $1
+	echo >> $1
+}
+
+do_New_Apply() {	# $1 if true forces creation if file exists
+	gv $FILENAME string:CARDFILE
+	if [ ! "$1" -a -f "$CARDFILE" ]
+	then confirm "File \"$filename\" already exists, delete it?" "do_New_Appy true" :
+	fi
+	> $CARDDIR/$CARDFILE || { warn "Could not create cardfile"; return; }
+	for i in 1 2 3
+	do
+		gv ${NEWTXT[$i]} string:s
+		if [ "$s" ]
+		then echo "$s\c" >> $CARDDIR/$CARDFILE
+		fi
+	done
+	echo >> $CARDDIR/$CARDFILE
+	read_cardfile $CARDFILE
+}
+
+do_New() {
+	if [ ! "$NEWFILE" ]
+	then
+		cps NEWFILE New_File popupWindowShell $TOPLEVEL title:"New File"
+		addfields $NEWFILE_UCA \
+			FILENAME "Cardfile Name:" : 14
+		sv $FILENAME_CAP mnemonic:C
+		for i in 1 2 3
+		do
+			addfields $NEWFILE_UCA \
+				tmp "Field Label #$i:" : 16
+			sv $tmp_CAP mnemonic:$i
+			NEWTXT[$i]=$tmp
+		done
+		cmw tmp Apply oblongButton $NEWFILE_LCA  \
+			mnemonic:A select:do_New_Apply
+	fi
+	pu $NEWFILE GrabNone
+}
+
+do_Edit_Apply() {
+	write_card "$CURCARD"
+	read_cardfile "$CARDFILE"
+	set_editmode false
+	ADDMODE=false
+	if [ "$NEWCARD" ]
+	then disp_card "$NEWCARD"
+	     NEWCARD=""
+	fi
+}
+
+do_Edit_Reset() {
+	disp_card "$CURCARD"
+	set_editmode false
+	ADDMODE=false
+}
+
+do_Sort() {
+	sed -e '1q' $CARDDIR/$CARDFILE > /tmp/cardsort$$
+	sed -e '1d' $CARDDIR/$CARDFILE | \
+		sort -z10000 -t"" -f >> /tmp/cardsort$$
+	backup_cardfile
+	mv /tmp/cardsort$$ $CARDDIR/$CARDFILE || \
+		{ warn "Unable to write sorted cardfile"; restore_cardfile ; }
+	message "Sort Completed."
+	read_cardfile "$CARDFILE"
+	return 0
+}
+
+do_Open() {
+	if [ ! -f $CARDDIR/* ]
+	then warn "There are currently no cardfiles to open.
+Use New to create one."
+	     return 1
+	fi
+	if [ "$OPENPOP" ]
+	then
+		dw $OPENPOP
+	fi
+	cps OPENPOP Open_Existing_Cardfile menuShell $TOPLEVEL title:"Open Existing Cardfile"
+	allfiles="`ls $CARDDIR`"
+	for i in $allfiles
+	do
+		cmw tmp tmp oblongButton $OPENPOP_MP label:"$i" select:"pd $OPENPOP; read_cardfile $i"
+	done
+	cmw tmp tmp oblongButton $OPENPOP_MP label:"CANCEL" select:"pd $OPENPOP"
+	pu $OPENPOP GrabNone
+}
+
+do_Add() {
+	set_editmode true
+	ADDMODE=true export ADDMODE
+	set_sensitivity
+	disp_card	# Note: with no args this routine sets up a blank card
+}
+
+
+do_Actual_Search() {	
+	gv $STXT string:SEARCHPAT
+	if [ -z "$SEARCHPAT" ]
+	then
+		return
+	elif [ "$SEARCHPAT" != "$OLDSEARCHPAT" ]
+	then
+		SEARCHLINE=1
+	fi
+
+	message "Searching for $SEARCHPAT"
+	sed -n -e "
+		$SEARCHLINE,\${
+		/$SEARCHPAT/=
+		/$SEARCHPAT/s/.*$//p
+		/$SEARCHPAT/q
+	}" $CARDDIR/$CARDFILE | for i in SEARCHLINE line 
+	do
+		read $i
+	done
+
+	if [ -z "$line" ]
+	then
+		warn "Search Reached Last Card"
+		SEARCHLINE=1
+		return
+	fi
+	slview $SL $SEARCHLINE
+	OLDSEARCHPAT="$SEARCHPAT"
+	let SEARCHLINE=$SEARCHLINE+1
+	disp_card "$line"
+}
+
+do_Search() {
+	if [ ! "$SEARCHPOP" ]
+	then
+		cps SEARCHPOP Search popupWindowShell $TOPLEVEL title:"Search for Cards"
+		cmw SCAP cap caption $SEARCHPOP_UCA label:"Search Pattern : " 
+		cmw STXT txt textField $SCAP string:"$SEARCHPAT"
+		cmw tmp Search oblongButton $SEARCHPOP_LCA  \
+			select:do_Actual_Search
+		cmw tmp Cancel oblongButton $SEARCHPOP_LCA  \
+			select:"pd $SEARCHPOP"
+		mnsetup $SEARCHPOP
+	fi
+	pu $SEARCHPOP GrabNone
+}
+
+delete_yes() {
+	backup_cardfile
+	{ sed -e "/^$1.*$/d" $CARDDIR/$CARDFILE > /tmp/newcard$$ && \
+		mv /tmp/newcard$$ $CARDDIR/$CARDFILE; } || \
+		{ warn "Unable to write card file, restoring"; \
+		restore_cardfile; }
+	read_cardfile "$CARDFILE"
+}
+
+do_Delete() {
+	confirm "Delete Card \"$CURCARD\"?" 'delete_yes "$CURCARD"' :
+}
+
+do_Print() {
+	warn "Not Implemented"
+}
+
+
+oi TOPLEVEL cardfile Cardfile -fn 8x13 "$@"
+cmw FORM f form $TOPLEVEL
+cmw BAR b controlArea $FORM
+cmw FILE File menuButton $BAR
+addbuttons -w "$FILE_MP" \
+	New New do_New \
+	Open Open do_Open \
+	Print Print do_Print
+mnsetup $FILE_MP
+addbuttons -w $BAR \
+	Sort Sort do_Sort \
+	Add Add do_Add \
+	Delete Delete do_Delete \
+	Edit Edit "set_editmode true" \
+	Search Search do_Search
+
+cps SLPOP Card_List popupWindowShell $TOPLEVEL title:"Card List"
+cmw SL sl scrollingList $SLPOP_UCA viewHeight:10 width:150
+
+acb $SL userMakeCurrent 'set_editmode false; disp_card "$SL_CURITEM"'
+
+cmw CRDHDR crdhdr staticText $FORM `under $BAR 10` \
+	string:"Current Card:"
+cmw CRD crd controlArea $FORM `under $CRDHDR 5` \
+	layoutType:fixedcols measure:1 alignCaptions:1 borderWidth:1
+
+cmw EDITCA ca controlArea $FORM `rightof $CRD 5; under $CRDHDR 30` center:true \
+	xAttachRight:true xVaryOffset:true \
+	yAttachBottom:true yVaryOffset:false \
+	layoutType:fixedcols measure:1 
+
+mnsetup $BAR $EDITCA
+
+addbuttons -w $EDITCA Apply Apply do_Edit_Apply Reset Reset do_Edit_Reset
+
+# Create 4 captions
+for i in 0 1 2 3
+do
+	let lbl=$i+1
+	addfields $CRD tmp "Info#$lbl" : 16
+	CAP[$i]=$tmp_CAP
+	TXT[$i]=$tmp
+	gv ${TXT[$i]} textEditWidget:TXTEDIT[$i]
+done
+
+# Create static info form
+cmw INFOFORM form form $CRD borderWidth:2
+cmw INFOTXT txt staticText $INFOFORM string:"Other Information:"
+cmw INFOFLD txtedit textEdit $INFOFORM `under $INFOTXT 5` charsVisible:40 \
+	linesVisible:5 editType:textread
+
+# Create a footer panel for messages, put a static text in it
+cmw FOOT footer footerPanel $FORM yAttachBottom:true yVaryOffset:true \
+	xAttachRight:true xVaryOffset:false `under $CRD 10`
+cmw MSG msg staticText $FOOT
+
+rw $TOPLEVEL
+
+if [ ! -d "$CARDDIR" ]
+then mkdir -p $CARDDIR || warn "Could not create directory: $CARDDIR"
+fi
+set_sensitivity
+set_editmode false
+message "No cardfile is currently selected."
+
+ml

@@ -1,0 +1,36 @@
+#ident  "@(#)set:common/set/util/prototype	1.18"
+#ident  "$Header: $"
+
+i pkginfo 
+i preinstall 
+i response
+i set.1
+i set.2
+i set.3
+i set.4
+i set.5
+i set.6
+i setinfo
+i postinstall
+#i preremove
+i setsize
+
+!PKGSRCLOC=../../pkg
+!SETSRCLOC=../../set
+
+i request=$SETSRCLOC/fnd/request
+i copyright=$SETSRCLOC/fnd/copyright
+
+i terminf/copyright=$PKGSRCLOC/terminf/copyright 
+i terminf/pkginfo=$PKGSRCLOC/terminf/pkginfo 
+i terminf/depend=$PKGSRCLOC/terminf/depend 
+
+#i cmds/request=$PKGSRCLOC/cmds/request 
+#i cmds/response=$PKGSRCLOC/cmds/response 
+i cmds/copyright=$PKGSRCLOC/cmds/copyright 
+i cmds/pkginfo=$PKGSRCLOC/cmds/pkginfo 
+i cmds/depend=$PKGSRCLOC/cmds/depend 
+
+i bsdcompat/depend=$PKGSRCLOC/bsdcompat/depend 
+i bsdcompat/copyright=$PKGSRCLOC/bsdcompat/copyright 
+i bsdcompat/pkginfo=$PKGSRCLOC/bsdcompat/pkginfo 

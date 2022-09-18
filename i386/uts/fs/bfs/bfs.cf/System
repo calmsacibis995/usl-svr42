@@ -1,0 +1,5 @@
+#ident	"@(#)uts-x86:fs/bfs/bfs.cf/System	1.4"
+#ident	"$Header: $"
+$version 1
+$loadable bfs
+bfs	Y	0	0	0	0	0	0	0	0	-1

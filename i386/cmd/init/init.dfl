@@ -1,0 +1,5 @@
+
+#ident	"@(#)init:i386/cmd/init/init.dfl	1.1"
+#ident	"$Header: init.dfl 1.1 91/07/24 $"
+#
+PANICBOOT=NO

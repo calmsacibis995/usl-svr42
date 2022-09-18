@@ -1,0 +1,14 @@
+Statictext message:
+
+* To see the TEXTFIELD, select the button, "Popup - Command Window."
+
+* For the EXCLUSIVES and NONEXCLUSIVES, select the button, "Popup - Property Window."
+
+* For a prototype of a HELP widget, move the pointer over the form and type <F1>.
+
+* The MENUBUTTON widgets visible in the application are pulldown menus.
+
+* The SCROLLINGLIST has mnemonics implemented: each list item can be selected
+   with "<alt> i" where "i" is the underlined character next to the item name.
+
+* The FOOTERPANEL will display messages as various widgets are selected.

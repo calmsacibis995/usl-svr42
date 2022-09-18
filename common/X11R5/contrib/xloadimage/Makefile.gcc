@@ -1,0 +1,48 @@
+# Makefile for xloadimage using GNU C compiler
+#
+# Copyright 1989, 1990 Jim Frost
+#
+# See file "copyright.h" for complete copyright information.
+
+SYSPATHFILE=/usr/lib/X11/Xloadimage
+INSTALLDIR=/usr/bin/X11
+CC= gcc
+CFLAGS= -O -fstrength-reduce -finline-functions -DSYSPATHFILE=\"$(SYSPATHFILE)\"
+CP= cp
+LN= ln -s
+RM= rm -f
+
+LIBS= -lX11
+OBJS= bright.o clip.o compress.o dither.o faces.o fill.o gif.o \
+      halftone.o imagetypes.o merge.o misc.o new.o options.o path.o \
+      pbm.o reduce.o root.o send.o sunraster.o value.o window.o \
+      xbitmap.o xloadimage.o xpixmap.o zio.o zoom.o
+
+xloadimage: $(OBJS)
+	$(CC) $(CFLAGS) -o xloadimage $(OBJS) $(LIBS)
+
+install: $(SYSPATHFILE)
+	$(RM) $(INSTALLDIR)/xloadimage
+	$(RM) $(INSTALLDIR)/xsetbg
+	$(RM) $(INSTALLDIR)/xview
+	$(CP) xloadimage $(INSTALLDIR)/xloadimage
+	$(LN) $(INSTALLDIR)/xloadimage $(INSTALLDIR)/xsetbg
+	$(LN) $(INSTALLDIR)/xloadimage $(INSTALLDIR)/xview
+
+clean:
+	rm -f *.o *~ xloadimage
+
+.c.o: xloadimage.h
+	$(CC) -c $(CFLAGS) $*.c
+
+$(SYSPATHFILE):
+	@echo "*** Creating default $(SYSPATHFILE) since you"
+	@echo "*** don't have one. This file is used to set up default places"
+	@echo "*** and names to look for images.  You probably want to edit"
+	@echo "*** it for your site.  See the xloadimage manual page for"
+	@echo "*** details on the contents of this file."
+	cp /dev/null $(SYSPATHFILE)
+	echo "path= /usr/local/images" \
+		>> $(SYSPATHFILE)
+	echo "extension=.csun .msun .sun .face .xbm .bm .gif" \
+		>>$(SYSPATHFILE)

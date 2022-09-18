@@ -1,0 +1,10 @@
+#ident	"@(#)login:common/cmd/login/login.dfl	1.1.13.1"
+#ident "$Header: /sms/sinixV5.4es/rcs/s19-full/usr/src/cmd/login/login.dfl,v 1.1 91/02/28 17:45:11 ccs Exp $"
+#TIMEZONE=EST5EDT
+HZ=100
+#ULIMIT=4096
+CONSOLE=/dev/console
+PASSREQ=YES
+ALTSHELL=YES
+MANDPASS=NO
+UMASK=077

@@ -1,0 +1,160 @@
+#ident	"@(#)pkg.inet:i386/pkg/inet/request	1.29"
+#ident	"$Header: $"
+
+#
+#  Main routine
+#  
+
+#
+#  Make sure LANG environment variable is set.  If it's not set
+#  coming in to this request script, then default to the C-locale.
+#
+[ ${LANG} ] || LANG="C"
+export LANG
+
+SCRIPTS=/usr/sbin/pkginst
+. ${SCRIPTS}/updebug
+[ "$UPDEBUG" = YES ] && set -x
+
+MENU_RESP=$1
+if [ "${MENU_RESP}" = "" ]
+then
+	echo No response file given.  Usage: $0 response-file
+	exit 1
+fi
+
+#
+#  If IP Address already exists, use that value.
+#
+NODE=`uname -n`
+OLDINET=""
+[ -f /etc/hosts ] && {
+	OLDINET=":"
+	IPADDR=`grep "^[^#].*[	]*${NODE}[ 	]" /etc/hosts 2>/dev/null \
+		| cut -d"	" -f1 2>/dev/null`
+	[ "$IPADDR" ] ||  \
+		IPADDR=`grep "^[^#].*[	]*${NODE}$" /etc/hosts 2>/dev/null \
+		| cut -d"	" -f1 2>/dev/null`
+}
+export IPADDR OLDINET
+
+############# Begin UPGRADE AND OVERLAY #######################
+
+[ "$UPDEBUG" = YES ] && goany
+
+export INSTALL_MODE PKGINSTALL_TYPE AUTOMERGE
+
+#  set INSTALL_MODE to CUSTOM, if not set
+[ "$INSTALL_MODE" ] || INSTALL_MODE=CUSTOM
+
+PKGINSTALL_TYPE=NEWINSTALL
+AUTOMERGE=NULL
+
+#is it upgrade or overlay?
+#	${SCRIPTS}/chkpkgrel returns 2 if installed pkg is DESTINY
+#					4 if installed pkg is V4
+#					1 if installed pkg if UNK version
+#					0 if pkg is not installed
+${SCRIPTS}/chkpkgrel
+PKGVERSION=$?
+case $PKGVERSION in
+	2)	PKGINSTALL_TYPE=OVERLAY	;;
+	4)	PKGINSTALL_TYPE=UPGRADE	;;
+	*)	;;
+esac
+[ "$PKGINSTALL_TYPE" = NEWINSTALL ] || AUTOMERGE=Yes
+
+############# End  UPGRADE AND OVERLAY #######################
+
+DIR=/etc/inst/locale/${LANG}/menus/inet
+[ -d ${DIR} ] || mkdir -p ${DIR}
+cp ${REQDIR}/inet/* ${DIR}
+
+	
+
+#
+#  Set defaults:
+#	If SVR4.2 OAM is installed, default is 'yes' for auto/custom modes.
+#	If OAM is not installed, default is no for custom install mode
+#		and yes for auto install mode.
+#	Otherwise  OAM is not offered
+#
+
+#
+#  Do we have OA&M Package installed?
+#
+${SCRIPTS}/chkpkgrel oam
+USE_OAM=$?
+
+OAM=YES
+
+# offer oam w/ default=No if no oam is installed  when INSTALL_MODE=CUSTOM
+
+[ "${USE_OAM}" = "0" ] && OAM="NO"
+
+# don't offer oam if non SVR4.2 OAM  is installed.
+
+[ "${USE_OAM}" = "1" -o "${USE_OAM}" = "4" ] &&  unset OAM
+
+#
+#  Do we have Desktop Metaphor installed?
+#
+`pkginfo -i desktop > /dev/null 2>&1`
+USE_DTM=$?
+#
+#  Set defaults:
+#	if DTM installed, then 'yes' is the default, otherwise
+# 	'no' is the default, but always give the option.
+#
+DTM=YES
+[ "${USE_DTM}" != "0" ] && DTM=NO
+
+[ "$PKGINSTALL_TYPE" = OVERLAY ] && REINSTALL=YES
+
+export OAM DTM REINSTALL
+	
+#
+#  Set up to use menu_colors; default to C-locale if ${LANG}'s dir has
+#  no menu_colors.sh
+#
+if [ -f /etc/inst/locale/${LANG}/menus/menu_colors.sh ]
+then
+	. /etc/inst/locale/${LANG}/menus/menu_colors.sh
+else
+	. /etc/inst/locale/C/menus/menu_colors.sh
+fi
+
+menu_colors regular
+menu -f ${DIR}/menu.inet -o ${MENU_RESP} 2>/dev/null
+
+LISTENER=NO # set default val just in case
+unset USE_OAM USE_DTM
+
+. ${MENU_RESP}  # should override LISTENER and set it to YES 
+
+rm -rf /etc/inst/locale/${LANG}/menus/inet
+
+unset CLASSES
+
+[ "$REINSTALL" != NO ] && CLASSES="none build"
+[ "${OAM}" = "YES" ] && CLASSES=${CLASSES}" OAMadmin"
+[ "${DTM}" = "YES" ] && CLASSES=${CLASSES}" DTMadmin"
+
+# if nothing to install, exit w/ code 77 for pkging tools to exit gracefully.
+
+[ "$CLASSES" ] || exit 77
+
+############# Begin  UPGRADE AND OVERLAY #######################
+
+echo CLASSES=\"${CLASSES}\" >> ${MENU_RESP}
+echo AUTOMERGE=\"${AUTOMERGE}\" >> ${MENU_RESP}
+echo PKGINSTALL_TYPE=\"${PKGINSTALL_TYPE}\" >> ${MENU_RESP}
+echo INSTALL_MODE=\"${INSTALL_MODE}\" >> ${MENU_RESP}
+echo LISTENER=\"${LISTENER}\" >> ${MENU_RESP}
+echo IPADDR=\"${IPADDR}\" >> ${MENU_RESP}
+
+[ "$UPDEBUG" = YES ] && goany
+
+############# End  UPGRADE AND OVERLAY #######################
+
+exit 0

@@ -1,0 +1,42 @@
+#ident	"@(#)pkg.i596:prototype	1.1"
+#ident  "$Header: $"
+#	Copyright (c) 1991  Intel Corporation
+#	All Rights Rreserved
+#
+#	INTEL CORPORATION PROPRIETARY INFORMATION
+#
+#	This software is supplied to AT & T under the terms of a license 
+#	agreement with Intel Corporation and may not be copied nor 
+#	disclosed except in accordance with the terms of that agreement.
+#
+
+
+i depend
+i pkginfo
+i postinstall
+i preremove
+i request
+i copyright
+
+!OAMBASE=/usr/sadm/sysadm
+!PKGINST=i596
+!PKGSAV=/var/sadm/pkg/$PKGINST/save
+!default 0544 bin bin
+d none /tmp	?	?	?
+d none /tmp/i596	775	bin	bin
+v none /tmp/i596/Driver.o=/etc/conf/pack.d/i596/Driver.o
+v none /tmp/i596/Space.c=/etc/conf/pack.d/i596/space.c 
+v none /tmp/i596/Master=/etc/conf/mdevice.d/i596 
+v none /tmp/i596/System=/etc/conf/sdevice.d/i596
+v none /tmp/i596/Node=/etc/conf/node.d/i596 
+
+d none /usr	?	?	?
+d none /usr/include	?	?	?
+d none /usr/include/sys	?	?	?
+
+#	header files: default owner=bin group=bin mode=0444
+
+!default 0444 bin bin
+f none /usr/include/sys/i596.h
+f none /usr/include/sys/dlpi_ether.h
+

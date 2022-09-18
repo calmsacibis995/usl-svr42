@@ -1,0 +1,57 @@
+Use the Miscellaneous property window to control various interactions \
+with the OPEN LOOK GUI.
+
+Beep:    governs when the system should sound the bell.
+
+Window Layering:    specifies how separate windows of the same \
+application should be managed.
+
+Start OPEN LOOK GUI at login:    controls automatic \
+startup of OPEN LOOK upon login (provided that your account \
+has been set up with the oladduser command).
+
+SELECT Mouse Press:    specifies the action the SELECT \
+mouse button will have when pressed on menu buttons. \
+"Displays Menu" means that SELECT will behave just like MENU \
+does for menu buttons, whereas "Displays Default" provides additional \
+functionality for rapid access to the submenu's default item.
+
+Help Model:    specifies whether a help message (like this one) \
+applies to the control or text area that is currently highlighted \
+("Input Focus"), or to the control or text area under the mouse \
+pointer.
+
+Set Input Area:    specifies whether you give input focus to a window by \
+clicking SELECT on the window or moving the mouse into the window.
+
+Interface Appearance:    selects either a flat, ``2D'' visual \
+presentation of the OPEN LOOK GUI, or a richer ``3D'' visual. \
+If you are currently using a black and white monitor, the 3D \
+look isn't very effective, and you may want to stick to 2D.
+
+Mnemonics:    specifies whether mnemonics are available, \
+and (if available) how they are shown.
+
+Accelerators:    specifies whether accelerators are available, \
+and (if available) how they are shown.
+
+Click SELECT on the box(es) of your choice to change \
+the property sheet settings.
+
+Click SELECT on the Apply (or Apply All) button to save all changes \
+made to all property sheets.  \
+The Reset button can be used to reset the property sheet settings \
+to reflect the currently saved values.  \
+The Reset To Factory button can be used to reset \
+the property sheet settings to the factory defaults.  \
+Note that Reset and Reset to Factory do not affect the saved \
+property values; \
+the saved values are changed only when Apply is SELECTed.  \
+Also, Reset and Reset to Factory only reset the properties on \
+the current property sheet.
+
+The property window is automatically dismissed if not pinned \
+when Apply is chosen.
+
+Applied changes go into effect immediately, and are reflected \
+in all OPEN LOOK applications, including those already launched.

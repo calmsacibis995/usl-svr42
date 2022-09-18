@@ -1,0 +1,53 @@
+#ident	"@(#)pkg4.i386:edebug/menu.edebug	1.1"
+.ul
+Enhanced Debugger Installation
+.ur
+Configure Administration Interface
+.lr
+F1=Help
+.top
+You have the option of installing a graphical interface for the
+enhanced debugger.
+.button
+Apply
+Reset
+.bottom
+Press 'TAB' to move the cursor between fields.  When finished, move the
+cursor to "Apply" and then press 'ENTER' to continue.
+.form
+#
+#
+#TYPE_ENUM <# of choices> //choice 1//choice 2//..//choice n//field label//
+2 2//y::Yes//n::No//Install graphical interface?://DTINSTALL//
+#//field options//
+// Left/Right arrow keys for next choice (2 choices)//
+#
+#
+.hhelp_ban
+Instructions
+.helpbanner
+Help: Enhanced Debugger Package
+.help
+For detailed instructions, press the 'F1' (or '?') key at any time.
+
+When installing the Enhanced Debugger Package you have the option of
+installing a graphical interface for use with the Desktop Manager.  The
+command-line interface is always installed; you may choose not to install
+the graphical interface.
+
+If you install the graphical interface, a new icon will be added to your
+"Applications" folder.  You will be able to invoke the debugger by double
+clicking on this icon or by dragging and dropping an object onto this icon.
+
+For this feature to work correctly, you must have the Desktop Manager
+package installed on your computer.
+.pageno
+Page %d of %d
+.optstring
+Your options are:
+.helpinst
+ESC=Exit help  F1=Instructions  1=Forward  2=Backward
+.hhelpinst
+ESC=Exit instructions  1=Forward  2=Backward
+.end
+

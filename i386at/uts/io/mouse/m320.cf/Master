@@ -1,0 +1,5 @@
+#ident	"@(#)uts-x86at:io/mouse/m320.cf/Master	1.6"
+#ident	"$Header: $"
+$version 1
+$entry start intr
+m320	mse3	Sc	0	0	0

@@ -1,0 +1,9 @@
+#ident	"@(#)lp:filter/pcldir/pcl.fd	1.1"
+#ident	"$Header: $"
+
+Input types: simple
+Output types: pcl
+Printer types: any
+Printers: any
+Filter type: slow
+Command: /usr/lib/lp/bin/pcl

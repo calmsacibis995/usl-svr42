@@ -1,0 +1,131 @@
+entry: epson-FX-850
+name: Epson FX 850
+terminfo: fx-850
+interface: standard
+
+entry: epson-FX-1050
+name: Epson FX 1050
+terminfo: fx-1050
+interface: standard
+
+entry: epson-DFX-5000
+name: Epson DFX 5000
+terminfo: dfx-5000
+interface: standard
+
+entry: epson-DFX-8000
+name: Epson DFX 8000
+terminfo: dfx-8000
+interface: standard
+
+entry: epson-LQ-570
+name: Epson LQ 570
+terminfo: lq-570
+interface: standard
+
+entry: epson-LQ-870
+name: Epson LQ 870
+terminfo: lq-870
+interface: standard
+
+entry: epson-LQ-1170
+name: Epson LQ 1170
+terminfo: lq-1170
+interface: standard
+
+entry: epson-EPL-7500
+name: Epson EPL 7500
+terminfo: epl-7500
+interface: standard
+
+entry: hp-laserjet
+name: HP LaserJet
+terminfo: hplaserjet
+interface: standard
+contents: pcl
+stty: -onlcr
+
+entry: hp-deskjet
+name: HP DeskJet 500
+terminfo: deskjet
+interface: standard
+
+entry: hp-paintjet
+name: HP Paint Jet
+terminfo: paintjet
+interface: standard
+
+entry: ibm-proprinter
+name: IBM ProPrinter
+terminfo: proprinter
+interface: standard
+
+entry: oki-320
+name: Oki 320
+terminfo: oki-320
+interface: standard
+
+entry: oki-390
+name: Oki 390
+terminfo: oki-390
+interface: standard
+
+entry: oki-OL-400
+name: Oki OL 400
+terminfo: oki-ol400
+interface: standard
+
+entry: oki-OL-800
+name: Oki OL 800
+terminfo: oki-ol800
+interface: standard
+
+entry: panasonic-KX-P1180
+name: Panasonic KX-P1180
+terminfo: kx-p1180
+interface: standard
+
+entry: panasonic-KX-P1695
+name: Panasonic KX-P1695
+terminfo: kx-p1695
+interface: standard
+
+entry: panasonic-KX-P1124
+name: Panasonic KX-P1124
+terminfo: kx-p1124
+interface: standard
+
+entry: panasonic-KX-P1624
+name: Panasonic KX-P1624
+terminfo: kx-p1624
+interface: standard
+
+entry: postscript-serial
+name: PostScript (Serial)
+terminfo: PS
+contents: PS
+interface: PS
+
+entry: postscript-parallel
+name: PostScript (Parallel)
+terminfo: PS-b
+contents: PS
+interface: PS
+
+entry: postscript-serial-rev
+name: PostScript (Serial, w/ page reversal)
+terminfo: PS-r
+contents: PS
+interface: PS
+
+entry: postscript-parallel-rev
+name: PostScript (Parallel, w/ page reversal)
+terminfo: PS-br
+contents: PS
+interface: PS
+
+entry: unknown
+name: Other
+terminfo: unknown
+contents: simple
+interface: standard

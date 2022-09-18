@@ -1,0 +1,39 @@
+#!/bin/sh
+#
+#ident	"@(#)dtadmin:userad/scripts/dtprivilege	1.4"
+#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+#	Copyright (c) 1988, 1989, 1990 AT&T
+#	  All Rights Reserved
+
+#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+#	UNIX System Laboratories, Inc.
+#	The copyright notice above does not evidence any
+#	actual or intended publication of such source code.
+
+
+#	utility script to add or delete options in the permissions table
+XDIR=${XWINHOME:-/usr/X}
+Prefix="UX:`/usr/bin/basename $0`"
+. $XDIR/adm/dtuser.msgs
+
+USAGE="`$GETTXT $TXT_Usage`  { -a | -d } `$GETTXT $TXT_Name`"
+PFILE=$XDIR/desktop/LoginMgr/PrivTable
+if [ $# -ne 2 ]
+then	echo $USAGE >& 2
+	exit 1
+else	case $1 in
+	-a)	/usr/bin/cat $2 >> $PFILE; break;;
+	-d)	PAT="^$2	"
+#			---^	note the TAB; it's critical	
+		/usr/bin/ed $PFILE >/dev/null << EoF
+g/$PAT/d
+w
+q
+!
+EoF
+		break;;
+	*)	echo $USAGE >& 2
+		exit 1
+		break;
+	esac
+fi

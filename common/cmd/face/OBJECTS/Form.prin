@@ -1,0 +1,63 @@
+#ident	"@(#)face:OBJECTS/Form.prin	1.4.4.3"
+#ident  "$Header: Form.prin 1.5 92/01/17 $"
+
+form=$$uxface:268:"Change Print Options for $LOGNAME"
+
+help=OPEN TEXT OBJECTS/Text.h "$$uxface:269:HELP on Print Command" T.hprin1
+autolayout=true
+
+`set -l I18N_1="$$uxface:271:Print Command #1:";
+set -l I18N_2="$$uxface:273:Print Command #2:";
+set -l I18N_3="$$uxface:274:Print Command #3:";
+fmlmax -c 2 "$I18N_1" "$I18N_2" "$I18N_3" | set -l FCOL`
+
+framemsg=$$uxface:270:"Enter a print command with appropriate options, then press SAVE when finished."
+
+done=`indicator -w;set PRINCMD1="$F1" PRINCMD\2="$F2" PRINCMD3="$F3";
+unset -l I18N_1 -l I18N_2 -l I18N_3 -l FCOL`
+close=`unset -l PRINT;
+unset -l I18N_1 -l I18N_2 -l I18N_3 -l FCOL`
+
+name="$I18N_1"
+nrow=1
+ncol=1
+rows=1
+columns=45
+fcol=$FCOL
+# frow=1
+# fcol=20
+value=const $PRINCMD1 
+valid=`indicator -w;echo "${F1}" | fmlcut -f1 -d" "  | set -l PRINT ; $VMSYS/bin/chexec "${PRINT}"`
+invalidmsg=`regex -v "$PRINT" '^$' $$uxface:110:"A value must be entered for this field."
+				'.*' $$uxface:272:"$PRINT is an invalid command."`
+scroll=true
+
+name="$I18N_2"
+nrow=3
+ncol=1
+# frow=3
+# fcol=20
+rows=1
+columns=45
+value=const $PRINCMD2 
+valid=`indicator -w;echo "${F2}" | fmlcut -f1 -d" "  | set -l PRINT ; $VMSYS/bin/chexec "${PRINT}"`
+invalidmsg=`regex -v "$PRINT" '^$' $$uxface:110:"A value must be entered for this field."
+				'.*' $$uxface:272:"$PRINT is an invalid command."`
+scroll=true
+
+name="$I18N_3"
+nrow=5
+ncol=1
+# frow=5
+# fcol=20
+rows=1
+columns=45
+value=const $PRINCMD3 
+valid=`indicator -w;echo "${F3}" | fmlcut -f1 -d" "  | set -l PRINT ; $VMSYS/bin/chexec "${PRINT}"`
+invalidmsg=`regex -v "$PRINT" '^$' $$uxface:110:"A value must be entered for this field."
+				'.*' $$uxface:272:"$PRINT is an invalid command."`
+scroll=true
+
+name=$$uxface:93:"RESET"
+button=8
+action=reset

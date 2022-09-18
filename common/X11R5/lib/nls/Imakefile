@@ -1,0 +1,40 @@
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+/**/#ident	"@(#)r5nls:Imakefile	1.2"
+XCOMM $XConsortium: Imakefile,v 1.8 91/07/16 22:44:07 gildea Exp $
+#define IHaveSubdirs
+#define PassCDebugFlags 'CDEBUGFLAGS=$(CDEBUGFLAGS)'
+
+INSTALLFLAGS = $(INSTDATFLAGS)
+
+XCOMM
+XCOMM This line should be moved to usl.cf after load P12
+XCOMM
+#define BuildXimp YES
+
+#ifndef BuildXimp
+#define BuildXimp NO
+#endif
+#ifndef BuildXsi
+#if !BuildXimp
+#define BuildXsi YES
+#endif
+#endif
+
+#if BuildXsi
+SUBDIRS = Xsi
+#endif
+
+#if BuildXimp
+SUBDIRS = Ximp
+#endif /* BuildXsi */
+
+MakeSubdirs($(SUBDIRS))
+DependSubdirs($(SUBDIRS))

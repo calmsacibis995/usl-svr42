@@ -1,0 +1,4 @@
+#ident	"@(#)su:su.dfl	1.2.5.1"
+#ident "$Header: /sms/sinixV5.4es/rcs/s19-full/usr/src/cmd/su/su.dfl,v 1.1 91/02/28 20:11:13 ccs Exp $"
+SULOG=/var/adm/sulog
+#CONSOLE=/dev/console

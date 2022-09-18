@@ -1,0 +1,11 @@
+
+#ident	"@(#)lp:filter/postscript/filtdesc/postreverse.fd	1.3.2.1"
+#ident  "$Header: postreverse.fd 1.2 91/06/27 $"
+
+Input types: postscript,post
+Output types: postscript
+Printer types: any
+Printers: any
+Filter type: slow
+Command: /usr/lib/lp/postscript/postreverse
+Options: PAGES * = -o*

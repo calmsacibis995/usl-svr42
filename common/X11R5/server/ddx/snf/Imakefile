@@ -1,0 +1,29 @@
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+/**/#ident	"@(#)siserver:ddx/snf/Imakefile	1.1"
+#include <Server.tmpl>
+
+SRCS = snffonts.c
+OBJS = snffonts.o
+
+   INCLUDES = -I. -I../../include -I$(INCLUDESRC)
+   LINTLIBS = ../../dix/llib-ldix.ln ../../os/4.2bsd/llib-los.ln
+
+NormalLibraryObjectRule()
+NormalLibraryTarget(snf,$(OBJS))
+LintLibraryTarget(snf,$(SRCS))
+NormalLintTarget($(SRCS))
+
+#if HasSaberC
+saber_src:
+	/**/#load $(CFLAGS) $(SRCS)
+#endif
+
+DependTarget()

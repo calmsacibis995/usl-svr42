@@ -1,0 +1,4 @@
+#ident	"@(#)uts-x86:io/log/log.cf/Mtune	1.2"
+#ident	"$Header: $"
+LOGHIWAT	8192	8192	8192
+LOGLOWAT	256	256	256

@@ -1,0 +1,14 @@
+#ident	"@(#)pkg.kdb:pkginfo	1.5"
+#ident	"$Header: $"
+
+# kdb pkginfo
+
+PKG="kdb"
+NAME="Kernel Debugger"
+RELEASE="4.1"
+VERSION="1"
+VENDOR="UNIX System Laboratories"
+CATEGORY="system,utilities"
+CLASSES="none"
+BASEDIR=""
+MAXINST="1"

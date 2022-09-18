@@ -1,0 +1,46 @@
+#define rectangles_format 1
+#define rectangles_width 32
+#define rectangles_height 32
+#define rectangles_ncolors 5
+#define rectangles_chars_per_pixel 1
+static char * rectangles_colors[] = {
+" " , "#FFFFFFFFFFFF",
+"." , "#0000AAAA0000",
+"X" , "#AAAAAAAAAAAA",
+"o" , "#FFFF0000FFFF",
+"O" , "#0000FFFF0000"
+} ;
+static char * rectangles_pixels[] = {
+"                                ",
+"                                ",
+"  ............................  ",
+"  ............................  ",
+"  ............................  ",
+"  ...XXXXXXX..................  ",
+"  ...XXXXXXX..................  ",
+"  ...XXXXXXX..................  ",
+"  ...XXXXXXX..................  ",
+"  ...XXXXXXX..................  ",
+"  ...XXXXXXX..................  ",
+"  ...XXXXXXX..................  ",
+"  ...XXXXXXX..................  ",
+"  ...XXXXXXX..................  ",
+"     XXXXXXX                    ",
+"     XXXXXXX         ooooooo    ",
+"     XXXXXXX         ooooooo    ",
+"     XXXXXXX         ooooooo    ",
+"     XXXXXXX         ooooooo    ",
+"     XXXXXXX         ooooooo    ",
+"     XXOOOOOOOOOOOOOOoooooooOO  ",
+"     XXOOOOOOOOOOOOOOoooooooOO  ",
+"     XXOOOOOOOOOOOOOOoooooooOO  ",
+"     XXOOOOOOOOOOOOOOoooooooOO  ",
+"     XXOOOOOOOOOOOOOOoooooooOO  ",
+"     XXOOOOOOOOOOOOOOoooooooOO  ",
+"     XXOOOOOOOOOOOOOOoooooooOO  ",
+"     XXOOOOOOOOOOOOOOOOOOOOOOO  ",
+"     XXOOOOOOOOOOOOOOOOOOOOOOO  ",
+"     XXXXXXX                    ",
+"                                ",
+"                                "
+} ;

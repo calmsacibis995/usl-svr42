@@ -1,0 +1,142 @@
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+/**/#ident	"@(#)siserver:Imakefile	1.46"
+
+/**/#	Copyright (c) 1988, 1989 AT&T
+/**/#	  All Rights Reserved
+/**/#	Copyright (c) 1990, 1991, 1992 USL
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF USL
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+#include <Server.tmpl>
+
+#if UslLocalityTuning
+#ifndef FurServerTarget
+#define	FurServerTarget(program)				@@\
+        PROGRAM = program.F						@@\
+									@@\
+AllTarget(program.F)							@@\
+									@@\
+program.F: $(XWINLIBS) $(DEPLIBS) $(DYN_OBJ)				@@\
+	RemoveTargetProgram($@)						@@\
+	$(LD) -r -o program.r ./dix/main.o $(XWINLIBS) $(DYN_OBJ) ../extensions/server/libext.a @@\
+	$(FUR) -l program.funcs program.r				@@\
+	$(CC) -o $@ program.r $(CDEBUGFLAGS) $(CCOPTIONS) $(FONTDIR) $(XLIB) $(SYS_LIBRARIES) $(EXTRA_LOAD_FLAGS) -lnsl -ldl -lm $(MEMUTILLIB) @@\
+									@@\
+InstallProgram(program.F,$(BINDIR))					@@\
+install:: program.F							@@\
+	$(RM) -f $(BINDIR)/X						@@\
+	(cd $(BINDIR); $(LN) $(SERVER)_d.F X)				@@\
+InstallManPage(program,$(MANDIR))					@@\
+DependTarget()								@@\
+LintTarget()								@@\
+									@@\
+clean::									@@\
+	$(RM) $(PROGRAM)
+#endif /* FurServerTarget */
+#endif /* UslLocalityTuning */
+
+#define IRunAsRoot YES
+#define IHaveSubdirs YES
+
+CDEBUGFLAGS = ServerCDebugFlags
+STD_DEFINES = ServerDefines FontDefines 
+
+#if HasScalableFonts
+#if UseInstalled
+XLIB = $(ROOT)$(MACH)/$(USRLIBDIR)/libX11.so
+FONTDIR = $(ROOT)$(MACH)/$(USRLIBDIR)/libfont.so
+#else
+XLIB = $(XLIBSRC)/libX11.so
+FONTDIR = $(FONTLIBSRC)/libfont.so
+#endif /* UseInstalled */
+#else
+FONTDIR =
+#endif
+
+EXTENSIONS = 
+EXTDIR = 
+SUBDIRS = dix ddx os defaults
+OS = os/libos.a
+DIX = dix/libdix.a
+MI = ddx/mi/libmi.a
+SB = ddx/si/libsi.a
+IO = ddx/io/libio.a
+MFB = ddx/mfb/libmfb.a
+
+/**/# for release 5, nsl and dl are defined in imake config files
+#if Release5
+#if ExtensionDefines
+EXTRA_LIBRARIES = -lm -lnsl -ldl $(MEMUTILLIB)
+#else
+EXTRA_LIBRARIES = -lm -lnsl -ldl ../extensions/server/libext.a $(MEMUTILLIB)
+#endif
+#else
+SYS_LIBRARIES = -lm -lnsl -ldl
+#endif
+
+#if SystemV4
+       INCLUDES = -I$(BSDINCSRC)/sys $(STD_INCLUDES) -I./include
+#endif
+
+MakeSubdirs($(EXTDIR) $(SUBDIRS))
+
+         SERVER = Xwin
+
+#if XWINSharedDisplayLibrary
+DYN_OBJ = $(TOP)/server/ddx/io/dyn.o
+
+all:: $(SERVER)_d
+#else
+all:: $(SERVER)_a
+#endif
+
+/* SDD = ./ddx/sdd/vga16/libvga16.a */
+SDD = ./ddx/sdd/vga256/libvga256.a
+
+ARCH_OBJ = $(TOP)/server/ddx/io/arch.o
+
+XWINLIBS = $(DIX) $(OS) $(IO) $(SPECIAL_OBJ) $(MI) $(SB) $(MI) $(SB) $(MFB) $(EXTENSIONS) 
+
+
+ServerTarget($(SERVER)_a,$(SUBDIRS) $(EXTDIR),$(FONTDIR),$(XWINLIBS) $(ARCH_OBJ) $(SDD) $(XLIB),$(SYS_LIBRARIES))
+
+#if XWINSharedDisplayLibrary
+ServerTarget($(SERVER)_d,$(SUBDIRS) $(EXTDIR),$(FONTDIR),$(XWINLIBS) $(DYN_OBJ) $(XLIB),$(SYS_LIBRARIES))
+
+DependSubdirs($(SUBDIRS))
+InstallProgram($(SERVER)_d,$(BINDIR))
+
+install::
+	$(RM) -f $(BINDIR)/X
+	(cd $(BINDIR); $(LN) $(SERVER)_d X)
+
+#if UslLocalityTuning
+FurServerTarget(Xwin_d)
+#endif
+
+#else
+
+DependSubdirs($(SUBDIRS))
+InstallProgram($(SERVER)_a,$(BINDIR))
+
+install::
+	$(RM) -f $(BINDIR)/X
+	$(LN) $(BINDIR)/$(SERVER)_a $(BINDIR)/X
+#endif /* XWINSharedDisplayLibrary */
+
+CleanTarget()
+clobber::
+	$(RM) $(SERVER)
+
+InstallManPage(Xserver,$(MANDIR))

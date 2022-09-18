@@ -1,0 +1,26 @@
+#ident	"@(#)xcpxinstall:common/xcpcmd/xinstall/instR4.perm	1.1.1.1"
+#ident  "$Header: instR4.perm 1.1 91/07/11 $"
+#       @(#) inst.perms 1.1 90/04/24 xinstall:inst.perms
+#
+#
+#prd=unixos
+#typ=386GT
+#rel=3.2.2s
+#mnt="N01|N02"
+#ser="./etc/getty ./etc/conf/pack.d/kernel/os.o ./unix"
+#set=
+#key=N
+#map=0
+#
+# User id's:
+#
+uid     root            0
+uid     bin             2
+#
+# Group id's:
+#
+gid     root            0
+gid     bin             2
+#
+#
+LINK	d755	  bin/bin 1	  ./etc/perms      01

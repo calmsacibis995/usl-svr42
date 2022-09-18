@@ -1,0 +1,19 @@
+#define lightblue_format 1
+#define lightblue_width 8
+#define lightblue_height 8
+#define lightblue_ncolors 2
+#define lightblue_chars_per_pixel 1
+static char * lightblue_colors[] = {
+" " , "#0000AAAAFFFF",
+"." , "#FFFFFFFFFFFF"
+} ;
+static char * lightblue_pixels[] = {
+" . . . .",
+". . . . ",
+" . . . .",
+". . . . ",
+" . . . .",
+". . . . ",
+" . . . .",
+". . . . "
+} ;

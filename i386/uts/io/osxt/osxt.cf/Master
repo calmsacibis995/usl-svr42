@@ -1,0 +1,16 @@
+#ident	"@(#)uts-x86:io/osxt/osxt.cf/Master	1.5"
+#ident	"$Header: $"
+#
+# version id
+#
+$version 1
+
+#
+# entry points
+#
+$entry  open close read write ioctl
+
+#
+# Device  Prefix Characteristics Order	B-Major C-Major
+# -----------------------------------------------------
+osxt	sxt	kc	0	0	14

@@ -1,0 +1,5 @@
+*ident	"@(#)uts-x86at:io/hba/mcesdi.cf/System	1.5"
+*ident	"$Header: $"
+$version 1
+$loadable mcesdi
+mcesdi	Y	1	0	0	0	3510	351f	0	0	5

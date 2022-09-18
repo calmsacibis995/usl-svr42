@@ -1,0 +1,15 @@
+#ident  "@(#)set:common/set/network/setinfo	1.11"
+#ident  "$Header: $"
+
+# Format for the setinfo file.  	Field separator is: <tab>
+# pkg   parts   default category	pkg full-name
+# abbr          y/n
+
+dfs	1	y	utilities	Distributed File System Utilities
+rpc	1	y	system	Remote Procedure Calls Utilities
+inet	2	y	system	Internet Utilities
+eth	1	y	system,utilities	Ethernet Hardware Support	
+nfs	1	y	system,utilities	Network File System Utilities
+netcmds	1	y	system	Commands Networking Extension
+rfs	2	n	system,utilities	Remote File Sharing Utilities
+dtnet	1	y	graphics	Networked Graphics 

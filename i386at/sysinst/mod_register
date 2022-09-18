@@ -1,0 +1,5 @@
+#ident	"@(#)proto:mod_register	1.1"
+4:1:bfs:bfs
+4:1:ufs:ufs
+4:1:sfs:sfs
+4:1:vxfs:vxfs

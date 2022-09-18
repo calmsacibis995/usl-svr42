@@ -1,0 +1,79 @@
+#ident	"@(#)pkg.inet:i386/pkg/inet/preinstall	1.2.4.7"
+#ident	"$Header: $"
+
+#
+#	The machine must have 2 Meg of memory to run.
+#
+
+SCRIPTS=/usr/sbin/pkginst
+UPGRADE_STORE=/var/sadm/upgrade
+
+. ${SCRIPTS}/updebug
+[ "$UPDEBUG" = YES ] && set -x
+
+MEM=`memsize`
+MEM=`expr $MEM + 1048575`	# add 1 byte less than 1 Meg to round
+MEG=`expr $MEM / 1048576`
+
+[ $MEG -lt 2 ] && {
+	echo "**ERROR**   ${PKGINST} cannot be installed --"
+	echo "At least 2 Megabytes of memory must be available."
+	exit 1
+}
+
+############# Begin UPGRADE AND OVERLAY #######################
+
+#  The volatile files saved for ${PKGINST} will be listed in 
+#  /var/sadm/upgrade/${PKGINST}.sav
+
+#  The initial V4 volatile files list for ${PKGINST} should be in 
+#  /etc/inst/up/patch/${PKGINST}.LIST
+
+[ "$PKGINSTALL_TYPE" != NEWINSTALL -a "$REINSTALL" != NO ] && {
+
+	${SCRIPTS}/pkgsavfiles ${PKGINST}
+}
+
+[ "$PKGINSTALL_TYPE" ] || {
+	[ -f ${UPGRADE_STORE}/inet.env ] && . ${UPGRADE_STORE}/inet.env
+}
+
+[ "$UPDEBUG" = YES ] && goany
+
+[ "${PKGINSTALL_TYPE}" != "NEWINSTALL" ] && {
+	#
+	#  Need to know what version is installed so we know what 
+	#  config files to stash.
+	#
+	case ${PKGINSTALL_TYPE} in
+		"OVERLAY") SAVE=${UPGRADE_STORE}/SVR4.2 ;;
+		"UPGRADE") SAVE=${UPGRADE_STORE} ;;
+		*) ;;
+	esac
+
+	#
+	#  Stash pmtab config files from /etc/saf/tcp
+	#
+	find /etc/saf/tcp -type f -print | cpio -pdum ${SAVE} \
+		2>>${UPERR}
+
+	[ "$UPDEBUG" = YES ] && goany
+
+	#
+	#  Now the last thing is to backup the Sysfiles *.tcp
+	#  files from /etc/uucp
+	#
+	find /etc/uucp -name "Sysfiles" -print | cpio -pdum ${SAVE} \
+		2>>${UPERR}
+	find /etc/uucp -name "*.tcp" -print | cpio -pdum ${SAVE} \
+		2>>${UPERR}
+
+	[ "$UPDEBUG" = YES ] && goany
+}
+
+
+
+
+############# End  UPGRADE AND OVERLAY #######################
+
+exit 0

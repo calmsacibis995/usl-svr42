@@ -1,0 +1,1133 @@
+#ident	"@(#)debugger:catalog.d/common/popup.help	1.8"
+^*version^1
+^*title^Debug
+^+/usr/X/lib/locale/C/help/debug/debug.defs
+^?A multi-process source-level debugger
+
+^1^Overview
+^$0
+1. \k(Overview^/usr/X/lib/locale/C/help/debug/debug.help^Overview)
+
+Debug is a symbolic, source-level debugger with many capabilities,
+including control over multiple processes and evaluation of complex
+expressions in C or C++.  The debugger has five main windows:
+
+    The \k(Context Window^/usr/X/lib/locale/C/help/debug/context.help^Context Window) always appears when you invoke the debugger.
+    This window displays the processes under the debugger's control, and
+    the stack trace and symbols for the \d(current process).
+
+    The \k(Source Window^/usr/X/lib/locale/C/help/debug/source.help^Source Window) displays the program's source.  Whenever the
+    process stops, the source window is updated to display the current
+    line in the current file.  You may also examine other files, and set
+    and delete breakpoints.
+
+    The \k(Disassembly Window^/usr/X/lib/locale/C/help/debug/dis.help^Disassembly Window) displays the disassembly of the current
+    function and the state of the registers.  The window is updated
+    whenever the process stops.
+
+    The \k(Event Window^/usr/X/lib/locale/C/help/debug/event.help^Event Window) displays events (breakpoints, watchpoints,
+    system call events, etc.).  Deleting, disabling, enabling, and editing
+    events is done from this window.
+
+    The \k(Command Window^/usr/X/lib/locale/C/help/debug/command.help^Command Window) keeps a log of all the events as they occur.
+    Process I/O is also displayed here.  This window allows you to enter
+    commands as if you were using the command line version of the debugger.
+
+The \k(Context^/usr/X/lib/locale/C/help/debug/context.help^Context Window), \k(Disassembly^/usr/X/lib/locale/C/help/debug/dis.help^Disassembly Window), \k(Event^/usr/X/lib/locale/C/help/debug/event.help^Event Window), \k(Command^/usr/X/lib/locale/C/help/debug/command.help^Command Window), and one or more \k(Source^/usr/X/lib/locale/C/help/debug/source.help^Source Window) windows
+make up a \d(window set).  Each window set controls a subset of the
+processes being debugged, and each process belongs to exactly one window
+set.  If you are debugging only one process, you will not need more than
+one window set, but if you are debugging multiple processes, you may wish
+to debug each process in a separate window set.  Window sets are created
+by the \k(New Window Set^/usr/X/lib/locale/C/help/debug/context.help^New Window Set) option in the \k(Context Window^/usr/X/lib/locale/C/help/debug/context.help^Context Window)'s \k(File^/usr/X/lib/locale/C/help/debug/context.help^File) menu.
+^1^Context Window
+^$1
+2. \k(Context Window^/usr/X/lib/locale/C/help/debug/context.help^Context Window)
+
+The Context Window is the debugger's central window.
+The Window consists of three panes:
+
+	\k(Process Pane^/usr/X/lib/locale/C/help/debug/context.help^Process Pane)
+	\k(Stack Pane^/usr/X/lib/locale/C/help/debug/context.help^Stack Pane)
+	\k(Symbol Pane^/usr/X/lib/locale/C/help/debug/context.help^Symbol Pane)
+
+The \k(Process Pane^/usr/X/lib/locale/C/help/debug/context.help^Process Pane) displays the state of the processes being debugged.
+The process shown with the pointing hand is the \d(current process).
+The \k(Stack Pane^/usr/X/lib/locale/C/help/debug/context.help^Stack Pane) displays
+the stack trace for the current process;
+the frame shown with the pointing hand is the \d(current frame).  Together,
+the \d(current process) and the \d(current frame) define the \d(current context).
+The \k(Symbol Pane^/usr/X/lib/locale/C/help/debug/context.help^Symbol Pane) displays the values of the variables visible in
+the \d(current context).
+
+The Context Window includes the following menu buttons:
+
+	\k(File button^/usr/X/lib/locale/C/help/debug/context.help^File button)
+	\k(Edit button^/usr/X/lib/locale/C/help/debug/context.help^Edit button)
+	\k(View button^/usr/X/lib/locale/C/help/debug/context.help^View button)
+	\k(Control button^/usr/X/lib/locale/C/help/debug/context.help^Control button)
+	\k(Event button^/usr/X/lib/locale/C/help/debug/context.help^Event button)
+	\k(Properties button^/usr/X/lib/locale/C/help/debug/context.help^Properties button)
+	Help button
+
+The menus displayed by selecting these buttons provide commands to control
+the state of the processes, options to change the information displayed,
+and more.  See the Help for the individual buttons for details.
+
+You may resize the Context Window.  You may also redistribute the space
+within the window.  To do that, click SELECT on the border of any of the panes.
+A handle will appear, which you may drag up or down to increase or decrease
+the size of the pane relative to the other panes.
+^1^Source Window
+^1^Source Window
+^$2
+3. \k(Source Window^/usr/X/lib/locale/C/help/debug/source.help^Source Window)
+
+The Source Window is made up of two panes, the Status Pane and the Source Pane.
+The Source Window also includes the following menu buttons:
+
+	\k(File button^/usr/X/lib/locale/C/help/debug/source.help^File button)
+	\k(Edit button^/usr/X/lib/locale/C/help/debug/source.help^Edit button)
+	\k(View button^/usr/X/lib/locale/C/help/debug/source.help^View button)
+	\k(Control button^/usr/X/lib/locale/C/help/debug/source.help^Control button)
+	\k(Event button^/usr/X/lib/locale/C/help/debug/source.help^Event button)
+	\k(Properties button^/usr/X/lib/locale/C/help/debug/source.help^Properties button)
+	Help button
+
+The Status Pane indicates the \d(current context), that is, the \d(current process),
+its state, and if stopped, the function name and line number or address of the
+\d(current frame).
+
+The Source Pane of the \d(primary source window) displays the current source file.
+Whenever the \d(current process) stops, the file is positioned to display the
+current line in the current function.  The current line is highlighted, and also
+indicated by an arrow in the left margin.  If there is no current file, or the file
+was not compiled with debugging information, the Source Pane will be empty.
+The Source Pane will also be empty if the debugger cannot find the current file;
+in that case you can use the \k(Source Path^/usr/X/lib/locale/C/help/debug/popup.help^Source Path) popup window to tell the debugger where
+to find the file.
+
+A stop sign appears in the left margin for each line that has a breakpoint set
+on it.  You may set or remove a breakpoint on a selected line with the
+\k(Set Breakpoint^/usr/X/lib/locale/C/help/debug/source.help^Set Breakpoint) and \k(Delete Breakpoint^/usr/X/lib/locale/C/help/debug/source.help^Delete Breakpoint) options.
+
+You may also view other files in the Source Pane, either by opening another
+file from the list in the \k(Open) popup window, or by viewing a different
+function from the list in the \k(Show Function - Source) popup window.
+
+You may have more than one Source Window in a \d(window set).  The first
+(or primary) Source Window is the one you get when you select the Source
+Window button in the \k(Windows^/usr/X/lib/locale/C/help/debug/source.help^Windows) menu.  The primary window is always updated
+to show the current source line whenever the \d(current process) stops.
+
+Secondary Source Windows are created by selecting the \k(New Source^/usr/X/lib/locale/C/help/debug/source.help^New Source) option
+in the \k(File^/usr/X/lib/locale/C/help/debug/source.help^File) menu, and are indicated by an asterisk ('*') in the window
+header.  The Source Pane of a secondary window is not updated when the
+current process stops.
+^1^Disassembly Window
+^$3
+4. \k(Disassembly Window^/usr/X/lib/locale/C/help/debug/dis.help^Disassembly Window)
+
+The Disassembly Window has three parts: the Status Pane, the Registers Pane,
+and the Disassembly Pane.  The Status Pane is identical to the Status Pane
+in the \k(Source Window^/usr/X/lib/locale/C/help/debug/source.help^Source Window).  The Registers Pane displays the values
+of the \d(current process)'s registers whenever the process stops.
+The Disassembly Pane shows the disassembly of the current function.
+You may also view the disassembly of other functions with the
+\k(Show Function^/usr/X/lib/locale/C/help/debug/dis.help^Show Function - Disassembly) option in the \k(View^/usr/X/lib/locale/C/help/debug/dis.help^View) menu.
+
+The Disassembly Window includes the following menu buttons:
+
+	\k(File button^/usr/X/lib/locale/C/help/debug/dis.help^File)
+	\k(Edit button^/usr/X/lib/locale/C/help/debug/dis.help^Edit)
+	\k(View button^/usr/X/lib/locale/C/help/debug/dis.help^View)
+	\k(Control button^/usr/X/lib/locale/C/help/debug/dis.help^Control)
+	\k(Event button^/usr/X/lib/locale/C/help/debug/dis.help^Event)
+	Help button
+
+The menus displayed by selecting these buttons provide commands to control
+the state of the current process, options to change the information displayed,
+and more.  See the Help sections for the individual buttons for details.
+
+You may resize the Disassembly Window.  You may also redistribute the space
+within the window.  To do that, click SELECT on the border of the Registers
+pane or the Disassembly pane.  A handle will appear, which you may drag up
+or down to increase or decrease the size of the pane relative to the other pane.
+^1^Event Window
+^$4
+5. \k(Event Window^/usr/X/lib/locale/C/help/debug/event.help^Event Window)
+
+The Event Window has three parts: the Status Pane, the Main Event Pane,
+and the On Stop Event Pane.  The Status Pane is identical to the Status Pane
+in the \k(Source Window^/usr/X/lib/locale/C/help/debug/source.help^Source Window).  The Main Event Pane displays the \d(stop event)s,
+\d(signal event)s, and \d(syscall event)s for the \d(current process).  The
+On Stop Pane displays the \d(onstop event)s for the current process.  The
+information displayed for each event may include:
+
+    ID		The event number.  You will also see the character 'D' next to
+		the number if the event has been \k(Disabled^/usr/X/lib/locale/C/help/debug/event.help^Disable).
+
+    Type		STOP, SIGNAL, or SYSCALL.  The type for a syscall
+		event also includes the characters 'E' or 'X', for system call
+		entry or exit, respectively.
+
+    Processes	The processes for which the event is set.
+
+    Condition	For stop events, the \k(Stop Expression) is the condition.
+		For signal events, this is the list of signals the events
+		applies to.  For  syscall events, it is the list of
+		affected system calls.
+
+    Count		For stop and syscall events, the number of times the
+		condition occurs before the event triggers.
+
+    Command List	The commands the debugger is to perform when the event
+		triggers.
+
+If the process list, condition, or command list are too long to fit in their
+columns, they are truncated.  You may force them to be wrapped to the next
+line with the \k(Panes^/usr/X/lib/locale/C/help/debug/event.help^Panes) option in the \k(Properties^/usr/X/lib/locale/C/help/debug/event.help^Properties) menu.
+
+The Event Window also includes the following menu buttons:
+
+	\k(File button^/usr/X/lib/locale/C/help/debug/event.help^File)
+	\k(Edit button^/usr/X/lib/locale/C/help/debug/event.help^Edit)
+	\k(Event button^/usr/X/lib/locale/C/help/debug/event.help^Event)
+	\k(Properties button^/usr/X/lib/locale/C/help/debug/event.help^Properties)
+	Help button
+
+The menus displayed by selecting these buttons provide commands to edit and
+delete existing events or create new ones.  See the Help for the individual
+buttons for details.
+
+You may resize the Event Window.  You may also redistribute the space within
+the window.  To do that, click SELECT on the border of the Main Event or the
+On Stop Event pane.  A handle will appear, which you may drag up or down to
+increase or decrease the size of the pane relative to the other pane.
+^1^Command Window
+^$5
+6. \k(Command Window^/usr/X/lib/locale/C/help/debug/command.help^Command Window)
+
+The Command Window has three parts:
+
+	the Status Pane,
+	the \k(Transcript Pane^/usr/X/lib/locale/C/help/debug/command.help^Transcript Pane), and
+	the \k(Command Line^/usr/X/lib/locale/C/help/debug/command.help^Command Line).
+
+The Status Pane is identical to the Status Pane in the \k(Source Window^/usr/X/lib/locale/C/help/debug/source.help^Source Window).
+The Command Window displays a transcript of the debugging session (debugger
+and process input and output) in the \k(Transcript Pane^/usr/X/lib/locale/C/help/debug/command.help^Transcript Pane). The \k(Command Line^/usr/X/lib/locale/C/help/debug/command.help^Command Line)
+is used to to enter debugger commands as if you were using the command line
+interface.
+
+The Command Window also includes the following menu
+buttons:
+	\k(File button^/usr/X/lib/locale/C/help/debug/command.help^File button)
+	\k(Edit button^/usr/X/lib/locale/C/help/debug/command.help^Edit button)
+	\k(Properties button^/usr/X/lib/locale/C/help/debug/command.help^Properties button)
+	Help button
+^1^Popup Windows
+7. Popup Windows
+
+The debugger provides a number of popup windows to allow you to view more
+information, manipulate the processes being debugged, and control the debugger's
+behavior.  The windows that are available include:
+
+    \k(Cancel)		    \k(Language)		\k(Show Function - Source)
+    \k(Change)		    \k(Map)			\k(Show Function - Disassembly)
+    \k(Change Directory)	    \k(On Stop)			\k(Show Line)
+    \k(Create)		    \k(Open)			\k(Show Location)
+    \k(Dump)		    \k(Output Action)		\k(Show Value)
+    \k(Expand)	  	    \k(Panes - Context Window)	\k(Signal)
+    \k(Grab Core)	    \k(Panes - Event Window)	\k(Source Path)
+    \k(Grab Process)	    \k(Recreate)		\k(Step)
+    \k(Granularity)	    \k(Run Until)		\k(Stop)
+    \k(Ignore Signals)	    \k(Script)			\k(Stop on Function)
+    \k(Input)		    \k(Search)			\k(Symbols)
+    \k(Jump)		    \k(Set Value)		\k(Syscall)
+    \k(Kill)		
+^2^Cancel
+^$601
+7. \k(Popup Windows)
+   7.1 Cancel
+
+The Cancel popup window lets you cancel any signals that are caught by the
+debugger.  When a signal is posted to a process, the debugger is notified before
+the process receives it.  Cancel allows you to get rid of the signal so the
+process never sees it.
+
+The popup window displays a scrolling list of the signals pending against the
+selected process.  The next time you let the process run, it will not receive
+the signals you select from this list.
+
+The signals in the list are ordered numerically by default.  The list may be
+ordered alphabetically by selecting the Order list by Name option.
+
+The Cancel popup window is available from the Event menus in the \k(Context^/usr/X/lib/locale/C/help/debug/context.help^Context Window),
+\k(Source^/usr/X/lib/locale/C/help/debug/source.help^Source Window), \k(Disassembly^/usr/X/lib/locale/C/help/debug/dis.help^Disassembly Window), and \k(Event^/usr/X/lib/locale/C/help/debug/event.help^Event Window) windows.  If you pop up the Cancel window
+from the \k(Context Window^/usr/X/lib/locale/C/help/debug/context.help^Context Window), signals displayed will be pending against the
+process selected in the \k(Process Pane^/usr/X/lib/locale/C/help/debug/context.help^Process Pane).  If nothing is selected, or if you popped up
+the Cancel window from another window, the \d(current process) is used.
+^2^Change
+^$602
+7. \k(Popup Windows)
+   7.2 Change
+
+The Change popup window lets you edit an existing event. The Change
+option appears in the \k(Event Window^/usr/X/lib/locale/C/help/debug/event.help^Event Window)'s \k(Event menu^/usr/X/lib/locale/C/help/debug/event.help^Event), and
+is available if you have selected one event, in either pane.  The popup window
+will look like one of the \k(Stop), \k(Signal), \k(Syscall), or \k(On Stop)
+windows, depending on the type of the event you had selected.  The fields in the
+window will be initialized with values from the selected event.  You may then
+change any of the fields.  When you finish, the changes you make will be reflected
+in the \k(Event Window^/usr/X/lib/locale/C/help/debug/event.help^Event Window).
+^2^Change Directory
+^$603
+7. \k(Popup Windows)
+   7.3 Change Directory
+
+The Change Directory popup window lets you change the debugger's current
+working directory.  The current working directory is displayed at the top
+of the window.  Enter the pathname of the new current directory in the
+New Directory field.  If you do not enter a pathname, it will use the
+directory specified in the environment variable HOME.
+
+The Change Directory window is always available, and is popped up by clicking
+SELECT on the Change Directory option in the \k(Context^/usr/X/lib/locale/C/help/debug/context.help^Context Window) or \k(Command^/usr/X/lib/locale/C/help/debug/command.help^Command Window)
+window's \k(File^/usr/X/lib/locale/C/help/debug/command.help^File) menu.
+^2^Create
+^$604
+7. \k(Popup Windows)
+   7.4 Create
+
+The Create popup window lets you create one or more processes.  The shell-style
+command line may include input and/or output redirection and may include a
+shell pipe.  All resulting processes are stopped at the starting address
+specified in the object file.  Since the processes are suspended, you must
+then use one of the commands in the \k(Control^/usr/X/lib/locale/C/help/debug/context.help^Control) menu to start them running.
+
+If the Capture I/O option is selected, the input and output of the process is
+captured and displayed in the \k(Command Window^/usr/X/lib/locale/C/help/debug/command.help^Command Window).  All input to the process
+must be entered with the \k(Input) popup window.  If the
+Capture I/O option is not selected, the process's output will go to the
+debugger's parent xterm window, and input is entered by typing in that window.
+This behavior is most useful when you are debugging a curses-based program,
+or one that is highly interactive.  Capture I/O should always be selected
+if the debugger was invoked from its icon rather than from an xterm window.
+
+If the New Window Set option is not selected, the created processes are all
+added to the Create window's \d(window set).  If New Window Set is selected,
+a new window set is created, and all the created processes will be controlled
+by the new window set.  In both cases, the first process in the pipeline becomes
+the \d(current process) in the controlling window set.
+
+The Follow Children option controls the debugger's behavior if any of the
+created processes fork.  If Follow Children is not selected, the debugger
+will not control the child process.  If it is selected, the debugger will
+control the child process (the process may be released from debugger
+control using the \k(Release^/usr/X/lib/locale/C/help/debug/context.help^Release) command).
+
+The Create window is popped up by clicking SELECT on the Create button in the
+\k(Context Window^/usr/X/lib/locale/C/help/debug/context.help^Context Window)'s  \k(File^/usr/X/lib/locale/C/help/debug/context.help^File) menu.  This option is always available.
+^2^Dump
+^$605
+7. \k(Popup Windows)
+   7.5 Dump
+
+The Dump popup window lets you see the contents of memory at a specific location
+in the selected process.  Enter the location in the Location field. The syntax
+for the location is:
+	[process name@][filename@]line
+	or [process name@][filename@]symbol[+-constant]
+	or address[+-constant]
+	or register_name
+where "address" is an octal or hexadecimal program address, and "constant" is
+a decimal integer.
+
+You may enter the number of bytes to be displayed in the Count field.  If you
+do not enter a number there, debug will display 256 bytes, 16 bytes per line.
+The bytes will be displayed in both hexadecimal and ASCII.
+
+The Dump window is popped up by clicking SELECT on the Dump option in the
+\k(Context Window^/usr/X/lib/locale/C/help/debug/context.help^Context Window)'s \k(View^/usr/X/lib/locale/C/help/debug/context.help^View) menu.  This option is not available if more than
+one process in the \k(Process Pane^/usr/X/lib/locale/C/help/debug/context.help^Process Pane) is selected, or if the process is not
+stopped.  The \d(current process) is used if no process is selected.
+
+The \k(Show Value) and \k(Expand) windows provide other ways to examine the
+state of a process.
+^2^Expand
+^$606
+7. \k(Popup Windows)
+   7.6 Expand
+
+The Expand popup window lets you see the contents of a structure that a pointer
+variable points to, or follow a chain of pointers.  This window is popped up
+by clicking SELECT on the Expand option in the \k(Context Window^/usr/X/lib/locale/C/help/debug/context.help^Context Window)'s \k(View^/usr/X/lib/locale/C/help/debug/context.help^View) menu.
+This option is available only if you have selected one symbol in the \k(Symbol Pane^/usr/X/lib/locale/C/help/debug/context.help^Symbol Pane).
+
+The Expression field will be initialized with the name of the selected symbol, and
+the Result field will show its value.  If the expression is a pointer, clicking
+SELECT on the Expand button will dereference the pointer, and display what it
+points to.  If the expression is a structure with members which are pointers,
+you may select the name of one of the members in the Result field.  Clicking
+SELECT on the Expand button will then deference that pointer.  In both cases,
+the Expression field is updated to show the current pointer chain.  (You could
+see the same thing by typing this expression in the Expression field of the
+\k(Show Value) popup window).
+
+At any point in following a chain of pointers, you may backtrack by clicking SELECT
+on the Collapse button.  That will go back one link in the chain, or one level
+of dereference.  You may click SELECT on Collapse as many times as you have
+clicked SELECT on Expand.
+^2^Grab Core
+^$607
+7. \k(Popup Windows)
+   7.7 Grab Core
+
+The Grab Core popup window lets you open a core file and its corresponding
+object file for examination.  Enter the names of the core and object on the
+corresponding lines in the window.
+
+If the New Window Set option is selected, a new \d(window set) will be created
+to display the grabbed core image, otherwise the core image will be displayed
+in the popup window's parent window set.  In both cases, the grabbed core
+image will become the \d(current process) in its window set.
+
+Grabbed core images may be examined using all of the commands available for
+examining live processes, but may not be altered or run.
+
+The Grab Core window is always available, and is popped up by clicking SELECT
+on the Grab Core button in the \k(Context Window^/usr/X/lib/locale/C/help/debug/context.help^Context Window)'s \k(File^/usr/X/lib/locale/C/help/debug/context.help^File) menu.
+^2^Grab Process
+^$608
+7. \k(Popup Windows)
+   7.8 Grab Process
+
+The Grab Process popup window lets you take control of a live process.
+The window contains a scrolling list of processes you may grab
+(the processes other than the debugger itself with the same user ID).
+You may select more than one process from the list.
+
+You may enter on the Object File line the name of an alternate object file
+to be used for loading symbols for the process.  If you enter a file name
+here, you must select only one process from the list.
+
+If the New Window Set option is not selected, the grabbed processes are all
+added to the Grab Process window's \d(window set).  If it is selected, a new
+window set is created, and all the grabbed processes will be controlled by
+the new window set.  In both cases, the selected item that appears first in
+the list will become the current process in its window set.
+
+The Follow Children option controls the debugger's behavior if any of the
+grabbed processes fork.  If Follow Children is not selected, the debugger
+will not control the child process.  If it is selected, the debugger will
+control the child process (the process may be released from debugger
+control using the \k(Release^/usr/X/lib/locale/C/help/debug/context.help^Release) button).
+
+The Grab Process window is popped up by clicking SELECT on the Grab Process
+option in the \k(Context Window^/usr/X/lib/locale/C/help/debug/context.help^Context Window)'s \k(File^/usr/X/lib/locale/C/help/debug/context.help^File) menu.  This option is always available.
+^2^Granularity
+^$609
+7. \k(Popup Windows)
+   7.9 Granularity
+
+The Granularity popup window lets you specify the debugger's behavior
+with respect to programs and processes.
+
+A \d(window set) has both a \d(current process) and a \d(current program)
+(the current program is always the parent program of the current process).
+Which you are operating on at any point depends on which option, "Process Only"
+or "Parent Program", is selected.  By default, most commands (\k(Step),
+\k(Show Value), etc.) apply to the process, but commands that create events
+apply to the program.  By setting events in the program instead of the process,
+if you have to \k(recreate^^Recreate) the program, or if the process forks,
+the new process will inherit all the events that were defined in the old process. 
+You may set the granularity of event commands separately from the granularity
+of the other commands.  The granularity setting for non-event commands also
+applies to selections in the \k(Process Pane^/usr/X/lib/locale/C/help/debug/context.help^Process Pane).
+
+The commands that create events are \k(Stop on Function), \k(Set Watchpoint^/usr/X/lib/locale/C/help/debug/context.help^Set Watchpoint),
+\k(Set Breakpoint^/usr/X/lib/locale/C/help/debug/source.help^Set Breakpoint), \k(Delete Breakpoint^/usr/X/lib/locale/C/help/debug/source.help^Delete Breakpoint), \k(Stop), \k(Signal), \k(Syscall), and \k(On Stop).
+
+The Granularity popup window is always available, and may be popped up from
+the Properties menus in the \k(Context^/usr/X/lib/locale/C/help/debug/context.help^Context Window), \k(Source^/usr/X/lib/locale/C/help/debug/source.help^Source Window), \k(Disassembly^/usr/X/lib/locale/C/help/debug/dis.help^Disassembly Window), and \k(Event^/usr/X/lib/locale/C/help/debug/event.help^Event Window) windows.
+The granularity selected affects only the parent \d(window set).
+^2^Ignore Signals
+^$610
+7. \k(Popup Windows)
+   7.10 Ignore Signals
+
+By default, when a signal is posted to a process, the debugger intercepts
+(catches) the signal and announces its occurrence.  You may then either cancel
+the signal (with the \k(Cancel) popup window), or run the process and let it
+receive the signal.  If you do not want the debugger to intercept a particular
+signal, you may tell it to ignore that signal.
+
+The Ignore Signals popup window lets you specify the disposition (either caught
+or ignored) of each signal. The popup window displays a scrolling list of signals
+their current disposition for the process.  You may change the disposition by
+selecting one or more signals in the list.  The signals in the list are
+ordered numerically by default.  The list may be ordered alphabetically
+by selecting the Order list by Name option.
+
+The Ignore Signals window is popped up by clicking SELECT on the Ignore Signals
+option in the Event menu in the \k(Context^/usr/X/lib/locale/C/help/debug/context.help^Context Window), \k(Source^/usr/X/lib/locale/C/help/debug/source.help^Source Window), \k(Disassembly^/usr/X/lib/locale/C/help/debug/dis.help^Disassembly Window), or \k(Event^/usr/X/lib/locale/C/help/debug/event.help^Event Window) window.
+If you pop up the Ignore Signals window from the \k(Context Window^/usr/X/lib/locale/C/help/debug/context.help^Context Window), signal
+disposition will apply to the process selected in \k(Process Pane^/usr/X/lib/locale/C/help/debug/context.help^Process Pane).  If nothing is
+selected, or if you pop it up from another window, the \d(current process) is used.
+The Ignore Signals option is not available unless the selected process is stopped.
+^2^Input
+^$611
+7. \k(Popup Windows)
+   7.11 Input
+
+The Input popup window lets you send input to a process whose I/O is captured
+(see \k(Create)).  Enter the string in the Input field.  If the Append Newline
+option in set, a new-line character will be added to the end of the string.
+The string will be echoed in the \k(Command Window^/usr/X/lib/locale/C/help/debug/command.help^Command Window)'s \k(Transcript Pane^/usr/X/lib/locale/C/help/debug/command.help^Transcript Pane).
+
+The Input window may be popped up by clicking SELECT on the Input option in
+the \k(Command Window^/usr/X/lib/locale/C/help/debug/command.help^Command Window)'s Edit menu.  This option is not available unless
+the \d(current process)'s I/O is captured.
+^2^Jump
+^$612
+7. \k(Popup Windows)
+   7.12 Jump
+
+The Jump popup window lets you specify a location from which to resume the
+execution of the selected processes. Enter the location on the Location line.
+
+This option does not resume execution of the selected processes.  The next
+time you select one of the other options in the \k(Control^/usr/X/lib/locale/C/help/debug/context.help^Control) menu,
+execution will start from this location.
+
+The location may be any address within the text of the selected processes,
+but extreme care should be taken.  Jump does not attempt to adjust the
+process stack if the address is outside of the current function.  Care must
+also be taken in jumping around code that might have important side effects.
+
+The Jump popup window is available from the Control menus in the \k(Context^/usr/X/lib/locale/C/help/debug/context.help^Context Window),
+\k(Source^/usr/X/lib/locale/C/help/debug/source.help^Source Window), and \k(Disassembly^/usr/X/lib/locale/C/help/debug/dis.help^Disassembly Window) windows.  If the Jump window was popped up
+from the \k(Context Window^/usr/X/lib/locale/C/help/debug/context.help^Context Window), the selected processes (if any) in the \k(Process Pane^/usr/X/lib/locale/C/help/debug/context.help^Process Pane)
+are affected.  Otherwise, the \d(current process) is affected.
+^2^Kill
+^$613
+7. \k(Popup Windows)
+   7.13 Kill
+
+The Kill popup window lets you send a signal to a process.  The popup window
+displays a scrolling list of signals; you may select one signal from the list.
+The signals in the list are ordered numerically by default.  The list may be
+ordered alphabetically by selecting the Order list by Name option.
+
+The Kill popup window is available from the Event menus in the \k(Context^/usr/X/lib/locale/C/help/debug/context.help^Context Window),
+\k(Source^/usr/X/lib/locale/C/help/debug/source.help^Source Window), and \k(Disassembly^/usr/X/lib/locale/C/help/debug/dis.help^Disassembly Window) windows.  If the Kill window was popped up from
+the \k(Context Window^/usr/X/lib/locale/C/help/debug/context.help^Context Window), the signal will be sent to the processes selected in
+\k(Process Pane^/usr/X/lib/locale/C/help/debug/context.help^Process Pane).  If nothing is selected, or if it was popped up from another
+window, the signal will be sent to the \d(current process).
+^2^Language
+^$614
+7. \k(Popup Windows)
+   7.14 Language
+
+The Language popup window lets you choose the language for expression
+evaluation.   The choices currently supported are Derived, C, and C++.
+
+When the choice is Derived, debug uses information in the object file being
+debugged to determine the appropriate language.  If the object file does not
+provide that information, the debugger will default to C.
+
+When the current language is C, debug supports evaluation of all legal ANSI C
+expressions, except those involving macro expansion, or structure, union or
+enumeration type declarations. An example of a type declaration in an
+expression is:
+	((struct { int i; char c; } *)p)->c = 'a';
+
+When the current language is C++, debug accepts a subset of C++ expressions,
+including:
+    all expressions accepted when the current language is C,
+    expressions using overloaded function names,
+    expressions using the scoping operator (::), and
+    expressions referencing non-virtual member functions.
+
+The current language affects the evaluation of expressions in the \k(Set Value),
+\k(Show Value), and \k(Stop) popup windows, as well as commands entered in the
+\k(Command Window^/usr/X/lib/locale/C/help/debug/command.help^Command Window).
+
+The Language popup window is always available, and may be popped up from the
+Properties menus in the \k(Context^/usr/X/lib/locale/C/help/debug/context.help^Context Window), \k(Source^/usr/X/lib/locale/C/help/debug/source.help^Source Window), and \k(Command^/usr/X/lib/locale/C/help/debug/command.help^Command Window) windows.
+The language is a global property, and affects all \d(window set)s.
+^2^Map
+^$615
+7. \k(Popup Windows)
+   7.15 Map
+
+The Map popup window displays the virtual address map for the selected process.
+The information displayed includes the start and end addresses, size, and access
+permissions for each segment.
+
+The Map window is popped up by clicking SELECT on the Map option in the
+\k(Context Window^/usr/X/lib/locale/C/help/debug/context.help^Context Window)'s \k(View^/usr/X/lib/locale/C/help/debug/context.help^View) menu.  If a process is selected in the \k(Process Pane^/usr/X/lib/locale/C/help/debug/context.help^Process Pane),
+the address map for that process will be displayed.  Only one process may
+be selected.  If no process is selected, the address map for the
+\d(current process) is displayed.
+^2^On Stop
+^$616
+7. \k(Popup Windows)
+   7.16 On Stop
+
+The On Stop popup window lets you create an \d(onstop event).  An onstop event
+specifies an action to be executed whenever an affected process stops.  Enter the
+action in the space labeled Commands.  The action should be one or more of the
+commands available through the debugger's command-line interface.  Each time the
+process stops, the commands are executed and the results displayed in the
+\k(Command Window^/usr/X/lib/locale/C/help/debug/command.help^Command Window).  Stopping includes single steps and stopping for another
+debugger event (\k(Signal), \k(Syscall), or \k(Stop)).
+
+The On Stop popup window is available from the Event menus in the \k(Context^/usr/X/lib/locale/C/help/debug/context.help^Context Window),
+\k(Source^/usr/X/lib/locale/C/help/debug/source.help^Source Window), \k(Disassembly^/usr/X/lib/locale/C/help/debug/dis.help^Disassembly Window), and \k(Event^/usr/X/lib/locale/C/help/debug/event.help^Event Window) windows.  If you popped up the On Stop
+window from the \k(Context Window^/usr/X/lib/locale/C/help/debug/context.help^Context Window), the new event will apply to the selected
+\d(program)s (if any) in \k(Process Pane^/usr/X/lib/locale/C/help/debug/context.help^Process Pane).  Otherwise, the event applies to the
+\d(current program) or \d(current process).  By default, events apply to all the
+processes derived from a program, not just not just the selected process.  If you
+want to change this behavior, use the \k(Granularity) popup window.  The affected
+programs or processes are listed in the Programs line at the top of the window.
+
+The event created by executing this command will be displayed in the On Stop Pane
+of the \k(Event Window^/usr/X/lib/locale/C/help/debug/event.help^Event Window).
+^2^Open
+^$617
+7. \k(Popup Windows)
+   7.17 Open
+
+The Open popup window lets you choose a file to be displayed in a \k(Source Window^/usr/X/lib/locale/C/help/debug/source.help^Source Window).
+The window displays a list of the files making up the program that were compiled
+with debugging information.  To view one of the files, select the file and
+then click SELECT on the Open button, or drag the file and drop it on the
+Source Window.  If you drag the file and drop it on the Work Space, the
+debugger will open a new, \d(secondary source window).
+
+Note that the list of source files comes from the object file itself and not
+from the current directory.  The debugger does not try to find a file until
+you have made a selection.  If it cannot find the selected file, use the
+\k(Source Path) option in the \k(Properties^/usr/X/lib/locale/C/help/debug/source.help^Properties) menu to tell the debugger where to
+find the source.
+
+The Open window is popped up by clicking SELECT on the Open option in the
+\k(Source Window^/usr/X/lib/locale/C/help/debug/source.help^Source Window)'s \k(File^/usr/X/lib/locale/C/help/debug/source.help^File) menu.
+^2^Output Action
+^$618
+7. \k(Popup Windows)
+   7.18 Output Action
+
+The Output Action popup window lets you specify the actions the debugger is to
+take when an event occurs or when a controlled process generates output.  The
+window contains two sets of buttons, one for events and the other for Process I/O.
+
+The choices for each are:
+
+    o Open and Raise: The debugger will bring up the \k(Command Window^/usr/X/lib/locale/C/help/debug/command.help^Command Window),
+	where the event notification or process output will be displayed in
+	the \k(Transcript Pane^/usr/X/lib/locale/C/help/debug/command.help^Transcript Pane).
+
+    o Beep
+
+    o Alert box: The debugger will display a message saying what has happened.
+
+    o No action:  The debugger will not do anything special.
+
+By default, the debugger beeps when an event occurs, because the event
+notification is also displayed at the bottom of the main windows.
+
+When a process whose output is captured (see \k(Create)) generates output, the
+default action is Open and Raise (the debugger raises the Command window to
+show you the output).  Note that this does not apply to processes whose output
+is not captured; the debugger cannot tell when those processes generate output.
+
+The Output Action window is always available, and may be popped up from the
+Properties menus in the \k(Context^/usr/X/lib/locale/C/help/debug/context.help^Context Window) and \k(Command^/usr/X/lib/locale/C/help/debug/command.help^Command Window) windows.
+^2^Panes - Context Window
+^$619
+7. \k(Popup Windows)
+   7.19 Panes - Context Window
+
+The Panes popup window lets you choose whether certain columns in the
+\k(Context Window^/usr/X/lib/locale/C/help/debug/context.help^Context Window)'s panes are wrapped or truncated if the information will not
+fit in the column. By default, they are all truncated.
+
+The columns that are affected are the Command column in the \k(Process Pane^/usr/X/lib/locale/C/help/debug/context.help^Process Pane),
+the Parameters column in the \k(Stack Pane^/usr/X/lib/locale/C/help/debug/context.help^Stack Pane), and the Type and Value columns
+in the \k(Symbol Pane^/usr/X/lib/locale/C/help/debug/context.help^Symbol Pane).
+
+The Panes popup window is always available, and may be popped up from the
+\k(Context Window^/usr/X/lib/locale/C/help/debug/context.help^Context Window)'s \k(Properties^/usr/X/lib/locale/C/help/debug/context.help^Properties) menu.
+^2^Panes - Event Window
+^$620
+7. \k(Popup Windows)
+   7.20 Panes - Event Window
+
+The Panes popup window lets you choose whether certain columns in the
+\k(Event Window^/usr/X/lib/locale/C/help/debug/event.help^Event Window)'s panes are wrapped to the next line or truncated if the
+information will not fit in the column.  The columns that are affected are
+the Processes and Command List columns in both panes, and the Condition
+column in the Main Event Pane.  By default, these columns are truncated.
+
+The Panes popup window is always available, and may be popped up from the
+\k(Event Window^/usr/X/lib/locale/C/help/debug/event.help^Event Window)'s \k(Properties^/usr/X/lib/locale/C/help/debug/event.help^Properties) menu.
+^2^Recreate
+^$621
+7. \k(Popup Windows)
+   7.21 Recreate
+
+The Recreate popup window lets you re-create the previous \k(Create) command.
+ The text of the previous command is displayed, whether it came from this
+\d(window set), another window set, from the \k(Command Window^/usr/X/lib/locale/C/help/debug/command.help^Command Window), or from
+a \k(Script).  If any processes resulting from that previous command are still
+running, they are killed.  The command line is then recreated.
+
+The Follow Children and New Window Set options have the same meaning as in
+the \k(Create) popup window.
+
+The Recreate window is popped up by clicking SELECT on the Recreate option in
+the \k(Context Window^/usr/X/lib/locale/C/help/debug/context.help^Context Window)'s \k(File^/usr/X/lib/locale/C/help/debug/context.help^File) menu.  This option is not available until
+at least one process has been created.
+^2^Run Until
+^$622
+7. \k(Popup Windows)
+   7.22 Run Until
+
+The Run Until popup window lets you specify a location to run to.
+Enter the location on the line labeled Location.
+
+The Run Until window is available from the Control menus in the \k(Context^/usr/X/lib/locale/C/help/debug/context.help^Context Window),
+\k(Source^/usr/X/lib/locale/C/help/debug/source.help^Source Window), and \k(Disassembly^/usr/X/lib/locale/C/help/debug/dis.help^Disassembly Window) windows.  If you popped up the Run Until window
+from the \k(Context Window^/usr/X/lib/locale/C/help/debug/context.help^Context Window),  the selected processes (if any) in the
+\k(Process Pane^/usr/X/lib/locale/C/help/debug/context.help^Process Pane) are affected.  Otherwise, the \d(current process) is affected.
+
+Note that Run Until does not guarantee that the process will ever get to
+the specified location.  If your program takes an unexpected execution path,
+it may exit or simply bypass the location.  Also, if an event triggers, the
+process will stop before reaching the specified location.
+^2^Script
+^$623
+7. \k(Popup Windows)
+   7.23 Script
+
+The Script popup window lets you execute debugger commands from a file.
+Enter the name of the file on the Script File line.  You may specify
+whether to echo the commands as they are read with the Echo Commands option.
+The commands and their output are displayed in the \k(Transcript Pane^/usr/X/lib/locale/C/help/debug/command.help^Transcript Pane).
+
+The Script window is always available, and is popped up by clicking SELECT
+on the Script option in the \k(Command Window^/usr/X/lib/locale/C/help/debug/command.help^Command Window)'s \k(File^/usr/X/lib/locale/C/help/debug/command.help^File) menu.
+^2^Search
+^$624
+7. \k(Popup Windows)
+   7.24 Search
+
+The Search popup window that you enter an ed(1)-style regular expression to
+search for in the Source or Disassembly Panes.  Enter the expression to be
+searched for in the Text field.  The expression may contain any combination
+of the following elements:
+	.	Matches any character except a newline
+	[...]	Matches any one of the enclosed characters,
+			ranges are allowed, and ^ indicates negation
+	*	Indicates zero or more of the preceding RE
+	^	Matches the null string at the beginning of a line
+	$	Matches the null string at the end of a line
+	\{m\}	Indicates exactly m occurrences of the preceding RE
+	\{m,\}	Indicates at least m occurrences of the preceding RE
+	\{m,n\}	Indicates m to n, inclusive, occurrences
+	\(...\)	Matches the same thing as ... matches
+	\digit	Matches the nth parenthesized RE in the same expression
+	\<	Matches the null string at the beginning of a word
+	\>	Matches the null string at the end of a word
+
+The Search window may be popped up from either the \k(Source Window^/usr/X/lib/locale/C/help/debug/source.help^Source Window) or
+\k(Disassembly Window^/usr/X/lib/locale/C/help/debug/dis.help^Disassembly Window)'s View menu.  The parent window is the one that
+will be searched, and if there is any text selected in that window, it
+is used to initialize the Text field.
+
+You may search forwards or backwards.  If text is selected, the search
+begins after (or before) the selected string; otherwise the search begins
+from the current position of the cursor.
+^2^Set Value
+^$625
+7. \k(Popup Windows)
+   7.25 Set Value
+
+The Set Value popup window lets you set a debugger built-in or debugger-maintained
+user variable or evaluate any language expression.  To set a debugger or user
+variable, enter an expression of the form:
+         variable = expression [,expression ...]
+in the Expression field.  The legal values of expression depend on the variable.
+If you enter a comma-separated list of strings and user variables, the string
+values of these expressions are concatenated.
+
+You may also enter any expression in the current language (see \k(Language))
+in the Expression field, although the typical use would be to evaluate an
+assignment expression.
+
+The Set Value popup window is available from the View menus in the \k(Context^/usr/X/lib/locale/C/help/debug/context.help^Context Window),
+\k(Source^/usr/X/lib/locale/C/help/debug/source.help^Source Window), and \k(Disassembly^/usr/X/lib/locale/C/help/debug/dis.help^Disassembly Window) windows.  If you popped it up from the \k(Context Window^/usr/X/lib/locale/C/help/debug/context.help^Context Window),
+selections in the \k(Symbol Pane^/usr/X/lib/locale/C/help/debug/context.help^Symbol Pane) and the \k(Process Pane^/usr/X/lib/locale/C/help/debug/context.help^Process Pane) affect the Set Value window.
+If you have selected a variable, the name of that variable will be used to
+initialize the Expression field.  If you have selected any processes in the
+\k(Process Pane^/usr/X/lib/locale/C/help/debug/context.help^Process Pane), the expression will be evaluated in the context of each
+of those processes in turn.  If you have not selected any processes, or if
+you popped up the Set Value window from another window, the \d(current process)
+is used.
+^2^Show Function - Source
+^$626
+7. \k(Popup Windows)
+   7.26 Show Function - Source
+
+The Show Function popup window lets you display the source for any function
+in the \d(current process) that was compiled with debugging information.
+This window is popped up by clicking SELECT on the Show Function option in the
+\k(Source Window^/usr/X/lib/locale/C/help/debug/source.help^Source Window)'s \k(View^/usr/X/lib/locale/C/help/debug/source.help^View button) menu.
+
+The popup window displays two scrolling lists.  The first list displays the
+objects making up the selected process; the objects are the executable file
+and any shared libraries it depends on.  The second list shows a list of functions.
+If the "Show Functions from Current File" option is set, the Objects scrolling list
+is ignored, and only the functions that are defined in the file currently displayed
+in the Source Pane are shown in the Functions list.  If the "Show Functions from
+Selected Object" option is set, the selection in the Objects list determines
+the functions listed, and you must make a selection in the Objects list before
+any function names are displayed.  The list of functions may be blank if the
+selected object does not contain any functions compiled with debugging information.
+
+You may select one function in the Functions list.  Clicking SELECT on the
+Show Function button will cause that function to be displayed in the Source Pane of
+the parent Source Window.  You may also drag the selected function and drop it
+on the Source Window or on the Work Space.  Dropping it on the Work Space will
+open a new, \d(secondary source window) displaying the selected function.
+^2^Show Function - Disassembly
+^$627
+7. \k(Popup Windows)
+   7.27 Show Function - Disassembly
+
+The Show Function popup window lets you display the disassembly for any function
+in the \d(current process).  The Show Function window is popped up by clicking
+SELECT on the Show Function option in the \k(Disassembly Window^/usr/X/lib/locale/C/help/debug/dis.help^Disassembly Window)'s \k(View^/usr/X/lib/locale/C/help/debug/dis.help^View) menu.
+
+The popup window displays two scrolling lists.  The first list displays the
+objects making up the selected process; the objects are the executable file and
+any shared libraries the executable depends on.  The selection in this list
+determines the functions that are displayed in the second list.  You must make
+a selection in the Objects list before any functions will be displayed in the
+Functions list.
+
+You may select one function in the Functions list.  Clicking SELECT on the
+Show Function button will cause that function to be displayed in the Disassembly
+Pane of the parent Disassembly Window.  You may also drag the selected function
+and drop it on the Disassembly Window.
+^2^Show Line
+^$628
+7. \k(Popup Windows)
+   7.28 Show Line
+
+The Show Line option brings up a popup window that lets you position the
+file displayed in the Source Pane at a specific line.  Enter the line
+number in the Line field.  The Show Line window is popped up by clicking
+SELECT on the Show Line option in the \k(Source Window^/usr/X/lib/locale/C/help/debug/source.help^Source Window)'s \k(View^/usr/X/lib/locale/C/help/debug/source.help^View button) menu.
+^2^Show Location
+^$629
+7. \k(Popup Windows)
+   7.29 Show Location
+
+The Show Location option brings up a popup window that lets you position
+the Disassembly Pane to show a specific address.  Enter the hexadecimal
+address in the Location field.  The Show Location window is popped up by
+clicking SELECT on the Show Location option in the \k(Disassembly Window^/usr/X/lib/locale/C/help/debug/dis.help^Disassembly Window)'s
+\k(View^/usr/X/lib/locale/C/help/debug/dis.help^View) menu.
+^2^Show Value
+^$630
+7. \k(Popup Windows)
+   7.30 Show Value
+
+The Show Value popup window lets you see the value of an expression in the
+current language. Enter the expression you want evaluated in the Expression
+field.  You may also enter a comma-separated list of expressions.  The
+expressions may contain program variables, built-in debugger variables,
+and user-defined variables.  Clicking SELECT on the Show Value button will
+cause the expressions to be evaluated and the results to be displayed in the
+Result area.
+
+The Show Value popup window is available from the View menus in the \k(Context^/usr/X/lib/locale/C/help/debug/context.help^Context Window),
+\k(Source^/usr/X/lib/locale/C/help/debug/source.help^Source Window), and \k(Disassembly^/usr/X/lib/locale/C/help/debug/dis.help^Disassembly Window) windows.  If you popped it up from the \k(Context Window^/usr/X/lib/locale/C/help/debug/context.help^Context Window),
+selections in the \k(Symbol Pane^/usr/X/lib/locale/C/help/debug/context.help^Symbol Pane) and the \k(Process Pane^/usr/X/lib/locale/C/help/debug/context.help^Process Pane) affect the Show Value
+window.  If you have selected a variable, the name of that variable will be used
+to initialize the Expression field.  If you have selected any processes in the
+\k(Process Pane^/usr/X/lib/locale/C/help/debug/context.help^Process Pane), the expression will be evaluated in the context of each
+of those processes in turn.  If you have not selected any processes, or if you
+popped up the Show Value window from another window, the \d(current process)
+is used.
+
+You may select the format of the result from one of the  choices in the Format
+column.  Choosing "Default" will let the debugger print the result in the format
+it chooses based on the type of the result.  There are several other choices,
+such as "Octal", "Decimal", and "Character".  Choosing "Other" lets you enter a
+printf(3C)-like format string in the Specify format field.  You may not enter
+anything in this field without first selecting Other.
+
+Evaluating a function call results in the debugger creating a stack frame for
+that function and executing it.  Debugger events are disabled during the
+function's execution.
+
+The \k(Expand) option is similar to the Show Value option, but provides
+specialized capabilities for dereferencing pointers.
+^2^Signal
+^$631
+7. \k(Popup Windows)
+   7.31 Signal
+
+The Signal popup window lets you create a \d(signal event).  A signal event
+specifies an action to be executed whenever the processes in the selected
+\d(program) receive a particular signal.
+
+You do not have to create an event simply to stop the process when it receives a
+signal, since the debugger will do that by default.  See \k(Ignore Signals) for
+details on turning that capability on and off.
+
+The signals are displayed in a scrolling list.  You may select one or more
+signals from the list.  The signals in the list are ordered numerically by
+default.  The list may be ordered alphabetically by selecting the Order list by
+Name option.
+
+You must enter, in the Commands field, an action for the debugger to perform when
+the event triggers.  The action should be one or more of the commands available
+through the debugger's command-line interface.  The  results of executing the
+commands will be displayed in the \k(Command Window^/usr/X/lib/locale/C/help/debug/command.help^Command Window).
+
+The Signal popup window is available from the Event menus in the \k(Context^/usr/X/lib/locale/C/help/debug/context.help^Context Window),
+\k(Source^/usr/X/lib/locale/C/help/debug/source.help^Source Window), \k(Disassembly^/usr/X/lib/locale/C/help/debug/dis.help^Disassembly Window), and \k(Event^/usr/X/lib/locale/C/help/debug/event.help^Event Window) windows.  If you popped up the Signal
+window from the \k(Context Window^/usr/X/lib/locale/C/help/debug/context.help^Context Window), the new event will apply to the
+selected \d(program)s (if any) in \k(Process Pane^/usr/X/lib/locale/C/help/debug/context.help^Process Pane).  Otherwise, the event applies
+to the \d(current program) or \d(current process).  By default, events apply
+to all the processes derived from a program, not just not just the selected
+process.  If you want to change this behavior, use the \k(Granularity) popup
+window.  The affected programs or processes are listed in the Programs line
+at the top of the popup window.
+
+The event created by executing this command will be  displayed in the
+Main Event Pane of the \k(Event Window^/usr/X/lib/locale/C/help/debug/event.help^Event Window).
+^2^Source Path
+^$632
+7. \k(Popup Windows)
+   7.32 Source Path
+
+The Source Path popup window lets you set the path the debugger uses to find
+source files.
+
+You may enter multiple directories, one directory per line.  You may also edit
+a previously existing set of directories.  The directories will be searched
+in the order they appear.
+
+If you choose the option "Program-specific Path", the path will be used
+for the selected \d(program) only.  If you choose the "Global Path" option,
+the debugger will search that list of directories for any program if it cannot
+first find the file in the program-specific path.
+
+The Source Path popup window is always available, and may be popped up from the
+Properties menu in the \k(Context^/usr/X/lib/locale/C/help/debug/context.help^Context Window), \k(Source^/usr/X/lib/locale/C/help/debug/source.help^Source Window), or \k(Command^/usr/X/lib/locale/C/help/debug/command.help^Command Window) window.  If it is popped up
+from the \k(Context Window^/usr/X/lib/locale/C/help/debug/context.help^Context Window), the "Program-specific Path" option will apply to the
+program selected in the \k(Process Pane^/usr/X/lib/locale/C/help/debug/context.help^Process Pane).  Otherwise, the option will apply
+to the \d(current program).
+^2^Step
+^$633
+7. \k(Popup Windows)
+   7.33 Step
+
+The Step popup window gives you more control over stepping than the
+other options in the \k(Control^/usr/X/lib/locale/C/help/debug/context.help^Control) menu provide.
+
+The first set of options lets you control how many times the process is
+stepped.  Selecting Single Step steps the process once.  Selecting
+Step Forever will let the process step until the process exits, you
+\k(Halt^/usr/X/lib/locale/C/help/debug/context.help^Halt) it, or an event occurs.  If you select Step Count Times, you must enter,
+in the Count field, the number of times to step the process.
+
+The Statement and Instruction options specify the level at which stepping
+is to take place.
+
+The Over Call option lets you specify whether to step over or into
+function calls.
+
+The Step window is available from the Control menus in the \k(Context^/usr/X/lib/locale/C/help/debug/context.help^Context Window), \k(Source^/usr/X/lib/locale/C/help/debug/source.help^Source Window),
+and \k(Disassembly^/usr/X/lib/locale/C/help/debug/dis.help^Disassembly Window) windows.  If you popped up the Step window from the
+\k(Context Window^/usr/X/lib/locale/C/help/debug/context.help^Context Window), the selected processes (if any) in \k(Process Pane^/usr/X/lib/locale/C/help/debug/context.help^Process Pane) are affected.
+Otherwise, the \d(current process) is affected.
+
+The \k(Step Statement^/usr/X/lib/locale/C/help/debug/context.help^Step Statement), and \k(Step Instruction^/usr/X/lib/locale/C/help/debug/context.help^Step Instruction), \k(Next Statement^/usr/X/lib/locale/C/help/debug/context.help^Next Statement), and \k(Next Instruction^/usr/X/lib/locale/C/help/debug/context.help^Next Instruction)
+options in the \k(Control^/usr/X/lib/locale/C/help/debug/context.help^Control) menu provide simpler ways to step a process.
+For example, \k(Next Instruction^/usr/X/lib/locale/C/help/debug/context.help^Next Instruction) is equivalent to selecting
+Single Step, Instruction, and Over Call in the Step window.
+^2^Stop
+^$634
+7. \k(Popup Windows)
+   7.34 Stop
+
+The Stop popup window lets you create a \d(stop event).  A stop event specifies
+some condition in the program's address space that will cause the debugger to
+stop the program's execution.
+
+Enter a \k(Stop Expression) on the Expression line.  The debugger evaluates the
+stop expression continuously while the subject process is running.  The debugger
+will stop the process when the expression becomes true.
+
+You may enter, in the Commands field, an action for the debugger to perform any
+time the event triggers.  The action should be one or more of the commands
+available through the debugger's command-line interface.  The results of executing
+the commands will be displayed in the \k(Command Window^/usr/X/lib/locale/C/help/debug/command.help^Command Window).
+
+You may enter a number in the Count field to tell the debugger to let the event
+trigger that many times before suspending the process.  After that, the process
+will be suspended on each occurrence of the event.
+
+The Stop popup window is available from the Event menus in the \k(Context^/usr/X/lib/locale/C/help/debug/context.help^Context Window),
+\k(Source^/usr/X/lib/locale/C/help/debug/source.help^Source Window), \k(Disassembly^/usr/X/lib/locale/C/help/debug/dis.help^Disassembly Window), and \k(Event^/usr/X/lib/locale/C/help/debug/event.help^Event Window) windows.  If you popped up the Stop window
+from the \k(Context Window^/usr/X/lib/locale/C/help/debug/context.help^Context Window), the new event will apply to the selected \d(program)s
+(if any) in \k(Process Pane^/usr/X/lib/locale/C/help/debug/context.help^Process Pane).  Otherwise, the event applies to the \d(current program) or \d(current process).
+By default, events apply to all the processes derived from a program, not just
+not just the selected process.  If you want to change this behavior, use the
+\k(Granularity) popup window.  The affected programs or processes are listed in the
+Programs line at the top of the popup window.
+
+The event created by executing this command will be displayed in the Main Event
+Pane of the \k(Event Window^/usr/X/lib/locale/C/help/debug/event.help^Event Window).
+^3^Stop Expression
+^$6341
+7. \k(Popup Windows)
+   7.34 \k(Stop)
+        7.34.1 \k(Stop Expression)
+
+Stop Expressions are special expressions accepted by the \k(Stop) command.
+A stop expression consists of one or more stop-events, joined by the special
+&& (and) or || (or) operators. These operators are left-associative, but the
+debugger does not guarantee the order in which their operands are evaluated.
+Each stop-event can be:
+	location
+	( expr )
+	*lvalue
+
+Each type of stop event has some action that will cause the event to be noticed
+by the debugger. When such an action occurs, the entire stop expression is
+evaluated for "truth". If true, the event triggers in the normal way (the
+debugger will inform you of the event and execute any associated commands).
+
+A "location" is an address in the process's text where the debugger can set
+a breakpoint.  The syntax for a location specifier is
+	address[+-constant]
+	[procname@][filename@]line
+	[procname@][filename@]function[+-constant]
+where "address" is an octal or hexadecimal program address, and "constant"
+is a decimal integer.  When the process reaches the specified location
+the debugger notices the event. For location stop_events that refer to
+function names, the expression is true as long as that function is active.
+For location stop-events that apply to a particular address or line number,
+the expression is true only when the process is at that address or line.
+
+"expr" can be any valid expression in the current \k(Language).  The debugger
+notices the stop-event when any of the identifiers involved in the expression
+changes value. The entire expression is then evaluated in the context of the
+current language.
+
+"lvalue" may be any expression in the current language that would be valid on
+the left-hand side of an assignment statement in that language.  The debugger
+notices this event when the contents of the location change.  The change itself
+makes this kind of stop-event true.
+
+More powerful stop-expressions can be created by combining stop-events using
+the special && (and) operator. For example, to stop in function a only when
+function b is also active, enter "stop a && b" in the Expression field in the
+\k(Stop) popup window.  To stop when the value of some expression x becomes
+true within function y, enter "stop y && (x)".
+^2^Stop on Function
+^$635
+7. \k(Popup Windows)
+   7.35 Stop on Function
+
+The Stop on Function popup window lets you set a breakpoint on a function.
+This window is available from the \k(Context Window^/usr/X/lib/locale/C/help/debug/context.help^Context Window)'s \k(Event^/usr/X/lib/locale/C/help/debug/context.help^Event) menu.
+
+The popup window displays two scrolling lists.  The first list displays the
+objects (the executable file and shared libraries) making up the selected process.
+The selection in this list determines the list of functions displayed in the
+second list; no functions will be displayed until you make a selection in the
+list of objects.
+
+You may select one function in the second list to set a breakpoint on.  Setting
+a breakpoint creates a \d(stop event).  By default, events apply to all the
+processes derived from the selected \d(program), not just the selected process.
+If you want to change this behavior, use the \k(Granularity) option in the
+\k(Properties^/usr/X/lib/locale/C/help/debug/context.help^Properties) menu.  If you have not selected a program in the \k(Process Pane^/usr/X/lib/locale/C/help/debug/context.help^Process Pane),
+the \d(current program) is assumed.  The affected programs are listed in the
+Programs line at the top of the popup window.
+
+The event created by executing this command will be displayed in the Main Event
+Pane of the \k(Event Window^/usr/X/lib/locale/C/help/debug/event.help^Event Window).
+^2^Symbols
+^$636
+7. \k(Popup Windows)
+   7.36 Symbols
+
+The Symbols popup window lets you choose what kinds of symbols are
+displayed in the \k(Symbol Pane^/usr/X/lib/locale/C/help/debug/context.help^Symbol Pane) of the \k(Context Window^/usr/X/lib/locale/C/help/debug/context.help^Context Window).
+The choices are:
+
+	Global	Display the global symbols defined in the current object
+		(executable file or shared library).
+
+	File	Display the file static symbols that are defined in the
+		current file.
+
+	Local	Display the local variables defined in the current function.
+
+	Debugger	Display the debugger's built-in variables.
+
+	User	Display the debugger-maintained user variables.
+
+You may choose any combination of these categories.  By default, local symbols
+are displayed.
+
+The Symbols popup window is always available, and may be popped up from the
+\k(Context Window^/usr/X/lib/locale/C/help/debug/context.help^Context Window)'s \k(Properties^/usr/X/lib/locale/C/help/debug/context.help^Properties) menu.  The choices selected affect only
+the parent \d(window set).
+^2^Syscall
+^$637
+7. \k(Popup Windows)
+   7.37 Syscall
+
+The Syscall popup window lets you create a \d(syscall event).  A syscall event
+specifies an action to be executed whenever the processes in the selected
+\d(program) enter or exit a system call.
+
+The valid system calls are displayed in a scrolling list.  You may select one
+or more system calls from the list.  The system calls are ordered alphabetically
+by default.  The list may be ordered numerically by selecting the Order list by
+Number option.  The debugger will suspend the affected processes on entry to,
+or exit from, the selected system calls if the Entry or Exit options,
+respectively, are set.
+
+You may enter, in the Commands field, an action for the debugger to perform any
+time the event triggers.  The action should be one or more of the commands
+available through the debugger's command-line interface.  The results of
+executing the commands will be displayed in the \k(Command Window^/usr/X/lib/locale/C/help/debug/command.help^Command Window).
+
+You may enter a number in the Count field to tell the debugger to let the event
+trigger that many times before suspending the process.  After that, the process
+will be suspended on each occurrence.
+
+The Syscall popup window is available from the Event menus in the \k(Context^/usr/X/lib/locale/C/help/debug/context.help^Context Window),
+\k(Source^/usr/X/lib/locale/C/help/debug/source.help^Source Window), \k(Disassembly^/usr/X/lib/locale/C/help/debug/dis.help^Disassembly Window), and \k(Event^/usr/X/lib/locale/C/help/debug/event.help^Event Window) windows.  If you popped up the Syscall window
+from the \k(Context Window^/usr/X/lib/locale/C/help/debug/context.help^Context Window), the new event will apply to the selected \d(program)s
+(if any) in \k(Process Pane^/usr/X/lib/locale/C/help/debug/context.help^Process Pane).  Otherwise, the event applies to the \d(current program)
+or \d(current process).  By default, events apply to all the processes derived
+from a program, not just not just the selected process.  If you want to change
+this behavior, use the \k(Granularity) popup window.  The affected programs
+or processes are listed in the Programs line at the top of the popup window.
+
+The event created by executing this command will be displayed in the
+Main Event Pane of the \k(Event Window^/usr/X/lib/locale/C/help/debug/event.help^Event Window).

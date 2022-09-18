@@ -1,0 +1,97 @@
+You can move windows and icons on the workspace pressing SELECT
+and dragging them, or by selecting the Move button on the Window
+menu and using a combination of the keyboard and mouse to drag the
+window around.
+
+Mouse Operation Only:
+
+	Press SELECT on the header or border of a window, or
+	anywhere on an icon. When the pointer is dragged, a
+	bounding box is displayed showing the outline of the
+	window or icon. When the bounding box is at the place
+	where you want to move the window or icon, release SELECT.
+
+Keyboard (and Mouse) Operation:
+
+	Enter the window manager "Move Window" mode in any of
+	the following ways:
+
+		Press MENU over the window header or border,
+		or anywhere on an icon, displaying the Window menu.
+		Drag the pointer to the Move button on the Window
+		menu and release MENU.
+	OR
+		Press SELECT over the window menu button of a
+		window's header, depressing the Window Menu
+		Button and displaying the Window Menu. Drag the
+		pointer to the Move button such that the Move
+		button is depressed, and release SELECT.
+	OR
+		If the SelectDoesPreview feature is set to TRUE
+		and the default window menu item for a window is
+		the Move button on the Window menu, click SELECT
+		on the Window menu button.
+	OR
+		If the SelectDoesPreview feature is set to FALSE,
+		click SELECT on the Window menu button, and
+		proceed to click SELECT on the Move button of the
+		Window menu.
+	OR
+		Select the window or icon either by clicking SELECT
+		on the window header or anywhere on the icon, or by
+		traversing to the window or icon with the keyboard
+		using the NEXTAPP, PREVAPP, NEXTWIN or
+		PREVWIN keys. When the window is selected, it
+		becomes the window where all keyboard operations
+		are directed to. A selected window is evident by
+		the thickened black border present around the
+		window frame.
+
+	Once selected, use the Move keyboard accelerator (default is
+	Alt+F7) to activate the Window menu Move button.
+
+	Once in "Move Window" mode, use the mouse or the arrow keys
+	on the keyboard to drag a bounding box around that represents
+	the window or icon. When the bounding box is at the place
+	where you want to move the window or icon, either click
+	SELECT, or press the DROP or DEFAULTACTION keys on
+	the keyboard.
+
+	Once started, the Move Window operation can be aborted at
+	any time by pressing the CANCEL key on the keyboard. If the
+	CANCEL key is pressed during the Move operation, the
+	bounding box will disappear and the window will remain in
+	its original position.
+
+Move Window Mode "Timeout" Feature:
+
+	Once in the Move Window mode as entered through the
+	Window menu's Move button, if neither the keyboard nor
+	the mouse are used to affect the position of the
+	bounding box for an extended period of time, the
+	operation will be terminated by the window manager,
+	with the same action as when the user presses the
+	DROP key.
+
+Move Opaque:
+
+	If the window manager's moveOpaque resource is set to True,
+	then any Move operation done on a window or icon will result
+	in the immediate change in position or that object (no bounding
+	box will be drawn). All other aspects of the Move operation
+	remain the same, except:
+
+		Pressing the CANCEL key will not return the window
+		or icon to its original position.
+
+	There is no Timeout feature as when the moveOpaque resource
+	is set to False.	
+
+Moving Icons:
+
+	When an icon is moved, the bounding box (or icon, if
+	moveOpaque == TRUE) will snap to an invisible grid on the
+	workspace. By default, the grid is set to 13 points. As a
+	result, an icon can only be moved to a positon that is a
+	multiple of 13 points in the horizontal (from the left) or
+	vertical (from the top) direction.

@@ -1,0 +1,111 @@
+#ident	"@(#)debugger:libol/i386/DEPEND	1.3"
+
+Alert_sh.o:	../common/Alert_sh.C ../common/Toolkit.h \
+		../../gui.d/common/Component.h \
+		../common/Alert_sh.h
+	$(CPLUS_CMD) -c ../common/Alert_sh.C
+
+Boxes.o:	../common/Boxes.C ../common/Toolkit.h \
+		../../gui.d/common/Component.h \
+		../../gui.d/common/Boxes.h
+	$(CPLUS_CMD) -c ../common/Boxes.C
+
+Caption.o:	../common/Caption.C ../common/Toolkit.h \
+		../../gui.d/common/Component.h \
+		../../gui.d/common/Caption.h \
+		../common/CaptionP.h
+	$(CPLUS_CMD) -c ../common/Caption.C
+
+Dialog_sh.o:	../common/Dialog_sh.C ../common/Toolkit.h \
+		../../gui.d/common/Component.h \
+		../../gui.d/common/Dialog_sh.h \
+		../common/Dialog_shP.h
+	$(CPLUS_CMD) -c ../common/Dialog_sh.C
+
+Menu.o:		../common/Menu.C ../common/Toolkit.h \
+		../../gui.d/common/Component.h \
+		../../gui.d/common/Menu.h \
+		../common/MenuP.h \
+		../common/Menu_barP.h
+	$(CPLUS_CMD) -c ../common/Menu.C
+
+Radio.o:	../common/Radio.C ../common/Toolkit.h \
+		../../gui.d/common/Component.h \
+		../../gui.d/common/Radio.h \
+		../common/RadioP.h
+	$(CPLUS_CMD) -c ../common/Radio.C
+
+Sel_list.o:	../common/Sel_list.C ../common/Toolkit.h \
+		../../gui.d/common/Component.h \
+		../../gui.d/common/Sel_list.h \
+		../common/Sel_listP.h
+	$(CPLUS_CMD) -c ../common/Sel_list.C
+
+Stext.o:	../common/Stext.C ../common/Toolkit.h \
+		../../gui.d/common/Component.h \
+		../../gui.d/common/Stext.h \
+		../common/StextP.h
+	$(CPLUS_CMD) -c ../common/Stext.C
+
+Table.o:	../common/Table.C ../common/Toolkit.h \
+		../../gui.d/common/Component.h \
+		../../gui.d/common/Table.h \
+		../common/TableP.h
+	$(CPLUS_CMD) -c ../common/Table.C
+
+Text_area.o:	../common/Text_area.C ../common/Toolkit.h \
+		../../gui.d/common/Component.h \
+		../../gui.d/common/Text_area.h \
+		../common/Text_areaP.h
+	$(CPLUS_CMD) -c ../common/Text_area.C
+
+Text_disp.o:	../common/Text_disp.C ../common/Toolkit.h \
+		../../gui.d/common/Component.h \
+		../../gui.d/common/Text_disp.h \
+		../../gui.d/common/Text_area.h \
+		../common/Text_dispP.h
+	$(CPLUS_CMD) -c ../common/Text_disp.C
+
+Text_line.o:	../common/Text_line.C ../common/Toolkit.h \
+		../../gui.d/common/Component.h \
+		../../gui.d/common/Text_line.h \
+		../common/Text_lineP.h
+	$(CPLUS_CMD) -c ../common/Text_line.C
+
+Toggle.o:	../common/Toggle.C ../common/Toolkit.h \
+		../../gui.d/common/Component.h \
+		../../gui.d/common/Toggle.h \
+		../common/ToggleP.h
+	$(CPLUS_CMD) -c ../common/Toggle.C
+
+Window_sh.o: ../common/Window_sh.C ../common/Toolkit.h \
+		../../gui.d/common/Component.h \
+		../../gui.d/common/Window_sh.h \
+		../common/Window_shP.h \
+		../common/debug.pmp
+	$(CPLUS_CMD) -c ../common/Window_sh.C
+
+olutil.o:	../common/olutil.C ../common/Toolkit.h
+	$(CPLUS_CMD) -I../../gui.d/common -c ../common/olutil.C
+
+xpm.o:		../common/xpm.c
+	$(CC_CMD) -DSYSV -DSVR4_0 -DXTFUNCPROTO -c ../common/xpm.c
+
+OBJECTS	=  \
+	Alert_sh.o \
+	Boxes.o \
+	Caption.o \
+	Dialog_sh.o \
+	Menu.o \
+	Radio.o \
+	Sel_list.o \
+	Stext.o \
+	Table.o \
+	Text_area.o \
+	Text_disp.o \
+	Text_line.o \
+	Toggle.o \
+	Window_sh.o \
+	olutil.o \
+	xpm.o
+

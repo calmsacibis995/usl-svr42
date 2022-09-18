@@ -1,0 +1,184 @@
+#ident	"@(#)initpkg:common/cmd/initpkg/init.d/MLD	1.1.7.1"
+#ident  "$Header: MLD 1.2 91/06/28 $"
+#
+# This script reads the files in the /etc/security/MLD 
+# directory and creates MLDs for the directories listed
+# in the file. If security is not installed and running 
+# the script exits.
+#
+MLD_DIR=/etc/security/MLD
+DEF_LEVEL=USER_PUBLIC
+CRONTAB=/var/spool/cron/crontabs
+
+
+#
+# check for Security installed and running.
+#
+(
+  	mldmode >/dev/null 2>&1
+   	exit $?
+)
+if [ "$?" != "0" ]
+then
+	exit 0
+fi
+
+
+if [ ! -d "$MLD_DIR" ]
+then
+	echo "/etc/rc2.d/S15MLD: $MLD_DIR directory not found"
+	exit 1
+fi
+
+# Read each file in the MLD_DIR and save the commented lines in a temp file.
+# After the MLDs are made write the entries into the temp file
+# with a "#" at the beginning of the line.
+
+cd $MLD_DIR
+for i in `/usr/bin/ls`
+do
+	>$i.$$
+	exec < $i
+	while  read dirname
+	do
+	case $dirname in
+	'#'* | '')	#  write comments, empty lines to temp file.
+			echo "$dirname" >> $i.$$
+			continue ;;
+	 * )
+			if [ -d "$dirname" ]
+			then
+				cd $dirname
+				# remove :readlock directory for mail
+				# This is temporary fix until :readlock
+				# is created by pkgcore.
+				if [ $dirname = "/var/mail" ]
+				then
+					/usr/bin/rm -rf :readlock
+				fi
+				for k in `/usr/bin/find . -print`
+				do
+					tmp=`ls -z $k`
+					if [ "x${tmp}" != "x" ]
+					then
+						set $tmp
+						if [ "x$2" = "x" ]
+						then
+			 				/sbin/chlvl $DEF_LEVEL $k
+						fi
+					fi
+				done
+				cd $MLD_DIR
+				/usr/bin/mv $dirname $dirname.$$
+			else
+				echo "/etc/rc2.d/S15MLD: $dirname directory not found"
+				echo "/etc/rc2.d/S15MLD: $dirname must already exist to be converted to a Multi-level directory"
+				echo "$dirname" >> $i.$$
+				continue 
+			fi
+		
+			echo ""
+			echo "Making $dirname a Multi-Level Directory ..."
+			echo ""
+			mldmode -r
+			mkdir -M $dirname
+			# set the correct attributes for the directory
+			set `/usr/bin/cat /var/sadm/install/contents|/usr/bin/grep "$dirname d"`
+			/usr/bin/chmod $4 $dirname
+			/usr/bin/chown $5 $dirname
+			/usr/bin/chgrp $6 $dirname
+			/sbin/chlvl SYS_PUBLIC $dirname
+			mldmode -v
+		
+			# write the entry in the temp file with a "#" at the beginning
+			echo "# $dirname" >> $i.$$
+	
+			# restore files
+			cd $dirname.$$
+			/usr/bin/find . -print|/usr/bin/cpio -pdum $dirname >/dev/null 2>&1
+			cd $MLD_DIR
+			/usr/bin/rm -rf  $dirname.$$ ;;
+			
+		esac
+	done
+	/usr/bin/cp $i.$$ $i
+	rm $i.$$
+done
+set `/usr/bin/cat /var/sadm/install/contents|/usr/bin/grep "$CRONTAB d"`
+MODE=$4
+OWNER=$5
+GROUP=$6
+mldmode -r
+cd $CRONTAB
+	for i in `/usr/bin/ls`
+	do
+		if [ ! -d "$i" ]
+		then
+			set `/usr/bin/ls -z $i`
+			case x$2 in
+	
+			"xSYS_PUBLIC")
+				if [ ! -d "$CRONTAB"/1 ]
+				then
+					/usr/bin/mkdir $CRONTAB/1
+					/usr/bin/chmod $MODE $CRONTAB/1
+					/usr/bin/chown $OWNER $CRONTAB/1
+					/usr/bin/chgrp $GROUP $CRONTAB/1
+					/sbin/chlvl SYS_PUBLIC $CRONTAB/1
+				fi
+				/usr/bin/cat $i >> $CRONTAB/1/$i
+				/usr/bin/chmod 644 $CRONTAB/1/$i
+				/usr/bin/chown $i $CRONTAB/1/$i
+				/sbin/chlvl SYS_PUBLIC $CRONTAB/1/$i ;;
+			
+			"xSYS_PRIVATE")
+				if [ ! -d "$CRONTAB"/2 ]
+				then
+					/usr/bin/mkdir $CRONTAB/2
+					/usr/bin/chmod $MODE $CRONTAB/2
+					/usr/bin/chown $OWNER $CRONTAB/2
+					/usr/bin/chgrp $GROUP $CRONTAB/2
+					/sbin/chlvl SYS_PRIVATE $CRONTAB/2
+				fi
+				/usr/bin/cat $i >> $CRONTAB/2/$i
+				/usr/bin/chmod 644 $CRONTAB/2/$i
+				/usr/bin/chown $i $CRONTAB/2/$i
+				/sbin/chlvl SYS_PRIVATE $CRONTAB/2/$i ;;
+			
+			"xUSER_LOGIN")
+				if [ ! -d "$CRONTAB"/5 ]
+				then
+					/usr/bin/mkdir $CRONTAB/5
+					/usr/bin/chmod $MODE $CRONTAB/5
+					/usr/bin/chown $GROUP $CRONTAB/5
+					/usr/bin/chgrp $OWNER $CRONTAB/5
+					/sbin/chlvl USER_LOGIN $CRONTAB/5
+				fi
+				/usr/bin/cat $i >> $CRONTAB/5/$i
+				/usr/bin/chmod 644 $CRONTAB/5/$i
+				/usr/bin/chown $i $CRONTAB/5/$i
+				/sbin/chlvl USER_LOGIN $CRONTAB/5/$i ;;
+
+			"xUSER_PUBLIC" | * )
+				if [ ! -d "$CRONTAB"/4 ]
+				then
+					/usr/bin/mkdir $CRONTAB/4
+					/usr/bin/chmod $MODE $CRONTAB/4
+					/usr/bin/chown $OWNER $CRONTAB/4
+					/usr/bin/chgrp $GROUP $CRONTAB/4
+					/sbin/chlvl USER_PUBLIC $CRONTAB/4
+				fi
+				/usr/bin/cat $i >> $CRONTAB/4/$i
+				/usr/bin/chmod 644 $CRONTAB/4/$i
+				/usr/bin/chown $i $CRONTAB/4/$i
+				/sbin/chlvl USER_PUBLIC $CRONTAB/4/$i ;;
+	
+			esac
+			/usr/bin/rm $i
+
+		fi
+
+	done
+
+mldmode -v
+exit 0

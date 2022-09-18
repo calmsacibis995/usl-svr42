@@ -1,0 +1,12 @@
+*** etc/uucp/Permissions	Wed Feb  5 18:29:25 1992
+--- ../p8.save/etc/uucp/Permissions	Wed Feb  5 18:29:09 1992
+***************
+*** 0 ****
+--- 1,7 ----
++ #ident	"@(#)/etc/uucp/Permissions.sl 1.2 4.1dt 05/28/92 6106 AT&T-USL"
++ #ident "$Header: Permissions 1.1 91/02/28 $"
++ # This entry for public login.
++ # It provides the default permissions.
++ # See the Basic Networking Utilities Guide for more information.
++ 
++ LOGNAME=nuucp

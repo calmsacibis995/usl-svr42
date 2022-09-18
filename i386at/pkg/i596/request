@@ -1,0 +1,135 @@
+#ident	"@(#)pkg.i596:request	1.1"
+#ident  "$Header: $"
+#	Copyright (c) 1991  Intel Corporation
+#	All Rights Rreserved
+#
+#	INTEL CORPORATION PROPRIETARY INFORMATION
+#
+#	This software is supplied to AT & T under the terms of a license 
+#	agreement with Intel Corporation and may not be copied nor 
+#	disclosed except in accordance with the terms of that agreement.
+#
+
+#	request script for i596 package installation
+
+trap 'exit 3' 15
+
+CONFBIN=/etc/conf/bin
+VFILE=/tmp/varfile
+POST_FILE=$1
+rm -rf $VFILE
+
+RETVCHK=0
+VECTMSG=""
+for VECT in 3 4 5 9 10 11
+do
+	${CONFBIN}/idcheck -v $VECT
+	RETVCHK=$?
+	if [ "$RETVCHK" = 0 ]
+	then
+		VECTMSG="${VECT}\t"
+		echo $VECTMSG >> $VFILE
+		VECTLIST="${VECTLIST} ${VECT}"
+	fi
+done
+	
+if [ "$VECTLIST" = "" ]
+then
+	message "The ${PKG} cannot be installed because interrupts \
+3, 4, 5, 9, 10 and 11 are in use"
+	exit 1
+fi
+DEFLT=9
+cat $VFILE | grep $DEFLT > /dev/null
+if [ $? != 0 ]
+then 
+	DEFLT=`sed -n '1p' $VFILE`
+fi
+I596_REQINTV=`ckitem -u -l "These are the interrupts that may be available" -p "Type the interrupt you want the ethernet controller to be configured for." -d $DEFLT -f $VFILE` || exit $? 
+
+echo "I596_REQINTV=$I596_REQINTV" >>$POST_FILE || exit 1
+rm -rf $VFILE
+# Prompt script to allow the user to select installation
+# of addresses of their choice 
+#
+
+ADDRS="
+base 200 20F
+base 210 21F
+base 220 22F
+base 230 23F
+base 240 24F
+base 250 25F
+base 260 26F
+base 270 27F
+base 300 30F
+base 310 31F
+base 320 32F
+base 330 33F
+base 340 34F
+base 350 35F
+base 360 36F
+base 370 37F"
+
+IOAMSG=""
+for LADR in 200 210 220 230 240 250 270 300 310 320 330 340 350 360 370
+do
+	ADDCHK=`echo "$ADDRS" | grep "base $LADR"` 
+	set `echo $ADDCHK`
+	LADR=$2
+	HADR=$3
+	${CONFBIN}/idcheck -a -l $LADR -u $HADR > /dev/null 2>&1
+	if [ "$?" = 0 ]
+	then
+		IOAMSG="${LADR}\t${HADR}"
+		echo $IOAMSG >> $VFILE
+		IOALIST="${IOALIST} ${LADR}"
+	fi
+done
+if [ "$IOALIST" = "" ]
+then
+	message "The ${PKG} cannot be installed because all available \
+I/O addresses are in use"
+	exit 1
+fi
+DEFLT=200
+cat $VFILE | grep $DEFLT > /dev/null
+if [ $? != 0 ]
+then 
+	set `sed -n '1p' $VFILE`
+	DEFLT=$1
+fi
+echo "\n\nThe following is a list of I/O address ranges at which your"
+echo "ethernet controller may be used."
+
+I596_REQLADD=`ckitem -l "I/O address range" -p "Type the corresponding menu number at which your ethernet controller will be used." -d $DEFLT -f $VFILE` || exit $?
+
+rm -rf $VFILE
+# Prompt for ethernet cable type.
+#
+
+echo "\n\nThe driver can be configured for one of two ethernet cable types."
+
+I596_CABLETYPE=`ckitem -p "Type the menu number of the cable type you are using" -d BNC "AUI (thick cable with flat multi-pin connector)" "BNC (thin cable with round twist on connector)"`
+
+echo "I596_CABLETYPE=$I596_CABLETYPE" >> $POST_FILE || exit 1
+
+if [ "$I596_REQINTV" = 2 ]
+then
+	I596_REQINTV=9
+fi
+
+ADDCHK=`echo "$ADDRS" | grep "base $I596_REQLADD"` 
+set `echo $ADDCHK`
+I596_REQLADD=$2
+I596_REQHADD=$3
+
+echo "I596_REQLADD=$I596_REQLADD" >>$POST_FILE || exit 1
+echo "I596_REQHADD=$I596_REQHADD" >>$POST_FILE || exit 1
+
+if [ -f ${CONFBIN}/S.idbuild ]
+then
+	echo "i596	Y	4	6	1	$I596_REQINTV	$I596_REQLADD	$I596_REQHADD	0	0" >> /etc/conf/cf.d/sdevice
+fi
+exit 0
+

@@ -1,0 +1,4 @@
+#ident	"@(#)uts-x86:net/tcpip/udp.cf/System	1.4"
+#ident	"$Header: $"
+$version 1
+udp	N	16	0	0	0	0	0	0	0	-1

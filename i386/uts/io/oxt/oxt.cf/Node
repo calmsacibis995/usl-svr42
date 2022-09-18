@@ -1,0 +1,20 @@
+#ident	"@(#)uts-x86:io/oxt/oxt.cf/Node	1.2"
+#ident	"$Header: $"
+
+oxt	xto/000	c	0	0	3	600
+oxt	xto/001	c	1	0	3	600
+oxt	xto/002	c	2	0	3	600
+oxt	xto/003	c	3	0	3	600
+oxt	xto/004	c	4	0	3	600
+oxt	xto/005	c	5	0	3	600
+oxt	xto/006	c	6	0	3	600
+oxt	xto/007	c	7	0	3	600
+
+oxt	xto000	c	0	0	3	600
+oxt	xto001	c	1	0	3	600
+oxt	xto002	c	2	0	3	600
+oxt	xto003	c	3	0	3	600
+oxt	xto004	c	4	0	3	600
+oxt	xto005	c	5	0	3	600
+oxt	xto006	c	6	0	3	600
+oxt	xto007	c	7	0	3	600

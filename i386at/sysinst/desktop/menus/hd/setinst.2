@@ -1,0 +1,52 @@
+#ident	"@(#)proto:desktop/menus/hd/setinst.2	1.1.1.6"
+#ident	"$Header: $"
+.optstring
+Your choices are:
+.pageno
+Page %d of %d
+.ul
+UNIX System Installation
+.hhelp_ban
+Instructions
+.helpbanner
+Help: Previous Installation Detected
+.ur
+Previous Installation Detected
+#.ll
+#Please make a selection. Press F1 for help.
+.lr
+Del=Cancel  F1=Help
+.top
+WARNING:  Insufficient disk space to save files during installation.
+
+If you continue, all files will be destroyed.  To save your files,
+cancel the installation and free additional disk space.  It is also
+recommended that you back up your files before continuing.
+
+`[ "$ROOTREQ" ] && echo "$ROOTREQ Kb is needed in '/'.  $ROOTAVL is available"`
+`[ "$USRREQ" ]  && echo "$USRREQ Kb is needed in '/usr'.  $USRAVL is available"`
+`[ "$VARREQ" ]  && echo "$VARREQ Kb is needed in '/var'.  $VARAVL is available"`
+.form
+Cancel the installation and shut down your computer.
+Continue the installation.  This will destroy all files.
+.selection
+Press '1' or '2' followed by 'ENTER':
+.help
+For detailed instructions, press the 'F1' (or '?') key at any time.
+
+In order to preserve your files during installation, a certain amount of 
+free disk space must be available on your disk.  Your disk currently does
+not have enough.  If you want to save your files during installation, you
+will need to free some additional space.  You can do this by removing files 
+that you no longer need, or by removing applications that you can easily 
+reinstall or no longer use.
+
+If you are unable to free enough disk space, you should back up all your 
+files before continuing the installation.
+.helpinst
+ESC=Exit help  F1=Instructions  Del=Cancel  1=Forward  2=Backward
+.hhelpinst
+ESC=Exit instructions  Del=Cancel  1=Forward  2=Backward
+.working
+Working...
+.end

@@ -1,0 +1,5 @@
+#ident	"@(#)uts-x86:io/dlpi_token/ibmtok.cf/Master	1.2"
+#ident	"$Header: $"
+$version 1
+$entry open close init intr start
+ibmtok	ibmtok	Sc	0	0	0-4

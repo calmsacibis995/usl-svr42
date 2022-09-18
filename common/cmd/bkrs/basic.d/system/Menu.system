@@ -1,0 +1,45 @@
+#ident	"@(#)bkrs:common/cmd/bkrs/basic.d/system/Menu.system	1.2"
+#ident	"$Header: $"
+
+menu="System Backup"
+help=open text /usr/vmsys/OBJECTS/Text.h "System Backup" backup/system/T.hbacksys
+framemsg=`readfile $INTFBASE/ssmenu.msg`
+
+name=Backup Users
+itemmsg="Move to an item with the arrow keys and strike the ENTER key to select"
+action=`indicator -w;
+	/usr/bin/getdev -a "removable=true" > /dev/null;
+	regex -e -v "$RET"
+		'^1$' 'open menu $OBJ_DIR/system/Menu.users -d /dev/rdsk/f0t -u'
+		'^.*$' 'open menu $OBJ_DIR/system/Menu.backusr'
+`
+
+name=Backup System
+itemmsg="Move to an item with the arrow keys and strike the ENTER key to select"
+action=`indicator -w;
+	/usr/bin/getdev -a "removable=true" > /dev/null;
+	regex -e -v "$RET"
+		'^1$' '`run sh -c \'.chkuser -c "/usr/bin/backup -c -d /dev/rdsk/f0t"\'`close $OBJ_DIR/system/Menu.system'
+		'^.*$' 'open menu $OBJ_DIR/system/Menu.backsys -c'
+`
+
+
+name=Incremental System Backup
+itemmsg="Move to an item with the arrow keys and strike the ENTER key to select"
+action=`indicator -w;
+	/usr/bin/getdev -a "removable=true" > /dev/null;
+	regex -e -v "$RET"
+		'^1$' '`run sh -c \'.chkuser -c "/usr/bin/backup -p -d /dev/rdsk/f0t"\'`close $OBJ_DIR/system/Menu.system'
+		'^.*$' 'open menu $OBJ_DIR/system/Menu.backsys -p'
+`
+
+
+name=Selective System Backup
+itemmsg="Move to an item with the arrow keys and strike the ENTER key to select"
+action=`indicator -w;
+	/usr/bin/getdev -a "removable=true" > /dev/null;
+	regex -e -v "$RET"
+		'^1$' 'open form $OBJ_DIR/system/Form.files -d /dev/rdsk/f0t -f'
+		'^.*$' 'open menu $OBJ_DIR/system/Menu.backsel'
+`
+

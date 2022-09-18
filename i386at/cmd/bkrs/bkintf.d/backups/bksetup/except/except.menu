@@ -1,0 +1,9 @@
+#ident	"@(#)bkrs:i386at/cmd/bkrs/bkintf.d/backups/bksetup/except/except.menu	1.1"
+#ident	"$Header: $"
+
+#menu#Backup Exception List Management
+#life#permanent
+
+add^Add Entries to the Backup Exception List^add/Form.add
+display^Display Entries in the Backup Exception List^display/Form.display
+remove^Remove Entries from the Backup Exception List^remove/Form.remove

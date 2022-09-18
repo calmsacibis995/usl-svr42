@@ -1,0 +1,73 @@
+#ident "@(#)dtadmin:desktop	1.7"
+#
+CLASS=system
+CLASS=system.post
+CLASS=dtadmin
+CLASS=peripherals
+#
+ICON=appfldr.icon	./Applications	DIR
+ICON=recfldr.icon	./Disks-etc	DIR
+ICON=prefldr.icon	./Preferences	DIR
+ICON=sysfldr.icon	./System_Setup	DIR
+ICON=utlfldr.icon	./Utilities	DIR
+ICON=fmap.icon	./Folder_Map	FILE=$XWINHOME/desktop/Folder_Map
+ICON=wb32.icon	./Wastebasket	FILE=$XWINHOME/desktop/dtwastebasket
+ICON=hdesk32.icon	./Help_Desk	FILE=$XWINHOME/desktop/Help_Desk
+ICON=shut.icon	./Shutdown	FILE=$XWINHOME/desktop/Shutdown
+#
+ICON=dtclock.32	Clock	FILE=$XWINHOME/bin/dtclock
+ICON=xcalc.icon	Calculator	FILE=$XWINHOME/bin/dtcalc
+ICON=mail32.icon	Mail	FILE=$XWINHOME/bin/dtmail
+ICON=puzzle.icon	Puzzle	FILE=$XWINHOME/bin/puzzle
+ICON=term.icon	Terminal	FILE=$XWINHOME/bin/xterm
+ICON=editor.glyph	Text_Editor	FILE=$XWINHOME/bin/dtedit
+#
+ICON=color.icon	Preferences/Color	FILE=$XWINHOME/desktop/DtColorProps
+ICON=dtprop.icon	Preferences/Desktop	FILE=$XWINHOME/desktop/DtDesktopProps
+ICON=dticon.icon	Preferences/Icons	FILE=$XWINHOME/desktop/DtIconProps
+ICON=keybd.icon	Preferences/Keyboard	FILE=$XWINHOME/desktop/DtKeybdProps
+ICON=dtloc.icon	Preferences/Locale	FILE=$XWINHOME/desktop/DtLocaleProps
+ICON=dtmisc.icon	Preferences/Miscellaneous	FILE=$XWINHOME/desktop/DtMiscProps
+ICON=mouse.icon	Preferences/Mouse	FILE=$XWINHOME/desktop/DtMouseProps
+#
+ICON=backup.glyph	Utilities/Backup-Restore	FILE=$XWINHOME/bin/MediaMgr
+ICON=dash.icon	Utilities/System_Status	FILE=$XWINHOME/bin/dashboard
+ICON=dtsched.32	Utilities/Task_Scheduler	FILE=$XWINHOME/bin/dtsched
+#
+ICON=pkgmgr.icon	System_Setup/Appl-n_Setup	FILE=$XWINHOME/bin/PackageMgr
+ICON=modem.icon	System_Setup/Dialup_Setup	FILE=$XWINHOME/bin/DialupMgr
+ICON=font.icon	System_Setup/Font_Setup	FILE=$XWINHOME/bin/fontmgr
+ICON=binder.icon	System_Setup/Icon_Setup	FILE=$XWINHOME/desktop/dtbinder
+ICON=prtsetup.icon	System_Setup/Printer_Setup	FILE=$XWINHOME/bin/prtsetup
+ICON=user.glyph	System_Setup/User_Setup	FILE=$XWINHOME/bin/LoginMgr
+ICON=passwd.32	System_Setup/Password_Setup	FILE=/usr/bin/passwd
+ICON=oam.icon	System_Setup/Extra_Admin	FILE=/usr/sbin/sysadm
+#
+ICON=Disk_A.icon	Disks-etc/Disk_A	FILE=/dev/dsk/f0t
+ICON=Disk_B.icon	Disks-etc/Disk_B	FILE=/dev/dsk/f1t
+ICON=ctape.glyph	Disks-etc/Cartridge_Tape	FILE=/dev/rmt/c0s0n
+#
+HELP=DesktopMgr/folder.hlp	dir.icon	Folder	dtm
+HELP=dtadmin/font.hlp	font.icon	Font_Setup	fontmgr
+HELP=dtmail/mail.hlp	mail32.icon	Mail	dtmail
+HELP=dtedit/edit.hlp	editor.glyph	Text_Editor	dtedit
+HELP=dtclock/clock.hlp	dtclock.32	Clock	dtclock
+HELP=DesktopMgr/iconset.hlp	binder.icon	Icon_Setup	dtm
+HELP=dtadmin/pkgset.hlp	pkgmgr.icon	App-n_Setup	PackageMgr
+HELP=dtadmin/DialMgr.hlp	modem.icon	Dialup_Setup	DialupMgr
+HELP=dtadmin/passwd.hlp	passwd.32	Password_Setup	LoginMgr
+HELP=dtadmin/printer.hlp	prtsetup.icon	Print_Setup	PrtMgr
+HELP=dtadmin/LoginMgr.hlp	user.glyph	User_Setup	LoginMgr
+HELP=dtadmin/backup.hlp	backup.glyph	Backup-Restore	MediaMgr
+HELP=DesktopMgr/shutdown.hlp	shut.icon	Shutdown	dtm
+HELP=DesktopMgr/fmap.hlp	fmap.icon	Folder_Map	dtm
+HELP=dtadmin/printuse.hlp	printer.icon	Printer	PrtMgr
+HELP=DesktopMgr/desktop.hlp	dtprop.icon	UNIX Desktop	dtm
+HELP=dtadmin/tape.hlp	ctape.glyph	Tape	MediaMgr
+HELP=dtadmin/disk.hlp	disk3.5.xpm	Diskette	MediaMgr
+HELP=DesktopMgr/datafile.hlp	datafile.icon	Datafile	dtm
+HELP=DesktopMgr/links.hlp	exec.icon	Link	dtm
+HELP=dtadmin/dashbrd.hlp	dash.icon	System_Status	dashboard
+HELP=DesktopMgr/wb.hlp	wb32.icon	Wastebasket	dtm
+HELP=dtsched/sched.hlp	dtsched.32	Task_Scheduler	dtsched
+HELP=xterm/term.hlp	term.icon	Terminal	xterm

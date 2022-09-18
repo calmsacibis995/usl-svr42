@@ -1,0 +1,69 @@
+#ident	"@(#)pkg.nsu:i386/pkg/nsu/preinstall	1.8"
+#ident	"$Header: $"
+
+############# Begin UPGRADE AND OVERLAY #######################
+
+SCRIPTS=/usr/sbin/pkginst
+. ${SCRIPTS}/updebug
+
+[ "$UPDEBUG" = YES ] && {
+	set -x
+	goany
+}
+
+UPINSTALL=/etc/inst/up
+UPGRADE_STORE=/var/sadm/upgrade
+UPGFILE=${UPGRADE_STORE}/${PKGINST}.env
+
+#  The volatile files saved for ${PKGINST} will be listed in 
+#  /var/sadm/upgrade/${PKGINST}.sav
+
+#  The initial V4 volatile files list for ${PKGINST} should be in 
+#  /etc/inst/up/patch/${PKGINST}.LIST
+
+[ "$PKGINSTALL_TYPE" = NEWINSTALL ] || {
+
+	# if $UPGFILE exists, then it is custom mode and PTNUM is already set
+	# otherwise, set PTNUM to the configured ptnum
+
+	[ -f "$UPGFILE" ] || setptnum=1
+
+	[ "$UPDEBUG" = YES ] && goany
+
+	${SCRIPTS}/pkgsavfiles ${PKGINST}
+
+	[ "$setptnum" ] && {
+
+		. $UPGFILE
+
+		[ "$PKGINSTALL_TYPE" = NEWINSTALL ] && exit 0
+
+		PTM=/etc/conf/sdevice.d/ptm
+		[ -f $PTM ] || PTM=$UPINSTALL/ptm
+
+		[ -f $PTM ] && {
+
+			grep "^ptm	" $PTM >/tmp/ptm.$$ 2>/dev/null
+			OFS=$IFS
+			IFS="	"	#tab
+
+			read Dev Conf DFLT x4 x5 x6 x7 x8 x9 x10 </tmp/ptm.$$
+			IFS=$OFS
+
+    			[ "$Conf" = N ] && unset DFLT
+
+			rm -f /tmp/ptm.$$
+		}
+	
+		[ "$DFLT" ] && {
+			[ $DFLT -lt 16 ] && DFLT=16
+			echo "PTNUM=$DFLT" >>$UPGFILE || exit 1
+		}
+	}
+}
+
+[ "$UPDEBUG" = YES ] && goany
+
+############# End  UPGRADE AND OVERLAY #######################
+
+exit 0

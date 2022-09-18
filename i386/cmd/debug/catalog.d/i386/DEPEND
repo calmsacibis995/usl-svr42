@@ -1,0 +1,42 @@
+#ident	"@(#)debugger:catalog.d/i386/DEPEND	1.8"
+
+MOBJECTS = \
+	$(DEBUGINC)/$(CPU)/print.h \
+	$(DEBUGINC)/$(CPU)/Unbundle.h \
+	$(DEBUGINC)/$(CPU)/Msgtypes.h \
+	$(LIBINT)/$(CPU)/Msgtypes.C \
+	$(LIBINT)/$(CPU)/Mtable.c \
+	$(LIBINT)/$(CPU)/print.C \
+	$(LIBINT)/$(CPU)/Sigtable.h \
+	$(LIBINT)/$(CPU)/Unbundle.C \
+	$(LIBINT)/$(CPU)/Mformat.h \
+	Mcatalog
+
+GMOBJECTS = \
+	$(GUI)/$(CPU)/gui_msg.h \
+	$(GUI)/$(CPU)/GMtable.c \
+	GMcatalog
+
+HELPFILES = \
+	$(COMMON)/debug.help \
+	$(COMMON)/context.help \
+	$(COMMON)/source.help \
+	$(COMMON)/dis.help \
+	$(COMMON)/event.help \
+	$(COMMON)/command.help \
+	$(COMMON)/popup.help \
+	$(COMMON)/debug.defs
+
+OBJECTS = $(MOBJECTS) $(GMOBJECTS)
+
+$(MOBJECTS):	$(COMMON)/Msg.awk $(COMMON)/Msg.awk.in \
+		$(DEBUGINC)/common/Signature.h
+	cat $(DEBUGINC)/common/Signature.h $(COMMON)/Msg.awk.in | $(AWK) -f $(COMMON)/Msg.awk
+	mv print.C Sigtable.h Unbundle.C Mtable.c Mformat.h Msgtypes.C $(LIBINT)/$(CPU)
+	mv print.h Unbundle.h Msgtypes.h $(DEBUGINC)/$(CPU)
+
+$(GMOBJECTS):	$(COMMON)/GMsg.awk $(COMMON)/GMsg.awk.in
+	$(AWK) -f $(COMMON)/GMsg.awk $(COMMON)/GMsg.awk.in
+	mv gui_msg.h GMtable.c $(GUI)/$(CPU)
+
+.MUTEX:	$(MOBJECTS) $(GMOBJECTS)

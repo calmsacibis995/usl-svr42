@@ -1,0 +1,80 @@
+#ident	"@(#)pkg.rfs:common/pkg/rfs/menu.rfs	1.17"
+#ident	"$Header: $"
+.ul
+RFS Installation
+.ur
+Configure Administration Interface
+.lr
+F1=Help
+.top
+`[ "${PKGINSTALL_TYPE}" = "OVERLAY" ] && echo "As RFS is already installed on this computer, you must choose whether"`
+`[ "${PKGINSTALL_TYPE}" = "OVERLAY" ] && echo "to reinstall the RFS software or not."`
+`[ "$OAM" ] && echo "You have the option of installing the OA&M interface for administering"`
+`[ "$OAM" ] && echo "this package."`
+`[ "${PKGINSTALL_TYPE}" != NEWINSTALL ] && echo ""`
+`[ "${PKGINSTALL_TYPE}" != NEWINSTALL ] && echo "As RFS is already configured on this computer, you have the option to"`
+`[ "${PKGINSTALL_TYPE}" != NEWINSTALL ] && echo "preserve your current RFS configuration by combining configuration files."`
+.button
+Apply
+Reset
+.bottom
+Press 'TAB' to move the cursor between fields.  When finished, move the
+cursor to "Apply" and then press 'ENTER' to continue.
+.form
+#
+#
+#TYPE_ENUM <# of choices> //choice 1//choice 2//..//choice n//field label//
+`[ "${PKGINSTALL_TYPE}" = "OVERLAY" ] && echo "2 2//YES::Yes//NO::No//Reinstall the RFS package?://REINSTALL//"`
+# field options
+`[ "${PKGINSTALL_TYPE}" = "OVERLAY" ] && echo "// Left/Right arrow keys for next choice (2 choices)//"`
+#
+#TYPE_ENUM <# of choices> //choice 1//choice 2//..//choice n//field label//
+`[ "$OAM" ] && echo "2 2//YES::Yes//NO::No//Install OA&M menu interface?://OAM//"`
+`[ "$OAM" ] && echo "// Left/Right arrow keys for next choice (2 choices)//"`
+#
+#
+#
+#TYPE_ENUM <# of choices> //choice 1//choice 2//..//choice n//field label//
+`[ "${PKGINSTALL_TYPE}" != NEWINSTALL ] && echo "2 2//Yes//No//Automatically combine configuration files?://AUTOMERGE//"`
+# field options
+`[ "${PKGINSTALL_TYPE}" != NEWINSTALL ] && echo "// Left/Right arrow keys for next choice (2 choices)//"`
+#
+.hhelp_ban
+Instructions
+.helpbanner
+Help: Configure Administration Interface
+.help
+For detailed instructions, press the 'F1' (or '?') key at any time.
+
+`[ "${PKGINSTALL_TYPE}" = "OVERLAY" ] && echo "REINSTALL THE RFS PACKAGE"`
+`[ "${PKGINSTALL_TYPE}" = "OVERLAY" ] && echo ""`
+`[ "${PKGINSTALL_TYPE}" = "OVERLAY" ] && echo "RFS is already installed on your machine.  If you answer yes to this"`
+`[ "${PKGINSTALL_TYPE}" = "OVERLAY" ] && echo "question, the the RFS software will be reinstalled."`
+`[ "${PKGINSTALL_TYPE}" = "OVERLAY" ] && echo ""`
+CONFIGURING ADMINISTRATION INTERFACES FOR RFS
+
+When installing the RFS package, you have the option of installing an
+administrative interface.  This interface can be used by running the
+"sysadm" command.  This interface provides the ability to set up RFS
+on your machine, allow other machines to share your files, and allow
+your machines to use files from other machines.
+
+For this feature to work correctly, you must have the OA&M package
+installed on your system.
+`[ "${PKGINSTALL_TYPE}" != NEWINSTALL ] && echo "   "`
+`[ "${PKGINSTALL_TYPE}" != NEWINSTALL ] && echo "MERGING CONFIGURATION FILES"`
+`[ "${PKGINSTALL_TYPE}" != NEWINSTALL ] && echo "   "`
+`[ "${PKGINSTALL_TYPE}" != NEWINSTALL ] && echo "Your machine is already set up to use RFS.  If you choose to reinstall RFS,"`
+`[ "${PKGINSTALL_TYPE}" != NEWINSTALL ] && echo "but do not choose to automatically combine the configuration files, you will"`
+`[ "${PKGINSTALL_TYPE}" != NEWINSTALL ] && echo "need to do some additional setup to get RFS running again.  Copies of the"`
+`[ "${PKGINSTALL_TYPE}" != NEWINSTALL ] && echo "files you may have modified in customizing RFS for your system will be saved"`
+`[ "${PKGINSTALL_TYPE}" != NEWINSTALL ] && echo "for you."`
+.pageno
+Page %d of %d
+.optstring
+Your options are:
+.helpinst
+ESC=Exit help  F1=Instructions  1=Forward  2=Backward
+.hhelpinst
+ESC=Exit instructions  1=Forward  2=Backward
+.end

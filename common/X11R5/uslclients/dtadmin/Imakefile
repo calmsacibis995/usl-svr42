@@ -1,0 +1,32 @@
+/**/#ident	"@(#)dtadmin:Imakefile	1.28"
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+
+#define IHaveSubdirs
+#define PassCDebugFlags 'CDEBUGFLAGS=$(CDEBUGFLAGS)'
+
+STAR = *
+
+SUBDIRS = dtamlib dashboard floppy userad packager dialup internet \
+		print nfs fontmgr isv
+
+MakeSubdirs($(SUBDIRS))
+DependSubdirs($(SUBDIRS))
+
+InstallMultiple(dtadmin,$(USRLIBDIR)/classdb)
+InstallMultiple(peripherals,$(USRLIBDIR)/classdb)
+InstallMultiple(desktop,$(DESKTOPDIR)/PackageMgr)
+InstallMultiple(dtoldev,$(DESKTOPDIR)/PackageMgr)
+InstallMultiple(help/$(STAR),$(USRLIBDIR)/locale/C/help/dtadmin)
+
+InstallMultiple(pixmaps/$(STAR),$(USRLIBDIR)/pixmaps)
+InstallMultiple(pixmasks/$(STAR),$(USRLIBDIR)/pixmasks)
+InstallMultiple(cursors/$(STAR),$(USRLIBDIR)/bitmaps)
+InstallMultiple(curmasks/$(STAR),$(USRLIBDIR)/bitmasks)

@@ -1,0 +1,47 @@
+#ident	"@(#)oamintf:common/cmd/oamintf/softwaremgmt/defaults/Form.sd_remove	1.5.4.4"
+#ident  "$Header: Form.sd_remove 2.0 91/07/12 $"
+
+form="Remove Installation Defaults File"
+help=OPEN TEXT $INTFBASE/Text.itemhelp $LININFO
+framemsg="`readfile $INTFBASE/form.msg`"
+
+`readfile $INTFBASE/frept.msg | set -l MSG2`
+`set -l PKGADM="/var/sadm/install"`
+
+done=`message -w;
+	shell "rm -f $PKGADM/admin/$F1 2>/tmp/sd_remerr";
+		if [ "$RET" -eq "0" ];
+		then
+			set -l CMD="OPEN TEXT $OBJ_DIR/Text.sd_remok $F1";
+		else
+			set -l CMD="OPEN TEXT $OBJ_DIR/Text.sd_remnok $F2";
+		fi;
+	message -f $MSG2;
+`$CMD
+
+name=Installation defaults filename:
+lininfo=remove-file
+nrow=1
+ncol=2
+frow=1
+fcol=35
+rows=1
+columns=14
+rmenu=vary { `/usr/bin/ls $PKGADM/admin | grep -v '^default$'` }
+choicemsg=Select filename to remove and press RETURN.
+menuonly=TRUE
+invalidmsg=`
+	if [ -z $F1 ] ;
+	then
+		echo Error - input is required. ;
+	elif [ $F1 = default ] ;
+	then
+		echo Error - defaults file "default" may not be removed. ;
+	else
+		echo Error - unable to open file $PKGADM/admin/$F1. ;
+	fi
+`
+
+name=RESET
+button=8
+action=reset

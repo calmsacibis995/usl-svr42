@@ -1,0 +1,40 @@
+#ident	"@(#)face:src/oam/Menu.dos	1.1.4.3"
+#ident  "$Header: Menu.dos 1.4 91/10/15 $"
+
+menu=$$uxface:530:"Global MS-DOS Program Administration"
+
+framemsg=$$uxface:529:"Move the cursor to the item you want and press ENTER to select it."
+
+help=OPEN TEXT $INTFBASE/Text.oamhelp $!LININFO 
+
+lifetime=permanent
+
+
+
+name=$$uxface:531:"add"
+description=$$uxface:280:"Add Global MS-DOS Programs"
+lininfo="/usr/sadm/sysadm/add-ons/face/applmgmt/FACE/dos_programs/add \"$$uxface:280:Add Global MS-DOS Programs\"" add
+action=`set -l OBJ_DIR=/usr/sadm/sysadm/add-ons/face/applmgmt/FACE/dos_programs/add
+`OPEN FORM /usr/sadm/sysadm/add-ons/face/applmgmt/FACE/dos_programs/add/Form.add
+
+
+name=$$uxface:532:"list"
+description=$$uxface:533:"List Global MS-DOS Programs"
+lininfo="/usr/sadm/sysadm/add-ons/face/applmgmt/FACE/dos_programs/list \"$$uxface:533:List Global MS-DOS Programs\"" list
+action=`set -l OBJ_DIR=/usr/sadm/sysadm/add-ons/face/applmgmt/FACE/dos_programs/list
+`OPEN MENU /usr/sadm/sysadm/add-ons/face/applmgmt/FACE/dos_programs/list/Menu.list
+
+
+name=$$uxface:534:"modify"
+description=$$uxface:286:"Modify Global MS-DOS Programs"
+lininfo="/usr/sadm/sysadm/add-ons/face/applmgmt/FACE/dos_programs/modify \"$$uxface:286:Modify Global MS-DOS Programs\"" modify
+action=`set -l OBJ_DIR=/usr/sadm/sysadm/add-ons/face/applmgmt/FACE/dos_programs/modify
+`OPEN MENU /usr/sadm/sysadm/add-ons/face/applmgmt/FACE/dos_programs/modify/Menu.mod
+
+
+name=$$uxface:535:"remove"
+description=$$uxface:528:"Remove Global MS-DOS Programs"
+lininfo="/usr/sadm/sysadm/add-ons/face/applmgmt/FACE/dos_programs/remove \"$$uxface:528:Remove Global MS-DOS Programs\"" remove
+action=`set -l OBJ_DIR=/usr/sadm/sysadm/add-ons/face/applmgmt/FACE/dos_programs/remove
+`OPEN MENU /usr/sadm/sysadm/add-ons/face/applmgmt/FACE/dos_programs/remove/Menu.del
+

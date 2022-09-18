@@ -1,0 +1,4 @@
+#ident	"@(#)uts-x86:io/log/log.cf/System	1.3"
+#ident	"$Header: $"
+$version 1
+log	Y	1	0	0	0	0	0	0	0	-1

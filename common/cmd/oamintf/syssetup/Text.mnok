@@ -1,0 +1,25 @@
+#ident	"@(#)oamintf:common/cmd/oamintf/syssetup/Text.mnok	1.1.1.2"
+#ident  "$Header: Text.mnok 2.0 91/07/12 $"
+#	Module Name: Text.mnok
+
+title="Error Modifying File: $ARG1"
+
+framemsg=`readfile $INTFBASE/conf.msg`
+lifetime=shortterm
+
+rows=6
+columns=60
+
+text="
+An error occured attempting to modify file: $ARG1 .
+
+`readfile $MAINTERR`"
+
+altslks
+name=CONT
+button=11
+action=CLOSE
+
+name=CANCEL
+button=14
+action=CLEANUP

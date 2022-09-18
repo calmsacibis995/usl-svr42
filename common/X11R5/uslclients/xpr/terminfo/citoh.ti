@@ -1,0 +1,117 @@
+#ident	"@(#)xpr:terminfo/citoh.ti	1.2"
+#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+#	Copyright (c) 1988, 1989, 1990 AT&T
+#	  All Rights Reserved
+
+#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+#	UNIX System Laboratories, Inc.
+#	The copyright notice above does not evidence any
+#	actual or intended publication of such source code.
+
+
+######################################################################
+#
+# Generic entry for the C.Itoh 8510 printer and emulations:
+#
+
+citoh+basic,
+
+#   The 8510 I use only allows 79 columns!
+	cols#79,
+
+	lines#66,
+	it#8,
+
+	orc#1,
+	orhi#10,
+	orl#24,
+	orvi#144,
+
+	cr=\r,
+	cud1=\n,
+	cuf1=\s,
+	ff=\f,
+	ht=\t,
+
+	cpi=%?%p1%{10}%=%t\EN%e%p1%{12}%=%t\EE%e%p1%{16}%=%p1%{17}%=%O%t\EQ%;,
+	cvr=%?%p1%{0}%>%p1%{100}%<%&%t\ET%p1%02d%;,
+
+	is1=^Q^X,
+	is2=\Ec1\Ev66.,
+
+	smso=\E!,
+	rmso=\E",
+	smul=\EX,
+	rmul=\EY,
+	bold=\E!,
+	ssubm=\Es2,
+	rsubm=\Es0,
+	ssupm=\Es1,
+	rsupm=\Es0,
+	swidm=^N,
+	rwidm=^O,
+	sgr0=\E"\EY\Es0^O,
+	sgr=%?%p1%p6%|%t\E!%e\E"%;%?%p2%t\EX%e\EY%;,
+
+	rep=\ER%p2%03d%p1%c,
+
+	snlq=\Em2,
+	snrmq=\Em1,
+	sdrfq=\Em0,
+
+	smglp=\EL%p1%03d,
+	smgrp=\E/%{1}%p1%+%03d,
+
+#   slines=
+	u9=\Ev%p1%02d.,
+
+citoh+low,
+
+	npins#8,
+	spinv#68,
+	spinh#136,
+
+	porder=8\,7\,6\,5\,4\,3\,2\,1;0,
+
+	sbim=\ES%p1%04d,
+
+#   birep=
+	u4=\EV%p2%04d%p3%c,
+
+#   bitwin#,
+	u1=1,
+#   bitype#
+	u2=1,
+
+#   defbi=
+#	Set the line spacing to 17/144 inch to get (almost) 68 dots
+#	per inch vertically (8 * 144/17).
+#	Set the character spacing to compressed (1/17 inch or 17
+#	characters per inch); at 136 dots per inch horizontally this
+#	means 8 dots per character.
+#	Set the left margin at the left edge of the image.
+#	The C.Itoh doesn't have parameterized vertical motion,
+#	so we simulate it with linefeeds. Assume we never need
+#	to move more than 63 lines (at 17/144 LPI).
+#	Set uni-directional motion; bi-directional causes a wavy
+#	image.
+#   defbi=
+	u6=%?%p5%{1}%=%t\ET17\EQ\EL%p1%{8}%/%03d%p2%{8}%/%Py%?%gy%{31}%>%t\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n%gy%{32}%-%Py%;%?%gy%{15}%>%t\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n%gy%{16}%-%Py%;%?%gy%{7}%>%t\n\n\n\n\n\n\n\n%gy%{8}%-%Py%;%?%gy%{3}%>%t\n\n\n\n%gy%{4}%-%Py%;%?%gy%{1}%>%t\n\n%gy%{2}%-%Py%;%?%gy%{0}%>%t\n%;\E>%;,
+
+#   endbi=
+	u7=\EA\EP\EL001\E<,
+
+#   binel=
+	u5=\n\r\EL%p1%{8}%/%03d,
+
+######################################################################
+#
+# Specific printers:
+#
+
+citoh|8510|C.Itoh 8510 printer,
+
+	bufsz#1024,
+	cps#120,
+
+	use=citoh+basic, use=citoh+low,

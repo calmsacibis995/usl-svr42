@@ -1,0 +1,181 @@
+.\"ident	"@(#)r4xlock:xlock.man	1.1"
+.\" @(#)xlock.n 22.2 89/09/20; Copyright (c) 1989 - Sun Microsystems, Inc.
+.TH XLOCK 1 "20 Sep 1989" "X11R4"
+.SH NAME
+xlock \- Locks the local X display till a password is entered.
+
+.SH SYNOPSIS
+.B xlock
+[
+.BI \-display " dsp"
+]
+[
+.BI \-mode " mode"
+]
+[
+.BI \-time " timeout"
+]
+[
+.BI \-count " n"
+]
+[
+.BI \-font " fontname"
+]
+[
+.BI \-nice " nicelevel"
+]
+[
+.B \-mono
+]
+[
+.B \-saver
+]
+[
+.B \-root
+]
+[
+.B \-v
+]
+
+.SH DESCRIPTION
+.B xlock
+locks the X server till the user enters their password at the keyboard.
+While
+.B xlock
+is running,
+all new server connections are refused.
+The screen saver is disabled.
+The mouse cursor is turned off.
+The screen is blanked and a changing pattern is put on the screen.
+The pattern changes after
+.I timeout
+seconds. 
+If a key or a mouse button is pressed then the user is prompted for the
+password of the user who started
+.B xlock.
+
+If the correct password is typed, then the screen is unlocked and the X
+server is restored.  When typing the password, characters are echoed
+to the screen as question marks (?), and Control-U and Control-H are
+active as kill and erase respectively.  To return to the locked screen,
+click in the small icon version of the changing pattern.
+
+.SH OPTIONS
+.TP 5
+.B \-display " dsp"
+The
+.I display
+option sets the X11 display to lock.
+.B xlock
+will not allow one to lock another server's displays thus only
+.BI unix:server.screen,
+.BI localhost:server.screen,
+and
+.BI :server.screen
+are allowed for
+.I dsp.
+Where
+.I server
+is which X11 server socket to connect to and
+.I screen
+is which head to display the pattern on.
+.TP 5
+.B \-mode " modename"
+As of this writing there are three display modes supported.
+.TP 8
+.B hop
+Hop mode shows the "real plane fractals" from the September 1986 issue of
+Scientific American.
+.TP 8
+.B life
+Life mode shows Conway's game of life.
+.TP 8
+.B qix
+Qix mode shows the spinning lines similar to the old video game
+by the same name.
+.TP 5
+.B \-time " timeout"
+The
+.I time
+option sets the number of seconds that each unique fractal will remain on
+the screen before being replaced by the next one to
+.I timeout.
+.TP 5
+.B \-count " n"
+The
+.I count
+option sets the speed at which a mode will operate.  The different modes
+interpret this value differently.  For 'hop' and 'qix' this sets the
+number of pixels and lines respectively to draw in each color.
+These patterns are calculated in batches of
+.I n
+objects, then sent to the server in a single color.  Faster machines,
+expecially machines with floating point hardware can set this to a
+higher number and still have fast changing patterns.
+The 'life' mode, in contrast interprets this number as the number of
+milliseconds to delay after each generation of the "critters".  A low
+number here makes the pattern change rapidly, where 1000 means wait a
+second between generations.
+.TP 5
+.B \-font " fontname"
+The
+.I font
+option sets the font to be used on the prompt screen.
+.TP 5
+.B \-nice " nicelevel"
+The
+.I nice
+option sets system nicelevel of the xlock process to
+.I nicelevel .
+.TP 5
+.B \-mono
+The
+.I mono
+option causes xlock to display monochrome, (black and white) pixels rather
+than the default colored ones on color displays.
+.TP 5
+.B \-saver
+The
+.I saver
+option causes xlock to only draw the patterns and not lock the display.
+A keypress or a mouse click will terminate the screen saver.
+.TP 5
+.B \-root
+The
+.I root
+option allows the root password to unlock the server as well as the user
+who started xlock.
+.TP 5
+.B \-v
+Verbose mode, tells what options it is going to use.
+
+.SH BUGS
+"kill -KILL
+.B xlock
+" causes server to be unusable, since
+.B xlock
+has removed all hosts (including localhost) from the access control list
+to lock out all new X clients, and SIGKILL cannot be caught by any program,
+.B xlock
+will terminate before restoring the access control list.  This will
+leave the X server in a state where
+\fI "you can no longer connect to that server, and this operation cannot be
+reversed short of resetting the server."\fP
+		-From the X11R2 Xlib Documentation page 140. 
+.SH SEE ALSO
+X(1), Xlib Documentation.
+
+.SH AUTHOR
+ Patrick J. Naughton	 (naughton@sun.com)
+ Window Systems Group
+ Sun Microsystems, Inc.
+ Mountain View, CA  94043
+ 415/336-1080
+
+.SH COPYRIGHT
+Copyright (c) 1988-89 by Patrick J. Naughton and Sun Microsystems, Inc.
+
+
+.SH CONTRIBUTORS
+  milliken@heron.bbn.com	karlton@wsl.dec.com
+  dana@thumper.bellcore.com	vesper@3d.dec.com	flar@sun.com

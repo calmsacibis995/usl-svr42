@@ -1,0 +1,2 @@
+ANS=y
+PKGLIST= softint ccs edebug kdb 

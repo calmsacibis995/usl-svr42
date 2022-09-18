@@ -1,0 +1,5 @@
+#ident	"@(#)uts-x86at:io/fd/fd.cf/Master	1.7"
+#ident	"$Header: $"
+$version 1
+$entry init start open close read write ioctl strategy size print intr
+fd	fd	rbck	0	1	1

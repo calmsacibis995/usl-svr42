@@ -1,0 +1,56 @@
+#ident	"@(#)oamintf:common/cmd/oamintf/usermgmt/Form.modmac1	1.1.7.3"
+#ident  "$Header: Form.modmac1 2.0 91/07/12 $"
+
+form="Modify Security Levels"
+
+`set -l MOD_LIFE=longterm`
+lifetime=$MOD_LIFE
+
+framemsg=`readfile $INTFBASE/form.msg`
+
+help=OPEN TEXT $INTFBASE/Text.itemhelp $LININFO
+
+wrap=false
+
+done=`unset -l OP -l op -l OPERATOR;
+message -w -f "Obtaining user's current levels.  Please wait.";
+if [ "$F1" != "no change" ]; then
+	if [ "$F1" = "add" ]; then
+		set -l OPERATOR="+" -l OP=Add -l op=add;
+		set -l CMD="OPEN FORM $OBJ_DIR/Form.macadd";
+	elif [ "$F1" = "remove" ]; then
+		set -l OPERATOR="-" -l OP=Remove -l op=remove;
+		set -l CMD="OPEN FORM $OBJ_DIR/Form.macrem";
+	elif [ "$F1" = "replace" ]; then
+		set -l OPERATOR="=" -l OP=Replace -l op=replace;
+		set -l CMD="OPEN FORM $OBJ_DIR/Form.macrep";
+	fi;
+else
+	message -w -f "Modifying user $LOGIN.";
+	/usr/bin/rm -f /tmp/sgrp;
+	if [ -n "$TFADMIN" ]; then shell "$TFADMIN usermod $!UMODARGS $!LOGIN >/dev/null 2>$UMODERR";
+	else shell "usermod $!UMODARGS $!LOGIN >/dev/null 2>$UMODERR"; fi;
+	if [ "$RET" -eq "0" ]; then
+      		set -l MOD_LIFE=shortterm;
+		set -l CMD="OPEN TEXT $OBJ_DIR/Text.musrok $LOGIN";
+	else
+		set -l CMD="OPEN TEXT $OBJ_DIR/Text.musrnok $LOGIN";
+	fi;
+fi`$CMD
+#  $F1
+name=Do you want to modify security level(s)?
+lininfo=Form.modmac1:mlevel
+nrow=1
+ncol=3
+frow=1
+fcol=44
+rows=1
+columns=12
+scroll=true
+
+rmenu={ "add" "remove" "replace" "no change" }
+menuonly=true
+value=no change
+
+invalidmsg=const "ERROR: Not a valid choice."
+fieldmsg= const "Press the CHOICES function key. Press SAVE when you complete the form."

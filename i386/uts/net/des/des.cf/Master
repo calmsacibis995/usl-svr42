@@ -1,0 +1,4 @@
+#ident	"@(#)uts-x86:net/des/des.cf/Master	1.3"
+#ident	"$Header: $"
+$version 1
+des	des	o	0	0	0

@@ -1,0 +1,580 @@
+$%s must be set in the environment.\n
+${LOGINID}'s home directory doesn't exist
+'No other mail system has been set up. See \"Mail Setup\" for mail systems setup.'
+Arguments invalid\n
+Bad regular expression\n
+Can't access $LOGINID's home directory
+Can't access $VMSYS/lib/services
+Can't create $dir in  $LOGINID's home directory
+Can't find home directory for vmsys
+Can't find identify file\n
+Can't read user name on system.\n
+Can't update ${VMSYS}/lib/services file because it is LOCKED!!!
+Cannot create install file\n
+Cannot open file
+Cannot open file %s
+Cannot open install file\n
+Cannot open services file\n
+Cannot open temporary file\n
+Error accessing %s\n
+Error creating %s\n
+Error in setting MAC Level\n
+Error writing permissions file.\n
+Extra 'end' ignored\n
+Invalid cap-name: %s\n
+Missing 'end'\n
+Processing file:
+Syntax error: 'break' outside of 'query'\n
+Syntax error: 'case' outside of 'query'\n
+Syntax error\n
+The permission of '%1$s' is not properly set for user '%2$s'.\n
+The value for VMSYS is not set.
+This is a mandatory field. Strike CHOICES for choices.
+This is not a valid login on your system. Strike CHOICES for valid choices.
+Trying again...
+Unable to get VPID\n
+Unable to open suspend file %s\n
+Unable to send sigusr1 to face pid=%ld\n
+Usage: chkperm -l|-d|-v|-t cap|-e cap|-y cap|-n cap [-u user-name]\n
+You must be super-user to remove $LOGINID as a FACE user.
+You must be super-user to set FACE permissions for a user.\n
+You must be super-user to set the FACE permissions for $LOGINID.
+You must be super-user to undefine a FACE user.\n
+\n$LOGINID's group is not in /etc/group.\n
+\n${LOGNID}'s home directory has not been retrieved correctly.
+\r\nAn error has occurred while trying to use the \"FMLI\" package.\nThe file %s will not execute properly.\nThis situation must be corrected before you can proceed.\r\n\n
+\r\nThe environment variable \"OASYS\" must be set in\nyour environment before you can use FACE.\r\n\n
+\r\nThe environment variable \"VMSYS\" must be set in\nyour environment before you can use FACE.\r\n\n
+\r\nYou already have FACE running.\r\n\n
+\r\nYou have not installed the \"FMLI\" package.\nPlease do so before attempting to use FACE.\r\n\n
+\t${dir} directory already exists
+\t${dir} directory has been created for ${LOGINID}
+echo \"Enter the arguments for %s: \\c\";
+found previous response of
+init=`message No MS-DOS Programs Installed`false\n
+init=`message No Programs Installed`false\n
+no
+not found
+received
+sending... 
+unix
+yes
+usage: chkterm term-identifier
+black
+blue
+cyan
+green
+magenta
+red
+white
+yellow
+To return, type \'exit\' or control-d
+You are in `pwd`
+'\"'$other'\" is not set up. See \"Mail Setup\" for mail systems setup.'
+Cannot determine terminal type - please enter terminal name\n
+The terminal "$TERM" is unknown - please try a different response\n
+Security on $PATHname for $LOGNAME
+for(-not used-)
+HELP on
+Press CHOICES to select, then press SAVE when you complete the form.
+Owner
+Owner Read Permissions
+Owner Write Permissions
+Owner Run/Search Permissions
+Owner Run or Search Permissions
+Group Read Permissions
+Group Write Permissions
+Group Run/Search Permissions
+Group Run or Search Permissions
+All Read Permissions
+All Write Permissions
+All Run/Search Permissions
+All Run or Search Permissions
+RESET
+Add MS-DOS Programs
+A bin directory has been created for the ${F3} program.
+I am unable to create a bin directory. The program has not been added.
+Terminal Type:
+Terminal Type
+Enter the correct Terminal Type needed for the command invoked.
+You must enter a value for this field.
+${F1} is not a valid terminal on your system.
+Program Menu Name:
+Program Menu Name
+Enter a name, then press SAVE when you complete the form.
+Semi-colons are not allowed in this field.
+${F2} already exists.
+Drive Number and Full Pathname of Command:
+Drive Number and Full Pathname of Command
+Enter a command name, then press SAVE when you complete the form.
+A value must be entered for this field.
+${NF3} contains an illegal character or is not complete.
+Working Directory:
+Working Directory
+Enter a directory name, then press SAVE when you complete the form.
+The Path entered must be a valid directory.
+Prompt for Arguments:
+Prompt for Arguments
+The only valid responses are yes and no.
+Modify MS-DOS Programs
+Enter the correct Terminal type needed for the command invoked.
+Name of Command
+${NF3} contains an illegal character.
+The Path entered must be a valid directory
+HELP on Conversion
+Name of source file:
+You did not type a valid source file
+Type the full path of the source file.
+Name of target file:
+You did not type a valid target file
+Type the full path of the target file.
+Mail
+Sending message. Please wait...
+An error has occured while sending your mail.
+Message successfully sent.
+To:
+To
+This is a mandatory field.
+Subject:
+Subject
+Message:
+Message
+Cc:
+Cc
+HELP
+CHOICES
+SAVE
+PREV-FRM
+NEXT-FRM
+CANCEL
+CMD-MENU
+Color Attributes
+Press CHOICES to select a color, then press SAVE when you complete the form.
+Color Attributes have been updated.
+Title Text:
+This is not a valid color, please press CHOICES to select.
+This is not a visible color against the background, select another color.
+Title Text
+Frame Text:
+Frame Text
+Active Frame Border:
+Active Frame Border
+Active Frame Title Bar:
+This is not a visible color against the text, select another color.
+Active Frame Title Bar
+Active Frame Title Text:
+This is not a visible color against the bar, select another color.
+Active Frame Title Text
+Inactive Frame Border:
+Inactive Frame Border
+Inactive Frame Title Bar:
+Inactive Frame Title Bar
+Inactive Frame Title Text:
+Inactive Frame Title Text
+Highlighted Bar:
+Highlighted Bar
+Screen Label Key Bar:
+Screen Label Key Bar
+Office Functions Form
+long form
+name and description
+name and marks
+name only
+alphabetical
+alphabetical by description
+least recent first
+most recent first
+Office Functions have been updated.
+Delete objects from my Wastebasket after (# of days):
+Delete Objects in Wastebasket
+Enter a number of days, 1 - 30, then press SAVE when you complete the form.
+Prompt before deleting objects from my Wastebasket:
+Prompt Before Deleting Objects
+Default Editor:
+Default Editor
+${F3} does not exist on your path or is not a valid command.
+Folder Display Format:
+Folder Display Format
+Folder Display Order:
+Folder Display Order
+Confirm at Exit:
+Confirm at Exit
+Invoke FACE at login:
+Invoke FACE at login
+File Permissions
+File Permissions have been updated.
+WARNING: You are denying some permissions to yourself!
+Owner Read Permissions:
+Owner Write Permissions:
+Owner Run/Search Permissions:
+Group Read Permissions:
+Group Write Permissions:
+Group Run/Search Permissions:
+All Read Permissions:
+All Write Permissions:
+All Run/Search Permissions:
+Display Frames Form
+Press CHOICES to select a frame, then press SAVE when you complete the form.
+Display Frames have been updated.
+First Frame:
+First Frame
+The frame was previously selected, please make a different selection.
+The pathname specified must be a full pathname.
+The pathname specified does not exist or is empty.
+The pathname specified is not a valid frame.
+The pathname specified is not readable.
+Second Frame:
+Second Frame
+Third Frame:
+Third Frame
+Fourth Frame:
+Fourth Frame
+Add Programs
+Name of Command:
+A directory name is not valid input for this field.
+${NF3} is not a valid command.
+Modify Programs
+Spell Checker
+HELP on Spell Checker
+Enter the full pathname of a file, then press SAVE when you complete the form.
+I can't find /usr/bin/spell. Perhaps the SPELL Utilities are not installed.
+Pathname:
+${F1} is not a regular file or does not exist.
+You do not have permission to read ${F1}.
+${F1} is empty.
+Find
+Can not invoke the \"find\" command from root (/).
+Name:
+Name
+Enter the name of a file. Press SAVE when you complete the form.
+Type:
+Type
+Press CHOICES to select type. Press SAVE when you complete the form.
+Any
+Owner:
+Press CHOICES to select owner. Press SAVE when you complete the form.
+Age:
+Age
+Enter a number or range of days. Press SAVE when you complete the form.
+Input is not valid
+Range values must be in increasing order
+Organize
+wastebasket
+Organization has been updated.
+You don't have permission to organize ${ARG1}
+Default Organization:
+Default Organization
+Folder Display Order: 
+Change Print Options for $LOGNAME
+HELP on Print Command
+Enter a print command with appropriate options, then press SAVE when finished.
+Print Command #1:
+$PRINT is an invalid command.
+Print Command #2:
+Print Command #3:
+Suspended Send Mail
+Send Mail
+Spell Services
+HELP on Spell Services
+Filename:
+Add Global MS-DOS Programs
+Programs Menu Entry:
+Enter the name that should appear in the Programs Menu.
+Enter the drive number and full pathname of the command to execute.
+Enter the directory you want to change to when the command is invoked.
+Should the user be prompted for arguments when the command is invoked?
+Modify Global MS-DOS Programs
+Modify Global Programs
+Pathname of Command:
+Enter the name of the command to execute.
+${NF3} is not an absolute path.
+Add Global Programs
+Enter the command to execute.
+Add a FACE Environment for a UNIX System User
+User's Login ID:
+Enter the login ID of the user you wish to add.
+nobody:
+noaccess:
+The login specified must exist in the /etc/passwd file first.
+The login specified has a uid less than 100, I will not modify this login.
+${F1} is already a FACE user, use modify instead.
+Invoke FACE at Login:
+Should FACE be invoked automatically when this user logs onto this system?
+Only yes or no are valid answers.
+Provide UNIX System Access:
+Should this user have access to the UNIX System shell?
+Show System Administration in FACE menu:
+Should this user have a System Administration entry in the top FACE menu?
+Modify FACE Environment for a FACE User
+There are no FACE users defined on this system to modify.
+Enter the login ID of the user you wish to modify.
+${F1} is not a FACE user, use add instead.
+Remove FACE Environment for a FACE User
+There are no FACE users defined on this system to remove.
+Enter the login ID of the user you wish to remove.
+${F1} is not defined as a FACE user.
+Confirm Delete of ${ARG1}
+Press CONT to delete ${ARG1} or CANCEL to cancel the delete.
+\n        You are about to delete\n\n        ${ARG1}\n
+CONT
+Printer ${ARG2}
+Press the CANCEL function key to cancel.
+The Printer Queue is empty.
+There are no defined printers to get the status of.
+Warning
+Press the CANCEL function key to continue.
+\n     I can't find the lpstat command.  Please contact\n     your system administrator for assistance.\n
+\n     The Print Scheduler is not running. No printer \n     queue or status information is available.\n
+Mail Errors
+HELP on Mail Errors
+bad system name:
+rmail: Can\'t send to
+No mail was sent to the following invalid mail destinations:\n
+Some error has occured while sending your message.\nWhat follows is the error output from mailx(1):\n
+new
+Contents of New Mail Message
+Contents of Saved Mail Message
+Press CANCEL to cancel.
+REPLY
+Reply to
+Saving message. Please wait...
+Message has been saved.
+DELETE
+Deleting message. Please wait...
+Message has been deleted.
+Spell Checker Output
+Press CANCEL to cancel this display.
+\nSpelling errors for ${TT}:\n
+\nSpell Checker detected no errors in\n${TT}.\n
+${ARG2} does not exist.
+${ARG2} is not readable.
+Confirm Exit
+Press CONT to exit or CANCEL to cancel the exit.
+\n        You are about to exit FACE.\n
+No HELP text is available for this item.
+CONTENTS
+Help Facility:
+Invalid Mail Destinations
+No mail was sent to the\nfollowing mail destinations:\n
+Can\'t send to
+HELP on $ARG2
+Full Pathname
+Press CANCEL to continue.
+\nThe full pathname is:\n
+Results of Spell on ${TT}
+\nWhat follows is the output of spell:\n
+\nSpell detected no errors in ${TT}.\n
+Confirmation
+Installation of Mail Services
+Mail Services
+Mail Services are already in the Programs Menu.
+Mail Services have been added.
+Mail Services have not been added.
+Installation of Spell Checker
+Spell Checker is already in the Programs Menu.
+The SPELL Utilities do not exist on your system yet.
+Spell Checker has been added.
+Spell Checker has not been added.
+Removal of Mail Services
+Mail Services have been removed.
+Mail Services have not been removed.
+Mail Services are not in the Programs Menu.
+Removal of Spell Checker
+Spell Checker has been removed.
+Spell Checker has not been removed.
+Spell Checker is not in the Programs Menu.
+Results of Adding a FACE Environment for a UNIX System User
+Press CANCEL to return to the previous frame.
+\nERROR: The user could not be properly added.\nWhat follows is the output of the add.\n
+\nThe user has been added as a FACE user.\nWhat follows is the output of the add.\n
+Results of Modifying a FACE Environment for a FACE User
+\nERROR: The user could not be modified.\nWhat follows is the output of the modify.\n
+\nThe FACE user has been successfully modified.\n
+Results of Removing a FACE Environment for a FACE User
+\nERROR: The user could not be removed.\nWhat follows is the output of the remove.\n
+\nThe FACE user has been successfully removed.\n
+Modify Personal MS-DOS Programs
+List Personal MS-DOS Programs
+Remove Personal MS-DOS Programs
+Move to an item with arrow keys and press ENTER to select the item.
+UPDATE
+MS-DOS Programs Administration
+List Programs
+List MS-DOS Programs
+Remove Programs
+Remove MS-DOS Programs
+Printer Operations
+Print Options
+Printer Queue
+Printer Status
+Read New Mail
+No mail available for \"$LOGNAME\".
+Read Saved Mail
+No mail is currently saved for \"$LOGNAME\".
+Creating list of new mail messages.  Please wait...
+Updating list of new mail messages.  Please wait...
+Unknown command
+HELP on Objects found
+set hold
+ignore message status
+HELP to Read New Mail
+There are no messages left in your mailbox.
+^Held +([0-9]+ messages*)$0 in
+$m0 left in mailbox.
+^New mail has arrived
+New mail has arrived.
+itemmsg=\"Move to a message with arrow keys and press ENTER to read the message.\"
+^New mail has arrived.
+Creating list of saved mail messages.  Please wait...
+Updating list of saved mail messages.  Please wait...
+HELP to Read Saved Mail
+There are no longer any saved messages.
+Choices
+Filecabinet
+Office of $LOGNAME
+Other Users
+Preferences
+Programs
+Change Password
+To return to FACE without changing your password, press BREAK or DEL
+Display Frames
+Office Functions
+Modify Personal Programs
+List Personal Programs
+Remove Personal Programs
+Programs Administration
+Create $ARG3
+File folder
+File folder $ARG3 created in $ARG4
+File folder $ARG3 not created in $ARG4
+Standard file
+Standard file $ARG3 created in $ARG4
+Standard file $ARG3 not created in $ARG4
+FACE
+HELP on FACE
+System Administration
+UNIX System
+MS-DOS System
+Exit FACE
+Objects Found in $PATHname
+No objects found.
+Help Facility: Overview of Contents
+HELP on Using Help
+Commands
+Filecabinet, File Folders, and Files
+Frames and Function Keys
+The Help Facility
+The Screen
+HELP on Mail Services
+New Mail 
+Checking mailbox. Please wait.
+Retrieving mail message. Please wait.
+Suspended Read New Mail
+Send Mail 
+Send
+HELP on Office
+Filecabinet: $HOME
+Programs Administration ( MS-DOS )
+Programs Administration ( UNIX )
+HOME
+Wastebasket
+Print
+HELP on Print
+Print Command #1
+Print Command #2
+Print Command #3
+Change Print Options
+HELP on Programs
+   Global Programs:
+   Personal Programs:
+REMOVE OBJECTS FROM WASTEBASKET WITHOUT PROMPTING
+HELP on Other Users
+Objects Scheduled for Removal
+HELP on Objects Scheduled for Removal
+Press MARK to select files to save, ENTER to delete files or CANCEL to cancel.
+This will take a moment. Please wait...
+All objects have been permanently removed from your WASTEBASKET.
+Marked objects remain in your WASTEBASKET.
+No objects have been removed from your WASTEBASKET.
+$m2 will not be deleted.
+$m2 will be deleted.
+Help Facility: Commands Overview
+cancel
+cleanup
+copy
+create
+delete
+display
+exit
+find
+frm-mgmt
+goto
+help
+move
+next-frm
+organize
+prev-frm
+print
+redescribe
+refresh
+rename
+run
+security
+show-path
+time
+undelete
+unix-system
+update
+Remove Global MS-DOS Programs
+Move the cursor to the item you want and press ENTER to select it.
+Global MS-DOS Program Administration
+add
+list
+List Global MS-DOS Programs
+modify
+remove
+menu:F1
+Remove Global Programs
+List Global Programs
+FACE Users on This System
+There are no FACE users defined on this system.
+Framed Access Command Environment Administration
+mail_services
+Mail Services Administration
+programs
+Global Program Administration
+dos_programs
+spell_checker
+Spell Checker Administration
+users
+FACE User Administration
+Add Mail Services to Programs Menu
+Remove Mail Services from Programs Menu
+Add Spell Checker to Programs Menu
+Remove Spell Checker from Programs Menu
+Add FACE Environment for a UNIX System User
+List FACE Users on This System
+working ...
+Help facility: cancel
+Help facility: cleanup
+Help facility: exit
+Help facility: frm-mgmt
+Help facility: goto
+Help facility: help
+Help facility: next-frm
+Help facility: prev-frm
+Help facility: refresh
+Help facility: unix-system
+Help facility: update
+HELP on: Create New Object
+HELP on: Invalid Mail Destinations
+HELP on MS-DOS Programs Administration
+HELP on Printer Operations
+HELP on Preferences
+HELP on Programs Administration
+A Login ID with uid less than 100, can not be modified.
+dos-to-unix
+unix-to-dos
+A Login ID with uid less than 100, can not be defined as a FACE user.
+read newly arrived mail
+send mail

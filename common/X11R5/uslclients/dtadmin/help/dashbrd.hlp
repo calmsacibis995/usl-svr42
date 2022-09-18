@@ -1,0 +1,190 @@
+#ident	"@(#)dtadmin:help/dashbrd.hlp	1.17"
+^*version^1
+^*title^System Status
+^:System_Status
+^*width^70
+^+DesktopMgr/help.defs
+^?Display system information.
+^0^System Status
+^$10
+System Status
+
+Use the System Status window to display basic information about your
+system and change how often the clock and disk space display are
+updated.
+
+The following windows are provided for System Status:
+
+   o \k(System Status Window)
+
+   o \k(System Status: Properties Window)
+^1^System Status Window
+^$20
+\k{System Status}
+1. System Status Window
+
+The System Status window displays basic information about your system,
+including:
+
+   o Version of UNIX system running
+
+   o Network node name (your system name)
+
+   o Your login ID
+
+   o Date and time
+
+   o Amount of system memory (RAM) installed
+
+   o Whether a math coprocessor chip is installed
+
+   o Size and capacity of each floppy drive present
+
+   o Capacity of the cartridge tape drive, if present
+
+   o Total space of each file system
+
+   o Indication of the amount of disk space currently used
+
+The \d(buttons^button) available from the System Status window are:
+
+        \k(Actions Button^^Actions ButtonSS)
+        \k(Help Button^^Help ButtonSS)
+^2^Actions Button=Actions ButtonSS
+^$30
+1. \k{System Status Window}
+   1.1 Actions Button
+
+The Actions button allows you to make adjustments to the clock and
+graphical file system display and exit the System Status window.
+Clicking on the Actions button displays a menu with the following
+options:
+
+        \k(Properties)
+        \k(Exit)
+^3^Properties
+^$40
+1. \k{System Status Window}
+   1.1 \k{Actions Button^^Actions ButtonSS}
+       1.1.1 Properties
+
+The Properties menu option lets you change how often the clock and
+hard disk are checked to update the time and disk space items in the
+System Status window. Selecting the Properties menu item displays the
+System Status: Properties window.
+
+More information: \k(System Status: Properties Window)
+^3^Exit
+^$50
+1. \k{System Status Window}
+   1.1 \k{Actions Button^^Actions ButtonSS}
+       1.1.2 Exit
+
+The Exit menu option closes the System Status window.
+^2^Help Button=Help ButtonSS
+^$55
+1. \k{System Status Window}
+   1.2 Help Button
+
+The Help button provides on-line help for the System Status window.
+Clicking on the Help button displays a menu with the following
+options:
+
+        \k(System Status^^System StatusSS)
+        \k(Table of Contents)
+        \k(Help Desk)
+^3^System Status=System StatusSS
+^$56
+1. \k{System Status Window}
+   1.2 \k{Help Button}
+       1.2.1 System Status
+
+The System Status menu option provides on-line help on the System
+Status window.
+^3^Table of Contents
+^$57
+1. \k{System Status Window}
+   1.2 \k{Help Button}
+       1.2.2 Table of Contents
+
+The Table of Contents menu option displays the list of help topics
+available for the System Status window.
+^3^Help Desk
+^$58
+1. \k{System Status Window}
+   1.2 \k{Help Button}
+       1.2.3 Help Desk
+
+The Help Desk menu option opens the Help Desk window. From there, you
+can select the icon on which you want on-line help.
+^1^System Status: Properties Window
+^$60
+\k{System Status}
+2. System Status: Properties Window
+
+The System Status: Properties window enables you to make adjustments
+to the clock and graphical file system display. If you have Owner's
+Administration Account permissions, you can also set the time and date
+of the system's built-in clock.
+
+You can set how often the clock updates (in seconds). This setting
+affects only the clock in the System Status window. Click in the
+"update clock every" text box and enter the desired value.
+
+You can set how often (in seconds) the disk is checked for available
+space for the purpose of updating the graphical file system display.
+Click in the "check disks every" text box and enter the desired
+value.
+
+If you have Owner's Administration Account permissions, You can change
+the year, hour, month, minute, or day of the system's clock. Click in
+the appropriate text box and enter the new value. Alternatively, click
+on the up or down arrow to change the value.
+
+The buttons available for the System Status: Properties window are:
+
+        \k(Apply Button^^Apply ButtonPW)
+        \k(Set Defaults Button^^Set Defaults ButtonPW)
+        \k(Reset Button^^Reset ButtonPW)
+        \k(Cancel Button^^Cancel ButtonPW)
+        \k(Help Button^^Help ButtonPW)
+^2^Apply Button=Apply ButtonPW
+^$70
+2. \k{System Status: Properties Window}
+   2.1 Apply Button
+
+The Apply button immediately applies the changes you make in the Sys-
+tem Status: Properties window. The System Status: Properties window
+closes.
+
+Note: These changes are for the current Desktop session only.
+^2^Set Defaults Button=Set Defaults ButtonPW
+^$80
+2. \k{System Status: Properties Window}
+   2.2 Set Defaults Button
+
+Set Defaults button, in addition to applying your changes, stores the
+current settings for future use. Then, the next time you use the Reset
+button, the values stored are used.
+^2^Reset Button=Reset ButtonPW
+^$90
+2. \k{System Status: Properties Window}
+   2.3 Reset Button
+
+The Reset button reverses any changes you have not yet applied to the
+values previously set before the System Status: Properties window
+appeared. The System Status: Properties window remains open.
+^2^Cancel Button=Cancel ButtonPW
+^$100
+2. \k{System Status: Properties Window}
+   2.4 Cancel Button
+
+The Cancel button closes the System Status: Properties window without
+making any changes.
+^2^Help Button=Help ButtonPW
+^$110
+2. \k{System Status: Properties Window}
+   2.5 Help Button
+
+The Help button provides on-line help for the System Status: Properties
+window.

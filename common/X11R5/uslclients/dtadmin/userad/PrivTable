@@ -1,0 +1,10 @@
+dtperm:1:Shutdown System	shutdown:/sbin/shutdown:mount:setflevel:macwrite:dacwrite:macread:dacread:compat:owner:dev:sysops:driver:fsysrange:audit:setplevel
+dtperm:2:Access Disks, Tapes, etc.	fmount:/sbin/mount:allprivs,fumount:/sbin/umount:allprivs
+dtperm:3:Access Remote Systems	rdialup:/usr/X/bin/DialupMgr:macread:dacread
+dtperm:4:Change Dialup Setup	dialup:/usr/X/bin/DialupMgr:allprivs
+dtperm:5:Change Internet Setup	inet:/usr/X/bin/InternetMgr:allprivs
+dtperm:6:Administer Printers	prtsetup:/usr/X/bin/prtsetup:audit:dacread:dacwrite:dev:macread:macwrite:owner:setflevel
+dtperm:7:Add/Remove Fonts	fontmgr:/usr/X/bin/fontmgr:dacread:dacwrite
+dtperm:8:Add/Remove Applications	PackageMgr:/usr/X/bin/PackageMgr:allprivs
+dtperm:9:Advertise Local Folders/Files	shareLocal:/usr/X/bin/File_Sharing:allprivs
+dtperm:10:Connect to Remote Folders/Files	shareRemote:/usr/X/bin/File_Sharing:allprivs

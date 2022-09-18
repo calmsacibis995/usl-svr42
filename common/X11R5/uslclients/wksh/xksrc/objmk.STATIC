@@ -1,0 +1,37 @@
+#ident	"@(#)wksh:xksrc/objmk.STATIC	1.1"
+
+#	Copyright (c) 1990, 1991 AT&T and UNIX System Laboratories, Inc. 
+#	All Rights Reserved     
+
+#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF AT&T    
+#	and UNIX System Laboratories, Inc.			
+#	The copyright notice above does not evidence any       
+#	actual or intended publication of such source code.    
+#
+#
+
+LIBCFILE = libc$(LIB_KIND)
+
+DYNFLAG = -DSTATICLIB
+
+GENSYM_ARGS = kshall.o $(XKSH_OBJS) $(LIBCFILE)
+
+allSTATIC: GENSYM $(TARGET)
+
+$(TARGET): nu$(TARGET)
+	@-rm -f O$@;mv -f $@ O$@ 2>/dev/null;rm -f O$@ $@; ln -f nu$@ $@
+
+nu$(TARGET): $(TARGET).o gensym.o
+	$(CC) $(ULDFLAGS) $(SUBCFLAGS) -o nu$(TARGET) $(TARGET).o gensym.o $(LIBC)
+
+$(TARGET).o: $(XKSH_OBJS) kshall.o
+	$(LD) -r $(ULDFLAGS) -o $(TARGET).o $(XKSH_OBJS) kshall.o
+
+link:
+	$(CC) $(ULDFLAGS) $(SUBCFLAGS) -o nu$(TARGET) kshall.o $(XKSH_OBJS) $(XKSH_OBJS) $(COM_OBJS) $(COMLIB_OBJS) $(ASLOBJS) $(APOBJS) $(CLOBJS) $(FLOBJS) $(LIBAP) $(LIBBEDL) $(LIBCL) $(LIBFL) $(KERN_OBJS)
+
+GENSYM: gensym kshall.o $(XKSH_OBJS)
+	@gensym gensym.c $(GENSYM_ARGS)
+
+gensym.o: gensym.c
+	./readonly -c $(CFLAGS) gensym.c

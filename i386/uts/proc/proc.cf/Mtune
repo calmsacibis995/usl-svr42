@@ -1,0 +1,7 @@
+#ident	"@(#)uts-x86:proc/proc.cf/Mtune	1.2"
+#ident	"$Header: $"
+
+* maximum length of argument strings for exec
+ARG_MAX		5120	1024	51200
+* maximum number of (COFF) shared libraries per process
+SHLBMAX		3	2	6

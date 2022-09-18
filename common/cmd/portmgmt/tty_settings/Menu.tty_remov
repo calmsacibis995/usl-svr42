@@ -1,0 +1,26 @@
+#ident	"@(#)portmgmt:common/cmd/portmgmt/tty_settings/Menu.tty_remov	1.1.5.2"
+#ident  "$Header: Menu.tty_remov 2.0 91/07/13 $"
+
+`pmgetpid | set -l PID`
+menu="Ttylabel    Nextlabel (Remove Line Settings)"
+multiselect=true
+close=`rm -f /var/tmp/cmd$PID;
+       unset -l PID -l KEYCMD`
+done=`getitems | tr -d '\0' > /var/tmp/cmd$PID;
+	if [ -s /var/tmp/cmd$PID ];
+	then
+		message "Removing [MARK]ed ttylabels.";
+		sh /var/tmp/cmd$PID;
+		message "All [MARK]ed ttylabels are removed. You may need to recheck the hunt sequences.";
+		set -l KEYCMD="CLOSE";
+	else
+		message "No item is [MARK]ed.";
+		set -l KEYCMD="RESET";
+	fi`$KEYCMD
+
+`grep -v "^#" /etc/ttydefs|fmlcut -d: -f1,5| regex '^([^:]+)$0:(.*)$1$'
+ 'name="$m0"
+  description="   $m1"
+  lininfo="\$TFADMIN sttydefs -r $m0"'`
+
+`message "Mark all ttylabels you want to remove and press <RETURN>."`

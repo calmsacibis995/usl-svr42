@@ -1,0 +1,215 @@
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+/**/#ident	"@(#)r5misc:Imakefile	1.24"
+
+XCOMM $XConsortium: Imakefile,v 1.105 91/07/27 14:13:23 rws Exp $
+
+#define IHaveSubdirs
+#define PassCDebugFlags
+
+      WORLDOPTS = Everything
+     CHECKFNSRC = $(UTILSRC)/checkfn
+        CHECKFN = $(CHECKFNSRC)/checkfn
+
+#if BuildServer
+SERVERDIRSTOMAKE = server rgb
+#endif
+        SUBDIRS = config include lib extensions \
+		  fonts $(SERVERDIRSTOMAKE) \
+		  clients demos contrib uslclients \
+		  util examples nameserver images
+
+  LNINSTALLDIRS = $(LIBSRC) $(EXTENSIONSRC)
+
+BOOTMAKEFILE = Makefile.ini
+
+#ifndef UTSXENV
+all::
+	$(RM) $(ROOT)/$(MACH)/usr/lib/X11
+	$(RM) $(ROOT)/$(MACH)/usr/bin/X11
+	$(RM) $(ROOT)/$(MACH)/usr/include/X11
+#endif
+
+all::
+	@echo ""
+	@echo "Building Release 5 of the X Window System"
+	@echo ""
+	@date
+	@echo ""
+	cd $(IMAKESRC); $(MAKE) $(MFLAGS) -f $(BOOTMAKEFILE) BOOTSTRAPCFLAGS="$(BOOTSTRAPCFLAGS)"
+	-$(RM) Makefile.bak; $(MV) Makefile Makefile.bak
+	$(MAKE) $(MFLAGS) -f Makefile.bak Makefile
+	$(MAKE) $(MFLAGS) Makefiles
+	$(MAKE) $(MFLAGS) includes
+	$(MAKE) $(MFLAGS) depend
+	$(MAKE) $(MFLAGS) $(WORLDOPTS)
+	@echo ""
+	@date
+	@echo ""
+	@echo "Build of Release 5 of the X Window System complete."
+	@echo ""
+
+quickbuild::
+	@echo ""
+	@echo "Quick Build started for Release 5 of the X Window System"
+	@echo ""
+	@date
+	@echo ""
+	$(MAKE) $(MFLAGS) $(WORLDOPTS)
+	@echo ""
+	@echo "Quick Build complete for Release 5 of the X Window System"
+	@echo ""
+	@date
+	@echo ""
+
+MakeLintSubdirs($(LNINSTALLDIRS),install.ln,install.ln)
+
+MakeLintSubdirs($(LNINSTALLDIRS),external.ln,lintlib)
+
+
+XCOMM
+XCOMM Watch out!!!  Make sure you do make includes after removing X11....
+XCOMM
+
+NamedMakeSubdirs(Everything,$(SUBDIRS))
+
+clean::
+	$(RM) -r X11
+
+includes::
+	$(RM) -r X11
+
+
+XCOMM
+XCOMM before depending, be sure to have run make includes
+XCOMM
+/* depend::  includes */
+
+DependSubdirs($(SUBDIRS))
+
+XCOMM do not name your log file make.log when you run this ...
+World::
+	@echo ""
+	@echo "Building Release 5 of the X Window System"
+	@echo ""
+	@echo "##############################################################"
+	@echo "# Did you remember to check the configuration parameters in  #"
+	@echo "# the directory ./config and set BOOTSTRAPCFLAGS if needed?  #"
+	@echo "##############################################################"
+	@echo ""
+	@date
+	@echo ""
+	cd $(IMAKESRC); $(MAKE) $(MFLAGS) -f Makefile.ini clean; $(MAKE) $(MFLAGS) -f Makefile.ini BOOTSTRAPCFLAGS="$(BOOTSTRAPCFLAGS)"
+	-$(RM) Makefile.bak; $(MV) Makefile Makefile.bak
+	$(MAKE) $(MFLAGS) -f Makefile.bak Makefile
+	$(MAKE) $(MFLAGS) Makefiles
+	$(MAKE) $(MFLAGS) clean
+	$(MAKE) $(MFLAGS) includes
+	$(MAKE) $(MFLAGS) depend
+	$(MAKE) $(MFLAGS) $(WORLDOPTS)
+	@echo ""
+	@date
+	@echo ""
+	@echo "Full build of Release 5 of the X Window System complete."
+	@echo ""
+
+/**/# 
+/**/# install stuff; create the directories that we're going to need
+/**/# 
+
+#if BuildServer
+  DIRS_SERVER = $(FONTDIR) $(DTADMDIR)
+#endif
+#if InstallxinitConfig
+   DIRS_XINIT = $(XINITDIR)
+#endif
+#if InstallxdmConfig
+     DIRS_XDM = $(XDMDIR)
+#endif
+#if InstallAppDefFiles
+  DIRS_APPDEF = $(XAPPLOADDIR)
+#endif
+
+ DIRS_CONTRIB = /* $(AWMDIR) $(TWMDIR) */
+
+DIRS_TO_CREATE = /* $(LINTLIBDIR) */ \
+	$(USRLIBDIR) $(BINDIR) $(INCROOT) $(DIRS_SERVER) \
+	$(DIRS_XINIT) $(DIRS_XDM) $(DIRS_APPDEF) $(DIRS_CONTRIB) \
+	$(DESKTOPDIR)/Applications
+
+/**/# 
+/**/# As per SYSTEM V Makefile guidelines/USL intg, 'make install' should do
+/**/# what MIT's 'make World + make install' does.
+/**/# But, we also need something to ONLY install, so we create installonly
+/**/# which is equivalent to MIT's make install.... !!!! 
+/**/#
+/**/# When the source is delivered, both Makefile and Makefile.ini are same.
+/**/# First imake is compiled and then a Makefile is generated in this dir
+/**/# From the newly generated Makefile, 'make install' is executed
+/**/#
+/**/# make World:	makes Makefiles,includes,clean,depend,all in SUBDIRS
+/**/# make all: 	similar to 'make World' without 'make clean'
+/**/# make installonly:	installs the binaries, libs, headers, etc
+/**/# make quickbuild:	compile only.
+/**/# make install :	this is changed by USL to meet SYSV standards; this
+/**/#			equivalent to 'make all' + 'make installonly'
+/**/#
+
+install:: all
+
+/**/# Do we really need to do this here? This is done by packaging, so why
+/**/# do we need it here? 
+#if NOTNEEDED
+#if !UTSXENV
+install::
+	$(RM) -r $(ROOT)/$(MACH)/usr/lib/X11
+	$(RM) -r $(ROOT)/$(MACH)/usr/bin/X11
+	$(RM) -r $(ROOT)/$(MACH)/usr/include/X11
+	- mkdir -p $(ROOT)/$(MACH)/usr/lib
+	- mkdir -p $(ROOT)/$(MACH)/usr/bin
+	- mkdir -p $(ROOT)/$(MACH)/usr/include
+
+installonly::
+	$(RM) -r $(ROOT)/$(MACH)/usr/lib/X11
+	$(RM) -r $(ROOT)/$(MACH)/usr/bin/X11
+	$(RM) -r $(ROOT)/$(MACH)/usr/include/X11
+	- mkdir -p $(ROOT)/$(MACH)/usr/lib
+	- mkdir -p $(ROOT)/$(MACH)/usr/bin
+	- mkdir -p $(ROOT)/$(MACH)/usr/include
+#endif
+#endif
+
+MakeDirectories0(install,$(DIRS_TO_CREATE))
+
+MakeDirectories0(installonly,$(DIRS_TO_CREATE))
+NamedTargetSubdirs(installonly,$(SUBDIRS),"installing",DESTDIR='$(DESTDIR)',install)
+
+RELNOTES.PS::  RELNOTES.ms
+	$(TBL) RELNOTES.ms | $(TROFF) $(MSMACROS) >$@
+
+RELNOTES.lpt:  RELNOTES.ms
+	$(TBL) RELNOTES.ms | nroff $(MSMACROS) >$@
+
+RELNOTES.txt:  RELNOTES.ms
+	$(TBL) RELNOTES.ms | nroff $(MSMACROS) | colcrt >$@
+
+/*
+ * This section used for generating distributions will not be useful to most
+ * people.
+ */
+XCOMM check all filenames for length, letters, and content
+checkfilenames::  $(CHECKFNSRC)/checkfn
+	@find . -type d \! -name RCS -exec $(CHECKFNSRC)/find.sh $(CHECKFN) {} \;
+
+XCOMM clean out link tree looking for stuff that should get checked in
+flushlinks::
+	make -k clean
+	find . -type l -exec rm {} \;
+	find . \( \! \( -type d -o -name Makefile \) \) -print

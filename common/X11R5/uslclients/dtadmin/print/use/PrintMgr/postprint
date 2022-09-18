@@ -1,0 +1,5 @@
+group	Pages Per Sheet	group=%u	
+landscape	Landscape	landscape	
+xoff	Left Margin	x=%f	
+yoff	Top Margin	y=%f	
+mag	Magnification	magnify=%f	

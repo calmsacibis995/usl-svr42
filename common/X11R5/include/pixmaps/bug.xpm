@@ -1,0 +1,61 @@
+#define bug_format 1
+#define bug_width 48
+#define bug_height 48
+#define bug_ncolors 4
+#define bug_chars_per_pixel 1
+static char * bug_colors[] = {
+" " , "#FFFFFFFFFFFF",
+"." , "#000000000000",
+"X" , "#AAAA55550000",
+"o" , "#FFFFAAAA0000"
+} ;
+static char * bug_pixels[] = {
+"                  .                             ",
+"                  .                             ",
+"                  .                             ",
+"                  .                             ",
+"                  .                     .       ",
+"                 .                     .        ",
+"                .                     .         ",
+"        ...     .                    .          ",
+"       .  .XXXX.        ..          .           ",
+"      ...XXooooX       ......      .            ",
+"      ..XXooooooX      ..    ......             ",
+"      ..XoXoooooX     . .                       ",
+"       XoXooooooXXX   . .                       ",
+"       XXoXoooooXooX . .                        ",
+".      XoXoXoXoXooooX. .                        ",
+" .     .XoXoXoXooooooXX.                        ",
+"  .    . XXXXXXooooooooX                        ",
+"   .   .   XoXXXooooooooX                       ",
+"    ...    XXXoXoooooooooX      ..              ",
+"      .     XXXXXoooooooooX     ....            ",
+"        ...  XoXXXoooooooooX   . .  .           ",
+"        ......XXoXXoooooooooX  . .   ..         ",
+"        . ....XXXXXXoooooooooX. .      .        ",
+"        .   ...XXoXXooooooooooX .       ..      ",
+"        .     ..XXXoXooooooooooX.         ......",
+"        .        XXXXXooooooooooX               ",
+"        .         XXoXXooooooooooX              ",
+"        .          XXXXXoooooooooX              ",
+"        .           XoXoXoooooooooX             ",
+"        .            XXXXXooooooooX             ",
+"        .       ......XoXXXXoooooooX            ",
+"        .       .......XXoXXXXooooXX   .        ",
+"       .         .. ....XXXoXXXXXXXX...         ",
+"      .           ..     XXXXoXXXoXX.           ",
+"     .             .       XXXXoXXXX            ",
+"    .              ..        XXXXXX             ",
+"   .                .           ..              ",
+"                     .          .               ",
+"                      .         .               ",
+"                       .       .                ",
+"                        .                       ",
+"                        .                       ",
+"                        .                       ",
+"                        .                       ",
+"                        .                       ",
+"                        .                       ",
+"                        .                       ",
+"                        .                       "
+} ;

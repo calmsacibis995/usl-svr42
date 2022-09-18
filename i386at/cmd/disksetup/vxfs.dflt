@@ -1,0 +1,9 @@
+#ident	"@(#)disksetup:i386at/cmd/disksetup/vxfs.dflt	1.3"
+BLKSIZE=1024,2048,4096,8192
+MNTOPT=mincache=closesync
+MKFSTYP=4
+LABELIT=YES
+
+
+
+

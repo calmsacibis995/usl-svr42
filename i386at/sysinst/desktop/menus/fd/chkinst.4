@@ -1,0 +1,116 @@
+#ident	"@(#)proto:desktop/menus/fd/chkinst.4	1.10"
+#ident	"$Header: $"
+.optstring
+Your choices are:
+.pageno
+Page %d of %d
+.ul
+UNIX System Installation
+.hhelp_ban
+Instructions
+.helpbanner
+Help: Installation Type Selection
+.ur
+Installation Type Selection
+#.ll
+#THIS SPACE INTENTIALLY LEFT BLANK
+.lr
+Del=Cancel  F1=Help
+.top
+You must choose an installation type.  If you choose automatic installation,
+you will only be asked questions that the installation process cannot
+answer on its own.  If you choose custom installation, you will be
+asked additional questions that allow you to tailor your UNIX System
+to meet your individual needs.  This requires knowledge of the UNIX
+System.
+
+Press the 'F1' or '?' key to see more information about these different
+installation types.
+.form
+Automatic installation.
+Custom installation.
+.selection
+Press '1' or '2' followed by 'ENTER':
+.help
+For detailed instructions, press the 'F1' (or '?') key at any time.
+
+This help screen will provide you with information on the following topics:
+
+AUTOMATIC INSTALLATION
+AUTOMATIC INSTALLATION ASSUMPTIONS
+CUSTOM INSTALLATION
+CUSTOM INSTALLATION QUESTIONS
+`[ "$INSTALL_TYPE" = "UPNOVER" ] && echo "EFFECTS ON NON-DESTRUCTIVE INSTALLATION\n\nAs you have selected to attempt a non-destructive installation, you should\nbe sure to read the last section.\n"`
+AUTOMATIC INSTALLATION
+
+If you choose an automatic installation, the UNIX System will make
+assumptions about your computer and how you want your software to be
+set up.  If these assumptions do not match your computer and/or how
+you want your software set up, you will either have to change your
+computer to match these assumptions or choose a custom installation.
+
+AUTOMATIC INSTALLATION ASSUMPTIONS
+
+You must have at least a 60MB primary hard disk (or active partition) to
+install the UNIX System.
+
+If you wish to install from a non-SCSI cartridge tape, you must ensure
+that your cartridge tape controller is set to use Interrupt Vector
+5, I/O Address 0x300 - 0x301 and DMA Channel 1 (for information on
+how to verify that your cartridge tape controller is setup properly,
+refer to the manual that came with your cartridge tape controller).
+
+You must select either an existing partition (a part of the hard disk) 
+or create a new partition on your primary hard disk to install the UNIX 
+System in.  WARNING:  deleting an existing partition will destroy all 
+files in the partition.
+
+During automatic installation, file systems will be created on your
+hard disk(s) based on the sizes of your hard disk(s), and will be created
+as VERITAS File Systems (also known as VxFS file systems).  The VxFS
+file system type supports fast file system access and long file name
+lengths.  The software that is installed on your computer will also
+use a set of assumptions.  These assumptions are discussed in the 
+Installation Guide.
+
+CUSTOM INSTALLATION
+
+If you choose a custom installation you will have complete flexibility to
+tailor the UNIX System to match your computer and software needs.  However,
+custom installation requires that you supply more information to the
+installation program than for an automatic installation.
+
+CUSTOM INSTALLATION QUESTIONS
+
+If you select a custom installation you will need to partition your hard
+disk(s), select the file systems that you wish to install on your hard
+disk(s), their sizes, which hard disk they will be assigned to and their
+types.  The software that is installed on your computer will also ask you
+questions and these are discussed in the Installation Guide.
+
+EFFECTS ON NON-DESTRUCTIVE INSTALLATION
+
+If it is possible for you to perform a non-destructive installation, some
+things work slightly differently:
+
+   o No new file systems will be created; the installation program will
+     use the existing file systems.
+
+   o In an automatic non-destructive installation, the program will always
+     attempt to merge changes you have made to system files in your existing
+     UNIX System into the new UNIX System.
+
+   o If you choose a custom non-destructive installation, you will be given
+     the option not to attempt to merge system files in this manner.
+
+For further information, see the the Installation Guide.
+
+
+
+.helpinst
+ESC=Exit help  F1=Instructions  Del=Cancel  1=Forward  2=Backward
+.hhelpinst
+ESC=Exit instructions  Del=Cancel  1=Forward  2=Backward
+.working
+Working...
+.end

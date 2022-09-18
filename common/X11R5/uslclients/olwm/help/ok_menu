@@ -1,0 +1,12 @@
+Use the OK button stack menu to apply properties that you have changed
+to the selection:
+
+	Apply - To apply the settings to the selection.
+
+	Reset - To reset the settings for the properties window to
+		the values for the original selection.
+
+These choices are also available on the Settings menu that you access
+from the properties window pane by pressing MENU. Drag the pointer to
+a button and release MENU. When the properties window is not pinned
+up, the properties window is dismissed after the changes are applied.

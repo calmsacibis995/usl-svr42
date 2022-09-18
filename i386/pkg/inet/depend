@@ -1,0 +1,5 @@
+#ident	"@(#)pkg.inet:i386/pkg/inet/depend	1.2.6.4"
+#ident	"$Header: $"
+
+P  base         Base System
+P  nsu		Network Support Utilities

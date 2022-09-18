@@ -1,0 +1,3 @@
+#ident	"@(#)uts-x86at:io/rtc/rtc.cf/Node	1.1"
+#ident	"$Header: $"
+rtc	rtc	c	0

@@ -1,0 +1,18 @@
+#ident	"@(#)pkg.softint:common/pkg/softint/postinstall	1.2"
+#ident "$Header: $"
+
+cd /usr/lib/locale/C
+montbl montbl_C
+colltbl colltbl_C
+chrtbl chrtbl_C
+mkmsgs -o -i C time_C Xopen_info >/dev/null 2>&1 
+installf ${PKGINST} /usr/lib/locale/C/LC_MONETARY f 666 root root 1 NULL NULL
+installf ${PKGINST} /usr/lib/locale/C/LC_COLLATE f 666 root root 1 NULL NULL
+installf ${PKGINST} /usr/lib/locale/C/LC_CTYPE f 666 root root 1 NULL NULL
+installf ${PKGINST} /usr/lib/locale/C/LC_TIME f 666 root root 1 NULL NULL
+installf ${PKGINST} /usr/lib/locale/C/ctype.c f 666 root root 1 NULL NULL
+installf ${PKGINST} /usr/lib/locale/C/LC_NUMERIC f 666 root root 1 NULL NULL
+#installf ${PKGINST} /usr/lib/locale/C/LC_MESSAGES/Xopen_info f 666 root root 1 NULL NULL
+
+installf -f $PKGINST
+exit 0

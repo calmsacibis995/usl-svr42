@@ -1,0 +1,352 @@
+#ident	"@(#)pkg.eth:postinstall	1.24"
+#ident	"$Header: $"
+
+removef_files  ()
+{
+	# removef files for pkg arg_1
+
+	[ "$UPDEBUG" = YES ] && set -x
+
+	PKG=$1
+	FILELIST=/tmp/v4.$PKG.list
+	[ -s $FILELIST ] && {
+		while read filename
+		do
+			/usr/sbin/removef $PKG $filename > /dev/null 2>&1
+		done < $FILELIST
+	}
+	/usr/sbin/removef -f $PKG
+	rm -f $FILELIST
+}
+rm_v4_eth_pkgs ()
+{
+	[ "$UPDEBUG" = YES ] && set -x
+
+	# /tmp/rm.[imx586|wd|ie6] created in request scripta
+	# if v4 pkgs were detected
+
+	for i in imx586 ie6 wd
+	do
+		[ -f /tmp/rm.$i ] || continue
+		rm -f /tmp/rm.$i
+	
+		# remove_files takes one arg.
+		# it removef's files for the pkg listed as its 1st arg.
+
+		removef_files $i
+		rm -rf /var/sadm/pkg/$i /usr/options/$i.name
+
+		[ "$UPDEBUG" = YES ] && goany
+	done
+	
+}
+
+Write_Parameters ()
+{
+	[ "$UPDEBUG" = YES ] && set -x
+
+	unset CABLE Z_W_S
+	DRV=$1
+	BNO=$2
+	OFS=$IFS
+	IFS="	"	#tab
+	# change the Interrupt Vector, Start and End I/O addresses
+	# to the values provided by the user via the request script.
+
+	egrep "^${DRV}" $DRV/System > /tmp/$$.system
+	read Dev Config Unit Ipl Itype Vector Sioa Eioa Scma Ecma Dma < /tmp/$$.system
+	. $RSPDIR/parameters
+	rm -f $RSPDIR/parameters
+	N=`expr $BNO - 1`
+
+	[ "$UPDEBUG" = YES ] && goany
+
+	if [ $N -eq 0 ]
+	then
+		ed - $DRV/System <<!
+/^$DRV/c
+$Dev	Y	$Unit	$Ipl	$Itype	$IRQ	$Sioa	$Eioa	$Scma	$Ecma	$Dma
+.
+w
+q
+!
+	else
+		echo "$Dev\tY\t$Unit\t$Ipl\t$Itype\t$IRQ\t$Sioa\t$Eioa\t$Scma\t$Ecma\t$Dma" >>$DRV/System
+	fi
+	[ $N -gt 0 ] && echo "clone\t${DRV}_$N\tc:$N\t${DRV}" >>$DRV/Node
+	$NETINFO -a -d ${DRV}_$N
+
+	[ "$UPDEBUG" = YES ] && goany
+
+	# Set the ethernet cable type
+	[ "$CABLE" ] && {
+		CABLINE="#define CABLE_TYPE	$CABLE"
+		cat $DRV/Space.c  | \
+			sed -e "s/#define.*CABLE_TYPE.*/${CABLINE}/" >Space.new
+		mv Space.new $DRV/Space.c
+	}
+
+	[ "$UPDEBUG" = YES ] && goany
+
+	# Set  Zero Wait State
+	[ "$Z_W_S" ] && {
+		ZWSLINE="#define ZWS	$Z_W_S"
+		cat $DRV/Space.c | sed -e "s/#define.*ZWS.*/$ZWSLINE/" >Space.new
+		mv Space.new el16/Space.c
+	}
+
+	[ "$UPDEBUG" = YES ] && goany
+IFS=$OFS
+}
+
+
+do_installf() {
+	[ "$UPDEBUG" = YES ] && set -x
+
+	installf -f -c none $PKGINST
+	installf -f -c $1 $PKGINST
+
+	[ "$UPDEBUG" = YES ] && goany
+
+}
+
+clean_up() {
+	[ "$UPDEBUG" = YES ] && set -x
+
+	#
+	# Now clean up
+	#
+	LIST=`grep "/tmp/eth[ /]" /var/sadm/install/contents | cut -d" " -f1`
+
+	[ "$UPDEBUG" = YES ] && goany "removef list=$LIST"
+
+	removef $PKGINST $LIST >/dev/null 2>&1
+	removef -f $PKGINST >/dev/null 2>&1
+	rm -f $TMP 1>/dev/null 2>&1
+	rm -f /tmp/$PKGINST 1>/dev/null 2>&1
+
+	[ "$UPDEBUG" = YES ] && goany
+
+}
+
+idinstall_build_installf () {
+
+	[ "$UPDEBUG" = YES ] && set -x
+
+	cd $1
+	/etc/conf/bin/idinstall -P ${PKGINST} -a $1 2>> $TMP
+	[ $? != 0 ] && {
+		/etc/conf/bin/idinstall -P ${PKGINST} -u $1 2>> $TMP
+		[ $? != 0 ] && prterr_exit "driver installation"
+	}
+	cd ..
+
+	# now build
+
+	if [ "$PKGINSTALL_TYPE" = "NEWINSTALL" ]
+	then
+		${CONFBIN}/idbuild -M $1 2>> $TMP
+	else
+		${CONFBIN}/idbuild 2>> $TMP
+	fi
+	[ $? != 0 ] && {
+		prterr_exit "kernel reconfiguration"
+	}
+
+	do_installf $1
+
+	[ "$UPDEBUG" = YES ] && goany
+
+}
+
+prterr_exit ()
+{
+	[ "$UPDEBUG" = YES ] && set -x
+
+       	echo "The installation cannot be completed due to an error"
+	echo "in the $1."
+	echo "$ERROR1"
+	echo "Please try the installation again.  If the error"
+	echo "occurs again, contact your Service Representative." 
+
+	# rm /var/sadm/upgrade/eth.env created by chkpkgrel  which is 
+	# run in the request script
+
+	rm -f /var/sadm/upgrade/eth.env
+
+	exit $FAILURE
+}
+
+#main ()
+
+FAILURE=1	# fatal error
+RSPDIR=/var/sadm/eth_resp
+CONFDIR=/etc/conf
+CONFBIN=${CONFDIR}/bin
+TMP=/tmp/$$.eth.err
+ERROR1=" Errors have been written to the file $TMP."
+NETINFO=/usr/sbin/netinfo
+SCRIPTS=/usr/sbin/pkginst
+
+. $SCRIPTS/updebug
+
+[ "$UPDEBUG" = YES ] && set -x && goany
+
+# remove V4 ethernet packages, i.e, imx586, ie6, wd
+rm_v4_eth_pkgs
+
+cd /tmp/eth
+
+# get the numbers of boards selected
+. $RSPDIR/boards
+i=1
+if [ "$IMXLAN586_NUM" != "0" ]
+then
+	while [ $i -le ${IMXLAN586_NUM} ]
+	do
+		[ -f $RSPDIR/IMXLAN586.$i ] && . $RSPDIR/IMXLAN586.$i
+		set $RAMADDR
+		echo "IRQ=$IRQ" >$RSPDIR/parameters
+		echo "Scma=$1" >>$RSPDIR/parameters
+		echo "Ecma=$2" >>$RSPDIR/parameters
+		Write_Parameters imx586 $i
+		i=`expr $i + 1`
+
+		[ "$UPDEBUG" = YES ] && goany
+
+	done
+	idinstall_build_installf imx586
+fi
+
+i=1
+if [ "$IE6_NUM" != "0" ]
+then
+	while [ $i -le ${IE6_NUM} ]
+	do
+		[ -f $RSPDIR/IE6.$i ] && . $RSPDIR/IE6.$i
+		set $IOADDR
+		echo "IRQ=$IRQ" >$RSPDIR/parameters
+		echo "Sioa=$1" >>$RSPDIR/parameters
+		echo "Eioa=$2" >>$RSPDIR/parameters
+		echo "CABLE=$CABLE" >>$RSPDIR/parameters
+		Write_Parameters ie6 $i
+		i=`expr $i + 1`
+
+		[ "$UPDEBUG" = YES ] && goany
+
+	done
+	idinstall_build_installf ie6
+fi
+
+i=1
+if [ "$EE16_NUM" != "0" ]
+then
+	while [ $i -le ${EE16_NUM} ]
+	do
+		[ -f $RSPDIR/EE16.$i ] && . $RSPDIR/EE16.$i
+		set $IOADDR
+		echo "IRQ=$IRQ" >$RSPDIR/parameters
+		echo "Sioa=$1" >>$RSPDIR/parameters
+		echo "Eioa=$2" >>$RSPDIR/parameters
+		echo "CABLE=$CABLE" >>$RSPDIR/parameters
+		Write_Parameters ee16 $i
+		i=`expr $i + 1`
+
+		[ "$UPDEBUG" = YES ] && goany
+
+	done
+	idinstall_build_installf ee16
+fi
+
+i=1
+if [ "$EL16_AT_NUM" != "0" ]
+then
+	while [ $i -le ${EL16_AT_NUM} ]
+	do
+		[ -f $RSPDIR/EL16_AT.$i ] && . $RSPDIR/EL16_AT.$i
+		echo "IRQ=$IRQ" >$RSPDIR/parameters
+		set $IOADDR
+		echo "Sioa=$1" >>$RSPDIR/parameters
+		echo "Eioa=$2" >>$RSPDIR/parameters
+		set $RAMADDR
+		echo "Scma=$1" >>$RSPDIR/parameters
+		echo "Ecma=$2" >>$RSPDIR/parameters
+		echo "CABLE=$CABLE" >>$RSPDIR/parameters
+		echo "Z_W_S=$Z_W_S" >>$RSPDIR/parameters
+		Write_Parameters el16 $i
+		i=`expr $i + 1`
+
+		[ "$UPDEBUG" = YES ] && goany
+
+	done
+	idinstall_build_installf el16
+fi
+
+i=1
+if [ "$EL16_MCA_NUM" != "0" ]
+then
+	while [ $i -le ${EL16_MCA_NUM} ]
+	do
+		[ -f $RSPDIR/EL16_MCA.$i ] && . $RSPDIR/EL16_MCA.$i
+		echo "IRQ=$IRQ" >$RSPDIR/parameters
+		echo "CABLE=$CABLE" >>$RSPDIR/parameters
+		Write_Parameters el16 $i
+		i=`expr $i + 1`
+
+		[ "$UPDEBUG" = YES ] && goany
+
+	done
+	idinstall_build_installf el16
+fi
+i=1
+if [ "$WD_AT_NUM" != "0" ]
+then
+	while [ $i -le ${WD_AT_NUM} ]
+	do
+		[ -f $RSPDIR/WD_AT.$i ] && . $RSPDIR/WD_AT.$i
+		echo "IRQ=$IRQ" >$RSPDIR/parameters
+		set $IOADDR
+		echo "Sioa=$1" >>$RSPDIR/parameters
+		echo "Eioa=$2" >>$RSPDIR/parameters
+		set $RAMADDR
+		echo "Scma=$1" >>$RSPDIR/parameters
+		echo "Ecma=$2" >>$RSPDIR/parameters
+	
+		Write_Parameters wd $i
+		i=`expr $i + 1`
+
+		[ "$UPDEBUG" = YES ] && goany
+
+	done
+	idinstall_build_installf wd
+fi
+
+i=1
+if [ "${WD_MCA_NUM}" != "0" ]
+then
+	while [ $i -le ${WD_MCA_NUM} ]
+	do
+		[ -f $RSPDIR/WD_MCA.$i ] && . $RSPDIR/WD_MCA.$i
+		echo "IRQ=$IRQ" >$RSPDIR/parameters
+		Write_Parameters wd $i
+		i=`expr $i + 1`
+
+		[ "$UPDEBUG" = YES ] && goany
+
+	done
+	idinstall_build_installf wd
+fi
+
+/etc/confnet.d/configure > /dev/null
+clean_up
+errflag=`expr ${errflag:=0} + 10`
+rm -fr $RSPDIR /tmp/$$*
+
+rm -rf /etc/inst/locale/$LOCALE/menus/eth /etc/inst/locale/C/menus/eth
+
+# rm /var/sadm/upgrade/eth.env created by chkpkgrel  which is 
+# run in the request script
+
+rm -f /var/sadm/upgrade/eth.env
+
+exit ${errflag} 

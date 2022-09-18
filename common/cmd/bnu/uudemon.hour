@@ -1,0 +1,11 @@
+#!/usr/lib/uucp/permld /var/spool/uucp
+#ident	"@(#)bnu:uudemon.hour	2.2.4.2"
+#ident "$Header: uudemon.hour 1.1 91/02/28 $"
+#
+#	This shell should be run out of uucp's crontab
+#	twice an hour, shortly after uudemon.poll, e.g.
+#
+# 41,11 * * * * /usr/lib/uucp/uudemon.hour > /dev/null
+#
+/usr/lib/uucp/uusched &
+/usr/lib/uucp/uuxqt &

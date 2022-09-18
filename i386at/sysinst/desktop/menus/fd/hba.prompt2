@@ -1,0 +1,15 @@
+#ident	"@(#)proto:desktop/menus/fd/hba.prompt2	1.5"
+
+ The Host Bus Adapter driver(s) on the Host Bus Adapter diskette have been
+ loaded and you can now remove the diskette.
+
+ If you have another Host Bus Adapter diskette (for different adapters),
+ insert that diskette now.
+
+ For more information, see the Installation Guide.
+
+ Otherwise, if you do not have (or do not need to use) another Host Bus Adapter
+ diskette, insert the diskette labeled "Boot Floppy 2 of 3" now.
+
+
+ Press 'ENTER' to continue.

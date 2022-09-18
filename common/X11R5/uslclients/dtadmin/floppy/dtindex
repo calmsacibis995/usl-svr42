@@ -1,0 +1,63 @@
+#!/sbin/sh
+#ident	"@(#)dtadmin:floppy/dtindex	1.3"
+#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+#	Copyright (c) 1988, 1989, 1990 AT&T
+#	  All Rights Reserved
+
+#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+#	UNIX System Laboratories, Inc.
+#	The copyright notice above does not evidence any
+#	actual or intended publication of such source code.
+
+
+PID=$$
+LIST=""
+VERBOSE=""
+while getopts f:p:v opt
+do
+	case $opt in
+	f)	LIST=$OPTARG
+		;;
+	p)	PID=$OPTARG
+		;;
+	v)	VERBOSE=yes
+		;;
+	esac
+done
+if [ "$LIST" = "" ]
+then
+	LIST=/tmp/FFILES.$PID
+fi
+if [ ! -f $LIST ]
+then
+	echo "usage: dtindex -f [find output file]"
+	exit 1
+fi
+set `du -a $LIST`
+echo "$1\t/tmp/flp_index.$PID" > /tmp/flp_index.$PID
+cat $LIST | while read fname
+do
+	if [ ! -r $fname ]
+	then
+		echo dtindex: unreadable file: $fname >&2
+	else
+		if [ -d $fname ]
+		then
+			LINE="D\t$fname"
+		elif [ -f $fname ]
+		then
+			LINE=`du -a $fname`
+		fi
+		if [ "$VERBOSE" = "yes" ]
+		then
+			echo "$LINE"
+		fi
+		echo "$LINE" >> /tmp/flp_index.$PID
+	fi
+done
+BLOCKS=`cut -f1 < /tmp/flp_index.$PID | sed -e '1,$s/D/0/' -e '2,$s/$/+/' -e '$s/$/p/'| dc`
+if [ $BLOCKS -eq 0 ]
+then	BLOCKS=1
+fi
+echo BLOCKS=$BLOCKS >> /tmp/flp_index.$PID
+echo BLOCKS=$BLOCKS

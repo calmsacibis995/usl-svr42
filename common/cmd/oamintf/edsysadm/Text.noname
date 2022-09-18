@@ -1,0 +1,29 @@
+#ident	"@(#)oamintf:common/cmd/oamintf/edsysadm/Text.noname	1.1.2.2"
+#ident  "$Header: Text.noname 2.0 91/07/12 $"
+
+################################################################################
+#	Module Name: Text.noname
+#	Date: November 1990
+################################################################################
+title="Error Attempting to Rename"
+
+framemsg=`readfile $INTFBASE/conf.msg`
+
+text="
+You may not change the Name field while changing the other
+fields in this form.  To do so, rename the menu/task first
+and then select this task again to change the other fields.
+"
+
+rows=5
+columns=60
+
+altslks
+
+name=CONT
+button=11
+action=CLOSE
+
+name=CANCEL
+button=14
+action=CLEANUP

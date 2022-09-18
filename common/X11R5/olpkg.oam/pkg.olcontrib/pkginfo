@@ -1,0 +1,21 @@
+#ident	"@(#)olpkg.oam:pkg.olcontrib/pkginfo	1.2"
+#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+#	Copyright (c) 1988, 1989, 1990 AT&T
+#	  All Rights Reserved
+
+#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+#	UNIX System Laboratories, Inc.
+#	The copyright notice above does not evidence any
+#	actual or intended publication of such source code.
+
+
+PKG="gcontrib"
+PREDEPEND=""
+NAME="AT&T OPEN LOOK Contributed Package"
+ARCH="at386"
+RELEASE="4"
+VERSION="1"
+VENDOR="AT&T"
+
+CLASSES="cntrbutils pixmaps r2fonts cntrbfonts"
+CATEGORY="graphics"

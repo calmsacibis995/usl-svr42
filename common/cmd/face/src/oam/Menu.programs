@@ -1,0 +1,40 @@
+#ident	"@(#)face:src/oam/Menu.programs	1.1.4.3"
+#ident  "$Header: Menu.programs 1.4 91/10/15 $"
+
+menu=$$uxface:545:"Global Program Administration"
+
+framemsg=$$uxface:529:"Move the cursor to the item you want and press ENTER to select it."
+
+help=OPEN TEXT $INTFBASE/Text.oamhelp $!LININFO 
+
+lifetime=permanent
+
+
+
+name=$$uxface:531:"add"
+description=$$uxface:291:"Add Global Programs"
+lininfo="/usr/sadm/sysadm/add-ons/face/applmgmt/FACE/programs/add \"$$uxface:291:Add Global Programs\"" add
+action=`set -l OBJ_DIR=/usr/sadm/sysadm/add-ons/face/applmgmt/FACE/programs/add
+`OPEN FORM /usr/sadm/sysadm/add-ons/face/applmgmt/FACE/programs/add/Form.add
+
+
+name=$$uxface:532:"list"
+description=$$uxface:538:"List Global Programs"
+lininfo="/usr/sadm/sysadm/add-ons/face/applmgmt/FACE/programs/list \"$$uxface:538:List Global Programs\"" list
+action=`set -l OBJ_DIR=/usr/sadm/sysadm/add-ons/face/applmgmt/FACE/programs/list
+`OPEN MENU /usr/sadm/sysadm/add-ons/face/applmgmt/FACE/programs/list/Menu.list
+
+
+name=$$uxface:534:"modify"
+description=$$uxface:287:"Modify Global Programs"
+lininfo="/usr/sadm/sysadm/add-ons/face/applmgmt/FACE/programs/modify \"$$uxface:287:Modify Global Programs\"" modify
+action=`set -l OBJ_DIR=/usr/sadm/sysadm/add-ons/face/applmgmt/FACE/programs/modify
+`OPEN MENU /usr/sadm/sysadm/add-ons/face/applmgmt/FACE/programs/modify/Menu.mod
+
+
+name=$$uxface:535:"remove"
+description=$$uxface:537:"Remove Global Programs"
+lininfo="/usr/sadm/sysadm/add-ons/face/applmgmt/FACE/programs/remove \"$$uxface:537:Remove Global Programs\"" remove
+action=`set -l OBJ_DIR=/usr/sadm/sysadm/add-ons/face/applmgmt/FACE/programs/remove
+`OPEN MENU /usr/sadm/sysadm/add-ons/face/applmgmt/FACE/programs/remove/Menu.del
+

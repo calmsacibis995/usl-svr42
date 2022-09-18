@@ -1,0 +1,4 @@
+#ident	"@(#)uts-x86:io/ldterm/ldterm.cf/System	1.3"
+#ident	"$Header: $"
+$version 1
+ldterm	Y	1	0	0	0	0	0	0	0	-1

@@ -1,0 +1,6 @@
+#ident	"@(#)uts-x86at:io/lp/lp.cf/Node	1.2"
+#ident	"$Header: $"
+lp	lp0	c	0
+lp	lp	c	0
+lp	lp1	c	1
+lp	lp2	c	2

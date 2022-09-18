@@ -1,0 +1,11 @@
+#ident	"@(#)bnu.admin:common/cmd/bnu.admin/Helpol_l	1.2.2.3"
+#ident "$Header: Helpol_l 2.0 91/08/20 $"
+
+ABSTRACT:
+	The list task allows you to display which systems are
+	contacted automatically by your system and at what times
+	contact is attempted.
+
+plistsys:System
+	Give the name of a system for which you want to see Basic 
+	Networking automatic contact times.

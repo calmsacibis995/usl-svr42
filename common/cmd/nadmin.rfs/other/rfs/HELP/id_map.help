@@ -1,0 +1,4 @@
+#ident	"@(#)nadmin.rfs:other/rfs/HELP/id_map.help	1.2.6.1"
+#ident  "$Header: id_map.help 2.0 91/07/12 $"
+The id_mappings menu allows you to administer user and
+group id mappings.

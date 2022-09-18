@@ -1,0 +1,20 @@
+#ident	"@(#)pkg.ihvhba:i386/pkg/ihvhba/preremove	1.1"
+#ident	"$Header:  $"
+
+CONFDIR=/etc/conf
+CONFBIN=${CONFDIR}/bin
+
+for MODULE in mcis
+do
+        ${CONFBIN}/idcheck -p ${MODULE}
+        RES="$?"
+        if
+                [ "${RES}" -ne "100" -a "${RES}" -ne "0" ]
+        then
+		${CONFBIN}/idinstall -P ${PKGINST} -d ${MODULE} 2>> /tmp/${MODULE}.err
+        fi
+done
+
+#removef -f ${PKGINST}
+
+exit 0

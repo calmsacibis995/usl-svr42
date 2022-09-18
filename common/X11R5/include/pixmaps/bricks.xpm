@@ -1,0 +1,49 @@
+#define bricks_format 1
+#define bricks_width 32
+#define bricks_height 32
+#define bricks_ncolors 8
+#define bricks_chars_per_pixel 1
+static char * bricks_colors[] = {
+" " , "#AAAAAAAAAAAA",
+"." , "#000000000000",
+"X" , "#FFFFFFFFFFFF",
+"o" , "#0000AAAA0000",
+"O" , "#FFFF00000000",
+"+" , "#FFFFAAAA0000",
+"@" , "#AAAA55550000",
+"#" , "#AAAA0000AAAA"
+} ;
+static char * bricks_pixels[] = {
+"    .X  o       X.        o .   ",
+"OOOOOO O OOOO .     O OO O O O O",
+" OXOOOOOOOOOXO    .O+O X+@OXOOOX",
+"OXOOOXOOO@OOOOO   OX @+OOO +OXOO",
+"OOOXOOOXOOOOOOO.o OO OOXOXOO+OOO",
+"XOOOOOOOOOOOOOO   O O+OO +OXOX O",
+"OO@OOOO@OOOOOXO  o OXOO OOOOOOOO",
+"OOOO+OO OOOOOOO   OOOO OOXOOOOOO",
+"OOO@OOOOOO@OOO o  O XOOO+O OOOO ",
+"O@OOOO+OOO#OO+O   OOO OXOOOOOOOO",
+"OO OOOOOO@OOOOO . OOOOOOOOOO@OOO",
+"O#OOOO@OOOO@OO    O OOOOO OOOO@O",
+" O@O+O#O@OOOXOO .  OO OOOOOOOOOO",
+"O@O@O@OO  OOOO     O OOOOOOOO@X@",
+" O O O O O O   o o  OO OOO OOO#O",
+"      o   o  .          o       ",
+"  .Xo           o    o  X   .X  ",
+"o     . OOO O OO O OOO O OO   o ",
+"    OO OOXOOOOOXOXOOXOOXOOXOO   ",
+"  XO XOXO+OXOXOOOOOOOOOOOOOO O  ",
+"X OX+O+OOOXO+OOXOXOOO@OO OOOOOO ",
+"  OOXOXO+OOOOOOOOOOOOOOOOOOOOO  ",
+"XoO OO+OOXO@OXOOOOO@OOOOOOOOOOO.",
+"  OOO#OO+O@+OOO@OOOOOO@OO@OOOOO ",
+"o O+ +O@OOOOOOOOOOOOOOOO+OO+O O ",
+"  OOOXOOO OO@OOOOO@OO#OOOOOO@O X",
+"  O OOOOXOOOOOXOO@+OOOOO@O@OOOo ",
+"  OOO OOOO@OO@OOOOO@O@OOO+O#@ O ",
+"  OOOO OXOOOXOOO@O@+@O@ O@O@+@O ",
+"   O@ OOOO@ OO@OO#O@OO#O@OOOOO. ",
+" Xo O@ O@  @ @ @ @ @ @ @ O@O@ X ",
+".     X   o    o      .X        "
+} ;

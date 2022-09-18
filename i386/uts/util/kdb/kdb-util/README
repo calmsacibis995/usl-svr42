@@ -1,0 +1,18 @@
+#ident	"@(#)uts-x86:util/kdb/kdb-util/README	1.3"
+#ident	"$Header: $"
+
+			Common Files
+
+kdb.c		interface to the kernel plus common routines.
+
+db_as.c		generalized "address-space" access routines
+../db_as.h	and associated header file.
+
+dis.h		are the include files for the disassembler.
+structs.h
+
+bits.c		are the debugger's disassembler.
+extn.c
+opset.c
+tbls.c
+utls.c

@@ -1,0 +1,24 @@
+This is the directory containing the source for the Desktop UNIX(r) System
+clock client.  This client provides a simple clock with alarm capability.
+The clock can run in either analog or digital mode and chimes based on
+user perference.  The alarm is implemented using the cron(1).  Two shells
+help implement this feature:
+
+     alarm.sh: shell that is run to trigger the alarm
+
+  cronedit.sh: shell that edits the crontab
+
+The client doesn't need a pixmap since it draws the current time in the
+icon window when the clock is iconized.
+
+Features that don't yet exist:
+
+   Help is not implemented.
+
+   The prompt dialog for the alarm doesn't
+   retrieve the current setting.
+
+   Ships bell's is still in the clock, but may
+   be pulled out based on feedback in the beta.
+
+The clock doesn't support drag-and-drop (since it doesn't make sense).

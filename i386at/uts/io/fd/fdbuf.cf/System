@@ -1,0 +1,4 @@
+#ident	"@(#)uts-x86at:io/fd/fdbuf.cf/System	1.1"
+#ident	"$Header: $"
+$version 1
+fdbuf	Y	1	0	0	0	0	0	0	0	-1

@@ -1,0 +1,46 @@
+#define squares_format 1
+#define squares_width 32
+#define squares_height 32
+#define squares_ncolors 5
+#define squares_chars_per_pixel 1
+static char * squares_colors[] = {
+" " , "#FFFFFFFFFFFF",
+"." , "#00000000AAAA",
+"X" , "#00000000FFFF",
+"o" , "#0000AAAAFFFF",
+"O" , "#0000FFFFFFFF"
+} ;
+static char * squares_pixels[] = {
+"                                ",
+"                                ",
+"  ............................  ",
+"  ............................  ",
+"  ..                        ..  ",
+"  ..                        ..  ",
+"  ..  XXXXXXXXXXXXXXXXXXXX  ..  ",
+"  ..  XooooooooooooooooooX  ..  ",
+"  ..  Xo                oX  ..  ",
+"  ..  Xo                oX  ..  ",
+"  ..  Xo  OOOOOOOOOOOO  oX  ..  ",
+"  ..  Xo  OOOOOOOOOOOO  oX  ..  ",
+"  ..  Xo  OO        OO  oX  ..  ",
+"  ..  Xo  OO        OO  oX  ..  ",
+"  ..  Xo  OO        OO  oX  ..  ",
+"  ..  Xo  OO        OO  oX  ..  ",
+"  ..  Xo  OO        OO  oX  ..  ",
+"  ..  Xo  OO        OO  oX  ..  ",
+"  ..  Xo  OO        OO  oX  ..  ",
+"  ..  Xo  OO        OO  oX  ..  ",
+"  ..  Xo  OOOOOOOOOOOO  oX  ..  ",
+"  ..  Xo  OOOOOOOOOOOO  oX  ..  ",
+"  ..  Xo                oX  ..  ",
+"  ..  Xo                oX  ..  ",
+"  ..  XooooooooooooooooooX  ..  ",
+"  ..  XXXXXXXXXXXXXXXXXXXX  ..  ",
+"  ..                        ..  ",
+"  ..                        ..  ",
+"  ............................  ",
+"  ............................  ",
+"                                ",
+"                                "
+} ;

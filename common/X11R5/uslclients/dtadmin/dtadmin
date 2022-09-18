@@ -1,0 +1,250 @@
+CLASS dashboard
+BEGIN
+	_LPATTERN	dashboard;
+	_ICONFILE	dash.icon;
+	_FILETYPE	EXEC;
+	_SYSTEM		Y;
+	MENU _Open	'exec "%F" &';
+END
+
+CLASS dialup
+BEGIN
+        _LPATTERN	DialupMgr;
+	_SYSTEM		Y;
+        _ICONFILE	modem.icon;
+        MENU _Open	'(if /sbin/tfadmin -t dialup 2>/dev/null;\
+			then\
+				/sbin/tfadmin dialup;\
+			else if /sbin/tfadmin -t rdialup 2>/dev/null;\
+				then\
+					/sbin/tfadmin rdialup;\
+				else "%F";\
+				fi;\
+			fi)&';
+END
+
+CLASS friend
+BEGIN
+	_LFILEPATH	$HOME/.node;
+	_ICONFILE	netnode.icon;
+	_DROP		'(if /usr/sbin/ping "%f" >/dev/null;\
+			then\
+				$XWINHOME/desktop/rft/dtcopy -r "%f" "%S";\
+			else	if (uuname | grep "%f" > /dev/null);\
+				then\
+					$XWINHOME/desktop/rft/dtcopy -q -r "%f" "%S";\
+				else\
+					/usr/bin/gettxt DialupMgr:155 "%f is unkown.  Check the Address entry for %f in the Internet Setup or Dialup Setup icons."  |\
+					$XWINHOME/desktop/rft/dtmsg;\
+				fi;\
+			fi)&';
+	MENU _Open	'(if /usr/sbin/ping "%f" >/dev/null;\
+			then\
+				exec xterm -T "%f" -e rlogin "%f";\
+			else	if (uuname | grep "%f" > /dev/null);\
+				then\
+					exec xterm -T "%f" -e cu "%f";\
+				else\
+					/usr/bin/gettxt DialupMgr:155 "%f is unkown.  Check the Address entry for %f in the Internet Setup or Dialup Setup icons."  |\
+					$XWINHOME/desktop/rft/dtmsg;\
+				fi;\
+			fi)&';
+	MENU _Properties...	'exec $XWINHOME/desktop/rft/nview -r "%f"&';
+END
+
+CLASS dtcall
+BEGIN
+	_LFILEPATH	$HOME/.port;
+	_ICONFILE	acu.glyph;
+        MENU _Open	'exec $XWINHOME/desktop/rft/dtcall "%f"&';
+END
+
+CLASS useradmin
+BEGIN
+	_LPATTERN	LoginMgr;
+	_SYSTEM		Y;
+	_ICONFILE	user.glyph;
+        MENU _Open 	'(if /sbin/tfadmin -t LoginMgr 2>/dev/null;\
+			then /sbin/tfadmin LoginMgr -p;else exec "%F";fi)&';
+END
+
+CLASS password
+BEGIN
+	_SYSTEM		Y;
+	_PATTERN	Password_Setup;
+	_ICONFILE	passwd.32;
+	MENU _Open	'exec xterm -geometry 40x6 -t "Password Setup" -e /usr/bin/passwd $LOGNAME &';
+END
+
+CLASS packager
+BEGIN	_LPATTERN	PackageMgr;
+	_SYSTEM		Y;
+	_ICONFILE	pkgmgr.icon;
+        MENU _Open 	'(if /sbin/tfadmin -t PackageMgr 2>/dev/null;\
+			then /sbin/tfadmin PackageMgr; else exec "%F";fi)&';
+END
+
+CLASS printer
+BEGIN
+	_LFILEPATH	$HOME/.printer;
+	_ICONFILE	printer.icon;
+        MENU _Open	'##DROP(PrtMgr) || exec $XWINHOME/bin/PrtMgr -o -p %f &';
+	_DROP		"%{s._Print}";
+	_DEFAULT_PRINTER	%f;
+END
+
+CLASS prtsetup
+BEGIN
+	_SYSTEM		Y;
+	_LPATTERN       prtsetup;
+	_ICONFILE       prtsetup.icon;
+        _FILETYPE       EXEC;
+	MENU _Open	'(if /sbin/tfadmin -t prtsetup 2>/dev/null;then /sbin/tfadmin prtsetup -o;else prtsetup; fi)&';
+END
+
+CLASS backup_restore
+BEGIN
+	_SYSTEM		Y;
+	_LPATTERN	MediaMgr;
+	_ICONFILE	backup.glyph;
+	MENU _Open	'(if /sbin/tfadmin -t MediaMgr 2>/dev/null;\
+			then /sbin/tfadmin MediaMgr -B;\
+			else exec MediaMgr -B ; fi) &';
+	MENU Backup	'(if /sbin/tfadmin -t MediaMgr 2>/dev/null;\
+			then /sbin/tfadmin MediaMgr -B;\
+			else exec MediaMgr -B ; fi) &';
+	MENU Restore	'(if /sbin/tfadmin -t MediaMgr 2>/dev/null;\
+			then /sbin/tfadmin MediaMgr -R;\
+			else exec MediaMgr -R ; fi) &';
+	_DROP		'(if /sbin/tfadmin -t MediaMgr 2>/dev/null;\
+			then /sbin/tfadmin MediaMgr -B -C "%S" ;\
+			else exec MediaMgr -B -C "%S" ; fi) &';
+END
+
+CLASS backup_script
+BEGIN
+	_FILETYPE	EXEC;
+	_PATTERN	*.bkup;
+	MENU _Open	'(if /sbin/tfadmin -t MediaMgr 2>/dev/null;\
+			then /sbin/tfadmin MediaMgr -B -O "%F" ;\
+			else exec MediaMgr -B -O "%F" ; fi) &';
+	MENU Schedule	'exec dtsched "%F" &';
+	MENU _Print	'cat "%F" | $XWINHOME/bin/wrap | $XWINHOME/bin/PrtMgr -p %_DEFAULT_PRINTER &';
+END
+
+CLASS scheduler
+BEGIN
+	_SYSTEM		Y;
+	_LPATTERN	dtsched;
+	_FILETYPE	EXEC;
+	_ICONFILE	dtsched.32;
+	MENU _Open	'exec "%F" &';
+	_DROP		'exec "%F" "%S" &';
+END
+
+CLASS editor
+BEGIN
+	_SYSTEM		Y;
+	_LPATTERN	dtedit;
+	_FILETYPE	EXEC;
+	_ICONFILE	editor.glyph;
+	MENU _Open	'exec "%F" &';
+	_DROP		'exec "%F" "%S" &';
+END
+
+CLASS clock
+BEGIN
+	_SYSTEM		Y;
+	_LPATTERN	dtclock;
+	_FILETYPE	EXEC;
+	_ICONFILE	"dtclock.32";
+	MENU _Open	'exec "%F" &';
+END
+
+CLASS email
+BEGIN
+	_SYSTEM		Y;
+	_LPATTERN	dtmail;
+	_FILETYPE	EXEC;
+	_ICONFILE	mail32.icon;
+      	MENU _Open      'exec "%F"        &';
+      	_DROP        	'exec "%F" "%S"     &';
+END
+
+CLASS mailfile
+BEGIN
+      	_FILETYPE       DATA;
+      	_PATTERN        *.ml;
+      	_ICONFILE       mailfile;
+      	MENU _Open      '##DROP(dtmail) || exec dtmail "%F"       &';
+	_DROP        	'echo "%F" > "%S"';
+END
+
+CLASS fontmgr
+BEGIN
+	_SYSTEM		Y;
+	_LPATTERN	fontmgr;
+	_FILETYPE	EXEC;
+	_ICONFILE	font.icon;
+        MENU _Open 	'(if /sbin/tfadmin -t fontmgr 2>/dev/null;\
+			then /sbin/tfadmin fontmgr -p;else exec "%F";fi)&';
+	_DROP  		'(if /sbin/tfadmin -t fontmgr 2>/dev/null;\
+			then /sbin/tfadmin fontmgr -pf "%S";else exec "%F";fi)&';
+END
+
+CLASS oam
+BEGIN
+	_SYSTEM		Y;
+	_LPATTERN	sysadm;
+	_FILETYPE	EXEC;
+	_ICONFILE	oam.icon;
+	MENU _Open	'exec xterm -fn fixed -t "Extra Administration" -e $XWINHOME/adm/dtexec /usr/sbin/sysadm &';
+END
+
+CLASS puzzle
+BEGIN
+	_SYSTEM		Y;
+        _LPATTERN       puzzle;
+        _FILETYPE       EXEC;
+        _ICONFILE       puzzle.icon;
+        MENU _Open      'exec "%F" &';
+END
+
+CLASS xterm
+BEGIN
+	_SYSTEM		Y;
+        _LPATTERN       xterm;
+        _FILETYPE       EXEC;
+        _ICONFILE       term.icon;
+        MENU _Open      'exec "%F" -T "%f" &';
+END
+
+CLASS xcalc
+BEGIN
+	_SYSTEM		Y;
+        _LPATTERN       xcalc;
+        _FILETYPE       EXEC;
+        _ICONFILE       xcalc.icon;
+        MENU _Open      'exec "%F" &';
+END
+
+CLASS dtcalc
+BEGIN
+	_SYSTEM		Y;
+        _LPATTERN       dtcalc;
+        _FILETYPE       EXEC;
+        _ICONFILE       xcalc.icon;
+        MENU _Open      'exec "%F" &';
+END
+
+CLASS pixmap_editor
+BEGIN
+	_SYSTEM		Y;
+        _LPATTERN       olpixmap;
+        _FILETYPE       EXEC;
+        _ICONFILE       olpix.icon;
+        MENU _Open      'exec "%F" &';
+      	_DROP        	'exec "%F" "%S"     &';
+END
+
+INCLUDE peripherals;

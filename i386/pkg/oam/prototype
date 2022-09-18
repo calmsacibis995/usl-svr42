@@ -1,0 +1,2208 @@
+#ident	"@(#)pkg.oam:prototype	1.65"
+#ident	"$Header: $"
+
+## MASTER BASIC AND EXTENDED OA&M PROTOTYPE FILE
+
+# information files
+
+i copyright
+i depend
+i oam/menu.oam=menu.oam
+i oam/menu.remove=menu.remove
+i pkginfo
+i postinstall
+i postremove
+#i preinstall
+i preremove
+i request
+
+i i.OAMmif
+i r.OAMmif=r.OAMintf
+
+!LP_SAVE=/var/sadm/pkg/lp/save/intf_install
+!LP_ADDON=/usr/sadm/sysadm/add-ons/lp/printers
+
+!NSU_SAVE=/var/sadm/pkg/nsu/save/intf_install
+!NSU_ADDON=/usr/sadm/sysadm/add-ons/nsu/netservices
+
+!CLASS_SCRIPT_LOC=../usr/src/$WORK/pkg/oam
+
+!default 0755 bin bin
+
+d none /etc ? ? ?
+d none /etc/skel ? ? ?
+d none /sbin ? ? ?
+d none /usr/bin ? ? ?
+d none /usr/lbin ? ? ?
+d none /usr/include ? ? ?
+d none /usr/include/sys ? ? ?
+d none /usr/lib ? ? ?
+
+d none /usr/sadm ? ? ?
+d none /usr/sadm/bin ? ? ?
+d none /usr/sadm/install ? ? ?
+d none /usr/sbin ? ? ?
+d none /var ? ? ?
+d none /var/sadm ? ? ?
+d none /var/sadm/install ? ? ?
+d none /var/sadm/install/admin ? ? ?
+d none /var/sadm/pkg ? ? ?
+
+d none /usr/sadm/sysadm ? ? ?
+d none /usr/sadm/sysadm/bin ? ? ?
+d none /usr/sadm/sysadm/menu 0755 root sys
+d none /usr/sadm/sysadm/menu/applmgmt 0755 bin bin
+d none /usr/sadm/sysadm/menu/netservices 0755 root sys
+d none /usr/sadm/install/bin 0755 bin bin
+d none /usr/sadm/install/scripts ? ? ?
+
+# basic and extended OAM directories
+
+d OAM_basic /usr/sadm/sysadm/menu/backup_service 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/menu/backup_service/backup 0755 root sys
+d OAM_basic /usr/sadm/sysadm/menu/backup_service/backup/basic 0755 root sys
+d OAM_basic /usr/sadm/sysadm/menu/backup_service/backup/basic/private 0755 root sys
+d OAM_basic /usr/sadm/sysadm/menu/backup_service/backup/basic/sched 0755 root sys
+d OAM_basic /usr/sadm/sysadm/menu/backup_service/backup/basic/system 0755 root sys
+
+d OAM_extended /usr/sadm/sysadm/menu/restores/operator 0755 root sys
+d OAM_extended /usr/sadm/sysadm/menu/restores/respond 0755 root sys
+d OAM_basic /usr/sadm/sysadm/menu/restores/restore 0755 root sys
+d OAM_basic /usr/sadm/sysadm/menu/restores/restore/basic 0755 root sys
+d OAM_basic /usr/sadm/sysadm/menu/restores/restore/basic/private 0755 root sys
+d OAM_basic /usr/sadm/sysadm/menu/restores/restore/basic/system 0755 root sys
+d OAM_extended /usr/sadm/sysadm/menu/restores/status 0755 root sys
+d OAM_extended /usr/sadm/sysadm/menu/restores/status/full 0755 root sys
+d OAM_extended /usr/sadm/sysadm/menu/restores/status/modify 0755 root sys
+d OAM_extended /usr/sadm/sysadm/menu/restores/status/selective 0755 root sys
+
+f OAM_basic /usr/sadm/sysadm/bin/Ckdev 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/add_cron 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/chg_cron 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/del_cron 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/display 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/filechk 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/filemsg 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/format 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/getchg 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/getdel 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/owrchk 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/prtask 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/slash 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/runbackf 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/runbacku 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/runstore 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/runstore2 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/setquote 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/ts_valid 0755 bin bin
+
+f OAM_bhelp /usr/sadm/sysadm/menu/backup_service/Help 0644 root sys
+v OAM_basic /usr/sadm/sysadm/menu/backup_service/backup.menu 0644 root sys
+
+f OAM_basic /usr/sadm/sysadm/menu/backup_service/backup/basic/Menu.backup 0644 root sys
+f OAM_basic /usr/sadm/sysadm/menu/backup_service/backup/basic/Text.history 0644 root sys
+f OAM_basic /usr/sadm/sysadm/menu/backup_service/backup/basic/Text.privil 0644 root sys
+f OAM_basic /usr/sadm/sysadm/menu/backup_service/backup/basic/private/Form.files 0644 root sys
+f OAM_basic /usr/sadm/sysadm/menu/backup_service/backup/basic/private/Menu.backsel 0644 root sys
+f OAM_basic /usr/sadm/sysadm/menu/backup_service/backup/basic/private/Menu.backusr 0644 root sys
+f OAM_basic /usr/sadm/sysadm/menu/backup_service/backup/basic/private/Menu.private 0644 root sys
+f OAM_basic /usr/sadm/sysadm/menu/backup_service/backup/basic/sched/Form.add 0644 root sys
+f OAM_basic /usr/sadm/sysadm/menu/backup_service/backup/basic/sched/Form.chg 0644 root sys
+f OAM_basic /usr/sadm/sysadm/menu/backup_service/backup/basic/sched/Menu.chg 0644 root sys
+f OAM_basic /usr/sadm/sysadm/menu/backup_service/backup/basic/sched/Menu.day 0644 root sys
+f OAM_basic /usr/sadm/sysadm/menu/backup_service/backup/basic/sched/Menu.del 0644 root sys
+f OAM_basic /usr/sadm/sysadm/menu/backup_service/backup/basic/sched/Menu.hour 0644 root sys
+f OAM_basic /usr/sadm/sysadm/menu/backup_service/backup/basic/sched/Menu.minute 0644 root sys
+f OAM_basic /usr/sadm/sysadm/menu/backup_service/backup/basic/sched/Menu.month 0644 root sys
+f OAM_basic /usr/sadm/sysadm/menu/backup_service/backup/basic/sched/Menu.sched 0644 root sys
+f OAM_basic /usr/sadm/sysadm/menu/backup_service/backup/basic/sched/Menu.week 0644 root sys
+f OAM_basic /usr/sadm/sysadm/menu/backup_service/backup/basic/sched/Text.addcfm 0644 root sys
+f OAM_basic /usr/sadm/sysadm/menu/backup_service/backup/basic/sched/Text.already 0644 root sys
+f OAM_basic /usr/sadm/sysadm/menu/backup_service/backup/basic/sched/Text.chgcfm 0644 root sys
+f OAM_basic /usr/sadm/sysadm/menu/backup_service/backup/basic/sched/Text.delcfm 0644 root sys
+f OAM_basic /usr/sadm/sysadm/menu/backup_service/backup/basic/sched/Text.display 0644 root sys
+f OAM_basic /usr/sadm/sysadm/menu/backup_service/backup/basic/sched/Text.nocron 0644 root sys
+f OAM_basic /usr/sadm/sysadm/menu/backup_service/backup/basic/sched/Text.nodel 0644 root sys
+f OAM_basic /usr/sadm/sysadm/menu/backup_service/backup/basic/sched/Text.nosched 0644 root sys
+f OAM_basic /usr/sadm/sysadm/menu/backup_service/backup/basic/sched/Text.notape 0644 root sys
+f OAM_basic /usr/sadm/sysadm/menu/backup_service/backup/basic/sched/Text.privil 0644 root sys
+f OAM_basic /usr/sadm/sysadm/menu/backup_service/backup/basic/system/Form.files 0644 root sys
+f OAM_basic /usr/sadm/sysadm/menu/backup_service/backup/basic/system/Menu.backsel 0644 root sys
+f OAM_basic /usr/sadm/sysadm/menu/backup_service/backup/basic/system/Form.v1 0644 root sys
+f OAM_basic /usr/sadm/sysadm/menu/backup_service/backup/basic/system/Menu.backsys 0644 root sys
+f OAM_basic /usr/sadm/sysadm/menu/backup_service/backup/basic/system/Menu.backusr 0644 root sys
+f OAM_basic /usr/sadm/sysadm/menu/backup_service/backup/basic/system/Menu.system 0644 root sys
+f OAM_basic /usr/sadm/sysadm/menu/backup_service/backup/basic/system/Menu.users 0644 root sys
+
+
+## no object in p8;  topps?
+##f OAM_ehelp /usr/sadm/sysadm/menu/backup_service/status/Help 0644 root sys
+##f OAM_extended /usr/sadm/sysadm/menu/backup_service/status/bkstat.menu 0644 root sys
+
+f OAM_bhelp /usr/sadm/sysadm/menu/restores/Help 0644 root sys
+
+v OAM_basic /usr/sadm/sysadm/menu/restores/restore.menu 0644 root sys
+
+f OAM_basic /usr/sadm/sysadm/menu/restores/restore/basic/Menu.restore 0644 root sys
+f OAM_basic /usr/sadm/sysadm/menu/restores/restore/basic/Text.privil 0644 root sys
+f OAM_basic /usr/sadm/sysadm/menu/restores/restore/basic/private/Form.overwr 0644 root sys
+f OAM_basic /usr/sadm/sysadm/menu/restores/restore/basic/private/Form.overwr2 0644 root sys
+f OAM_basic /usr/sadm/sysadm/menu/restores/restore/basic/private/Menu.device 0644 root sys
+f OAM_basic /usr/sadm/sysadm/menu/restores/restore/basic/private/Menu.device2 0644 root sys
+f OAM_basic /usr/sadm/sysadm/menu/restores/restore/basic/private/Menu.private 0644 root sys
+f OAM_basic /usr/sadm/sysadm/menu/restores/restore/basic/private/Menu.select 0644 root sys
+f OAM_basic /usr/sadm/sysadm/menu/restores/restore/basic/system/Form.overwr 0644 root sys
+f OAM_basic /usr/sadm/sysadm/menu/restores/restore/basic/system/Form.overwr2 0644 root sys
+f OAM_basic /usr/sadm/sysadm/menu/restores/restore/basic/system/Menu.device 0644 root sys
+f OAM_basic /usr/sadm/sysadm/menu/restores/restore/basic/system/Menu.device2 0644 root sys
+f OAM_basic /usr/sadm/sysadm/menu/restores/restore/basic/system/Menu.select 0644 root sys
+f OAM_basic /usr/sadm/sysadm/menu/restores/restore/basic/system/Menu.system 0644 root sys
+
+# basic and extended OAM directories
+
+d OAM_basic /var/sadm/pkg/oam 0755 bin bin
+d OAM_basic /var/sadm/pkg/oam/save 0755 bin bin
+d OAM_basic /var/sadm/pkg/oam/save/intf_install 0755 bin bin
+
+d OAM_basic /usr/sadm/sysadm/add-ons/oam 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/devices 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/devices/add 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/devices/list 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/devices/remove 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/polling 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/polling/add 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/polling/list 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/polling/remove 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/setup 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/setup/add 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/systems 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/systems/add 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/systems/list 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/systems/remove 0755 bin bin
+
+# basic and extended interface
+
+f OAM_basic /usr/sadm/sysadm/bin/bnuset 0755 root sys
+f OAM_basic /usr/sadm/sysadm/bin/delentry 0755 root sys
+f OAM_basic /usr/sadm/sysadm/bin/validhour 0755 root sys
+f OAM_basic /usr/sadm/sysadm/bin/validls 0755 root sys
+f OAM_basic /usr/sadm/sysadm/bin/validname 0755 root sys
+f OAM_basic /usr/sadm/sysadm/bin/validnetaddr 0755 root sys
+f OAM_basic /usr/sadm/sysadm/bin/validphone 0755 root sys
+f OAM_basic /usr/sadm/sysadm/bin/validport 0755 root sys
+f OAM_basic /usr/sadm/sysadm/bin/validsys 0755 root sys
+
+
+f OAM_bhelp /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/Help 0644 root sys
+
+## missing
+##v OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/bnu.menu 0644 root sys
+
+f OAM_bhelp /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/devices/Help 0644 root sys
+f OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/devices/add/Form.acudev 0644 root sys
+f OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/devices/add/Form.acudev1 0644 root sys
+f OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/devices/add/Form.acudev2 0644 root sys
+f OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/devices/add/Form.acudev3 0644 root sys
+f OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/devices/add/Form.acudev4 0644 root sys
+f OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/devices/add/Form.acudev5 0644 root sys
+f OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/devices/add/Form.adddev 0644 root sys
+f OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/devices/add/Form.cf_adev 0644 root sys
+f OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/devices/add/Form.dirdev 0644 root sys
+f OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/devices/add/Form.othdev 0644 root sys
+f OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/devices/add/Form.streams 0644 root sys
+f OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/devices/add/Form.tlisdev 0644 root sys
+f OAM_bhelp /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/devices/add/Help 0644 root sys
+f OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/devices/add/Menu.devtype 0644 root sys
+f OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/devices/add/Menu.modtype 0644 root sys
+f OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/devices/add/Menu.ports 0644 root sys
+f OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/devices/add/Text.anok 0644 root sys
+f OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/devices/add/Text.aok 0644 root sys
+
+## missing
+##v OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/devices/devices.menu 0644 root sys
+
+
+f OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/devices/list/Form.listdev 0644 root sys
+f OAM_bhelp /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/devices/list/Help 0644 root sys
+f OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/devices/list/Menu.lsdev 0644 root sys
+f OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/devices/list/Menu.lsdev_1 0644 root sys
+f OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/devices/list/Menu.lsdev_2 0644 root sys
+f OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/devices/list/Menu.lsdev_all 0644 root sys
+
+## missing
+##f OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/devices/list/Menu.ports 0644 root sys
+
+f OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/devices/remove/Form.cf_rdev 0644 root sys
+
+f OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/devices/remove/Form.rmdev 0644 root sys
+f OAM_bhelp /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/devices/remove/Help 0644 root sys
+f OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/devices/remove/Menu.ports 0644 root sys
+f OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/devices/remove/Menu.rmdev 0644 root sys
+f OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/devices/remove/Menu.rmdev_1 0644 root sys
+f OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/devices/remove/Menu.rmdev_2 0644 root sys
+f OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/devices/remove/Menu.rmdev_all 0644 root sys
+f OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/devices/remove/Text.rmnok 0644 root sys
+f OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/devices/remove/Text.rmok 0644 root sys
+f OAM_bhelp /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/polling/Help 0644 root sys
+f OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/polling/add/Form.addpoll 0644 root sys
+f OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/polling/add/Form.cf_apoll 0644 root sys
+f OAM_bhelp /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/polling/add/Help 0644 root sys
+f OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/polling/add/Menu.sysname 0644 root sys
+f OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/polling/add/Text.anok 0644 root sys
+f OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/polling/add/Text.aok 0644 root sys
+f OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/polling/list/Form.listpoll 0644 root sys
+f OAM_bhelp /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/polling/list/Help 0644 root sys
+f OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/polling/list/Menu.lspoll 0644 root sys
+f OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/polling/list/Menu.lspoll_a 0644 root sys
+f OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/polling/list/Menu.psysname 0644 root sys
+
+
+## missing
+##v OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/polling/polling.menu 0644 root sys
+
+
+f OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/polling/remove/Form.cf_rpoll 0644 root sys
+f OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/polling/remove/Form.rmpoll 0644 root sys
+f OAM_bhelp /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/polling/remove/Help 0644 root sys
+f OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/polling/remove/Menu.rmpoll 0644 root sys
+f OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/polling/remove/Menu.rmpoll_a 0644 root sys
+f OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/polling/remove/Text.rmnok 0644 root sys
+f OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/polling/remove/Text.rmok 0644 root sys
+f OAM_bhelp /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/setup/Help 0644 root sys
+f OAM_bhelp /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/setup/add/Help 0644 root sys
+f OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/setup/add/Menu.setup 0644 root sys
+
+## missing
+##v OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/setup/setup.menu 0644 root sys
+
+f OAM_bhelp /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/systems/Help 0644 root sys
+f OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/systems/add/Form.acusys 0644 root sys
+f OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/systems/add/Form.addsys 0644 root sys
+f OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/systems/add/Form.cf_asys 0644 root sys
+f OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/systems/add/Form.dirsys 0644 root sys
+f OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/systems/add/Form.othsys 0644 root sys
+f OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/systems/add/Form.tlissys 0644 root sys
+f OAM_bhelp /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/systems/add/Help 0644 root sys
+f OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/systems/add/Menu.devname 0644 root sys
+f OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/systems/add/Text.anok 0644 root sys
+f OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/systems/add/Text.aok 0644 root sys
+f OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/systems/list/Form.listsys 0644 root sys
+f OAM_bhelp /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/systems/list/Help 0644 root sys
+f OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/systems/list/Menu.lssys 0644 root sys
+f OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/systems/list/Menu.lssys_all 0644 root sys
+f OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/systems/list/Menu.sysname 0644 root sys
+f OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/systems/remove/Form.cf_rsys 0644 root sys
+f OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/systems/remove/Form.rmsys 0644 root sys
+f OAM_bhelp /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/systems/remove/Help 0644 root sys
+f OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/systems/remove/Menu.rmsys 0644 root sys
+f OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/systems/remove/Menu.rmsys_all 0644 root sys
+f OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/systems/remove/Menu.sysname 0644 root sys
+f OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/systems/remove/Text.rmnok 0644 root sys
+f OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/systems/remove/Text.rmok 0644 root sys
+
+## missing
+##v OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/basic_networking/systems/systems.menu 0644 root sys
+
+
+f OAM_basic /usr/sadm/sysadm/menu/netservices/Help 0644 root sys
+v OAM_basic /usr/sadm/sysadm/menu/netservices/netserve.menu 0644 root sys
+
+## Files from local prototype: component=cfgintf
+
+# basic and extended OAM directories
+
+d OAM_basic /usr/sadm/sysadm/menu/machinemgmt 0755 root sys
+d OAM_basic /usr/sadm/sysadm/menu/machinemgmt/configmgmt 0755 root sys
+d OAM_basic /usr/sadm/sysadm/menu/machinemgmt/configmgmt/summary 0755 root sys
+d OAM_basic /usr/sadm/sysadm/menu/machinemgmt/configmgmt/system 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/menu/netservices/selection 0755 root sys
+d OAM_basic /usr/sadm/sysadm/menu/networks 0755 root sys
+d OAM_basic /usr/sadm/sysadm/menu/restores/restore 0755 root sys
+d OAM_basic /usr/sadm/sysadm/menu/restores/restore/basic 0755 root sys
+d OAM_basic /usr/sadm/sysadm/menu/syssetup/file_maint 0755 root sys
+d OAM_basic /usr/sadm/sysadm/menu/syssetup/setup 0755 root sys
+
+# basic and extended interface
+
+f OAM_bhelp /usr/sadm/sysadm/menu/machinemgmt/configmgmt/summary/Help 0640 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/machinemgmt/configmgmt/summary/Text.summary 0640 bin bin
+
+## missing
+##f OAM_basic /usr/sadm/sysadm/menu/machinemgmt/configmgmt/summary/maxcol.awk 0640 bin bin
+
+f OAM_bhelp /usr/sadm/sysadm/menu/machinemgmt/configmgmt/system/Help 0640 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/machinemgmt/configmgmt/system/Text.system 0640 bin bin
+
+## Files from local prototype: component=cfgmgmt
+
+# basic and extended interface
+
+f OAM_bhelp /usr/sadm/sysadm/menu/machinemgmt/configmgmt/Help 0640 bin bin
+v OAM_basic /usr/sadm/sysadm/menu/machinemgmt/configmgmt/cfgmgmt.menu 0640 bin bin
+
+## Files from local prototype: component=devintf
+
+# basic and extended OAM directories
+
+d OAM_basic /usr/sadm/sysadm/menu/devices 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/menu/devices/devices 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/menu/devices/devices/add 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/menu/devices/devices/attrs 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/menu/devices/devices/attrs/add 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/menu/devices/devices/attrs/list 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/menu/devices/devices/attrs/modify 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/menu/devices/devices/attrs/remove 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/menu/devices/devices/list 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/menu/devices/devices/remove 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/menu/devices/devices/reserve 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/menu/devices/devices/reserve/free 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/menu/devices/devices/reserve/list 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/menu/devices/devices/reserve/reserve 0755 bin bin
+d OAM_extended /usr/sadm/sysadm/menu/devices/groups 0755 bin bin
+d OAM_extended /usr/sadm/sysadm/menu/devices/groups/add 0755 bin bin
+d OAM_extended /usr/sadm/sysadm/menu/devices/groups/list 0755 bin bin
+d OAM_extended /usr/sadm/sysadm/menu/devices/groups/mbrship 0755 bin bin
+d OAM_extended /usr/sadm/sysadm/menu/devices/groups/mbrship/add 0755 bin bin
+d OAM_extended /usr/sadm/sysadm/menu/devices/groups/mbrship/list 0755 bin bin
+d OAM_extended /usr/sadm/sysadm/menu/devices/groups/mbrship/remove 0755 bin bin
+d OAM_extended /usr/sadm/sysadm/menu/devices/groups/remove 0755 bin bin
+
+# basic and extended interface
+
+f OAM_ehelp /usr/sadm/sysadm/menu/devices/devices/Help 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/devices/devices/add/Form.add 0644 bin bin
+f OAM_ehelp /usr/sadm/sysadm/menu/devices/devices/add/Help 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/devices/devices/add/Text.c_add 0644 bin bin
+f OAM_ehelp /usr/sadm/sysadm/menu/devices/devices/attrs/Help 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/devices/devices/attrs/add/Form.add 0644 bin bin
+f OAM_ehelp /usr/sadm/sysadm/menu/devices/devices/attrs/add/Help 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/devices/devices/attrs/add/Text.c_add 0644 bin bin
+v OAM_basic /usr/sadm/sysadm/menu/devices/devices/attrs/attrs.menu 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/devices/devices/attrs/list/Form.list 0644 bin bin
+f OAM_ehelp /usr/sadm/sysadm/menu/devices/devices/attrs/list/Help 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/devices/devices/attrs/list/Text.list 0644 bin bin
+
+
+## missing
+##f OAM_basic /usr/sadm/sysadm/menu/devices/devices/attrs/list/fmt.awk 0644 bin bin
+##f OAM_basic /usr/sadm/sysadm/menu/devices/devices/attrs/list/maxcol.awk 0644 bin bin
+
+f OAM_basic /usr/sadm/sysadm/menu/devices/devices/attrs/modify/Form.modify 0644 bin bin
+f OAM_ehelp /usr/sadm/sysadm/menu/devices/devices/attrs/modify/Help 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/devices/devices/attrs/modify/Text.c_modify 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/devices/devices/attrs/remove/Form.remove 0644 bin bin
+f OAM_ehelp /usr/sadm/sysadm/menu/devices/devices/attrs/remove/Help 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/devices/devices/attrs/remove/Text.c_rem 0644 bin bin
+v OAM_basic /usr/sadm/sysadm/menu/devices/devices/devices.menu 0644 root sys
+f OAM_ehelp /usr/sadm/sysadm/menu/devices/devices/list/Help 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/devices/devices/list/Text.list 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/devices/devices/remove/Form.remove 0644 bin bin
+f OAM_ehelp /usr/sadm/sysadm/menu/devices/devices/remove/Help 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/devices/devices/remove/Text.c_remove 0644 bin bin
+f OAM_ehelp /usr/sadm/sysadm/menu/devices/devices/reserve/Help 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/devices/devices/reserve/free/Form.free 0644 bin bin
+f OAM_ehelp /usr/sadm/sysadm/menu/devices/devices/reserve/free/Help 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/devices/devices/reserve/free/Text.c_free 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/devices/devices/reserve/free/getkey 0750 bin bin
+f OAM_ehelp /usr/sadm/sysadm/menu/devices/devices/reserve/list/Help 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/devices/devices/reserve/list/Text.list 0644 bin bin
+v OAM_basic /usr/sadm/sysadm/menu/devices/devices/reserve/reserve.menu 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/devices/devices/reserve/reserve/Form.reserve 0644 bin bin
+f OAM_ehelp /usr/sadm/sysadm/menu/devices/devices/reserve/reserve/Help 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/devices/devices/reserve/reserve/Text.c_rsv 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/devices/devices/reserve/reserve/listavails 0750 bin bin
+f OAM_ehelp /usr/sadm/sysadm/menu/devices/groups/Help 0644 bin bin
+f OAM_extended /usr/sadm/sysadm/menu/devices/groups/add/Form.add 0644 bin bin
+f OAM_ehelp /usr/sadm/sysadm/menu/devices/groups/add/Help 0644 bin bin
+f OAM_extended /usr/sadm/sysadm/menu/devices/groups/add/Text.c_add 0644 bin bin
+v OAM_extended /usr/sadm/sysadm/menu/devices/groups/groups.menu 0644 bin bin
+f OAM_ehelp /usr/sadm/sysadm/menu/devices/groups/list/Help 0644 bin bin
+f OAM_extended /usr/sadm/sysadm/menu/devices/groups/list/Text.list 0644 bin bin
+f OAM_ehelp /usr/sadm/sysadm/menu/devices/groups/mbrship/Help 0644 bin bin
+f OAM_extended /usr/sadm/sysadm/menu/devices/groups/mbrship/add/Form.add 0644 bin bin
+f OAM_ehelp /usr/sadm/sysadm/menu/devices/groups/mbrship/add/Help 0644 bin bin
+f OAM_extended /usr/sadm/sysadm/menu/devices/groups/mbrship/add/Text.c_add 0644 bin bin
+f OAM_extended /usr/sadm/sysadm/menu/devices/groups/mbrship/add/xisinlist 0750 bin bin
+f OAM_extended /usr/sadm/sysadm/menu/devices/groups/mbrship/add/xorlists 0750 bin bin
+f OAM_extended /usr/sadm/sysadm/menu/devices/groups/mbrship/list/Form.list 0644 bin bin
+f OAM_ehelp /usr/sadm/sysadm/menu/devices/groups/mbrship/list/Help 0644 bin bin
+f OAM_extended /usr/sadm/sysadm/menu/devices/groups/mbrship/list/Text.list 0644 bin bin
+f OAM_extended /usr/sadm/sysadm/menu/devices/groups/mbrship/list/Text.none 0644 bin bin
+
+## missing
+##f OAM_extended /usr/sadm/sysadm/menu/devices/groups/mbrship/list/maxcol.awk 0644 bin bin
+
+v OAM_extended /usr/sadm/sysadm/menu/devices/groups/mbrship/mbrship.menu 0644 bin bin
+f OAM_extended /usr/sadm/sysadm/menu/devices/groups/mbrship/remove/Form.remove 0644 bin bin
+f OAM_ehelp /usr/sadm/sysadm/menu/devices/groups/mbrship/remove/Help 0644 bin bin
+f OAM_extended /usr/sadm/sysadm/menu/devices/groups/mbrship/remove/Text.c_remove 0644 bin bin
+f OAM_extended /usr/sadm/sysadm/menu/devices/groups/mbrship/remove/xisinlist 0750 bin bin
+f OAM_extended /usr/sadm/sysadm/menu/devices/groups/remove/Form.remove 0644 bin bin
+f OAM_ehelp /usr/sadm/sysadm/menu/devices/groups/remove/Help 0644 bin bin
+f OAM_extended /usr/sadm/sysadm/menu/devices/groups/remove/Text.c_remove 0644 bin bin
+
+# .mi files for devintf menu subsumed by oamintf Prototype.
+
+## Files from local prototype: component=devmgmt
+
+# basic and extended interface
+
+## missing
+##f OAM_basic /usr/sadm/sysadm/bin/confck 0755 bin bin
+
+## Files from local prototype: component=fmtmsg
+
+## Files from local prototype: component=logins
+
+## Files from local prototype: component=nadmin.dfs
+
+# basic and extended OAM directories
+
+d OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files 0755 root sys
+d OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/local 0755 bin bin
+
+d OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/local/rfs 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/local/nfs 0755 bin bin
+
+d OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other 0755 root sys
+d OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/remote 0755 root sys
+d OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/setup 0755 root sys
+
+# basic and extended interface
+
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/Help 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/Menu.rfiles 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/local/Help 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/local/Menu.local 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/local/Menu.type 0755 bin bin
+
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/local/nfs/Form.list 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/local/nfs/Form.modify 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/local/nfs/Form.modify2 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/local/nfs/Form.modify3 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/local/nfs/Form.share 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/local/nfs/Form.share2 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/local/nfs/Form.unshar2 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/local/nfs/Form.unshar3 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/local/nfs/Form.unshare 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/local/nfs/Help 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/local/nfs/Text.list 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/local/nfs/Text.shmsg 0755 bin bin
+
+d OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/local/nfs/bin 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/local/nfs/bin/a_att 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/local/nfs/bin/auto_attr 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/local/nfs/bin/auto_mod 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/local/nfs/bin/imm_attr 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/local/nfs/bin/imm_mod 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/local/nfs/bin/ls_resource 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/local/nfs/bin/new_nflist 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/local/nfs/bin/nf_list 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/local/nfs/bin/nf_share 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/local/nfs/bin/nf_unshare 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/local/nfs/bin/valid_client 0755 bin bin
+
+
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/local/rfs/Form.list 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/local/rfs/Form.modify 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/local/rfs/Form.modify2 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/local/rfs/Form.modify3 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/local/rfs/Form.share 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/local/rfs/Form.share2 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/local/rfs/Form.unshar2 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/local/rfs/Form.unshar3 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/local/rfs/Form.unshare 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/local/rfs/Help 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/local/rfs/Text.list 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/local/rfs/Text.shmsg 0755 bin bin
+
+d OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/local/rfs/bin 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/local/rfs/bin/auto_attr 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/local/rfs/bin/auto_mod 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/local/rfs/bin/imm_attr 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/local/rfs/bin/imm_mod 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/local/rfs/bin/ls_resource 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/local/rfs/bin/rf_list 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/local/rfs/bin/rf_share 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/local/rfs/bin/rf_unshare 0755 bin bin
+
+
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/Help 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/Menu.ops 0755 bin bin
+
+################
+#nfs
+d OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/nfs 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/nfs/control 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/nfs/control/bin 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/nfs/Help 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/nfs/Menu.nfs 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/nfs/control/Help 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/nfs/control/Menu.control 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/nfs/control/Text.control 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/nfs/control/bin/status 0755 bin bin
+
+#rfs
+d OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/rfs 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/rfs/HELP 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/rfs/HELP/control.help 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/rfs/HELP/id_map.help 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/rfs/HELP/netwk.help 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/rfs/HELP/system.help 0755 bin bin
+
+
+d OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/rfs/control 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/rfs/control/Form.start 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/rfs/control/Form.start2 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/rfs/control/Form.stop 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/rfs/control/Help 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/rfs/control/Menu.control 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/rfs/control/Menu.passctl 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/rfs/control/Text.check 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/rfs/control/Text.msg 0755 bin bin
+
+d OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/rfs/control/bin 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/rfs/control/bin/get_second 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/rfs/control/bin/get_tps 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/rfs/control/bin/ns_pass 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/rfs/control/bin/rfs_run 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/rfs/control/bin/rfs_stop 0755 bin bin
+
+
+d OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/rfs/id_map 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/rfs/id_map/Form.display 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/rfs/id_map/Form.set 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/rfs/id_map/Form.set2 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/rfs/id_map/Form.set3 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/rfs/id_map/Form.set4 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/rfs/id_map/Help 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/rfs/id_map/Menu.idmap 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/rfs/id_map/Text.display 0755 bin bin
+
+d OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/rfs/id_map/bin 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/rfs/id_map/bin/gid_map 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/rfs/id_map/bin/uid_map 0755 bin bin
+
+d OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/rfs/net 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/rfs/net/Help 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/rfs/net/Menu.netwk 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/rfs/net/Menu.set 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/rfs/net/Text.display 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/rfs/net/Text.msg 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/rfs/net/bin 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/rfs/net/bin/rfs_net 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/rfs/net/bin/set_tp 0755 bin bin
+
+
+d OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/rfs/system 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/rfs/system/Form.lsname 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/rfs/system/Form.p_add 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/rfs/system/Form.p_rem 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/rfs/system/Form.rf_add 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/rfs/system/Form.rf_add2 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/rfs/system/Form.rf_rem 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/rfs/system/Form.rf_rem2 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/rfs/system/Form.set 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/rfs/system/Help 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/rfs/system/Menu.member 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/rfs/system/Menu.system 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/rfs/system/Menu.transp 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/rfs/system/Text.display 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/rfs/system/Text.generic 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/rfs/system/Text.lshost 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/rfs/system/Text.lssrvr 0755 bin bin
+
+
+d OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/rfs/system/bin 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/rfs/system/bin/act_nserve 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/rfs/system/bin/add_member 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/rfs/system/bin/add_passwd 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/rfs/system/bin/call_addr 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/rfs/system/bin/ck_primary 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/rfs/system/bin/del_member 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/rfs/system/bin/del_passwd 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/rfs/system/bin/find_trans 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/rfs/system/bin/get_passwd 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/rfs/system/bin/get_primary 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/rfs/system/bin/get_tps 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/rfs/system/bin/getaddr 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/rfs/system/bin/line_num 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/rfs/system/bin/primary 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/rfs/system/bin/rfs_nserve 0755 bin bin
+
+
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/rfs/Help 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/other/rfs/Menu.rfs 0755 bin bin
+
+################
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/remote/Help 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/remote/Menu.remote 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/remote/Menu.type 0755 bin bin
+
+### remote_files
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/remote/nfs/Form.list 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/remote/nfs/Form.modify 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/remote/nfs/Form.modify2 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/remote/nfs/Form.modify3 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/remote/nfs/Form.mount 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/remote/nfs/Form.unmnt2 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/remote/nfs/Form.unmnt3 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/remote/nfs/Form.unmount 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/remote/nfs/Help 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/remote/nfs/Text.generic 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/remote/nfs/Text.list 0755 bin bin
+
+
+d OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/remote/nfs/bin 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/remote/nfs/bin/auto_attr 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/remote/nfs/bin/auto_mod 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/remote/nfs/bin/auto_unmount 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/remote/nfs/bin/curr_attr 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/remote/nfs/bin/curr_mod 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/remote/nfs/bin/ls_remote 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/remote/nfs/bin/ls_resource 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/remote/nfs/bin/remote_mnt2 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/remote/nfs/bin/remote_mount 0755 bin bin
+
+
+## rfs
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/remote/rfs/Form.domain 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/remote/rfs/Form.list 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/remote/rfs/Form.modify 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/remote/rfs/Form.modify2 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/remote/rfs/Form.modify3 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/remote/rfs/Form.mount 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/remote/rfs/Form.unmnt2 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/remote/rfs/Form.unmnt3 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/remote/rfs/Form.unmount 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/remote/rfs/Help 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/remote/rfs/Menu.choice 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/remote/rfs/Text.list 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/remote/rfs/Text.mount 0755 bin bin
+
+d OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/remote/rfs/bin 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/remote/rfs/bin/auto_attr 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/remote/rfs/bin/auto_mod 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/remote/rfs/bin/auto_unmount 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/remote/rfs/bin/curr_attr 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/remote/rfs/bin/imm_mod 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/remote/rfs/bin/ls_remote 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/remote/rfs/bin/ls_resource 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/remote/rfs/bin/remote_mnt2 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/remote/rfs/bin/remote_mount 0755 bin bin
+
+
+### remote_files
+
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/setup/Menu.type 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/setup/nfs 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/setup/nfs/Help 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/setup/nfs/Menu.setup 0755 bin bin
+
+d OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/setup/rfs 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/setup/rfs/Help 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/netservices/remote_files/setup/rfs/Menu.setup 0755 bin bin
+
+## Files from local prototype: component=oamintf
+
+# basic and extended OAM directories
+
+d OAM_basic /usr/sadm/sysadm/add-ons 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/add-ons/sysadm 0755 root sys
+d OAM_basic /usr/sadm/sysadm/edbin 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/edmenu 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/menu/buses 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/menu/devices 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/menu/devices/add 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/menu/devices/copy 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/menu/devices/display 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/menu/devices/erase 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/menu/devices/format 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/menu/devices/remove 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/menu/files 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/menu/files/check 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/menu/files/defaults 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/menu/files/display 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/menu/files/identify 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/menu/files/make 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/menu/files/mount 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/menu/files/unmount 0755 bin bin
+
+d OAM_extended /usr/sadm/sysadm/menu/files/diskuse 0755 bin bin
+d OAM_extended /usr/sadm/sysadm/menu/files/fileage 0755 bin bin
+d OAM_extended /usr/sadm/sysadm/menu/files/filesize 0755 bin bin
+d OAM_extended /usr/sadm/sysadm/menu/files/list 0755 bin bin
+
+d OAM_basic /usr/sadm/sysadm/menu/machinemgmt/power 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/menu/machinemgmt/reboot 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/menu/machinemgmt/whoson 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/menu/sched 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/menu/softwaremgmt 0755 bin bin
+d OAM_extended /usr/sadm/sysadm/menu/softwaremgmt/check 0755 bin bin
+d OAM_extended /usr/sadm/sysadm/menu/softwaremgmt/defaults 0755 bin bin
+
+d OAM_basic /usr/sadm/sysadm/menu/softwaremgmt/install 0755 bin bin
+
+d OAM_extended /usr/sadm/sysadm/menu/softwaremgmt/interact 0755 bin bin
+
+d OAM_basic /usr/sadm/sysadm/menu/softwaremgmt/list 0755 bin bin
+
+d OAM_extended /usr/sadm/sysadm/menu/softwaremgmt/read_in 0755 bin bin
+
+d OAM_basic /usr/sadm/sysadm/menu/softwaremgmt/remove 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/menu/syssetup 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/menu/syssetup/datetime 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/menu/syssetup/nodename 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/menu/syssetup/password 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/menu/usermgmt 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/menu/usermgmt/add 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/menu/usermgmt/defaults 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/menu/usermgmt/list 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/menu/usermgmt/modify 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/menu/usermgmt/password 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/menu/usermgmt/remove 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/pref 0755 bin bin
+d OAM_basic /usr/sysadm 0755 root bin
+d OAM_basic /usr/sysadm/bin 0755 root bin
+
+d OAM_basic /var/sadm/pkg/bkrs 0755 root sys
+d OAM_basic /var/sadm/pkg/bkrs/save 0755 root sys
+d OAM_basic /var/sadm/pkg/bkrs/save/intf_install 0755 root sys
+
+# preSVR4 compatibility directories
+
+d OAM_basic /usr/sadm/sysadm/admsets 0755 bin bin
+d OAM_basic /usr/vmsys 0755 bin bin
+d OAM_basic /usr/vmsys/admsets 0755 bin bin
+d OAM_basic /usr/vmsys/HELP 0755 bin bin
+d OAM_basic /usr/vmsys/HELP/PS 0755 bin bin
+d OAM_basic /usr/vmsys/HELP/backup 0755 bin bin
+d OAM_basic /usr/vmsys/HELP/backup/private 0755 bin bin
+d OAM_basic /usr/vmsys/HELP/backup/sched 0755 bin bin
+d OAM_basic /usr/vmsys/HELP/backup/system 0755 bin bin
+d OAM_basic /usr/vmsys/HELP/dskopts 0755 bin bin
+d OAM_basic /usr/vmsys/HELP/hwset 0755 bin bin
+d OAM_basic /usr/vmsys/HELP/logins 0755 bin bin
+d OAM_basic /usr/vmsys/HELP/mailset 0755 bin bin
+d OAM_basic /usr/vmsys/HELP/restore 0755 bin bin
+d OAM_basic /usr/vmsys/HELP/restore/system 0755 bin bin
+d OAM_basic /usr/vmsys/HELP/sched 0755 bin bin
+d OAM_basic /usr/vmsys/OBJECTS 0755 bin bin
+d OAM_basic /usr/vmsys/OBJECTS/PS 0755 bin bin
+d OAM_basic /usr/vmsys/OBJECTS/PS/FILTER 0755 bin bin
+d OAM_basic /usr/vmsys/OBJECTS/PS/FORM 0755 bin bin
+d OAM_basic /usr/vmsys/OBJECTS/PS/WHEEL 0755 bin bin
+d OAM_basic /usr/vmsys/OBJECTS/backup 0755 bin bin
+d OAM_basic /usr/vmsys/OBJECTS/dskopts 0755 bin bin
+d OAM_basic /usr/vmsys/OBJECTS/fs 0755 bin bin
+d OAM_basic /usr/vmsys/OBJECTS/hwset 0755 bin bin
+d OAM_basic /usr/vmsys/OBJECTS/logins 0755 bin bin
+d OAM_basic /usr/vmsys/OBJECTS/mailset 0755 bin bin
+d OAM_basic /usr/vmsys/OBJECTS/restore 0755 bin bin
+d OAM_basic /usr/vmsys/OBJECTS/sched 0755 bin bin
+d OAM_basic /usr/vmsys/admin 0755 bin bin
+d OAM_basic /usr/vmsys/admin/PS 0755 bin bin
+d OAM_basic /usr/vmsys/admin/PS/CONFIG 0755 bin bin
+d OAM_basic /usr/vmsys/admin/PS/FILTER 0755 bin bin
+d OAM_basic /usr/vmsys/admin/PS/FORM 0755 bin bin
+d OAM_basic /usr/vmsys/admin/PS/WHEEL 0755 bin bin
+d OAM_basic /usr/vmsys/bin 0755 bin bin
+
+# basic and extended interface
+
+f OAM_basic /usr/sadm/sysadm/bin/Identify 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/adddef 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/addgrp 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/admpriv 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/call_fsck 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/checkfilsys 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/checkfs 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/chgstate 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/chk_logins 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/chk_pgrp 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/chk_sgrp 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/chkrun 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/ckdisk 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/ckerrs 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/datechk 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/dateset 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/defdev 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/deffs 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/dev 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/devices 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/devlst 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/devtabcmd 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/dirchk 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/dispdef 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/dispdisk 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/existsfs 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/filesearch 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/filsys 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/findtype 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/floperase 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/fsnames 0755 bin bin
+
+## not in p8 objects 	fstyp_special?  topps?
+##f OAM_basic /usr/sadm/sysadm/bin/fstyp_spcl 0755 bin bin
+
+f OAM_basic /usr/sadm/sysadm/bin/fstype 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/getdefdev 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/getdeffs 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/getdevice 0755 bin bin
+
+## missing
+##f OAM_basic /usr/sadm/sysadm/bin/getdfl 0755 bin bin
+
+f OAM_basic /usr/sadm/sysadm/bin/getdisk 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/getdiskuse 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/getdlst 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/getfilesize 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/getfsname 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/getmaxuid 0755 bin bin
+
+## missing
+##f OAM_basic /usr/sadm/sysadm/bin/getsupgrp 0755 bin bin
+
+f OAM_basic /usr/sadm/sysadm/bin/gettz 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/getval 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/giddflt 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/grpchk 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/ifdiskette 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/indeftab 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/invfstab 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/itemhelp 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/isoam.rem 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/isoam.read 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/labelfsname 0755 bin bin
+s OAM_basic /usr/lbin/labelfsname=/usr/sadm/sysadm/bin/labelfsname
+f OAM_basic /usr/sadm/sysadm/bin/listtypes 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/lsgrp 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/makefs 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/makesys 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/mkfs_bfs 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/mkfs_s5 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/mkfs_ufs 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/mkfs_vxfs 0755 bin bin
+
+## missing
+##f OAM_basic /usr/sadm/sysadm/bin/moddate 0755 bin bin
+
+f OAM_basic /usr/sadm/sysadm/bin/moddef 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/modgrp 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/mountfs 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/numblocks 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/numfiles 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/object_gen 0755 bin bin
+s OAM_basic /usr/sadm/sysadm/bin/prtconf=/usr/sbin/prtconf
+f OAM_basic /usr/sadm/sysadm/bin/pswdchk 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/pswddef 0755 bin bin
+
+## missing
+##f OAM_basic /usr/sadm/sysadm/bin/redeflt 0755 bin bin
+
+f OAM_basic /usr/sadm/sysadm/bin/rmdef 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/rmfile 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/showgrp 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/spclsize 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/sysfs 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/syspwck 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/syspwend 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/ufs_fragsiz 0755 bin bin
+
+## missing
+##f OAM_basic /usr/sadm/sysadm/bin/uiddflt 0755 bin bin
+
+f OAM_basic /usr/sadm/sysadm/bin/uniq_gid 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/uniq_gnam 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/uniq_lnam 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/uniq_uid 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/unmountfs 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/valdefdev 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/valdeffs 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/valdevice 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/valdisk 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/valdrive 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/validdev 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/validfs 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/edbin/edhelp 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/edbin/findmenu 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/edbin/getfld 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/edbin/getintdef 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/edbin/getpkgdesc 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/edbin/mkchgs 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/edbin/mkmf 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/edbin/mkpf 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/edbin/mkpkg 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/edbin/test_menu 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/edbin/updt_pkgdesc 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/edbin/valfiles 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/edmenu/Form.chgmenu 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/edmenu/Form.chgtask 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/edmenu/Form.collision 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/edmenu/Form.getpkg 0644 bin bin
+v OAM_basic /usr/sadm/sysadm/edmenu/Form.menu 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/edmenu/Form.overwrite 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/edmenu/Form.redo 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/edmenu/Form.save 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/edmenu/Form.savepkg 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/edmenu/Form.select 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/edmenu/Form.task 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/edmenu/Form.test 0644 bin bin
+f OAM_bhelp /usr/sadm/sysadm/edmenu/Help 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/edmenu/Menu.choices 0644 bin bin
+v OAM_basic /usr/sadm/sysadm/edmenu/Menu.menu 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/edmenu/Menu.pkg 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/edmenu/Menu.task 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/edmenu/Menu.testmenu 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/edmenu/Text.dups 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/edmenu/Text.gpderr 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/edmenu/Text.mkchgerr 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/edmenu/Text.ok 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/edmenu/Text.pkgerr 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/edmenu/Text.success 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/edmenu/Text.tmerr 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/Form.interface 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/Form.sysadm 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/Menu.interface 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/Menu.sysadm 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/Text.interface 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/Text.itemhelp 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/Text.oamhelp 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/Text.sysadm 0644 bin bin
+
+## missing
+##f OAM_basic /usr/sadm/sysadm/menu/buses/Help 0644 bin bin
+##v OAM_basic /usr/sadm/sysadm/menu/buses/buses.menu 0644 root sys
+
+f OAM_basic /usr/sadm/sysadm/menu/conf.msg 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/contmsg 0644 bin bin
+f OAM_bhelp /usr/sadm/sysadm/menu/devices/Help 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/devices/Menu.device 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/devices/Menu.disk 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/devices/Menu.drive 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/devices/Text.diskerr 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/devices/Text.nodev 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/devices/Text.rsvrd 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/devices/add/Form.adddevice 0644 bin bin
+f OAM_bhelp /usr/sadm/sysadm/menu/devices/add/Help 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/devices/copy/Form.diskette 0644 bin bin
+f OAM_bhelp /usr/sadm/sysadm/menu/devices/copy/Help 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/devices/copy/Text.copy1 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/devices/copy/Text.copy2 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/devices/copy/Text.copy3 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/devices/copy/Text.cperr1 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/devices/copy/Text.cperr2 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/devices/copy/Text.cperr3 0644 bin bin
+v OAM_basic /usr/sadm/sysadm/menu/devices/copy/copy.menu 0644 bin bin
+v OAM_basic /usr/sadm/sysadm/menu/devices/devices.menu 0644 root sys
+f OAM_basic /usr/sadm/sysadm/menu/devices/display/Form.display 0644 bin bin
+f OAM_bhelp /usr/sadm/sysadm/menu/devices/display/Help 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/devices/display/Menu.display 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/devices/display/Text.disperr 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/devices/display/Text.display 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/devices/erase/Form.erase 0644 bin bin
+f OAM_bhelp /usr/sadm/sysadm/menu/devices/erase/Help 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/devices/erase/Menu.erase 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/devices/erase/Text.erase 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/devices/erase/Text.eraserr 0644 bin bin
+
+## missing
+##f OAM_basic /usr/sadm/sysadm/menu/devices/erase/Text.eraseok 0644 bin bin
+
+f OAM_basic /usr/sadm/sysadm/menu/devices/format/Form.format 0644 bin bin
+f OAM_bhelp /usr/sadm/sysadm/menu/devices/format/Help 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/devices/format/Menu.format 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/devices/format/Menu.density 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/devices/format/Text.format 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/devices/format/Text.fmtok 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/devices/format/Text.fmterr 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/devices/remove/Form.remove 0644 bin bin
+f OAM_bhelp /usr/sadm/sysadm/menu/devices/remove/Help 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/devices/remove/Menu.remove 0644 bin bin
+
+## missing
+##f OAM_basic /usr/sadm/sysadm/menu/devices/remove/Text.err 0644 bin bin
+
+f OAM_basic /usr/sadm/sysadm/menu/devices/remove/Text.remove 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/devices/remove/Text.rmnok 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/devices/remove/Text.rmok 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/display.msg 0644 bin bin
+f OAM_bhelp /usr/sadm/sysadm/menu/files/Help 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/files/check/Form.check 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/files/check/Form.checkfs 0644 bin bin
+f OAM_bhelp /usr/sadm/sysadm/menu/files/check/Help 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/files/check/Menu.fsckch 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/files/check/Text.ckerrs 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/files/check/Text.cknok 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/files/check/Text.ckok 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/files/check/Text.findtype 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/files/defaults/Form.add 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/files/defaults/Form.add2 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/files/defaults/Form.display 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/files/defaults/Form.modify 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/files/defaults/Form.modify2 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/files/defaults/Form.remove 0644 bin bin
+f OAM_bhelp /usr/sadm/sysadm/menu/files/defaults/Help 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/files/defaults/Text.adddef 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/files/defaults/Text.display 0644 bin bin
+v OAM_basic /usr/sadm/sysadm/menu/files/defaults/defaults.menu 0644 bin bin
+
+f OAM_extended /usr/sadm/sysadm/menu/files/diskuse/Form.diskuse 0644 bin bin
+f OAM_ehelp /usr/sadm/sysadm/menu/files/diskuse/Help 0644 bin bin
+f OAM_extended /usr/sadm/sysadm/menu/files/diskuse/Text.diskuse 0644 bin bin
+f OAM_extended /usr/sadm/sysadm/menu/files/diskuse/Text.duse2 0644 bin bin
+
+f OAM_bhelp /usr/sadm/sysadm/menu/files/display/Help 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/files/display/Text.dispfstyp 0644 bin bin
+v OAM_basic /usr/sadm/sysadm/menu/files/file.menu 0644 bin bin
+
+f OAM_extended /usr/sadm/sysadm/menu/files/fileage/Form.fileage 0644 bin bin
+f OAM_ehelp /usr/sadm/sysadm/menu/files/fileage/Help 0644 bin bin
+f OAM_extended /usr/sadm/sysadm/menu/files/fileage/Text.searchnok 0644 bin bin
+f OAM_extended /usr/sadm/sysadm/menu/files/fileage/Text.searchok 0644 bin bin
+f OAM_extended /usr/sadm/sysadm/menu/files/filesize/Form.filesize 0644 bin bin
+f OAM_ehelp /usr/sadm/sysadm/menu/files/filesize/Help 0644 bin bin
+f OAM_extended /usr/sadm/sysadm/menu/files/filesize/Text.sizenok 0644 bin bin
+f OAM_extended /usr/sadm/sysadm/menu/files/filesize/Text.sizeok 0644 bin bin
+
+f OAM_basic /usr/sadm/sysadm/menu/files/identify/Form.identify 0644 bin bin
+f OAM_bhelp /usr/sadm/sysadm/menu/files/identify/Help 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/files/identify/Text.identify 0644 bin bin
+
+f OAM_ehelp /usr/sadm/sysadm/menu/files/list/Help 0644 bin bin
+f OAM_extended /usr/sadm/sysadm/menu/files/list/Text.listfiles 0644 bin bin
+
+f OAM_basic /usr/sadm/sysadm/menu/files/make/Form.bfs 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/files/make/Form.bfs2 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/files/make/Form.bfsins 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/files/make/Form.erasefs 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/files/make/Form.existsfs 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/files/make/Form.make 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/files/make/Form.make2 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/files/make/Form.makefsys 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/files/make/Form.mkinsert 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/files/make/Form.mntpt 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/files/make/Form.s5 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/files/make/Form.s52 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/files/make/Form.sfs 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/files/make/Form.ufs 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/files/make/Form.ufs2 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/files/make/Form.ufsins 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/files/make/Form.vxfs 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/files/make/Form.vxfs2 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/files/make/Form.vxfsins 0644 bin bin
+f OAM_bhelp /usr/sadm/sysadm/menu/files/make/Help 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/files/make/Menu.mkfsch 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/files/make/Menu.mklst 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/files/make/Text.erase 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/files/make/Text.make 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/files/make/Text.mkr 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/files/mount/Form.mount 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/files/mount/Form.mount2 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/files/mount/Form.mount3 0644 bin bin
+f OAM_bhelp /usr/sadm/sysadm/menu/files/mount/Help 0644 bin bin
+f OAM_bhelp /usr/sadm/sysadm/menu/files/mount/Menu.mntch 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/files/mount/Text.findtype 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/files/mount/Text.mountok 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/files/unmount/Form.umountfs 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/files/unmount/Form.unmount 0644 bin bin
+f OAM_bhelp /usr/sadm/sysadm/menu/files/unmount/Help 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/files/unmount/Text.unmount 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/form.msg 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/frept.msg 0644 bin bin
+f OAM_bhelp /usr/sadm/sysadm/menu/machinemgmt/Help 0644 bin bin
+v OAM_basic /usr/sadm/sysadm/menu/machinemgmt/machine.menu 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/machinemgmt/power/Form.power 0644 bin bin
+f OAM_bhelp /usr/sadm/sysadm/menu/machinemgmt/power/Help 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/machinemgmt/power/Text.power 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/machinemgmt/reboot/Form.reboot 0644 bin bin
+f OAM_bhelp /usr/sadm/sysadm/menu/machinemgmt/reboot/Help 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/machinemgmt/reboot/Text.reboot 0644 bin bin
+f OAM_bhelp /usr/sadm/sysadm/menu/machinemgmt/whoson/Help 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/machinemgmt/whoson/Text.whoson 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/msmenu.msg 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/nextstep 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/nodev.msg 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/oam.cmd 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/oam.init 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/reptmsg 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/resrv.fs 0644 bin bin
+
+f OAM_basic /usr/sadm/sysadm/menu/sched/Form.add 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/sched/Form.chg 0644 bin bin
+f OAM_bhelp /usr/sadm/sysadm/menu/sched/Help 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/sched/Menu.chg 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/sched/Menu.day 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/sched/Menu.del 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/sched/Menu.hour 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/sched/Menu.minute 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/sched/Menu.month 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/sched/Menu.sched 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/sched/Menu.week 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/sched/Text.addcfm 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/sched/Text.chgcfm 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/sched/Text.delcfm 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/sched/Text.display 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/sched/Text.noaces 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/sched/Text.nocron 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/sched/Text.nodel 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/sched/Text.notask 0644 bin bin
+
+f OAM_bhelp /usr/sadm/sysadm/menu/softwaremgmt/Help 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/softwaremgmt/Menu.pkg 0644 bin bin
+
+f OAM_extended /usr/sadm/sysadm/menu/softwaremgmt/check/Form.inst 0644 bin bin
+f OAM_extended /usr/sadm/sysadm/menu/softwaremgmt/check/Form.orig 0644 bin bin
+f OAM_extended /usr/sadm/sysadm/menu/softwaremgmt/check/Form.spool 0644 bin bin
+f OAM_ehelp /usr/sadm/sysadm/menu/softwaremgmt/check/Help 0644 bin bin
+v OAM_extended /usr/sadm/sysadm/menu/softwaremgmt/check/check.menu 0755 bin bin
+f OAM_extended /usr/sadm/sysadm/menu/softwaremgmt/check/task.inst 0755 bin bin
+f OAM_extended /usr/sadm/sysadm/menu/softwaremgmt/check/task.orig 0755 bin bin
+f OAM_extended /usr/sadm/sysadm/menu/softwaremgmt/check/task.spool 0755 bin bin
+f OAM_extended /usr/sadm/sysadm/menu/softwaremgmt/defaults/Form.sd_add 0644 bin bin
+f OAM_extended /usr/sadm/sysadm/menu/softwaremgmt/defaults/Form.sd_list 0644 bin bin
+f OAM_extended /usr/sadm/sysadm/menu/softwaremgmt/defaults/Form.sd_mod 0644 bin bin
+f OAM_extended /usr/sadm/sysadm/menu/softwaremgmt/defaults/Form.sd_remove 0644 bin bin
+f OAM_ehelp /usr/sadm/sysadm/menu/softwaremgmt/defaults/Help 0644 bin bin
+f OAM_extended /usr/sadm/sysadm/menu/softwaremgmt/defaults/Menu.logins 0644 bin bin
+v OAM_extended /usr/sadm/sysadm/menu/softwaremgmt/defaults/defaults.menu 0644 bin bin
+
+f OAM_basic /usr/sadm/sysadm/menu/softwaremgmt/install/Form.install 0644 bin bin
+f OAM_bhelp /usr/sadm/sysadm/menu/softwaremgmt/install/Help 0644 bin bin
+
+f OAM_extended /usr/sadm/sysadm/menu/softwaremgmt/interact/Form.interact 0644 bin bin
+f OAM_ehelp /usr/sadm/sysadm/menu/softwaremgmt/interact/Help 0644 bin bin
+
+f OAM_basic /usr/sadm/sysadm/menu/softwaremgmt/list/Form.list 0644 bin bin
+f OAM_bhelp /usr/sadm/sysadm/menu/softwaremgmt/list/Help 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/softwaremgmt/list/Text.list 0644 bin bin
+
+f OAM_extended /usr/sadm/sysadm/menu/softwaremgmt/read_in/Form.read_in 0644 bin bin
+f OAM_ehelp /usr/sadm/sysadm/menu/softwaremgmt/read_in/Help 0644 bin bin
+
+f OAM_basic /usr/sadm/sysadm/menu/softwaremgmt/remove/Form.remove 0644 bin bin
+f OAM_bhelp /usr/sadm/sysadm/menu/softwaremgmt/remove/Help 0644 bin bin
+v OAM_basic /usr/sadm/sysadm/menu/softwaremgmt/software.menu 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/ssmenu.msg 0644 bin bin
+f OAM_bhelp /usr/sadm/sysadm/menu/syssetup/Help 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/syssetup/datetime/Form.dateset 0644 bin bin
+f OAM_bhelp /usr/sadm/sysadm/menu/syssetup/datetime/Help 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/syssetup/datetime/Menu.timezones 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/syssetup/datetime/Text.datedisp 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/syssetup/datetime/Text.datenok 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/syssetup/datetime/Text.dateok 0644 bin bin
+v OAM_basic /usr/sadm/sysadm/menu/syssetup/datetime/datetime.menu 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/syssetup/nodename/Form.nodeset 0644 bin bin
+f OAM_bhelp /usr/sadm/sysadm/menu/syssetup/nodename/Help 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/syssetup/nodename/Text.nodedisp 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/syssetup/nodename/Text.nodenotok 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/syssetup/nodename/Text.nodeokay 0644 bin bin
+v OAM_basic /usr/sadm/sysadm/menu/syssetup/nodename/nodename.menu 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/syssetup/password/Form.chgpasswd 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/syssetup/password/Form.syspasswd 0644 bin bin
+f OAM_bhelp /usr/sadm/sysadm/menu/syssetup/password/Help 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/syssetup/password/Menu.syspasswd 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/syssetup/password/Text.apswdnok 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/syssetup/password/Text.apswdok 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/syssetup/password/Text.nologins 0644 bin bin
+v OAM_basic /usr/sadm/sysadm/menu/syssetup/syssetup.menu 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/trept.msg 0644 bin bin
+f OAM_bhelp /usr/sadm/sysadm/menu/usermgmt/Help 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/usermgmt/add/Form.add 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/usermgmt/add/Form.addgrp 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/usermgmt/add/Form.addpswd 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/usermgmt/add/Form.addusr 0644 bin bin
+f OAM_bhelp /usr/sadm/sysadm/menu/usermgmt/add/Help 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/usermgmt/add/Menu.mlogins 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/usermgmt/add/Menu.pgrp 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/usermgmt/add/Menu.sgrp 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/usermgmt/add/Text.agrpnok 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/usermgmt/add/Text.agrpok 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/usermgmt/add/Text.apswdnok 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/usermgmt/add/Text.apswdok 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/usermgmt/add/Text.ausrnok 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/usermgmt/add/Text.badprim 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/usermgmt/add/Text.badsup 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/usermgmt/defaults/Form.defaults 0644 bin bin
+f OAM_bhelp /usr/sadm/sysadm/menu/usermgmt/defaults/Help 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/usermgmt/defaults/Menu.pgrp 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/usermgmt/defaults/Text.dfltnok 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/usermgmt/defaults/Text.dfltok 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/usermgmt/list/Form.list 0644 bin bin
+f OAM_bhelp /usr/sadm/sysadm/menu/usermgmt/list/Help 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/usermgmt/list/Text.lsgrp 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/usermgmt/list/Text.lsusr 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/usermgmt/modify/Form.modgrp1 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/usermgmt/modify/Form.modgrp2 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/usermgmt/modify/Form.modify 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/usermgmt/modify/Form.modusr1 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/usermgmt/modify/Form.modusr2 0644 bin bin
+f OAM_bhelp /usr/sadm/sysadm/menu/usermgmt/modify/Help 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/usermgmt/modify/Menu.logins 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/usermgmt/modify/Menu.mlogins 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/usermgmt/modify/Menu.pgrp 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/usermgmt/modify/Menu.sgrp 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/usermgmt/modify/Text.mgrpnok 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/usermgmt/modify/Text.mgrpok 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/usermgmt/modify/Text.musrnok 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/usermgmt/modify/Text.musrok 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/usermgmt/password/Form.password 0644 bin bin
+f OAM_bhelp /usr/sadm/sysadm/menu/usermgmt/password/Help 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/usermgmt/password/Menu.passwd 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/usermgmt/password/Text.pswdnok 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/usermgmt/password/Text.pswdok 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/usermgmt/remove/Form.remove 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/usermgmt/remove/Form.rmgrp 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/usermgmt/remove/Form.rmusr1 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/usermgmt/remove/Form.rmusr2 0644 bin bin
+f OAM_bhelp /usr/sadm/sysadm/menu/usermgmt/remove/Help 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/usermgmt/remove/Menu.logins 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/usermgmt/remove/Menu.pgrp 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/usermgmt/remove/Text.rgrpnok 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/usermgmt/remove/Text.rgrpok 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/usermgmt/remove/Text.rmgrp 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/usermgmt/remove/Text.rusrnok 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/usermgmt/remove/Text.rusrok 0644 bin bin
+v OAM_basic /usr/sadm/sysadm/menu/usermgmt/user.menu 0644 bin bin
+
+f OAM_basic /usr/sadm/sysadm/pref/.colorpref 0644 bin bin
+
+f OAM_basic /usr/sbin/sysadm 0755 bin bin
+
+# remove these commands
+#l OAM_basic /usr/sbin/checkfsys=/usr/sbin/sysadm
+#l OAM_basic /usr/bin/checkfsys=/usr/sbin/sysadm
+#l OAM_basic /usr/sbin/makefsys=/usr/sbin/sysadm
+#l OAM_basic /usr/bin/makefsys=/usr/sbin/sysadm
+#l OAM_basic /usr/sbin/mountfsys=/usr/sbin/sysadm
+#l OAM_basic /usr/bin/mountfsys=/usr/sbin/sysadm
+#l OAM_basic /usr/sbin/powerdown=/usr/sbin/sysadm
+#l OAM_basic /usr/bin/powerdown=/usr/sbin/sysadm
+#l OAM_basic /usr/sbin/setup=/usr/sbin/sysadm
+#l OAM_basic /usr/sbin/umountfsys=/usr/sbin/sysadm
+#l OAM_basic /usr/bin/umountfsys=/usr/sbin/sysadm
+
+f OAM_basic /usr/bin/ckdate 555 bin bin 1 NULL NULL
+l OAM_basic /usr/sadm/bin/valdate=/usr/bin/ckdate
+l OAM_basic /usr/sadm/bin/helpdate=/usr/bin/ckdate
+l OAM_basic /usr/sadm/bin/errdate=/usr/bin/ckdate
+l OAM_basic /usr/bin/getdate=/usr/bin/ckdate
+
+#f OAM_basic /usr/bin/ckuid 555 bin bin 1 NULL NULL
+#l OAM_basic /usr/sadm/bin/valuid=/usr/bin/ckuid
+
+l OAM_basic /usr/bin/dispuid=/usr/bin/ckuid
+l OAM_basic /usr/sadm/bin/helpuid=/usr/bin/ckuid
+l OAM_basic /usr/sadm/bin/erruid=/usr/bin/ckuid
+l OAM_basic /usr/sadm/bin/dispuid=/usr/bin/ckuid
+
+#f OAM_basic /usr/bin/ckgid 555 bin bin 1 NULL NULL
+#l OAM_basic /usr/sadm/bin/valgid=/usr/bin/ckgid
+
+l OAM_basic /usr/bin/dispgid=/usr/bin/ckgid
+l OAM_basic /usr/sadm/bin/helpgid=/usr/bin/ckgid
+l OAM_basic /usr/sadm/bin/errgid=/usr/bin/ckgid
+l OAM_basic /usr/sadm/bin/dispgid=/usr/bin/ckgid
+
+f OAM_basic /usr/bin/cktime 555 bin bin 1 NULL NULL
+l OAM_basic /usr/bin/gettime=/usr/bin/cktime
+l OAM_basic /usr/sadm/bin/valtime=/usr/bin/cktime
+l OAM_basic /usr/sadm/bin/helptime=/usr/bin/cktime
+l OAM_basic /usr/sadm/bin/errtime=/usr/bin/cktime
+
+f OAM_basic /usr/bin/ckkeywd 555 bin bin 1 NULL NULL
+l OAM_basic /usr/bin/getkeywd=/usr/bin/ckkeywd
+
+f OAM_basic /usr/bin/ckstr 555 bin bin 1 NULL NULL
+l OAM_basic /usr/bin/getstr=/usr/bin/ckstr
+l OAM_basic /usr/sadm/bin/valstr=/usr/bin/ckstr
+l OAM_basic /usr/sadm/bin/helpstr=/usr/bin/ckstr
+l OAM_basic /usr/sadm/bin/errstr=/usr/bin/ckstr 
+
+#f OAM_basic /usr/bin/ckitem 555 bin bin 1 NULL NULL
+l OAM_basic /usr/sadm/bin/helpitem=/usr/bin/ckitem
+l OAM_basic /usr/sadm/bin/erritem=/usr/bin/ckitem
+
+f OAM_basic /usr/bin/ckint 555 bin bin 1 NULL NULL
+l OAM_basic /usr/bin/getint=/usr/bin/ckint
+l OAM_basic /usr/sadm/bin/valint=/usr/bin/ckint
+l OAM_basic /usr/sadm/bin/helpint=/usr/bin/ckint
+l OAM_basic /usr/sadm/bin/errint=/usr/bin/ckint
+
+#d OAM_basic /usr/sadm/bin 755 bin bin 1 NULL NULL
+f OAM_basic /usr/sadm/bin/puttext 555 bin bin
+
+l OAM_basic /usr/sadm/bin/valpath=/usr/bin/ckpath
+l OAM_basic /usr/sadm/bin/helppath=/usr/bin/ckpath
+l OAM_basic /usr/sadm/bin/errpath=/usr/bin/ckpath
+
+l OAM_basic /usr/sadm/bin/valrange=/usr/bin/ckrange
+l OAM_basic /usr/sadm/bin/helprange=/usr/bin/ckrange
+l OAM_basic /usr/sadm/bin/errange=/usr/bin/ckrange
+
+l OAM_basic /usr/sadm/bin/valyorn=/usr/bin/ckyorn
+l OAM_basic /usr/sadm/bin/helpyorn=/usr/bin/ckyorn
+l OAM_basic /usr/sadm/bin/erryorn=/usr/bin/ckyorn
+
+# preSVR4 FACE related files
+
+f OAM_basic /usr/vmsys/admin/.chkuser 0755 bin bin
+l OAM_basic /usr/sadm/sysadm/bin/.chkuser=/usr/vmsys/admin/.chkuser
+
+v OAM_basic /etc/.useradm 0644 bin bin
+
+v OAM_basic /usr/sadm/sysadm/bin/base-adm 0644 bin bin
+l OAM_basic /usr/sadm/sysadm/admsets/base-adm=//usr/sadm/sysadm/bin/base-adm
+l OAM_basic /usr/sysadm/bin/base-adm=//usr/sadm/sysadm/bin/base-adm
+l OAM_basic /usr/vmsys/admsets/base-adm=//usr/sadm/sysadm/bin/base-adm
+
+f OAM_basic /usr/vmsys/HELP/PS/T.hall 0644 bin bin
+f OAM_basic /usr/vmsys/HELP/PS/T.hprset 0644 bin bin
+f OAM_basic /usr/vmsys/HELP/PS/T.hwheel 0644 bin bin
+f OAM_basic /usr/vmsys/HELP/T.h1.help 0644 bin bin
+f OAM_basic /usr/vmsys/HELP/T.h7.cmd 0644 bin bin
+f OAM_basic /usr/vmsys/HELP/T.hadmin 0644 bin bin
+f OAM_basic /usr/vmsys/HELP/backup/T.hbackup 0644 bin bin
+f OAM_basic /usr/vmsys/HELP/backup/private/T.hbackpri 0644 bin bin
+f OAM_basic /usr/vmsys/HELP/backup/private/T.hbkdir1 0644 bin bin
+f OAM_basic /usr/vmsys/HELP/backup/private/T.hdevice 0644 bin bin
+f OAM_basic /usr/vmsys/HELP/backup/sched/T.hadd1 0644 bin bin
+f OAM_basic /usr/vmsys/HELP/backup/sched/T.hadd2 0644 bin bin
+f OAM_basic /usr/vmsys/HELP/backup/sched/T.hadd3 0644 bin bin
+f OAM_basic /usr/vmsys/HELP/backup/sched/T.hadd4 0644 bin bin
+f OAM_basic /usr/vmsys/HELP/backup/sched/T.hadd5 0644 bin bin
+f OAM_basic /usr/vmsys/HELP/backup/sched/T.hchg 0644 bin bin
+f OAM_basic /usr/vmsys/HELP/backup/sched/T.hdel 0644 bin bin
+f OAM_basic /usr/vmsys/HELP/backup/sched/T.hdpl 0644 bin bin
+f OAM_basic /usr/vmsys/HELP/backup/sched/T.hsched 0644 bin bin
+f OAM_basic /usr/vmsys/HELP/backup/system/T.hbacksys 0644 bin bin
+f OAM_basic /usr/vmsys/HELP/backup/system/T.husers 0644 bin bin
+f OAM_basic /usr/vmsys/HELP/dskopts/T.hdskopts 0644 bin bin
+
+## missing
+##f OAM_basic /usr/vmsys/HELP/hwset/T.hhard 0644 bin bin
+
+f OAM_basic /usr/vmsys/HELP/logins/T.hlogins 0644 bin bin
+f OAM_basic /usr/vmsys/HELP/mailset/T.hmail 0644 bin bin
+f OAM_basic /usr/vmsys/HELP/restore/T.hrestore 0644 bin bin
+f OAM_basic /usr/vmsys/HELP/restore/T.hdevice 0644 bin bin
+f OAM_basic /usr/vmsys/HELP/restore/T.hoverwr1 0644 bin bin
+f OAM_basic /usr/vmsys/HELP/restore/T.hprivate 0644 bin bin
+f OAM_basic /usr/vmsys/HELP/restore/T.hselect 0644 bin bin
+f OAM_basic /usr/vmsys/HELP/restore/system/T.hsystem 0644 bin bin
+f OAM_basic /usr/vmsys/HELP/sched/T.hsched 0644 bin bin
+v OAM_basic /usr/vmsys/OBJECTS/Menu.admin 0644 bin bin
+v OAM_basic /usr/vmsys/OBJECTS/Menu.appsetup 0644 bin bin
+v OAM_basic /usr/vmsys/OBJECTS/Menu.h0.toc 0644 bin bin
+v OAM_basic /usr/vmsys/OBJECTS/Menu.programs 0644 bin bin
+f OAM_basic /usr/vmsys/OBJECTS/PS/FILTER/Form.add 0644 bin bin
+f OAM_basic /usr/vmsys/OBJECTS/PS/FILTER/Form.cd 0644 bin bin
+f OAM_basic /usr/vmsys/OBJECTS/PS/FILTER/Form.change 0644 bin bin
+f OAM_basic /usr/vmsys/OBJECTS/PS/FILTER/Form.fadd 0644 bin bin
+v OAM_basic /usr/vmsys/OBJECTS/PS/FILTER/Menu.del 0644 bin bin
+v OAM_basic /usr/vmsys/OBJECTS/PS/FILTER/Menu.filter 0644 bin bin
+v OAM_basic /usr/vmsys/OBJECTS/PS/FILTER/Menu.input 0644 bin bin
+v OAM_basic /usr/vmsys/OBJECTS/PS/FILTER/Menu.output 0644 bin bin
+v OAM_basic /usr/vmsys/OBJECTS/PS/FILTER/Menu.pname 0644 bin bin
+v OAM_basic /usr/vmsys/OBJECTS/PS/FILTER/Menu.ptype 0644 bin bin
+f OAM_basic /usr/vmsys/OBJECTS/PS/FILTER/Text.addcfm 0644 bin bin
+f OAM_basic /usr/vmsys/OBJECTS/PS/FILTER/Text.all 0644 bin bin
+f OAM_basic /usr/vmsys/OBJECTS/PS/FILTER/Text.chgcfm 0644 bin bin
+f OAM_basic /usr/vmsys/OBJECTS/PS/FILTER/Text.delcfm 0644 bin bin
+f OAM_basic /usr/vmsys/OBJECTS/PS/FILTER/Text.display 0644 bin bin
+f OAM_basic /usr/vmsys/OBJECTS/PS/FILTER/Text.nochg 0644 bin bin
+f OAM_basic /usr/vmsys/OBJECTS/PS/FILTER/Text.nofltr 0644 bin bin
+f OAM_basic /usr/vmsys/OBJECTS/PS/FILTER/Text.none 0644 bin bin
+f OAM_basic /usr/vmsys/OBJECTS/PS/FORM/Form.add 0644 bin bin
+f OAM_basic /usr/vmsys/OBJECTS/PS/FORM/Form.asel 0644 bin bin
+f OAM_basic /usr/vmsys/OBJECTS/PS/FORM/Form.change 0644 bin bin
+f OAM_basic /usr/vmsys/OBJECTS/PS/FORM/Form.csel 0644 bin bin
+f OAM_basic /usr/vmsys/OBJECTS/PS/FORM/Form.display 0644 bin bin
+f OAM_basic /usr/vmsys/OBJECTS/PS/FORM/Form.dsel 0644 bin bin
+v OAM_basic /usr/vmsys/OBJECTS/PS/FORM/Menu.alert 0644 bin bin
+v OAM_basic /usr/vmsys/OBJECTS/PS/FORM/Menu.fdelete 0644 bin bin
+v OAM_basic /usr/vmsys/OBJECTS/PS/FORM/Menu.form 0644 bin bin
+v OAM_basic /usr/vmsys/OBJECTS/PS/FORM/Menu.muser 0644 bin bin
+f OAM_basic /usr/vmsys/OBJECTS/PS/FORM/Text.cadd 0644 bin bin
+f OAM_basic /usr/vmsys/OBJECTS/PS/FORM/Text.cadel 0644 bin bin
+f OAM_basic /usr/vmsys/OBJECTS/PS/FORM/Text.cchg 0644 bin bin
+f OAM_basic /usr/vmsys/OBJECTS/PS/FORM/Text.cdel 0644 bin bin
+f OAM_basic /usr/vmsys/OBJECTS/PS/FORM/Text.nchg 0644 bin bin
+f OAM_basic /usr/vmsys/OBJECTS/PS/FORM/Text.nmark 0644 bin bin
+f OAM_basic /usr/vmsys/OBJECTS/PS/FORM/Text.nodis 0644 bin bin
+f OAM_basic /usr/vmsys/OBJECTS/PS/FORM/Text.nofchg 0644 bin bin
+f OAM_basic /usr/vmsys/OBJECTS/PS/FORM/Text.noform 0644 bin bin
+v OAM_basic /usr/vmsys/OBJECTS/PS/Menu.all 0644 bin bin
+v OAM_basic /usr/vmsys/OBJECTS/PS/Menu.prset 0644 bin bin
+f OAM_basic /usr/vmsys/OBJECTS/PS/Text.datpriv 0644 bin bin
+f OAM_basic /usr/vmsys/OBJECTS/PS/Text.prset 0644 bin bin
+f OAM_basic /usr/vmsys/OBJECTS/PS/WHEEL/Form.asel 0644 bin bin
+f OAM_basic /usr/vmsys/OBJECTS/PS/WHEEL/Form.csel 0644 bin bin
+f OAM_basic /usr/vmsys/OBJECTS/PS/WHEEL/Form.display 0644 bin bin
+f OAM_basic /usr/vmsys/OBJECTS/PS/WHEEL/Form.dsel 0644 bin bin
+f OAM_basic /usr/vmsys/OBJECTS/PS/WHEEL/Form.wadd 0644 bin bin
+f OAM_basic /usr/vmsys/OBJECTS/PS/WHEEL/Form.wchg 0644 bin bin
+v OAM_basic /usr/vmsys/OBJECTS/PS/WHEEL/Menu.alert 0644 bin bin
+v OAM_basic /usr/vmsys/OBJECTS/PS/WHEEL/Menu.wdelete 0644 bin bin
+v OAM_basic /usr/vmsys/OBJECTS/PS/WHEEL/Menu.wheel 0644 bin bin
+f OAM_basic /usr/vmsys/OBJECTS/PS/WHEEL/Text.cadd 0644 bin bin
+f OAM_basic /usr/vmsys/OBJECTS/PS/WHEEL/Text.cadel 0644 bin bin
+f OAM_basic /usr/vmsys/OBJECTS/PS/WHEEL/Text.cchg 0644 bin bin
+f OAM_basic /usr/vmsys/OBJECTS/PS/WHEEL/Text.cdel 0644 bin bin
+f OAM_basic /usr/vmsys/OBJECTS/PS/WHEEL/Text.nchg 0644 bin bin
+f OAM_basic /usr/vmsys/OBJECTS/PS/WHEEL/Text.nmark 0644 bin bin
+f OAM_basic /usr/vmsys/OBJECTS/PS/WHEEL/Text.nodis 0644 bin bin
+f OAM_basic /usr/vmsys/OBJECTS/PS/WHEEL/Text.nowchg 0644 bin bin
+f OAM_basic /usr/vmsys/OBJECTS/PS/WHEEL/Text.nowheel 0644 bin bin
+f OAM_basic /usr/vmsys/OBJECTS/Text.h 0644 bin bin
+f OAM_basic /usr/vmsys/OBJECTS/Text.help 0644 bin bin
+f OAM_basic /usr/vmsys/OBJECTS/Text.rsterr 0644 bin bin
+v OAM_basic /usr/vmsys/OBJECTS/backup/Menu.backup 0644 bin bin
+v OAM_basic /usr/vmsys/OBJECTS/dskopts/Menu.dskopts 0644 bin bin
+v OAM_basic /usr/vmsys/OBJECTS/fs/Menu.filsys 0644 bin bin
+v OAM_basic /usr/vmsys/OBJECTS/hwset/Menu.hard 0644 bin bin
+f OAM_basic /usr/vmsys/OBJECTS/hwset/Help 0644 bin bin
+f OAM_basic /usr/vmsys/OBJECTS/hwset/Text.compat 0644 bin bin
+v OAM_basic /usr/vmsys/OBJECTS/logins/Menu.logins 0644 bin bin
+v OAM_basic /usr/vmsys/OBJECTS/mailset/Menu.mail 0644 bin bin
+v OAM_basic /usr/vmsys/OBJECTS/restore/Menu.restore 0644 bin bin
+
+l OAM_basic /usr/vmsys/OBJECTS/sched/Menu.sched=//usr/sadm/sysadm/menu/backup_service/backup/basic/sched/Menu.sched 
+
+f OAM_basic /usr/vmsys/README 0644 bin bin
+f OAM_basic /usr/vmsys/admin/PS/CONFIG/alphanum 0755 bin bin
+f OAM_basic /usr/vmsys/admin/PS/FILTER/add 0755 bin bin
+f OAM_basic /usr/vmsys/admin/PS/FILTER/chgflt 0755 bin bin
+f OAM_basic /usr/vmsys/admin/PS/FILTER/chkdel 0755 bin bin
+f OAM_basic /usr/vmsys/admin/PS/FILTER/chkmode 0755 bin bin
+f OAM_basic /usr/vmsys/admin/PS/FILTER/delete 0755 bin bin
+f OAM_basic /usr/vmsys/admin/PS/FILTER/mitem 0755 bin bin
+f OAM_basic /usr/vmsys/admin/PS/FILTER/mode 0755 bin bin
+f OAM_basic /usr/vmsys/admin/PS/FILTER/name 0755 bin bin
+f OAM_basic /usr/vmsys/admin/PS/FILTER/option 0755 bin bin
+f OAM_basic /usr/vmsys/admin/PS/FILTER/pname 0755 bin bin
+f OAM_basic /usr/vmsys/admin/PS/FILTER/ptype 0755 bin bin
+f OAM_basic /usr/vmsys/admin/PS/FILTER/seek 0755 bin bin
+f OAM_basic /usr/vmsys/admin/PS/FORM/addform.sh 0755 bin bin
+f OAM_basic /usr/vmsys/admin/PS/FORM/allvalid.sh 0755 bin bin
+f OAM_basic /usr/vmsys/admin/PS/FORM/alname.sh 0755 bin bin
+f OAM_basic /usr/vmsys/admin/PS/FORM/avlfm.sh 0755 bin bin
+f OAM_basic /usr/vmsys/admin/PS/FORM/chkfile.sh 0755 bin bin
+f OAM_basic /usr/vmsys/admin/PS/FORM/cspwls.sh 0755 bin bin
+f OAM_basic /usr/vmsys/admin/PS/FORM/depend.sh 0755 bin bin
+f OAM_basic /usr/vmsys/admin/PS/FORM/getall.sh 0755 bin bin
+f OAM_basic /usr/vmsys/admin/PS/FORM/getform.sh 0755 bin bin
+f OAM_basic /usr/vmsys/admin/PS/FORM/mkform.sh 0755 bin bin
+f OAM_basic /usr/vmsys/admin/PS/FORM/noform.sh 0755 bin bin
+f OAM_basic /usr/vmsys/admin/PS/FORM/pu.sh 0755 bin bin
+f OAM_basic /usr/vmsys/admin/PS/FORM/rmform.sh 0755 bin bin
+f OAM_basic /usr/vmsys/admin/PS/FORM/user.sh 0755 bin bin
+f OAM_basic /usr/vmsys/admin/PS/FORM/valcon.sh 0755 bin bin
+f OAM_basic /usr/vmsys/admin/PS/FORM/valcpi.sh 0755 bin bin
+f OAM_basic /usr/vmsys/admin/PS/FORM/valfreq.sh 0755 bin bin
+f OAM_basic /usr/vmsys/admin/PS/FORM/vallpi.sh 0755 bin bin
+f OAM_basic /usr/vmsys/admin/PS/FORM/valpr.sh 0755 bin bin
+f OAM_basic /usr/vmsys/admin/PS/FORM/vcmount.sh 0755 bin bin
+f OAM_basic /usr/vmsys/admin/PS/WHEEL/addwheel.sh 0755 bin bin
+f OAM_basic /usr/vmsys/admin/PS/WHEEL/avlfm.sh 0755 bin bin
+f OAM_basic /usr/vmsys/admin/PS/WHEEL/getall.sh 0755 bin bin
+f OAM_basic /usr/vmsys/admin/PS/WHEEL/getwheel.sh 0755 bin bin
+f OAM_basic /usr/vmsys/admin/PS/WHEEL/mkwheel.sh 0755 bin bin
+f OAM_basic /usr/vmsys/admin/PS/WHEEL/nowheel.sh 0755 bin bin
+f OAM_basic /usr/vmsys/admin/PS/WHEEL/rmwheel.sh 0755 bin bin
+f OAM_basic /usr/vmsys/admin/PS/WHEEL/vcmount.sh 0755 bin bin
+f OAM_basic /usr/vmsys/bin/doexec 0755 bin bin
+f OAM_basic /usr/vmsys/bin/getchg 0755 bin bin
+f OAM_basic /usr/vmsys/bin/getdel 0755 bin bin
+f OAM_basic /usr/vmsys/bin/getname 0755 bin bin
+f OAM_basic /usr/vmsys/bin/getword 0755 bin bin
+f OAM_basic /usr/vmsys/bin/slash 0755 bin bin
+
+# Symbolic Links
+
+d OAM_basic /usr/sadm/sysadm/menu/restores 0755 bin bin
+
+s OAM_basic /usr/sadm/sysadm/menu/applmgmt/OBJECTS=/usr/vmsys/OBJECTS
+s OAM_basic /usr/sadm/sysadm/menu/backup_service/OBJECTS=/usr/vmsys/OBJECTS
+s OAM_basic /usr/sadm/sysadm/menu/devices/OBJECTS=/usr/vmsys/OBJECTS
+s OAM_basic /usr/sadm/sysadm/menu/files/OBJECTS=/usr/vmsys/OBJECTS
+s OAM_basic /usr/sadm/sysadm/menu/netservices/OBJECTS=/usr/vmsys/OBJECTS
+s OAM_basic /usr/sadm/sysadm/menu/restores/OBJECTS=/usr/vmsys/OBJECTS
+s OAM_basic /usr/sadm/sysadm/menu/usermgmt/OBJECTS=/usr/vmsys/OBJECTS
+s OAM_basic /usr/sadm/sysadm/menu/sched/OBJECTS=/usr/vmsys/OBJECTS
+s OAM_basic /usr/sadm/sysadm/menu/OBJECTS=/usr/vmsys/OBJECTS
+
+## Files from local prototype: component=oampkg
+
+## Files from local prototype: component=oamuser
+
+## Files from local prototype: component=portmgmt
+
+# basic and extended OAM directories
+
+d OAM_basic /usr/sadm/sysadm/menu/ports 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/menu/ports/port_quick 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/menu/ports/port_monitors 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/menu/ports/port_monitors/add 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/menu/ports/port_monitors/disable 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/menu/ports/port_monitors/enable 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/menu/ports/port_monitors/list 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/menu/ports/port_monitors/modify 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/menu/ports/port_monitors/remove 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/menu/ports/port_monitors/start 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/menu/ports/port_monitors/stop 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/menu/ports/port_services 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/menu/ports/port_services/add 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/menu/ports/port_services/disable 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/menu/ports/port_services/enable 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/menu/ports/port_services/list 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/menu/ports/port_services/modify 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/menu/ports/port_services/remove 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/menu/ports/tty_settings 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/menu/ports/tty_settings/add 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/menu/ports/tty_settings/list 0755 bin bin
+d OAM_basic /usr/sadm/sysadm/menu/ports/tty_settings/remove 0755 bin bin
+
+# basic and extended interface
+
+f OAM_basic /usr/sadm/sysadm/bin/isastream 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/q-add 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/q-rm 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/ckbaud 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/ckfile 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/ckwcount 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/findpmtype 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/lsopts 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/modifypm 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/pmadmopts 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/pmckmod 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/pmgetpid 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/psmod 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/pstest 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/sacopts 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/settinglist 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/tmopts 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/ttylist 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/uniq_label 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/uniq_pmtag 0755 bin bin
+f OAM_basic /usr/sadm/sysadm/bin/uniq_svctag 0755 bin bin
+f OAM_bhelp /usr/sadm/sysadm/menu/ports/Help 0644 bin bin
+f OAM_bhelp /usr/sadm/sysadm/menu/ports/port_monitors/Help 0644 bin bin
+
+f OAM_bhelp /usr/sadm/sysadm/menu/ports/port_quick/Help 0644 bin bin
+
+f OAM_basic /usr/sadm/sysadm/menu/ports/port_monitors/add/Form.pm_add 0644 bin bin
+l OAM_bhelp /usr/sadm/sysadm/menu/ports/port_monitors/add/Help=/usr/sadm/sysadm/menu/ports/port_monitors/Help
+l OAM_bhelp /usr/sadm/sysadm/menu/ports/port_monitors/disable/Help=/usr/sadm/sysadm/menu/ports/port_monitors/Help
+f OAM_basic /usr/sadm/sysadm/menu/ports/port_monitors/disable/Menu.pm_disabl 0644 bin bin
+l OAM_bhelp /usr/sadm/sysadm/menu/ports/port_monitors/enable/Help=/usr/sadm/sysadm/menu/ports/port_monitors/Help
+f OAM_basic /usr/sadm/sysadm/menu/ports/port_monitors/enable/Menu.pm_enable 0644 bin bin
+l OAM_bhelp /usr/sadm/sysadm/menu/ports/port_monitors/list/Help=/usr/sadm/sysadm/menu/ports/port_monitors/Help
+f OAM_basic /usr/sadm/sysadm/menu/ports/port_monitors/list/Menu.pm_list 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/ports/port_monitors/list/Menu.pm_lstag 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/ports/port_monitors/list/Menu.pm_lstype 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/ports/port_monitors/list/Text.pm_list 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/ports/port_monitors/list/Text.pm_lsall 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/ports/port_monitors/modify/Form.pm_modify 0644 bin bin
+l OAM_bhelp /usr/sadm/sysadm/menu/ports/port_monitors/modify/Help=/usr/sadm/sysadm/menu/ports/port_monitors/Help
+f OAM_basic /usr/sadm/sysadm/menu/ports/port_monitors/modify/Menu.pm_modify 0644 bin bin
+v OAM_basic /usr/sadm/sysadm/menu/ports/port_monitors/pm.menu 0644 bin bin
+l OAM_bhelp /usr/sadm/sysadm/menu/ports/port_monitors/remove/Help=/usr/sadm/sysadm/menu/ports/port_monitors/Help
+f OAM_basic /usr/sadm/sysadm/menu/ports/port_monitors/remove/Menu.pm_remove 0644 bin bin
+l OAM_bhelp /usr/sadm/sysadm/menu/ports/port_monitors/start/Help=/usr/sadm/sysadm/menu/ports/port_monitors/Help
+f OAM_basic /usr/sadm/sysadm/menu/ports/port_monitors/start/Menu.pm_start 0644 bin bin
+l OAM_bhelp /usr/sadm/sysadm/menu/ports/port_monitors/stop/Help=/usr/sadm/sysadm/menu/ports/port_monitors/Help
+f OAM_basic /usr/sadm/sysadm/menu/ports/port_monitors/stop/Menu.pm_stop 0644 bin bin
+f OAM_bhelp /usr/sadm/sysadm/menu/ports/port_services/Help 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/ports/port_services/Menu.c_labels 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/ports/port_services/add/Form.ps_add 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/ports/port_services/add/Form.ps_addls 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/ports/port_services/add/Form.ps_addtm 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/ports/port_services/add/Text.ps_msg 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/ports/port_services/add/Form.ps_adduk 0644 bin bin
+l OAM_bhelp /usr/sadm/sysadm/menu/ports/port_services/add/Help=/usr/sadm/sysadm/menu/ports/port_services/Help
+f OAM_basic /usr/sadm/sysadm/menu/ports/port_services/add/Menu.ps_add 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/ports/port_services/add/Menu.ps_atag 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/ports/port_services/add/Menu.ps_atype 0644 bin bin
+l OAM_bhelp /usr/sadm/sysadm/menu/ports/port_services/disable/Help=/usr/sadm/sysadm/menu/ports/port_services/Help
+f OAM_basic /usr/sadm/sysadm/menu/ports/port_services/disable/Menu.ps_disabl 0644 bin bin
+l OAM_bhelp /usr/sadm/sysadm/menu/ports/port_services/enable/Help=/usr/sadm/sysadm/menu/ports/port_services/Help
+f OAM_basic /usr/sadm/sysadm/menu/ports/port_services/enable/Menu.ps_enable 0644 bin bin
+l OAM_bhelp /usr/sadm/sysadm/menu/ports/port_services/list/Help=/usr/sadm/sysadm/menu/ports/port_services/Help
+f OAM_basic /usr/sadm/sysadm/menu/ports/port_services/list/Menu.ps_list 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/ports/port_services/list/Menu.ps_lstag 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/ports/port_services/list/Menu.ps_lstype 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/ports/port_services/list/Text.ps_list 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/ports/port_services/list/Text.ps_lsall 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/ports/port_services/modify/Form.ps_modls 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/ports/port_services/modify/Form.ps_modtm 0644 bin bin
+l OAM_bhelp /usr/sadm/sysadm/menu/ports/port_services/modify/Help=/usr/sadm/sysadm/menu/ports/port_services/Help
+f OAM_basic /usr/sadm/sysadm/menu/ports/port_services/modify/Menu.ps_modify 0644 bin bin
+v OAM_basic /usr/sadm/sysadm/menu/ports/port_services/ps.menu 0644 bin bin
+l OAM_bhelp /usr/sadm/sysadm/menu/ports/port_services/remove/Help=/usr/sadm/sysadm/menu/ports/port_services/Help
+f OAM_basic /usr/sadm/sysadm/menu/ports/port_services/remove/Menu.ps_remove 0644 bin bin
+v OAM_basic /usr/sadm/sysadm/menu/ports/ports.menu 0644 bin bin
+f OAM_bhelp /usr/sadm/sysadm/menu/ports/tty_settings/Help 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/ports/tty_settings/add/Form.tty_add 0644 bin bin
+l OAM_bhelp /usr/sadm/sysadm/menu/ports/tty_settings/add/Help=/usr/sadm/sysadm/menu/ports/tty_settings/Help
+f OAM_basic /usr/sadm/sysadm/menu/ports/tty_settings/add/Menu.c_labels 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/ports/tty_settings/add/Menu.tty_baud 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/ports/tty_settings/add/Text.tty_add 0644 bin bin
+l OAM_bhelp /usr/sadm/sysadm/menu/ports/tty_settings/list/Help=/usr/sadm/sysadm/menu/ports/tty_settings/Help
+f OAM_basic /usr/sadm/sysadm/menu/ports/tty_settings/list/Menu.tty_list 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/ports/tty_settings/list/Text.tty_list 0644 bin bin
+f OAM_bhelp /usr/sadm/sysadm/menu/ports/tty_settings/remove/Help 0644 bin bin
+
+f OAM_basic /usr/sadm/sysadm/menu/ports/tty_settings/remove/Menu.tty_remov 0644 bin bin
+
+v OAM_basic /usr/sadm/sysadm/menu/ports/tty_settings/tty.menu 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/ports/tty_settings/ttyvalues 0644 bin bin
+
+f OAM_basic /usr/sadm/sysadm/menu/ports/port_quick/Form.add 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/ports/port_quick/Form.rm 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/ports/port_quick/Menu.ap 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/ports/port_quick/Menu.rp 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/ports/port_quick/Text.cfa 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/ports/port_quick/Text.cfr 0644 bin bin
+f OAM_basic /usr/sadm/sysadm/menu/ports/port_quick/Text.priv 0644 bin bin
+v OAM_basic /usr/sadm/sysadm/menu/ports/port_quick/quick.menu 0644 bin bin
+
+## Files from local prototype: component=users
+
+## Files from local prototype: component=valtools
+
+###################################
+## the following added after p8 and not in V4
+###################################
+
+!default 0555 bin bin 1 NULL NULL
+
+f OAM_basic /usr/bin/menu_add 
+f OAM_basic /usr/bin/menu_del
+
+f OAM_basic /usr/sadm/install/bin//ie_build 
+f OAM_basic /usr/sadm/install/bin/intf_inst
+f OAM_basic /usr/sadm/install/bin/intf_reloc 
+f OAM_basic /usr/sadm/install/bin/intf_remove
+f OAM_basic /usr/sadm/install/bin/mod_menus 
+f OAM_basic /usr/sadm/install/bin/reloc_menus
+
+f OAM_basic /usr/sadm/install/scripts/i.OAMmif=$CLASS_SCRIPT_LOC/i.OAMmif
+f OAM_basic /usr/sadm/install/scripts/r.OAMintf=$CLASS_SCRIPT_LOC/r.OAMintf
+
+
+!default 0755 bin bin 1 NULL NULL
+
+f OAM_basic /usr/sadm/sysadm/bin/addgrpmem
+f OAM_basic /usr/sadm/sysadm/bin/checkage
+f OAM_basic /usr/sadm/sysadm/bin/chgnetconf
+f OAM_basic /usr/sadm/sysadm/bin/count
+f OAM_basic /usr/sadm/sysadm/bin/diskcfg
+f OAM_basic /usr/sadm/sysadm/bin/expdate
+f OAM_basic /usr/sadm/sysadm/bin/findgid
+f OAM_basic /usr/sadm/sysadm/bin/finduid
+
+##f OAM_basic /usr/sadm/sysadm/bin/fstyp_spcl
+
+f OAM_basic /usr/sadm/sysadm/bin/getchoidis
+f OAM_basic /usr/sadm/sysadm/bin/getchoimod
+f OAM_basic /usr/sadm/sysadm/bin/getchoirem
+f OAM_basic /usr/sadm/sysadm/bin/getchois
+f OAM_basic /usr/sadm/sysadm/bin/getdefl
+f OAM_basic /usr/sadm/sysadm/bin/getngroups
+f OAM_basic /usr/sadm/sysadm/bin/getprimary
+f OAM_basic /usr/sadm/sysadm/bin/getumntdev
+f OAM_basic /usr/sadm/sysadm/bin/isoam.ins
+
+#f OAM_basic /usr/sadm/sysadm/bin/ldusers
+
+f OAM_basic /usr/sadm/sysadm/bin/listuser
+
+f OAM_basic /usr/sadm/sysadm/bin/lvlget
+
+#f OAM_basic /usr/sadm/sysadm/bin/lvlval
+
+f OAM_basic /usr/sadm/sysadm/bin/mkdtab
+f OAM_basic /usr/sadm/sysadm/bin/nslist
+f OAM_basic /usr/sadm/sysadm/bin/pswdstat
+f OAM_basic /usr/sadm/sysadm/bin/rmdisk
+
+!default 0644 bin bin 1 NULL NULL
+f OAM_basic /usr/sadm/sysadm/edmenu/Form.rename
+f OAM_basic /usr/sadm/sysadm/edmenu/Text.direxist
+f OAM_basic /usr/sadm/sysadm/edmenu/Text.namerr
+f OAM_basic /usr/sadm/sysadm/edmenu/Text.nochange
+f OAM_basic /usr/sadm/sysadm/edmenu/Text.noname
+f OAM_basic /usr/sadm/sysadm/edmenu/Text.nopkg
+f OAM_basic /usr/sadm/sysadm/edmenu/Text.rename
+
+f OAM_bhelp /usr/sadm/sysadm/menu/applmgmt/Help 0644 bin bin
+v OAM_basic /usr/sadm/sysadm/menu/applmgmt/appl.menu 0644 root sys
+
+f OAM_bhelp /usr/sadm/sysadm/menu/backup_service/backup/basic/Help 0644 root sys
+
+f OAM_basic /usr/sadm/sysadm/menu/devices/Text.rsvrd2
+f OAM_basic /usr/sadm/sysadm/menu/devices/add/Text.addrem
+f OAM_basic /usr/sadm/sysadm/menu/devices/devices/attrs/list/formatit 0555 bin bin
+
+f OAM_basic /usr/sadm/sysadm/menu/devices/devices/attrs/list/maxcol 0555 bin bin
+
+#l OAM_basic /usr/sadm/sysadm/menu/devices/groups/mbrship/list/maxcol=/usr/sadm/sysadm/menu/devices/devices/attrs/list/maxcol
+f OAM_basic /usr/sadm/sysadm/menu/devices/groups/mbrship/list/maxcol=/usr/sadm/sysadm/menu/devices/devices/attrs/list/maxcol
+
+f OAM_basic /usr/sadm/sysadm/menu/devices/display/Text.disprem
+f OAM_basic /usr/sadm/sysadm/menu/devices/erase/Text.erase2
+
+f OAM_basic /usr/sadm/sysadm/menu/express 
+
+f OAM_basic /usr/sadm/sysadm/menu/files/Menu.fsdevbk
+f OAM_basic /usr/sadm/sysadm/menu/files/Menu.fsdevch
+f OAM_basic /usr/sadm/sysadm/menu/files/defaults/Menu.fsdisplay
+f OAM_basic /usr/sadm/sysadm/menu/files/defaults/Menu.fsmodify
+f OAM_basic /usr/sadm/sysadm/menu/files/defaults/Menu.fsremove
+f OAM_basic /usr/sadm/sysadm/menu/files/defaults/Text.add2
+f OAM_basic /usr/sadm/sysadm/menu/files/defaults/Text.moderr
+f OAM_basic /usr/sadm/sysadm/menu/files/defaults/Text.modify2
+f OAM_basic /usr/sadm/sysadm/menu/files/defaults/Text.rem
+f OAM_bhelp /usr/sadm/sysadm/menu/files/unmount/Menu.umntdev
+
+v OAM_basic /usr/sadm/sysadm/menu/main.menu   0644 root sys
+
+
+f OAM_basic /usr/sadm/sysadm/menu/machinemgmt/configmgmt/summary/maxcol 0555 bin bin
+v OAM_basic /usr/sadm/sysadm/menu/netservices/selection/selection.menu 0644 root sys
+v OAM_basic /usr/sadm/sysadm/menu/networks/networks.menu
+f OAM_basic /usr/sadm/sysadm/menu/restores/restore/basic/Help 0644 root sys
+
+f OAM_basic /usr/sadm/sysadm/menu/softwaremgmt/defaults/Text.sd_addnok
+f OAM_basic /usr/sadm/sysadm/menu/softwaremgmt/defaults/Text.sd_addok
+f OAM_basic /usr/sadm/sysadm/menu/softwaremgmt/defaults/Text.sd_modnok
+f OAM_basic /usr/sadm/sysadm/menu/softwaremgmt/defaults/Text.sd_modok
+f OAM_basic /usr/sadm/sysadm/menu/softwaremgmt/defaults/Text.sd_remnok
+f OAM_basic /usr/sadm/sysadm/menu/softwaremgmt/defaults/Text.sd_remok
+f OAM_basic /usr/sadm/sysadm/menu/softwaremgmt/pkg 0555 bin bin
+
+f OAM_basic /usr/sadm/sysadm/menu/syssetup/file_maint/Form.maint
+f OAM_basic /usr/sadm/sysadm/menu/syssetup/file_maint/Help
+f OAM_basic /usr/sadm/sysadm/menu/syssetup/file_maint/Text.mnok
+f OAM_basic /usr/sadm/sysadm/menu/syssetup/file_maint/Text.mok
+f OAM_basic /usr/sadm/sysadm/menu/syssetup/password/Text.allpasswd
+f OAM_basic /usr/sadm/sysadm/menu/syssetup/password/Text.nochgs
+
+l OAM_basic /usr/sadm/sysadm/menu/syssetup/setup/Form.addusr=/usr/sadm/sysadm/menu/usermgmt/add/Form.addusr 0644 bin bin
+
+f OAM_basic /usr/sadm/sysadm/menu/syssetup/setup/Form.addpswd
+f OAM_basic /usr/sadm/sysadm/menu/syssetup/setup/Form.datetime
+f OAM_basic /usr/sadm/sysadm/menu/syssetup/setup/Form.nodename
+f OAM_basic /usr/sadm/sysadm/menu/syssetup/setup/Form.setadmps
+f OAM_basic /usr/sadm/sysadm/menu/syssetup/setup/Form.setchgps
+f OAM_basic /usr/sadm/sysadm/menu/syssetup/setup/Form.setup3
+f OAM_basic /usr/sadm/sysadm/menu/syssetup/setup/Form.setup4
+f OAM_basic /usr/sadm/sysadm/menu/syssetup/setup/Help
+f OAM_basic /usr/sadm/sysadm/menu/syssetup/setup/Menu.pgrp
+f OAM_basic /usr/sadm/sysadm/menu/syssetup/setup/Menu.sgrp
+f OAM_basic /usr/sadm/sysadm/menu/syssetup/setup/Menu.syspasswd
+f OAM_basic /usr/sadm/sysadm/menu/syssetup/setup/Menu.timezones
+f OAM_basic /usr/sadm/sysadm/menu/syssetup/setup/Text.ausrnok
+f OAM_basic /usr/sadm/sysadm/menu/syssetup/setup/Text.dterr
+f OAM_basic /usr/sadm/sysadm/menu/syssetup/setup/Text.dtok
+f OAM_basic /usr/sadm/sysadm/menu/syssetup/setup/Text.nderr
+f OAM_basic /usr/sadm/sysadm/menu/syssetup/setup/Text.ndok
+f OAM_basic /usr/sadm/sysadm/menu/syssetup/setup/Text.pserr
+f OAM_basic /usr/sadm/sysadm/menu/syssetup/setup/Text.psok
+f OAM_basic /usr/sadm/sysadm/menu/syssetup/setup/Text.setlogerr
+f OAM_basic /usr/sadm/sysadm/menu/syssetup/setup/Text.setpserr
+f OAM_basic /usr/sadm/sysadm/menu/syssetup/setup/Text.setpsok
+f OAM_basic /usr/sadm/sysadm/menu/syssetup/setup/Text.setup
+f OAM_basic /usr/sadm/sysadm/menu/syssetup/setup/Text.setup2
+
+f OAM_basic /usr/sadm/sysadm/menu/usermgmt/add/Form.audit
+f OAM_basic /usr/sadm/sysadm/menu/usermgmt/add/Form.mac1
+f OAM_basic /usr/sadm/sysadm/menu/usermgmt/add/Menu.evts
+f OAM_basic /usr/sadm/sysadm/menu/usermgmt/add/Menu.lvls
+f OAM_basic /usr/sadm/sysadm/menu/usermgmt/defaults/Menu.evts
+f OAM_basic /usr/sadm/sysadm/menu/usermgmt/list/Form.lsusr
+f OAM_basic /usr/sadm/sysadm/menu/usermgmt/list/Menu.zlogins
+f OAM_basic /usr/sadm/sysadm/menu/usermgmt/list/Text.nolsusr
+f OAM_basic /usr/sadm/sysadm/menu/usermgmt/modify/Form.macadd
+f OAM_basic /usr/sadm/sysadm/menu/usermgmt/modify/Form.macrem
+f OAM_basic /usr/sadm/sysadm/menu/usermgmt/modify/Form.macrep
+f OAM_basic /usr/sadm/sysadm/menu/usermgmt/modify/Form.modaud1
+f OAM_basic /usr/sadm/sysadm/menu/usermgmt/modify/Form.modaud2
+f OAM_basic /usr/sadm/sysadm/menu/usermgmt/modify/Form.modmac1
+f OAM_basic /usr/sadm/sysadm/menu/usermgmt/modify/Form.modmac2
+f OAM_basic /usr/sadm/sysadm/menu/usermgmt/modify/Menu.mevts
+f OAM_basic /usr/sadm/sysadm/menu/usermgmt/modify/Menu.mlvls
+f OAM_basic /usr/sadm/sysadm/menu/usermgmt/remove/Text.rctabnok
+f OAM_basic /usr/sadm/sysadm/menu/usermgmt/remove/Text.rctabok
+
+f OAM_basic /usr/sadm/ugdates
+
+f OAM_basic /usr/sbin/delsysadm 0755 bin bin
+f OAM_basic /usr/sbin/edsysadm 0755 bin bin
+f OAM_basic /usr/sbin/menu_add 0755 bin bin
+f OAM_basic /usr/sbin/menu_del 0755 bin bin
+
+
+f OAMmif	/var/sadm/pkg/oam/save/intf_install/bnu.mi
+f OAMmif	/var/sadm/pkg/oam/save/intf_install/devices.mi
+
+## new mi file for bnu
+f OAMmif	/var/sadm/pkg/oam/save/intf_install/bnudevices.mi
+
+f OAMmif	/var/sadm/pkg/oam/save/intf_install/netserv.mi
+f OAMmif	/var/sadm/pkg/oam/save/intf_install/polling.mi
+f OAMmif	/var/sadm/pkg/oam/save/intf_install/systems.mi
+
+#f OAMmif 	/var/sadm/pkg/oam/save/intf_install/file.mi 
+#f OAMmif 	/var/sadm/pkg/oam/save/intf_install/oam.mi 
+
+f OAMmif	/var/sadm/pkg/oam/save/intf_install/lp.mi=$LP_SAVE/lp.mi
+
+f OAMmif	/var/sadm/pkg/oam/save/intf_install/attr_map.mi=$NSU_SAVE/attr_map.mi
+f OAMmif	/var/sadm/pkg/oam/save/intf_install/cr1.mi=$NSU_SAVE/cr1.mi
+f OAMmif	/var/sadm/pkg/oam/save/intf_install/name_map.mi=$NSU_SAVE/name_map.mi
+f OAMmif	/var/sadm/pkg/oam/save/intf_install/selection.mi=$NSU_SAVE/selection.mi
+
+f OAM_basic /usr/include/devmgmt.h
+f OAM_basic /usr/include/libgenIO.h
+
+###########################################################
+# The following entries were moved from pkg.nsu to pkg.oam
+###########################################################
+##d none  /usr/sadm/sysadm/menu/netservices	0775  root sys 1	NULL	NULL
+d none  /usr/sadm/sysadm/menu/netservices/name_to_addr	0755	root	sys	1	NULL	NULL
+d none  /usr/sadm/sysadm/menu/netservices/name_to_addr/loopback	0755	root	sys	1	NULL	NULL
+d none  /usr/sadm/sysadm/menu/netservices/name_to_addr/loopback/bin	0755	root	sys	1	NULL	NULL
+
+#
+#	OAM directories: default owner=root group=sys mode=0755
+#
+!default 0755 root sys 2 NULL NULL
+
+d OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/attr_map
+d OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/attr_map/mappings
+d OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/cr1
+d OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/name_map
+d OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/name_map/mappings
+d OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/selection
+d OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/selection/display
+d OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/selection/modify
+
+
+##
+##	administrative files: default owner=root group=sys mode=0755
+##
+!default 0644 bin bin 2 NULL NULL
+f OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/selection/Help=$NSU_ADDON/selection/Help
+
+f OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/selection/display/Text.ns_list=$NSU_ADDON/selection/display/Text.ns_list
+l OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/selection/display/Help=/usr/sadm/sysadm/add-ons/oam/netservices/selection/Help
+f OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/selection/modify/Menu.ns_nid=$NSU_ADDON/selection/modify/Menu.ns_nid
+f OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/selection/modify/Form.ns_modify=$NSU_ADDON/selection/modify/Form.ns_modify
+f OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/selection/modify/Text.ns_modify=$NSU_ADDON/selection/modify/Text.ns_modify
+l OAM_basic /usr/sadm/sysadm/add-ons/oam/netservices/selection/modify/Help=/usr/sadm/sysadm/add-ons/oam/netservices/selection/Help
+
+##
+##	OAM Scripts for Name to Address Mapping...
+##
+!default 0644 bin bin 2 NULL NULL
+f OAM_basic /usr/sadm/sysadm/menu/netservices/name_to_addr/Help
+f OAM_basic /usr/sadm/sysadm/menu/netservices/name_to_addr/loopback/Form.lbserv
+f OAM_basic /usr/sadm/sysadm/menu/netservices/name_to_addr/loopback/Help
+f OAM_basic /usr/sadm/sysadm/menu/netservices/name_to_addr/loopback/Menu.loopback
+f OAM_basic /usr/sadm/sysadm/menu/netservices/name_to_addr/loopback/Text.badport
+f OAM_basic /usr/sadm/sysadm/menu/netservices/name_to_addr/loopback/Text.exists
+f OAM_basic /usr/sadm/sysadm/menu/netservices/name_to_addr/loopback/Text.lts
+f OAM_basic /usr/sadm/sysadm/menu/netservices/name_to_addr/loopback/Text.lts_ord
+f OAM_basic /usr/sadm/sysadm/menu/netservices/name_to_addr/loopback/Text.ord
+f OAM_basic /usr/sadm/sysadm/menu/netservices/name_to_addr/loopback/Text.ots
+f OAM_basic /usr/sadm/sysadm/menu/netservices/name_to_addr/loopback/Text.ots_lts
+f OAM_basic /usr/sadm/sysadm/menu/netservices/name_to_addr/loopback/Text.ots_ord
+f OAM_basic /usr/sadm/sysadm/menu/netservices/name_to_addr/loopback/Text.success
+f OAM_basic /usr/sadm/sysadm/menu/netservices/name_to_addr/loopback/bin/loopback.serv 0755 bin bin
+v OAM_basic /usr/sadm/sysadm/menu/netservices/name_to_addr/map.menu
+
+##
+##	OAM Scripts for cr1 scheme key management
+##
+!default 0644 bin bin 2 NULL NULL
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/netservices/cr1/Help=$NSU_ADDON/cr1/Help
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/netservices/cr1/Form.cryptkey=$NSU_ADDON/cr1/Form.cryptkey
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/netservices/cr1/Form.start=$NSU_ADDON/cr1/Form.start
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/netservices/cr1/Menu.cr1=$NSU_ADDON/cr1/Menu.cr1
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/netservices/cr1/Text.cryptkey=$NSU_ADDON/cr1/Text.cryptkey
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/netservices/cr1/Text.setmkey=$NSU_ADDON/cr1/Text.setmkey
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/netservices/cr1/Text.start=$NSU_ADDON/cr1/Text.start
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/netservices/cr1/Text.stop=$NSU_ADDON/cr1/Text.stop
+
+##
+##	OAM Scripts for name mapping
+##
+!default 0644 bin bin 2 NULL NULL
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/netservices/name_map/Help=$NSU_ADDON/name_map/Help
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/netservices/name_map/Menu.name_map=$NSU_ADDON/name_map/Menu.name_map
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/netservices/name_map/Form.add=$NSU_ADDON/name_map/Form.add
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/netservices/name_map/Form.remove=$NSU_ADDON/name_map/Form.remove
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/netservices/name_map/Text.add=$NSU_ADDON/name_map/Text.add
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/netservices/name_map/Text.list=$NSU_ADDON/name_map/Text.list
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/netservices/name_map/Text.remove=$NSU_ADDON/name_map/Text.remove
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/netservices/name_map/mappings/Menu.mappings=$NSU_ADDON/name_map/mappings/Menu.mappings
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/netservices/name_map/mappings/Form.add=$NSU_ADDON/name_map/mappings/Form.add
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/netservices/name_map/mappings/Form.check=$NSU_ADDON/name_map/mappings/Form.check
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/netservices/name_map/mappings/Form.disable=$NSU_ADDON/name_map/mappings/Form.disable
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/netservices/name_map/mappings/Form.enable=$NSU_ADDON/name_map/mappings/Form.enable
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/netservices/name_map/mappings/Form.fix=$NSU_ADDON/name_map/mappings/Form.fix
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/netservices/name_map/mappings/Form.list=$NSU_ADDON/name_map/mappings/Form.list
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/netservices/name_map/mappings/Form.remove=$NSU_ADDON/name_map/mappings/Form.remove
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/netservices/name_map/mappings/Text.add=$NSU_ADDON/name_map/mappings/Text.add
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/netservices/name_map/mappings/Text.check=$NSU_ADDON/name_map/mappings/Text.check
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/netservices/name_map/mappings/Text.disable=$NSU_ADDON/name_map/mappings/Text.disable
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/netservices/name_map/mappings/Text.enable=$NSU_ADDON/name_map/mappings/Text.enable
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/netservices/name_map/mappings/Text.list=$NSU_ADDON/name_map/mappings/Text.list
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/netservices/name_map/mappings/Text.remove=$NSU_ADDON/name_map/mappings/Text.remove
+##
+##	OAM Scripts for attribute mapping
+##
+!default 0644 bin bin 2 NULL NULL
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/netservices/attr_map/Help=$NSU_ADDON/attr_map/Help
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/netservices/attr_map/Menu.attr_map=$NSU_ADDON/attr_map/Menu.attr_map
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/netservices/attr_map/Form.add=$NSU_ADDON/attr_map/Form.add
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/netservices/attr_map/Form.remove=$NSU_ADDON/attr_map/Form.remove
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/netservices/attr_map/Text.add=$NSU_ADDON/attr_map/Text.add
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/netservices/attr_map/Text.list=$NSU_ADDON/attr_map/Text.list
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/netservices/attr_map/Text.remove=$NSU_ADDON/attr_map/Text.remove
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/netservices/attr_map/mappings/Menu.mappings=$NSU_ADDON/attr_map/mappings/Menu.mappings
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/netservices/attr_map/mappings/Form.add=$NSU_ADDON/attr_map/mappings/Form.add
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/netservices/attr_map/mappings/Form.check=$NSU_ADDON/attr_map/mappings/Form.check
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/netservices/attr_map/mappings/Form.fix=$NSU_ADDON/attr_map/mappings/Form.fix
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/netservices/attr_map/mappings/Form.list=$NSU_ADDON/attr_map/mappings/Form.list
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/netservices/attr_map/mappings/Form.remove=$NSU_ADDON/attr_map/mappings/Form.remove
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/netservices/attr_map/mappings/Text.add=$NSU_ADDON/attr_map/mappings/Text.add
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/netservices/attr_map/mappings/Text.check=$NSU_ADDON/attr_map/mappings/Text.check
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/netservices/attr_map/mappings/Text.list=$NSU_ADDON/attr_map/mappings/Text.list
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/netservices/attr_map/mappings/Text.remove=$NSU_ADDON/attr_map/mappings/Text.remove
+
+#
+#  The following are OA&M files moved here from pkg.lp
+#
+
+##########
+##
+## LP OAM directories and files
+##
+##########
+
+
+!default 0755 root sys 2 NULL NULL
+
+d OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers
+d OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/classes
+d OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/filters
+d OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/forms
+d OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/operations
+d OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/printers
+d OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/printers/add
+d OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/printers/modify
+d OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/priorities
+d OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/reports
+d OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/requests
+d OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/systems
+
+!default 0755 root sys 2 NULL NULL
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/printers/add/mkform.sh=$LP_ADDON/printers/add/mkform.sh
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/printers/add/getclass.sh=$LP_ADDON/printers/add/getclass.sh
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/printers/add/findchg.sh=$LP_ADDON/printers/add/findchg.sh
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/printers/add/chkstty.sh=$LP_ADDON/printers/add/chkstty.sh
+
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/classes/Form.add=$LP_ADDON/classes/Form.add
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/classes/Form.list=$LP_ADDON//classes/Form.list
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/classes/Form.mod_addpr=$LP_ADDON/classes/Form.mod_addpr
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/classes/Form.mod_rempr=$LP_ADDON/classes/Form.mod_rempr
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/classes/Form.modify=$LP_ADDON/classes/Form.modify
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/classes/Form.remove=$LP_ADDON/classes/Form.remove
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/classes/Help=$LP_ADDON/classes/Help
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/classes/Menu.class.ch=$LP_ADDON/classes/Menu.class.ch
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/classes/Menu.classes=$LP_ADDON/classes/Menu.classes
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/classes/Menu.pr.ch=$LP_ADDON/classes/Menu.pr.ch
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/classes/Menu.pr.cl.ch=$LP_ADDON/classes/Menu.pr.cl.ch
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/classes/Menu.add.pr=$LP_ADDON/classes/Menu.add.pr
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/classes/Text.add=$LP_ADDON/classes/Text.add
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/classes/Text.error=$LP_ADDON/classes/Text.error
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/classes/Text.list=$LP_ADDON/classes/Text.list
+
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/filters/Form.add=$LP_ADDON/filters/Form.add
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/filters/Form.list=$LP_ADDON/filters/Form.list
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/filters/Menu.template=$LP_ADDON/filters/Menu.template
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/filters/Form.mod2=$LP_ADDON/filters/Form.mod2
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/filters/Form.remove=$LP_ADDON/filters/Form.remove
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/filters/Help=$LP_ADDON/filters/Help
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/filters/Menu.filters=$LP_ADDON/filters/Menu.filters
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/filters/Text.error=$LP_ADDON/filters/Text.error
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/filters/Text.filt.ls=$LP_ADDON/filters/Text.filt.ls
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/filters/Menu.pr.ch=$LP_ADDON/filters/Menu.pr.ch
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/filters/Form.restore=$LP_ADDON/filters/Form.restore
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/filters/Form.options=$LP_ADDON/filters/Form.options
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/filters/Menu.filter.ch=$LP_ADDON/filters/Menu.filter.ch
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/filters/Form.modify=$LP_ADDON/filters/Form.modify
+
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/forms/Form.add=$LP_ADDON/forms/Form.add
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/forms/Form.modify=$LP_ADDON/forms/Form.modify
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/forms/Help=$LP_ADDON/forms/Help
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/forms/Form.remove=$LP_ADDON/forms/Form.remove
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/forms/Text.form.ls=$LP_ADDON/forms/Text.form.ls
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/forms/Text.error=$LP_ADDON/forms/Text.error
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/forms/Menu.forms=$LP_ADDON/forms/Menu.forms
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/forms/Form.list=$LP_ADDON/forms/Form.list
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/forms/Menu.form.ch=$LP_ADDON/forms/Menu.form.ch
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/forms/Form.mod2=$LP_ADDON/forms/Form.mod2
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/forms/describe=$LP_ADDON/forms/describe
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/forms/alert.vars=$LP_ADDON/forms/alert.vars
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/forms/alert.sh=$LP_ADDON/forms/alert.sh
+
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/operations/Help=$LP_ADDON/operations/Help
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/operations/Menu.opers=$LP_ADDON/operations/Menu.opers
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/operations/Form.accept=$LP_ADDON/operations/Form.accept
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/operations/Form.default=$LP_ADDON/operations/Form.default
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/operations/Form.disable=$LP_ADDON/operations/Form.disable
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/operations/Form.enable=$LP_ADDON/operations/Form.enable
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/operations/Form.mount=$LP_ADDON/operations/Form.mount
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/operations/Form.reject=$LP_ADDON/operations/Form.reject
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/operations/Form.start=$LP_ADDON/operations/Form.start
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/operations/Form.status=$LP_ADDON/operations/Form.status
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/operations/Form.stop=$LP_ADDON/operations/Form.stop
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/operations/Form.unmount=$LP_ADDON/operations/Form.unmount
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/operations/operations.men=$LP_ADDON/operations/operations.men
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/operations/startfailed.t=$LP_ADDON/operations/startfailed.t
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/operations/stopfailed.t=$LP_ADDON/operations/stopfailed.t
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/operations/Text.startfail=$LP_ADDON/operations/Text.startfail
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/operations/Text.stopfail=$LP_ADDON/operations/Text.stopfail
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/operations/Menu.creject=$LP_ADDON/operations/Menu.creject
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/operations/Menu.caccept=$LP_ADDON/operations/Menu.caccept
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/operations/Menu.cdisable=$LP_ADDON/operations/Menu.cdisable
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/operations/Menu.cenable=$LP_ADDON/operations/Menu.cenable
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/operations/Menu.cdefault=$LP_ADDON/operations/Menu.cdefault
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/operations/Menu.cmountf=$LP_ADDON/operations/Menu.cmountf
+
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/printers/Form.display=$LP_ADDON/printers/Form.display
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/printers/Form.remove=$LP_ADDON/printers/Form.remove
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/printers/Help=$LP_ADDON/printers/Help
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/printers/add/Form.add=$LP_ADDON/printers/add/Form.add
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/printers/add/Form.conf.lcl=$LP_ADDON/printers/add/Form.conf.lcl
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/printers/add/Form.pwheel=$LP_ADDON/printers/add/Form.pwheel
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/printers/add/Form.access=$LP_ADDON/printers/add/Form.access
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/printers/add/Form.charset=$LP_ADDON/printers/add/Form.charset
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/printers/add/Text.error=$LP_ADDON/printers/add/Text.error
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/printers/add/Form.comm.lcl=$LP_ADDON/printers/add/Form.comm.lcl
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/printers/add/Text.access=$LP_ADDON/printers/add/Text.access
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/printers/add/Text.charset=$LP_ADDON/printers/add/Text.charset
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/printers/add/Form.conf.rmt=$LP_ADDON/printers/add/Form.conf.rmt
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/printers/add/Menu.ch_users=$LP_ADDON/printers/add/Menu.ch_users
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/printers/add/Text.pwheel=$LP_ADDON/printers/add/Text.pwheel
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/printers/add/Help=$LP_ADDON/printers/add/Help
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/printers/add/Text.confirm=$LP_ADDON/printers/add/Text.confirm
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/printers/add/Text.comm=$LP_ADDON/printers/add/Text.comm
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/printers/add/Menu.ch_forms=$LP_ADDON/printers/add/Menu.ch_forms
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/printers/add/Menu.ch_class=$LP_ADDON/printers/add/Menu.ch_class
+
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/printers/modify/Form.modify=$LP_ADDON/printers/modify/Form.modify
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/printers/modify/Form.access=$LP_ADDON/printers/modify/Form.access
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/printers/modify/Menu.modify=$LP_ADDON/printers/modify/Menu.modify
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/printers/modify/Form.charset=$LP_ADDON/printers/modify/Form.charset
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/printers/modify/Form.comm.lcl=$LP_ADDON/printers/modify/Form.comm.lcl
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/printers/modify/Form.conf.lcl=$LP_ADDON/printers/modify/Form.conf.lcl
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/printers/modify/Form.conf.rmt=$LP_ADDON/printers/modify/Form.conf.rmt
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/printers/modify/Form.pwheel=$LP_ADDON/printers/modify/Form.pwheel
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/printers/modify/Help=$LP_ADDON/printers/modify/Help
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/printers/modify/Text.access=$LP_ADDON/printers/modify/Text.access
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/printers/modify/Text.comm=$LP_ADDON/printers/modify/Text.comm
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/printers/modify/Text.confirm=$LP_ADDON/printers/modify/Text.confirm
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/printers/modify/Text.error=$LP_ADDON/printers/modify/Text.error
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/printers/modify/Text.pwheel=$LP_ADDON/printers/modify/Text.pwheel
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/printers/modify/Text.charset=$LP_ADDON/printers/modify/Text.charset
+
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/printers/Menu.printers=$LP_ADDON/printers/Menu.printers
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/printers/Form.list=$LP_ADDON/printers/Form.list
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/printers/Text.list=$LP_ADDON/printers/Text.list
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/printers/Menu.pr.ch=$LP_ADDON/printers/Menu.pr.ch
+
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/priorities/Help=$LP_ADDON/priorities/Help
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/priorities/Form.list=$LP_ADDON/priorities/Form.list
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/priorities/Form.priority=$LP_ADDON/priorities/Form.priority
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/priorities/Form.set=$LP_ADDON/priorities/Form.set
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/priorities/Menu.prioritie=$LP_ADDON/priorities/Menu.prioritie
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/priorities/priorities.men=$LP_ADDON/priorities/priorities.men
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/priorities/Form.users=$LP_ADDON/priorities/Form.users
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/priorities/Form.default=$LP_ADDON/priorities/Form.default
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/priorities/Text.list=$LP_ADDON/priorities/Text.list
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/priorities/Form.system=$LP_ADDON/priorities/Form.system
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/priorities/Menu.cusers=$LP_ADDON/priorities/Menu.cusers
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/priorities/Form.remove=$LP_ADDON/priorities/Form.remove
+
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/reports/Help=$LP_ADDON/reports/Help
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/reports/Form.wheels=$LP_ADDON/reports/Form.wheels
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/reports/Form.forms=$LP_ADDON/reports/Form.forms
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/reports/Form.printers=$LP_ADDON/reports/Form.printers
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/reports/Form.requests=$LP_ADDON/reports/Form.requests
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/reports/Form.service=$LP_ADDON/reports/Form.service
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/reports/Menu.reports=$LP_ADDON/reports/Menu.reports
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/reports/Menu.form.ch=$LP_ADDON/reports/Menu.form.ch
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/reports/Text.form.stat=$LP_ADDON/reports/Text.form.stat
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/reports/Menu.wheel.ch=$LP_ADDON/reports/Menu.wheel.ch
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/reports/Text.wh.stat=$LP_ADDON/reports/Text.wh.stat
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/reports/Text.pr.stat=$LP_ADDON/reports/Text.pr.stat
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/reports/Menu.pr.ch=$LP_ADDON/reports/Menu.pr.ch
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/reports/Text.rq.stat=$LP_ADDON/reports/Text.rq.stat
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/reports/Menu.rq.ch=$LP_ADDON/reports/Menu.rq.ch
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/reports/Menu.usr.rq.ch=$LP_ADDON/reports/Menu.usr.rq.ch
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/reports/Text.error=$LP_ADDON/reports/Text.error
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/reports/Menu.pr.q.ch=$LP_ADDON/reports/Menu.pr.q.ch
+
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/requests/Form.cancel=$LP_ADDON/requests/Form.cancel
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/requests/Form.hold=$LP_ADDON/requests/Form.hold
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/requests/Form.move=$LP_ADDON/requests/Form.move
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/requests/Help=$LP_ADDON/requests/Help
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/requests/Menu.requests=$LP_ADDON/requests/Menu.requests
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/requests/Menu.rq.ch=$LP_ADDON/requests/Menu.rq.ch
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/requests/Menu.pr.ch=$LP_ADDON/requests/Menu.pr.ch
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/requests/Form.release=$LP_ADDON/requests/Form.release
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/requests/Menu.usr.rq.ch=$LP_ADDON/requests/Menu.usr.rq.ch
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/requests/Text.error=$LP_ADDON/requests/Text.error
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/requests/Menu.pr.q.ch=$LP_ADDON/requests/Menu.pr.q.ch
+
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/systems/Form.add=$LP_ADDON/systems/Form.add
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/systems/Form.display=$LP_ADDON/systems/Form.display
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/systems/Form.modify=$LP_ADDON/systems/Form.modify
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/systems/Form.remove=$LP_ADDON/systems/Form.remove
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/systems/Help=$LP_ADDON/systems/Help
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/systems/Menu.systems=$LP_ADDON/systems/Menu.systems
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/systems/Menu.cremove=$LP_ADDON/systems/Menu.cremove
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/systems/Text.display=$LP_ADDON/systems/Text.display
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/systems/Menu.cmodify=$LP_ADDON/systems/Menu.cmodify
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/Help=$LP_ADDON/Help
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/Menu.lp=$LP_ADDON/Menu.lp
+
+#############################
+## the following are added after p8
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/classes/classes.ch=$LP_ADDON/classes/classes.ch
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/classes/cont.slks=$LP_ADDON/classes/cont.slks
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/classes/members.ch=$LP_ADDON/classes/members.ch
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/classes/printers.ch=$LP_ADDON/classes/printers.ch
+
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/filters/Form.add.2=$LP_ADDON/filters/Form.add.2
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/filters/Form.modify.1=$LP_ADDON/filters/Form.modify.1
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/filters/Form.modify.2=$LP_ADDON/filters/Form.modify.2
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/filters/Form.modify.3=$LP_ADDON/filters/Form.modify.3
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/filters/Menu.opt.ch=$LP_ADDON/filters/Menu.opt.ch
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/filters/Text.filter.ch=$LP_ADDON/filters/Text.filter.ch
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/filters/filter.ch=$LP_ADDON/filters/filter.ch
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/filters/printers.ch=$LP_ADDON/filters/printers.ch
+
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/printers/Form.add=$LP_ADDON/printers/Form.add
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/printers/Form.modify=$LP_ADDON/printers/Form.modify
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/priorities/getuser.sh=$LP_ADDON/priorities/getuser.sh
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/reports/Form.fonts=$LP_ADDON/reports/Form.fonts
+f OAM_basic	/usr/sadm/sysadm/add-ons/oam/printers/requests/Form.resume=$LP_ADDON/requests/Form.resume
+

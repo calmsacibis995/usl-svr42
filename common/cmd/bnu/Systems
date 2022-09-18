@@ -1,0 +1,46 @@
+#ident	"@(#)bnu:Systems	2.4.1.5"
+#ident "$Header: Systems 1.1 91/02/28 $"
+#
+# Entries have this format:
+#
+#	Machine-Name Time Type Class Phone Login
+#
+# Machine-Name		node name of the remote machine
+# Time			day-of-week and time-of-day when you may call
+#			(e.g., MoTuTh0800-1700). Use "Any" for any day.
+#			Use "Never" for machines that poll you, but that
+#			you never call directly.
+# Type			device type
+# Class			transfer speed
+# Phone			phone number (for autodialers) or token (for
+#			data switches) or network adress (for networks)
+# Login			login sequence is composed of fields and subfields
+#			in the format "[expect send] ...".  The expect field
+#			may have subfields in the format "expect[-send-expect]".
+#
+# 	Example 1:
+#		This entry is used for "uucico" to connect to "sysname"
+#		using a Hayes modem.
+#
+#		sysname Any ACU 9600 HayesSmartm2400 in:--in: nuucp word: hello1
+#
+# 	Example 2:
+#		This entry should be used for "cu" going over
+#		the TCP network. It causes the Connection Server
+#		to connect to the "cu" service through the "listen"
+#		service. The corresponding "CS - - - CS" entry
+#		should be entered in the Devices file.
+#
+#		sysname Any CS - -,listen:cu
+#
+# 	Example 3:
+#		This entry should be used for "uucico" going over
+#		the TCP network.  It causes the Connection Server
+#		to connect to the "10103" service through the "listen" 
+#		service. The "10103" service invokes uucico. The 
+#		corresponding "CS - - - CS" entry should be entered 
+#		in the Devices file.
+#
+#		sysname Any CS - -,listen:10103
+#
+

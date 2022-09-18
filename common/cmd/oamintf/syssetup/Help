@@ -1,0 +1,14 @@
+#ident	"@(#)oamintf:common/cmd/oamintf/syssetup/Help	1.1.5.3"
+#ident  "$Header: Help 2.0 91/07/12 $"
+
+TITLE:System Name, Date/Time and Initial Password Setup
+
+ABSTRACT:
+	The subcommands in the "system_setup" menu provide functions
+	for setting up your computer.  They include the ability to
+	tell the computer about its environment (date, time, and time
+	zone), the ability to define which administrative and system
+	capabilities require a password, the ability to set the
+	machine's name and the network node name, and the ability to
+	setup first login(s) for users (including password
+	information).

@@ -1,0 +1,18 @@
+#ident	"@(#)pkg.rfs:common/pkg/rfs/pkginfo	1.1.7.4"
+#ident  "$Header: $"
+#
+# 	RFS pkginfo
+#
+PKG="rfs"
+NAME="Remote File Sharing Utilities"
+VERSION="1"
+RELEASE="4.2"
+CATEGORY="system,utilities"
+BASEDIR=""
+CLASSES="none build"
+PREDEPEND="rfs"
+MAXINST="1"
+ISTATES="2"
+RSTATES="2"
+#ADMIN=/usr/sadm/sysadm/menu/netservices/remote_files
+VENDOR="UNIX System Laboratories"

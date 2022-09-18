@@ -1,0 +1,112 @@
+#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+#	Copyright (c) 1984, 1985, 1986, 1987, 1988, 1989, 1990 AT&T
+#	  All Rights Reserved
+
+#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+#	UNIX System Laboratories, Inc.
+#	The copyright notice above does not evidence any
+#	actual or intended publication of such source code.
+
+
+#ident	"@(#)lp:lib/Makefile	1.25.4.2"
+#ident  "$Header: Makefile 1.6 91/07/29 $"
+#
+# Makefile for LP private libraries
+#
+
+include $(CMDRULES)
+
+TOP	=	..
+
+include ../common.mk
+
+
+##########
+#
+# If you add directories other than one level deep
+# you'll have to change the code below.
+##########
+LIBDIRS	= \
+		./oam \
+		./access \
+		./bsd \
+		./class \
+		./filters \
+		./forms \
+		./lp \
+		./lpNet \
+		./msgs \
+		./requests \
+		./secure \
+		./printers \
+		./systems \
+		./users
+
+
+########
+#  LINTDIRS includes all the directories in lib/ excluding bsd/ and lpNet.
+#  When bsd/ and lpNet are made lint free LINTDIRS can be replaced by LIBDIRS.
+########
+LINTDIRS	= \
+		./oam \
+		./access \
+		./class \
+		./filters \
+		./forms \
+		./lp \
+		./msgs \
+		./requests \
+		./secure \
+		./printers \
+		./systems \
+		./users
+
+all: $(LPINC)/oam_def.h
+	for dir in $(LIBDIRS); \
+	do \
+		cd $$dir; \
+		$(MAKE) DEBUG="$(DEBUG)" $(MAKEARGS) $@; \
+		cd ..; \
+	done ;
+
+$(LPINC)/oam_def.h:
+	cd ./oam ; $(MAKE) DEBUG="$(DEBUG)" $(MAKEARGS) ../$(LPINC)/oam_def.h
+
+install: $(LPINC)/oam_def.h
+	for dir in $(LIBDIRS); \
+	do \
+		cd $$dir; \
+		$(MAKE) DEBUG="$(DEBUG)" $(MAKEARGS) $@; \
+		cd ..; \
+	done ;\
+	[ -d $(USRLIB)/locale/C/MSGFILES ] || mkdir -p $(USRLIB)/locale/C/MSGFILES
+	cp ./oam/lp.messages $(USRLIB)/locale/C/MSGFILES/lp.str
+
+clean clobber:
+	for dir in $(LIBDIRS); \
+	do \
+		cd $$dir; \
+		$(MAKE) $(MAKEARGS) $@; \
+		cd ..; \
+	done
+
+strip:
+
+lintit lintsrc:
+	for dir in $(LINTDIRS); \
+	do \
+		cd $$dir; \
+		$(MAKE) DEBUG="$(DEBUG)" FUNCDLC="$(FUNCDCL)" LINT="$(LINT)" $(MAKEARGS) $@; \
+		cd ..; \
+	done
+
+lintlib:
+	for dir in $(LINTDIRS); \
+	do \
+		cd $$dir; \
+		$(MAKE) DEBUG="$(DEBUG)" FUNCDLC="$(FUNCDCL)" LINT="$(LINT)" $(MAKEARGS) $@; \
+		cd ..; \
+	done 
+	$(LINT) -abhmuvxy -o lplib $(LINTLN)
+
+libs:		all

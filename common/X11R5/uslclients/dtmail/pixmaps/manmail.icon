@@ -1,0 +1,63 @@
+#define manmail_format 1
+#define manmail_width 48
+#define manmail_height 48
+#define manmail_ncolors 6
+#define manmail_chars_per_pixel 1
+static char * manmail_colors[] = {
+" " , "#E400E400E400",
+"." , "#000000000000",
+"X" , "#E7009E007900",
+"o" , "#0000E000E000",
+"O" , "#E0000000E000",
+"+" , "#E00000000000"
+} ;
+static char * manmail_pixels[] = {
+"                                                ",
+"  ...............................               ",
+"  .XXXXXXXXXXXXXXXXXXXXXXXXXXXXX.               ",
+"  .X..X....XXXXXXXXX..XX.......X.               ",
+"  .XXXXXXXXXXXXXXXX.XX..X.oooo.X.               ",
+"  .X.X.X.....XXXXXXX..XX..oOoo.X.               ",
+"  .XXXXXXXXXXXXXXXX.XX..X.oo+o.X.               ",
+"  .X................................            ",
+"  .XX.XXXXXXXXXXXXXXXXXXXXXXXXXXXXX.            ",
+"  .XX.X..X....XXXXXXXXX..XX.......X.            ",
+"  .XX.XXXXXXXXXXXXXXXX.XX..X.oooo.X.            ",
+"  .XX.X.X.X.....XXXXXXX..XX..oOoo.X.            ",
+"  .XX.XXXXXXXXXXXXXXXX.XX..X.oo+o.X.            ",
+"  .XX.X................................         ",
+"  .XX.XX.XXXXXXXXXXXXXXXXXXXXXXXXXXXXX.         ",
+"  .XX.XX.X..X....XXXXXXXXX..XX.......X.         ",
+"  .XX.XX.XXXXXXXXXXXXXXXX.XX..X.oooo.X.         ",
+"  .XX.XX.X.X.X.....XXXXXXX..XX..oOoo.X.         ",
+"  .XX.XX.XXXXXXXXXXXXXXXX.XX..X.oo+o.X.         ",
+"  .XX.XX.X................................      ",
+"  .XX.XX.XX.XXXXXXXXXXXXXXXXXXXXXXXXXXXXX.      ",
+"  .XX.XX.XX.X..X....XXXXXXXXX..XX.......X.      ",
+"  ....XX.XX.XXXXXXXXXXXXXXXX.XX..X.oooo.X.      ",
+"     .XX.XX.X.X.X.....XXXXXXX..XX..oOoo.X.      ",
+"     .XX.XX.XXXXXXXXXXXXXXXX.XX..X.oo+o.X.      ",
+"     .XX.XX.X................................   ",
+"     .XX.XX.XX.XXXXXXXXXXXXXXXXXXXXXXXXXXXXX.   ",
+"     .XX.XX.XX.X..X....XXXXXXXXX..XX.......X.   ",
+"     ....XX.XX.XXXXXXXXXXXXXXXX.XX..X.oooo.X.   ",
+"        .XX.XX.X.X.X.....XXXXXXX..XX..oOoo.X.   ",
+"        .XX.XX.XXXXXXXXXXXXXXXX.XX..X.oo+o.X.   ",
+"        .XX.XX.X...X....XXXXXXXX..XX..oooo.X.   ",
+"        .XX.XX.XXXXXXXXXXXXXXXX.XX..X......X.   ",
+"        .XX.XX.XXXXXXXXXXXXXXXXXXXXXXXXXXXXX.   ",
+"        ....XX.XXXXXXXXXXXXXXXXXXXXXXXXXXXXX.   ",
+"           .XX.XXXXXXXX...X...X........XXXXX.   ",
+"           .XX.XXXXXXXXXXXXXXXXXXXXXXXXXXXXX.   ",
+"           .XX.XXXXXXXX..X........X..XXXXXXX.   ",
+"           .XX.XXXXXXXXXXXXXXXXXXXXXXXXXXXXX.   ",
+"           .XX.XXXXXXXX.....XX......X...XXXX.   ",
+"           ....XXXXXXXXXXXXXXXXXXXXXXXXXXXXX.   ",
+"              .XXXXXXXXXXXXXXXX.....XXXXXXXX.   ",
+"              .XXXXXXXXXXXXXXXXXXXXXXXXXXXXX.   ",
+"              .XXXXXXXXXXXXXXXXXXXXXXXXXXXXX.   ",
+"              .XXXXXXXXXXXXXXXXXXXXXXXXXXXXX.   ",
+"              .XXXXXXXXXXXXXXXXXXXXXXXXXXXXX.   ",
+"              ...............................   ",
+"                                                "
+} ;

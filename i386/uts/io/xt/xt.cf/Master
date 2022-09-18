@@ -1,0 +1,11 @@
+#ident	"@(#)uts-x86:io/xt/xt.cf/Master	1.6"
+#ident	"$Header: $"
+#
+# version id
+#
+$version 1
+
+#
+# Device  Prefix Characteristics Order	B-Major C-Major
+# -----------------------------------------------------
+xt	nxt	kcS	0	0	33

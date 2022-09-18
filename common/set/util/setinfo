@@ -1,0 +1,11 @@
+#ident  "@(#)set:common/set/util/setinfo	1.6"
+#ident  "$Header: $"
+
+# Format for the setinfo file.  	Field separator is: <tab>
+# pkg   parts   default category	pkg full-name
+# abbr          y/n
+
+terminf	1	y	system	Terminfo Utilities
+cmds	3	y	system	Advanced Commands 
+#crypt	1	y	system	Encryption Utilities
+bsdcompat	2	n	system	BSD Compatibility 

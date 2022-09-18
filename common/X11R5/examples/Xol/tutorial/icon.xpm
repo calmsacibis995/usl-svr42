@@ -1,0 +1,49 @@
+#define icon_format 1
+#define icon_width 32
+#define icon_height 32
+#define icon_ncolors 8
+#define icon_chars_per_pixel 1
+static char * icon_colors[] = {
+" " , "#FFFF00000000",
+"." , "#000000000000",
+"X" , "#FFFF0000FFFF",
+"o" , "#0000AAAAFFFF",
+"O" , "#0000FFFF0000",
+"+" , "#FFFFFFFF0000",
+"@" , "#FFFFAAAA0000",
+"#" , "#0000FFFFFFFF"
+} ;
+static char * icon_pixels[] = {
+"                                ",
+"  ....  ....  ....  ....  ....  ",
+"                                ",
+"................................",
+"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+"X.............XXXX............XX",
+"X.ooooooooooo.XXXX.OOOOOOOOOO.XX",
+"X.ooooooooooo.XXXX.OOOOOOOOOO.XX",
+"X.ooooooooooo.XXXX.OOOOOOOOOO.XX",
+"X.ooooooooooo.XXXX.OOOOOOOOOO.XX",
+"X.ooooooooooo.XXXX.OOOOOOOOOO.XX",
+"X.ooooooooooo.XXXX.OOOOOOOOOO.XX",
+"X.ooooooooooo.XXXX.OOOOOOOOOO.XX",
+"X.............XXXX............XX",
+"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+"X.....................XX......XX",
+"X.+++++++++++++++++++.XX.@@@@.XX",
+"X.+++++++++++++++++++.XX.@@@@.XX",
+"X.+++++++++++++++++++.XX.@@@@.XX",
+"X.+++++++++++++++++++.XX.@@@@.XX",
+"X.....................XX.@@@@.XX",
+"XXXXXXXXXXXXXXXXXXXXXXXX.@@@@.XX",
+"XX........XXX........XXX.@@@@.XX",
+"XX.######.XXX.      .XXX.@@@@.XX",
+"XX.######.XXX.      .XXX.@@@@.XX",
+"XX.######.XXX.      .XXX.@@@@.XX",
+"XX.######.XXX.      .XXX.@@@@.XX",
+"XX.######.XXX.      .XXX.@@@@.XX",
+"XX.######.XXX.      .XXX.@@@@.XX",
+"XX.######.XXX.      .XXX.@@@@.XX",
+"XX........XXX........XXX......XX",
+"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+} ;

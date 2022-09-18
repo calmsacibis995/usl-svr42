@@ -1,0 +1,12 @@
+#ident  "@(#)olpixmap:olpixmap.ad	1.10"
+#copyright      "%c%"
+
+# For Motif Layout
+#*control_area.scrolled_window.yRefName:	button_area
+#*control_area.scrolled_window.yAddHeight:	True
+#*control_area.button_area.layoutType:	fixedrows
+
+# For OpenLook Layout
+*control_area.button_area.xRefName:	scrolled_window
+*control_area.button_area.xAddWidth:	True
+*control_area.button_area.layoutType:	fixedcols

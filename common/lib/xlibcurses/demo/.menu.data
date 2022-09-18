@@ -1,0 +1,20 @@
+#ident	"@(#)curses:common/lib/xlibcurses/demo/.menu.data	1.2.2.1"
+#ident "$Header: /sms/sinixV5.4es/rcs/s19-full/usr/src/lib/xlibcurses/demo/.menu.data,v 1.1 91/02/28 21:06:45 ccs Exp $"
+vmd	vi .menu.data
+d	date
+c	ls -asl
+w	who
+q	EXIT
+x	EXIT
+END
+				Sample Menu
+				-----------
+
+
+	vmd	vi .menu.data			d	date and time
+
+	c	ls -asl				w	who 
+
+		q/x	to terminate the menu processor
+
+

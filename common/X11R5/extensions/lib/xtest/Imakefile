@@ -1,0 +1,56 @@
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+/**/#ident	"@(#)r5extensions:lib/xtest/Imakefile	1.1"
+
+#define DoNormalLib NormalLibXTest
+#define DoSharedLib SharedLibXTest
+#define DoDebugLib DebugLibXTest
+#define DoProfileLib ProfileLibXTest
+#include <Library.tmpl>
+
+#ifdef RsArchitecture
+REQUIREDLIBS = $(EXTENSIONSRC)/lib/libXext.a $(XLIBSRC)/libX11.a
+#endif
+
+INCLUDES = -I$(TOP) -I$(XLIBSRC) -I../../include
+
+SRCS = XTest.c
+OBJS = XTest.o
+
+LINTLIBS = $(LINTXLIB)
+
+LibraryObjectRule()
+
+#if DoSharedLib
+#if DoNormalLib
+SharedLibraryTarget(Xtst,$(SOXTESTREV),$(OBJS),shared,..)
+#else
+SharedLibraryTarget(Xtst,$(SOXTESTREV),$(OBJS),.,.)
+#endif
+InstallSharedLibrary(Xtst,$(SOXTESTREV),$(USRLIBDIR))
+#endif
+#if DoNormalLib
+NormalLibraryTarget(Xtst,$(OBJS))
+InstallLibrary(Xtst,$(USRLIBDIR))
+#endif
+#if DoProfileLib
+ProfiledLibraryTarget(Xtst,$(OBJS))
+InstallLibrary(Xtst_p,$(USRLIBDIR))
+#endif
+#if DoDebugLib
+DebuggedLibraryTarget(Xtst,$(OBJS))
+#endif
+
+LintLibraryTarget(Xtst,$(SRCS))
+InstallLintLibrary(Xtst,$(LINTLIBDIR))
+
+DependTarget()
+
+NormalLintTarget($(SRCS))

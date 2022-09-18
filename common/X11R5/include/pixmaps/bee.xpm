@@ -1,0 +1,52 @@
+#define bee_format 1
+#define bee_width 44
+#define bee_height 39
+#define bee_ncolors 4
+#define bee_chars_per_pixel 2
+static char * bee_colors[] = {
+"  " , "#FFFFFFFFFFFF",
+". " , "#000",
+"X " , "#A800A800A800",
+"o " , "#540054005400"
+} ;
+static char * bee_pixels[] = {
+"                                        .         .           . . . .                   ",
+"                                    .         . . X . .     . . X X . . .               ",
+"                                            . . X X X .   . X X X X X X X . .           ",
+"                                  .       . . X X X X X . . X X X X X X X X . .         ",
+"                                        . . X X . X X . . X X X X X X X X X X . .       ",
+"                                .       . X X . X X X . X X X X X X X X . X X X .     . ",
+"                                      . . X X . X X . X X X X X X X . . X X X X .       ",
+"                              .       . X X X . X . . X X X X X X . X X X X X X .       ",
+"                                      . X X . X X . X X X X X X . X X X X X X X .     . ",
+"                            .         . X X . X . . X X X X X X . X X X X X X X .       ",
+"    .                               . X X . X X . X X X X X . . X X X X X X X . .       ",
+"      . .                   .       . X X . X . X X X X X . X X X X X X X X X .       . ",
+"          .                         . X . X X . X X X . . X X X X X X X X X X .         ",
+". .         . .             .       . X . X o X X X . X X X X X X X X X X X .           ",
+"    . . .       .                   . X X X o X . . X X X X X X X X X X . .       .     ",
+"          . . . . .                 . X X o o X X X X X X X X X X . . .                 ",
+"              . .   . . .           . X X o X X X X X X X . . . . .           .         ",
+"          . .             .           o . . . . . . . . o                 .             ",
+"        .                   o . . . . . . o o o . . o . . o           .                 ",
+"      .     .                 o . . o o .       . o o . . . . .                         ",
+"    .     . X .               .   . . o .       . o o o .     . . .                     ",
+"  .       . X .               .   o . o o .     . o o o .     . o . . .                 ",
+"  .         .                 .   o . o o o .     . o o .     . o o o . . .             ",
+".                   .         .   o . o o o .     . . o .     . o o o .   . .           ",
+".                 .           .   o . o o o .     o . o .     . o o o .     . .         ",
+"  .             .             .   o . o o o .     o . o .     . o o o .     . . .       ",
+"    . . . . . .             .     o . o o o .     o . o .     . o o o .     . . . .     ",
+"        . .               .     o . o o o o .     o . o .     . o o o .     . . .       ",
+"            . . . . . . .     o . . o o o .       o . o .     . o o o .     . .         ",
+"                        . . o . o o o o o .       . . o .     . o o o .   . .           ",
+"                        . o o o o o o o o .       . o o .     . o o o . o               ",
+"                          . o o o o o o .       . o o o .   . o o . . .                 ",
+"                            . o o o o . .   . . o o o o . . . o . o o                   ",
+"                            . . . . . . . . . o . . . . . o o                           ",
+"                            .       o o o . . . o o o       .                           ",
+"                              .               . .           . .                         ",
+"                                .               . .             . . .                   ",
+"                                  . . .             . .               . .               ",
+"                                        . .             . . . . .       . . . .         "
+} ;

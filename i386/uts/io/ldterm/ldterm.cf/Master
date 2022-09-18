@@ -1,0 +1,11 @@
+#ident	"@(#)uts-x86:io/ldterm/ldterm.cf/Master	1.5"
+#ident	"$Header: $"
+#
+# version id
+#
+$version 1
+
+#
+# Device  Prefix Characteristics Order	B-Major C-Major
+# -----------------------------------------------------
+ldterm	ldtr	S	0	0	0

@@ -1,0 +1,31 @@
+#ident	"@(#)oamintf:common/cmd/oamintf/usermgmt/Form.modgrp1	1.2.6.2"
+#ident  "$Header: Form.modgrp1 2.0 91/07/12 $"
+
+################################################################################
+#	Module Name:  Form.modgrp1
+################################################################################
+form="Modify a Group Definition"
+
+framemsg=`readfile $INTFBASE/form.msg`
+
+help=OPEN TEXT $INTFBASE/Text.itemhelp $LININFO
+
+done=OPEN FORM $OBJ_DIR/Form.modgrp2 $F1
+
+name=Group name:
+lininfo=Form.modgrp1:modgrp
+nrow=1
+ncol=3
+frow=1
+fcol=15
+rows=1
+columns=8
+
+rmenu=OPEN MENU $OBJ_DIR/Menu.pgrp
+valid=`/usr/sadm/sysadm/bin/chk_pgrp $F1`
+
+invalidmsg=const "ERROR: Please enter an existing group name or group id."
+
+name=RESET
+button=8
+action=RESET

@@ -1,0 +1,14 @@
+#ident	"@(#)pkg.oam:postremove	1.7"
+#ident	"$Header: $"
+
+#
+# Remove the sysadm login 
+#
+
+trap 'exit 3' 1 2 3 15
+
+/usr/sbin/userdel sysadm >/dev/null  2>&1
+
+rm -f ${MENU}/netservices/basic_networking > /dev/null 2>&1
+
+exit 0

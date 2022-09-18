@@ -1,0 +1,16 @@
+#ident	"@(#)proto:desktop/INSTALL	1.6"
+#	Portions Copyright (C) 1990, 1991 Intel Corporation.
+#	Portions Copyright (C) 1990 Interactive Systems Corporation.
+#	All Rights Reserved
+
+4 1 |3|J| uadmin 4 1 which cause a remount of the root filesystem
+/etc/emulator |3|r| remove emulator
+#DEBUG |3|O| SET DEBUG ON
+/sbin/autopush -f /etc/ap/chan.ap|3|c| run autopush 
+/sbin/autopush |3|r| remove autopush
+/sbin/wsinit |3|c| run wsinit
+/sbin/wsinit |3|r| remove wsinit
+/dev/console |3|T| Make the /dev/console the controlling tty
+/dev/dsk/f0 /etc/loadmods /etc/conf/mod.d/ |2|l| get HBAS from first floppy
+/dev/dsk/f0 /mnt | 2 | mrc | MOUNT THE FIRST FLOPPY and get /INSTALL
+/mnt/INSTALL | 2 | n | read more scripts 

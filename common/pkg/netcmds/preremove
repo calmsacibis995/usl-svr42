@@ -1,0 +1,29 @@
+#ident	"@(#)pkg.netcmds:common/pkg/netcmds/preremove	1.1"
+#ident  "$Header: $"
+
+# Check if there is still mail queued to send
+
+spooldir=`grep '^smtp:' /etc/passwd | cut -d: -f6`
+count=`find $spooldir -name '[CDX].*' -print 2>/dev/null | wc -l`
+
+if [ "$count" -ne 0 ]
+then
+	echo "Warning! There are mail messages still queued for delivery in the"
+	echo "SMTP subsystem.  Removing this package now will cause these messages"
+	echo "to be discarded."
+	echo
+
+        answer=`ckyorn -d n -p "Do you still wish to remove this package?"`
+        [ "$?" != 0 -o "$answer" != "y" ] && exit 1
+fi
+
+# Remove smtp cron entries
+
+crontab -r smtp >/dev/null 2>&1
+
+
+# The lp Networking service must be down to be removed!
+
+/usr/sbin/lpshut >/dev/null 2>&1
+
+exit 0

@@ -1,0 +1,127 @@
+#ident	"@(#)pkg.oam:request	1.26"
+#ident	"$Header: $"
+
+#
+#  Main routine
+#  
+
+#
+#  Make sure LANG environment variable is set.  If it's not set
+#  coming in to this request script, then default to the C-locale.
+#
+[ ${LANG} ] || LANG="C"
+export LANG
+
+MENU_RESP=$1
+if [ "${MENU_RESP}" = "" ]
+then
+	echo No response file given.  Usage: $0 response-file
+	exit 1
+fi
+############# Begin UPGRADE AND OVERLAY #######################
+
+UPDIR=/etc/inst/up
+[ -d $UPDIR ] || mkdir -p $UPDIR
+SCRIPTS=/usr/sbin/pkginst
+. ${SCRIPTS}/updebug
+[ "$UPDEBUG" = YES ] && set -x
+
+
+#
+#  Set up to use menu_colors; default to C-locale if ${LANG}'s dir has
+#  no menu_colors.sh
+#
+if [ -f /etc/inst/locale/${LANG}/menus/menu_colors.sh ]
+then
+	. /etc/inst/locale/${LANG}/menus/menu_colors.sh
+else
+	. /etc/inst/locale/C/menus/menu_colors.sh
+fi
+
+#
+#  Send the menus out to the correct directory
+#
+DIR=/etc/inst/locale/${LANG}/menus/oam
+[ -d ${DIR} ] || mkdir -p ${DIR}
+cp ${REQDIR}/oam/* ${DIR}
+
+#  set INSTALL_MODE to CUSTOM, if not set
+[ "$INSTALL_MODE" ] || INSTALL_MODE=CUSTOM
+
+PKGINSTALL_TYPE=NEWINSTALL
+#is it upgrade or overlay?
+${SCRIPTS}/chkpkgrel
+PKGVERSION=$?
+case $PKGVERSION in
+	2)	PKGINSTALL_TYPE=OVERLAY	;;
+	4)	PKGINSTALL_TYPE=UPGRADE	;;
+	*)	;;
+esac
+
+# clean up the file /var/sadm/upgrade/oam.env created by chkpkgrel
+
+rm -f /var/sadm/upgrade/oam.env
+
+#
+#  If there's an older (than 4.2) version of OA&M installed, inform
+#  the user to pkgrm it and start again.
+#
+[ "$PKGINSTALL_TYPE" = UPGRADE ] &&  {
+	menu_colors regular
+	menu -f ${DIR}/menu.remove -o /dev/null >/dev/tty 2>/dev/null < /dev/tty
+	exit 3
+}
+	
+############# End  UPGRADE AND OVERLAY #######################
+
+#
+#  Invoke the menu that informs user that the password will be required
+#  for the sysadm user.
+#
+menu_colors regular
+menu -f ${DIR}/menu.oam -o ${MENU_RESP} 2> /dev/null
+
+#
+#  Now, decide if we need to add the sysadm user.  If it already
+#  exists, don't bother.  Otherwise, create the user.
+#
+grep sysadm /etc/passwd > /dev/null 2>&1
+
+if [ $? -ne 0 ]
+then
+	#
+	#  Create the login
+	#
+	useradd -i -o -u 0 -g 0 -c "general system administration" -d /usr/sadm -m sysadm >/dev/null 2>&1
+
+	#
+	#  Create the home directory
+	#
+	mkdir /usr/sadm >/dev/null 2>&1
+	chown sysadm /usr/sadm >/dev/null 2>&1
+	chgrp root /usr/sadm >/dev/null 2>&1
+fi
+
+#
+#  In all cases, reset the sysadm user's password and get a new one.
+#  Also, check to make sure passwd executed correctly and reinvoke
+#  if necessary.
+#
+passwd -d sysadm
+DONE=0
+
+while [ "${DONE}" = "0" ]
+do
+	/usr/bin/passwd sysadm
+	if [ $? = 0 ]
+	then
+		DONE=1
+	fi
+done
+
+CLASSES="none OAM_basic OAM_extended OAMmif OAM_bhelp OAM_ehelp"
+
+SYSADM="replace"
+
+echo CLASSES=\"${CLASSES}\" >> ${MENU_RESP}
+echo SYSADM=\"${SYSADM}\" >> ${MENU_RESP}

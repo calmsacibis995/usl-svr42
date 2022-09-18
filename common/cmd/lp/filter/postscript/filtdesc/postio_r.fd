@@ -1,0 +1,11 @@
+
+#ident	"@(#)lp:filter/postscript/filtdesc/postio_r.fd	1.1.4.1"
+#ident  "$Header: postio_r.fd 1.2 91/06/27 $"
+
+Input types: postdown
+Output types: PS
+Printer types: PSR,PS-r
+Printers: any
+Filter type: fast
+Command: /usr/lib/lp/postscript/postreverse | /usr/lib/lp/postscript/postio 2>>$ERRFILE
+#Options: PRINTER * = -L/var/tmp/*.log

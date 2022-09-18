@@ -1,0 +1,31 @@
+#ident	"@(#)nadmin.rfs:other/rfs/net/bin/rfs_net	1.3.6.1"
+#ident  "$Header: rfs_net 2.0 91/07/12 $"
+/usr/bin/rm /var/tmp/rfs_net$$ 2>/dev/null
+
+#This could be multiple transport providers
+NETID=`$TFADMIN /usr/sbin/dname -n | /usr/bin/tr ',' '\040'` 
+/usr/bin/sed "s/^#.*//g" /etc/netconfig >/var/tmp/config_$$
+
+if [  ! -s "/var/tmp/config_$$" ]
+then
+	echo "RFS Configuration has not been setup.  '/etc/netconfig' does not exist">/var/tmp/trans$$
+
+else
+	echo "NETWORK       PROTOCOL      PROTOCOL      NETWORK\nID            FAMILY        NAME          DEVICE\n--------------------------------------------------\n" > /var/tmp/trans$$
+	for net in `echo $NETID`; do
+	 	/usr/bin/egrep "^$net[ 	]+" /var/tmp/config_$$ | /usr/bin/nawk '
+			{ FS = "[ \t]*[ \t]+" }
+			{ printf "%-14s%-14s%-14s%s\n", $1,$4,$5,$6 } ' >> /var/tmp/config$$
+		
+	done
+	if [ -s "/var/tmp/config$$" ]
+	then
+		/usr/bin/cat "/var/tmp/title$$" "/var/tmp/config$$" >> /var/tmp/trans$$ 2>/dev/null
+		/usr/bin/rm /var/tmp/title$$ /var/tmp/config_$$ /var/tmp/config$$ 2>/dev/null
+	else
+		NETID=`$TFADMIN /usr/sbin/dname -n`
+		echo "No entries exist for transport \"$NETID\" in the network configuration file.">/var/tmp/trans$$
+	fi
+fi
+
+echo $$

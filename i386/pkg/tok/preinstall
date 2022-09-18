@@ -1,0 +1,11 @@
+#ident	"@(#)pkg.tok:preinstall	1.2"
+#ident	"$Header: $"
+
+SD=/etc/conf/sdevice.d
+if [ -f ${SD}/ibmtok ]
+then
+	grep -v "^ibmtok	[YN]	" ${SD}/ibmtok >/tmp/$$.ibmtok
+	mv /tmp/$$.ibmtok ${SD}/ibmtok
+fi
+/etc/confnet.d/configure -r -d ibmtok_0 >/dev/null 2>&1
+/etc/confnet.d/configure -r -d ibmtok_1 >/dev/null 2>&1

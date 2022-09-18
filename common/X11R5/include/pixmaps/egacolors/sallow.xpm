@@ -1,0 +1,19 @@
+#define sallow_format 1
+#define sallow_width 8
+#define sallow_height 8
+#define sallow_ncolors 2
+#define sallow_chars_per_pixel 1
+static char * sallow_colors[] = {
+" " , "#FFFFAAAA0000",
+"." , "#FFFFFFFF0000"
+} ;
+static char * sallow_pixels[] = {
+" . . . .",
+". . . . ",
+" . . . .",
+". . . . ",
+" . . . .",
+". . . . ",
+" . . . .",
+". . . . "
+} ;

@@ -1,0 +1,9 @@
+#ident	"@(#)pkg.cmds:i386/pkg/cmds/request	1.7"
+#ident	"$Header: $"
+
+
+#	request script for cmds package installation
+#	don't pdelete. Can't padd once it is pdeleted.
+
+trap 'exit 3' 15
+

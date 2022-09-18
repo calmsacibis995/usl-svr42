@@ -1,0 +1,70 @@
+#!/usr/bin/sh
+#ident	"@(#)pkg.ihvhba:i386/pkg/ihvhba/bldscript	1.4"
+
+echo 
+echo "The MCIS IHVHBA pkging script will now package and transfer the package"
+echo "(which includes the files you have populated) into /tmp/hbaflop. It"
+echo "will then format the floppy of your choice and transfer the files to"
+echo "the floppy. You must be root user. Please hit ENTER to continue."
+read x
+ID=`id | cut -d"(" -f2 | cut -d")" -f1`
+if [ "$ID" != "root" ]
+then
+	echo "You are not root user. After becoming root user run the script"
+	echo "again."
+	exit 1
+fi
+if [ ! -d tmp/mcis ]
+then
+	mkdir -p tmp/mcis
+fi
+cp $ROOT/$MACH/etc/conf/pack.d/mcis/* tmp/mcis
+cp $ROOT/usr/src/$WORK/uts/io/hba/mcis.cf/* tmp/mcis
+cp $ROOT/$MACH/etc/conf/modnew.d/mcis tmp/mcis
+grep mcis $ROOT/$MACH/etc/conf/cf.d/mod_register >tmp/mcis/loadmods
+rm -rf /tmp/hbaflop
+mkdir -p /tmp/hbaflop
+BASE=`pwd`
+REL=SVR4.2
+D=`date '+%D'`
+echo Creating package image...
+if [ -f $ROOT/usr/src/$WORK/cmd/pkgtools/oampkg/pkgmk/pkgmk ]
+then
+	$ROOT/usr/src/$WORK/cmd/pkgtools/oampkg/pkgmk/pkgmk -o -p "$REL $D" -ai386 -r $BASE -f prototype -l2370  -d /tmp/hbaflop
+else
+	/usr/bin/pkgmk -o -p "$REL $D" -ai386 -r $BASE -f prototype -l2370  -d /tmp/hbaflop
+fi
+echo Creating additional files needed...
+cp load.name /tmp/hbaflop
+cd /tmp/hbaflop
+mkdir -p etc/conf/mod.d
+mv load.name etc
+cd ihvhba 
+cp root/tmp/mcis/loadmods ../etc/loadmods
+while read drv
+	do
+	name=`echo $drv | cut -f3 -d:`
+	cp root/tmp/$name/$name ../etc/conf/mod.d/$name
+	done < ../etc/loadmods
+echo
+echo Please insert the formatted floppy you want the package put on.
+echo Which drive did you insert the floppy into, 0 or 1?
+read x
+echo
+echo Now making a filesystem on the floppy.
+mkfs -Fs5 /dev/rdsk/f"$x"t 2370:200 
+mount -Fs5 /dev/dsk/f"$x"t /mnt
+if [ $? != 0 ]
+then
+	echo "mount failed, exiting .."
+	exit 1
+fi
+cd ..
+echo
+echo Now transferring package contents to floppy filesystem.
+find . -print | cpio -pmud /mnt
+sync
+sync
+umount /mnt
+echo The package is complete.
+exit 0

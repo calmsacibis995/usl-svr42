@@ -1,0 +1,32 @@
+#ident	"@(#)proto:desktop/menus/fd/tmproot	1.1"
+# This file is appended to error.1 to make an error screen
+.ur
+ERROR: Unrecoverable Installation Error 
+.helpbanner
+Help: Unrecoverable Installation Error
+.top
+
+An error occurred while copying files onto the hard disk.  The UNIX System
+Installation cannot continue.  The cause of the error is unknown.
+
+After you press 'ENTER' the system will be shut down.  If you wish to retry
+installing the UNIX System, put the Boot Diskette 1 of 3 in the boot
+floppy drive and reboot your computer.
+.help
+For detailed instructions, press the 'F1' (or '?') key at any time.
+
+An error occurred while copying files onto the hard disk.  The UNIX System
+Installation cannot continue.  The cause of the error is unknown.
+
+Your options include:
+
+-- retry installation of the UNIX System.  Try a different set of
+UNIX System V Release 4.2 Boot Diskettes if available.
+
+-- run diagnostic programs supplied by your computer vendor to make
+sure your computer is running correctly.
+
+-- contact the customer support of your computer vendor.
+
+Refer to the "Troubleshooting" section of the Installation Guide for
+more information.

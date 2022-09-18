@@ -1,0 +1,136 @@
+#ident	"@(#)pkg.nsu:i386/pkg/nsu/preremove	1.11.12.6"
+#ident	"$Header: $"
+
+FAILURE=1	# fatal error
+
+REBUILD=0
+
+CONFDIR=/etc/conf
+CONFBIN=$CONFDIR/bin
+
+NOTOOLS="ERROR: The Installable Driver feature has been removed. \
+The ${NAME} cannot be removed."
+
+# determine that ID/TP tools are available
+
+if
+	[ ! -x ${CONFBIN}/idbuild -o ! -x ${CONFBIN}/idinstall \
+			-o ! -x ${CONFBIN}/idcheck ]
+then
+	message ${NOTOOLS}
+	exit $FAILURE
+fi
+
+
+for MODULE in sockmod timod tirdwr pckt ptem ptm pts ticlts ticots ticotsor ntty
+do
+	${CONFBIN}/idcheck -p ${MODULE}
+	RES="$?"
+	if
+		[ "${RES}" -ne "100" -a "${RES}" -ne "0" ]
+	then
+		${CONFBIN}/idinstall -P ${PKGINST} -d ${MODULE}
+		REBUILD=1
+	fi
+done
+
+#
+#remove entries added to the device database
+#
+for DEVICE in pseudo_master ticlts ticots ticotsord
+do
+	# Error may only indicate we are not running an ES system
+	# or entry does not exist.
+	MSG="`/sbin/putdev -d ${DEVICE} 2>&1`"
+	RETURN=$?
+	if	[ "$RETURN" = 1 -o "$RETURN" = 2 -o "$RETURN" = 5 ]
+		# there's a fatal error that will affect the other devices, too.
+		# so print error and abort the loop
+	then	echo Device Database Error $RETURN when deleting $DEVICE
+		echo $MSG
+		break
+	elif	[ "$RETURN" != 0 -a "$RETURN" != 3 ]
+		# return 0: everything worked.
+		# return 3: entry was not there to delete
+		#when none of the above, error gets printed and we loop
+	then	echo Device Database Error $RETURN when deleting $DEVICE
+		echo $MSG
+	fi
+done
+#
+# remove the listener id
+#
+/usr/sbin/userdel listen  >/dev/null 2>&1
+#
+# remove listen-type port monitors and any symbolic links that might
+# be lying arount
+#
+sacadm -L -t listen 2>/dev/null | cut -f1 -d: >/tmp/listeners
+for i in `cat /tmp/listeners`
+do
+	sacadm -r -p $i >/dev/null 2>&1
+done
+# Remove the cmds added to the NET administration role
+#	cp is needed by nsu and dfs, so neither preremoves remove it.
+#	The packages can then remain independent.
+#/usr/bin/adminrole -r \
+#   pmadm,nlsadmin,sacadm,cs,keymaster,idadmin,rxservice,cat \
+#   NET >/dev/null 2>&1
+#
+# symlinks and links
+#
+LHOME=$BASEDIR/usr/net/nls
+if [ -f $LHOME/listen ]
+then
+	rm $LHOME/listen
+fi
+if [ -f $LHOME/dbfconv ]
+then
+	rm $LHOME/dbfconv
+fi
+if [ -f $LHOME/nlps_server ]
+then
+	rm $LHOME/nlps_server
+fi
+if [ -f /usr/bin/nlsadmin ]
+then
+	rm /usr/bin/nlsadmin
+fi
+rm /tmp/listeners
+
+#
+#	Remove entries from /etc/netconfig
+#
+
+grep -v '[ 	]loopback[ 	][ 	]*-[ 	][ 	]*/dev/ticlts[ 	]' /etc/netconfig 2>/dev/null >/tmp/$$.1
+grep -v '[ 	]loopback[ 	][ 	]*-[ 	][ 	]*/dev/ticotsord[ 	]' /tmp/$$.1 2>/dev/null >/tmp/$$.2
+grep -v '[ 	]loopback[ 	][ 	]*-[ 	][ 	]*/dev/ticots[ 	]' /tmp/$$.2 2>/dev/null >/etc/netconfig
+
+rm -f /rmp/$$.1 /tmp/$$.2
+
+#
+#	Remove entries from OAM scripts...
+#
+# OAM - OAM
+fgrep -v 'name_to_address^Machine and Service Address Management^name_to_addr/map.menu' /usr/sadm/sysadm/menu/netservices/netserve.menu 2>/dev/null >/tmp/$$.3
+cp /tmp/$$.3 /usr/sadm/sysadm/menu/netservices/netserve.menu
+
+removef -f $PKGINST
+
+#
+if
+	[ "${REBUILD}" = "1" ]
+then
+	# rebuild for changes to take effect
+	
+	${CONFBIN}/idbuild
+	if
+		[ "$?" -ne "0" ]
+	then
+		exit ${FAILURE}
+	else
+		exit 10
+	fi
+else
+	exit 0
+fi

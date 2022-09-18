@@ -1,0 +1,5 @@
+#ident	"@(#)uts-x86at:io/mouse/mse.cf/Node	1.2"
+#ident	"$Header: $"
+mse	mouse		c	240
+mse	mousemon	c	241
+mse	mousecfg	c	242

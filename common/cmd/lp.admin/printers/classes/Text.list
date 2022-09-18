@@ -1,0 +1,15 @@
+#ident	"@(#)lp.admin:printers/classes/Text.list	1.2.3.1"
+#ident  "$Header: Text.list 2.0 91/07/12 $"
+
+#	Module Name: Text.list
+
+title="List of Printers by Class"
+
+
+begrow=36
+begrow=1
+rows=10
+columns=20
+text="`if [ -n "$TFADMIN" ]; then $TFADMIN lpstat -c $ARG1;
+	else lpstat -c $ARG1; fi`"
+

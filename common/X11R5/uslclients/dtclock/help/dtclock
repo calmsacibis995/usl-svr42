@@ -1,0 +1,17 @@
+^*version^1
+^%Clock^^The Desktop Clock
+^1^xxxxx
+this is a dummy seciotn
+
+^2^Setting the Alarm
+This section should describe how the alarm works
+
+^2^Changing Clock Properties
+This section should explain how properties work
+
+^2^The Desktop Clock
+The Desktop clock can display either an analog or digital display.
+This will be the help file for the clock client.
+
+^1^yyyyy
+this is section yyyyy

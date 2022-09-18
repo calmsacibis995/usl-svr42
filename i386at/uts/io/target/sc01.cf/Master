@@ -1,0 +1,11 @@
+#ident	"@(#)uts-x86at:io/target/sc01.cf/Master	1.4"
+#ident  "$Header: $"
+$version 1
+$entry init
+$entry open
+$entry close
+$entry read
+$entry ioctl
+$entry size
+$entry strategy print
+sc01	sc01	obcr	0	0	0

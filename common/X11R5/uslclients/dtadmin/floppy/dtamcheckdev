@@ -1,0 +1,217 @@
+#ident    "@(#)dtadmin:floppy/dtamcheckdev	1.21"
+#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+#	Copyright (c) 1988, 1989, 1990 AT&T
+#	  All Rights Reserved
+
+#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+#	UNIX System Laboratories, Inc.
+#	The copyright notice above does not evidence any
+#	actual or intended publication of such source code.
+
+
+XDIR=${XWINHOME:-/usr/X}
+if [ ! -d $XDIR ]
+then
+	exit 0
+fi
+DESKTOP=$XDIR/desktop
+FOLDER=Disks-etc
+GENICON=gendev.icon
+PERIPH=$XDIR/lib/classdb/peripherals
+#
+#	check that $PERIPH is up to date; if so no more to be done
+#
+if [ -f $PERIPH ]
+then
+	xxx=`find /etc/device.tab -newer $PERIPH -print`
+	if [ "$xxx" = "" ]
+	then
+		exit 0
+	fi
+fi
+MEDIA="MediaMgr"
+PKGMG="PackageMgr"
+TFADMIN="/sbin/tfadmin"
+OWNERS=`(cd $DESKTOP/LoginMgr/Users; grep -l owner *)`
+OWNDIR="/"
+
+if [ -f $XDIR/adm/precheckdev ]
+then
+	. $XDIR/adm/precheckdev
+fi
+
+rm -rf $PERIPH
+
+if [ ! -d $DESKTOP/$FOLDER ]
+then
+    mkdir $DESKTOP/$FOLDER
+fi
+if [ ! -d /$FOLDER ]
+then
+    mkdir /$FOLDER
+fi
+
+for U in $OWNERS
+do
+    if [ $U != "root" ]
+    then
+	DIR=`grep "^${U}:" /etc/passwd | cut -d: -f6`
+	if [ "$DIR" != "" ]
+	then
+	    OWNDIR="$OWNDIR $DIR"
+	    if [ ! -d $DIR/$FOLDER ]
+	    then
+		mkdir $DIR/$FOLDER
+		chown $U $DIR/$FOLDER
+	    fi
+	fi
+    fi
+done
+
+PIXMAPS=$XDIR/lib/pixmaps
+BITMAPS=$XDIR/lib/bitmaps
+PIXMASKS=$XDIR/lib/pixmasks
+BITMASKS=$XDIR/lib/bitmasks
+for D in `/usr/bin/getdev -a removable=true display=true`
+do
+    ICON=$GENICON
+    NAME=$D
+    case $D in
+	disk*)	DEV=`devattr $D bdevice` ;;
+	*)	DEV=`devattr $D cdevice` ;;
+    esac
+    echo CLASS $D >> $PERIPH
+    echo BEGIN >> $PERIPH
+    echo "\t_LFILEPATH\t'`dirname $DEV`';" >> $PERIPH
+    echo "\t_LPATTERN\t'`basename $DEV`';" >> $PERIPH
+#
+#	standard MENU entries:
+#
+    echo "\tMENU _Open\t'(if $TFADMIN -t $MEDIA 2>/dev/null;\\
+			then $TFADMIN $MEDIA -D $D; \\
+			else     exec $MEDIA -D $D; fi)&';" >> $PERIPH
+    echo "\tMENU Backup\t'(if $TFADMIN -t $MEDIA 2>/dev/null;\\
+			then $TFADMIN $MEDIA -B -D $D; \\
+			else     exec $MEDIA -B -D $D; fi)&';" >> $PERIPH
+    echo "\tMENU Restore\t'(if $TFADMIN -t $MEDIA 2>/dev/null;\\
+			then $TFADMIN $MEDIA -R -D $D; \\
+			else     exec $MEDIA -R -D $D; fi)&';" >> $PERIPH
+    echo "\tMENU Install\t'(if $TFADMIN -t $PKGMG 2>/dev/null;\\
+			then $TFADMIN $PKGMG -D $D; \\
+			else     exec $PKGMG -D $D; fi)&';" >> $PERIPH
+#
+#	extra MENU entires (format, rewind, *cmd ...) 
+#	I should do a complete devattr -v $D and select *cmd= lines,
+#	but will settle for looking for the specific ones I "expect" 
+#
+    FMT=`/usr/bin/devattr $D fmtcmd`
+    if [ $? = 0 ]
+    then
+	echo "\tMENU Format\t'exec $MEDIA -F -D $D &';" >> $PERIPH
+    fi
+    CMD=`/usr/bin/devattr $D rewind`
+    if [ $? = 0 ]
+    then
+	if [ -x $CMD ]
+	then
+	    echo "\tMENU Rewind\t'exec $CMD &';" >> $PERIPH
+	fi
+    fi
+    CMD=`/usr/bin/devattr $D erasecmd`
+    if [ $? = 0 ]
+    then
+	if [ -x $CMD ]
+	then
+	    echo "\tMENU Erase\t'exec $CMD &';" >> $PERIPH
+	fi
+    fi
+    case $D in
+
+    ctape?)	NAME=Cartridge_Tape
+		ICON=ctape.glyph
+		echo "\t_DROP\t\t'(if $TFADMIN -t $MEDIA 2>/dev/null;\\
+			then $TFADMIN $MEDIA -B -D $D -C \"%S\"; \\
+			else     exec $MEDIA -B -D $D -C \"%S\"; fi)&';" >> $PERIPH
+	    ;;
+
+    diskette?)	case $D in
+		*1)	NAME=Disk_A
+			if [ ! -d /Disk_A ]
+			then    /usr/bin/mkdir /Disk_A
+			fi
+			;;
+		*2)	NAME=Disk_B
+			if [ ! -d /Disk_B ]
+			then    /usr/bin/mkdir /Disk_B
+			fi
+			;;
+		esac
+		case $FMT in
+		    *5*)	y=disk5.25.xpm ;;
+		    *)		y=disk3.5.xpm ;;
+		esac
+		chmod +w $DEV
+		ICON=$NAME.icon
+		/usr/bin/rm -f $PIXMAPS/$ICON
+		/usr/bin/ln $PIXMAPS/$y $PIXMAPS/$ICON
+		/usr/bin/rm -f $BITMAPS/$ICON
+		/usr/bin/ln $BITMAPS/$y $BITMAPS/$ICON
+		/usr/bin/rm -f $PIXMASKS/$ICON
+		/usr/bin/ln $PIXMASKS/$y $PIXMASKS/$ICON
+		/usr/bin/rm -f $BITMASKS/$ICON
+		/usr/bin/ln $BITMASKS/$y $BITMASKS/$ICON
+		echo "\t_DROP\t\t'(if $TFADMIN -t $MEDIA 2>/dev/null;\\
+			then $TFADMIN $MEDIA -D $D -C \"%S\"; \\
+			else     exec $MEDIA -D $D -C \"%S\"; fi)&';" >> $PERIPH
+		;;
+
+	*)	x=`devattr $D dticon`
+		if [ $? = 0 ]
+		then
+			ICON=$x
+		else
+			ICON=$GENICON
+		fi
+		x=`devattr $D dtalias`
+		if [ $? = 0 ]
+		then
+			NAME=$x
+		else
+			NAME=$D
+		fi
+		x=`devattr $D bdevice`
+		if [ $? = 0 ]
+		then
+			cd /
+			if [ ! -d $NAME ]
+			then
+				/usr/bin/mkdir $NAME
+			fi
+		fi
+		echo "\t_DROP\t\t'(if $TFADMIN -t $MEDIA 2>/dev/null;\\
+			then $TFADMIN $MEDIA -D $D -C \"%S\"; \\
+			else     exec $MEDIA -D $D -C \"%S\"; fi)&';" >> $PERIPH
+	    ;;
+    esac
+#
+#	icon definition, to complete the class
+#
+    echo "\t_ICONFILE\t'$ICON';" >> $PERIPH
+    echo "END" >> $PERIPH
+    echo  >> $PERIPH
+    /usr/bin/rm -f $DESKTOP/$FOLDER/$NAME
+    /usr/bin/ln -s $DEV $DESKTOP/$FOLDER/$NAME
+    for DIR in $OWNDIR
+    do
+	/usr/bin/rm -f $DIR/$FOLDER/$NAME
+	/usr/bin/ln -s $DEV $DIR/$FOLDER/$NAME
+    done
+done
+/usr/bin/chmod 644 $PERIPH
+
+if [ -f $XDIR/adm/postcheckdev ]
+then
+	. $XDIR/adm/postcheckdev
+else
+	exit 0
+fi

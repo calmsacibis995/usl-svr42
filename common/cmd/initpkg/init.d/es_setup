@@ -1,0 +1,82 @@
+#ident	"@(#)initpkg:common/cmd/initpkg/init.d/es_setup	1.1.10.1"
+#ident  "$Header: es_setup 1.2 91/06/28 $"
+
+vfstab=/etc/vfstab
+
+#
+# in case the enhanced security system is not run,
+# ignore this script
+#
+/sbin/chlvl SYS_PUBLIC /usr >/dev/null 2>&1
+
+# check if security is installed
+(
+	mldmode >/dev/null 2>&1
+	exit $?
+)
+if [ $? -ne 0 ]
+then
+	exit 0
+fi
+
+echo "
+
+This is the first time the new system with the enhanced security
+modules is booted.  The following are done only once.  If a
+failure occurs during this phase, note that the script run can be
+found as /etc/init.d/es_setup.
+
+"
+
+# need to set levels on certain mount points
+/sbin/umount /var >/dev/null 2>&1
+/sbin/chlvl SYS_PUBLIC /usr /var >/dev/null 2>&1
+/sbin/mount /var >/dev/null 2>&1
+/sbin/chlvl SYS_PUBLIC /home >/dev/null 2>&1
+
+# need to set levels on real pathnames of FIFOFS and NAMEFS objects
+/sbin/chlvl SYS_PUBLIC	/etc/cron.d/NPIPE >/dev/null 2>&1
+/sbin/chlvl SYS_PRIVATE	/etc/saf/_cmdpipe \
+			/etc/saf/_sacpipe \
+			/etc/saf/*/_pmpipe >/dev/null 2>&1
+
+# need to mount /usr to run commands
+echo "Mounting the /usr file system for successful setup ..."
+while read bdevice rdevice mntp fstype fsckpass automnt mntopts
+do
+	# check for comments
+	case ${bdevice} in
+	'#'*)	continue
+	esac
+
+	# see if this is /usr - check and mount if it is
+	if [ "${mntp}" = "/usr" ]
+	then
+		/sbin/fsck -F ${fstype} -m  ${rdevice}  >/dev/null 2>&1
+		if [ $? -ne 0 ]
+		then
+			/sbin/fsck -F ${fstype} -y  ${rdevice}
+		fi
+		/sbin/mount ${mntp}
+		/sbin/initprivs
+	fi
+done < $vfstab
+
+# removing privilege lock file
+rm -f /etc/security/tcb/.prv.lock >/dev/null 2>&1
+
+# removing /etc/rc.d/es_setup
+rm -f $0 >/dev/null 2>&1
+
+echo ""
+echo "Unmounting the /usr file system ..."
+umount /usr
+
+echo "
+
+This concludes the enhanced security setup while first booting
+the enhanced security system.
+
+"
+
+exit 0

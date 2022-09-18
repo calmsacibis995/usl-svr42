@@ -1,0 +1,8 @@
+#ident	"@(#)nadmin.rfs:other/rfs/id_map/Text.display	1.2.5.1"
+#ident  "$Header: Text.display 2.0 91/07/12 $"
+title="ID Mappings"
+
+`readfile $INTFBASE/display.msg | message -p`
+
+text="`readfile $ARG1`"
+#columns=`longline`

@@ -1,0 +1,79 @@
+#ident	"@(#)pkg.eth:menu.param	1.7"
+#ident	"$Header: $"
+
+.optstring
+Your options are:
+.pageno
+Page %d of %d
+.ul
+Ethernet Hardware Support
+.hhelp_ban
+Instructions
+.helpbanner
+Help: `echo $DRV` Parameter Selection
+.ur
+`echo $DRV` Parameter Selection
+#.ll
+#Please make a selection.  Press F1 for Help.
+.lr
+F1=Help
+.top
+Select parameters to be configured for adaptor `echo $DRV number $BNO`.
+.form
+#TYPE_ENUM
+2 `echo ${NVECT}${INT_CHOICES}`Interrupt Vector://IRQ//
+//Right/Left arrow keys for new choice (`echo $NVECT` choices)//
+#TYPE_ENUM
+`[ -f "${IO_FILE}" ] && echo "2 ${NIOADDR}${IOADDR_CHOICES}I/O Address://IOADDR//"`
+`[ -f "$IO_FILE" ] && echo "//Right/Left arrow keys for new choice ($NIOADDR choices)//"`
+`[ -f "$RAM_FILE" ] && echo "2 ${NRAMADDR}${RAMADDR_CHOICES}RAM Address://RAMADDR//"`
+`[ -f "$RAM_FILE" ] && echo "//Right/Left arrow keys for new choice ($NRAMADDR choices)//"`
+`[ "${CABLETYPE}" = "AUI" ] && echo "2 2//AUI::AUI//BNC::BNC//Cable Type://CABLETYPE//"`
+`[ "${CABLETYPE}" = "AUI" ] && echo "//Right/Left arrow keys for new choice (2 choices)//"`
+`[ "${CABLETYPE}" = "BNC" ] && echo "2 2//BNC::BNC//AUI::AUI//Cable Type://CABLETYPE//"`
+`[ "${CABLETYPE}" = "BNC" ] && echo "//Right/Left arrow keys for new choice (2 choices)//"`
+`[ "$ZWS" ] &&  echo "2 2//Disable::Disable//Enable::Enable//Zero Wait State://EL16_ZWS//"`
+`[ "$ZWS" ] && echo "//Right/Left arrow keys for new choice (2 choices)//"`
+.button
+Apply
+Reset
+.bottom
+Press 'TAB' to move the cursor between fields.  When finished, move the
+cursor to "Apply" and then press 'ENTER' to continue.
+.help
+For detailed instructions, press the 'F1' (or '?') key at any time.
+
+INTERRUPT VECTOR
+Following is a list of available interrupt vectors:
+        `echo $AVAIL_INTVS`
+`[ -f "$IO_FILE" ] && echo "I/O ADDRESS"`
+`[ -f "$IO_FILE" ] && echo "Following is a list of available I/O addresses:"`
+`[ -f "$IO_FILE" ] && cat $IO_FILE`
+`[ -f "$RAM_FILE" ] && echo "RAM ADDRESS"`
+`[ -f "$RAM_FILE" ] && echo "Following is a list of available RAM addresses:"`
+`[ -f "$RAM_FILE" ] && cat $RAM_FILE`
+`[ "$CABLETYPE" ] && echo "CABLE TYPE"`
+`[ "$CABLETYPE" ] && echo "Cable selection for $DRV adaptor:"`
+`[ "$CABLETYPE" -a $DRV = EE16 ] && echo "For the cable type entry you have two options:"`
+`[ "$CABLETYPE" -a $DRV = EE16 ] && echo "BNC (a thin cable with a round, twist-on connector,"`
+`[ "$CABLETYPE" -a $DRV = EE16 ] && echo "or a telephone-like connector)"`
+`[ "$CABLETYPE" -a $DRV = EE16 ] && echo "and AUI (a thick cable with a flat, D-shaped connector)."`
+`[ "$CABLETYPE" -a $DRV = IE6 ] && echo "For the cable type entry you have two options:"`
+`[ "$CABLETYPE" -a $DRV = IE6 ] && echo "BNC (a thin cable with a round, twist-on connector) and"`
+`[ "$CABLETYPE" -a $DRV = IE6 ] && echo "AUI (a thick cable with a flat, D-shaped connector)."`
+`[ "$CABLETYPE" -a $DRV = EL16_AT ] && echo "For the cable type entry you have two options:"`
+`[ "$CABLETYPE" -a $DRV = EL16_AT ] && echo "BNC (a thin cable with a round, twist-on connector) and"`
+`[ "$CABLETYPE" -a $DRV = EL16_AT ] && echo "AUI (a thick cable with a flat, D-shaped connector)."`
+`[ "$CABLETYPE" -a $DRV = EL16_MCA ] && echo "For the cable type entry you have two options:"`
+`[ "$CABLETYPE" -a $DRV = EL16_MCA ] && echo "BNC (a thin cable with a round, twist-on connector) and"`
+`[ "$CABLETYPE" -a $DRV = EL16_MCA ] && echo "AUI (a thick cable with a flat, D-shaped connector)."`
+`[ "$ZWS" ] && echo "ZERO WAIT STATE"`
+`[ "$ZWS" ] && echo "Zero wait state should be disabled on an IBM PC/AT, otherwise,"`
+`[ "$ZWS" ] && echo "it should be enabled. If you are not sure, choose \"Disable.\""`
+.helpinst
+ESC=Exit help  F1=Instructions  1=Forward  2=Backward
+.hhelpinst
+ESC=Exit Instructions  1=Forward  2=Backward
+.working
+Working...
+.end

@@ -1,0 +1,163 @@
+!#ident	"@(#)dtcalc:DtCalc.ad	1.3"
+
+*Title:			Calculator
+*IconName:		Calculator
+*iconPixmap:		xcalc48.icon
+*iconMask:		xcalc48.mask
+*resizeCorners:		false
+*appDefaultsMissing:	false
+
+*highlightThickness: 	0
+
+*base.Margin:		2 points
+
+*frame.shadowThickness:	2 points
+*frame.shadowType:	shadowIn
+
+*LCD.refName:		M
+*LCD.refPosition:	right
+*LCD.string:		8888888888888
+*LCD.recomputeSize:	false
+*LCD.shadowType:	shadowIn
+*LCD.shadowThickness:	2 points
+*LCD.font:		-*-helvetica-bold-r-normal-*-*-140-*-*-p-*-iso8859-1
+*LCD.alignment:		right
+*LCD.Gravity:		east
+
+*M.string:		M
+*M.translations:	#replace\n
+
+*INV.refName:		M
+*INV.refPosition:	bottom
+*INV.string:		INV
+*INV.translations:	#replace\n
+
+*DEG.refName:		INV
+*DEG.refPosition:	right
+*DEG.string:		DEG
+*DEG.translations:	#replace\n
+
+*RAD.refName:		DEG
+*RAD.refPosition:	right
+*RAD.string:		RAD
+*RAD.translations:	#replace\n
+
+*GRAD.refName:		RAD
+*GRAD.refPosition:	right
+*GRAD.string:		GRAD
+*GRAD.translations:	#replace\n
+
+*PAREN.refName:		GRAD
+*PAREN.refPosition:	right
+*PAREN.string:		( )
+*PAREN.translations:	#replace\n
+
+*buttons.refName:	frame
+*buttons.refSpace:	2 points
+*buttons.layoutType:	fixedcols
+*buttons.measure:	5
+*buttons.hSpace:	0
+*buttons.vSpace:	0
+*buttons.traversalOn:	false
+*buttons.labelJustify:	center
+*buttons.sameWidth:	all
+*buttons.buttonType:	oblongbtn
+*buttons.itemFields:	{ label, clientData }
+*buttons.items:		{ 1/x,   reciprocal() },\
+			{ x^2,   square()     },\
+			{ SQR,   squareRoot() },\
+			{ CE,    clear()      },\
+			{ AC,    off()        },\
+			{ INV,   inverse()    },\
+			{ sin,   sine()       },\
+			{ cos,   cosine()     },\
+			{ tan,   tangent()    },\
+			{ DRG,   degree()     },\
+			{ e,     e()          },\
+			{ EE,    scientific() },\
+			{ log,   logarithm()  },\
+			{ ln,    naturalLog() },\
+			{ y^x,   power()      },\
+			{ PI,    pi()         },\
+			{ x!,    factorial()  },\
+			{ (,     leftParen()  },\
+			{ ),     rightParen() },\
+			{ /,     divide()     },\
+			{ STO,   store()      },\
+			{ 7,     digit(7)     },\
+			{ 8,     digit(8)     },\
+			{ 9,     digit(9)     },\
+			{ *,     multiply()   },\
+			{ RCL,   recall()     },\
+			{ 4,     digit(4)     },\
+			{ 5,     digit(5)     },\
+			{ 6,     digit(6)     },\
+			{ -,     subtract()   },\
+			{ SUM,   sum()        },\
+			{ 1,     digit(1)     },\
+			{ 2,     digit(2)     },\
+			{ 3,     digit(3)     },\
+			{ +,     add()        },\
+			{ EXC,   exchange()   },\
+			{ 0,     digit(0)     },\
+			{ .,     decimal()    },\
+			{ +/-,   negate()     },\
+			{ =,     equal()      }
+
+*buttons.Translations:	#override\n\
+			Ctrl<Key>c:quit()\n\
+			Ctrl<Key>h:clear()\n\
+			None<Key>0:digit(0)\n\
+			None<Key>1:digit(1)\n\
+			None<Key>2:digit(2)\n\
+			None<Key>3:digit(3)\n\
+			None<Key>4:digit(4)\n\
+			None<Key>5:digit(5)\n\
+			None<Key>6:digit(6)\n\
+			None<Key>7:digit(7)\n\
+			None<Key>8:digit(8)\n\
+			None<Key>9:digit(9)\n\
+			<Key>KP_0:digit(0)\n\
+			<Key>KP_1:digit(1)\n\
+			<Key>KP_2:digit(2)\n\
+			<Key>KP_3:digit(3)\n\
+			<Key>KP_4:digit(4)\n\
+			<Key>KP_5:digit(5)\n\
+			<Key>KP_6:digit(6)\n\
+			<Key>KP_7:digit(7)\n\
+			<Key>KP_8:digit(8)\n\
+			<Key>KP_9:digit(9)\n\
+			<Key>KP_Enter:equal()\n\
+			<Key>KP_Equal:equal()\n\
+			<Key>KP_Multiply:multiply()\n\
+			<Key>KP_Add:add()\n\
+			<Key>KP_Subtract:subtract()\n\
+			<Key>KP_Decimal:decimal()\n\
+			<Key>KP_Divide:divide()\n\
+			<Key>KP_Tab:equal()\n\
+			<Key>Clear:clear()\n\
+			:<Key>.:decimal()\n\
+			:<Key>+:add()\n\
+			:<Key>-:subtract()\n\
+			:<Key>*:multiply()\n\
+			:<Key>/:divide()\n\
+			:<Key>(:leftParen()\n\
+			:<Key>):rightParen()\n\
+		        :<Key>!:factorial()\n\
+			<Key>e:e()\n\
+			:<Key>^:power()\n\
+			<Key>p:pi()\n\
+			<Key>i:inverse()\n\
+			<Key>s:sine()\n\
+			<Key>c:cosine()\n\
+			<Key>t:tangent()\n\
+			<Key>d:degree()\n\
+			<Key>l:naturalLog()\n\
+			:<Key>=:equal()\n\
+			<Key>n:negate()\n\
+			<Key>r:squareRoot()\n\
+			<Key>space:clear()\n\
+			<Key>q:quit()\n\
+			<Key>Delete:clear()\n\
+			<Key>BackSpace:clear()\n\
+			<Key>:\n

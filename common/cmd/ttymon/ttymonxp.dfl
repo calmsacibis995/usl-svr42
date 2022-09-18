@@ -1,0 +1,7 @@
+#ident	"@(#)ttymon:common/cmd/ttymon/ttymonxp.dfl	1.1.3.1"
+#ident  "$Header: ttymonxp.dfl 1.2 91/06/24 $"
+#
+#Format  Device_Special_File_Name=SAKTYPE:SAKDEF:SAKSEC:
+#
+/dev/systty=l:drop::#Device for the system console
+/dev/contty=l:drop::

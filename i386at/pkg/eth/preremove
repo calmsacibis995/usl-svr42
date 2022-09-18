@@ -1,0 +1,41 @@
+#ident	"@(#)pkg.eth:preremove	1.7"
+#ident  "$Header: $"
+
+FAILURE=1	# fatal error
+
+REBUILD=0
+
+CONFDIR=/etc/conf
+CONFBIN=${CONFDIR}/bin
+
+
+NOTOOLS="ERROR: The Installable Driver feature has been removed. \
+The ${NAME} cannot be removed."
+
+if [ ! -x ${CONFBIN}/idbuild -o ! -x ${CONFBIN}/idinstall ]
+then
+	message ${NOTOOLS}
+	exit $FAILURE
+fi
+#put the comment back in /etc/strcf when this package is removed
+
+for MODULE in imx586 ie6 ee16 el16 wd
+do
+	eval /etc/confnet.d/configure -r -d ${MODULE}_[0-9] > /dev/null
+	${CONFBIN}/idcheck -p ${MODULE}
+	RES="$?"
+	if [ "${RES}" -ne "100" -a "${RES}" -ne "0" ]
+	then
+		${CONFBIN}/idinstall -P ${PKGINST} -d ${MODULE}
+		echo "Removing ${NAME} ${MODULE} module ..."
+		REBUILD=1
+	fi
+done
+${CONFBIN}/idbuild
+if [ "$?" -ne "0" ]
+then
+	exit ${FAILURE}
+else
+	exit 10
+fi
+exit 0

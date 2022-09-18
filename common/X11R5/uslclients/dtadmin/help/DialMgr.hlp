@@ -1,0 +1,623 @@
+#ident	"@(#)dtadmin:help/DialMgr.hlp	1.23"
+^*version^1
+^*title^Dialup Setup
+^:Dialup_Setup
+^*width^70
+^+DesktopMgr/help.defs
+^?Setup and manage dialup communications.
+^0^Dialup Setup
+^$10
+Dialup Setup
+
+Use Dialup Setup to establish communications between your computer and
+other systems, and to maintain the files used to do so. You can
+connect to other systems either through direct connection (a cable
+connects your system to another) or through a modem (each computer is
+connected to a modem and telephone line). With a modem you can access
+private computer systems and networks, as well as many commercial
+information services, such as CompuServe and Genie.
+
+The following windows are provided for Dialup Setup:
+
+        \k(Dialup Setup Window)
+
+        \k(Dialup Setup: Devices Window)
+      
+        \k(Dialup Setup: Quick Dial Window)
+   
+        \k(Dialup Setup: Device Properties Window)
+
+        \k(Dialup Setup: Remote System Properties Window)
+^1^Dialup Setup Window
+^$20
+\k{Dialup Setup}
+1. Dialup Setup Window
+
+Use the Dialup Setup window to display all the systems with which you
+can currently communicate. This list is read from this file:
+
+	/etc/uucp/Systems file
+
+The \d(buttons^button) available from the Dialup Setup window are:
+
+        \k(Actions Button^^Actions ButtonDS)\t\k(System Button^^System ButtonDS)
+        \k(Search Button^^Search ButtonDS)\t\k(Help Button^^Help ButtonDS)
+^2^Actions Button=Actions ButtonDS
+^$30
+1. \k{Dialup Setup Window}
+   1.1 Actions Button
+
+The Actions button lets you save changes and exit from the Dialup
+Setup window. Clicking on the Actions button displays a menu with the
+following options:
+
+        \k(Save Systems List)
+        \k(Setup Devices)
+        \k(Install)
+        \k(Exit)
+^3^Save Systems List
+^$40
+1. \k{Dialup Setup Window}
+   1.1 \k{Actions Button^^Actions ButtonDS}
+       1.1.1 Save Systems List
+
+The Save Systems List menu option writes any changes you make in the
+Dialup Setup window to files on your hard disk (the /etc/uucp/Devices
+and /etc/uucp/Systems files are changed). This options makes your
+changes permanent.
+^3^Setup Devices
+^$50
+1. \k{Dialup Setup Window}
+   1.1 \k{Actions Button^^Actions ButtonDS}
+       1.1.2 Setup Devices
+
+The Setup Devices menu option lets you add, delete, and maintain the
+ports on your computer that are used for connecting to other systems.
+You can also "quick dial" through one of the ports. Clicking on the
+Setup Devices menu option displays the Dialup Setup: Devices window.
+
+More information: \k(Dialup Setup: Devices Window)
+^3^Install
+^$60
+1. \k{Dialup Setup Window}
+   1.1 \k{Actions Button^^Actions ButtonDS}
+       1.1.3 Install
+
+The Install menu option lets you install a remote system icon in any
+of your folders. Clicking on the Install menu option opens the Dialup
+Setup: Install Remote System Icon window. Enter the folder name where
+you want the icon installed in the Location text box. The Dialup
+Setup: Install Remote System Icon window has three buttons: Install,
+Cancel, and Help.
+
+   o Install Button: This button installs a remote system icon
+     in the folder specified in the Location text box.
+
+   o Cancel Button: This button closes the Dialup Setup: Install
+     Remote System Icon window with no action taken.
+
+   o Help Button: This button provides on-line help for the Dialup
+     Setup: Install Remote System Icon window.
+
+Note: You also can install a remote system icon in another folder with
+the \d(drag-and-drop) technique. In the Dialup Setup window, select the
+system you want to install. Press and hold the SELECT mouse button and
+move the mouse pointer to the folder in which you want the remote
+system installed. Release the mouse button.
+^3^Exit
+^$70
+1. \k{Dialup Setup Window}
+   1.1 \k{Actions Button^^Actions ButtonDS}
+       1.1.4 Exit
+
+The Exit menu option closes the Dialup Setup window. If you make
+changes and attempt to exit before you save your changes, a message
+window appears with the message:
+
+	Current changes to System List have not been saved.
+
+There are three buttons in the message window: Save Systems List,
+Discard, and Cancel.
+
+   o Save Button: This button writes your changes to the file
+     (/etc/uucp/Systems) and closes the Dialup Setup window.
+
+   o Discard Button: This button ignores your changes and closes the
+     Dialup Setup window (the file /etc/uucp/Systems is not changed).
+
+   o Cancel Button: This button closes the warning window and leaves
+     the Dialup Setup window open.
+^2^System Button=System ButtonDS
+^$80
+1. \k{Dialup Setup Window}
+   1.2 System Button
+
+The System button allows you to add, delete, and change entries in the
+Dialup Setup window. Clicking on the System button displays a menu
+with the following options:.
+
+Warning: Your changes are not permanently saved until you click on the
+Save Systems List option under the \k(Actions button^^Actions ButtonDS).
+
+        \k(New)
+        \k(Delete)
+        \k(Properties)
+^3^New
+^$90
+1. \k{Dialup Setup Window}
+   1.2 \k{System Button^^System ButtonDS}
+       1.2.1 New
+
+The New menu option lets you add new entries for systems with which
+you want to communicate. Clicking on the New menu option displays the
+Dialup Setup: Remote System Properties window.
+
+More information: \k(Dialup Setup: Remote System Properties Window)
+^3^Delete
+^$100
+1. \k{Dialup Setup Window}
+   1.2 \k{System Button^^System ButtonDS}
+       1.2.2 Delete
+
+The Delete menu option lets you remove selected entries from the
+Dialup Setup window. Clicking on the Delete menu option displays a
+delete confirmation message window. The message window has two
+buttons: Delete and Cancel.
+
+   o Delete Button: This button deletes the selected entry in the
+     Dialup Setup window.
+
+   o Cancel Button: This button closes the warning window with no
+     action taken.
+^3^Properties
+^$110
+1. \k{Dialup Setup Window}
+   1.2 \k{System Button^^System ButtonDS}
+       1.2.3 Properties
+
+The Properties menu option lets you make changes to an entry in the
+Dialup Setup window. Clicking on the Properties menu option displays
+the Dialup Setup: Remote System Properties window.
+
+More information: \k(Dialup Setup: Remote System Properties Window)
+^2^Search Button=Search ButtonDS
+^$120
+1. \k{Dialup Setup Window}
+   1.3 Search Button
+
+The Search button lets you find an entry you want from the list
+presented in the Dialup Setup window. This button is useful when you
+have many entries in your /etc/uucp/Systems file. Clicking on the
+Search button displays a menu with the following options:
+
+        \k(First)
+        \k(Last)
+        \k(Find)
+^3^First
+^$130
+1. \k{Dialup Setup Window}
+   1.3 \k{Search Button^^Search ButtonDS}
+       1.3.1 First
+
+The First menu option selects the first entry in the Dialup Setup window.
+^3^Last
+^$140
+1. \k{Dialup Setup Window}
+   1.3 \k{Search Button^^Search ButtonDS}
+       1.3.2 Last
+
+The Last menu option selects the last entry in the Dialup Setup window.
+^3^Find
+^$150
+1. \k{Dialup Setup Window}
+   1.3 \k{Search Button^^Search ButtonDS}
+       1.3.3 Find
+
+The Find menu option displays the Dialup Setup: Find window. This
+window lets you search for a specific entry in the Dialup Setup win-
+dow. Enter the name or the first few letters of the entry you're
+searching for in the System Name text box. The first entry that
+matches the letters you entered is selected. The Dialup Setup: Find
+window closes after the search. The Dialup Setup: Find window has
+three buttons: Find, Cancel, and Help.
+
+   o Find Button: This button starts the search for the entry you
+     specified in the System Name text box.
+
+   o Cancel Button: This button closes the Dialup Setup: Find
+     window with no action taken.
+
+   o Help Button: This button provides on-line help for the Dialup
+     Setup: Find window.
+^2^Help Button=Help ButtonDS
+^$160
+1. \k{Dialup Setup Window}
+   1.4 Help Button
+
+The Help button provides on-line help for the Dialup Setup window.
+Clicking on the Help button displays a menu with the following
+options:
+
+        \k(Dialup Setup^^Dialup SetupDS)
+        \k(Table of Contents^^Table of ContentsDS)
+        \k(Help Desk^^Help DeskDS)
+^3^Dialup Setup=Dialup SetupDS
+^$170
+1. \k{Dialup Setup Window}
+   1.4 \k{Help Button^^Help ButtonDS}
+       1.4.1 Dialup Setup
+
+The Dialup Setup menu option provides on-line help for the Dialup
+Setup window.
+^2^Table of Contents=Table of ContentsDS
+^$180
+1. \k{Dialup Setup Window}
+   1.4 \k{Help Button^^Help ButtonDS}
+       1.4.2 Table of Contents
+
+The Table of Contents menu option displays the list of help topics
+available for the Dialup Setup window.
+^3^Help Desk=Help DeskDS
+^$190
+1. \k{Dialup Setup Window}
+   1.4 \k{Help Button^^Help ButtonDS}
+       1.4.3 Help Desk
+
+The Help Desk menu option opens the Help Desk window. From there, you
+can select the icon for which you want on-line help.
+^1^Dialup Setup: Devices Window
+^$200
+\k{Dialup Setup}
+2. Dialup Setup: Devices Window
+
+Use the Dialup Setup: Devices window to display all the ports
+currently defined in the /etc/uucp/Devices file.
+
+The buttons available for the Dialup Setup: Devices window are:
+
+        \k(Actions Button^^Actions ButtonDW)
+        \k(Device Button^^Device ButtonDW)
+        \k(Help Button^^Help ButtonDW)
+^2^Actions Button=Actions ButtonDW
+^$210
+2. \k{Dialup Setup: Devices Window}
+   2.1 Actions Button
+
+The Actions button lets you dial out to another computer system and
+install a device icon in a folder window. It also lets you exit from
+the Dialup Setup: Devices window. Clicking on the Actions button
+displays a menu with the following options:
+
+        \k(Dial^^DialDW)
+        \k(Install^^InstallDW)
+        \k(Exit^^ExitDW)
+^3^Dial=DialDW
+^$220
+2. \k{Dialup Setup: Devices Window}
+   2.1 \k{Actions Button^^Actions ButtonDW}
+       2.1.1 Dial
+
+The Dial menu option lets you dial out to another computer system.
+Clicking on the Dial menu option displays the Dialup Setup: Quick
+Dial window.
+
+More information: \k(Dialup Setup: Quick Dial Window)
+^3^Install=InstallDW
+^$230
+2. \k{Dialup Setup: Devices Window}
+   2.1 \k{Actions Button^^Actions ButtonDW}
+       2.1.2 Install
+
+The Install menu option lets you install a remote system icon in any
+of your folders. Clicking on the Install menu option opens the Dialup
+Setup: Install Remote System Icon window. Enter the folder name where
+you want the icon installed in the Location text box. The Dialup
+Setup: Install Remote System Icon window has three buttons: Install,
+Cancel, and Help.
+
+   o Install Button: This button installs a remote system icon in the
+     folder specified in the Location text box.
+
+   o Cancel Button: This button closes the Dialup Setup: Install
+     Remote System Icon window with no action taken.
+
+   o Help Button: This button provides on-line help for the Dialup
+     Setup: Install Remote System Icon window.
+
+Note: You also can install a remote system icon in another folder with
+the \d(drag-and-drop) technique. In the Dialup Setup: Devices window,
+select the system you want to install. Press and hold the SELECT mouse
+button and move the mouse pointer to the folder in which you want the
+remote system installed. Release the mouse button.
+^3^Exit=ExitDW
+^$240
+2. \k{Dialup Setup: Devices Window}
+   2.1 \k{Actions Button^^Actions ButtonDW}
+       2.1.3 Exit
+
+The Exit menu option closes the Dialup Setup: Devices window.
+^2^Device Button=Device ButtonDW
+^$250
+2. \k{Dialup Setup: Devices Window}
+   2.2 Device Button
+
+The Device button lets you add, delete, and change entries in the
+Dialup Setup: Devices window. Clicking on the Device button displays
+a menu with the following options:
+
+        \k(New^^NewDW)
+        \k(Delete^^DeleteDW)
+        \k(Properties^^PropertiesDW)
+^3^New=NewDW
+^$260
+2. \k{Dialup Setup: Devices Window}
+   2.2 \k{Device Button^^Device ButtonDW}
+       2.2.1 New
+
+The New menu option lets you add new devices to your system (the
+/etc/uucp/Devices file is changed). Clicking on the New menu option
+displays the Dialup Setup: Device Properties window.
+
+More information: \k(Dialup Setup: Device Properties Window)
+^3^Delete=DeleteDW
+^$270
+2. \k{Dialup Setup: Devices Window}
+   2.2 \k{Device Button^^Device ButtonDW}
+       2.2.2 Delete
+
+The Delete menu option lets you remove entries from the Dialup Setup
+window. Clicking on the Delete menu option displays a message window
+prompting you to confirm that you want to delete the entry. This mes-
+sage window has two buttons: Delete and Cancel.
+
+   o Delete Button: This button deletes the selected entry in the
+     Dialup Setup Devices window. The warning window closes.
+
+   o Cancel Button: This button closes the warning window with no
+     action taken.
+^3^Properties=PropertiesDW
+^$280
+2. \k{Dialup Setup: Devices Window}
+   2.2 \k{Device Button^^Device ButtonDW}
+       2.2.3 Properties
+
+The Properties menu option lets you make changes to devices in the
+Dialup Setup: Devices window. Clicking on the Properties menu option
+displays the Dialup Setup: Device Properties window.
+
+More information: \k(Dialup Setup: Device Properties Window)
+^2^Help Button=Help ButtonDW
+^$290
+2. \k{Dialup Setup: Devices Window}
+   2.3 Help Button
+
+The Help button provides on-line help for the Dialup Setup: Devices
+window. Clicking on the Help button displays a menu with the following
+options:
+
+        \k(Dialup Setup^^Dialup SetupDW)
+        \k(Table of Contents^^Table of ContentsDW)
+        \k(Help Desk^^Help DeskDW)
+^3^Dialup Setup=Dialup SetupDW
+^$300
+2. \k{Dialup Setup: Devices Window}
+   2.3 \k{Help Button^^Help ButtonDW}
+       2.3.1 Dialup Setup
+
+The Dialup Setup menu option provides help for the Dialup Setup
+window.
+^3^Table of Contents=Table of ContentsDW
+^$310
+2. \k{Dialup Setup: Devices Window}
+   2.3 \k{Help Button^^Help ButtonDW}
+       2.3.2 Table of Contents
+
+The Table of Contents menu option displays a list of help topics
+available for the Dialup Setup: Devices window.
+^3^Help Desk=Help DeskDW
+^$320
+2. \k{Dialup Setup: Devices Window}
+   2.3 \k{Help Button^^Help ButtonDW}
+       2.3.3 Help Desk
+
+The Help Desk menu option opens the Help Desk window. From there, you
+can select the icon for which you want on-line help.
+^1^Dialup Setup: Quick Dial Window
+^$330
+\k{Dialup Setup}
+3. Dialup Setup: Quick Dial Window
+
+Use the Dialup Setup: Quick Dial window to dial out to a remote system
+using the device selected in the Dialup Setup: Devices window. Enter
+the phone number to dial in the Phone Number text box (this text box
+is not shown for direct and Datakit connections). You also can change
+the Speed, Parity, Character Size, and Duplex Mode if you need values
+different than those shown by clicking on the appropriate options.
+
+The buttons available for the Dialup Setup: Quick Dial window are:
+
+        \k(Dial Button^^Dial ButtonQD)
+        \k(Reset Button^^Reset ButtonQD)
+        \k(Cancel Button^^Cancel ButtonQD)
+        \k(Help Button^^Help ButtonQD)
+^2^Dial Button=Dial ButtonQD
+^$340
+3. \k{Dialup Setup: Quick Dial Window}
+   3.1 Dial Button
+
+The Dial button uses the modem to dial the remote system using the
+phone number specified in the Phone Number text box.
+^2^Reset Button=Reset ButtonQD
+^$350
+3. \k{Dialup Setup: Quick Dial Window}
+   3.2 Reset Button
+
+The Reset button reverses any changes you have not yet applied to the
+Speed, Parity, Character Size, and Duplex Mode options. The values for
+these options after clicking on the Reset button are Any, None, 7, and
+Full, respectively. The Dialup Setup: Quick Dial window stays open.
+
+^2^Cancel Button=Cancel ButtonQD
+^$360
+3. \k{Dialup Setup: Quick Dial Window}
+   3.3 Cancel Button
+
+The Cancel button closes the Dialup Setup: Quick Dial window with no
+action taken.
+^2^Help Button=Help ButtonQD
+^$370
+3. \k{Dialup Setup: Quick Dial Window}
+   3.4 Help Button
+
+The Help button provides on-line help for the Dialup Setup: Quick Dial
+window.
+^1^Dialup Setup: Device Properties Window
+^$380
+\k{Dialup Setup}
+4. Dialup Setup: Device Properties Window
+
+Use the Dialup Setup: Device Properties window to display and change
+the setup information for devices on your system. Devices are used for
+accessing other systems. A device is assigned a physical port on your
+computer, such as serial port 1 (also called Com1 or tty00). The type
+of device (for example, Hayes modem) must be specified.
+
+If you are creating a new entry, the default Port is Com1 and the
+Device Type is Hayes. Change the port by clicking on Com1, Com2, or
+Other. If you select Other, a text box appears. Enter the port for the
+device in this text box.
+
+The buttons available for the Dialup Setup: Device Properties window
+are:
+
+        \k(Apply Button^^Apply ButtonDP)
+        \k(Reset Button^^Reset ButtonDP)
+        \k(Cancel Button^^Cancel ButtonDP)
+        \k(Help Button^^Help ButtonDP)
+^2^Apply Button=Apply ButtonDP
+^$390
+4. \k{Dialup Setup: Device Properties Window}
+   4.1 Apply Button
+
+The Apply button applies any changes you make in the Dialup Setup:
+Device Properties window. After applying the changes, the Dialup
+Setup: Device Properties window closes.
+^2^Reset Button=Reset ButtonDP
+^$400
+4. \k{Dialup Setup: Device Properties Window}
+   4.2 Reset Button
+
+The Reset button reverses any changes you have not yet applied. The
+Dialup Setup: Device Properties window remains open.
+^2^Cancel Button=Cancel ButtonDP
+^$410
+4. \k{Dialup Setup: Device Properties Window}
+   4.3 Cancel Button
+
+The Cancel button closes the Dialup Setup: Device Properties window
+without taking any action.
+^2^Help Button=Help ButtonDP
+^$420
+4. \k{Dialup Setup: Device Properties Window}
+   4.4 Help Button
+
+The Help button provides on-line help for the Dialup Setup: Device
+Properties window.
+^1^Dialup Setup: Remote System Properties Window
+^$430
+\k{Dialup Setup}
+5. Dialup Setup: Remote System Properties Window
+
+Use the Dialup Setup: Remote System Properties window to display and
+change the setup information for remote systems accessed from your
+system. The information displayed is for the item selected in the
+Dialup Setup window and includes the System Name, Device Type, Speed,
+Phone Number, Password, and two login sequences if Extra Options is
+selected. If you are creating a new entry, the text boxes for System
+Name, Phone Number, and Password are empty.
+
+The buttons available for the Dialup Setup: Remote System Properties
+window are:
+
+        \k(Apply Button^^Apply ButtonRSP)
+        \k(Reset Button^^Reset ButtonRSP)
+        \k(Cancel Button^^Cancel ButtonRSP)
+        \k(Help Button^^Help ButtonRSP)
+
+More information: \k(Entering Remote System Properties)
+^2^Entering Remote System Properties
+^$440
+5. \k{Dialup Setup: Remote System Properties Window}
+   5.1 Entering Remote System Properties
+
+The following information can be entered in the Dialup Setup: Remote
+System Properties window:
+
+   o System Name: This text box is for the name of the remote system.
+     This is the name of the entry that appears in the Dialup Setup
+     window.
+
+   o Device Type: This line lets you select the type of connection to
+     the remote system. The choices are Modem, Direct, and Datakit. If
+     the remote system is accessed with a modem and telephone line,
+     click on Modem. If the remote system is directly connected to
+     your computer by a cable, click on Direct. If the remote system
+     is connected by a Datakit switch, click on Datakit.
+
+   o Speed: This line lets you select the baud rate (speed) used to
+     communicate with the remote system when a modem is used. For
+     example, if you are using a 2400 baud modem, click on 2400. The
+     Any option allows communication at any speed the modem supports.
+
+   o Phone Number: This text box is available only when Modem is
+     selected for the Device Type option. Enter the phone number you
+     want to dial when calling the remote system.
+
+   o Destination: This text
+     box is available only when Datakit is selected for the Device
+     Type option. Enter the Datakit destination to which you want to
+     connect.
+
+   o Password: This text box is for the uucp password on the remote
+     system. Get the password from the administrator of the remote
+     system.
+
+   o Extra Option: If you click on this box, two additional text boxes
+     appear:
+
+     - Login Sequence (1): This text box looks for the end of the
+       first prompt ("in:" to match "Login:") when logging in to the
+       remote system.
+
+     - Login Sequence (2): This text box looks for the end of the
+       second prompt ("word:" to match "Password:") when logging in to
+       the remote system.
+^2^Apply Button=Apply ButtonRSP
+^$450
+5. \k{Dialup Setup: Remote System Properties Window}
+   5.2 Apply Button
+
+The Apply button applies any changes you make to the entry in the
+Dialup Setup: Remote System Properties window. After applying the
+changes, the Dialup Setup: Remote System Properties window closes.
+^2^Reset Button=Reset ButtonRSP
+^$460
+5. \k{Dialup Setup: Remote System Properties Window}
+   5.3 Reset Button
+
+The Reset button reverses any changes you have not yet applied. The
+Dialup Setup: Remote System Properties window remains open.
+^2^Cancel Button=Cancel ButtonRSP
+^$470
+5. \k{Dialup Setup: Remote System Properties Window}
+   5.4 Cancel Button
+
+The Cancel button closes the Dialup Setup: Remote System Properties
+window without any action taken.
+^2^Help Button=Help ButtonRSP
+^$480
+5. \k{Dialup Setup: Remote System Properties Window}
+   5.5 Help Button
+
+The Help button provides on-line help for the Dialup Setup: Remote
+System Properties window.

@@ -1,0 +1,4 @@
+#ident	"@(#)initpkg:common/cmd/initpkg/init.d/ANNOUNCE	1.1.4.1"
+#ident "$Header: /sms/sinixV5.4es/rcs/s19-full/usr/src/cmd/initpkg/init.d/ANNOUNCE,v 1.1 91/02/28 17:36:34 ccs Exp $"
+
+echo 'System services are now being stopped.'

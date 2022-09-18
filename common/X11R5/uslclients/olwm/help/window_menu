@@ -1,0 +1,55 @@
+You use the Window menu to open icons and close windows to an icon,
+to change the area of the window between an application- specified
+full size and the window size you choose, to set application properties,
+to move the window to the back of the workspace, to refresh the window,
+and to quit the application.
+
+You can view and choose from the Window menu in three ways using the
+MENU mouse button:
+
+		Press-Drag-Release
+		Click-Move-Click
+		Pinning the Window menu to the workspace
+
+Using Press-Drag-Release:
+
+	To use press-drag release, move the pointer to the window
+	background (header, footer, or border without a scrollbar),
+	press MENU, drag the pointer to the control you want, and
+	release MENU. If you do not want to choose a control, move
+	the pointer off the menu and release the mouse button.
+
+Using Click-Move-Click:
+
+	To use click-move-click, move the pointer to the window
+	background and click MENU. The Window menu is displayed
+	and stays on the screen. Move the pointer to the control
+	you want and click SELECT or MENU. The control is executed
+	and the menu is dismissed. If you do not want to choose a
+	control, move the pointer off the menu and click SELECT or
+	MENU to dismiss the menu without choosing a control.
+
+Using the Pushpin:
+
+	To pin up the Window menu, move the pointer to the window
+	background, press MENU, and drag the pointer to the pushpin.
+	When the pin pops into the hole, release MENU. The Window
+	menu becomes a pop-up window, and you choose from it in
+	the same way you use controls in the control area of a
+	window: click SELECT to use a button.
+
+Changing the Default Setting:
+
+	Each menu in a menu group has a default setting, which is
+	shown by a default ring. You can change the default setting
+	for any menu using the steps below:
+
+		Press the default modifier key and MENU.
+		Drag the pointer from control to control. The
+			default ring follows the pointer.
+
+When the default ring is on the control you want to use as the default,
+release MENU and then release the modifier key.
+
+If you release the modifier key first and then release MENU, in addition
+to setting the default, the command is executed.

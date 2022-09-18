@@ -1,0 +1,109 @@
+:NewGame
+[New Game], N or n:  Throw away the current game and start a new one.
+
+:BackUp
+[Backup: One Move], U or u: Undo the last move.  If you undo a move that revealed a previously unknown card, the program will chastise you.
+
+[Backup: Start Over], A or a:  Play the same hand again.  This will restart the game with the initial deck, discarding what you've already done.
+
+[Backup: Replay], R or r:  Show all the moves made so far.  This can take a while, so any key or button press will terminate it.
+
+The time between each move can be set with the replayTime resource.  See the property sheet for more information on replayTime.  When a replay is active, the spider buttons will be made inactive.
+
+:Expand
+[Expand], E or e: Expand column.  This prompts the user to select a column, which is then displayed in textual form.  
+
+This is useful when the window cannot be made larger and the columns are very large.
+
+:Locate
+[Locate], F or f:  tries to find a specified card or cards among the face-up cards in the tableau.  
+
+First specify the name of the card to look for by putting the rank and suit in the Name item.  (The ranks are A, 2, 3, ..., 10, J, Q, or K; you can also use T for 10.  Suits are C, D, H, and S.  Lower-case is permitted.)  
+
+If you omit the suit, [Locate] will look for all cards of the specific rank that are not already covered by a card of the next lower rank.  (Such cards are called "unused", "free", or "available".)  For example, if you want to move a 9 out of some pile, you need either a space or a free 10 onto which to move it, so you could use [Locate] to find all free 10s.
+
+To specify a card, type it into the "Name:" field.
+
+:Score
+[Score], S or s:  Shows the current score.
+
+:Help
+[Help] will display the specified help document in a text window.
+
+:File
+[File: Save in File], W or w:  writes the current position to a file containing the current state of the game, including the original deck and all the moves made so far.  The name of the file is taken from the Name item.  
+
+The file also includes a human-readable text representation of the current tableau, similar to those that appear in the Help "Examples".
+
+When using the accellerator "W" or "w", the filename is taken from the contents of the current primary selection instead of the Name textfield.
+
+[File: Resume from File] reads a file created by the [File: Save in File] command.  The name of the file is taken from the Name item.  
+
+It can also read various partial files; in particular, if all but the first line of the file has been deleted, it will restore the most recent position and, if possible, the original deck (in case you want to Start Over), but it will not be able to Back Up over the moves.
+
+[File: Resume from Selection], L or l:  restores a position represented by the current primary text selection.  
+
+This is useful for loading positions from help "Examples".
+
+[File: Properties...]:  invokes a property sheet which can be used to set application specific resources.
+
+:Name.textfield
+[Name] is a textfield for typing in file names or cards to locate.  Shell expansions such as "~login" work as expected for file names.
+
+:props.panel
+Spider property sheet presents user customizable resources graphically.  
+
+The "-name" command line flag allows one to associate specific configuration options to named spider games.  For example, spider -name "spider.round" might be a version which always uses the roundCards option.  The current name of the tool will be displayed in the header.
+
+The "-resource_file" command line flag will specify which resource file Spider should read from and write to.  The default resource file is "$HOME/.spiderrc".  
+
+One might want to use the option "-resource_file .spiderrc" to specify a differnt resource file.  XView Spider uses a separate resource file from $HOME/.Xdefaults by default since it will over-write an existing resource file without saving comments that might have been in that file.  This avoids potential loss of data for first time users of Spider.
+
+The "-save_file" command line flag begins the spider game from the place that has been saved to this file.  This is convenient when one needs to to quit the game without having to lose the current game position.
+
+Press the "Help" key on top of one of the items for specific information on that item.
+
+:bell
+If True, spider will use the audible bell to complain about illegal moves.  
+
+Corresponds to resource "Spider.bell".
+
+:replayTime
+Specifies the time in microseconds (1/1000 of a second) to pause between each move when showing a replay of all moves.  The default is 200.  When changed, the effect is when the next replay begins.
+
+Corresponds to resource "Spider.replayTime".
+
+:roundCards
+If True, the corners of the cards will have rounded edges.  The painting of the cards will be slower with rounded cards than without rounded cards.  
+
+Corresponds to resource "Spider.roundCards".
+
+:confirm
+If True, spider will ask for confirmation before over-writing any data or external files.  
+
+Corresponds to resource "Spider.confirm".
+
+:deltaMod
+Specifies the interval at which to recalculate the inter-card spacing.  The default is 1, which means the card stacks are resized every time they grow or shrink when they near the bottom of the table. Setting this to a higher value will cut down on the number of redraws by limiting visibility when its unnecessary. 
+
+Corresponds to resource "Spider.deltaMod".
+
+:textField
+Specifies the number of columns to display for textfields in spider.  When changed, the panel items will not re-arrange until the tool is re-started.
+
+Corresponds to resource "Spider.textField".
+
+:helpDir
+Specifies where to look for the help files in the "Help" button.  If the new location does not have help documents, the "Help" button will be greyed out.
+
+Corresponds to resource "Spider.helpDir".
+
+:props.apply
+When pressed, "Apply" will apply all changes made to the property sheet to the running spider game as well as the current resource file as specified by the default value or the -resource_file command line option.
+
+:props.reset
+When pressed, "Reset" will reset the changes made to the property sheet to the original values.  The values will be from the last "Apply" operation.
+
+:props.dismiss
+When pressed, "Dismiss" will dismiss the property sheet window.
+

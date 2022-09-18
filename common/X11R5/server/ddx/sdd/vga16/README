@@ -1,0 +1,232 @@
+The files in this directory contain code for a 386/ix X11 display driver
+for EGA and VGA displays.
+
+
+EGA/VGA BACKGROUND
+-----------------
+
+The EGA/VGA display adapter is a very strange beast.  For the most part, 
+it acts as a dumb frame buffer with 4 planes of memory, allowing a possible
+16 colors.  Standard EGA resolution is 640 pixels wide by 350 pixels high.
+Standard VGA resolution is 640x480.  EGA boards come with 64k, 128k, or 
+256k of memory.  At least 128k is required to support 640x350 with 16 colors.
+Almost all EGA boards (other than original IBM EGA's) come with 256k of 
+memory.  This driver does not support 64k EGA boards due to painful 
+differences in programming such boards.  VGA boards come with at least
+256k of memory.
+
+The bit and byte orientation is wrong.  WRONG!  Bytes are organized in
+ascending order from left to right, top to bottom.  This is LSBFirst in 
+the X server.  The bits are organized MSB first:
+
+Here's a picture of the upper left corner of the screen.  
+
+ byte 0    byte 1   byte 2   byte 3
+---------------------------------------------
+|76543210|76543210|76543210|76543210
+|76543210|76543210|76543210|76543210
+|76543210|76543210|76543210|76543210
+|76543210|76543210|76543210|76543210
+|76543210|76543210|76543210|76543210
+|	 |
+
+The EGA/VGA video memory resides at 0xa0000 which is in the 'hole' in AT
+memory.  For most modes, the memory uses 64k, up to 0xaffff.  Clearly, some
+mechanism is needed to map the 256k of memory most EGA/VGA boards have 
+into the 64k address space presented to the system.  This is the reason
+for the planes of memory.  At any given time, only one plane of memory
+is accessible to the system microprocessor.  The mapping of planes is 
+handled by several I/O registers on the display adapter.
+
+I/O registers are set up as several 'sets' of registers.  Each register
+set is accessed through two I/O addresses, the first being an address, 
+the second being data.  For example, the Graphics Controller register set 
+consists of 8 registers.  To set a value in a register, one sets the
+address register at 0x3ce to the index of the register of interest, and
+the data register at 0x3cf to the value desired.  To set the Graphics
+Controller Mode register, index 5, to a value of 7, the following code 
+is needed:
+
+	outb(0x3ce, 5);
+	outb(0x3cf, 7);
+
+To make matters a little more confusing, most of the register sets have
+their address and data registers adjacent in the I/O space, and will 
+respond to one outw() instruction, so the above code fragment could be
+replace by:
+
+	outw(0x3ce, 0x705);
+
+The index goes in the low byte, the data in the high byte.
+
+The reason for doing this is performance.  According to the 80386 
+reference manual, an out instruction (either outb or outw) requires
+5 clocks if the current privilege level is less than or equal to the
+I/O privilege level, and 25 (!!!!) clocks if the current privilege 
+level is greater than the I/O privilege level.  All X server code is
+user code, hence out instructions take 25 clocks.  I'm told that EGA/VGA
+boards add wait states to the I/O instructions, so the performance 
+difference is even more dramatic than the 25 clocks indicated above.
+
+This may seem like a lot of work for a few I/O instructions, but remember, 
+these boards do not really act as dumb frame buffers.  The key to EGA/VGA
+programming is exploiting the 'non dumb frame buffer' aspects of the board
+which are mainly controlled by various registers.
+
+The most heavily used register set is the Graphics Controller register set.
+Contained in this set are registers to specify a color to draw pixels 
+(allowing code to touch all the planes in one operation), a function 
+register allowing code to specify what logical function (COPY, AND, OR, 
+and XOR) is to be used when updating pixels, and a bitmask register
+which allows specification of what bits within a byte are to be updated.
+By using these registers, most graphic operations such as line drawing, 
+character drawing, area filling, etc., don't need to view the display as
+a dumb frame buffer in which 4 different planes of memory must be touched
+to acheive the desired result.
+
+The system microprocessor never touches video memory directly.  Instead, 
+the display adapter has 4 latches that act as the interface.  When an 
+instruction that reads memory is executed, one byte from each plane of 
+video memory is loaded into a latch.  When an instruction that writes
+memory is executed, all four latches are written to their respective 
+planes in video memory.  Other registers on the display adapter are 
+used to indicate which latch will be referenced by the system microprocessor.
+Since the system microprocessor only updates the latches, you must make
+sure the latches have been loaded with the data in video memory at the
+location of interest.  This results in code that looks unnecessary, such
+as:
+
+	t = *pdst;
+	*pdst = data;
+
+These latches provide a window of vulnerability during VT switching for
+X as well as VP/ix.  At the moment, when a user requests a VT switch, the
+signal handler (in both X and VP/ix) does the switch right away rather
+than waiting for the current graphic operation to complete.  To the
+best of my knowledge, there is no 'official' way to save and restore the
+latches on EGA/VGA boards, so if the switch happens to interrupt an 
+operation that was using the latches, such as in between the two lines
+of code above, when the VT is restored, the latches probably won't be
+correctly set, and there might be a small glitch on the screen where
+the graphic operation was currently working.  It's a small window, and
+should only happen occasionally when someone does a VT switch while 
+the screen is being updated.
+
+The EGA/VGA display adapters have several different modes of writing to
+video memory.  One method simply transfers data from the cpu to the latch
+specified using whatever cpu operation (and, or, xor, etc) that was 
+specified.  Another very common method completely ignores the cpu data
+and instead uses data in one of the registers.  Using this mode allows
+the code above to be replace by something like:
+
+	*pdst |= 1;
+
+because an 'or' instruction causes both a read (to load the latches) and
+a write (to write the latches) to occur.  The cpu data (1 in this example)
+is completely ignored, as is the cpu operation ('or' in this example).
+
+Because the latches only hold 1 byte, there's almost no point in trying
+to write any code that deals with things a word or longword at a time, it
+won't be any faster since it all goes through an 8 bit latch.
+
+The fastest of the EGA/VGA display adapters are about 6 times slower than
+normal system memory.  In other words, the instruction
+
+	movb %al, (%edi)
+
+with the destination in video memory will take 6 times longer than the same 
+instruction if the destination had been in system memory!  This is the real
+source of performance problems in EGA/VGA systems.  The reason for this 
+slowness is that the video memory is shared between the system microprocessor
+and the processor on the display adapter that handles screen refresh, etc. 
+In general, the cpu only gets about 1 out of 5 cycles available on the 
+video memory.  Video 7 is supposed to release a board in the near future
+that contains dual ported video memory that will give the cpu full access
+video memory at all times.
+
+Occasionally, the latches prove to be very useful.  For example, a movsb
+instruction with %esi pointing to one location in video memory and %edi
+pointing to another will load all four latches at the source and write them
+at the destination!  In one operation, four bytes of data are moved!  This
+is used when a bitblt operation is done that requires no shifting of the
+data such as when scrolling in xterm.
+
+Copying bit images (scanlines or regions to be bltblt'd between system
+memory and video memory) is very painful.  The server kit representation
+of a bitmap consists of a stream of bytes, each one representing a pixel
+with 8 bits of color.  Because the EGA/VGA adapters deal with planes of
+memory, such pixels must be cracked apart into the individual bits for
+each plane, with adjacent bits being combined into bytes to be written
+to the planes.  Yes, it's slow.
+
+In general, if you think you see something that looks strange or wrong, 
+be sure you completely understand what the code does to the board before
+you change it.  I've gone through about 3 levels of understanding to 
+get to the point I'm at right now, which is probably still somewhat 
+confused.  You've got to understand the write modes, the latches, etc.,
+before you can really do anything.
+
+For detailed information on programming EGA and VGA adapters, see 
+
+	Programmer's Guide to PC and PS/2 Video Systems
+	Richard Wilton
+	Microsoft Press
+
+
+
+EXTENDED RESOLUTION SUPPORT
+---------------------------
+
+The driver is capable of supporting the 'extended' resolutions that many
+company's EGA/VGA boards have.  These resolutions are handled by programming 
+different values into the board's registers at initialization time. Some
+boards also have extra 'non-standard' registers that must be set for extended
+modes.  
+
+To add support for a new board, do the following:
+
+	Make sure the board doesn't happen to use a chip set already 
+	supported.  For instance, the Video 7 VEGA chip set and the 
+	Tseng Labs chip set are already supported.  Many boards use
+	these chips.
+
+	Make sure you've got complete technical documentation for the
+	board.  You'll need register values for the modes you'll be 
+	adding, and quite possibly a technical contact at the company
+	that makes the board because they usually don't get everything
+	documented right.
+
+	Edit vtdefs.h and add a new VT_* define for the board.  Current
+	defines are VT_EGA, VT_VGA, VT_PEGA, etc.
+
+	Edit vtio.c:
+		In the table 'inittab[]' add the sequencer, miscellaneous
+		output, and crtc register values needed for the new mode.
+		Note that if different attribute register values or graphics
+		register values from the standard ones are needed, it will
+		be handled later.  (You probably don't need to 'understand' 
+		the register values in the inittab[] table, but if you need
+		to change attribute or graphics register values, it would 
+		be best to understand why something non-standard is needed.
+
+		In the table 'disp_info[]', add the entry for the new board.
+		The structure used in this table is defined in vtio.h.
+		The last two entries in this table are very important.  They
+		allow you to define two routines, and init routine and a
+		restore routine.  These routines are called at initialization, 
+		close, and VT flip time and allow you to do any non-standard
+		setup required for a given board.  Any non-standard registers
+		must be completely restored in the restore routine because
+		the kernel won't know about them and won't know how to restore
+		them as it does for the standard registers.  
+
+		Note that if you fool with any sequencer registers, you may 
+		need to do a synchronous reset first.  See the the vega_*()
+		and tseng_*() routines for examples.
+
+	That should be it.  The initialization code in vgaconfig.c compares
+	the configuration line it gets at startup (specified in the Xconfig
+	file) to the table entries in disp_info[] looking for a match.  If
+	you have a new board that will support several different extended
+	modes, you'll need to add a new VT_* type, and table entries for
+	each mode.

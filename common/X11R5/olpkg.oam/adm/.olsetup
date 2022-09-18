@@ -1,0 +1,41 @@
+#ident	"@(#)olpkg.oam:adm/.olsetup	1.7"
+#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+#	Copyright (c) 1988, 1989, 1990 AT&T
+#	  All Rights Reserved
+
+#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+#	UNIX System Laboratories, Inc.
+#	The copyright notice above does not evidence any
+#	actual or intended publication of such source code.
+
+
+DISPLAY=unix:0 export DISPLAY	#!@ Do not edit this line !@
+DESKTOPDIR=$HOME export DESKTOPDIR	#!@ Do not edit this line !@
+DT=yes export DT	#!@ Do not edit this line !@
+XGUI=OPEN-LOOK export XGUI	#!@ Do not edit this line !@
+XNETACCESS=on			#!@ Do not edit this line !@
+XWINHOME=/usr/X	export XWINHOME	#!@ (or your mount point) !@
+PATH=$PATH:$XWINHOME/bin export PATH	#!@ Do not edit this line !@
+LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$XWINHOME/lib export LD_LIBRARY_PATH	#!@ Do not edit this line !@
+CONSEM=no export CONSEM
+EXECUTE=no
+case $DT in
+    n*|N*)	break ;;
+	*)	if [ `tty` = /dev/console ]
+		then	EXECUTE=yes
+		else	echo "display desktop on remote node: \c"
+			read NODE
+			case $NODE in
+				yes|Yes|YES|y|Y)	 EXECUTE=yes ;;
+				no|NO|No|none|None|NONE) EXECUTE=no ;;
+				  *:0)	DISPLAY=$NODE export DISPLAY
+					EXECUTE=yes ;;
+				    *)	DISPLAY=${NODE}:0 export DISPLAY
+					EXECUTE=yes
+			esac
+		fi
+esac
+if [ "$EXECUTE" = "yes" -a -x $XWINHOME/bin/olinit -a -x $XWINHOME/bin/dtm ]
+then
+	$XWINHOME/bin/olinit $XWINHOME/bin/dtm -- -xnetaccess $XNETACCESS
+fi

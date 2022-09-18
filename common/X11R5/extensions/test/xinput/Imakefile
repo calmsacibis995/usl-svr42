@@ -1,0 +1,25 @@
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+/**/#ident	"@(#)r5extensions:test/xinput/Imakefile	1.1"
+XCOMM $XConsortium: Imakefile,v 1.14 91/07/12 17:06:55 rws Exp $
+
+   LOCLIBS = $(XILIB) $(XLIB)
+   DEPLIBS = $(DEPXILIB) $(DEPXLIB)
+   SRCS = XTouch.c XPErrors.c XList.c XSelInput.c XSendEv.c
+
+all: xtouch xprotoerrors xlist xselinput xsendev
+
+NormalProgramTarget(xtouch,XTouch.o,$(DEPLIBS),$(LOCLIBS),NullParameter)
+NormalProgramTarget(xprotoerrors,XPErrors.o,$(DEPLIBS),$(LOCLIBS),NullParameter)
+NormalProgramTarget(xlist,XList.o,$(DEPLIBS),$(LOCLIBS),NullParameter)
+NormalProgramTarget(xselinput,XSelInput.o,$(DEPLIBS),$(LOCLIBS),NullParameter)
+NormalProgramTarget(xsendev,XSendEv.o,$(DEPLIBS),$(LOCLIBS),NullParameter)
+
+DependTarget()

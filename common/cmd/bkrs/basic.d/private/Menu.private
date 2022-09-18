@@ -1,0 +1,23 @@
+#ident	"@(#)bkrs:common/cmd/bkrs/basic.d/private/Menu.private	1.2"
+#ident	"$Header: $"
+
+menu="Personal Backup"
+help=open text /usr/vmsys/OBJECTS/Text.h "Personal Backup" backup/private/T.hbackpri
+
+name=Backup Files under $HOME
+itemmsg="Move to an item with the arrow keys and strike the ENTER key to select"
+action=`indicator -w;
+        /usr/bin/getdev -a "removable=true" > /dev/null;
+        regex -e -v "$RET"
+    '^1$' '`run sh -c \'/usr/bin/backup -u $LOGNAME -d /dev/rdsk/f0t\'`close $OBJ_DIR/private/Menu.private'
+    '^.*$' 'open menu $OBJ_DIR/private/Menu.backusr -u $LOGNAME' `
+
+
+name=Selective Backup of Files under $HOME
+itemmsg="Move to an item with the arrow keys and strike the ENTER key to select"
+action=`indicator -w;
+        /usr/bin/getdev -a "removable=true" > /dev/null;
+        regex -e -v " $RET"
+    '^1$' 'open form $OBJ_DIR/private/Form.files -u $LOGNAME -d /dev/rdsk/f0t -f'
+    '^.*$' 'open $OBJ_DIR/private/Menu.backsel' `
+

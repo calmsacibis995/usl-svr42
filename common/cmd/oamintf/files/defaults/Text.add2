@@ -1,0 +1,16 @@
+#ident	"@(#)filemgmt:common/cmd/oamintf/files/defaults/Text.add2	1.1.2.2"
+#ident  "$Header: Text.add2 1.1 91/09/17 $"
+Title="Adds Defaults"
+lifetime=shortterm
+
+`readfile $INTFBASE/display.msg | message`
+
+close='CLOSE $OBJ_DIR/Text.add2 $OBJ_DIR/Form.add2'
+
+begrow=distinct
+begcol=distinct
+rows=3
+columns=45
+
+text="\nThe device $ARG1 has been added as a default."
+

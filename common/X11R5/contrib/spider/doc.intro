@@ -1,0 +1,22 @@
+
+
+
+			  I.   I N T R O D U C T I O N
+
+SPIDER is a particularly challenging double-deck solitaire.  Unlike most
+solitaires, it provides extraordinary opportunities for the skillful player
+to overcome bad luck in the deal by means of careful analysis and complex
+manipulations.  The SPIDER program does not actually play the game for you,
+but rather takes the place of the cards (by displaying the tableau on the
+screen) and keeping a record of the game so that you can follow out long
+lines of play without losing track of where you started from.  (Besides, it's
+a neat display hack.)
+
+Section II of this documentation describes the rules of the game; section III
+describes the use of the program; section IV gives some "Spider problems" to
+provide a feel for the complexity that can arise (the problems are based on
+positions that arose in actual play).
+
+===========================================================================
+[Copyright (c) 1989, Donald R. Woods and Sun Microsystems, Inc.]
+

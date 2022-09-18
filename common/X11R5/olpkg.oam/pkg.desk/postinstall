@@ -1,0 +1,98 @@
+#ident	"@(#)olpkg.oam:pkg.desk/postinstall	1.28"
+#	Copyright (c) 1990, 1991 UNIX System Laboratories, Inc.
+#	Copyright (c) 1988 AT&T
+#	  All Rights Reserved
+
+#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+#	UNIX System Laboratories, Inc.
+#	The copyright notice above does not evidence any
+#	actual or intended publication of such source code.
+
+
+#
+#	USL Desktop Manager Package
+#
+
+
+#
+# make sure we're on V.4
+#
+if [ `uname -r`  -lt "4.0" ]
+then
+	echo "This package can only be installed on Release 4.0 or later systems"
+	exit 1
+fi
+#
+# now make sure fonts.dir is up-to-date
+#
+
+/usr/X/bin/mkfontdir /usr/X/lib/fonts/Xol
+/usr/X/bin/mkfontdir /usr/X/lib/fonts/75dpi
+/usr/X/bin/mkfontdir /usr/X/lib/fonts/100dpi
+LD_LIBRARY_PATH=/usr/X/lib DERIVED_INSTANCE_PS=10,12,14 /usr/X/bin/mkfontscale /usr/X/lib/fonts/mitType1
+/usr/X/bin/mkfontdir /usr/X/lib/fonts/mitType1
+
+#
+# ensure that tfadmin executes properly
+#
+chmod +x /usr/bin/adminuser
+filepriv -f allprivs /sbin/tfadmin
+
+#
+# uudemon.cleanup script from Ella Fisher
+#
+CLEANUP='45 23 * * * $TFADMIN /usr/lib/uucp/uudemon.clean -d  > /dev/null 2>&1'
+
+#add "uudemon.clean -d" entry
+
+TEMPUUCP=/usr/tmp/uucp.tmp.$$
+NEWUUCP=/usr/tmp/uucp.new.$$
+TEMPROOT=/usr/tmp/root.tmp.$$
+NEWROOT=/usr/tmp/root.new.$$
+
+crontab -l uucp >$TEMPUUCP 2>/dev/null
+crontab -l root >$TEMPROOT 2>/dev/null
+grep -v "uudemon.clean" $TEMPUUCP >$NEWUUCP 2>&1
+grep -v "uudemon.clean" $TEMPROOT >$NEWROOT 2>&1
+echo "$CLEANUP" >> $NEWUUCP 2>/dev/null
+if /sbin/su uucp -c "crontab $NEWUUCP" >/dev/null 2>&1
+then
+	/sbin/su root -c "crontab $NEWROOT" >/dev/null 2>&1
+else
+	echo "WARNING:	${PKGNAME} cannot install uucp crontab entry"
+	echo "		for uudemon.clean"
+fi
+
+
+############# Begin UPGRADE AND OVERLAY #######################
+
+SCRIPTS=/usr/sbin/pkginst
+
+[ "$AUTOMERGE" = NULL ] || {
+#	If AUTOMERGE=Yes, ${SCRIPTS}/pkgmrgconf will 
+#	merge the config files listed in $UPGRADE_STORE/${PKGINST}.sav.
+#	If merge failed, it informs user which files the merge failed.
+
+#	If AUTOMERGE=No, ${SCRIPTS}/pkgmrgconf will 
+#	inform user where there old config files live and that
+#	the system will use new versions of the config. files
+
+	${SCRIPTS}/pkgmrgconf "${PKGINST}" "$AUTOMERGE" "$NAME"
+}
+
+${SCRIPTS}/up_cleanup "${PKGINST}"
+############# End   UPGRADE AND OVERLAY #######################
+#
+#
+# let them know that the metaphor package is installed
+#
+
+installf $PKGINST /usr/options/$PKG.name
+echo $NAME > /usr/options/$PKG.name
+installf -f $PKGINST
+
+#
+# Now clean up
+#
+rm -rf /tmp/pkg >/dev/null 2>&1
+exit ${errflag}

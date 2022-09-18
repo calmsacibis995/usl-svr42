@@ -1,0 +1,286 @@
+#ident	"@(#)xterm:help/term.hlp	1.13"
+^*version^1
+^*title^Terminal
+^:Terminal
+^*width^70
+^+DesktopMgr/help.defs
+^?Using the UNIX System command line.
+^0^Terminal
+^$10
+Terminal
+
+Use the Terminal window to enter UNIX System commands to run applica-
+tions or do tasks. In many cases, you can do the same task with a
+Terminal window as you can with the Desktop. If you have experience
+with the UNIX System, you may find it convenient to enter commands
+with a Terminal window.
+
+The following windows are provided for Terminal:
+
+        \k(Terminal Window)
+        \k(Terminal Properties Window)
+^1^Terminal Window
+^$20
+\k{Terminal}
+1. Terminal Window
+
+Use the Terminal window to enter UNIX System commands. It differs from
+a terminal you normally connect to a serial port in that, because the
+Terminal window is managed by the graphical user interface, it
+contains many graphical features, such as a scrollbar and resize
+corners. The Terminal window also supports the use of the mouse for
+editing.
+
+Note: Unlike other Desktop windows, no \d(buttons^button) are available in the
+Terminal window.
+
+When a Terminal window appears, you see a prompt and a cursor. The
+prompt is the dollar sign ($) and indicates that the UNIX System is
+waiting for you to enter a command. The cursor is a small square
+showing your place in the window. As you type at the keyboard, the
+cursor moves across the line. To enter commands in a Terminal window,
+the window must have input focus, that is, you must see a solid (not
+boxed) cursor and the header and borders must be highlighted. If the
+Terminal window does not have input focus, click anywhere in the
+window.
+
+Clicking MENU in a Terminal window displays a menu with the following
+options:
+
+        \k(Edit)
+        \k(Redraw)
+        \k(Soft Reset)
+        \k(Full Reset)
+        \k(Properties)
+        \k(Interrupt)
+        \k(Hangup)
+        \k(Terminate)
+        \k(Kill)
+^2^Edit
+^$30
+1. \k{Terminal Window}
+   1.1 Edit
+
+The Edit menu option lets you copy text from any window on the Desktop
+to the cursor location in a Terminal window. Follow these steps to
+copy text to a Terminal window:
+
+Note: Each Terminal window has its own Edit menu.
+
+   1. Click anywhere on the Terminal window to give it input focus.
+
+   2. Select the text you want to copy by positioning the mouse cursor
+      at the beginning of the text. Next, press and hold SELECT (left
+      mouse button) as you drag the mouse cursor over the text. When
+      all the text you want to copy is highlighted, release the mouse
+      button.
+
+   3. Move the mouse pointer back to the Terminal window and click MENU
+      to display the Terminal window menu. Select the Edit menu option
+      from the menu to display the Edit window.
+
+   4. Select the Send menu option. The highlighted text appears at the
+      cursor position in the Terminal window.
+
+     Note: You can also insert selected text as terminal input by
+     clicking the PASTE mouse button (right mouse button on a two-
+     button mouse and middle mouse button on a three-button mouse).
+
+You can select text inside the Terminal window by clicking SELECT.
+For example, you can select a single word by \d(double clicking). You can
+select an entire line by clicking SELECT three times.
+
+Clicking on the Edit menu option displays the Edit window.
+
+The Edit window has four options: Stay Up, Send, Paste, and Copy.
+
+   o The Stay Up menu option lets you keep the Edit window on the
+     Desktop. If you don't click on the Stay Up menu option, the Edit
+     window disappears when you select one of its options.
+
+   o The Send menu option places selected text at the cursor location.
+     After you send the text, it is no longer selected. By repeatedly
+     selecting Send, you can send multiple copies of the same text.
+     Sending text is the same as copying and pasting text.
+
+   o The Paste menu option places text from the clipboard at the
+     cursor location.
+
+   o The Copy menu option copies selected text to the clipboard in
+     preparation for pasting it at another location. The text remains
+     in place but is no longer selected once you select Copy.
+^2^Redraw
+^$40
+1. \k{Terminal Window}
+   1.2 Redraw
+
+The Redraw menu option redraws the Terminal window. Redrawing the
+window is necessary if the text in the Terminal window becomes garbled
+and unreadable.
+^2^Soft Reset
+^$50
+1. \k{Terminal Window}
+   1.3 Soft Reset
+
+The Soft Reset menu option resets the scrolling region and resets the
+Terminal window to the state it is normally in when it first displays.
+^2^Full Reset
+^$60
+1. \k{Terminal Window}
+   1.4 Full Reset
+
+The Full Reset menu option clears the screen and resets the Terminal
+window to the state it is normally in when it first displays.
+^2^Properties
+^$70
+1. \k{Terminal Window}
+   1.5 Properties
+
+The Properties menu option lets you change certain characteristics of
+the Terminal window. Clicking on the Properties menu option displays
+the Terminal Properties window.More information:
+
+        \k(Terminal Properties Window)
+^2^Interrupt
+^$80
+1. \k{Terminal Window}
+   1.6 Interrupt
+
+The Interrupt menu option sends an interrupt signal to stop the task
+or application currently running in the Terminal window.
+^2^Hangup
+^$90
+1. \k{Terminal Window}
+   1.7 Hangup
+
+The Hangup menu option sends an hangup signal to stop the task or
+application currently running in the Terminal window and exits the
+Terminal window.
+^2^Terminate
+^$100
+1. \k{Terminal Window}
+   1.8 Terminate
+
+The Terminate menu option sends a terminate signal to the task or
+application currently running in the Terminal window.
+^2^Kill
+^$110
+1. \k{Terminal Window}
+   1.9 Kill
+
+The Kill menu option sends a kill signal to the task or application
+currently running in the Terminal window and exits the Terminal
+window.
+^1^Terminal Properties Window
+^$120
+\k{Terminal}
+2. Terminal Properties Window
+
+Use the Terminal Properties window to control properties and features
+of a Terminal window. Each Terminal window has its own properties
+window; if you have more than one Terminal window on the Desktop, you
+can set the properties for each one independently.
+
+There are 12 options in the Terminal Properties window. You change
+a property by clicking on the option. If the option box was pressed
+in, clicking on it causes it to pop out. If the option box was popped
+out, clicking on it causes it to become pressed in.
+
+   o Visual Bell: This option determines whether you have a visual
+     bell (the Terminal window flashes) or an audible bell (you hear a
+     beep) when the window wants your attention (for example, when you
+     press keys not understood by the Terminal window). To test your
+     bell, press the Esc key several times while input focus is on a
+     Terminal window. When a Terminal window first appears, visual
+     bell is off.
+
+   o Jump Scroll: This option specifies whether or not the Terminal
+     window should scroll a full screen at a time (instead of a line
+     at a time) when large amounts of text are being sent to the
+     window. When a Terminal window first appears, jump scroll is on.
+
+   o Auto Wraparound: This option specifies whether or not auto-
+     wraparound is enabled. When a Terminal window first appears,
+     auto-wraparound is enabled.
+
+     When Auto Wraparound is on, characters entered beyond the last
+     column are displayed on the next line. When it is off, the char-
+     acters are not displayed but are still entered into the file.
+
+   o Auto Linefeed: This option, when enabled, causes a carriage
+     return after a newline, vertical tab, or new page. When a Termi-
+     nal window first appears, auto linefeed is not enabled.
+
+   o Application Pad: This option controls the use of the keypad.
+     When enabled, the keypad can be used for input. When a Terminal
+     window first appears, Application Pad is not enabled.
+
+   o Margin Bell: This option specifies whether or not the margin bell
+     should sound when you type near the right margin. When a Terminal
+     window first appears, the margin bell is off.
+
+   o Logging: This option specifies whether or not your session with
+     the Terminal window is logged. When Logging is on, a file
+     (XtermLog.xxxxx, where xxxxx is replaced with a random sequence
+     of characters) is created. This log file captures all of your
+     input to the Terminal window as well as all of the output from
+     the Terminal window. The log file can be viewed either during or
+     after your Terminal session. You can only log one Terminal window
+     session at a time. When a Terminal window first appears, logging
+     is off.
+
+   o Reverse Video: This option specifies whether or not the fore-
+     ground and background colors in the Terminal window are reversed.
+     When a Terminal window first appears, reverse video is off.
+
+   o Reverse Wraparound: This option specifies whether or not reverse
+     wraparound is enabled. When a Terminal window first appears,
+     reverse wraparound is off.
+
+     Reverse Wraparound is associated with Auto Wraparound. With
+     Reverse Wraparound on, you can backspace to the line above (un-
+     wrap). If Reverse Wraparound is off, you can only backspace to
+     the beginning of the current line (the line on which the cursor
+     is located.
+
+   o Application Cursor: This options specifies whether or not the
+     arrow keys can be used in the Terminal window. When a Terminal
+     window first appears, Application Cursor is off.
+
+   o Scrollbar: This options specifies whether or not the scrollbar is
+     displayed. When a Terminal window first appears, the scrollbar is
+     displayed.
+
+   o Curses Resize: This option specifies whether or not the Terminal
+     window can be resized while running a curses-based application,
+     such as vi. When a Terminal window first appears, resizing with
+     curses applications is off.
+
+The \d(buttons^button) available from the Terminal Properties window are:
+
+        \k(OK Button)
+        \k(Apply Button)
+        \k(Reset Button)
+^2^OK Button
+^$130
+2. \k{Terminal Properties Window}
+   2.1 OK Button
+
+The OK button immediately applies any changes made in the Terminal
+Properties window. After applying the changes, the Terminal Properties
+window closes.
+^2^Apply Button
+^$140
+2. \k{Terminal Properties Window}
+   2.2 Apply Button
+
+The Apply button immediately applies any changes made in the Terminal
+Properties window. After applying the changes, the Terminal Properties
+window stays open.
+^2^Reset Button
+^$150
+2. \k{Terminal Properties Window}
+   2.3 Reset Button
+
+The Reset button reverses any changes you have not yet applied. The
+Terminal Properties window remains open.

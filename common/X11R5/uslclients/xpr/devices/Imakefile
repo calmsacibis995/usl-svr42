@@ -1,0 +1,29 @@
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+/**/#ident	"@(#)xpr:devices/Imakefile	1.6"
+#define IHaveSubdirs
+#define PassCDebugFlags 'CDEBUGFLAGS=$(CDEBUGFLAGS)'
+
+   INCLUDES = -I.. $(STD_INCLUDES) 
+        LIB = libdev.a
+    SUBDIRS = terminfo postscript
+
+       SRCS = *.c
+
+       OBJS = device_list.o
+
+NormalLibraryObjectRule()
+
+install:: $(SUBDIRS) all
+NormalLibraryTarget(dev,$(OBJS))
+
+DependTarget()
+MakeSubdirs($(SUBDIRS))
+DependSubdirs($(SUBDIRS))

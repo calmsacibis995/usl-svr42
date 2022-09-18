@@ -1,0 +1,19 @@
+#ident	"@(#)nadmin.rfs:other/rfs/system/bin/get_primary	1.4.5.2"
+#ident  "$Header: get_primary 2.0 91/07/12 $"
+# get domain name
+
+DOM=`$TFADMIN /usr/sbin/dname -d`
+UNAME=`/usr/bin/uname -n`
+ERR=0
+
+# for each transport provider, get the primary and secondary name servers
+# from  /etc/rfs/<transport>/rfmaster 
+
+/usr/bin/grep "$DOM[ 	][SsPp][ 	]$DOM." /etc/rfs/$TRANS/rfmaster | /usr/bin/sed "s/$DOM[ 	][SsPp][	 ]$DOM.//g" > /usr/tmp/member_$$
+if [ ! -s /usr/tmp/member_$$ ]
+then
+	echo "There are no members to delete from $DOM"> /usr/tmp/nodel_$$
+fi
+
+#echo the process id so fmli can get the temp file name
+echo $$

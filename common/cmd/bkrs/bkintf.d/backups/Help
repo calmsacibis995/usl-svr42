@@ -1,0 +1,22 @@
+#ident	"@(#)bkrs:common/cmd/bkrs/bkintf.d/backups/Help	1.3.8.2"
+#ident  "$Header: Help 1.3 91/09/11 $"
+
+ABSTRACT: Backup Service
+	The "extended" backup menu allows you to manage the backup
+	side of the extended backup and restore service.  This
+	feature is intended for medium to large systems where
+	administrative backup and restore tasks are generally
+	advanced.
+
+	Functions are provided to determine the backup rotation period,
+	to specify how backups are to be done for file systems and data
+	partitions, to display the backup history and backup status
+	logs, to establish lists of files that should not be backed up,
+	to respond to operator prompts from backup jobs and to schedule
+	backups and the reminder messages that backups should be done.
+
+	The extended backup and restore interface is not part of the
+	trusted computing base (TCB).  The secure backup service is
+	suggested for trusted environments.
+
+TITLE: Backup Service

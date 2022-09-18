@@ -1,0 +1,92 @@
+XCOMM site:  $XConsortium: site.def,v 1.2 91/07/30 20:26:44 rws Exp $
+
+/*
+ * If you don't want to install in /usr/X, set ProjectRoot to what ever you
+ * wish to install the binaries, libs, etc.
+ */
+/*****************************************************************************
+ *                                                                           *
+ *			   SITE-SPECIFIC DEFINITIONS                         *
+ *                                                                           *
+ * This file contains two halves, one included before the vendor-specific    *
+ * configuration file (.cf file), and one included after the .cf file.       *
+ * The before-half should be protected by #ifdef BeforeVendorCF, and the     *
+ * after-half should be protected by #ifdef AfterVendorCF.                   *
+ *                                                                           *
+ * The before-half should only set things that the .cf file depends on.      *
+ * For the .cf files shipped in this release, the main variable in this      *
+ * category is HasGcc.                                                       *
+ *                                                                           *
+ * The after-half should contain all other definitions.  For example,        *
+ * place your ProjectRoot definition here.  Beware that several of the       *
+ * .cf files supplied by vendors have a ProjectRoot already defined, so      *
+ * you may need to #undef it first.                                          *
+ *                                                                           *
+ * OS Major and Minor version numbers should be changed directly in the .cf  *
+ * file, not overridden in site.def.                                         *
+ *                                                                           *
+ *****************************************************************************/
+
+#ifdef BeforeVendorCF
+
+/* #define HasGcc YES */
+#define BootstrapCFlags -Dusl
+/*
+ * This flag should be YES only if you have the FUnctionRelocator (fur) tool
+ */
+#define UslLocalityTuning YES
+
+/*
+ * turn this flag on if you are building in a cross env, ie: define UTSXENV YES
+ */
+#undef UTSXENV
+#undef NightlyBuild
+/* define UTSXENV YES */
+/* define NightlyBuild YES */
+
+#endif /* BeforeVendorCF */
+
+#ifdef AfterVendorCF
+
+#ifdef ProjectRoot
+#undef ProjectRoot
+#endif
+
+XCOMM
+XCOMM ProjectRoot is where you want to install the binaries, libs, fonts etc
+XCOMM
+#ifdef UTSXENV
+#define ProjectRoot		/x/DTXENV/installed
+#else
+#define ProjectRoot		$(ROOT)/$(MACH)/usr/X
+#endif
+
+      PROJECTROOT = ProjectRoot
+         XWINHOME = /usr/X
+       XWINLIBDIR = $(XWINHOME)/lib
+       XWINBINDIR = $(XWINHOME)/bin
+
+     USLCLIENTSRC = $(TOP)/uslclients
+       DESKTOPDIR = $(PROJECTROOT)/desktop 
+         DTADMDIR = $(PROJECTROOT)/adm
+        XDEFAULTS = $(PROJECTROOT)/defaults
+
+       FONTINCSRC = $(FONTSRC)/include
+    FONTLIBINCSRC = $(FONTSRC)/lib/include
+      FOLIOLIBSRC = $(FONTSRC)/lib/folio
+       FONTLIBSRC = $(FONTSRC)/lib/font
+    BITMAPFONTSRC = $(FONTSRC)/lib/bitmap
+      FONTSLIBSRC = $(FONTSRC)/lib/
+           XOLSRC = $(LIBSRC)/Xol
+        XOLLIBSRC = $(LIBSRC)/Xol
+BITMAPLIBS_TO_BUILD = libbitmap.a libbitmap.so
+FONTLIBS_TO_BUILD = libfont.a libfont.so
+
+#if BigEndianArchitecture
+    USL_DEFINES = -DLIBDIR=\"$(XWINLIBDIR)\" -DDESTDIR=\"$(XWINHOME)\" -DBIGENDIAN
+#else
+    USL_DEFINES = -DLIBDIR=\"$(XWINLIBDIR)\" -DDESTDIR=\"$(XWINHOME)\"
+#endif
+        DEFINES = $(USL_DEFINES)
+
+#endif /* AfterVendorCF */

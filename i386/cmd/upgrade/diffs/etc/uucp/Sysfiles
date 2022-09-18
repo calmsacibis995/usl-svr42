@@ -1,0 +1,14 @@
+*** ./etc/uucp/Sysfiles	Wed Feb  5 18:29:25 1992
+--- ../p8.save/./etc/uucp/Sysfiles	Wed Feb  5 18:29:09 1992
+***************
+*** 1,4 ****
+! #ident	"@(#)/etc/uucp/Sysfiles.sl 1.1 4.0 05/29/91 4291 AT&T-USL"
+  #
+  #	Sysfiles provides a means of specifying different Systems,
+  #	Devices and Dialers files for uucico and cu.  This is useful
+--- 1,5 ----
+! #ident	"@(#)/etc/uucp/Sysfiles.sl 1.2 4.1dt 05/28/92 25658 AT&T-USL"
+! #ident "$Header: Sysfiles 1.1 91/02/28 $"
+  #
+  #	Sysfiles provides a means of specifying different Systems,
+  #	Devices and Dialers files for uucico and cu.  This is useful

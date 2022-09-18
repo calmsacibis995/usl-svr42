@@ -1,0 +1,30 @@
+#ident	"@(#)nadmin.rfs:other/rfs/system/bin/add_passwd	1.4.6.1"
+#ident  "$Header: add_passwd 2.0 91/07/12 $"
+DOM=`$TFADMIN /usr/sbin/dname -d`
+/usr/bin/rm /usr/tmp/no_add  /usr/tmp/add 2>/dev/null
+
+for system in `echo $SYSTEMS`;  do
+	{
+	$TFADMIN /usr/sbin/rfadmin -a $DOM.$system 
+	if [ $? -eq 0 ]
+	then
+		echo "$system" >>/usr/tmp/add$$
+	else
+		echo "$system" >>/usr/tmp/no_add$$
+	fi
+	}
+done
+
+/usr/bin/rm /usr/tmp/add 2>/dev/null
+if [ -r /usr/tmp/add$$ ]
+then
+	echo "The following systems have been added to the domain password file:\n" >/usr/tmp/add
+	/usr/bin/cat /usr/tmp/add$$ >>/usr/tmp/add
+fi
+
+if [ /usr/tmp/no_add$$ ]
+then
+	echo "\nErrors occured while trying to add the following systems to the domain password file.\nCheck the System Administrators Guide for details:\n" >>/usr/tmp/add
+	/usr/bin/cat /usr/tmp/no_add$$ >>/usr/tmp/add
+fi
+/usr/bin/rm /usr/tmp/no_add$$ /usr/tmp/add$$ 2>/dev/null

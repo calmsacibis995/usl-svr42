@@ -1,0 +1,5 @@
+/* this defines the version and patchlevel of this version of xloadimage
+ */
+
+#define VERSION    "1"
+#define PATCHLEVEL "05"

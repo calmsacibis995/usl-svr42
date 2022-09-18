@@ -1,0 +1,15 @@
+#ident	"@(#)bkrs:common/cmd/bkrs/basic.d/system/Form.v1	1.2"
+#ident	"$Header: $"
+
+form="Selective System Backup"
+framemsg="Strike SAVE to begin backup operation."
+lifetime=permanent
+help=open text /usr/vmsys/OBJECTS/Text.h "$T" "$F"
+
+done=`run sh -c ".chkuser -c \"/usr/sadm/sysadm/bin/runbackf /usr/tmp/markfls.$VPID :$ARG1 $ARG2 $ARG3:\""`
+
+
+name=Strike SAVE to begin backup operation.
+nrow=1
+ncol=1
+fieldmsg=Strike SAVE to begin backup operation.

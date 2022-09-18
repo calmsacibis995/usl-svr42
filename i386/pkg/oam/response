@@ -1,0 +1,9 @@
+CLASSES='none OAM_basic OAM_extended OAMmif OAM_bhelp OAM_ehelp'
+INTFBIN='usr/sadm/sysadm/bin'
+MENU='usr/sadm/sysadm/menu'
+PKGBIN='usr/sadm/install/bin'
+PKGSCR='usr/sadm/install/scripts'
+VMSYS='/usr/vmsys'
+SYSADM='retain'
+OAM_INSTALL_MODE=AUTOMATIC
+

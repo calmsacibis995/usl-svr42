@@ -1,0 +1,4 @@
+#ident	"@(#)uts-x86:fs/nfs/nfs.cf/Mtune	1.2"
+#ident	"$Header: $"
+* NFS Parameters --------------------------
+NRNODE		300	100	1300

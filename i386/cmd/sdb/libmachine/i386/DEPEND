@@ -1,0 +1,10 @@
+#ident	"@(#)sdb:libmachine/i386/DEPEND	1.4"
+Instr.o:	Instr.C
+	$(CPLUS_CMD) -c Instr.C
+
+Tables.o:	Tables.C
+	$(CPLUS_CMD) -c Tables.C
+
+OBJECTS	=  \
+	Instr.o \
+	Tables.o

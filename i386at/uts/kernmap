@@ -1,0 +1,8 @@
+#ident	"@(#)uts-x86at:kernmap	1.2"
+#ident	"$Header: $"
+
+text=V0xD0010000;
+data=A0x1000;
+data:.data;
+bki=NOTE;
+bki:BKI;

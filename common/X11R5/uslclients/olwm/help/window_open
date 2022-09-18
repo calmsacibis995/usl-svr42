@@ -1,0 +1,9 @@
+Use the Open button to open the icon at the pointer location.
+
+When an application is started up as an icon, the first time you open
+it the application base window is displayed in a location specified by
+the application. Subsequently, each time you open an icon it is displayed
+in the same location and state that it had when you closed it to an icon.
+
+You can open an icon without displaying the Window menu by moving the
+pointer onto the icon and double-clicking SELECT.

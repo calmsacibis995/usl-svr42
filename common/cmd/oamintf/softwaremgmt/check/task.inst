@@ -1,0 +1,31 @@
+#ident	"@(#)oamintf:common/cmd/oamintf/softwaremgmt/check/task.inst	1.2.4.2"
+#ident  "$Header: task.inst 2.0 91/07/12 $"
+
+[ -n "$TRACE" ] && set -x
+
+pkginst=
+paths=
+opts=
+
+[ -n "$1" ] &&
+	pkginst="`echo $1 | sed 's/,/ /g'`"
+
+[ -n "$2" -a "$2" != all ] &&
+	paths="-p'`echo $2 | sed 's/ /,/g'` '"
+
+[ "$4" = yes ] &&
+	opts="${opts}a"
+[ "$5" = yes ] &&
+	opts="${opts}c"
+[ "$6" = yes ] &&
+	opts="${opts}x"
+[ "$7" = yes ] &&
+	opts="${opts}f"
+[ "$8" = no ] &&
+	opts="${opts}n"
+[ "$9" = yes ] &&
+	opts="${opts}v"
+[ -n "$opts" ] &&
+	opts="-$opts"
+
+eval pkgchk $opts $paths $pkginst 2>&1 | tee $3

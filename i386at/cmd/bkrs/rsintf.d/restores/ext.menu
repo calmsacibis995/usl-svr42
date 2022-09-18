@@ -1,0 +1,8 @@
+#ident	"@(#)bkrs:i386at/cmd/bkrs/rsintf.d/restores/ext.menu	1.1"
+#ident	"$Header: $"
+
+#menu#Restore From Backup Data
+#life#permanent
+
+basic^Restore From Removable Media^restore/basic/Menu.restore
+preSVR4^Restore From Removable Media^OBJECTS/restore/Menu.restore

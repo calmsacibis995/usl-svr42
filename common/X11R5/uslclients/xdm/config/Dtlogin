@@ -1,0 +1,5 @@
+#ident	"@(#)xdm:config/Dtlogin	1.4"
+dtlogin*background:		#aa00aa00aa00
+dtlogin*foreground:		black
+dtlogin*inputFocusColor:	#00000000e000
+dtlogin*company_logo*string:	UNIX System Laboratories

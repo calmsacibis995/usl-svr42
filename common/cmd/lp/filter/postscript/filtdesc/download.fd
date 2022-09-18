@@ -1,0 +1,11 @@
+
+#ident	"@(#)lp:filter/postscript/filtdesc/download.fd	1.3.1.2"
+#ident	"$Header: $"
+
+Input types: postscript
+Output types: postdown
+Printer types: PS,PSR,PS-b,PS-r,PS-br
+Printers: any
+Filter type: fast
+Command: /usr/lib/lp/postscript/download
+Options: PRINTER * = -p*

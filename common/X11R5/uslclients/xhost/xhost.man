@@ -1,0 +1,81 @@
+.\"ident	"@(#)r4xhost:xhost.man	1.1"
+.TH XHOST 1 "Release 4" "X Version 11"
+.SH NAME
+xhost - server access control program for X
+.SH SYNOPSIS
+.B xhost
+[[+-]hostname ...]
+.SH DESCRIPTION
+The \fIxhost\fP program 
+is used to add and delete hosts to the list of machines that are allowed
+to make connections to the X server.  This provides a rudimentary form of
+privacy control and security.  It is only sufficient for a workstation 
+(single user) environment, although it does limit the worst abuses.  Environments
+which require more sophisticated measures should use the hooks in the
+protocol for passing authentication data to the server.
+.PP
+The server initially allows network connections 
+only from programs running on the same machine or from machines listed in
+the file \fI/etc/X*.hosts\fP (where * is the display number of the server).
+The \fIxhost\fP program is usually run either from a startup file
+or interactively to give access to other users.
+.PP
+Hostnames that are followed by two colons (::) are used in checking DECnet
+connections; all other hostnames are used for TCP/IP connections.
+.SH OPTIONS
+\fIXhost\fP accepts the following command line options described below.  For
+security, the options that effect access control may only be run from the
+same machine as the server.
+.TP 8
+.BI "\[\+\]" "hostname"
+The given \fIhostname\fP (the plus sign is optional)
+is added to the list of machines that are allowed to
+connect to the X server.
+.TP 8
+.BI \- "hostname"
+The given \fIhostname\fP is removed from the list of machines that are allowed
+to connect to the server.  Existing connections are not broken, but new
+connection attempts will be denied.
+Note that the current machine is allowed to be removed; however, further
+connections (including attempts to add it back) will not be permitted.
+Resetting the server (thereby breaking all connections) 
+is the only way to allow local connections again.
+.TP 8
+.B \+
+Access is granted to everyone, even if they aren't on the list of allowed hosts
+(i.e. access control is turned off).
+.TP 8
+.B \-
+Access is restricted to only those machines on the list of allowed hosts
+(i.e. access control is turned on).
+.TP 8
+.I nothing
+If no command line arguments are given, the list of hosts that are allowed
+to connect is printed on the standard output along with a message indicating
+whether or not access control is currently enabled.  This is the only option that
+may be used from machines other than the one on which the server is
+running.
+.SH FILES
+/etc/X*.hosts
+.SH "SEE ALSO"
+X(1), Xserver(1)
+.SH ENVIRONMENT
+.TP 8
+.B DISPLAY
+to get the default host and display to use.
+.SH BUGS
+.PP
+You can't specify a display on the command line because
+.B \-display 
+is a valid command line argument (indicating that you want
+to remove the machine named 
+.I ``display''
+from the access list).
+.SH COPYRIGHT
+Copyright 1988, Massachusetts Institute of Technology.
+.br
+See \fIX(1)\fP for a full statement of rights and permissions.
+.SH AUTHORS
+Bob Scheifler, MIT Laboratory for Computer Science,
+.br
+Jim Gettys, MIT Project Athena (DEC).

@@ -1,0 +1,97 @@
+.\"ident	"@(#)r4xinit:xinit.man	1.3"
+
+.\" xinit.man (Troff source file)
+.\"	Acc: 575300588 Fri Mar 25 08:43:08 1988
+.\"	Mod: 575234133 Thu Mar 24 14:15:33 1988
+.\"	Sta: 575234133 Thu Mar 24 14:15:33 1988
+.\"	Owner: 2011
+.\"	Group: 1985
+.\"	Permissions: 664
+
+
+.\"	START USER STAMP AREA
+
+
+.\"	END USER STAMP AREA
+
+.TH XINIT 1 "24 March 1988" "X Version 11"
+.SH NAME
+xinit - X Window System initializer
+.SH SYNOPSIS
+.B xinit
+[[client] options] [-- [server] [display] options]
+.SH DESCRIPTION
+The \fIxinit\fP program is used to start the X Window System server, a primary
+client program (usually a terminal emulator), and (additionally via
+an .xinitrc file) secondary clients (e.g., xsetroot, xrdb, window manager)
+on systems that
+cannot start X directly from \fI/etc/init\fP or in environments
+that use multiple window systems.  When the primary client exits, 
+\fIxinit\fP will kill the X server and then terminate.  If the X server
+exits, \fIxinit\fP will kill the primary client and then terminate.
+.* mod \fIxinit\fP will kill the X server and then terminate.
+.* mod The \fIxinit\fP program is used to start the X Window System server and a first
+.* mod client program (usually a terminal emulator) on systems that
+.* mod cannot start X directly from \fI/etc/init\fP or in environments
+.* mod that use multiple window systems.  When this first client exits, 
+.* mod \fIxinit\fP will kill the X server and then terminate.
+.PP
+Unless otherwise specified on the command line, \fIxinit\fP assumes that
+there are programs called ``X'' and ``xterm'' in the current search path.
+It starts the server on display 0 and then runs an \fIxterm\fP using the
+following command line:
+.sp
+	xterm -geometry +10+20 -n login -display unix:0
+.sp
+.* mod (systems that don't support Unix domain sockets will be started with 
+.* mod hostname:0 instead).
+.PP
+An alternate primary client and/or server may be specified on the
+command line.  The desired client program and its arguments should be given
+as the first command line arguments to \fIxinit\fP.  To specify a particular
+server command line, append a double dash (--) to the \fIxinit\fP command
+line (after any client and arguments) followed by the desired server comand.
+.PP
+Both the client program name and the server program name must begin with a
+slash (/) or a period (.).   Otherwise, they are treated as an arguments to be
+appended to their respective startup lines.  This makes it possible to 
+add arguments (for example, foreground and background colors) without 
+having to retype the whole command line.
+.PP
+If an explicit server name is not given and the first argument following the
+double dash (--) is a digit, \fIxinit\fP will use that number as the display 
+number instead of zero.  All remaining arguments are appended to the server 
+command line.
+.PP
+An .xinitrc file can be used to start secondary clients.  \fIxinit\fP
+looks for this file in the users home directory.  If the file exists 
+it is either executed directly or passed to the shell.  The format of this file
+is typically:
+.sp
+	client_a &
+.br
+	client_b &
+.br
+  	...
+.sp
+.PP
+.SH EXAMPLES
+xinit -geometry =80x65+10+10 -fn 8x13 -j -fg white -bg navy
+.sp
+xinit -e widgets -- ./Xsun -l -c
+.sp
+xinit /usr/ucb/rsh fasthost cpupig -display workstation:1 -- 1 -a 2 -t 5
+.PP
+.SH "Files"
+${HOME}/.xinitrc
+.PP
+.SH "SEE ALSO"
+X(1), Xserver(1), xterm(1)
+.SH COPYRIGHT
+Copyright 1988, Massachusetts Institute of Technology.
+Copyright 1988, AT&T
+.br
+See \fIX(1)\fP for a full statement of rights and permissions.
+.SH AUTHOR
+Bob Scheifler, MIT Laboratory for Computer Science
+Modified by Richard Smolucha, AT&T

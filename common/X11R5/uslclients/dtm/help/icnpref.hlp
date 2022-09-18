@@ -1,0 +1,122 @@
+#ident	"@(#)dtm:help/icnpref.hlp	1.8"
+^*version^1
+^*title^Icons Preferences
+^:Icons
+^*width^70
+^+DesktopMgr/help.defs
+^?Specify icon location and borders.
+^0^Icons Preferences
+^$10
+Icons Preferences
+
+Use Icons Preferences to control where icons are located when an
+application is minimized, that is, reduced to an \d(Active Icon).
+Normally, Active Icons are displayed along the bottom edge of the
+screen. For OPEN LOOK mode, Icons Preferences also lets you set
+whether or not a border is shown for the icons.
+
+The following windows are provided for Icons Preferences:
+
+        \k(Icons Preferences Window)
+^1^Icons Preferences Window
+^$20
+\k{Icons Preferences}
+1. Icons Preferences Window
+
+Use the Icons Preferences window to display and change the settings
+for these preferences: Location, and Border.
+
+The first line of the Icons Preferences window contains a CATEGORY
+button (arrow). This button lets you quickly switch Preferences
+categories (including preferences for Color, Desktop, Icons, Keyboard,
+Locale, Miscellaneous, and Mouse). When you click on the arrow, a menu
+appears with the Preferences categories listed. Click on the
+Preferences category you want or click on Next Page to get the next
+Preferences category in the list.
+
+The buttons available from the Icons Preferences window are:
+
+        \k(Apply Button^^Apply ButtonIcon)
+        \k(Reset Button^^Reset ButtonIcon)
+        \k(Reset to Factory Button^^Reset to Factory ButtonIcon)
+        \k(Cancel Button^^Cancel ButtonIcon)
+        \k(Help Button^^Help ButtonIcon)
+
+More information: \k(How to change Icons preferences)
+^2^How to change Icons preferences
+^$30
+1. \k{Icons Preferences Window}
+   1.1 How to change Icons preferences
+
+The following preferences can be changed through the Icons Preferences
+window:
+
+        \k(Location)
+        \k(Border)
+^3^Location
+^$40
+1. \k{Icons Preferences Window}
+   1.1 \k{How to change Icons preferences}
+       1.1.1 Location
+
+The Location line lets you choose where Active Icons are located on
+the Desktop.  This option affects the icons that represent active
+(running) applications when you minimize them, that is, reduce them to
+an icon. You can choose any of the four edges of the screen (Top,
+Bottom, Left, or Right).  Click on the location you prefer. The new
+setting does not affect Active Icons already on the Desktop. Only
+newly minimized Active Icons are displayed in the new location.
+
+^3^Border
+^$50
+1. \k{Icons Preferences Window}
+   1.1 \k{How to change Icons preferences}
+       1.1.2 Border
+
+For OPEN LOOK mode only. The Border line lets you set whether or not 
+icons are displayed with a border line. If you want a border line to
+show, click on Show. If you don't want a border line to show, click on
+Don't Show.
+^2^Apply Button=Apply ButtonIcon
+^$60
+1. \k{Icons Preferences Window}
+   1.2 Apply Button
+
+The Apply button saves and applies all changes made in any preferences
+window. If you made any changes, they are immediately applied to all
+Desktop applications, including those currently open. After applying
+the changes, the Icons Preferences window closes.
+^2^Reset Button=Reset ButtonIcon
+^$70
+1. \k{Icons Preferences Window}
+   1.3 Reset Button
+
+The Reset button reverses any changes you have not yet applied in the
+Icons Preferences window. The Icons preferences window remains open.
+
+Note: The Reset button does not affect the saved values, which are
+changed only when the \k(Apply button^^Apply ButtonIcon) is used.
+^2^Reset to Factory Button=Reset to Factory ButtonIcon
+^$80
+1. \k{Icons Preferences Window}
+   1.4 Reset to Factory Button
+
+The Reset to Factory button resets all characteristics in the Icons
+Preferences window to those that originally came with the UNIX
+Desktop. Use the \k(Apply button^^Apply ButtonIcon) to have the original characteristics
+take effect. The Icons Preferences Window remains open.
+
+Note: The Reset to Factory button does not affect the saved values,
+which are changed only when the Apply button is used.
+^2^Cancel Button=Cancel ButtonIcon
+^$90
+1. \k{Icons Preferences Window}
+   1.5 Cancel Button
+
+The Cancel button closes the Icons Preferences window.
+^2^Help Button=Help ButtonIcon
+^$100
+1. \k{Icons Preferences Window}
+   1.6 Help Button
+
+The Help Button provides on-line help for Icons Preferences.

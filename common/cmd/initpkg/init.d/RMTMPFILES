@@ -1,0 +1,103 @@
+#ident	"@(#)initpkg:common/cmd/initpkg/init.d/RMTMPFILES	1.1.15.3"
+#ident  "$Header: RMTMPFILES 1.2 91/06/28 $"
+#	Clean up temporary files.
+
+# Clear all working privileges.
+priv -allprivs work
+
+set `/sbin/who -r`
+if [ $9 != "S" -a $9 != "1" ]
+then
+	exit
+fi
+
+#
+# check for Security installed
+#
+(
+  	mldmode >/dev/null 2>&1
+   	exit $?
+)
+if [ "$?" = "0" ]
+then
+	SEC=1
+else
+	SEC=0
+fi
+
+#  clean up /tmp 
+#  if subdirectories under /tmp are mount points do not remove /tmp
+M=`/sbin/mount | /usr/bin/egrep '^/tmp/.*' | /usr/bin/wc -l`
+if [ $M -eq 0 ]
+then
+	if [ $SEC -eq 1 ]
+	then
+		mldmode -r >/dev/null 2>&1
+	fi
+	# if /tmp is a symbolic link or a mount point, just remove files 
+	# otherwise remove the directory and create a new /tmp directory
+	M=`/sbin/mount | /usr/bin/egrep '^/tmp' | /usr/bin/wc -l`
+	if [ -h /tmp  -o $M -ne 0 ]
+	then
+		/usr/bin/rm -rf /tmp/*
+	else
+		/usr/bin/rm -rf /tmp
+		/usr/bin/mkdir -M /tmp >/dev/null 2>&1
+		if [ $? -ne 0 ]
+		then
+			/usr/bin/mkdir /tmp
+		else
+			if [ -x /sbin/chlvl ]
+			then
+				/sbin/chlvl SYS_PUBLIC /tmp
+			fi
+		fi
+		/usr/bin/chmod 1777 /tmp
+		/usr/bin/chgrp bin /tmp
+		/usr/bin/chown bin /tmp
+	fi
+	if [ $SEC -eq 1 ]
+	then
+		mldmode -v >/dev/null 2>&1
+	fi
+fi
+#  clean up /var/tmp
+if [ -d /var/tmp  -o  -d /usr/bin ]
+then	#	Conditional, so we won't make /var/tmp if /usr file system
+	#	did not mount successfully.  We check for /usr/bin in case
+	#	/var/tmp disappeared unexpectedly.
+	# 	if any of the subdirectories under /var/tmp are
+	# 	mount points do not remove it.
+	M=`/sbin/mount | /usr/bin/egrep '^/var/tmp/.*' | /usr/bin/wc -l`
+	if [ $M -eq 0 ]
+	then
+		if [ $SEC -eq 1 ]
+		then
+			mldmode -r >/dev/null 2>&1
+		fi
+
+		# if /var/tmp is a symbolic link or a mount point, just remove files
+		# otherwise remove the directory and create a new /var/tmp directory
+		M=`/sbin/mount | /usr/bin/egrep '^/var/tmp' | /usr/bin/wc -l`
+		if [ -h /var/tmp -o $M -ne 0 ]
+		then
+			/usr/bin/rm -rf /var/tmp/*
+		else
+			/usr/bin/rm -rf /var/tmp
+			/usr/bin/mkdir -M /var/tmp >/dev/null 2>&1
+			if [ $? -ne 0 ]
+			then
+				/usr/bin/mkdir /var/tmp
+			else
+				/sbin/chlvl SYS_PUBLIC /var/tmp
+			fi
+			/usr/bin/chmod 1777 /var/tmp
+			/usr/bin/chgrp sys /var/tmp
+			/usr/bin/chown sys /var/tmp
+		fi
+		if [ $SEC -eq 1 ]
+		then
+			mldmode -v >/dev/null 2>&1
+		fi
+	fi
+fi

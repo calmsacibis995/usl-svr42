@@ -1,0 +1,143 @@
+.\"ident	"@(#)xdemo:xdemo.man	1.1"
+
+.\" xdemo.man (Troff source file)
+.\"	Acc: 575578485 Mon Mar 28 13:54:45 1988
+.\"	Mod: 575578486 Mon Mar 28 13:54:46 1988
+.\"	Sta: 575578486 Mon Mar 28 13:54:46 1988
+.\"	Owner: 2011
+.\"	Group: 1985
+.\"	Permissions: 666
+
+
+.\"	START USER STAMP AREA
+
+
+.\"	END USER STAMP AREA
+
+.TH XDEMO 1 "local" "X Version 11"
+.SH NAME
+xdemo \- demo programs for X window system
+
+.SH SYNOPSIS
+
+.B xdemo 
+[ option(s) ] [ bounce | fonts | kaleidoscope | stringart | swirl | twist | wheel ]
+
+.SH DESCRIPTION
+
+\fIxdemo\fP
+is a demo program for X version 11.
+It is invoked with one of the above demo names and one or more options.
+The demo names can be abbreviated if desired.
+Each demo displays a picture, pauses, and starts over again.
+Clicking any button in the demo window will terminate the demo.
+
+.SH OPTIONS
+
+.I xdemo
+understands to following options:
+.PP
+.TP 8
+.B \-bd \fIcolor\fP
+Specify the border color.
+The default border color is ``black''.
+.PP
+.TP 8
+.B \-bg \fIcolor\fP
+Specify the background color.
+The default background color is ``black''.
+.PP
+.TP 8
+.B \-bw \fIpixels\fP
+Specify the width in pixels of the border.
+The default value is 4 pixels.
+.PP
+.TP 8
+.B \-d \fIdelay\fP
+Specify the delay in seconds between pictures.
+The default delay is 2 seconds.
+.PP
+.TP 8
+.B \-fg \fIcolor\fP
+Specify the foreground color.
+The default foreground color is ``white''.
+.PP
+.TP 8
+.B \-fn \fIfontname\fP
+Specify the font.
+The default font is ``8x13''.
+.PP
+.TP 8
+.B \-fp \fIfontpattern\fP
+Specify the font pattern (passed to \fIXListFonts\fP) to use in the fonts demo.
+The default font pattern is ``*''.
+.PP
+.TP 8
+.B \-fs \fIfontstring\fP
+Specify the font string to use in the fonts demo.
+The default font string is ``ABCDEFGHIJKLMNOPQRSTUVWXYZ''.
+.PP
+.TP 8
+.B \-geometry \fIgeometry\fP
+The \fIxdemo\fP window is created in the specified location.
+See \fIX(1)\fP for a full explanation.
+.PP
+.TP 8
+.B \-display \[\fIhost\fP]:\[\fIdisplay\fP]
+Normally,
+.I xdemo
+gets the host and display number to use from the environment
+variable ``DISPLAY''.  Either or both can be specified with this option.
+.I host
+specifies which machine to create the
+.I xdemo
+window on, and
+.I display
+specifies the display number.
+.SH X DEFAULTS
+.PP
+.TP 8
+.B Background
+Set the background color.
+The default background color is ``black''.
+.PP
+.TP 8
+.B Border
+Set the border color.
+The default border color is ``black''.
+.PP
+.TP 8
+.B BorderWidth
+Set the border width of the window.
+The default value is 4 pixels.
+.PP
+.TP 8
+.B Delay
+Set the delay in seconds between pictures.
+The default delay is 2 seconds.
+.PP
+.TP 8
+.B Font
+Set the font.
+The default font is ``8x13''.
+.PP
+.TP 8
+.B FontPattern
+Set the font pattern to use with the font demo.
+The default font pattern is ``*''.
+.PP
+.TP 8
+.B FontString
+Set the font string to use with the font demo.
+The default font string is ``ABCDEFGHIJKLMNOPQRSTUVWXWZ''.
+.PP
+.TP 8
+.B Foreground
+Set the foreground color.
+The default foreground color is ``white''.
+
+.SH AUTHOR
+
+Copyright (c) 1987, AT&T
+.br
+Ross Hilbert - AT&T

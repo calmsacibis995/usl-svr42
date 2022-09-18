@@ -1,0 +1,46 @@
+#define beams_format 1
+#define beams_width 32
+#define beams_height 32
+#define beams_ncolors 5
+#define beams_chars_per_pixel 1
+static char * beams_colors[] = {
+" " , "#FFFF00000000",
+"." , "#000000000000",
+"X" , "#0000FFFF0000",
+"o" , "#AAAA0000AAAA",
+"O" , "#0000AAAAFFFF"
+} ;
+static char * beams_pixels[] = {
+"        ......XXoooooooooooooooo",
+"        ....XXXXXXoooooooooooooo",
+"        ..XXXXXXXXXXoooooooooooo",
+"        XXXXXXXXXXXXXXoooooooooo",
+"      XXXXXXXXXXXXXXXXXXoooooooo",
+"    XXXXXXXXXXXXXXXXXXXXOOoooooo",
+"  XXXXXXXXXXXXXXXXXXXXXXOOOOoooo",
+"XXXXXXXXXXXXXXXXXXXXXXXXOOOOOOoo",
+"XXXXXXXXXXXXXXXXXXXXXXXXOOOOOOOO",
+"XXXXXXXXXXXXXXXXXXXXXXXXOOOOOOOO",
+"XXXXXXXXXXXXXXXXXXXXXXXXOOOOOOOO",
+"XXXXXXXXXXXXXXXXXXXXXXXXOOOOOOOO",
+"XXXXXXXXXXXXXXXXXXXXXXXXOOOOOOOO",
+"XXXXXXXXXXXXXXXXXXXXXX..OOOOOOOO",
+"XXXXXXXXXXXXXXXXXXXX....OOOOOOOO",
+"XXXXXXXXXXXXXXXXXX......OOOOOOOO",
+"XXXXXXXXXXXXXXXXoo......OOOOOOOO",
+"XXXXXXXXXXXXXXoooooo....OOOOOOOO",
+"XXXXXXXXXXXXoooooooooo..OOOOOOOO",
+"XXXXXXXXXXooooooooooooooOOOOOOOO",
+"XXXXXXXXooooooooooooooooooOOOOOO",
+"XXXXXX  ooooooooooooooooooooOOOO",
+"XXXX    ooooooooooooooooooooooOO",
+"XX      oooooooooooooooooooooooo",
+"        oooooooooooooooooooooooo",
+"        oooooooooooooooooooooooo",
+"        oooooooooooooooooooooooo",
+"        oooooooooooooooooooooooo",
+"        oooooooooooooooooooooooo",
+"        ..oooooooooooooooooooooo",
+"        ....oooooooooooooooooooo",
+"        ......oooooooooooooooooo"
+} ;

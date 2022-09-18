@@ -1,0 +1,22 @@
+#ident	"@(#)olpkg.oam:pkg.wksh/pkginfo	1.1"
+#	Copyright (c) 1990, 1991 UNIX System Laboratories, Inc.
+#	Copyright (c) 1988 AT&T
+#	  All Rights Reserved
+
+#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+#	UNIX System Laboratories, Inc.
+#	The copyright notice above does not evidence any
+#	actual or intended publication of such source code.
+
+
+PKG="wksh"
+PREDEPEND=""
+
+NAME="Windowing Korn Shell"
+ARCH="at386"
+RELEASE="4m"
+VERSION="1"
+VENDOR="USL"
+
+CLASSES="enduser"
+CATEGORY="graphics"

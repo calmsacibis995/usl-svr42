@@ -1,0 +1,97 @@
+#ident	"@(#)adm:i386/cmd/.adm/profile	1.8"
+#ident	"$Header: profile 1.1 91/04/29 $"
+
+trap "" 1 2 3
+umask 022	# set default file creation mask
+export LOGNAME
+
+. /etc/TIMEZONE
+
+case "$0" in
+-jsh | -ksh | -rsh | -sh)
+# issue message of the day
+	trap : 1 2 3
+	echo ""		# skip a line
+	if [ -s /etc/motd ] ; then cat /etc/motd; fi
+
+	trap "" 1 2 3
+# set default attributes for terminal
+	stty erase '^h' echoe
+
+	if [ x$TERM = x -o "$TERM" = 'unknown' ]; then
+		LOGTTY=${LOGTTY:=`tty`}
+
+		TERM=ansi
+		if [ `expr "$LOGTTY" : '.*/\(.*\)'` = "console" ]
+		then
+			# check if it is an at386
+			/usr/sbin/isat386
+			if [ $? = 0 ]
+			then
+				# it is an at386, check for color
+				/usr/sbin/adpt_type
+				if [ $? = 3 ]	# VGA color?
+				then
+					TERM=AT386	# color at386
+					# work around Dell Fastwrite VGA
+					# problem -- force text mode
+					# to color 80x25
+					stty VGA_C80x25 < /dev/console 1>/dev/null 2>/dev/null
+
+				else
+					TERM=AT386-M	# default to monochrome
+				fi
+			fi
+		fi
+	fi
+	if [ "$TERMCAP" = "" ]
+	then TERMCAP=/etc/termcap
+	fi
+	export TERM TERMCAP
+
+# check mailbox and news bulletins
+	mailcheck 2>/dev/null
+	if [ $LOGNAME != root ]
+	then news -n
+	fi
+#	Uncomment this script if you wish to use secure RPC facility
+#
+#	ps -e | grep rpcbind 1>/dev/null
+#	if [ $? = 0 ] 
+#	then
+#		ps -e | grep keyserv 1>/dev/null
+#		if [ $? = 0 ] 
+#		then
+#			echo "Please login to the network"
+#			/usr/bin/keylogin
+#		else
+#			echo `date`: "secure rpc nonfunctional; keyserv is down" >>/var/adm/log/rpc.log
+#		fi
+#	else
+#		echo `date`: "secure rpc nonfunctional; rpcbind is down" >>/var/adm/log/rpc.log
+#	fi
+#	
+	;;
+-su)
+	:
+#	Uncomment this script if you wish to use secure RPC facility
+#
+#	ps -e | grep rpcbind 1>/dev/null
+#	if [ $? = 0 ] 
+#	then
+#		ps -e | grep keyserv 1>/dev/null
+#		if [ $? = 0 ] 
+#		then
+#			echo "Please login to the network"
+#			/usr/bin/keylogin
+#		else
+#			echo `date`: "secure rpc nonfunctional; keyserv is down" >>/var/adm/log/rpc.log
+#		fi
+#	else
+#		echo `date`: "secure rpc nonfunctional; rpcbind is down" >>/var/adm/log/rpc.log
+#	fi
+#	
+	;;
+esac
+export PATH;
+trap 1 2 3

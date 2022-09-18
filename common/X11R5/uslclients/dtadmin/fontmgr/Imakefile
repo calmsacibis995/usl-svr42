@@ -1,0 +1,50 @@
+/**/#ident	"@(#)dtadmin:fontmgr/Imakefile	1.13"
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+
+#define PassCDebugFlags 'CDEBUGFLAGS=$(CDEBUGFLAGS)'
+
+         SRCS = \
+		arena.c font_add.c font_arena.c font_del.c \
+		convert.c \
+		font_prop.c font_util.c font_view.c fontmgr.c
+
+         OBJS = \
+		arena.o font_add.o font_arena.o font_del.o \
+		convert.o \
+		font_prop.o font_util.o font_view.o fontmgr.o
+
+       HEADERS = \
+		arena.h message.h fontmgr.h
+
+       DTLIBSRC = $(LIBSRC)/Dt
+      DTILIBSRC = $(USLCLIENTSRC)/libDtI
+    GIZMOLIBSRC = $(LIBSRC)/Gizmo
+      DNDLIBSRC = $(LIBSRC)/DnD
+
+          DTLIB = $(DTLIBSRC)/libDt.so
+         DTILIB = $(DTILIBSRC)/libDtI.so
+       GIZMOLIB = $(GIZMOLIBSRC)/libGizmo.so
+         DNDLIB = $(DNDLIBSRC)/libDnD.so
+
+       INCLUDES = -I$(LIBSRC) -I$(LIBSRC)/Xol -I$(USLCLIENTSRC) \
+		-I$(GIZMOLIBSRC) -I$(DTLIBSRC) -I$(DTILIBSRC) \
+		-I$(DNDLIBSRC)
+
+LOCAL_LIBRARIES = $(DTILIB) $(DTLIB) $(GIZMOLIB) \
+		XolClientLibs $(DNDLIB)
+        DEPLIBS = $(DTILIB) $(DTLIB) $(GIZMOLIB) \
+		XolClientDepLibs $(DNDLIB)
+
+  SYS_LIBRARIES =  -lgen
+
+ComplexProgramTarget(fontmgr)
+
+InstallDesktopClient($(BINDIR)/fontmgr,$(DESKTOPDIR)/System_Setup/Font_Setup)

@@ -1,0 +1,20 @@
+#ident	"@(#)oamintf:common/cmd/oamintf/sched/Menu.chg	1.1"
+#ident	"$Header: $"
+
+menu=Change Scheduled Task
+
+
+`set -l file=$ARG1`
+close=`rm -f $file`
+
+`readfile $ARG1`
+
+name=Help
+button=8
+action=message -t Select a Scheduled task to change.
+
+name=""
+button=8
+action=nop
+
+`indicator -w`

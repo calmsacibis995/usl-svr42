@@ -1,0 +1,5 @@
+#ident	"@(#)uts-x86at:io/rtc/rtc.cf/Master	1.4"
+#ident	"$Header: $"
+$version 1
+$entry init open close read write ioctl
+rtc	rtc	kcor	0	0	8

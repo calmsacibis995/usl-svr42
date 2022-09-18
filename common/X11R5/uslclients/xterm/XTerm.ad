@@ -1,0 +1,66 @@
+#ident	"%W"
+#copyright  "%c%"
+
+
+!*Edit.mnemonic: E
+!*Edit.label: Edit
+
+!*Redraw.mnemonic: R
+!*Redraw.label: Redraw
+
+!*Soft Reset.mnemonic: S
+!*Soft Reset.label: Soft Reset
+
+!*Full Reset.mnemonic: F
+!*Full Reset.label: Full Reset
+
+!*Properties.mnemonic: P
+!*Properties.label: Properties...
+
+!*Show Tek window.mnemonic: O
+!*Show Tek window.label: Show Tek window
+
+!*Interrupt.mnemonic: I
+!*Interrupt.label: Interrupt
+
+!*Hangup.mnemonic: H
+!*Hangup.label: Hangup
+
+!*Terminate.mnemonic: T
+!*Terminate.label: Terminate
+
+!*Kill.mnemonic: K
+!*Kill.label: Kill
+
+!*Send.mnemonic: S
+!*Send.label: Send
+
+!*Paste.mnemonic: P
+!*Paste.label: Paste
+
+!*Copy.mnemonic: C
+!*Copy.label: Copy
+
+!*Cut.mnemonic: X
+!*Cut.label: Cut
+
+!*PAGE.mnemonic: A
+!*PAGE.label: PAGE
+
+!*RESET.mnemonic: E 
+!*RESET.label: RESET
+
+!*COPY.mnemonic: C
+!*COPY.label: COPY
+
+!*Hide VT window.mnemonic: D
+!*Hide VT window.label: Hide VT window
+
+*Apply.mnemonic: A
+*Apply.label: Apply
+
+*Reset.mnemonic: r
+*Reset.label: Reset
+
+*container.scrollbar.space: 2 points
+*menu_shell.title: xterm

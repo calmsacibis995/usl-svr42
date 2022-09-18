@@ -1,0 +1,124 @@
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+/**/#ident	"@(#)nameserver:Imakefile	1.24"
+
+/**/#  Imakefile (Imakefile)
+/**/# 	Acc: 573434423 Thu Mar  3 18:20:23 1988
+/**/# 	Mod: 572849597 Thu Feb 25 23:53:17 1988
+/**/# 	Sta: 573774634 Mon Mar  7 16:50:34 1988
+/**/# 	Owner: 2011
+/**/# 	Group: 1985
+/**/# 	Permissions: 444
+
+
+/**/# 	START USER STAMP AREA
+
+
+/**/# 	END USER STAMP AREA
+
+MKDIR = mkdir
+INSTALLFLAGS = -m 755
+
+   INCLUDES = -I../include
+
+NormalLibraryObjectRule()
+
+#ifdef SystemV4
+        ALL = xntad
+       SRCS = xntad.c
+
+
+all:: $(ALL)
+
+
+NormalProgramTarget(xntad,xntad.o,/**/,$(XLIB),/**/)
+
+InstallProgram(xntad,$(USRLIBDIR))
+
+#else
+
+       SRCS = xdaemon.c starserver.c itserver.c
+        ALL = xdaemon  $(NAMESERVERS)
+
+all:: $(ALL)
+
+NormalProgramTarget(xdaemon,xdaemon.o,/**/,$(XLIB),/**/)
+NormalProgramTarget(starserver,starserver.o,/**/,$(XLIB),/**/)
+NormalProgramTarget(itserver,itserver.o,/**/,$(XLIB) -ltcp,/**/)
+NormalProgramTarget(tcpserver,tcpserver.o,/**/,$(XLIB) -lc_s -lnet -lnsl_s,/**/)
+
+tcpserver.o: itserver.c
+	if [ -f itserver.o ]; \
+	then \
+		$(MV) itserver.o Oitserver.o; \
+	fi
+	$(CC) -c $(CFLAGS) -DTCPSERVER itserver.c
+	$(MV) itserver.o tcpserver.o
+	if [ -f Oitserver.o ]; \
+	then \
+		$(MV) Oitserver.o itserver.o; \ 
+	fi
+
+itserver.o: itserver.c
+	$(CC) -c $(CFLAGS) -DITSERVER itserver.c
+
+InstallProgram(xdaemon,$(USRLIBDIR))
+install:: xdaemon.rc
+	if [ ! -d $(ADMDIR) ] ; \
+	then \
+	   mkdir -p $(ADMDIR); \
+	fi; \
+	$(INSTALL) -m 755 -f $(ADMDIR) xdaemon.rc
+
+install:: $(NAMESERVERS)
+	if [ ! -d $(NETDIR) ] ; \
+	then \
+	   mkdir -p $(NETDIR); \
+	fi; \
+	if [ -f starserver ]; \
+	then \
+		if [ ! -d $(STARLANDIR) ] ; \
+		then \
+		   mkdir -p $(STARLANDIR); \
+		fi; \
+		cp starserver nameserver; \
+        	$(INSTALL) $(INSTALLFLAGS) -f $(STARLANDIR) nameserver; \
+        	$(STRIP) $(STARLANDIR)/nameserver; \
+		$(RM) -f nameserver; \
+	fi
+	if [ -f itserver ]; \
+	then \
+		if [ ! -d $(ITDIR) ] ; \
+		then \
+		   mkdir -p $(ITDIR); \
+		fi; \
+		cp itserver nameserver; \
+        	$(INSTALL) $(INSTALLFLAGS) -f $(ITDIR) nameserver; \
+        	$(STRIP) $(ITDIR)/nameserver; \
+		$(RM) -f nameserver; \
+	fi
+	if [ -f tcpserver ]; \
+	then \
+		if [ ! -d $(TCPDIR) ] ; \
+		then \
+		   mkdir -p $(TCPDIR); \
+		fi; \
+		cp tcpserver nameserver; \
+        	$(INSTALL) $(INSTALLFLAGS) -f $(TCPDIR) nameserver; \
+        	$(STRIP) $(TCPDIR)/nameserver; \
+		$(RM) -f nameserver; \
+	fi
+
+#endif
+
+DependTarget()
+
+clobber::
+	$(RM) $(ALL)

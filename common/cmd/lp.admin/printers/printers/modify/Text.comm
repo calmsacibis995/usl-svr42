@@ -1,0 +1,23 @@
+#ident	"@(#)lp.admin:printers/printers/modify/Text.comm	1.1.4.1"
+#ident  "$Header: Text.comm 2.0 91/07/12 $"
+
+title='Error: Printer Communication Setup Subtask'
+
+close=`rm -f $error`
+
+row=15
+columns=55
+
+begrow=distinct
+begcol=distinct
+
+text="
+    Press CANCEL to return to the form.
+
+    While setting up printer communications,
+    the following error(s) occurred:
+
+`readfile $error`
+
+"
+

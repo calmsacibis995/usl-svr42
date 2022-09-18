@@ -1,0 +1,11 @@
+#ident	"@(#)pkg.bkrs:common/pkg/bkrs/preremove	1.1.1.6"
+#ident	"$Header: $"
+
+# remove bkrs status files
+
+/usr/bin/rm -rf /etc/bkup/bkstatus.tab
+/usr/bin/rm -rf /etc/bkup/rsstatus.tab
+
+#mv /usr/sbin/.backup /usr/sbin/backup
+#mv /usr/sbin/.restore /usr/sbin/restore
+

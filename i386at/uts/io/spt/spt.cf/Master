@@ -1,0 +1,5 @@
+#ident	"@(#)uts-x86at:io/spt/spt.cf/Master	1.2"
+#ident	"$Header: $"
+$version 1
+$entry open close read write ioctl chpoll
+spt	spt	c	0	0	0

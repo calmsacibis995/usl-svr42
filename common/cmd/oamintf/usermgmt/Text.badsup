@@ -1,0 +1,25 @@
+#ident	"@(#)oamintf:common/cmd/oamintf/usermgmt/Text.badsup	1.2.5.2"
+#ident  "$Header: Text.badsup 2.0 91/07/12 $"
+################################################################################
+#	Module Name: Text.badsup
+################################################################################
+title="Errors Adding a Group"
+
+framemsg=`readfile $INTFBASE/conf.msg`
+
+rows=6
+columns=75
+
+text="
+Group $ARG1 has been added to the system but was unable to
+supplementary user(s).  Please check entry."
+
+altslks
+
+name=CONT
+button=11
+action=CLEANUP
+
+name=CANCEL
+button=14
+action=CLEANUP

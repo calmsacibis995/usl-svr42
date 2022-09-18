@@ -1,0 +1,145 @@
+#ident	"@(#)olpkg.oam:pkg.dtxt/prototype	1.51"
+#	Copyright (c) 1990, 1991 UNIX System Laboratories, Inc.
+#	Copyright (c) 1988 AT&T
+#	  All Rights Reserved
+
+#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+#	UNIX System Laboratories, Inc.
+#	The copyright notice above does not evidence any
+#	actual or intended publication of such source code.
+
+
+i copyright
+i request
+i preinstall
+i depend
+i pkginfo
+i postinstall
+i preremove
+
+!PACKDIR=../usr/src/$WORK/X11R5/olpkg.oam
+!SRCDIR=../usr/src/$WORK/X11R5/lib
+!PKGINST=dtxt
+
+!default 0755 bin bin
+
+d enduser /dev ? ? ?
+d enduser /etc ? ? ?
+d enduser /etc/dinit.d ? ? ?
+d enduser /usr ? ? ?
+d enduser /usr/bin ? ? ?
+d enduser /usr/lib ? ? ?
+
+d enduser /dev/X 0777 root root
+d enduser /usr/X
+d enduser /usr/X/adm
+d enduser /usr/X/bin
+s enduser /usr/bin/X11=/usr/X/bin
+d enduser /usr/X/defaults
+d enduser /usr/X/lib
+s enduser /usr/lib/X11=/usr/X/lib
+d enduser /usr/X/lib/app-defaults
+d enduser /usr/X/lib/vgainit
+d enduser /usr/X/lib/fonts
+d enduser /usr/X/lib/fonts/misc
+d enduser /usr/X/lib/fonts/mitType1
+d enduser /usr/X/lib/fonts/mitType1/afm
+
+c enduser /dev/X/X.null 2 2 0666 root root
+
+s enduser /usr/X/bin/uncompress=/usr/bin/uncompress
+s enduser /usr/X/bin/compress=/usr/bin/compress
+f enduser /usr/X/bin/xpr
+f enduser /usr/X/bin/xset
+f enduser /usr/X/bin/xwd
+f enduser /usr/X/bin/xwud
+f enduser /usr/X/bin/X
+
+f enduser /usr/X/bin/mkfontdir
+f enduser /usr/X/bin/mkfontscale
+f enduser /usr/X/bin/pfb2pfa
+
+f enduser /usr/X/adm/setvgamode=/usr/X/lib/vgainit/setvgamode
+
+!default 0644 bin bin
+
+f enduser /usr/X/lib/XErrorDB
+f enduser /usr/X/lib/rgb.base 0664 bin bin
+f enduser /usr/X/lib/rgb.txt 0664 bin bin
+
+v enduser /usr/X/defaults/Xwinconfig
+v enduser /usr/X/defaults/Xwinconfig.ini
+v enduser /usr/X/defaults/Xwincmaps
+v enduser /usr/X/defaults/Xwinfont
+f enduser /usr/X/defaults/README
+
+l enduser /usr/X/lib/libX11.so.1=/usr/X/lib/libX11.so
+s enduser /usr/lib/libX11.so.1=/usr/X/lib/libX11.so
+f enduser /usr/X/lib/libXimp.so.1
+s enduser /usr/X/lib/libXimp.so=/usr/X/lib/libXimp.so.1
+f enduser /usr/X/lib/libXsi.so.1
+f enduser /usr/X/lib/libXIM.so.1
+s enduser /usr/X/lib/libXIM.so=/usr/X/lib/libXIM.so.1
+s enduser /usr/lib/libXIM.so.1=/usr/X/lib/libXIM.so.1
+f enduser /usr/X/lib/libX11.so
+f enduser /usr/X/lib/libfont.so
+f enduser /usr/X/lib/libbitmap.so
+
+f enduser /usr/X/lib/vgainit/t89_16i.so
+f enduser /usr/X/lib/vgainit/et4k_16i.so
+f enduser /usr/X/lib/vgainit/wdc1x_16i.so
+f enduser /usr/X/lib/vgainit/ati_16i.so
+f enduser /usr/X/lib/vgainit/misc_16i.so
+f enduser /usr/X/lib/vgainit/def_16i.so
+v enduser /usr/X/lib/libv16i.so.1=/usr/X/lib/vgainit/def_16i.so
+
+f enduser /usr/X/lib/vgainit/t89.16cfg
+f enduser /usr/X/lib/vgainit/et4k.16cfg
+f enduser /usr/X/lib/vgainit/wdc1x.16cfg
+f enduser /usr/X/lib/vgainit/ati.16cfg
+f enduser /usr/X/lib/vgainit/misc.16cfg
+f enduser /usr/X/lib/vgainit/def.16cfg
+f enduser /usr/X/lib/libvga16.so
+
+f enduser /usr/X/lib/vgainit/t89_256i.so
+f enduser /usr/X/lib/vgainit/et4k_256i.so
+f enduser /usr/X/lib/vgainit/leg_256i.so
+f enduser /usr/X/lib/vgainit/ati_256i.so
+f enduser /usr/X/lib/vgainit/misc_256i.so
+f enduser /usr/X/lib/vgainit/wdc1x_256i.so
+v enduser /usr/X/lib/libv256i.so.1=/usr/X/lib/vgainit/misc_256i.so
+
+f enduser /usr/X/lib/vgainit/t89.256cfg
+f enduser /usr/X/lib/vgainit/et4k.256cfg
+f enduser /usr/X/lib/vgainit/leg.256cfg
+f enduser /usr/X/lib/vgainit/ati.256cfg
+f enduser /usr/X/lib/vgainit/misc.256cfg
+f enduser /usr/X/lib/vgainit/wdc1x.256cfg
+f enduser /usr/X/lib/libvga256.so
+
+f enduser /usr/X/lib/vgainit/VGAVendorDB
+
+f enduser /usr/X/lib/fonts/misc/6x12.snf
+f enduser /usr/X/lib/fonts/misc/6x13.snf
+f enduser /usr/X/lib/fonts/misc/7x14.snf
+f enduser /usr/X/lib/fonts/misc/8x13.snf
+f enduser /usr/X/lib/fonts/misc/8x13B.snf
+f enduser /usr/X/lib/fonts/misc/cursor.snf
+f enduser /usr/X/lib/fonts/misc/dtxt.alias
+v enduser /usr/X/lib/fonts/misc/fonts.alias=/usr/X/lib/fonts/misc/dtxt.alias
+v enduser /usr/X/lib/fonts/misc/fonts.dir
+
+f enduser /usr/X/lib/fonts/mitType1/cour.pfa
+f enduser /usr/X/lib/fonts/mitType1/courb.pfa
+f enduser /usr/X/lib/fonts/mitType1/courbi.pfa
+f enduser /usr/X/lib/fonts/mitType1/couri.pfa
+v enduser /usr/X/lib/fonts/mitType1/fonts.dir
+
+f enduser /usr/X/lib/fonts/mitType1/afm/cour.afm
+f enduser /usr/X/lib/fonts/mitType1/afm/courb.afm
+f enduser /usr/X/lib/fonts/mitType1/afm/courbi.afm
+f enduser /usr/X/lib/fonts/mitType1/afm/couri.afm
+
+v enduser /usr/X/adm/.Xprofile=$PACKDIR/adm/.Xprofile 0755 root sys
+v enduser /usr/X/adm/.Xdefaults=$PACKDIR/adm/.Xdefaults 0755 root sys
+

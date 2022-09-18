@@ -1,0 +1,4 @@
+#ident	"@(#)uts-x86:fs/namefs/namefs.cf/System	1.3"
+#ident	"$Header: $"
+$version 1
+namefs	Y	0	0	0	0	0	0	0	0	-1

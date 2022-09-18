@@ -1,0 +1,6 @@
+#ident	"@(#)nadmin.rfs:other/rfs/system/bin/find_trans	1.2.5.1"
+#ident  "$Header: find_trans 2.0 91/07/12 $"
+
+$TFADMIN /usr/bin/ls -p /etc/rfs | /usr/bin/sed -e "s/^.*[^/]$//g" -e "s/\/$//g" | /usr/bin/uniq -u | /usr/bin/egrep -v "auth.info"| /usr/bin/sed -e "/^$/d" >/var/tmp/TP_$$
+
+echo $$

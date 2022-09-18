@@ -1,0 +1,7 @@
+#ident	"@(#)bnu.admin:common/cmd/bnu.admin/Helpol	1.1.2.2"
+#ident "$Header: Helpol 2.1 91/09/12 $"
+
+ABSTRACT:
+	The polling menu allows you to administer the times at which
+	remote systems are called by the Basic Networking Utilities.
+

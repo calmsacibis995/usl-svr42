@@ -1,0 +1,4 @@
+#ident	"@(#)uts-x86:net/lockmgr/klm.cf/Master	1.3"
+#ident	"$Header: $"
+$version 1
+klm	klm	o	0	0	0

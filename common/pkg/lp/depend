@@ -1,0 +1,3 @@
+#ident	"@(#)pkg.lp:lp/depend	1.6.1.2"
+#ident	"$Header: $"
+P  base		Base System

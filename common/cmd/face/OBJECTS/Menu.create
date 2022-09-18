@@ -1,0 +1,40 @@
+#ident	"@(#)face:OBJECTS/Menu.create	1.5.4.2"
+#ident  "$Header: Menu.create 1.5 91/10/29 $"
+
+menu=$$uxface:446:"Create $ARG3"
+
+help=OPEN TEXT OBJECTS/Text.h "$$uxface:569:HELP on: Create New Object" T.hcreate
+
+framemsg=$$uxface:399:"Move to an item with arrow keys and press ENTER to select the item."
+
+begrow=any
+begcol=any
+lifetime=longterm
+
+name=$$uxface:447:"File folder"
+action=`run -s /bin/mkdir $ARG1/$ARG2; 
+	if test -d $ARG1/$ARG2;
+	then
+		message $$uxface:448:"File folder $ARG3 created in $ARG4";
+	else
+		message $$uxface:449:"File folder $ARG3 not created in $ARG4";
+	fi`close
+
+name=$$uxface:450:"Standard file"
+action=`if run -e -t"Suspended $EDITOR $ARG3" ${EDITOR} $ARG1/$ARG2;
+	then
+		if test -f $ARG1/$ARG2;
+		then
+			message $$uxface:451:"Standard file $ARG3 created in $ARG4";
+		else
+			message $$uxface:452:"Standard file $ARG3 not created in $ARG4";
+		fi;
+	fi`close
+
+name=""
+button=4
+action=nop
+
+name=""
+button=5
+action=nop

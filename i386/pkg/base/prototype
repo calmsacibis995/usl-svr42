@@ -1,0 +1,36 @@
+#ident	"@(#)pkg.base:i386/pkg/base/prototype	1.3.5.14"
+#ident	"$Header: $"
+
+i pkginfo=ifiles/pkginfo
+i request=ifiles/request
+i preinstall=ifiles/preinstall
+i postinstall=ifiles/postinstall
+i copyright=ifiles/copyright
+#i postremove=ifiles/postremove
+i dummy.pkginfo=ifiles/dummy.pkginfo
+
+i base/chknode.1=ifiles/chknode.1
+i base/warn.noboot=ifiles/warn.noboot
+
+!include protos/sysdir
+!include protos/sysinst
+!include protos/sysutil
+!include protos/kernel
+!include protos/term
+!include protos/inst
+!include protos/intrfc
+!include protos/config
+!include protos/upgrade
+!include protos/headers
+!include protos/nodes
+
+
+# for compatibility with pre-Destiny packages
+
+!DUMMY_PKGINFO=../usr/src/$WORK/pkg/base/ifiles/dummy.pkginfo
+
+f none /var/sadm/pkg/dfm/pkginfo=$DUMMY_PKGINFO 0644 root sys
+f none /var/sadm/pkg/mouse/pkginfo=$DUMMY_PKGINFO 0644 root sys
+f none /var/sadm/pkg/qt/pkginfo=$DUMMY_PKGINFO 0644 root sys
+f none /var/sadm/pkg/sys/pkginfo=$DUMMY_PKGINFO 0644 root sys
+

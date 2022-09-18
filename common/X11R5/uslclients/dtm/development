@@ -1,0 +1,47 @@
+CLASS c_source
+BEGIN
+	_CLASSNAME	'C source';
+	_FILETYPE	DATA;
+	_PATTERN	*.c;
+	_ICONFILE	csource;
+END
+
+CLASS h_source
+BEGIN
+	_CLASSNAME	'C header';
+	_FILETYPE	DATA;
+	_PATTERN	*.h;
+	_ICONFILE	cheader;
+END
+
+CLASS object
+BEGIN
+	_CLASSNAME	Object;
+	_FILETYPE	DATA;
+	_PATTERN	*.o;
+	_ICONFILE	object;
+END
+
+CLASS archive
+BEGIN
+	_CLASSNAME	Archive;
+	_FILETYPE	DATA;
+	_PATTERN	*.a;
+	_ICONFILE	archive;
+END
+
+CLASS shared_library
+BEGIN
+	_CLASSNAME	'Shared library';
+	_FILETYPE	DATA;
+	_PATTERN	*.so;
+	_ICONFILE	sharedobj;
+END
+
+CLASS assembler_source
+BEGIN
+	_CLASSNAME	'Assembler source';
+	_FILETYPE	DATA;
+	_PATTERN	*.s;
+	_ICONFILE	assembler;
+END

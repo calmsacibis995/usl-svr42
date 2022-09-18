@@ -1,0 +1,118 @@
+The title area (window header), contains the application name and in most
+cases either a window menu button or a pushpin.  
+
+The window manager provides these decorations, as well as a border and
+resize corners. The amount of decorations that the window manager
+provides depends on the type of window, and is often determined by the
+application that owns the window.
+
+In the window header, the user can operate on a control provided by the
+window manager (a pushpin or window menu button), pop up the window
+menu, select a window, or move a window.
+
+The Window Menu Button: Using Menus
+
+     The window menu button is used to pop up the window menu.
+     The following applies to any menu button, including the
+     window menu button.
+
+     Menus contain items or settings. You can view and choose
+     from any OPEN LOOK UI menu in two ways using the MENU
+     mouse button:
+
+                Press-drag-release
+                Click-move-click (Stay-up mode)
+
+     To use press-drag-release, move the pointer over the window menu
+     button and press MENU. The window menu appropriate for the window
+     is displayed. When you drag the pointer onto a control in the menu,
+     the default ring is displayed. When you drag the pointer onto a
+     control, it highlights. When you drag the pointer from control to
+     control, the highlighting follows the pointer. When the pointer is
+     on the control you want, release MENU. The control is activated and
+     the menu is dismissed (popped down). When an item has a menu mark
+     (an open triangle), that item has a submenu with additional items.
+     Releasing MENU when an item with a menu mark is highlighted
+     activates the default from the submenu. To display a submenu for an
+     item that has a menu mark, drag the pointer to the right. Drag the
+     pointer to the left to dismiss the submenu while leaving the
+     original menu displayed. If you do not want to choose an item from
+     a menu or a submenu, move the pointer off the menu and release the
+     MENU mouse button.
+
+
+     To use click-move-click, click MENU while the pointer is over the
+     menu button. The menu appropriate for the window is displayed and
+     stays on the screen (stay-up mode). You do not need to keep pressing
+     the MENU button. Move the pointer to the control you want to choose.  
+     Click SELECT or MENU to activate the control. The control is executed
+     and the menu is dismissed. If you do not want to choose a control,
+     move the pointer off the menu and click SELECT or MENU to dismiss
+     the menu. Clicking SELECT on an item that has a menu mark will either
+     pop up the menu in stay-up mode, or execute the default from the
+     submenu, depending on the current setting. Clicking MENU on an item
+     that has a menu mark displays the submenu.
+
+     Depending on the current setting for menus, clicking SELECT on the
+     window menu button will either pop up the window menu in stay-up
+     mode or execute the default window menu item. Pressing select on
+     the window menu button will pop up the window menu in
+     press-drag-release mode.
+
+     Further information may be obtained by moving the pointer over a
+     window menu button and pressing HELP. Further information on window
+     menu operations may be obtained by posting the window menu, and
+     asking for help on the window menu pane.
+
+Pushpin
+
+     Use the pushpin to pin up a pop-up window for continued access.
+     Move the pointer to an unpinned pushpin and click SELECT to push
+     the pin in the hole. Click SELECT on a pinned pushpin to pop it
+     out of the hole and dismiss the pop-up window.
+
+     When the pop-up window is displayed in an unpinned state, the
+     pop-up window is automatically dismissed the next time you click
+     SELECT on an action button in that window. If you want to dismiss
+     the window without issuing a command, click SELECT on the pushpin
+     to pin the window, and then click SELECT to dismiss the window.
+
+     On many systems there is a mouseless (keyboard) command to toggle
+     (pin and unpin) the pushpin.
+
+Selecting and Moving Windows and Icons
+
+     You can select a window by moving the pointer to somewhere in the
+     title area away from a window control (not over a window menu
+     button or pushpin) and clicking SELECT. A selected window indicates
+     its state by displaying a thickened border and (in 3-D mode) a
+     depressed header. Once a window is selected, the window menu
+     operations (Close/Open, Full/Restore, Move, Resize, Back, Refresh,
+     Dismiss) can be performed on them by using the appropriate key
+     combination. This provides an alternative to the use of a mouse
+     when performing window operations - it is not necessary to post
+     the window menu to perform a window manager operation on a window
+     if a key combination exists that performs the same task. Upon
+     execution of this specific key combination, the window manager
+     performs the operation on the selected window or icon.
+
+     You select an icon by moving the pointer onto the icon and clicking
+     select. Windows can also be selected by clicking select somewhere
+     on the border.
+
+     It can be acted on by window manager mouseless operations. To move
+     a window, press SELECT while the pointer is over the title area
+     (not the window menu button or pushpin) and drag the pointer. To
+     move an icon, press select while the pointer is over the icon and
+     drag the pointer.
+
+     Other mouseless (keyboard) operations exist for performing window
+     manager operations on selected windows or icons:
+
+          MENU:  Post the window menu for the selected window or icon.
+          NEXTWINDOW:  Select the next window in an application.
+          PREVWINDOW:  Select the previous window in an application.
+          NEXTAPPLICATION:  Select a window in the next application on
+			    the screen.
+          PREVAPPLICATION:  Select a window in the previous application
+			    on the screen.

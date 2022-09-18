@@ -1,0 +1,24 @@
+#ident	"@(#)initpkg:common/cmd/initpkg/init.d/MOUNTFSYS	1.1.11.4"
+#ident "$Header: /sms/sinixV5.4es/rcs/s19-full/usr/src/cmd/initpkg/init.d/MOUNTFSYS,v 1.1 91/02/28 17:36:38 ccs Exp $"
+
+# Mount file systems
+
+# Turn working privileges off.  MOUNTFSYS only needs the privileges to
+# pass to the commands it executes.
+
+priv -allprivs work
+
+cd /
+/sbin/mountall -l >/dev/null 2>&1
+if [ -f /etc/.fscklog ]
+then
+	echo "The system is fine and is now coming up.\n"
+	/sbin/rm /etc/.fscklog >/dev/null 2>&1
+fi
+
+# make sure /usr subtree is present by testing for /usr/sbin
+if [ ! -d /usr/sbin ]
+then
+	echo "/usr sub-tree is not present - changing to single user mode"
+	/sbin/init S
+fi

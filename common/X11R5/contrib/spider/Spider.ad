@@ -1,0 +1,29 @@
+*font:  *helvetica-bold-r-normal--10-100-*
+*helptext*font:	 *helvetica-medium-r-normal--10-100-*
+*input:		True
+*newgame.Label:	New Game
+*backupMenuButton.Label:	Backup
+*onemove.Label:	One Move
+*startover.Label:	Start Over
+*replay.Label:		Replay
+*expand.Label:		Expand
+*locate.Label:		Locate
+*score.Label:		Score
+*help.Label:		Help...
+*helpall.Label:	All
+*helpintro.Label:	Introduction
+*helprules.Label:	Rules
+*helpcontrols.Label:	Controls
+*helpexamples.Label:	Examples
+*helpmisc.Label:	Extras
+*helpsummary.Label:	Summary
+*helpexit.Label:	Close
+*fileMenuButton.Label:		File
+*save.Label:		Save in File
+*resumeFile.Label:	Resume from File
+*resumeSelection.Label:	Resume from Selection
+*name.Label:		Name:
+*filename*editType:	edit
+*confirmcancel.Label:	Cancel
+*confirmok.Label:		Ok
+*panel.MenuButton.leftBitmap:	menu12

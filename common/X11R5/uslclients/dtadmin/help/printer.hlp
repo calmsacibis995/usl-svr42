@@ -1,0 +1,726 @@
+#ident	"@(#)dtadmin:help/printer.hlp	1.15"
+^*version^1
+^*title^Printer Setup
+^:Printer_Setup
+^*width^70
+^+DesktopMgr/help.defs
+^?Install and setup printers
+^0^Printer Setup
+^$10
+Printer Setup
+
+Use the Printer Setup window to identify and maintain serial,
+parallel, and remote printers connected to your computer. The actual
+printers, however, should already be physically connected to the
+correct port.  See your computer and printer manuals for instructions
+on connecting your printers.
+
+The following windows are provided for Printer Setup:
+
+        \k(Printer Setup Window)
+        \k(Printer Setup: Printer Control Window)
+        \k(Printer Setup: Install Printer Icon Window)
+        \k(Printer Setup: Set Remote Access Window)
+        \k(Printer Setup: Add printertype Printer Window)
+        \k(Printer Setup: Printer Properties - printername Window)
+^1^Printer Setup Window
+^$20
+\k{Printer Setup}
+1. Printer Setup Window
+
+Use the Printer Setup window to display all the printers currently
+defined on your system. You can delete, install as an icon, and change
+the properties of these printers, as well as define new printers for
+your system. If you intend to delete, change the properties of, or
+install a printer as an icon in another window, you must first click
+on one of the printer icons displayed.
+
+Note: To add new or delete printers or change printer properties, you
+must have Printer Management permissions.
+
+More information: \k(User Setup^dtadmin/LoginMgr.hlp^User Setup)
+
+The \d(buttons^button) available for the Printer Setup window are:
+
+        \k(Actions Button)
+        \k(Printer Button)
+        \k(Help Button)
+^2^Actions Button
+^$30
+1. \k{Printer Setup Window}
+   1.1 Actions Button
+
+The Actions button allows you to select a default printer, control
+print requests, install printers as icons in other folders, control
+remote access to printers, and exit from the Printer Setup window.
+Clicking on the Actions button displays a menu with the following
+options:
+
+        \k(Make Default)
+        \k(Control Printer)
+        \k(Install)
+        \k(Set Remote Access)
+        \k(Exit)
+^3^Make Default
+^$40
+1. \k{Printer Setup Window}
+   1.1 \k{Actions Button}
+       1.1.1 Make Default
+
+The Make Default menu option lets you choose a default printer (each
+user can select their own default printer). The printer you select is
+the printer used if you don't specify a printer when you print a file;
+for example when you select a file and choose Print from the File menu
+in a Folder window.
+
+When you select the Make Default menu option, the selected printer in
+the Printer Setup window becomes the default printer and an arrow
+appears above that printer's icon.
+^3^Control Printer
+^$50
+1. \k{Printer Setup Window}
+   1.1 \k{Actions Button}
+       1.1.2 Control Printer
+
+The Control Printer menu option allows you to control print requests
+going to printers configured on to your system. Clicking on the
+Control Printer menu option opens the Printer Setup: Printer Control
+window.
+
+More information: \k(Printer Setup: Printer Control Window)
+^3^Install
+^$60
+1. \k{Printer Setup Window}
+   1.1 \k{Actions Button}
+       1.1.3 Install
+
+The Install menu option lets you install a printer as an icon in any
+of your folders. In order to drag-and-drop to a printer, it must be
+installed in a folder or the Desktop window. You cannot drag-and-drop
+to a printer in the Printer Setup window. Clicking on the Install menu
+option opens the Printer Setup: Install Printer Icon window.
+
+Note: You also can install a printer as an icon by using the \d(drag-and-drop)
+technique. Simply place the mouse pointer over the icon of the printer
+you want to install in a folder, press and hold SELECT (the left mouse
+button), move the mouse pointer (the icon moves with the pointer) to
+the folder in which you want to place the icon, and release the mouse
+button.
+
+More information:
+
+	\k(Printer: printername^dtadmin/printuse.hlp^Printer: printername)
+	\k(Printer Setup: Install Printer Icon Window)
+^3^Set Remote Access
+^$70
+1. \k{Printer Setup Window}
+   1.1 \k{Actions Button}
+       1.1.4 Set Remote Access
+
+The Set Remote Access menu option (available only if the Networking
+Set is installed on your system) lets you specify the remote computer
+systems can access your local printers. Clicking on the Set Remote
+Access menu option opens the Printer Setup: Set Remote Access window.
+
+More information: \k(Printer Setup: Set Remote Access Window)
+^3^Exit
+^$80
+1. \k{Printer Setup Window}
+   1.1 \k{Actions Button}
+       1.1.5 Exit
+
+The Exit menu option closes the Printer Setup window.
+^2^Printer Button
+^$90
+1. \k{Printer Setup Window}
+   1.2 Printer Button
+
+The Printer button allows you to add, delete, and change properties of
+the printers shown in the Printer Setup window. Clicking on the Printer
+button displays a menu with the following options:
+
+        \k(New^^NewRA)
+        \k(Delete^^DeleteRA)
+        \k(Properties^^PropertiesRA)
+^3^New=NewRA
+^$100
+1. \k{Printer Setup Window}
+   1.2 \k{Printer Button}
+       1.2.1 New
+
+The New menu option lets you add local and remote printers to your
+system. You must have appropriate privileges to add printers to your
+system. Once you select the New menu option, you can choose Parallel,
+Serial, or Remote (if the Networking Set is installed). Click on the
+type of printer you're adding. The Printer Setup: Add printertype
+Printer window appears, where printertype is Parallel, Serial, or
+Remote.
+
+More information: \k(Printer Setup: Add printertype Printer Window)
+^3^Delete=DeleteRA
+^$110
+1. \k{Printer Setup Window}
+   1.2 \k{Printer Button}
+       1.2.2 Delete
+
+The Delete menu option lets you remove entries from the Printer Setup
+window. You must have Printer Management permissions to delete
+printers from your system . Clicking on the Delete menu option
+displays the Printer Setup: Delete Printer window.
+
+More information:
+
+        \k(Printer Setup: Delete Printer Window)
+        \k(User Setup^dtadmin/LoginMgr.hlp^User Setup)
+^4^Printer Setup: Delete Printer Window
+^$120
+1. \k{Printer Setup Window}
+   1.2 \k{Printer Button}
+       1.2.2 \k{Delete^^DeleteRA}
+             1.2.2.1 Printer Setup: Delete Printer Window
+
+The Printer Setup: Delete Printer window asks you to confirm that you
+want to delete the selected printer(s).
+
+The buttons available on this window are Delete and Cancel.
+
+   o Delete Button: This button deletes the selected entry in the
+     Printer Setup window. The Printer Setup window is then closed.
+     Note: if there are print requests for the printer(s) you're about
+     to delete, a Notice window appears with a warning.
+
+   o Cancel Button: This button closes the Printer Setup: Delete
+     Printer window without deleting the selected printer(s).
+
+More information: \k(Delete Print Requests Notice Window)
+^4^Delete Print Requests Notice Window
+^$130
+1. \k{Printer Setup Window}
+   1.2 \k{Printer Button}
+       1.2.2 \k{Delete^^DeleteRA}
+             1.2.2.2 Delete Print Requests Notice Window
+
+The Delete Print Requests notice appears if you have print requests
+pending on the printer(s) you're trying to delete. You can choose to
+delete the printer and the pending print requests or cancel your
+request to delete the printer. The buttons available on this window
+are Delete and Cancel.
+
+   o Delete Button: This button deletes the selected entry from the
+     Printer Setup window along with any print requests waiting to be
+     printed.
+
+   o Cancel Button: This button closes the warning window without
+     deleting the selected printer(s).
+^3^Properties=PropertiesRA
+
+^$140
+1. \k{Printer Setup Window}
+   1.2 \k{Printer Button}
+       1.2.3 Properties
+
+The Properties menu option lets you make changes to an entry in the
+Printer Setup window. Once you select the Properties menu option, you
+can choose from the following options: Basic, Configuration, and
+Communication.
+
+If the selected printer is a parallel or remote printer, the Communi-
+cation menu option does not appear. Each menu option represents a
+category in the Printer Setup: Printer Properties printername window
+(the name of the printer appears instead of printername). After you
+click on a menu option, the Printer Setup: Printer Properties
+printername window appears with the category you selected.
+
+More information:
+
+	\k(Printer Setup: Printer Properties - printername Window)
+^2^Help Button
+^$150
+1. \k{Printer Setup Window}
+   1.3 Help Button
+
+The Help button provides on-line help for the Printer Setup window.
+Clicking on the Help button displays a menu with the following
+options:
+
+        \k(Printer Setup^^Printer SetupPS)
+        \k(Table of Contents)
+        \k(Help Desk)
+^3^Printer Setup=Printer SetupPS
+^$160
+1. \k{Printer Setup Window}
+   1.3 \k{Help Button}
+       1.3.1 Printer Setup
+
+The Printer Setup menu option provides on-line help for the Printer
+Setup window.
+^3^Table of Contents
+^$170
+1. \k{Printer Setup Window}
+   1.3 \k{Help Button}
+       1.3.2 Table of Contents
+
+The Table of Contents menu option displays the list of help topics
+available for the Printer Setup window.
+^3^Help Desk
+^$180
+1. \k{Printer Setup Window}
+   1.3 \k{Help Button}
+       1.3.3 Help Desk
+
+The Help Desk menu option opens the Help Desk window. From there, you
+can select the icon for which you want on-line help.
+^1^Printer Setup: Printer Control Window
+^$190
+\k{Printer Setup}
+2. Printer Setup: Printer Control Window
+
+Use the Printer Setup: Printer Control window to specify whether the
+printer selected in the Printer Setup window can accept or rejecting
+print requests; you also can enable or disable the selected printer.
+
+When print requests are sent to a printer, they are added to the list
+of print requests (known as the print \d(queue)). Use the Accept and
+Reject options to control whether or not print requests can be added
+to the print queue. To set the printer so that it continues to accept
+print requests, click on Accept. If you do not want print requests to
+be accepted and added to the queue, click on Reject.
+
+Use the Enabled and Disabled to control whether or not the selected
+printer prints the print requests in the queue. If you want the
+printer to continue to print the print requests, click on Enabled. If
+you do not want the printer to print waiting print requests, click on
+Disabled.
+
+Note: You don't have to have both the Accept and Enabled options
+selected at the same time. You can have the printer accept print
+requests but not print them by clicking on Accept and Disabled. If you
+want to finish printing any print requests already sent, but not have
+any more print requests added to the queue, click on Reject and
+Enabled.
+
+The \d(buttons^button) on the Printer Setup: Printer Control window
+are:
+
+        \k(Apply Button^^Apply ButtonPC)\t\t\k(Reset Button^^Reset ButtonPC)
+        \k(Cancel Button^^Cancel ButtonPC)\t\t\k(Help Button^^Help ButtonPC)
+^2^Apply Button=Apply ButtonPC
+^$200
+2. \k{Printer Setup: Printer Control Window}
+   2.1 Apply Button
+
+The Apply button applies any changes you make in the Printer Setup:
+Printer Control window to the selected entry in the Printer Setup win-
+dow. After applying the changes, the Printer Setup: Printer Control
+window closes.
+^2^Reset Button=Reset ButtonPC
+^$210
+2. \k{Printer Setup: Printer Control Window}
+   2.2 Reset Button
+
+The Reset button reverses any changes you have not yet applied. The
+Printer Setup: Printer Control window remains open.
+^2^Cancel Button=Cancel ButtonPC
+^$220
+2. \k{Printer Setup: Printer Control Window}
+   2.3 Cancel Button
+
+The Cancel button closes the Printer Setup: Printer Control window
+without making any changes.
+^2^Help Button=Help ButtonPC
+^$230
+2. \k{Printer Setup: Printer Control Window}
+   2.4 Help Button
+
+Use the Help button provides on-line help for the Printer Setup: Printer
+Control window.
+^1^Printer Setup: Install Printer Icon Window
+^$240
+\k{Printer Setup}
+3. Printer Setup: Install Printer Icon Window
+
+Use the Printer Setup: Install Printer Icon window to install a
+printer selected in the Printer Setup window as an icon in a folder
+window (in order to \d(drag-and-drop) to a printer, it must be installed
+in a folder or the Desktop window). To install a printer as an icon,
+first select the desired printer from the Printer Setup window before
+opening the Printer Setup: Install Printer Icon window. Enter the name
+of the folder in which you want to install the icon in the Location
+text box.
+
+Note: You also can install a printer as an icon by using the drag-and-drop
+technique. Simply place the mouse pointer over the icon of the printer
+you want to install in a folder, press and hold SELECT (the left mouse
+button), move the mouse pointer (the icon moves with the pointer) to
+the folder in which you want to place the icon, and release the mouse
+button.
+
+More information: \k(Printer: printername^dtadmin/printuse.hlp^Printer: printername)
+
+The \d(buttons^button) on the Printer Setup: Install Printer Icon window are:
+
+More information: \k(User Setup^dtadmin/LoginMgr.hlp^User Setup)
+
+The Install button installs the selected printer as an icon in the
+folder specified in the Location text box.
+^2^Cancel Button=Cancel ButtonIP
+^$250
+3. \k{Printer Setup: Install Printer Icon Window}
+   3.1 Cancel Button
+
+The Cancel button closes the Printer Setup: Install Printer Icon
+window without making any changes.
+^2^Help Button=Help ButtonIP
+^$260
+3. \k{Printer Setup: Install Printer Icon Window}
+   3.2 Help Button
+
+The Help button provides on-line help for the Printer Setup: Install
+Printer window.
+^1^Printer Setup: Set Remote Access Window
+^$270
+\k{Printer Setup}
+4. Printer Setup: Set Remote Access Window
+
+Use this window to specify whether users on remote systems may access
+your printers (users on your system automatically have access to the
+printers connected directly to you system). Although you may indicate
+that a remote system can access your local printers, you can override
+this for any printer by setting the Allow Remote Access option in the
+Printer Setup: Printer Properties window to No.
+
+When you click on a system listed in the Printer Setup: Set
+Remote Access window, the Remote Access setting for that system
+changes. Repeatedly clicking on an entry cycles through the following
+settings:
+
+   o Blank: If both column entries are blank, no access is permitted
+     by users of that system to you printers.
+
+   o O/S Type = System V, Remote Access = Enabled: Access to your
+     printers is enabled and the remote system's operating system
+     (O/S) is UNIX System V.
+
+   o O/S Type = BSD, Remote Access = Enabled: Access to your
+     printers is enabled and the remote system's operating system
+     (O/S) is Berkeley Software Distribution (BSD).
+
+Note: Contact the owner or administrator of the remote system to find
+out whether it is System V or BSD.
+
+The \d(buttons^button) on the Printer Setup: Set Remote Access window are:
+
+        \k(Save Button^^Save ButtonRA)\t\t\k(Reset Button^^Reset ButtonRA)
+        \k(Cancel Button^^Cancel ButtonRA)\t\t\k(Help Button^^Help ButtonRA)
+^2^Save Button=Save ButtonRA
+^$280
+4. \k{Printer Setup: Set Remote Access Window}
+   4.1 Save Button
+
+The Save button saves any changes you make in the Printer Setup:  Set
+Remote Access window.  After applying the changes, the Printer Setup:
+Set Remote Access window closes.
+
+^2^Reset Button=Reset ButtonRA
+^$290
+4. \k{Printer Setup: Set Remote Access Window}
+   4.2 Reset Button
+
+The Reset button reverses any changes you have not yet applied. The
+Printer Setup: Set Remote Access window remains open.
+^2^Cancel Button=Cancel ButtonRA
+^$300
+4. \k{Printer Setup: Set Remote Access Window}
+   4.3 Cancel Button
+
+The Cancel button closes the Printer Setup: Set Remote Access window
+without making any changes.
+^2^Help Button=Help ButtonRA
+^$310
+4. \k{Printer Setup: Set Remote Access Window}
+   4.4 Help Button
+
+The Help button provides on-line help for the Printer Setup: Set
+Remote Access window.
+^1^Printer Setup: Add printertype Printer Window
+^$320
+\k{Printer Setup}
+5. Printer Setup: Add printertype Printer Window
+
+Use the Printer Setup: Add printertype Printer window to add local
+(parallel and serial) and remote printers to your system. The type of
+printer you are adding replaces printertype in the title of the win-
+dow. Depending on the type of printer you are adding (as determined by
+the option selected in the Printer Setup window), the Printer Setup:
+Add printertype Printer window changes slightly to reflect the options
+compatible with the type of printer being added.
+
+A local printer is a printer that is connected directly to your com-
+puter; it can be either parallel or serial. If it is a parallel
+printer, it must be connected to a parallel port on your system. If it
+is a serial printer, it must be connected to a serial port on your
+system. See your computer and printer manuals for instructions on con-
+necting your printers.
+
+A remote printer is a printer connected to another computer. When you
+print on a remote printer, your print request goes over a network to
+the other computer, and then to the printer connected to that system.
+
+At the top of all three Printer Setup: Add printertype Printer windows
+is the CATEGORY arrow. All three windows first appear with the Basic
+category showing; the Configuration category also is available for all
+three windows. If you are adding a serial printer, the Printer Setup:
+Add Serial Printer window also has available the Communication
+category. To change the category, click on the arrow next to
+CATEGORY. A menu of category options appears. Use the Next Page menu
+option to advance to the next category in the list. As you change
+categories, the information requested by the window also changes.
+
+The \d(buttons^button) available for the Printer Setup: Add printer-
+type Printer window are:
+
+        \k(Add Button^^Add ButtonA)\t\t\k(Reset Button^^Reset ButtonA)
+        \k(Cancel Button^^Cancel ButtonA)\t\t\k(Help Button^^Help ButtonA)
+
+More information:
+
+         \k(Printer Setup: Printer Properties - printername Window)
+^2^Add Button=Add ButtonA
+^$330
+5. \k{Printer Setup: Add printertype Printer Window}
+   5.1 Add Button
+
+The Add button adds the printer specified in the Printer Setup: Add
+printertype Printer window to the list of available printers in the
+Printer Setup window. After applying the changes, the Printer Setup:
+Add printertype Printer window closes.
+^2^Reset Button=Reset ButtonA
+^$340
+5. \k{Printer Setup: Add printertype Printer Window}
+   5.2 Reset Button
+
+The Reset button reverses any changes you have not yet applied. The
+Printer Setup: Add printertype Printer window remains open.
+^2^Cancel Button=Cancel ButtonA
+^$350
+5. \k{Printer Setup: Add printertype Printer Window}
+   5.3 Cancel Button
+
+The Cancel button closes the Printer Setup: Add printertype Printer
+window without making any changes.
+^2^Help Button=Help ButtonA
+^$360
+5. \k{Printer Setup: Add printertype Printer Window}
+   5.4 Help Button
+
+The Help button provides on-line help for the Printer Setup: Add
+printertype Printer window.
+^1^Printer Setup: Printer Properties - printername Window
+^$370
+\k{Printer Setup}
+6. Printer Setup: Printer Properties - printername Window
+
+Use the Printer Setup: Printer Properties - printername window to make
+changes to the general setup for an entry in the Printer Setup window.
+
+Three categories available from the Printer Setup: Printer Properties
+printername window: \k(Basic^^BasicPW), \k(Configuration^^ConfigurationPW), and \k(Communication^^CommunicationPW). The category
+windows are similar for each printer type (Parallel, Serial, and
+Remote).
+
+The \d(buttons^button) on the Printer Setup: Printer Properties -
+printername window are:
+
+        \k(Apply Button^^Apply ButtonPW)\t\t\k(Reset Button^^Reset ButtonPW)
+        \k(Cancel Button^^Cancel ButtonPW)\t\t\k(Help Button^^Help ButtonPW)
+
+More information: \k(Printer Setup: Add printertype Printer Window)
+^2^Basic=BasicPW
+^$380
+6. \k{Printer Setup: Printer Properties - printername Window}
+   6.1 Basic
+
+The Basic category windows for local (parallel and serial) and remote
+printers are almost identical. The requested information is as
+follows:
+
+   o Printer Name: Applies to parallel, serial, and remote printers.
+     Enter the name of the printer for which you are changing
+     properties. This is the name by which you identify the printer
+     when you send it print requests. You can enter a printer name
+     only when adding a new printer.
+
+   o Type: Applies to parallel, serial, and remote printers. A text
+     box with a scrollbar lets you choose the type of printer for
+     which you are changing properties. If you have a printer not
+     listed, check your printer's manual for the type of printer it
+     emulates. For example, you might have a printer that can be set
+     to act like an Epson printer, which is listed in the box. In this
+     case, even though your printer is not listed, select Epson.
+
+     If you have a PostScript printer, you have four selections to
+     choose from:
+
+     - PostScript (Parallel)
+
+     - PostScript (Parallel, w/page reversal)
+
+     - PostScript (Serial)
+
+     - PostScript (Serial, w/page reversal)
+
+     The page reversal option reverses the order of the pages before
+     they're printed. This feature is handy for printers such as the
+     Apple LaserWriter II, which do not put the first page on top.
+     Most current PostScript printers, however, output pages in the
+     correct order, so you don't have to select the option with page
+     reversal.
+
+     When adding a remote PostScript printer, any of the PostScript
+     selections work. For a local printer, be sure to select the
+     correct type.
+
+   o Port: Applies to serial and parallel printers. For a serial
+     printer, your options are Com1, Com2, and Other. For a parallel
+     printer your options are Lpt1, Lpt2, and Other.  Click on the
+     option for the port where your printer is connected.
+
+     Note: If you select Other, a Device text box appears. Enter the
+     name of the device you want to print to.
+
+   o Allow Remote Access?: Applies to local printers. You can choose
+     whether or not you want local printers accessed by other systems
+     on the network. Click on Yes if you want others systems to access
+     your local printer. Click on No if you don't.
+
+   o Remote System Name: Applies to remote printers only. Enter the
+     name of the computer to which the remote printer is connected.
+
+   o Remote Printer Name: Applies to remote printers only. Enter the
+     name of the printer on the remote computer if different than the
+     local printer name.
+
+   o Remote Operating System is: Applies to remote printers only.
+     Click on the type of operating system the remote computer is run-
+     ning. Select System V if the remote system uses the UNIX System V
+     Release 4 or higher operating system. Select the BSD option if
+     the remote system uses a Berkeley version of the UNIX system.
+^2^Configuration=ConfigurationPW
+^$390
+6. \k{Printer Setup: Printer Properties - printername Window}
+   6.2 Configuration
+
+The Configuration category windows are the same for parallel, serial,
+and remote printers. This category lets you change whether a banner
+page is required, and whether or not mail is sent when the printer
+fails, page length, page width, character pitch, and line pitch.
+Notice that the Banner Page and Send Mail if printer fails lines are
+for all printers. The remaining characteristics are for non-PostScript
+printers (some non-PostScript printers may not support changes to Page
+Length and Width, or Character and Line Pitch).
+
+   o Always print Banner Page: Banner pages are sheets that print
+     before the print request. They indicate the owner, time, and date
+     of the print request. For printers shared by many people, the
+     banner page makes it easier to separate print request. If you are
+     the primary user of a printer, you may decide not to require a
+     banner page.
+
+     Click on Yes to print a banner page, or on No if it's not
+     required. Notice that this option only determines whether a
+     banner page is required. The command that does the printing (such
+     as the lp command) determines whether or not a banner page is
+     actually printed.
+
+   o Send Mail if printer fails?: If you want to be notified by elec-
+     tronic mail when something happens to prevent a print request
+     from printing, click on Yes. If you do not want to be notified,
+     click on No.
+
+   o Page Length: If you're using the paper size for which the printer
+     is normally set up, leave this text box blank. However, if you're
+     using a different size paper, enter the length in this text box
+     and click on either in or cm. If you want to indicate the length
+     of the page by the number of lines on the page, enter the number
+     and click on chars.
+
+   o Page Width: If you're using the paper size for which the printer
+     is normally set up, leave this text box blank. However, if you're
+     using a different size paper, enter the width in this text box
+     and click on either in or cm. If you want to indicate the width of
+     the page by the number of characters across a page, enter the
+     number and click on chars.
+
+   o Character Pitch: If you're printing at the character pitch for
+     which your printer is normally set up, leave this text box blank.
+     If you're printing at a different character pitch, enter the
+     width of each character and click on either in or cm. If you want
+     to indicate character pitch by the number of characters per inch,
+     enter the number and click on chars. For example, you can enter
+     0.1 and click on in, or enter 10 and click on chars.
+
+   o Line Pitch: If you're printing at the line pitch for which your
+     printer is normally set up, leave this text box blank. If you're
+     printing at a different line pitch, enter the height of each line
+     and click on either in or cm. If you want to indicate line pitch
+     by the number of lines per inch, enter the number and click on
+     chars. For example, you can enter 0.166 and click on in, or enter
+     6 and click on chars.
+^2^Communication=CommunicationPW
+^$400
+6. \k{Printer Setup: Printer Properties - printername Window}
+   6.3 Communication
+
+The Communication category window only appears for serial printers; it
+lets you set the baud rate, parity, stop bits, and character size. The
+computer sending information to the printer must use the same
+parameters as the printer if the printer is to work. Check your
+printer manual for your printer's settings. Change the Printer Setup:
+Printer Properties-printername (Communications category) window to
+reflect the settings used by your printer.
+
+   o Baud Rate: This is the speed that characters are sent to the
+     printer. Click on the speed your printer is set to. Most printers
+     are set at the factory to run at 9600 baud.
+
+   o Parity: The UNIX system normally uses no parity. Unless you
+     specifically change how the operating system works, the Parity
+     setting should be None. Also make sure that your printer is set
+     for no parity.
+
+   o Stop Bits: The UNIX system uses 1 stop bit. Unless you specifi-
+     cally change how the operating system works, the Stop Bits
+     setting should be 1.
+
+   o Character Size: The UNIX system normally uses a character size of
+     8. The Character Size setting should be left at 8.
+^2^Apply Button=Apply ButtonPW
+^$410
+6. \k{Printer Setup: Printer Properties - printername Window}
+   6.4 Apply Button
+
+The Apply button applies any changes you make in the Printer Setup:
+Printer Properties - printername window to the selected entry in the
+Printer Setup window. After applying the changes, the Printer Setup:
+Printer Properties - printername window closes.
+^2^Reset Button=Reset ButtonPW
+^$420
+6. \k{Printer Setup: Printer Properties - printername Window}
+   6.5 Reset Button
+
+The Reset button reverses any changes you have not yet applied. The
+Printer Setup: Printer Properties - printername window remains open.
+^2^Cancel Button=Cancel ButtonPW
+^$430
+6. \k{Printer Setup: Printer Properties - printername Window}
+   6.6 Cancel Button
+
+The Cancel button closes the Printer Setup: Printer Properties -
+printername window without making any changes.
+^2^Help Button=Help ButtonPW
+^$440
+6. \k{Printer Setup: Printer Properties - printername Window}
+   6.7 Help Button
+
+The Help button provides on-line help for the Printer Setup: Printer
+Properties - printername window.

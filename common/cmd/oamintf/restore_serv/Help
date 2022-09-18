@@ -1,0 +1,5 @@
+#ident	"@(#)oamintf:common/cmd/oamintf/restore_serv/Help	1.1.2.2"
+#ident  "$Header: Help 2.0 91/07/12 $"
+ABSTRACT:
+	The items in the "restore" menu provide file restore
+	functions.

@@ -1,0 +1,4 @@
+#ident	"@(#)uts-x86at:io/asy/iasy.cf/Master	1.4"
+#ident	"$Header: $"
+$version 1
+iasy	iasy	kSco	0	0	3

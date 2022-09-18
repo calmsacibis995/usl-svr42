@@ -1,0 +1,133 @@
+#ident	"@(#)uts-x86at:uts.rulefile	1.26"
+#ident "$Header:  $"
+
+# Variables set via the environment required 
+# by this rulefile
+#	ROOT
+#	MACH
+#	TOOLS
+
+RELEASE	=	4.2
+VERSION	=	1
+
+OWN	= bin
+GRP	= bin
+
+
+# target machine specifications 
+
+CCSTYPE	=	ELF
+CPU	=	i386
+PFX	=	i386
+SGS	=	i386
+
+# cross commands
+
+AR	=	$(PFX)ar 
+AS	=	$(PFX)as
+CC	=	$(PFX)cc -Kieee -Ki486 -Xt
+LD	=	$(PFX)ld
+LEX	=	$(PFX)lex
+LINT	=	$(PFX)lint
+LORDER	=	$(PFX)lorder
+M4	=	$(PFX)m4
+MAKE	=	$(PFX)make
+MCS	=	$(PFX)mcs
+NM	=	$(PFX)nm
+SIZE	=	$(PFX)size
+STRIP   =       $(PFX)strip
+TIC	=	tic
+TSORT	=	$(PFX)tsort
+YACC	=	$(PFX)yacc -p$(TOOLS)/usr/ccs/lib/yaccpar
+
+CH	=	#
+INS	=	install
+
+SHELL	=	/bin/sh
+
+AWK	=	awk
+SED	=	sed
+
+# native compiler environment
+
+HCC	=	cc
+HAR	=	ar
+HAS	=	as
+HLD	=	ld
+HNM	=	nm
+CP	=	cp
+RM	=	rm
+SH	=	sh
+MV	=	mv
+LN	=	ln
+
+# flags
+
+ARFLAGS = 
+ASFLAGS	= 	-m
+CFLAGS	=	-O
+LDFLAGS = 	-s
+LFLAGS	=
+LINTFLAGS =
+YFLAGS	=
+
+CCSBIN	=	$(TOOLS)/bin
+CCSLIB	=	$(TOOLS)/usr/ccs/lib
+CONF	= 	$(ROOT)/$(MACH)/etc/conf
+IDINSTALL	=	$(CONF)/bin/$(PFX)idinstall -f ../$(KBASE)/res_major
+INC	=	$(ROOT)/$(MACH)/usr/include
+
+DEV1	=
+DEV2	=
+
+GLOBALDEF = -D_KERNEL -D_KERNEL_HEADERS -DSTATIC="" -DVPIX -DMERGE386 -DEVGA -DWEITEK
+
+GLOBALINC = -I$(KBASE)
+
+DEFLIST	= \
+	$(DEV1)\
+	$(LOCALDEF)\
+	$(LOCALINC)\
+	$(GLOBALDEF)\
+	$(GLOBALINC)\
+	$(DEV2)
+
+MAKEARGS = \
+	ROOT='$(ROOT)' \
+	INC='$(INC)' \
+	AR='$(AR)' \
+	AS='$(AS)' \
+	CC='$(CC)' \
+	LD='$(LD)' \
+	M4='$(M4)' \
+	MAKE='$(MAKE)' \
+	MCS='$(MCS)' \
+	LEX='$(LEX)' \
+	LINT='$(LINT)' \
+	LORDER='$(LORDER)' \
+	NM='$(NM)' \
+	STRIP='$(STRIP)' \
+	SIZE='$(SIZE)' \
+	TSORT='$(TSORT)' \
+	YACC='$(YACC)' \
+	INS='$(INS)' \
+	ARFLAGS='$(ARFLAGS)' \
+	ASFLAGS='$(ASFLAGS)' \
+	CFLAGS='$(CFLAGS)' \
+	LDFLAGS='$(LDFLAGS)' \
+	LFLAGS='$(LFLAGS)' \
+	LINTFLAGS='$(LINTFLAGS)' \
+	YFLAGS='$(YFLAGS)' \
+	DEV1='$(DEV1)' \
+	DEV2='$(DEV2)'
+
+.c.o:
+	$(CC) $(CFLAGS) $(DEFLIST) -c $<
+
+.c.a:
+	$(CC) $(CFLAGS) $(DEFLIST) -c $<
+	$(AR) $(ARFLAGS) $@ $*.o
+	rm -f $*.o
+
+.s.o:
+	$(AS) $(ASFLAGS) $<

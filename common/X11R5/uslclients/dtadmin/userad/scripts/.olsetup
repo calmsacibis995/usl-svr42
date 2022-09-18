@@ -1,0 +1,166 @@
+#ident	"@(#)dtadmin:userad/scripts/.olsetup	1.12"
+#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+#	Copyright (c) 1988, 1989, 1990 AT&T
+#	  All Rights Reserved
+
+#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+#	UNIX System Laboratories, Inc.
+#	The copyright notice above does not evidence any
+#	actual or intended publication of such source code.
+
+
+DISPLAY=unix:0 export DISPLAY	#!@ Do not edit this line !@
+DESKTOPDIR=$HOME export DESKTOPDIR	#!@ Do not edit this line !@
+DT=${DT:-yes} export DT	#!@ Do not edit this line !@
+XGUI=OPEN_LOOK export XGUI	#!@ Do not edit this line !@
+XNETACCESS=on			#!@ Do not edit this line !@
+XWINHOME=${XWINHOME:-/usr/X}	export XWINHOME	#!@ (or your mount point) !@
+PATH=$PATH:$XWINHOME/bin export PATH	#!@ Do not edit this line !@
+LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$XWINHOME/lib export LD_LIBRARY_PATH	#!@ Do not edit this line !@
+
+if [ "$XDM_LOGIN" = "yes" ];	# using graphical login
+then
+    case $XGUI in
+	MOTIF)	F="-motif" ;;
+	*)	F="" ;;
+    esac
+    case $DT in
+	n|N|no|No|false|False|FALSE)
+		$XWINHOME/bin/nondesktop ;	# prompt user for decision
+		RETVAL=$? 
+		if [ $RETVAL -eq 6 ]; then	# user wants to use the desktop
+			$XWINHOME/bin/dtm $F;
+			exit $?
+		else 				# returning to xdm for control
+			exit $RETVAL
+		fi
+		;;
+	*) $XWINHOME/bin/dtm $F; exit $? ;;	# standard desktop user
+    esac
+fi	# end of if for XDM_LOGIN
+
+. $XWINHOME/adm/dtuser.msgs
+
+y1=`$GETTXT $TXT_Yes1`
+y2=`$GETTXT $TXT_Yes2`
+y3=`$GETTXT $TXT_Yes3`
+y4=`$GETTXT $TXT_Yes4`
+y5=`$GETTXT $TXT_Yes5`
+n1=`$GETTXT $TXT_No1`
+n2=`$GETTXT $TXT_No2`
+n3=`$GETTXT $TXT_No3`
+n4=`$GETTXT $TXT_No4`
+n5=`$GETTXT $TXT_No5`
+
+validNode ()
+{
+	if [ -z "$1" ]
+	then
+		return 1
+	fi
+	if [ -x /usr/sbin/ping ]
+	then
+		Host=`echo $1 | /usr/bin/cut -f1 -d":"`
+		if /usr/sbin/ping "$Host" 2 > /dev/null 2>&1 
+		then
+			return 0
+		else
+			if [ "$2" = "yes" ]
+			then
+				$GETTXT $TXT_BadRemote
+			fi
+			return 2
+		fi
+	fi
+	return 0
+} ;
+
+
+WhereAreYou () 
+{
+	$GETTXT $TXT_WhereAreYou
+	read NODE
+	if [ -n "$NODE" ]
+	then
+		if validNode "$NODE" "yes"
+		then
+			if  echo $NODE | /usr/bin/grep ':[0-9]' >/dev/null
+			then
+				DISPLAY=$NODE
+			else
+				DISPLAY=${NODE}:0
+			fi
+			export DISPLAY
+			EXECUTE="yes" 
+		fi
+	else
+		EXECUTE="no"
+	fi
+} ;
+
+case `/usr/bin/tty` in
+    /dev/syscon|/dev/console)
+	at_console=yes ;;
+    *)
+	at_console=no
+	# so remote users don't accidently run clients displaying on console..
+	unset DISPLAY ;; 
+esac
+
+CONSEM=no export CONSEM
+EXECUTE=no
+NODE=""
+case $DT in
+    n|N|no|No|false|False|FALSE)
+       EXECUTE=no ;;
+    *)
+       if [ "$at_console" = "yes" ]
+       then
+            EXECUTE="yes"
+       else
+	    EXECUTE="?"
+	    while [ "$EXECUTE" = "?" ]
+	    do
+	            $GETTXT $TXT_DisplayDT
+	            read NODE
+	            case $NODE in
+	                $n1|$n2|$n3|$n4|$n5)
+	                    EXECUTE="no" ;;
+	                $y1|$y2|$y3|$y4|$y5)
+	                    if validNode "$REMOTE" "no"
+	                    then
+	                        $GETTXT $TXT_LoginFromREMOTE
+	                        read NODE
+	                        case $NODE in
+	                            $y1|$y2|$y3|$y4|$y5)
+	                               DISPLAY=${REMOTE}:0
+	                               export DISPLAY
+	                               EXECUTE="yes" ;;
+	                            *)
+	                               WhereAreYou ;;
+	                        esac
+			    else
+				WhereAreYou
+	                    fi ;;
+	                *:[0-9])
+	                    DISPLAY=$NODE export DISPLAY
+	                    EXECUTE="yes" ;;
+	                *)
+			    $GETTXT $TXT_BadDisplayDT
+	            esac
+	    done
+    fi
+esac
+if [ "$EXECUTE" = "yes" ]
+then
+    case $XGUI in
+	MOTIF)	F="-motif" ;;
+	*)	F="" ;;
+    esac
+    if [ $DISPLAY = "unix:0" ]
+    then
+	$XWINHOME/bin/olinit $F $XWINHOME/bin/dtm -- -xnetaccess $XNETACCESS
+    else
+	$XWINHOME/bin/dtm $F &
+    fi
+fi

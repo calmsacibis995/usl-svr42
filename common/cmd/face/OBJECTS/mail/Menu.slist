@@ -1,0 +1,104 @@
+#ident	"@(#)face:OBJECTS/mail/Menu.slist	1.1.4.2"
+#ident  "$Header: Menu.slist 1.5 91/10/22 $"
+
+`if [ "${SFIRST}" = "true" ];
+then
+	message -w $$uxface:428:"Creating list of saved mail messages.  Please wait...";
+	set -l SFIRST=false;
+else
+	message -w $$uxface:429:"Updating list of saved mail messages.  Please wait...";
+fi;
+cocreate -R listing -s ( -e $$uxface:416:"Unknown command" -i saved mailx -N -f $ARG2;
+cosend saved "set MBOX=$HOME/mbox";
+cosend saved "set screen=999";
+cosend saved "set hold";
+cosend saved "ignore message status"`
+
+menu=$$uxface:412:"Read Saved Mail"
+help=OPEN TEXT OBJECTS/Text.h $$uxface:430:"HELP to Read Saved Mail" mail/T.smail
+altslks=true
+rows=18
+
+init=`if [ "${NR}" -eq "0" ];
+then
+	message -b 1 $$uxface:431:"There are no longer any saved messages.";
+	echo false;
+else
+	echo true;
+fi`
+
+close=`	codestroy -R listing saved q | set -l MBYE;
+	regex -v "$MBYE"
+		$$uxface:422:'^Held +([0-9]+ messages*)$0 in' $$uxface:423:'$m0 left in mailbox.'
+		'.*'				 '' | set -l MLEFT;
+	regex -v "$MBYE"
+		$$uxface:424:'^New mail has arrived'	$$uxface:425:'New mail has arrived.'
+		'.*'			'' | set -l MNEW;
+	regex -v "$MNEW:$MLEFT"
+		'^:$'		'echo'
+		'^[^:]+:'	'message -b 2 "$MNEW"'
+		'.*'		'message -b 1 "$MLEFT"' | set -l CMD;
+	$CMD;
+	unset -l MBYE -l MNEW -l MLEFT -l MTO -l MSUBJ`
+
+# First two cosends are needed to allow new messages to pop up in window
+# as they are delivered (or rather every $MAILCHECK seconds).
+
+`cosend saved "fi $ARG2" | set -l MUPD;
+cosend saved "fi $ARG3" > /dev/null;
+cosend saved "h" | regex
+'^[^0-9]*([0-9]+)$0 ([^ ]+)$1 +(...)$2 (...)$3 +([0-9]+)$4 (..)$5:(..)$6 +([0-9]+)$7/[0-9]+ *(.*)$8$'
+'$m0+$m1+$m2+$m3+$m4+$m5+$m6+$m7+$m8' | awk -F+ '
+	{
+		hour = $6
+		tod = "pm"
+		if ($6 > 12)
+			hour -= 12
+		else {
+			if (hour == 0)
+				hour = 12
+		}
+		if ($6 < 12)
+			tod = "am"
+
+		printf "name=\"%-3d %s\"\n", $1, $2
+		printf "description=\"%s/%s %-2d %2d:%s%s %5s lines %-25s\"\n", $3, $4, $5, hour, $7, tod, $8, $9
+		printf "action=OPEN TEXT OBJECTS/mail/Text.read saved %d \"%s\" \"%s\"\n", $1, $2, $9
+		printf "lininfo=`set -l MTO=\"%s\" -l MSUBJ=\"%s\"`\"%-3d\"\n", $2, $9, $1
+		print $$uxface:426:"itemmsg=\"Move to a message with arrow keys and press ENTER to read the message.\""
+	}
+';
+regex -v "$MUPD"
+	$$uxface:427:'^New mail has arrived.'	'NEW'
+	'.*'				'' | set -l MNEW;
+regex -v "$MNEW"
+	'^$'	'echo'
+	'.*'	'message -b 2 $$uxface:425:"New mail has arrived."' | set -l CMD;
+$CMD;
+unset -l $MUPD`
+
+name=$$uxface:144:"HELP"
+button=9
+action=help
+ 
+name=$$uxface:338:"REPLY"
+button=10
+action=OPEN OBJECTS/mail/Form.send $$uxface:339:"Reply to" "${MTO}" "Re: ${MSUBJ}"	
+ 
+name=""
+button=11
+action=nop
+
+name=$$uxface:342:"DELETE"
+button=12
+action=`message -w $$uxface:343:"Deleting message. Please wait...";
+	cosend saved "d ${LININFO}" > /dev/null;
+	message -w $$uxface:344:"Message has been deleted."`update
+
+name=$$uxface:400:"UPDATE"
+button=13
+action=update
+
+name=$$uxface:149:"CANCEL"
+button=14
+action=close

@@ -1,0 +1,6 @@
+#ident	"@(#)uts-x86at:io/qt/qt.cf/Node	1.2"
+#ident	"$Header: $"
+qt	rmt/c0s0n	c	0
+qt	rmt/c0s0	c	4
+qt	rmt/c0s0nr	c	8
+qt	rmt/c0s0r	c	12

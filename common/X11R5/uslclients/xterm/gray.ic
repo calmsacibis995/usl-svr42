@@ -1,0 +1,26 @@
+#ifndef	NOIDENT
+#ident	"@(#)xterm:gray.ic	1.5"
+#endif
+/*
+ gray.ic (Icon file)
+	Acc: 619819883 Tue Aug 22 16:11:23 1989
+	Mod: 619819901 Tue Aug 22 16:11:41 1989
+	Sta: 619819901 Tue Aug 22 16:11:41 1989
+	Owner: 7007
+	Group: 1985
+	Permissions: 644
+*/
+/*
+	START USER STAMP AREA
+*/
+/*
+	END USER STAMP AREA
+*/
+/* @(#)gray.ic	X10/6.6	11/3/86 */
+#define gray_width 16
+#define gray_height 16
+static unsigned char gray_bits[] = {
+   0x55, 0x55, 0xaa, 0xaa, 0x55, 0x55, 0xaa, 0xaa,
+   0x55, 0x55, 0xaa, 0xaa, 0x55, 0x55, 0xaa, 0xaa,
+   0x55, 0x55, 0xaa, 0xaa, 0x55, 0x55, 0xaa, 0xaa,
+   0x55, 0x55, 0xaa, 0xaa, 0x55, 0x55, 0xaa, 0xaa};

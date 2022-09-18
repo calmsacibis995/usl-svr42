@@ -1,0 +1,14 @@
+*** ./etc/uucp/Dialcodes	Wed Feb  5 18:29:25 1992
+--- ../p8.save/./etc/uucp/Dialcodes	Wed Feb  5 18:29:08 1992
+***************
+*** 1,4 ****
+! #ident	"@(#)/etc/uucp/Dialcodes.sl 1.1 4.0 05/29/91 39037 AT&T-USL"
+  #
+  #	The Dialcodes file contains dial-code abbreviations
+  #	that can be used in the 'Phone' field of the Systems
+--- 1,5 ----
+! #ident	"@(#)/etc/uucp/Dialcodes.sl 1.2 4.1dt 05/28/92 28753 AT&T-USL"
+! #ident "$Header: Dialcodes 1.1 91/02/28 $"
+  #
+  #	The Dialcodes file contains dial-code abbreviations
+  #	that can be used in the 'Phone' field of the Systems

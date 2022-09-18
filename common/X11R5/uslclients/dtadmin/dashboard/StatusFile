@@ -1,0 +1,10 @@
+OS version	+	builtin # essentially uname -a
+node	+	builtin
+login	+	builtin
+date	+	builtin
+clock	+60	builtin
+memory	+r	builtin # prtconf | grep Memory
+math	+r	builtin # prtconf | grep Math
+diskette	+r	builtin
+ctape		+r	builtin
+disk	+60r	builtin

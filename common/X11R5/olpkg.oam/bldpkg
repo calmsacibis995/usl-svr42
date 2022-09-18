@@ -1,0 +1,112 @@
+#ident	"@(#)olpkg.oam:bldpkg	1.6"
+#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+#	Copyright (c) 1988, 1989, 1990 AT&T
+#	  All Rights Reserved
+
+#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+#	UNIX System Laboratories, Inc.
+#	The copyright notice above does not evidence any
+#	actual or intended publication of such source code.
+
+
+#
+# Packaging script for DESTiny foundation set graphics packages
+
+# Assume current dir is "olpkg.oam"
+# with subdirectories pkg.dtolrun, pkg.dtxt, pkg.desktop adm and consem.
+#
+# this script will setup $XDIR, per the source generation instructions,
+# build the consem drives and create the pkg spool directory. bldmedia
+# script will then transfer the package to tape or floppy.
+
+# WARNING! this is intermediate between the old graphics manual building
+# of packages and an integrated DESTiny package setup, which will need to
+# do the consem build.  For P6 (only), two versions of the desktop metaphor
+# package exist, one with and one without consem.  bldpkg does its usual
+# thing, and packages the version with that, pkg.dtmcons.  To avoid the
+# complications of this, use pkg.desktop instead (thereby omitting consem).
+
+PKGS="dtxt dtolrun dtmcons"
+LOAD=P6
+SIZE=${SIZE:-2200}
+CCDEFINE=-DSVR4_0
+PSTAMP="$LOAD"
+PACKDIR=`pwd`
+[ `basename $PACKDIR` != olpkg.oam ] && {
+	echo "This script must be executed from the olpkg.oam directory"
+	exit 1
+}
+ROOT=`cd ../../../..;pwd`	
+OUTDIR=$ROOT/tmp/pkg
+
+if [ $# -eq 0 ]
+then
+	PKGS="$PKGS"
+else
+	PKGS="$*"
+fi
+
+echo "\tX Binary tree: /usr/X"
+echo "\tX Source tree: $ROOT"
+echo "\tX Spool  tree: $OUTDIR"
+echo "\tPackages: $PKGS\n"
+
+
+export ROOT LOAD SIZE PSTAMP
+
+[ -d $OUTDIR ] || mkdir -p $OUTDIR
+for i in $PKGS
+do
+	rm -rf $OUTDIR/$i
+done
+
+[ -d $PACKDIR/tmp ] || mkdir -p $PACKDIR/tmp
+
+# these need to be striped down before being placed into prototype (end)
+cd $PACKDIR/adm
+STRIPFILES=".Xdefaults .olinitrc .olsetup olxt.compress"
+for i in $STRIPFILES
+do
+	egrep -v "^#|^$" $i > $PACKDIR/tmp/$i
+done
+
+#
+# Compile consem here, on this 386 machine
+#
+
+if [ `uname -m` = "i386" ]
+then
+
+	echo "Building consem driver..."
+	CONFILES="Space.c consem.h Driver.o"
+	cd $PACKDIR/consem
+	cp consem.h /usr/include/sys
+	cc -O -c $CCDEFINE consem.c 
+	mv consem.o $PACKDIR/tmp/Driver.o
+	cp Space.c  $PACKDIR/tmp/Space.c
+	cp consem.h  $PACKDIR/tmp/consem.h
+	egrep -v "^#|^$" Master > $PACKDIR/tmp/Master
+	egrep -v "^#|^$" System > $PACKDIR/tmp/System
+	cd $PACKDIR
+
+fi	# i386
+#
+# Build the packages in the spool directory
+#
+cd $PACKDIR
+for i in  $PKGS 
+do
+	if [ -f pkg.$i/prototype ];then
+		cd pkg.$i; echo pkg.$i
+		#
+		# note that ROOT is passed for the prototype file, but that the
+		# ROOT for binaries is / (-r /). The X gen puts everything in
+		# /usr/X
+		#
+		pkgmk -p $PSTAMP -o -v${LOAD} -l${SIZE} -r/ -d$ROOT/tmp/pkg \
+			ROOT=$ROOT 
+		cd ..
+	fi
+done
+
+echo "Packaging preparation completed"

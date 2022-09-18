@@ -1,0 +1,39 @@
+#ident	"@(#)olpkg.oam:pkg.dtxtfonts/menu.dtxtfonts	1.1"
+#ident	"$Header: $"
+.pageno
+Page %d of %d
+.ul
+X Window Imstallation
+.hhelp_ban
+Help on Help and How to Use the Menu Tool
+.helpbanner
+Help on Building Font Binaries
+.ur
+Building Font Binaries
+.ll
+.lr
+Del=Cancel F1=Help
+.top
+On this screen, you have the options to build your fonts for the X Window
+System.  This takes the machine-independent format in which the fonts are
+distributed and compiles them into a machine readable format.
+
+To use the X-Window system, the font binaries must be built.  This takes a
+few minutes.  You can build them now, or do it at a later time by running
+the shell script, /usr/X/adm/bldfonts.
+
+Do you want to build the font binaries now?
+.form
+Build the font binaries now
+Do not build the font binaries now
+.optstring
+Your choices are:
+.selection
+Type '1' or '2' and press ENTER/RETURN to continue:
+.help
+PUT DTXTFONTS HELP INFO HERE!
+.helpinst
+ESC=Quit help  Del=Cancel  F1=Help  1=Forward  2=Back
+.working
+Working...
+.end

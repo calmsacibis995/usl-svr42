@@ -1,0 +1,80 @@
+#ident	"@(#)olpkg.oam:adm/Xunix_config	1.1"
+#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+#	Copyright (c) 1988, 1989, 1990 AT&T
+#	  All Rights Reserved
+
+#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+#	UNIX System Laboratories, Inc.
+#	The copyright notice above does not evidence any
+#	actual or intended publication of such source code.
+
+
+#
+#	Script to reconfigure kernel parameters
+#
+
+
+TMP=/tmp/xp1.err
+
+
+echo "\n\tThis script reconfigures the operating system state for OPEN LOOK."
+echo "\n\tYou should execute this program only if you have installed the AT&T"
+echo "\tStarLAN Package after installing the OPEN LOOK Packages."
+echo "\n\tStrike ENTER to continue or ESC to stop:"
+message -c >/dev/null
+if [ $? = 1 ]
+then
+	exit 0
+fi
+
+
+#
+# Kernel modifications
+#
+
+echo "\n\tThe number of streams buffers and pty devices allocated for your\n\
+\tUNIX System must be increased so that your OPEN LOOK system may\n\
+\tfunction properly. The UNIX System kernel will be rebuilt."
+
+if [ ! -r /etc/conf/cf.d -o ! -w /etc/conf/cf.d -o ! -x /etc/conf/cf.d ]
+then
+	echo "\n\tThe old stune file stune.noX is copied onto /tmp"
+	echo "\tPlease move it to /etc/conf/cf.d"
+	cp /etc/conf/cf.d/stune /tmp/stune.noX
+else
+	cp /etc/conf/cf.d/stune /etc/conf/cf.d/stune.noX
+fi
+
+
+echo y | /etc/conf/bin/idtune -m NPROC 100 > /dev/null
+echo y | /etc/conf/bin/idtune -m NREGION 300 > /dev/null
+echo y | /etc/conf/bin/idtune -m NQUEUE 512 > /dev/null
+echo y | /etc/conf/bin/idtune -m NSTREAM 64 > /dev/null
+echo y | /etc/conf/bin/idtune -m NBLK4096 22 > /dev/null
+echo y | /etc/conf/bin/idtune -m NBLK2048 20 > /dev/null
+echo y | /etc/conf/bin/idtune -m NBLK1024 20 > /dev/null
+echo y | /etc/conf/bin/idtune -m NBLK512 64 > /dev/null
+echo y | /etc/conf/bin/idtune -m NBLK256 64 > /dev/null
+echo y | /etc/conf/bin/idtune -m NBLK128 256 > /dev/null
+echo y | /etc/conf/bin/idtune -m NBLK64 256 > /dev/null
+echo y | /etc/conf/bin/idtune -m NBLK16 128 > /dev/null
+echo y | /etc/conf/bin/idtune -m NBLK4 512 > /dev/null
+echo y | /etc/conf/bin/idtune -m NUMTRW 43 > /dev/null
+echo y | /etc/conf/bin/idtune -m SHLBMAX 6 > /dev/null
+
+/etc/conf/bin/idbuild 2>> $TMP
+if [ $? != 0 ]
+then
+	# If an error occurs here, remove the driver components.
+	echo "\n\tAn error was encountered attempting to rebuild the UNIX System"
+	echo "\tkernel. Installation cancelled."
+	echo "\tThe kernel modifications were not installed, and the UNIX System"
+	echo "\thas not been modified."
+#	echo "\tErrors have been written to the file $TMP."
+	mv /etc/conf/cf.d/stune.noX /etc/conf/cf.d/stune
+	exit 1
+fi
+
+rm -f $TMP
+
+exit 0

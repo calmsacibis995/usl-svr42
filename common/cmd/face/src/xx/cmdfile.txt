@@ -1,0 +1,71 @@
+#ident	"@(#)face:src/xx/cmdfile.txt	1.5.4.5"
+#ident  "$Header: cmdfile.txt 1.10 92/01/24 $"
+
+name=$$uxfmli:45:cancel
+help=open text $VMSYS/OBJECTS/Text.h $$uxface:558:"Help facility: cancel" cancel
+
+name=$$uxfmli:46:cleanup
+help=open text $VMSYS/OBJECTS/Text.h $$uxface:559:"Help facility: cleanup" cleanup
+
+name=$$uxfmli:51:exit
+action=nop
+
+name=$$uxfmli:51:exit
+action=`if $VMSYS/bin/chkperm -t exit;
+then
+	echo 'OPEN TEXT $VMSYS/OBJECTS/Text.exit';
+else
+	echo 'exit_now';
+fi`
+help=open text $VMSYS/OBJECTS/Text.h $$uxface:560:"Help facility: exit" exit
+
+name=$$uxfmli:53:frm-mgmt
+help=open text $VMSYS/OBJECTS/Text.h $$uxface:561:"Help facility: frm-mgmt" frm-mgmt
+
+name=$$uxfmli:54:goto
+help=open text $VMSYS/OBJECTS/Text.h $$uxface:562:"Help facility: goto" goto
+
+name=$$uxfmli:55:help
+help=open text $VMSYS/OBJECTS/Text.h $$uxface:563:"Help facility: help" help
+
+name=$$uxfmli:57:next-frm
+help=open text $VMSYS/OBJECTS/Text.h $$uxface:564:"Help facility: next-frm" next-frm
+
+name=$$uxfmli:59:prev-frm
+help=open text $VMSYS/OBJECTS/Text.h $$uxface:565:"Help facility: prev-frm" prev-frm
+
+name=$$uxfmli:62:refresh
+help=open text $VMSYS/OBJECTS/Text.h $$uxface:566:"Help facility: refresh" refresh
+
+
+`if $VMSYS/bin/chkperm -t unix;
+then
+	echo 'name=$$uxfmli:69:unix-system';
+	echo 'help=open text $VMSYS/OBJECTS/Text.h $$uxface:567:"Help facility: unix-system" unix';
+else
+	echo 'name=$$uxfmli:69:unix-system';
+	echo 'action=nop';
+	echo 'name=$$uxfmli:71:unix';
+	echo 'action=nop';
+fi`
+
+name=$$uxfmli:70:update
+help=open text $VMSYS/OBJECTS/Text.h $$uxface:568:"Help facility: update" update
+
+name=$$uxfmli:67:time
+action=nop
+
+name=$$uxfmli:67:time
+action=`date '+%X'|message -t`nop
+
+`if [ -f /usr/vpix/dosinst ];
+then
+	echo 'name=$$uxface:576:dos-to-unix';
+	echo 'action=OPEN FORM $VMSYS/OBJECTS/dos/Form.udconv d2u';
+	echo 'help=OPEN TEXT $VMSYS/OBJECTS/Text.h "$$uxface:576:dos-to-unix" dos/T.hdosunix';
+
+	echo 'name=$$uxface:577:unix-to-dos';
+	echo 'action=OPEN FORM $VMSYS/OBJECTS/dos/Form.udconv u2d';
+	echo 'help=OPEN TEXT $VMSYS/OBJECTS/Text.h "$$uxface:577:unix-to-dos" dos/T.hunixdos';
+fi`
+

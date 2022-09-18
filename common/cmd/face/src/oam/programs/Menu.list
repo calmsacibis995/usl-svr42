@@ -1,0 +1,19 @@
+#ident	"@(#)face:src/oam/programs/Menu.list	1.3.4.3"
+#ident  "$Header: Menu.list 1.5 91/11/06 $"
+
+menu=$$uxface:538:"List Global Programs"
+
+framemsg=$$uxface:387:"Press CANCEL to return to the previous frame."
+
+lifetime=shortterm
+
+help=open TEXT $INTFBASE/Text.itemhelp F1
+
+`fmlgrep '^vmsys:' /etc/passwd | fmlcut -f6 -d: | set -e VMSYS;
+$VMSYS/bin/listserv -l VMSYS|regex '^(init.*)$0$' '$m0'
+'^(.*)$0$' '
+name=$m0
+action=badchar'`
+
+name=""
+button=3

@@ -1,0 +1,11 @@
+Use the pushpin to pin up a pop-up window for continued access.
+
+Move the pointer to an unpinned pushpin and click SELECT to push the
+pin in the hole. Click SELECT on a pinned pushpin to pop it out of
+the hole and dismiss the pop-up window.
+
+When the pop-up window is displayed in an unpinned state, the pop-up
+window is automatically dismissed the next time you click SELECT on an
+action button in that window. If you want to dismiss the window without
+issuing a command, click SELECT on the pushpin to pin the window, and
+then click SELECT to dismiss the window.

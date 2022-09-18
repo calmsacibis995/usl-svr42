@@ -1,0 +1,29 @@
+#ident	"@(#)oamintf:common/cmd/oamintf/usermgmt/Text.rctabnok	1.1.3.2"
+#ident  "$Header: Text.rctabnok 2.0 91/07/12 $"
+################################################################################
+#	Module Name: Text.rctabnok
+################################################################################
+title="Errors Removing User's Crontab Entries"
+
+framemsg=`readfile $INTFBASE/conf.msg`
+
+close=`rm -f $URMERR`
+
+rows=5
+columns=75
+
+text="
+  User $ARG1 was removed from the system, however an error
+  occurred during the attempt to remove $ARG1's crontab entries.
+
+  `readfile $URMERR`"
+
+altslks
+
+name=CONT
+button=11
+action=CLOSE
+
+name=CANCEL
+button=14
+action=CLEANUP

@@ -1,0 +1,100 @@
+#ident	"@(#)mk:i386at/:mk	1.16"
+#ident "$Header: $"
+#
+#	Shell script for rebuilding the UNIX System
+#
+# 	For cross rebuilding set at least env variables MACH, ROOT, TOOLS,
+#	SYMLINK and MAKE, for native rebuilding you can use the default values.
+#
+#	MUST fill in the correct values for ROOT, MACH, CPU, WORK, and TOOLS
+#	Also, you must build the binary mkmerge command (:mkall should have done this)
+
+ROOT=${ROOT:-''}
+TOOLS=${TOOLS:-''}
+MACH=${MACH:-'i386at'}
+CPU=${CPU:-'i386'}
+WORK=${WORK:-'work'}
+
+export CPU MACH ROOT TOOLS WORK
+
+TMPFILE=/tmp/mk$$
+trap "rm -f $TMPFILE ; exit 1" 1 2 3 15
+
+UID_NAME=`id|sed 's/[()]/ /gp'|awk '{print $2}'`
+
+#	We'll set -e to stop on errors until
+#	we finish building the xenv
+
+set -e
+
+#	make directories in $ROOT/$MACH
+./:mktarget "${ROOT}" "${MACH}" >target.out 2>&1
+
+#	install usr/include and usr/include/sys header files
+./:mkhead "${ROOT}" "${MACH}" "${WORK}" >mkhead.out 2>&1
+
+./:mksyshead "${ROOT}" "${MACH}" "${WORK}" >syshead.out 2>&1
+
+./:mkfiles ${ROOT} ${MACH} ${WORK} >files.out 2>&1
+
+#
+#	Build xenv
+#
+#	The args are:	CPU we are building (as in directory in sgs)
+#			ROOT of all src and binaries
+#			TOOLS where xenv is to be installed
+#			MACH, i386at, MX300I, etc.
+#			WORK where all source is merged into
+#			PREFIX of CCS we are using to build this xenv
+./:mkxenv "${CPU}" "${ROOT}" "${TOOLS}" "${MACH}" "${WORK}" '' >xenv.out 2>&1
+
+set +e
+
+#	build the OS itself
+./:mkuts "${ROOT}" "${MACH}" "${WORK}" "${TOOLS}" "${CPU}" >uts.out 2>&1
+
+#
+#	Build native CCS and libraries
+#
+./:mknatccs "${CPU}" "${ROOT}" "${TOOLS}" "${MACH}" "${WORK}" "${CPU}" >natccs.out 2>&1
+
+#	build the system administration tools
+if [ "$ROOT" != "" ]
+then
+	./:mkcmd ${ROOT} ${MACH} ${WORK} ${TOOLS} ${CPU} .adm >cmdadm.out 2>&1
+fi
+
+#
+# Build SVR4.2 pkgmk & pkgtrans if on a 4.0 machine
+#
+sysrel=`/usr/bin/uname -r`
+if [ "$sysrel" = "4.0" ]
+then
+	./:mkpkgtools ${ROOT} ${WORK} ${TOOLS} >pkgtools.out 2>&1
+fi
+
+#
+#	build all the commands
+#	(no need to build CCS tools)
+(cd ${ROOT}/usr/src/${WORK} ; ls cmd | \
+	egrep -v "^cb$|^cflow$|^cscope$|^ctrace$|^cxref$|^debug$|^fur$|^ldd$|^make$|^pkgtools$|^prof$|^regcmp$|^sccs$|^sdb$|^sgs$" \
+	> $TMPFILE)
+./:mkcmd ${ROOT} ${MACH} ${WORK} ${TOOLS} ${CPU} `cat $TMPFILE` >cmd.out 2>&1
+
+#	xcplibs are built with other libraries
+#	during :mkxenv and :mknatccs, so no need
+#	to make them here
+#	./:mkxcplib ${ROOT} ${MACH} ${WORK} ${TOOLS} ${CPU}
+
+./:mkxcpcmd ${ROOT} ${MACH} ${WORK} ${TOOLS} ${CPU} >xcpcmd.out 2>&1
+
+./:mkeaccmd ${ROOT} ${MACH} ${WORK} ${TOOLS} ${CPU} >eaccmd.out 2>&1
+
+./:mkucb ${ROOT} ${MACH} ${WORK} ${TOOLS} ${CPU} >ucb.out 2>&1
+
+./:mkX ${ROOT} ${MACH} ${WORK} ${TOOLS} ${CPU} >X.out 2>&1
+
+
+rm -f $TMPFILE
+
+exit 0

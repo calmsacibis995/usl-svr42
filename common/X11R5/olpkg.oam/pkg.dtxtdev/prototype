@@ -1,0 +1,237 @@
+#ident	"@(#)olpkg.oam:pkg.dtxtdev/prototype	1.13"
+#	Copyright (c) 1990, 1991 UNIX System Laboratories, Inc.
+#	Copyright (c) 1988 AT&T
+#	  All Rights Reserved
+
+#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+#	UNIX System Laboratories, Inc.
+#	The copyright notice above does not evidence any
+#	actual or intended publication of such source code.
+
+
+i copyright
+i depend
+i pkginfo
+i postinstall
+i preremove
+
+!PKGINST=dtxtdev
+
+!default 0755 bin bin
+
+d enduser /usr ? ? ?
+d enduser /usr/include ? ? ?
+
+d enduser /usr/X ? ? ?
+d enduser /usr/X/bin ? ? ?
+d enduser /usr/X/lib ? ? ?
+d enduser /usr/X/lib/config
+d enduser /usr/X/lib/app-defaults
+d enduser /usr/X/include
+s enduser /usr/include/X11=/usr/X/include/X11
+d enduser /usr/X/include/X11
+d enduser /usr/X/include/X11/Xmu
+d enduser /usr/X/include/X11/Xaw
+d enduser /usr/X/include/X11/extensions
+
+f enduser /usr/X/bin/imake=/usr/X/bin/imake_nat
+f enduser /usr/X/bin/makedepend=/usr/X/bin/makedepend_nat
+f enduser /usr/X/bin/appres
+f enduser /usr/X/bin/listres
+f enduser /usr/X/bin/editres
+f enduser /usr/X/bin/viewres
+f enduser /usr/X/bin/showsnf
+f enduser /usr/X/bin/xstdcmap
+f enduser /usr/X/bin/rgb
+f enduser /usr/X/bin/xhw
+f enduser /usr/X/bin/xhwTK
+f enduser /usr/X/bin/hwA
+f enduser /usr/X/bin/hw
+f enduser /usr/X/bin/xfd
+f enduser /usr/X/bin/xprop
+f enduser /usr/X/bin/xlsatoms
+f enduser /usr/X/bin/xgc
+f enduser /usr/X/bin/xlsfonts
+f enduser /usr/X/bin/bdftosnf=/usr/X/bin/bdftosnf_nat
+f enduser /usr/X/bin/xfontsel
+f enduser /usr/X/bin/xlswins
+f enduser /usr/X/bin/xfed
+f enduser /usr/X/bin/xdpyinfo
+f enduser /usr/X/bin/xevent
+f enduser /usr/X/bin/xinfo
+
+!default 0644 bin bin
+
+f enduser /usr/X/lib/libXau.a
+f enduser /usr/X/lib/libXt.a
+f enduser /usr/X/lib/libX11.a
+f enduser /usr/X/lib/libXmu.a
+f enduser /usr/X/lib/libXaw.a
+f enduser /usr/X/lib/libXext.a
+f enduser /usr/X/lib/libfont.a
+f enduser /usr/X/lib/libbitmap.a
+f enduser /usr/X/lib/libXsi.a
+f enduser /usr/X/lib/libXimp.a
+
+f enduser /usr/X/include/X11/memutil.h
+f enduser /usr/X/include/X11/DECkeysym.h
+f enduser /usr/X/include/X11/Sunkeysym.h
+f enduser /usr/X/include/X11/X.h
+f enduser /usr/X/include/X11/XWDFile.h
+f enduser /usr/X/include/X11/Xatom.h
+f enduser /usr/X/include/X11/Xfuncproto.h
+f enduser /usr/X/include/X11/Xfuncs.h
+f enduser /usr/X/include/X11/Xmd.h
+f enduser /usr/X/include/X11/Xos.h
+f enduser /usr/X/include/X11/Xosdefs.h
+f enduser /usr/X/include/X11/Xproto.h
+f enduser /usr/X/include/X11/Xprotostr.h
+f enduser /usr/X/include/X11/ap_keysym.h
+f enduser /usr/X/include/X11/keysym.h
+f enduser /usr/X/include/X11/keysymdef.h
+f enduser /usr/X/include/X11/Xauth.h
+f enduser /usr/X/include/X11/Xlib.h
+f enduser /usr/X/include/X11/Xresource.h
+f enduser /usr/X/include/X11/Xutil.h
+f enduser /usr/X/include/X11/cursorfont.h
+f enduser /usr/X/include/X11/Xlibint.h
+f enduser /usr/X/include/X11/Xcms.h
+f enduser /usr/X/include/X11/Xlocale.h
+f enduser /usr/X/include/X11/Xstreams.h
+f enduser /usr/X/include/X11/copyright.h
+f enduser /usr/X/include/X11/Composite.h
+f enduser /usr/X/include/X11/CompositeP.h
+f enduser /usr/X/include/X11/Constraint.h
+f enduser /usr/X/include/X11/ConstrainP.h
+f enduser /usr/X/include/X11/Core.h
+f enduser /usr/X/include/X11/CoreP.h
+f enduser /usr/X/include/X11/Intrinsic.h
+f enduser /usr/X/include/X11/IntrinsicP.h
+f enduser /usr/X/include/X11/Object.h
+f enduser /usr/X/include/X11/ObjectP.h
+f enduser /usr/X/include/X11/RectObj.h
+f enduser /usr/X/include/X11/RectObjP.h
+f enduser /usr/X/include/X11/Shell.h
+f enduser /usr/X/include/X11/ShellP.h
+f enduser /usr/X/include/X11/StringDefs.h
+f enduser /usr/X/include/X11/Vendor.h
+f enduser /usr/X/include/X11/VendorP.h
+f enduser /usr/X/include/X11/Xmu/Xmu.h
+f enduser /usr/X/include/X11/Xmu/Atoms.h
+f enduser /usr/X/include/X11/Xmu/CharSet.h
+f enduser /usr/X/include/X11/Xmu/CloseHook.h
+f enduser /usr/X/include/X11/Xmu/Converters.h
+f enduser /usr/X/include/X11/Xmu/CurUtil.h
+f enduser /usr/X/include/X11/Xmu/CvtCache.h
+f enduser /usr/X/include/X11/Xmu/DisplayQue.h
+f enduser /usr/X/include/X11/Xmu/Drawing.h
+f enduser /usr/X/include/X11/Xmu/Editres.h
+f enduser /usr/X/include/X11/Xmu/EditresP.h
+f enduser /usr/X/include/X11/Xmu/Error.h
+f enduser /usr/X/include/X11/Xmu/Initer.h
+f enduser /usr/X/include/X11/Xmu/Misc.h
+f enduser /usr/X/include/X11/Xmu/StdSel.h
+f enduser /usr/X/include/X11/Xmu/StdCmap.h
+f enduser /usr/X/include/X11/Xmu/SysUtil.h
+f enduser /usr/X/include/X11/Xmu/WidgetNode.h
+f enduser /usr/X/include/X11/Xmu/WinUtil.h
+f enduser /usr/X/include/X11/Xmu/Xct.h
+f enduser /usr/X/include/X11/Xaw/AllWidgets.h
+f enduser /usr/X/include/X11/Xaw/AsciiSink.h
+f enduser /usr/X/include/X11/Xaw/AsciiSinkP.h
+f enduser /usr/X/include/X11/Xaw/AsciiSrc.h
+f enduser /usr/X/include/X11/Xaw/AsciiSrcP.h
+f enduser /usr/X/include/X11/Xaw/AsciiText.h
+f enduser /usr/X/include/X11/Xaw/AsciiTextP.h
+f enduser /usr/X/include/X11/Xaw/Box.h
+f enduser /usr/X/include/X11/Xaw/BoxP.h
+f enduser /usr/X/include/X11/Xaw/Cardinals.h
+f enduser /usr/X/include/X11/Xaw/Clock.h
+f enduser /usr/X/include/X11/Xaw/ClockP.h
+f enduser /usr/X/include/X11/Xaw/Command.h
+f enduser /usr/X/include/X11/Xaw/CommandP.h
+f enduser /usr/X/include/X11/Xaw/Dialog.h
+f enduser /usr/X/include/X11/Xaw/DialogP.h
+f enduser /usr/X/include/X11/Xaw/Form.h
+f enduser /usr/X/include/X11/Xaw/FormP.h
+f enduser /usr/X/include/X11/Xaw/Grip.h
+f enduser /usr/X/include/X11/Xaw/GripP.h
+f enduser /usr/X/include/X11/Xaw/Label.h
+f enduser /usr/X/include/X11/Xaw/LabelP.h
+f enduser /usr/X/include/X11/Xaw/List.h
+f enduser /usr/X/include/X11/Xaw/ListP.h
+f enduser /usr/X/include/X11/Xaw/Logo.h
+f enduser /usr/X/include/X11/Xaw/LogoP.h
+f enduser /usr/X/include/X11/Xaw/Mailbox.h
+f enduser /usr/X/include/X11/Xaw/MailboxP.h
+f enduser /usr/X/include/X11/Xaw/MenuButton.h
+f enduser /usr/X/include/X11/Xaw/MenuButtoP.h
+f enduser /usr/X/include/X11/Xaw/Paned.h
+f enduser /usr/X/include/X11/Xaw/PanedP.h
+f enduser /usr/X/include/X11/Xaw/Panner.h
+f enduser /usr/X/include/X11/Xaw/PannerP.h
+f enduser /usr/X/include/X11/Xaw/Porthole.h
+f enduser /usr/X/include/X11/Xaw/PortholeP.h
+f enduser /usr/X/include/X11/Xaw/Repeater.h
+f enduser /usr/X/include/X11/Xaw/RepeaterP.h
+f enduser /usr/X/include/X11/Xaw/Reports.h
+f enduser /usr/X/include/X11/Xaw/Scrollbar.h
+f enduser /usr/X/include/X11/Xaw/ScrollbarP.h
+f enduser /usr/X/include/X11/Xaw/Simple.h
+f enduser /usr/X/include/X11/Xaw/SimpleP.h
+f enduser /usr/X/include/X11/Xaw/SimpleMenu.h
+f enduser /usr/X/include/X11/Xaw/SimpleMenP.h
+f enduser /usr/X/include/X11/Xaw/Sme.h
+f enduser /usr/X/include/X11/Xaw/SmeP.h
+f enduser /usr/X/include/X11/Xaw/SmeBSB.h
+f enduser /usr/X/include/X11/Xaw/SmeBSBP.h
+f enduser /usr/X/include/X11/Xaw/SmeLine.h
+f enduser /usr/X/include/X11/Xaw/SmeLineP.h
+f enduser /usr/X/include/X11/Xaw/StripChart.h
+f enduser /usr/X/include/X11/Xaw/StripCharP.h
+f enduser /usr/X/include/X11/Xaw/Template.c
+f enduser /usr/X/include/X11/Xaw/Template.h
+f enduser /usr/X/include/X11/Xaw/TemplateP.h
+f enduser /usr/X/include/X11/Xaw/Text.h
+f enduser /usr/X/include/X11/Xaw/TextP.h
+f enduser /usr/X/include/X11/Xaw/TextSink.h
+f enduser /usr/X/include/X11/Xaw/TextSinkP.h
+f enduser /usr/X/include/X11/Xaw/TextSrc.h
+f enduser /usr/X/include/X11/Xaw/TextSrcP.h
+f enduser /usr/X/include/X11/Xaw/Toggle.h
+f enduser /usr/X/include/X11/Xaw/ToggleP.h
+f enduser /usr/X/include/X11/Xaw/Tree.h
+f enduser /usr/X/include/X11/Xaw/TreeP.h
+f enduser /usr/X/include/X11/Xaw/Viewport.h
+f enduser /usr/X/include/X11/Xaw/ViewportP.h
+f enduser /usr/X/include/X11/Xaw/XawInit.h
+f enduser /usr/X/include/X11/Xdmcp.h
+f enduser /usr/X/include/X11/extensions/Xext.h
+f enduser /usr/X/include/X11/extensions/multibuf.h
+f enduser /usr/X/include/X11/extensions/shape.h
+f enduser /usr/X/include/X11/extensions/XShm.h
+f enduser /usr/X/include/X11/extensions/MITMisc.h
+f enduser /usr/X/include/X11/extensions/XI.h
+f enduser /usr/X/include/X11/extensions/XInput.h
+f enduser /usr/X/include/X11/extensions/XIproto.h
+f enduser /usr/X/include/X11/extensions/xtestext1.h
+
+f enduser /usr/X/lib/app-defaults/Xfd
+f enduser /usr/X/lib/app-defaults/XFontSel
+f enduser /usr/X/lib/app-defaults/Xgc
+f enduser /usr/X/lib/app-defaults/Editres
+f enduser /usr/X/lib/app-defaults/Editres-color
+f enduser /usr/X/lib/app-defaults/Viewres
+
+f enduser /usr/X/lib/config/Imake.rules
+f enduser /usr/X/lib/config/Imake.tmpl
+f enduser /usr/X/lib/config/Library.tmpl
+f enduser /usr/X/lib/config/Project.tmpl
+f enduser /usr/X/lib/config/Server.tmpl
+f enduser /usr/X/lib/config/imakemdep.h
+f enduser /usr/X/lib/config/noop.rules
+f enduser /usr/X/lib/config/oldlib.rules
+f enduser /usr/X/lib/config/site.def
+f enduser /usr/X/lib/config/sv4Lib.rules
+f enduser /usr/X/lib/config/sv4Lib.tmpl
+f enduser /usr/X/lib/config/usl.cf

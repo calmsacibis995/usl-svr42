@@ -1,0 +1,96 @@
+#ident	"@(#)pkg.netcmds:common/pkg/netcmds/postremove	1.2"
+#ident  "$Header: $"
+
+TEMPFILE=/tmp/netcmds.$$
+
+# Fix mailsurr file to disallow smtp mail.
+
+sed -e '/smtpqer/s/^/#/' < /etc/mail/mailsurr > $TEMPFILE
+cat $TEMPFILE > /etc/mail/mailsurr
+rm -f $TEMPFILE
+
+# Remove in.smtpd from inetd port monitor
+
+sed -e '/in.smtpd/d' < /etc/inet/inetd.conf > $TEMPFILE                  
+cat $TEMPFILE > /etc/inet/inetd.conf
+rm -f $TEMPFILE
+
+inet_pid=`ps -ef | grep inetd | grep -v grep | cut -c9-14`
+[ -n "$inet_pid" ] && kill -1 $inet_pid
+
+# Remove smtp user and spool directory
+
+/usr/sbin/userdel -r smtp >> ${TEMPFILE} 2>&1
+
+## Shutdown Spooler
+
+if [ -x "/usr/sbin/lpshut" ]
+then
+	/usr/sbin/lpshut >/dev/null 2>&1
+fi
+
+## Remove lpsystem commands from SOP, OP, and SSO roles
+
+#/usr/bin/adminrole -r lpsystem SOP > /dev/null 2>&1
+#/usr/bin/adminrole -r lpsystem OP > /dev/null 2>&1
+#/usr/bin/adminrole -r lpsystem SSO > /dev/null 2>&1
+
+## Restore 4.0ES Spooler and lpadmin
+
+if [ -f $USRLIB/lp/lpsched.LPM ]
+then
+
+	#echo "Restoring lpsched. . .\c "
+	mv $USRLIB/lp/lpsched.LPM $USRLIB/lp/lpsched 
+	chmod 04110 $USRLIB/lp/lpsched 
+	chown root $USRLIB/lp/lpsched 
+	chgrp lp   $USRLIB/lp/lpsched 
+	if test -d /var/sadm/pkg/es
+	then
+		/sbin/chlvl SYS_PRIVATE  $USRLIB/lp/lpsched 
+		/sbin/filepriv -i audit,setuid,setplevel,setflevel,owner,macread,macwrite,dacread,dacwrite,compat,dev,sysops $USRLIB/lp/lpsched
+
+	
+	fi
+
+	#echo "Lpsched restored."
+else
+ 
+	echo "Unable to restore lpsched."
+	echo "Lp Print Services will be inoperable until"
+	echo "Lp Print Services are reinstalled."
+fi
+
+if [ -f $USRSBIN/lpadmin.LPM ]
+then
+
+	#echo "Restoring lpadmin. . .\c "
+	mv $USRSBIN/lpadmin.LPM $USRSBIN/lpadmin
+	chmod 04110 $USRSBIN/lpadmin 
+	chown root $USRSBIN/lpadmin 
+	chgrp lp   $USRSBIN/lpadmin 
+	if test -d /var/sadm/pkg/es
+	then
+		/sbin/chlvl SYS_PRIVATE  $USRSBIN/lpadmin 
+		/sbin/filepriv -i audit,macread,macwrite,setflevel,owner,dev,dacread $USRSBIN/lpadmin
+	fi
+
+	#echo "Lpadmin restored."
+else
+ 
+	echo "Unable to restore lpadmin."
+	echo "Lp Print Service administration will be inoperable until"
+	echo "Lp Print Services are reinstalled."
+fi
+
+LPSCHED=${USRLIB}/lp/lpsched
+
+# Start the Spooler/Scheduler
+
+cd /
+if [ -x "/usr/lib/lp/lpsched" ]
+then
+	${LPSCHED} >/dev/null 2>&1
+fi
+
+exit 0

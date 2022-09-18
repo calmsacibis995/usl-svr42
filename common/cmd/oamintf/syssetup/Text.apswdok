@@ -1,0 +1,28 @@
+#ident	"@(#)oamintf:common/cmd/oamintf/syssetup/Text.apswdok	1.1.6.2"
+#ident  "$Header: Text.apswdok 2.0 91/07/12 $"
+################################################################################
+#	Module Name: Text.apswdok
+################################################################################
+Title="Define User Password Information"
+
+lifetime=shortterm
+
+`readfile $INTFBASE/trept.msg | message -t`
+
+rows=7
+columns=75
+
+text="
+The password has been defined as follows: 
+
+`/usr/sadm/sysadm/bin/pswdstat $ARG1`"
+
+altslks
+
+name=CONT
+button=11
+action=update $OBJ_DIR/Form.syspasswd true
+
+name=CANCEL
+button=14
+action=CLEANUP

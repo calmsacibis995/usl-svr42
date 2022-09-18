@@ -1,0 +1,217 @@
+#ident	"@(#)oamintf:common/cmd/oamintf/usermgmt/Form.defaults	1.2.13.3"
+#ident  "$Header: Form.defaults 2.0 91/07/12 $"
+
+################################################################################
+#	Module Name:  Form.default -- Set /etc/defaults/useradd values
+#
+#	If $F1 is string version of group, convert back to group id
+#	before storing it in file.
+#
+################################################################################
+framemsg=`readfile $INTFBASE/form.msg`
+
+Form=Define Defaults for Adding Users
+
+help=OPEN TEXT $INTFBASE/Text.itemhelp $LININFO
+
+
+`test -d /var/sadm/pkg/audit && set -l AUDITPKG=0;
+ test -d /var/sadm/pkg/es && set -l ESPKG=0`
+
+done=`message -w -f "Redefining - Please Wait";
+
+      unset -l UADDARGS -l GROUP -l HOMEDIR -l SDIR -l SHVAL;
+      unset -l INACT -l EXPIR;
+     
+      if [ "$F1" != "PGRP" ];
+      then
+	 echo $F1 | /usr/bin/grep [a-zA-Z] | set -l ALPHA=true;
+	 if [ "$ALPHA" = "true" ];
+	 then
+	    /usr/bin/grep "^$F1:" /etc/group | /usr/bin/cut -f3 -d":" | set -l GROUP;
+	 else
+	    GROUP="$F1";
+	 fi;
+	 set -l UADDARGS="$UADDARGS GROUPID=$GROUP";
+      fi;
+      [ "$F2" != "$HDIR" ] && set -l UADDARGS="$UADDARGS HOMEDIR=$F2";
+      [ "$F3" != "$SDIR" ] && set -l UADDARGS="$UADDARGS SKELDIR=$F3";
+      [ "$F4" != "$SHVAL" ] && set -l UADDARGS="$UADDARGS SHELL=$F4";
+      [ "$F5" != "$INACT" ] && set -l UADDARGS="$UADDARGS INACT=$F5";
+      [ "$F6" != "$EXPIR" ] && set -l UADDARGS="$UADDARGS EXPIRE=$F6";
+      [ "$F7" != "$EVENTS" ] && set -l UADDARGS="$UADDARGS AUDIT_MASK=$F7";
+      [ "$F8" != "$LEVEL" ] && set -l UADDARGS="$UADDARGS DEFLVL=$F8";
+
+      shell "$TFADMIN /usr/bin/defadm useradd $UADDARGS 2>/tmp/dflterr";
+      if [ $RET -eq 0 ];
+      then
+	  set -l CMD="OPEN TEXT $OBJ_DIR/Text.dfltok";
+      else
+	  set -l CMD="OPEN TEXT $OBJ_DIR/Text.dfltnok";
+      fi`$CMD `getfrm`
+
+# F1
+name="Primary group membership:"
+lininfo=Form.defaults:pgrpmem
+nrow=1
+ncol=3
+frow=1
+fcol=29
+rows=1
+columns=20
+
+`shell "$TFADMIN /usr/bin/defadm useradd GROUPID" | /usr/bin/sed -n -e "s/.*GROUPID=\([^ ]*\).*/\1/p" | fmlcut -d"=" -f1 | set -l PGRP`
+`/usr/bin/grep "^.*:.*:${PGRP}:.*$" /etc/group | fmlcut -f1 -d":" | set -l PGRP` 
+`echo PGRP=$PGRP" >/tmp/out`
+value="$PGRP"
+rmenu=OPEN MENU $OBJ_DIR/Menu.pgrp
+valid=`/usr/sadm/sysadm/bin/chk_pgrp $F1`
+invalidmsg=const 'ERROR: Must be an existing user group'
+
+# F2
+name="Base home directory:"
+lininfo=Form.defaults:homdir
+nrow=2
+ncol=3
+frow=2
+fcol=29
+rows=1
+columns=48
+scroll=true
+
+`shell "$TFADMIN /usr/bin/defadm useradd HOMEDIR" | /usr/bin/sed -n -e "s/.*HOMEDIR=\([^ ]*\).*/\1/p" | set -l HDIR`
+value="$HDIR"
+valid=`/usr/sadm/bin/valpath -ao $F2`
+
+invalidmsg=const 'ERROR: Path name must be absolute and existing.'
+
+# F3
+name="Skeletal home directory:"
+lininfo=Form.defaults:skeldir
+nrow=3
+ncol=3
+frow=3
+fcol=29
+rows=1
+columns=48
+scroll=true
+`/usr/bin/defadm useradd SKELDIR | /usr/bin/sed -n -e "s/.*SKELDIR=\([^ ]*\).*/\1/p" | set -l SDIR`
+value="$SDIR"
+valid=`/usr/sadm/bin/valpath -o $F3`
+invalidmsg=const 'ERROR: It must be a directory that already exists.' 
+
+# F4
+name="Shell:"
+lininfo=Form.defaults:shell
+nrow=4
+ncol=3
+frow=4
+fcol=29
+rows=1
+columns=48
+scroll=true
+
+`shell "$TFADMIN /usr/bin/defadm useradd SHELL" | /usr/bin/sed -n -e "s/.*SHELL=\([^ ]*\).*/\1/p" | set -l SHVAL`
+value="$SHVAL"
+valid=`/usr/sadm/bin/valpath -axo $F4`
+
+invalidmsg=const 'ERROR: Shell must exist and be executable.'
+
+#  $F5
+name=Login Inactivity:
+lininfo=Form.defaults:inact
+nrow=5
+ncol=3
+frow=5
+fcol=29
+rows=1
+columns=8
+
+`shell "$TFADMIN /usr/bin/defadm useradd INACT" | /usr/bin/sed -n -e "s/.*INACT=\([^ ]*\).*/\1/p" | set -l INACT`
+value="$INACT"
+valid=`/usr/sadm/bin/valint $F5`
+invalidmsg=const `/usr/sadm/bin/errint`
+
+#  $F6
+name=Login expiration date:
+lininfo=Form.defaults:expire
+nrow=6
+ncol=3
+frow=6
+fcol=29
+rows=1
+columns=18
+
+`shell "$TFADMIN /usr/bin/defadm useradd EXPIRE" | /usr/bin/cut -f2 -d"=" | set -l EXPIR`
+value="$EXPIR"
+
+# Must be a future date
+valid=`/usr/sadm/bin/valdate "$F6" && /usr/sadm/sysadm/bin/expdate $F6 || [ ! $F6 ]`
+invalidmsg="You must enter a valid future date in the format mm/dd/yy."
+
+
+
+#F7
+# First get events into file
+`valevt pre >/tmp/$VPID.evts`
+
+name=User audit events(s):
+lininfo=Form.defaults:auditevnt
+nrow=7
+ncol=3
+frow=7
+fcol=29
+rows=1
+columns=40
+scroll=true
+`shell "$TFADMIN /usr/bin/defadm useradd AUDIT_MASK" | /usr/bin/cut -f2 -d"=" | set -l EVENTS`
+value="$EVENTS"
+show=`if [ "$AUDITPKG" = "0" ];
+      then
+	  echo TRUE;
+      else
+	  echo FALSE;
+      fi`
+rmenu=OPEN MENU $OBJ_DIR/Menu.evts
+valid=`message -f "Please wait."; echo "$F7" |sed 's/,/ /g' | set -l EVTS;
+	if [ -n "$EVTS" ]; then
+	    echo "$EVTS" |sed 's/ /,/g' |set -l FEVTS;
+	    if regex -v "$EVTS" '.* .*'; then
+	       valforloop "$EVTS" "grep \$i /tmp/$VPID.evts";
+	    else 
+		grep $EVTS /tmp/$VPID.evts;
+	    fi;
+fi`
+invalidmsg= const "Error - Enter one or more valid audit events"
+fieldmsg= const "Press the CHOICES function key. Press SAVE when you complete the form."
+
+#  $F8
+# Get current alias info (both ways - got to get lids and aliases)
+`lvlname |sed '/^Levels:/d;/^$/d;/^Classifications/,$ d;s/^[0-9]*:*//;s/::.*$//'>/tmp/$VPID.levels`
+
+name=Default Login Level:
+lininfo=Form.defaults:loglvl
+nrow=8
+ncol=3
+frow=8
+fcol=24
+rows=1
+columns=40
+scroll=true
+`shell "$TFADMIN /usr/bin/defadm useradd DEFLVL" | fmlcut -d= -f2 | set -l LEVEL`
+value="$LEVEL"
+show=`if [ "$ESPKG" = "0" ];
+      then
+	echo TRUE;
+      else
+	echo FALSE;
+      fi`
+rmenu={ `cat /tmp/$VPID.levels` }
+valid=`[ "$F8" = "" ] || grep $F8 /tmp/$VPID.levels`
+invalidmsg=const "Error - Enter an existing qualified level name or alias"
+fieldmsg= const "Press the CHOICES function key. Press SAVE when you complete the form."
+
+
+name=RESET
+button=8
+action=RESET

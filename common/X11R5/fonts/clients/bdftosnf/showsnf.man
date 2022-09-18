@@ -1,0 +1,54 @@
+.\"ident	"@(#)r5fontutil:clients/bdftosnf/showsnf.man	1.1"
+.TH SHOWSNF 1 "Release 4" "X Version 11"
+.SH NAME
+showsnf - print contents of an SNF file
+.SH SYNOPSIS
+.B showsnf
+[-s] [-v] [-g] [-m] [-M] [-l] [-L] [-p#] [-u#]
+.SH DESCRIPTION
+.PP
+The \fBshowsnf\fP utility displays the contents of font files in the Server
+Natural Format produced by \fBbdftosnf\fP.  It is usually only to verify that
+a font file hasn't been corrupted or to convert the individual glyphs into 
+arrays of characters for proofreading or for conversion to some other format.
+.SH OPTIONS
+.TP 8
+.B \-s
+This option indicates that byte swapping should occur. This is needed for 6386 XWIN format, which is also used by the 730X.
+.TP 8
+.B \-v
+This option indicates that character bearings and sizes should be printed.
+.TP 8
+.B \-g
+This option indicates that character glyph bitmaps should be printed.
+.TP 8
+.B \-m
+This option indicates that the bit order of the font is MSBFirst (most 
+significant bit first).
+.TP 8
+.B \-l
+This option indicates that the bit order of the font is LSBFirst (least
+significant bit first).
+.TP 8
+.B \-M
+This option indicates that the byte order of the font is MSBFirst (most
+significant byte first).
+.TP 8
+.B \-L
+This option indicates that the byte order of the font is LSBFirst (least
+significant byte first).
+.TP 8
+.B \-p\fI#\fP
+This option specifies the glyph padding of the font (\fI#\fP is a number).
+.TP 8
+.B \-u\fI#\fP
+This option specifies the scanline unit of the font (\fI#\fP is a number).
+.SH "SEE ALSO"
+X(1), Xserver(1), bdftosnf(1)
+.SH BUGS
+There is no way to just print out a single glyph.
+.SH COPYRIGHT
+Copyright 1988, Massachusetts Institute of Technology.
+.br
+See \fIX(1)\fP for a full statement of rights and permissions.
+

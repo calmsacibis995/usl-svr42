@@ -1,0 +1,5 @@
+By entering a remote host name in the Host Name field, the OPEN LOOK \
+server on this machine will be permitted to accept network connections \
+from clients running on the specified remote host.
+
+This will only take effect the next time you start OPEN LOOK.

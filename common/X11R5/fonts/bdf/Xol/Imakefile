@@ -1,0 +1,180 @@
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+/**/#ident	"@(#)xolfonts:Xol/Imakefile	1.12"
+
+/* Used by scrollbar and slider fonts */
+#define FontTarget2(basename)					@@\
+basename.snf:	basename.bdf					@@\
+		$(FONTC) -s $? >$@
+
+SRCS = \
+	a12biluc.bdf \
+	a12bluci.bdf \
+	a12iluci.bdf \
+	a12lucid.bdf \
+	a12butto.bdf \
+	b12butto.bdf \
+	c12butto.bdf \
+	d12butto.bdf \
+	e12butto.bdf \
+	f12butto.bdf \
+	g12butto.bdf \
+	h12butto.bdf \
+	a12sbarh.bdf \
+	a12sbarv.bdf \
+	b12sbarh.bdf \
+	b12sbarv.bdf \
+	c12sbarh.bdf \
+	c12sbarv.bdf \
+	d12sbarh.bdf \
+	d12sbarv.bdf \
+	e12sbarh.bdf \
+	e12sbarv.bdf \
+	f12sbarh.bdf \
+	f12sbarv.bdf \
+	g12sbarh.bdf \
+	g12sbarv.bdf \
+	h12sbarh.bdf \
+	h12sbarv.bdf \
+	a12sldrh.bdf \
+	a12sldrv.bdf \
+	b12sldrh.bdf \
+	b12sldrv.bdf \
+	c12sldrh.bdf \
+	c12sldrv.bdf \
+	d12sldrh.bdf \
+	d12sldrv.bdf \
+	e12biluc.bdf \
+	e12bluci.bdf \
+	e12iluci.bdf \
+	e12lucid.bdf \
+	e12sldrh.bdf \
+	e12sldrv.bdf \
+	f12sldrh.bdf \
+	f12sldrv.bdf \
+	g12sldrh.bdf \
+	g12sldrv.bdf \
+	h12sldrh.bdf \
+	h12sldrv.bdf
+
+OBJS = \
+	a12biluc.snf \
+	a12bluci.snf \
+	a12iluci.snf \
+	a12lucid.snf \
+	a12butto.snf \
+	b12butto.snf \
+	c12butto.snf \
+	d12butto.snf \
+	e12butto.snf \
+	f12butto.snf \
+	g12butto.snf \
+	h12butto.snf \
+	a12sbarh.snf \
+	a12sbarv.snf \
+	b12sbarh.snf \
+	b12sbarv.snf \
+	c12sbarh.snf \
+	c12sbarv.snf \
+	d12sbarh.snf \
+	d12sbarv.snf \
+	e12biluc.snf \
+	e12bluci.snf \
+	e12iluci.snf \
+	e12lucid.snf \
+	e12sbarh.snf \
+	e12sbarv.snf \
+	f12sbarh.snf \
+	f12sbarv.snf \
+	g12sbarh.snf \
+	g12sbarv.snf \
+	h12sbarh.snf \
+	h12sbarv.snf \
+	a12sldrh.snf \
+	a12sldrv.snf \
+	b12sldrh.snf \
+	b12sldrv.snf \
+	c12sldrh.snf \
+	c12sldrv.snf \
+	d12sldrh.snf \
+	d12sldrv.snf \
+	e12sldrh.snf \
+	e12sldrv.snf \
+	f12sldrh.snf \
+	f12sldrv.snf \
+	g12sldrh.snf \
+	g12sldrv.snf \
+	h12sldrh.snf \
+	h12sldrv.snf
+
+
+
+FONTINSTDIR = $(FONTDIR)/Xol
+RELFONTDIR = lib/fonts/Xol
+
+MakeFonts()
+
+
+FontTarget(a12biluc)
+FontTarget(a12bluci)
+FontTarget(a12iluci)
+FontTarget(a12lucid)
+FontTarget(a12butto)
+FontTarget(b12butto)
+FontTarget(c12butto)
+FontTarget(d12butto)
+FontTarget(e12butto)
+FontTarget(f12butto)
+FontTarget(g12butto)
+FontTarget(h12butto)
+FontTarget2(a12sbarh)
+FontTarget2(a12sbarv)
+FontTarget2(b12sbarh)
+FontTarget2(b12sbarv)
+FontTarget2(c12sbarh)
+FontTarget2(c12sbarv)
+FontTarget2(d12sbarh)
+FontTarget2(d12sbarv)
+FontTarget(e12biluc)
+FontTarget(e12bluci)
+FontTarget(e12iluci)
+FontTarget(e12lucid)
+FontTarget2(e12sbarh)
+FontTarget2(e12sbarv)
+FontTarget2(f12sbarh)
+FontTarget2(f12sbarv)
+FontTarget2(g12sbarh)
+FontTarget2(g12sbarv)
+FontTarget2(h12sbarh)
+FontTarget2(h12sbarv)
+FontTarget2(a12sldrh)
+FontTarget2(a12sldrv)
+FontTarget2(b12sldrh)
+FontTarget2(b12sldrv)
+FontTarget2(c12sldrh)
+FontTarget2(c12sldrv)
+FontTarget2(d12sldrh)
+FontTarget2(d12sldrv)
+FontTarget2(e12sldrh)
+FontTarget2(e12sldrv)
+FontTarget2(f12sldrh)
+FontTarget2(f12sldrv)
+FontTarget2(g12sldrh)
+FontTarget2(g12sldrv)
+FontTarget2(h12sldrh)
+FontTarget2(h12sldrv)
+
+
+
+InstallFonts($(FONTINSTDIR))
+InstallFontAliases($(FONTINSTDIR))
+
+depend::
+	@echo "skipping make depend in bdf/misc"

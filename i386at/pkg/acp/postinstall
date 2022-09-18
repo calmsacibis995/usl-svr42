@@ -1,0 +1,399 @@
+#ident	"@(#)pkg.acp:postinstall	1.2.3.30"
+#ident	"$Header: $"
+
+SCRIPTS=/usr/sbin/pkginst
+. ${SCRIPTS}/updebug
+
+[ "$UPDEBUG" = YES ] && {
+	set -x
+	goany
+}
+
+# install a module.  $1 is the module name
+
+do_install() {
+	ERR=/tmp/${1}.err
+	if
+		[ -f ${1}.Dr ]
+	then
+		mv ${1}.Dr Driver.o
+	fi
+	if
+		[ -f ${1}.Mo ]
+	then
+		mv ${1}.Mo Modstub.o
+	fi
+	if
+		[ -f ${1}.Sp ]
+	then
+		mv ${1}.Sp Space.c
+	fi
+	if
+		[ -f ${1}.St ]
+	then
+		mv ${1}.St Stubs.c
+	fi
+	if
+		[ -f ${1}.Mt ]
+	then
+		mv ${1}.Mt Mtune
+	fi
+	if
+		[ -f ${1}.Ma ]
+	then
+		mv ${1}.Ma Master
+	fi
+	if
+		[ -f ${1}.Sy ]
+	then
+		sed "${SEDCMD1}" ${1}.Sy >System
+		rm -rf ${1}.Sy
+	fi
+	if
+		[ -f ${1}.No ]
+	then
+		mv ${1}.No Node
+	fi
+
+	${CONFBIN}/idcheck -p ${1} > ${ERR} 2>&1
+	if
+		[ "$?" = "0" ] || [ "$?" = "8" ] 
+	then
+		${CONFBIN}/idinstall -P ${PKGINST} -a ${1} > ${ERR} 2>&1
+		RET=$?
+	else
+		${CONFBIN}/idinstall -P ${PKGINST}  -u ${1} > ${ERR} 2>&1
+		RET=$?
+	fi
+
+	if [ ${RET} != "0" ]
+	then
+			message "The installation cannot be completed due to \
+an error in the driver installation during the installation of the ${1} \
+module of the ${NAME}.  The file ${ERR} contains the errors."
+			exit ${FAILURE}
+	fi
+	#rm -rf ${ERR}
+}
+
+turnoff () {
+cd /etc/conf/sdevice.d
+for i in $*
+do
+if [ -f $i ]
+then
+ed $i << END > /dev/null 2>&1
+1,\$s/	Y	/	N	/
+w
+w
+q
+END
+fi
+done
+}
+
+turnon () {
+cd /etc/conf/sdevice.d
+for i in $*
+do
+if [ -f $i ]
+then
+ed $i << END > /dev/null 2>&1
+1,\$s/	N	/	Y	/
+w
+w
+q
+END
+fi
+done
+}
+
+#main 
+
+FAILURE=1	# fatal error
+
+CONFDIR=/etc/conf
+CONFBIN=${CONFDIR}/bin
+
+NOTOOLS="ERROR: The Installable Driver feature has been removed. \
+The ${NAME} cannot be installed."
+
+SEDCMD1="s/[	 ]N[	 ]/	Y	/"
+SEDCMD2="s/[	 ]N/	Y/"
+
+trap '' 1 2 3 5 15
+rm -f $TMP > /dev/null 2>&1
+
+
+turnon intmap
+
+
+# update the spt and mpt files under sdevice.d to specify the number
+# of pseudo terminals selected by the user and saved in PTNUM
+
+############# Begin UPGRADE AND OVERLAY #######################
+
+# $UPGFILE was created by preinstall in auto install mode for upgrade
+# or overlay to set the configured PTNUM as the default
+
+UPGFILE=/var/sadm/upgrade/$PKGINST.env
+
+[ -f  $UPGFILE ] && . $UPGFILE
+
+[ "$UPDEBUG" = YES ] && goany
+
+############# End UPGRADE AND OVERLAY #######################
+
+for i in spt mpt
+do
+(
+	cd "/tmp/${i}"
+	if [ -f "${i}.Sy" ]
+	then
+		line=`grep "^$i[	 ]" ${i}.Sy 2>/dev/null`
+		set - $line
+		DEFAULT=$3
+		if [ "$DEFAULT" -ne "$PTNUM" ]
+		then
+			ed - ${i}.Sy 1>/dev/null 2>&1 <<-!
+				/^$i[ 	]/
+				s/$DEFAULT/$PTNUM/
+				.
+				w
+			!
+		fi
+	fi
+)
+done
+
+# The following is done only if PTNUM > 0
+if [ "$PTNUM" -gt 0 ]; then
+
+	TEMP=0
+	until [ "$TEMP" -eq "$PTNUM" ]; do
+		echo "spt	ttyp${TEMP}	c	${TEMP}" >>/tmp/spt/Node
+		echo "mpt	ptyp${TEMP}	c	${TEMP}" >>/tmp/mpt/Node
+		TEMP=`expr $TEMP + 1`
+	done
+fi
+
+#################################################################
+# Setup of the SCO/ISC streams pipe devices (moved from dtxt pkg)
+
+if [ -d /tmp/sp ]
+then
+	# Increase number of streams pipes devices so
+	# that your SCO X clients may function properly.
+
+	DEF=60
+	numb=`grep '^sp' /tmp/sp/sp.Sy | awk '{ print $3 }'`
+	max=256
+	if [ $max -le $numb ]
+	then
+		rep=`expr ${max}`
+	else
+		if [ $max -le $DEF ]
+	  	then
+			rep=`expr ${max}`
+		else
+			if [ $numb -ge $DEF ]
+			then
+		   		rep=`expr ${numb}`
+			else
+		   		rep=`expr ${DEF}`
+			fi
+		fi
+	fi
+	sed "/^sp/s/$numb/$rep/p" /tmp/sp/sp.Sy > /usr/tmp/sp
+	cp /tmp/sp/sp.Sy /usr/tmp/sdevice.old
+
+	numb=`grep '^sp' /usr/tmp/sp | awk '{ print $3 }'`
+	cp /tmp/sp/sp.No /usr/tmp/node.old
+	sed "/X0[RS]/d" /tmp/sp/sp.No >/usr/tmp/node.d
+	numb=`expr ${numb} - 1`
+	echo "sp        X0R     c       ${numb}" >>/usr/tmp/node.d 
+	numb=`expr ${numb} - 1`
+	echo "sp        X0S     c       ${numb}" >> /usr/tmp/node.d
+	numb=`expr ${numb} - 1`
+	echo "sp        X.isc     c       ${numb}" >>/usr/tmp/node.d 
+
+	cp /usr/tmp/sp /tmp/sp/sp.Sy
+	cp /usr/tmp/node.d /tmp/sp/sp.No
+else
+	echo "\n\nIf you want to run SCO X client, you need to"
+	echo "install the ACP package before you install OL/XWIN"
+fi
+
+cd /var/sadm/pkg/${PKG}/install
+
+# determine that ID/TP tools are available
+
+if
+	[ ! -x ${CONFBIN}/idbuild -o ! -x ${CONFBIN}/idinstall ]
+then
+	message ${NOTOOLS}
+	exit $FAILURE
+fi
+
+# install modules
+# any modules installed here should have the /tmp files removed in the
+# removef loop below.
+#
+for module in clist clist_gd consem devadp i286x isocket mpt osocket sp spt osxt v3compat vx xout xnamfs XENIX 
+do
+	cd /tmp/${module}
+	do_install ${module}
+done
+
+# rebuild for changes to take effect
+
+TMP=/tmp/acp.$$
+${CONFBIN}/idbuild 2>>${TMP}
+if
+	[ "$?" -ne "0" ]
+then
+	echo "An error has occurred during the rebuild of the UNIX System."
+	echo "Errors have been written the file " ${TMP}
+	exit ${FAILURE}
+fi
+
+rm -f ${TMP} 1>/dev/null 2>/dev/null
+
+# Remove temporary files in /tmp/${module} from the contents database
+
+rm -f /tmp/MOD_FILES
+for module in clist clist_gd consem devadp i286x isocket mpt osocket sp spt osxt v3compat vx xout xnamfs XENIX
+do
+	echo "/tmp/${module}/${module}.Dr\n\
+/tmp/${module}/${module}.Mo\n\
+/tmp/${module}/${module}.Sp\n\
+/tmp/${module}/${module}.Ma\n\
+/tmp/${module}/${module}.Sy\n\
+/tmp/${module}/${module}.St\n\
+/tmp/${module}/${module}.Mt\n\
+/tmp/${module}/${module}.No\n\
+/tmp/${module}" >> /tmp/MOD_FILES
+done
+
+removef ${PKGINST} - < /tmp/MOD_FILES 2>/dev/null
+removef -f ${PKGINST} 2>/dev/null
+rm -f /tmp/MOD_FILES
+
+# change group to dos and grp perms to rw for /dev/*dsk/[01]s5
+
+if [ -b /dev/dsk/[01]s5 ]
+then chgrp dos /dev/dsk/[01]s5
+     chmod g+rw /dev/dsk/[01]s5
+fi
+if [ -c /dev/rdsk/[01]s5 ]
+then chgrp dos /dev/rdsk/[01]s5
+     chmod g+rw /dev/rdsk/[01]s5
+fi
+
+if [ -b /dev/dsk/1s0 ]
+then
+	for j in 0 1 2 3 4 5 6
+	do
+		ln /dev/dsk/1s${j} /dev/hd1${j} > /dev/null 2>&1
+	done
+	for j in 0 1 2 3 4 5 6
+	do
+		ln /dev/rdsk/1s${j} /dev/rhd1${j} > /dev/null 2>&1
+	done
+
+	# Enhanced Application Compatibility Support
+	ln /dev/dsk/1s0 /dev/hd1a > /dev/null 2>&1
+	ln /dev/dsk/1s0 /dev/u0 > /dev/null 2>&1
+	ln /dev/dsk/1s1 /dev/u1 > /dev/null 2>&1
+	ln /dev/dsk/1s2 /dev/u2 > /dev/null 2>&1
+
+	ln /dev/rdsk/1s0 /dev/rhd1a > /dev/null 2>&1
+	# End Enhanced Application Compatibility Support
+
+fi
+if [ -b /dev/dsk/f1t ]
+then
+	ln /dev/dsk/f1t /dev/install1 > /dev/null 2>&1
+	ln /dev/rdsk/f1t /dev/rinstall1 > /dev/null 2>&1
+
+	ln /dev/dsk/f1d8dt /dev/fd148ds8 > /dev/null 2>&1
+	ln /dev/dsk/f1d9dt /dev/fd148ds9 > /dev/null 2>&1
+	ln /dev/dsk/f1d9dt /dev/fd148 > /dev/null 2>&1
+	ln /dev/rdsk/f1d8dt /dev/rfd148ds8 > /dev/null 2>&1
+	ln /dev/rdsk/f1d9dt /dev/rfd148ds9 > /dev/null 2>&1
+	ln /dev/rdsk/f1d9dt /dev/rfd148 > /dev/null 2>&1
+	ln /dev/dsk/f13ht /dev/fd1135ds18 > /dev/null 2>&1
+	ln /dev/dsk/f13ht /dev/fd196ds18 > /dev/null 2>&1
+	ln /dev/dsk/f13ht /dev/dsk/f1q18dt > /dev/null 2>&1
+	ln /dev/dsk/f13dt /dev/fd1135ds9 > /dev/null 2>&1
+	ln /dev/dsk/f13dt /dev/fd196ds9 > /dev/null 2>&1
+	ln /dev/dsk/f13dt /dev/dsk/f1q9dt > /dev/null 2>&1
+	#ln /dev/dsk/f1d8dt /dev/fd148ss8 > /dev/null 2>&1
+	ln /dev/dsk/f1d8dt /dev/dsk/f1d8t > /dev/null 2>&1
+	#ln /dev/dsk/f1d9dt /dev/fd148ss9 > /dev/null 2>&1
+	ln /dev/dsk/f1d9dt /dev/dsk/f1d9t > /dev/null 2>&1
+
+	ln /dev/dsk/f1q15dt /dev/fd196ds15 > /dev/null 2>&1
+	ln /dev/dsk/f1q15dt /dev/fd196 > /dev/null 2>&1
+	ln /dev/rdsk/f1q15dt /dev/rfd196ds15 > /dev/null 2>&1
+	ln /dev/rdsk/f1q15dt /dev/rfd196 > /dev/null 2>&1
+	ln /dev/rdsk/f1d9dt /dev/rfd148 > /dev/null 2>&1
+	ln /dev/rdsk/f13ht /dev/rfd1135ds18 > /dev/null 2>&1
+	ln /dev/rdsk/f13ht /dev/rfd196ds18 > /dev/null 2>&1
+	ln /dev/rdsk/f13ht /dev/rdsk/f1q18dt > /dev/null 2>&1
+	ln /dev/rdsk/f13dt /dev/rfd1135ds9 > /dev/null 2>&1
+	ln /dev/rdsk/f13dt /dev/rfd196ds9 > /dev/null 2>&1
+	ln /dev/rdsk/f13dt /dev/rdsk/f1q9dt > /dev/null 2>&1
+	#ln /dev/rdsk/f1d8dt /dev/rfd148ss8 > /dev/null 2>&1
+	ln /dev/rdsk/f1d8dt /dev/rdsk/f1d8t > /dev/null 2>&1
+	#ln /dev/rdsk/f1d9dt /dev/rfd148ss9 > /dev/null 2>&1
+	ln /dev/rdsk/f1d9dt /dev/rdsk/f1d9t > /dev/null 2>&1
+
+	# Enhanced Application Compatibility Support
+	ln /dev/dsk/f15d9 /dev/sctfdl129 > /dev/null 2>&1
+	ln /dev/fd148 /dev/sctfdl1 > /dev/null 2>&1
+	ln /dev/fd196 /dev/sctfdm1 > /dev/null 2>&1
+	ln /dev/dsk/f15h /dev/sctfdm129 > /dev/null 2>&1
+	# Enhanced Application Compatibility Support
+
+fi
+
+rm -f $TMP
+installf -f $PKGINST
+
+############# Begin UPGRADE AND OVERLAY #######################
+
+[ "$UPDEBUG" = YES ] && goany
+
+UPINSTALL=/etc/inst/up
+UPGRADE_STORE=/var/sadm/upgrade
+
+# Upgrade/Overlay Support: See comment regarding $UPGRADE_STORE/mpt
+# in the  'request'
+
+rm -f $UPINSTALL/mpt
+
+# postinstall will removef termcap if $UPGRADE_STORE/rm.v4termcap exists
+
+[ -f $UPGRADE_STORE/rm.v4termcap ] && {
+
+	rm -f $UPGRADE_STORE/rm.v4termcap   
+
+	# V4 /usr/share/lib/termcap was removed in preinstall
+	# acp reinstalls it. Just do the housekeeping in the contents file.
+
+	removef termcap /usr/share/lib/termcap /etc/termcap /etc >/dev/null 2>&1
+	removef -f termcap || exit 2
+
+	rm -rf /var/sadm/pkg/termcap
+}
+
+# $UPGFILE, created by chkpkgrel, is removed.
+
+rm -f $UPGFILE
+
+[ "$UPDEBUG" = YES ] && goany
+
+############# End UPGRADE AND OVERLAY #######################
+ 
+exit 10

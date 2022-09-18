@@ -1,0 +1,310 @@
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+/**/#ident	"@(#)r4fnt100dpi:100dpi/Imakefile	1.3"
+SRCS = \
+	courB08.bdf courB10.bdf courB12.bdf courB14.bdf courB18.bdf \
+	courB24.bdf courBO08.bdf courBO10.bdf courBO12.bdf courBO14.bdf \
+	courBO18.bdf courBO24.bdf courO08.bdf courO10.bdf courO12.bdf \
+	courO14.bdf courO18.bdf courO24.bdf courR08.bdf courR10.bdf \
+	courR12.bdf courR14.bdf courR18.bdf courR24.bdf helvB08.bdf \
+	helvB10.bdf helvB12.bdf helvB14.bdf helvB18.bdf helvB24.bdf \
+	helvBO08.bdf helvBO10.bdf helvBO12.bdf helvBO14.bdf helvBO18.bdf \
+	helvBO24.bdf helvO08.bdf helvO10.bdf helvO12.bdf helvO14.bdf \
+	helvO18.bdf helvO24.bdf helvR08.bdf helvR10.bdf helvR12.bdf \
+	helvR14.bdf helvR18.bdf helvR24.bdf ncenB08.bdf ncenB10.bdf \
+	ncenB12.bdf ncenB14.bdf ncenB18.bdf ncenB24.bdf ncenBI08.bdf \
+	ncenBI10.bdf ncenBI12.bdf ncenBI14.bdf ncenBI18.bdf ncenBI24.bdf \
+	ncenI08.bdf ncenI10.bdf ncenI12.bdf ncenI14.bdf ncenI18.bdf \
+	ncenI24.bdf ncenR08.bdf ncenR10.bdf ncenR12.bdf ncenR14.bdf \
+	ncenR18.bdf ncenR24.bdf symb08.bdf symb10.bdf symb12.bdf \
+	symb14.bdf symb18.bdf symb24.bdf timB08.bdf timB10.bdf timB12.bdf \
+	timB14.bdf timB18.bdf timB24.bdf timBI08.bdf timBI10.bdf \
+	timBI12.bdf timBI14.bdf timBI18.bdf timBI24.bdf timI08.bdf \
+	timI10.bdf timI12.bdf timI14.bdf timI18.bdf timI24.bdf timR08.bdf \
+	timR10.bdf timR12.bdf timR14.bdf timR18.bdf timR24.bdf \
+	charB08.bdf charB10.bdf charB12.bdf charB14.bdf charB18.bdf \
+	charB24.bdf charBI08.bdf charBI10.bdf charBI12.bdf charBI14.bdf \
+	charBI18.bdf charBI24.bdf charI08.bdf charI10.bdf charI12.bdf \
+	charI14.bdf charI18.bdf charI24.bdf charR08.bdf charR10.bdf \
+	charR12.bdf charR14.bdf charR18.bdf charR24.bdf \
+	tech14.bdf techB14.bdf term14.bdf termB14.bdf \
+	luBIS08.bdf luBIS10.bdf luBIS12.bdf luBIS14.bdf luBIS18.bdf \
+	luBIS24.bdf luBS08.bdf luBS10.bdf luBS12.bdf luBS14.bdf luBS18.bdf \
+	luBS24.bdf luIS08.bdf luIS10.bdf luIS12.bdf luIS14.bdf luIS18.bdf \
+	luIS24.bdf luRS08.bdf luRS10.bdf luRS12.bdf luRS14.bdf luRS18.bdf \
+	luRS24.bdf lubB08.bdf lubB10.bdf lubB12.bdf lubB14.bdf lubB18.bdf \
+	lubB24.bdf lubBI08.bdf lubBI10.bdf lubBI12.bdf lubBI14.bdf \
+	lubBI18.bdf lubBI24.bdf lubI08.bdf lubI10.bdf lubI12.bdf lubI14.bdf \
+	lubI18.bdf lubI24.bdf lubR08.bdf lubR10.bdf lubR12.bdf lubR14.bdf \
+	lubR18.bdf lubR24.bdf lutBS08.bdf lutBS10.bdf lutBS12.bdf lutBS14.bdf \
+	lutBS18.bdf lutBS24.bdf lutRS08.bdf lutRS10.bdf lutRS12.bdf \
+	lutRS14.bdf lutRS18.bdf lutRS24.bdf \
+	luBIS19.bdf luBS19.bdf luIS19.bdf luRS19.bdf lubB19.bdf lubBI19.bdf \
+	lubI19.bdf lubR19.bdf lutBS19.bdf lutRS19.bdf
+
+
+OBJS1 = \
+	courB08.snf courB10.snf courB12.snf courB14.snf courB18.snf \
+	courB24.snf courBO08.snf courBO10.snf courBO12.snf courBO14.snf \
+	courBO18.snf courBO24.snf courO08.snf courO10.snf courO12.snf \
+	courO14.snf courO18.snf courO24.snf courR08.snf courR10.snf \
+	courR12.snf courR14.snf courR18.snf courR24.snf helvB08.snf \
+	helvB10.snf helvB12.snf helvB14.snf helvB18.snf helvB24.snf \
+	helvBO08.snf helvBO10.snf helvBO12.snf helvBO14.snf helvBO18.snf \
+	helvBO24.snf helvO08.snf helvO10.snf helvO12.snf helvO14.snf \
+	helvO18.snf helvO24.snf helvR08.snf helvR10.snf helvR12.snf \
+	helvR14.snf helvR18.snf helvR24.snf ncenB08.snf ncenB10.snf \
+	ncenB12.snf ncenB14.snf ncenB18.snf ncenB24.snf ncenBI08.snf \
+	ncenBI10.snf ncenBI12.snf ncenBI14.snf ncenBI18.snf ncenBI24.snf \
+	ncenI08.snf ncenI10.snf ncenI12.snf ncenI14.snf ncenI18.snf \
+	ncenI24.snf ncenR08.snf ncenR10.snf ncenR12.snf ncenR14.snf \
+	ncenR18.snf ncenR24.snf symb08.snf symb10.snf symb12.snf \
+	symb14.snf symb18.snf symb24.snf timB08.snf timB10.snf timB12.snf \
+	timB14.snf timB18.snf timB24.snf timBI08.snf timBI10.snf \
+	timBI12.snf timBI14.snf timBI18.snf timBI24.snf timI08.snf
+
+OBJS2 = \
+	timI10.snf timI12.snf timI14.snf timI18.snf timI24.snf timR08.snf \
+	timR10.snf timR12.snf timR14.snf timR18.snf timR24.snf \
+	charB08.snf charB10.snf charB12.snf charB14.snf charB18.snf \
+	charB24.snf charBI08.snf charBI10.snf charBI12.snf charBI14.snf \
+	charBI18.snf charBI24.snf charI08.snf charI10.snf charI12.snf \
+	charI14.snf charI18.snf charI24.snf charR08.snf charR10.snf \
+	charR12.snf charR14.snf charR18.snf charR24.snf \
+	tech14.snf techB14.snf term14.snf termB14.snf \
+	luBIS08.snf luBIS10.snf luBIS12.snf luBIS14.snf luBIS18.snf \
+	luBIS24.snf luBS08.snf luBS10.snf luBS12.snf luBS14.snf luBS18.snf \
+	luBS24.snf luIS08.snf luIS10.snf luIS12.snf luIS14.snf luIS18.snf \
+	luIS24.snf luRS08.snf luRS10.snf luRS12.snf luRS14.snf luRS18.snf \
+	luRS24.snf lubB08.snf lubB10.snf lubB12.snf lubB14.snf lubB18.snf \
+	lubB24.snf lubBI08.snf lubBI10.snf lubBI12.snf lubBI14.snf \
+	lubBI18.snf lubBI24.snf lubI08.snf lubI10.snf lubI12.snf lubI14.snf \
+	lubI18.snf lubI24.snf lubR08.snf lubR10.snf lubR12.snf lubR14.snf \
+	lubR18.snf lubR24.snf lutBS08.snf lutBS10.snf lutBS12.snf lutBS14.snf \
+	lutBS18.snf lutBS24.snf lutRS08.snf lutRS10.snf lutRS12.snf \
+	lutRS14.snf lutRS18.snf lutRS24.snf \
+	luBIS19.snf luBS19.snf luIS19.snf luRS19.snf lubB19.snf lubBI19.snf \
+	lubI19.snf lubR19.snf lutBS19.snf lutRS19.snf
+
+OBJS = $(OBJS1) $(OBJS2)
+
+
+FONTINSTDIR = $(FONTDIR)/100dpi
+
+MakeFonts()
+
+FontTarget(courB08)
+FontTarget(courB10)
+FontTarget(courB12)
+FontTarget(courB14)
+FontTarget(courB18)
+FontTarget(courB24)
+FontTarget(courBO08)
+FontTarget(courBO10)
+FontTarget(courBO12)
+FontTarget(courBO14)
+FontTarget(courBO18)
+FontTarget(courBO24)
+FontTarget(courO08)
+FontTarget(courO10)
+FontTarget(courO12)
+FontTarget(courO14)
+FontTarget(courO18)
+FontTarget(courO24)
+FontTarget(courR08)
+FontTarget(courR10)
+FontTarget(courR12)
+FontTarget(courR14)
+FontTarget(courR18)
+FontTarget(courR24)
+FontTarget(helvB08)
+FontTarget(helvB10)
+FontTarget(helvB12)
+FontTarget(helvB14)
+FontTarget(helvB18)
+FontTarget(helvB24)
+FontTarget(helvBO08)
+FontTarget(helvBO10)
+FontTarget(helvBO12)
+FontTarget(helvBO14)
+FontTarget(helvBO18)
+FontTarget(helvBO24)
+FontTarget(helvO08)
+FontTarget(helvO10)
+FontTarget(helvO12)
+FontTarget(helvO14)
+FontTarget(helvO18)
+FontTarget(helvO24)
+FontTarget(helvR08)
+FontTarget(helvR10)
+FontTarget(helvR12)
+FontTarget(helvR14)
+FontTarget(helvR18)
+FontTarget(helvR24)
+FontTarget(ncenB08)
+FontTarget(ncenB10)
+FontTarget(ncenB12)
+FontTarget(ncenB14)
+FontTarget(ncenB18)
+FontTarget(ncenB24)
+FontTarget(ncenBI08)
+FontTarget(ncenBI10)
+FontTarget(ncenBI12)
+FontTarget(ncenBI14)
+FontTarget(ncenBI18)
+FontTarget(ncenBI24)
+FontTarget(ncenI08)
+FontTarget(ncenI10)
+FontTarget(ncenI12)
+FontTarget(ncenI14)
+FontTarget(ncenI18)
+FontTarget(ncenI24)
+FontTarget(ncenR08)
+FontTarget(ncenR10)
+FontTarget(ncenR12)
+FontTarget(ncenR14)
+FontTarget(ncenR18)
+FontTarget(ncenR24)
+FontTarget(symb08)
+FontTarget(symb10)
+FontTarget(symb12)
+FontTarget(symb14)
+FontTarget(symb18)
+FontTarget(symb24)
+FontTarget(timB08)
+FontTarget(timB10)
+FontTarget(timB12)
+FontTarget(timB14)
+FontTarget(timB18)
+FontTarget(timB24)
+FontTarget(timBI08)
+FontTarget(timBI10)
+FontTarget(timBI12)
+FontTarget(timBI14)
+FontTarget(timBI18)
+FontTarget(timBI24)
+FontTarget(timI08)
+FontTarget(timI10)
+FontTarget(timI12)
+FontTarget(timI14)
+FontTarget(timI18)
+FontTarget(timI24)
+FontTarget(timR08)
+FontTarget(timR10)
+FontTarget(timR12)
+FontTarget(timR14)
+FontTarget(timR18)
+FontTarget(timR24)
+FontTarget(charB08)
+FontTarget(charB10)
+FontTarget(charB12)
+FontTarget(charB14)
+FontTarget(charB18)
+FontTarget(charB24)
+FontTarget(charBI08)
+FontTarget(charBI10)
+FontTarget(charBI12)
+FontTarget(charBI14)
+FontTarget(charBI18)
+FontTarget(charBI24)
+FontTarget(charI08)
+FontTarget(charI10)
+FontTarget(charI12)
+FontTarget(charI14)
+FontTarget(charI18)
+FontTarget(charI24)
+FontTarget(charR08)
+FontTarget(charR10)
+FontTarget(charR12)
+FontTarget(charR14)
+FontTarget(charR18)
+FontTarget(charR24)
+FontTarget(tech14)
+FontTarget(techB14)
+FontTarget(term14)
+FontTarget(termB14)
+FontTarget(luBIS08)
+FontTarget(luBIS10)
+FontTarget(luBIS12)
+FontTarget(luBIS14)
+FontTarget(luBIS18)
+FontTarget(luBIS19)
+FontTarget(luBIS24)
+FontTarget(luBS08)
+FontTarget(luBS10)
+FontTarget(luBS12)
+FontTarget(luBS14)
+FontTarget(luBS18)
+FontTarget(luBS19)
+FontTarget(luBS24)
+FontTarget(luIS08)
+FontTarget(luIS10)
+FontTarget(luIS12)
+FontTarget(luIS14)
+FontTarget(luIS18)
+FontTarget(luIS19)
+FontTarget(luIS24)
+FontTarget(luRS08)
+FontTarget(luRS10)
+FontTarget(luRS12)
+FontTarget(luRS14)
+FontTarget(luRS18)
+FontTarget(luRS19)
+FontTarget(luRS24)
+FontTarget(lubB08)
+FontTarget(lubB10)
+FontTarget(lubB12)
+FontTarget(lubB14)
+FontTarget(lubB18)
+FontTarget(lubB19)
+FontTarget(lubB24)
+FontTarget(lubBI08)
+FontTarget(lubBI10)
+FontTarget(lubBI12)
+FontTarget(lubBI14)
+FontTarget(lubBI18)
+FontTarget(lubBI19)
+FontTarget(lubBI24)
+FontTarget(lubI08)
+FontTarget(lubI10)
+FontTarget(lubI12)
+FontTarget(lubI14)
+FontTarget(lubI18)
+FontTarget(lubI19)
+FontTarget(lubI24)
+FontTarget(lubR08)
+FontTarget(lubR10)
+FontTarget(lubR12)
+FontTarget(lubR14)
+FontTarget(lubR18)
+FontTarget(lubR19)
+FontTarget(lubR24)
+FontTarget(lutBS08)
+FontTarget(lutBS10)
+FontTarget(lutBS12)
+FontTarget(lutBS14)
+FontTarget(lutBS18)
+FontTarget(lutBS19)
+FontTarget(lutBS24)
+FontTarget(lutRS08)
+FontTarget(lutRS10)
+FontTarget(lutRS12)
+FontTarget(lutRS14)
+FontTarget(lutRS18)
+FontTarget(lutRS19)
+FontTarget(lutRS24)
+
+
+InstallFonts1($(FONTINSTDIR))
+InstallFonts2($(FONTINSTDIR))
+InstallFontAliases($(FONTINSTDIR))
+InstallNonExec(desk.alias,$(FONTINSTDIR))
+
+depend::

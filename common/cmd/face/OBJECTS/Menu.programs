@@ -1,0 +1,54 @@
+#ident	"@(#)face:OBJECTS/Menu.programs	1.5.4.3"
+#ident  "$Header: Menu.programs 1.4 91/10/15 $"
+
+menu=$$uxface:437:"Programs"
+help=OPEN TEXT OBJECTS/Text.h "$$uxface:487:HELP on Programs" T.hprog
+rows=18
+framemsg=$$uxface:399:"Move to an item with arrow keys and press ENTER to select the item."
+
+close=`unset -l PRES_VMSYS -l PRES_HOME;
+	rm -f /tmp/lsh${VPID};
+	rm -f /tmp/lsv${VPID}`
+
+`listserv -a HOME >/tmp/lsh${VPID};
+listserv -a VMSYS >/tmp/lsv${VPID};
+set -l PRES_HOME=true -l PRES_VMSYS=true;
+if fmlgrep '^init' /tmp/lsh${VPID} >/dev/null;
+then
+	set -l PRES_HOME=false;
+fi;
+if fmlgrep '^init' /tmp/lsv${VPID} >/dev/null;
+then
+	set -l PRES_VMSYS=false;
+fi;
+if test $PRES_HOME = false -a $PRES_VMSYS = false;
+then
+	readfile /tmp/lsh${VPID};
+else
+	echo "init=true";
+fi`
+
+name=$$uxface:488:"   Global Programs:"
+action=nop
+inactive=true
+show=$PRES_VMSYS
+
+`if test $PRES_VMSYS = true;
+then
+	readfile /tmp/lsv${VPID};
+fi`
+
+name=$$uxface:489:"   Personal Programs:"
+action=nop
+inactive=true
+show=$PRES_HOME
+
+`if test $PRES_HOME = true;
+then
+	readfile /tmp/lsh${VPID};
+fi`
+
+name=$$uxface:400:"UPDATE"
+button=8
+action=update
+

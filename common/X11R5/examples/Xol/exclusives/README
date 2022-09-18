@@ -1,0 +1,38 @@
+******************************************************************************
+	Exclusives Widget	Karen S. Kendler	 30 September 1988
+******************************************************************************
+
+This demo program (unit_test1) provides an exclusives widget, 
+child of the Athena Box widget.  The exclusives widget has a series of 
+rectangular button widgets with callbacks to test different XtSetValues 
+resources on the fly and demonstrate some of its capabilities:
+
+The initial display demonstrates that all buttons in an exclusives
+widget are of constant height and width and that only one button
+can be set at any one time, the background must that of the parent,
+and the border must be zero.
+
+	Suicide:	demonstrates that the exclusives widget
+			self-destructs cleanly.
+
+	Transpose:	will transpose from horizontal to
+			vertical or vice versa.  This is a prototype
+			for changing the XtNcolumns, a resource of
+			the exclusives widget.
+
+	More of Me:	will create an additional button in the 
+			exclusives widget.  This demonstrates 
+			that the exclusives widget will grow either
+			horizontally or vertically to accomodate
+			a new button.
+
+	Poof:		will cause the button to self-destruct,
+			demonstrating the exclusives widget's
+			shrinking in respose to a deleted (and
+			eventually, unmanaged) child button.
+
+	Tiny:		will substitute a longer string in the button,
+			demonstrating that the exclusives widget will
+			grow all buttons wider in response to one
+			button growing longer than the rest.
+

@@ -1,0 +1,6 @@
+#ident	"@(#)face:OBJECTS/Menu.remove	1.3.4.2"
+#ident  "$Header: Menu.remove 1.4 91/10/15 $"
+
+menu=$$uxface:490:"REMOVE OBJECTS FROM WASTEBASKET WITHOUT PROMPTING"
+
+init=`genfind $HOME/WASTEBASKET * any any ">${WASTEDAYS:-1}" | regex '^([^;]*)$0;.*$' '$m0' | xargs rm -rf`false

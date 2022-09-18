@@ -1,0 +1,109 @@
+#ident	"@(#)proto:desktop/menus/fd/part.1	1.9"
+#ident	"$Header: $"
+#
+# Menu description file format
+#
+# Lines beginning with '#' are comments
+#
+# format string for page numbering - 1st %d is current pg and 2nd is total pgs
+.pageno
+Page %d of %d
+#
+# string that appears in the upper left corner
+.ul
+UNIX System Installation
+#
+# The banner for the help_within_help screen
+.hhelp_ban
+Instructions
+#
+# The banner for the help screen
+.helpbanner
+Help: Primary Hard Disk Partitioning
+#
+# string that appears in the upper right corner
+.ur
+Primary Hard Disk Partitioning
+#
+# string that appears in the lower left corner
+#.ll
+#THIS SPACE INTENTIONALLY LEFT BLANK.
+#
+# string that appears in the lower right corner
+.lr
+Del=Cancel  F1=Help
+#
+# text for above the menu form (used to be -s strings)
+.top
+In order to install the UNIX System, you must reserve a partition (a portion
+of your hard disk's space) on your primary hard disk for the UNIX System.
+After you press 'ENTER', you will be shown a screen that will allow you to
+create new partitions, delete existing partitions or change the active
+partition of your primary hard disk (the partition that your computer will
+boot from).
+
+WARNING:  All files in any partition(s) you delete will be destroyed.
+If you wish to attempt to preserve any files from an existing UNIX System, do
+not delete its partition(s).
+
+`if [ "${SIZE_WARN}" = "No" ] ; then echo "The UNIX System partition that you intend to use on the primary \c"; fi`
+`if [ "${SIZE_WARN}" = "No" ] ; then echo "hard disk must be at least 60 MBs, and labeled \"Active.\" \c"; fi`
+`if [ "${SIZE_WARN}" = "Yes" ] ; then echo "The current partitioning is unacceptable for one of the following reasons: \c"; fi`
+`[ "${SIZE_WARN}" = "Yes" ] && echo " "`
+`if [ "${SIZE_WARN}" = "Yes" ] ; then echo "  o  There is no UNIX System partition \c"; fi`
+`if [ "${SIZE_WARN}" = "Yes" ] ; then echo "  o  The UNIX System partition is not \"active\" \c"; fi`
+`if [ "${SIZE_WARN}" = "Yes" ] ; then echo "  o  The UNIX System partition is less than 60 MBs \c"; fi`
+#
+# This is the "options" string for menus.
+#.optstring
+#THIS SPACE INTENTIONALLY LEFT BLANK.
+#
+# Delimiter for form - the contents of this section are the same as
+# the contents of a file specified w/-f options, autodetects whether its
+# a form or a menu.
+.form
+#ENTER
+#
+# This is the prompt string for a MENU only.
+.bottom
+Press 'ENTER' to continue.
+#
+# Help text.  This can also be done using I/O redirection; if aline begins
+# with a <, the rest of the line is considered to be a filename and is
+# read in as though it were part of the file.  If the file contains other
+# .keywords, or `backticks` or <redirection, these will not be processed.
+.help
+For detailed instructions, press the 'F1' (or '?') key at any time.
+
+Partitioning your primary hard disk divides it into a number of partitions
+(or "parts").  Each partition can be used for a different operating system.
+One partition on your hard will be labeled "Active".  Although you may
+change which partition is marked as "Active", the computer will always
+boot from whichever one is active when the computer is turned on.
+
+The UNIX System is always installed on the partition that is labeled
+Active, which must be at least 60 MBs.  This partition cannot be a DOS
+partition.  If you have an existing UNIX System, and you would like to
+attempt to preserve the files on the disk, then make its partition Active
+but do not otherwise change it.
+
+If you are planning to create a DOS partition, it is recommended that the
+DOS partition be partition 1, and that it start at the first available
+cylinder on the primary hard disk (usually numbered as cylinder zero).
+
+WARNING:  If you delete any partition(s), all files in the deleted 
+partition(s) will be destroyed.
+#
+# This is the instructions (help banner) for the help screens.
+.helpinst
+ESC=Exit help  F1=Instructions  Del=Cancel  1=Forward  2=Backward
+.hhelpinst
+ESC=Exit instructions  Del=Cancel  1=Forward  2=Backward
+#
+# This is the "Working..." flag that flashes on the screen if the -r
+# option is specified on the command line.
+#.working
+#THIS SPACE INTENTIONALLY LEFT BLANK.
+#
+# This is an optional keyword for the end of input
+.end

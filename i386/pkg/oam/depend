@@ -1,0 +1,5 @@
+#ident	"@(#)pkg.oam:depend	1.3"
+#ident	"$Header: $"
+
+P  base         Base System
+P  cmds		Commands Extension

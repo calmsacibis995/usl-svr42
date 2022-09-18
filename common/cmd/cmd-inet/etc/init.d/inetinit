@@ -1,0 +1,142 @@
+#ident	"@(#)cmd-inet:common/cmd/cmd-inet/etc/init.d/inetinit	1.9.7.7"
+
+#	inet startup
+
+LOG=/tmp/inet.start
+PermLog=/var/adm/log/inet.start
+export LOG PermLog
+exitcode=0
+
+SLINK=/usr/sbin/slink
+IFCONFIG=/usr/sbin/ifconfig
+STRCF=/etc/inet/strcf
+MSG1="\nTCP/IP startup was not entirely successful. Error messages in $LOG"
+DATADIR=/etc/confnet.d/inet
+DATASCRIPT=$DATADIR/config.boot.sh
+DATABASE=$DATADIR/interface
+NUstrcf=$DATADIR/strcf.custom
+UPSAVE=$DATADIR/up.save 	# ifconfig commands built for "up" operation
+KLUDGE=kludge
+
+export DATADIR DATASCRIPT DATABASE NUstrcf
+#
+# construct the commands to set-up and take-down the protocol stack.
+#
+UP="$SLINK -v -c $NUstrcf $KLUDGE"
+DOWN="$SLINK -u -c $NUstrcf $KLUDGE"
+
+case "$1" in
+start)
+	#the LOOP=up or LOOP=down portion of code is to determine
+	#if we are running this 'start)' code following running
+	#the 'stop)' code.  Once we've run an ifconfig lo0 {address},
+	#ifconfig lo0 will not have a non-zero return code, even after
+	#unlinking the transport stack.
+	#So use the loopback transport UP|DOWN as a flag for the
+	#boot code.
+	ifout="`ifconfig lo0 2>/dev/null`"
+	ifret=$?
+	case X"$ifout" in
+		Xlo0*flags=*\<UP,*)
+			LOOP=up ;;
+		*)	LOOP=down ;;
+	esac
+
+	if [ $ifret != 0 -o $LOOP != up ]
+	then
+		#
+		# the network stack is not yet up (at least there is
+		# no loopback), "make" the strcf and ifconfig commands
+		# (ie, iff any dependency changed).
+		#
+		cmd="$DATASCRIPT up"
+		echo "The following commands ran from /etc/init.d/inetinit"
+		echo \
+"The following commands were run by the boot time configuration
+script, $DATASCRIPT, by running
+$cmd
+"
+
+		eval "$cmd"
+		if [ $? -ne 0 ]
+		then
+			exitcode=1
+		fi
+
+		echo "$UP"
+		if    $UP
+		then
+			if [ -f "$UPSAVE" ]
+			then
+				#
+				# issue all the ifconfig commands
+				#
+				echo "Commands from $UPSAVE:"
+				cat $UPSAVE
+				echo
+				. $UPSAVE 
+			fi
+		else
+			#
+			# failed to build the stream stack so try to
+			# unbuild it.
+			#
+			$DOWN >/dev/null 2>&1
+			echo "$MSG1" >&2
+			exit 1
+		fi
+		if [ -x /usr/eac/bin/initsock ]
+		then
+			/usr/eac/bin/initsock
+		fi
+	fi > $LOG 2>&1
+
+	rm -f $LOG $PermLog
+
+	# run startup script
+	/bin/sh /etc/inet/rc.inet start
+	if [ $? -ne 0 ]
+	then
+		exitcode=1
+	fi
+	exit $exitcode
+
+	;;
+
+stop)
+	#
+	# rc0 and rc1 take care of killing when going down to states 0,1,5,6
+	#
+	set `who -r`
+	if [ "$3" = "2" -o "$3" = "3" ]	
+	then
+	#
+	# if running, kill the route demon
+	#
+		kill -9 `/usr/bin/ps -ef \
+		|/usr/bin/grep in[.]routed \
+		|/usr/bin/awk '{print $2}'` 2>/dev/null
+
+	fi
+	#
+	# bring down the protocol stack
+	# use the strcf script compiled on the way up even if there
+	# were changes made.  Those changes will go into effect
+	# the next time it comes up.
+	#
+	$IFCONFIG -a down >/dev/null 2>&1
+	if [ -f $NUstrcf ]
+	then
+		$DOWN >/dev/null 2>&1
+	fi
+	exit 0
+	#the LOOP=up or LOOP=down portion of the 'start)' code is
+	#checking to see if it is following the above 'stop)' code.
+	#Once we've run an ifconfig lo0 {address},
+	#ifconfig lo0 will not have a non-zero return code, even after
+	#unlinking the transport stack.
+	;;
+
+*)
+	exit 1
+esac

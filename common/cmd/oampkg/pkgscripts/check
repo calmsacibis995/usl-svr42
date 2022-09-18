@@ -1,0 +1,13 @@
+#ident	"@(#)oampkg:common/cmd/oampkg/pkgscripts/check	1.1"
+#ident  "$Header: $"
+mail=root
+instance=unique
+partial=ask
+runlevel=ask
+idepend=ask
+rdepend=ask
+space=ask
+setuid=ask
+conflict=ask
+action=ask
+basedir=default

@@ -1,0 +1,5 @@
+#ident	"@(#)uts-x86:fs/fifofs/fifofs.cf/Master	1.4"
+#ident	"$Header: $"
+$version 1
+$entry init
+fifofs	fifo	F	0	0	0

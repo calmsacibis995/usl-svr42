@@ -1,0 +1,80 @@
+#			Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+#			Copyright (c) 1984, 1985, 1986, 1987, 1988, 1989, 1990 AT&T
+#			  All Rights Reserved
+
+#			THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+#			UNIX System Laboratories, Inc.
+#			The copyright notice above does not evidence any
+#			actual or intended publication of such source code.
+
+
+#ident	"@(#)pkgtools:buildtools	1.5"
+
+[ -d $BASE/include/sys ] || mkdir -p $BASE/include/sys
+[ -d $BASE/libadm ] || mkdir -p $BASE/libadm
+[ -d $BASE/libcmd ] || mkdir -p $BASE/libcmd
+[ -d $BASE/libpkg ] || mkdir -p $BASE/libpkg
+[ -d $BASE/oampkg/hdrs ] || mkdir -p $BASE/oampkg/hdrs
+[ -d $BASE/oampkg/libinst ] || mkdir -p $BASE/oampkg/libinst
+[ -d $BASE/oampkg/pkgmk ] || mkdir -p $BASE/oampkg/pkgmk
+[ -d $BASE/oampkg/pkgtrans ] || mkdir -p $BASE/oampkg/pkgtrans
+
+cp $TOOLS/usr/include/priv.h $BASE/include/priv.h
+cp $TOOLS/usr/include/sys/types.h $BASE/include/sys/types.h
+cp $TOOLS/usr/include/sys/stat.h $BASE/include/sys/stat.h
+cp $TOOLS/usr/include/sys/privilege.h $BASE/include/sys/privilege.h
+cp $TOOLS/usr/include/sys/mac.h $BASE/include/sys/mac.h
+cp $TOOLS/usr/include/sys/acl.h $BASE/include/sys/acl.h
+cp $TOOLS/usr/include/sys/syscall.h $BASE/include/sys/syscall.h
+cp $TOOLS/usr/include/sys/tp.h $BASE/include/sys/tp.h
+cp $TOOLS/usr/include/sys/secsys.h $BASE/include/sys/secsys.h
+cp $TOOLS/usr/include/pkginfo.h $BASE/include/pkginfo.h
+cp $TOOLS/usr/include/pkglocs.h $BASE/include/pkglocs.h
+cp $TOOLS/usr/include/pkgstrct.h $BASE/include/pkgstrct.h
+cp $TOOLS/usr/include/valtools.h $BASE/include/valtools.h
+cp $TOOLS/usr/include/devmgmt.h $BASE/include/devmgmt.h
+cp $TOOLS/usr/include/mac.h $BASE/include/mac.h
+cp $TOOLS/usr/include/acl.h $BASE/include/acl.h
+cp $TOOLS/usr/include/pfmt.h $BASE/include/pfmt.h
+cp $TOOLS/usr/include/ttymap.h $BASE/include/ttymap.h
+cp $TOOLS/usr/include/pkgdev.h $BASE/include/pkgdev.h
+cp $TOOLS/usr/include/pkgtrans.h $BASE/include/pkgtrans.h
+
+cd $ROOT/usr/src/$WORK/lib/libadm
+find . -name "*.[ch]" -follow -print | cpio -pudmVL $BASE/libadm
+
+cd $ROOT/usr/src/$WORK/lib/libcmd
+find . -name "*.[ch]" -follow -print | cpio -pudmVL $BASE/libcmd
+
+cd $ROOT/usr/src/$WORK/lib/libpkg
+find . -name "*.[ch]" -follow -print | cpio -pudmVL $BASE/libpkg
+
+for i in hdrs libinst pkgmk pkgtrans
+do
+	cd $ROOT/usr/src/$WORK/cmd/oampkg/$i
+	find . -name "*.[ch]" -follow -print | cpio -pudmVL $BASE/oampkg/$i
+done
+
+
+mv -f $BASE/top.mk $BASE/Makefile
+mv -f $BASE/include.mk $BASE/include/Makefile
+mv -f $BASE/stubs.c $BASE/include/stubs.c
+mv -f $BASE/cmd.mk $BASE/libcmd/Makefile
+mv -f $BASE/pkg.mk $BASE/libpkg/Makefile
+mv -f $BASE/adm.mk $BASE/libadm/Makefile
+mv -f $BASE/oam.mk $BASE/oampkg/Makefile
+mv -f $BASE/pkgmk.mk $BASE/oampkg/pkgmk/Makefile
+mv -f $BASE/pkgtrans.mk $BASE/oampkg/pkgtrans/Makefile
+mv -f $BASE/inst.mk $BASE/oampkg/libinst/Makefile
+mv -f $BASE/librules $BASE/include/librules
+mv -f $BASE/cmdrules $BASE/include/cmdrules
+
+CMDRULES=$BASE/include/cmdrules
+LIBRULES=$BASE/include/librules
+export LIBRULES CMDRULES
+
+cd $BASE
+
+make all
+
+

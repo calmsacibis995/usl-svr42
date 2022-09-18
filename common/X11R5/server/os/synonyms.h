@@ -1,0 +1,272 @@
+/*	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.	*/
+/*	Copyright (c) 1988, 1989, 1990 AT&T	*/
+/*	  All Rights Reserved  	*/
+
+/*	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF     	*/
+/*	UNIX System Laboratories, Inc.                     	*/
+/*	The copyright notice above does not evidence any   	*/
+/*	actual or intended publication of such source code.	*/
+
+#ident	"@(#)siserver:os/synonyms.h	1.1"
+
+#if defined(__STDC__)
+
+/* external data */
+#define altzone		_altzone
+#define daylight	_daylight
+#define timezone	_timezone
+#define tzname		_tzname
+
+/* functions */
+#define a64l		_a64l
+#define access		_access
+#define acct		_acct
+#define advfs		_advfs
+#define alarm		_alarm
+#define ascftime	_ascftime
+#define brk		_brk
+#define brkbase		_brkbase
+#define cfree		_cfree
+#define cftime		_cftime
+#define chdir		_chdir
+#define chmod		_chmod
+#define chown		_chown
+#define chroot		_chroot
+#define close		_close
+#define closedir	_closedir
+#define countbase	_countbase
+#define creat		_creat
+#define crypt		_crypt
+#define ctermid		_ctermid
+#define cuserid		_cuserid
+#define dial		_dial
+#define drand48		_drand48
+#define dup		_dup
+#define dup2		_dup2
+#define ecvt		_ecvt
+#define edata		_edata
+#define encrypt		_encrypt
+#define end		_end
+#define endgrent	_endgrent
+#define endpwent	_endpwent
+#define endutent	_endutent
+#define environ		_environ
+#define erand48		_erand48
+#define etext		_etext
+#define execl		_execl
+#define execle		_execle
+#define execlp		_execlp
+#define execv		_execv
+#define execve		_execve
+#define execvp		_execvp
+#define fcntl		_fcntl
+#define fcvt		_fcvt
+#define fdopen		_fdopen
+#define ffs		_ffs
+#define fgetgrent	_fgetgrent
+#define fgetpwent	_fgetpwent
+#define finite		_finite
+#define fork		_fork
+#define fpclass		_fpclass
+#define fpgetmask	_fpgetmask
+#define fpgetround	_fpgetround
+#define fpgetsticky	_fpgetsticky
+#define fpsetmask	_fpsetmask
+#define fpsetround	_fpsetround
+#define fpsetsticky	_fpsetsticky
+#define fptrap		_fptrap
+#define fstat		_fstat
+#define ftok		_ftok
+#define ftw		_ftw
+#define gcvt		_gcvt
+#define getcontext	_getcontext
+#define getcwd		_getcwd
+#define getdents	_getdents
+#define getegid		_getegid
+#define geteuid		_geteuid
+#define getgid		_getgid
+#define getgrent	_getgrent
+#define getgrgid	_getgrgid
+#define getgrnam	_getgrnam
+#define gethz		_gethz
+#define getlogin	_getlogin
+#define getmsg		_getmsg
+#define getopt		_getopt
+#define getpagesize	_getpagesize
+#define getpass		_getpass
+#define getpgrp		_getpgrp
+#define getpid		_getpid
+#define getppid		_getppid
+#define getpw		_getpw
+#define getpwent	_getpwent
+#define getpwnam	_getpwnam
+#define getpwuid	_getpwuid
+#define getuid		_getuid
+#define getutent	_getutent
+#define getutid		_getutid
+#define getutline	_getutline
+#define getw		_getw
+#define gsignal		_gsignal
+#define gtty		_gtty
+#define hcreate		_hcreate
+#define hdestroy	_hdestroy
+#define hsearch		_hsearch
+#define insque		_insque
+#define ioctl		_ioctl
+#define isatty		_isatty
+#define isnand		_isnand
+#define isnanf		_isnanf
+#define jrand48		_jrand48
+#define kill		_kill
+#define l3tol		_l3tol
+#define l64a		_l64a
+#define lcong48		_lcong48
+#define lfind		_lfind
+#define libattach	_libattach
+#define libdetach	_libdetach
+#define link		_link
+#define lockf		_lockf
+#define logb		_logb
+#define lrand48		_lrand48
+#define lsearch		_lsearch
+#define lseek		_lseek
+#define lstat		_lstat
+#define ltol3		_ltol3
+#define memalign	_memalign
+#define memccpy		_memccpy
+#define mkdir		_mkdir
+#define mknod		_mknod
+#define mktemp		_mktemp
+#define modff		_modff
+#define monitor		_monitor
+#define mount		_mount
+#define mrand48		_mrand48
+#define msgctl		_msgctl
+#define msgget		_msgget
+#define msgrcv		_msgrcv
+#define msgsnd		_msgsnd
+#define nextafter	_nextafter
+#define nice		_nice
+#define nlist		_nlist
+#define nrand48		_nrand48
+#define open		_open
+#define opendir		_opendir
+#define pause		_pause
+#define pclose		_pclose
+#define pipe		_pipe
+#define plock		_plock
+#define poll		_poll
+#define popen		_popen
+#define profil		_profil
+#define ptrace		_ptrace
+#define putenv		_putenv
+#define putmsg		_putmsg
+#define putpwent	_putpwent
+#define pututline	_pututline
+#define putw		_putw
+#define readlink	_readlink
+#define rdebug		_rdebug
+#define read		_read
+#define readdir		_readdir
+#define realpath	_realpath
+#define remque		_remque
+#define rfstart		_rfstart
+#define rfstop		_rfstop
+#define rfsys		_rfsys
+#define rmdir		_rmdir
+#define rmount		_rmount
+#define rumount		_rumount
+#define sbrk		_sbrk
+#define scalb		_scalb
+#define seed48		_seed48
+#define seekdir		_seekdir
+#define semctl		_semctl
+#define semget		_semget
+#define semop		_semop
+#define setcontext	_setcontext
+#define setgid		_setgid
+#define setgrent	_setgrent
+#define setkey		_setkey
+#define setpgrp		_setpgrp
+#define setpwent	_setpwent
+#define setuid		_setuid
+#define setutent	_setutent
+#define shmat		_shmat
+#define shmctl		_shmctl
+#define shmdt		_shmdt
+#define shmget		_shmget
+#define sigaddset	_sigaddset
+#define sigdelset	_sigdelset
+#define sigemptyset	_sigemptyset
+#define sigfillset	_sigfillset
+#define sighold		_sighold
+#define sigignore	_sigignore
+#define sigismember	_sigismember
+#define sigpause	_sigpause
+#define sigrelse	_sigrelse
+#define sigset		_sigset
+#define sigprocmask	_sigprocmask
+#define sigsuspend	_sigsuspend
+#define sigaltstack	_sigaltstack
+#define sigaction	_sigaction
+#define sigpending	_sigpending
+#define sleep		_sleep
+#define srand48		_srand48
+#define ssignal		_ssignal
+#define stat		_stat
+#define statfs		_statfs
+#define stime		_stime
+#define strdup		_strdup
+#define stty		_stty
+#define swab		_swab
+#define sync		_sync
+#define sys3b		_sys3b
+#define sys_errlist	_sys_errlist
+#define sys_nerr	_sys_nerr
+#define syscall		_syscall
+#define sysfs		_sysfs
+#define tdelete		_tdelete
+#define tell		_tell
+#define telldir		_telldir
+#define tempnam		_tempnam
+#define tfind		_tfind
+#define times		_times
+#define tsearch		_tsearch
+#define ttyname		_ttyname
+#define ttyslot		_ttyslot
+#define twalk		_twalk
+#define tzname		_tzname
+#define tzset		_tzset
+#define uadmin		_uadmin
+#define ulimit		_ulimit
+#define umask		_umask
+#define umount		_umount
+#define unadvfs		_unadvfs
+#define uname		_uname
+#define undial		_undial
+#define unlink		_unlink
+#define unordered	_unordered
+#define utime		_utime
+#define utmpname	_utmpname
+#define valloc		_valloc
+#define wait		_wait
+#define write		_write
+#define _assert		__assert
+#define _ctype		__ctype
+#define _filbuf		__filbuf
+#define _flsbuf		__flsbuf
+#define _iob		__iob
+
+typedef void VOID;
+
+#else  /* not __STDC__ */
+
+#define const
+typedef char VOID;
+
+#ifndef _SIZE_T
+#define _SIZE_T
+typedef unsigned int	size_t;
+#endif
+
+#endif

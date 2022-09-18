@@ -1,0 +1,80 @@
+#display VGA256 PsuedoColor "ATI_PLUS MULTISYNC 800x600 9.75x7.32" 0 /dev/console lib/libvga256.so
+# /* ATI+, ATIXL 800x600, for multisync monitors */
+
+#display VGA256 PsuedoColor "ATI_PLUS STDVGA 640x480 9.75x7.32" 0 /dev/console lib/libvga256.so
+# /* ATI+, ATIXL 640x480 */
+
+#display VGA256 PsuedoColor "ATI_PLUS STDVGA 640x400 9.75x7.32" 0 /dev/console lib/libvga256.so
+# /* ATI+, ATIXL 640x400 */
+
+#display VGA256 PsuedoColor "ATI_V5 MULTISYNC 800x600 9.75x7.32" 0 /dev/console lib/libvga256.so
+# /* ATI Wonder V5 800x600, for multisync monitors */
+
+#display VGA256 PsuedoColor "ATI_V5 STDVGA 640x480 9.75x7.32" 0 /dev/console lib/libvga256.so
+# /* ATI Wonder V5 640x480 */
+
+#display VGA256 PsuedoColor "ATI_V4 MULTISYNC 800x600 9.75x7.32" 0 /dev/console lib/libvga256.so
+# /* ATI Wonder V4 800x600, for multisync monitors */
+
+#display VGA256 PsuedoColor "ATI_V4 STDVGA 640x480 9.75x7.32" 0 /dev/console lib/libvga256.so
+# /* ATI Wonder V4 640x480 */
+
+
+
+# AS OF LOAD P9, only one mode works; DO NOT USE THE ENTRIES BELOW; YOU MAY
+# reboot the machine
+
+#/**/#display VGA256 PsuedoColor "ATIXL MULTISYNC 800x600 9.75x7.32" 0 /dev/console lib/libvga256.so
+# /* ATIXL 800x600 for normal multisync monitors */
+
+#/**/#display VGA256 PsuedoColor "ATIXL MULTISYNC72 800x600 9.75x7.32" 0 /dev/console lib/libvga256.so
+# /* ATIXL 800x600 for multisync monitors that can support 72Hz vertical sync */
+
+#/**/#display VGA256 PsuedoColor "ATIXL MULTISYNC60 800x600 9.75x7.32" 0 /dev/console lib/libvga256.so
+# /* ATIXL 800x600 for multisync monitors that can support 60Hz vertical sync */
+
+#/**/#display VGA256 PsuedoColor "ATIXL TVM2A 800x600 9.75x7.32" 0 /dev/console lib/libvga256.so
+# /* ATIXL 800x600 for TVM2A monitor */
+
+#/**/#display VGA256 PsuedoColor "ATIXL 1430 800x600 9.75x7.32" 0 /dev/console lib/libvga256.so
+# /* ATIXL 800x600 for 1430 monitor */
+
+#/**/#display VGA256 PsuedoColor "ATIXL 8514 800x600 9.75x7.32" 0 /dev/console lib/libvga256.so
+# /* ATIXL 800x600 for 8514 monitor */
+
+#/**/#display VGA256 PsuedoColor "ATIXL MULTISYNC 1024x768 9.75x7.32" 0 /dev/console lib/libvga256.so
+# /* ATIXL 1024x768 for normal multisync monitors */
+
+#/**/#display VGA256 PsuedoColor "ATIXL MULTISYNC72 1024x768 9.75x7.32" 0 /dev/console lib/libvga256.so
+# /* ATIXL 1024x768 for multisync monitors that can support 72Hz vertical sync */
+
+#/**/#display VGA256 PsuedoColor "ATIXL MULTISYNC60 1024x768 9.75x7.32" 0 /dev/console lib/libvga256.so
+# /* ATIXL 1024x768 for multisync monitors that can support 60Hz vertical sync */
+
+#/**/#display VGA256 PsuedoColor "ATIXL TVM2A 1024x768 9.75x7.32" 0 /dev/console lib/libvga256.so
+# /* ATIXL 1024x768 for TVM2A monitor */
+
+#/**/#display VGA256 PsuedoColor "ATIXL 1430 1024x768 9.75x7.32" 0 /dev/console lib/libvga256.so
+# /* ATIXL 1024x768 for 1430 monitor */
+
+#/**/#display VGA256 PsuedoColor "ATIXL 8514 1024x768 9.75x7.32" 0 /dev/console lib/libvga256.so
+# /* ATIXL 1024x768 for 8514 monitor */
+
+#
+# NOTE: A valid entry is the first line that does not have a '#' 
+#	sign as the first char is taken as 'THE ENTRY'; So, to use
+#	an entry just comment (#) the lines before the required line.
+#	Try to keep the required entry at the top of the file; this
+# 	saves start up time especially with huge config files.
+#
+#	To use your own config file, you can run the server with:
+#
+#		X -config $HOME/mycfg &
+#		OR
+#		olinit -- -config $HOME/mycfg
+#
+# If you want to know the valid entries for the installed init 
+# driver (/lib/libv256i.so.1), make a fake entry in the 2nd field (ex: replace
+# VGA with FOO) and try to run the server; all the valid entries
+# with the supported resolutions are printed on stdout.
+#

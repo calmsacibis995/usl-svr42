@@ -1,0 +1,73 @@
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+#ident	"@(#)vga16:vga16/INIT/Imakefile	1.18"
+
+/*
+ *	.c.o rule changed to compile files with -Xa option
+ *	this is to run the "asm" command called in "inline.h" and 
+ *	used by all the files in this directory
+ *	-Xc does not recognise "asm" as a keyword
+ */
+#define VgaSharedObjectRule()				@@\
+.c.o:							@@\
+	$(CC) -c -KPIC -O -Xa -Dix86 $(INCLUDES) $<;	@@\
+
+
+#define	InstallInitLibrary(libname,destdir)				@@\
+install:: all								@@\
+	$(INSTALL) $(INSTLIBFLAGS) /**/libname/**/_16i.so destdir	@@\
+	$(INSTALL) $(INSTDATFLAGS) /**/libname/**/.16cfg destdir
+
+#define VgaInitRule(libname)				@@\
+all:: /**/libname/**/_16i.so				@@\
+/**/libname/**/_16i.so:: libname/**/_16i.o			@@\
+	$(RM) libv16i.so 				@@\
+	$(CC) $(YFLAGS) -G /**/libname/**/_16i.o -o /**/libname/**/_16i.so -h libv16i.so.1 @@\
+	@echo /**/libname/**/_16i.so generated.		@@\
+	InstallInitLibrary(libname,$(VGAINITDIR))	@@\
+
+SRCS = def_16i.c misc_16i.c et4k_16i.c t89_16i.c wdc1x_16i.c ati_16i.c
+
+   INCLUDES = -I./ -I../
+     LFLAGS = -buxz
+ VGAINITDIR = $(USRLIBDIR)/vgainit
+ SHAREDOBJS =
+
+#ifdef XWINSharedDisplayLibrary
+
+VgaSharedObjectRule()
+
+all::
+	@echo "Making 16 color initialization drivers for various VGA boards ...."
+
+install::
+	$(MKDIRHIER) $(VGAINITDIR);
+
+DEFAULT_LIB = def_16i.so
+
+VgaInitRule(def)
+VgaInitRule(misc)
+VgaInitRule(et4k)
+VgaInitRule(t89)
+VgaInitRule(wdc1x)
+VgaInitRule(ati)
+
+all:: $(DEFAULT_LIB)
+	$(CP) $(DEFAULT_LIB) libv16i.so;
+	@echo Done making 16 color initialization drivers.
+
+install:: 
+	$(INSTALL) $(INSTLIBFLAGS) $(DEFAULT_LIB) $(USRLIBDIR)/libv16i.so.1
+#endif
+
+clean::
+	$(RM) *.so
+
+DependTarget()

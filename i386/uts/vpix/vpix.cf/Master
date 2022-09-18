@@ -1,0 +1,4 @@
+#ident	"@(#)uts-x86:vpix/vpix.cf/Master	1.3"
+#ident	"$Header: $"
+$version 1
+vx	vpix	io	0	0	1	

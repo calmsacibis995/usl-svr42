@@ -1,0 +1,5 @@
+#ident	"@(#)oamintf:common/cmd/oamintf/applications/appl.menu	1.2.3.2"
+#ident  "$Header: appl.menu 2.0 91/07/12 $"
+#menu#Administration for Available Applications
+#help#appl.help^Application Management
+#life#permanent

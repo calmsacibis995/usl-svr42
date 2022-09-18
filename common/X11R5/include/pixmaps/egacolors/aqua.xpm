@@ -1,0 +1,19 @@
+#define aqua_format 1
+#define aqua_width 8
+#define aqua_height 8
+#define aqua_ncolors 2
+#define aqua_chars_per_pixel 1
+static char * aqua_colors[] = {
+" " , "#0000FFFF0000",
+"." , "#0000AAAAFFFF"
+} ;
+static char * aqua_pixels[] = {
+" . . . .",
+". . . . ",
+" . . . .",
+". . . . ",
+" . . . .",
+". . . . ",
+" . . . .",
+". . . . "
+} ;

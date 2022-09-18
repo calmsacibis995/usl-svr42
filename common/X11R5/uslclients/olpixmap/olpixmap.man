@@ -1,0 +1,548 @@
+.\"ident	"@(#)olpixmap:olpixmap.man	1.4"
+
+.TH OLPIXMAP 1 "2/14/91" "OPEN LOOK 4.0i"
+.SH NAME
+olpixmap - pixmap editor
+.SH SYNOPSIS
+\f3olpixmap\fP [-options...] [filename]
+.SH DESCRIPTION
+The 
+.I olpixmap editor
+is a software product that allows users (primarily software
+developers) to create and edit pixmaps that may be used by other
+X Window System applications.
+\f2olpixmap\fP is intended for
+use mainly by software developers to create pixmaps for use in their
+applications, but can also be useful to end users in creating custom
+background pixmaps for their root window (see \fBxsetroot\fP(1), which
+has been modified to accept pixmap files).
+.P
+The \f2olpixmap\f1 editor
+is an independent, self-contained component of the OPEN LOOK
+product.
+It is meant as a complement to the bitmap program provided by MIT
+as part of the X Window System.
+.P
+As an interactive application, 
+\f2olpixmap\f1 reacts to user input (usually by
+manipulating the mouse) to set pixels in a pixmap to specific colors.
+Users have available to them convenient primitive operations for
+drawing simple closed shapes and lines, as well as filling arbitrarily
+shaped areas with a specified color.
+.P
+The output of \f2olpixmap\fP is a small C code fragment.  By
+\f(CW#include\fP'ing
+such a program fragment into an application, the 
+user can easily declare
+the size and content of icons, window backgrounds, 
+and other pixmaps that
+an application creates to deal with the X Window System.
+.P
+The \f2olpixmap\fP editor 
+writes pixmaps in the XPM (X PixMap) file format.
+The XPM format is a convention for storing pixmaps
+on disk in a portable (ASCII), device-independent (no depth or color
+limitations), \f(CW#include\fP'able format, similar to MIT's standard
+X11 bitmap file format.  
+.P
+Applications wanting to read or write this format will need to
+link in two source files to provide this support.  These files
+(\f(CWxpm.c\fP and \f(CWxpm.h\fP) are installed by 
+\f2olpixmap\fP for such use,
+and can be found (typically) in \f(CW/usr/X/lib/tutorial/XPM\fP
+on SVR3.2 machines and in \f(CW/usr/lib/X11/tutorial/XPM\fP
+on SVR4.0 machines.
+.SH "DEFINITIONS, ACRONYMS, AND ABBREVIATIONS"
+.EQ
+delim %%
+.EN
+.sp .5
+.TP 8
+\fBPixmap\fP
+A \fIpixmap\fP is a three dimensional array of bits.
+A pixmap is normally thought of as a two dimensional array of pixels,
+where each pixel can be a value from 0 to %2 sup N - 1%,
+where N is the depth (z axis) of the pixmap.
+A pixmap can also be thought of as a stack of N bitmaps.
+.TP 8
+\fBPixel\fP
+A \fIpixel\fP is an N-bit value (at a single point), where N is the
+number of bit planes (e.g., the depth of) used in a particular pixmap.
+.TP 8
+\fBDepth\fP
+The \fIdepth\fP of a pixmap is the number of bits per pixel it has.
+.TP 8
+\fBBitmap\fP
+A \fIbitmap\fP is a pixmap of depth 1.
+.TP 8
+\fBPress\fP
+A \fIpress\fP is the down transition of a mouse button or key.
+.TP 8
+\fBRelease\fP
+A \fIrelease\fP is the up transition of a mouse button or key.
+.TP 8
+\fBClick\fP
+A \fIclick\fP is a button press followed by a button release with no intervening
+mouse motion (any mouse damping factor is taken into account).
+.TP 8
+\fBDragging\fP
+\fIDragging\fP refers to a button press followed by some amount of 
+mouse motion (greater than the mouse damping factor), terminated by a button release.
+.TP 8
+\fBMouse Damping Factor\fP
+The \fImouse damping factor\fP is the 
+amount the mouse is allowed to actually
+move in between a button press and a button 
+release while still considering
+the button press/release combination to be a click.
+.TP 8
+\fBSweeping\fP
+\fISweeping\fP is mouse motion with a 
+mouse button down;  similar to dragging.
+.TP 8
+\fBCanvas\fP
+The \fIcanvas\fP is the area in 
+which the pixmap is actually manipulated.
+.SH "OVERVIEW:"
+.SH "STARTUP BEHAVIOR"
+.I olpixmap
+comes up with a base window plus a pinned popup window.
+The base window consists of a canvas pane displaying a magnified image
+of a pixmap, in which each pixel is shown as a large square (as if on
+a piece of graph paper), and a button control area.
+The popup shows the pixmap at its actual size, with a single-pixel
+wide box outlining the portion of the pixmap being magnified.
+.P
+When
+.I olpixmap 
+starts, it first tries to read the
+specified file.  If the file already exists, it creates a canvas
+pane containing a grid of the appropriate dimensions.  If the file
+does not exist, 
+.I olpixmap
+will create a pane for a pixmap of the default
+size,  and the pixmap will start out empty.
+.SH "SELECT, ADJUST, and MENU"
+\f3SELECT\f1 is 
+used to start working with (i.e., start the drawing process of)
+the current object.
+For the case of a single pixel, clicking \f3SELECT\f1
+sets the chosen pixel to the
+current color, while dragging \f3SELECT\f1
+sets all pixels dragged through.
+In the case of lines or line segments, pressing \f3SELECT\f1
+sets the initial endpoint;
+releasing \f3SELECT\f1 sets the terminal endpoint.
+For other objects (e.g., oval or rectangle), pressing 
+\f3SELECT\f1 sets the center
+or corner of the bounding rectangle.
+Subsequent dragging of \f3SELECT\f1
+changes the size of the bounding rectangle.
+The object is drawn the appropriate size upon release of 
+\f3SELECT\f1.
+.P
+\f3ADJUST\f1 currently has no function.
+.P
+\f3MENU\f1 is used to bring up a menu.
+.SH "CONTROL LAYOUT"
+.I olpixmap
+has a canvas pane to display the magnified pixmap located to the
+left of a control panel.
+The control panel has buttons and menu buttons labeled
+\fBFile\fP, \fBView\fP, \fBEdit\fP, \fBDraw\fP, \fBPalette\fP,
+and \fBProperties\fP.
+The functionality associated with each button is listed under the
+appropriate heading.
+.TP 8
+\f3File\fP
+Selecting \fBFile\fP pops up a window with a text field and buttons
+for opening and saving a pixmap.
+.sp .5
+\fBOpen\fP reads in a fresh pixmap file.
+.sp .5
+\fBBrowse\fP allows interactive traversal of the file system
+for selection of a pixmap file to open.
+.sp .5
+\fBSave\fP writes out the current pixmap file.
+.sp .5
+Detailed explanations of the open and save operations can be
+found in the sections labeled ``Reading Files In'', ``Browsing'',
+and ``Writing Files Out''.
+.TP 8
+\f3View\fP
+\fBShow Pixmap\fP (the 
+default button) allows the user to pop up
+a window containing the actual size pixmap on which 
+the user is working.
+The pixmap in the popup window is updated in 
+real time with any operations
+the user performs.  (This button is used 
+to re-popup this window if the
+one from start-up is unpinned.)
+.sp .5
+The \fBZoom In\fP button is the second control.
+It allows the user to zoom in to a higher magnification level
+on the current pixmap.
+Successive zoom-ins are supported.
+.sp .5
+The \fBZoom Out\fP button is the inverse operation of the \fBZoom In\fP button.
+Selecting \fBZoom Out\fP returns the pixmap to the previous level of
+magnification.
+.TP 8
+\f3Edit\fP
+The \fBFill\fP button enables the user to fill
+a portion of the pixmap to the current color.
+.sp .5
+\fBRecolor\fP will change all pixels of a selected color
+in the pixmap to the current color.
+.sp .5
+\fBClear\fP provides a quick way to clear out
+a specified rectangular area of the pixmap.
+.sp .5
+The \fBCopy\fP button enables the
+user to copy selected area of the pixmap.
+.sp .5
+\fBMove\fP works in a similar fashion to \fBCopy\fP.
+.sp .5
+The \fBRoll\fP function will
+horizontally or vertically rotate the pixmap, with
+wrapping around at the edges.
+.sp .5
+Further details of the controls in the \fBEdit\fP menu can be found
+in the appropriately labeled sections that follow.
+.TP 8
+\f3Draw\f1
+The \fBDraw\fP menu consists of an exclusive setting from which
+the user can choose the current drawing function.
+.sp .5
+\fBPixels\fP enables the user to set arbitrary pixels.
+.sp .5
+\f3Lines\fP allows the user to draw lines by selecting two endpoints.
+.sp .5
+\f3Segments\fP
+is similar to \fBLines\fP, letting
+the user draw connected line
+segments.  Each subsequent endpoint specified after the 
+first two draws
+a connecting line from the previous one.
+.sp .5
+\fBOvals\fP enables the user to draw arbitrary 
+ovals by sweeping the 
+bounding rectangle on the pixmap.
+.sp .5
+\fBCircles\fP is a constrained case of the 
+general \fBOvals\fP function.
+.sp .5
+\fBRectangles\fP lets the user draw arbitrary 
+rectangles by sweeping the 
+rectangle on the pixmap.
+.sp .5
+\fBSquares\fP is a constrained case of the 
+general \fBRectangles\fP function.
+Further details of the controls in the \fBDraw\fP menu can be found
+in the appropriately labeled sections that follow.
+.TP 8
+\f3Palette\fP
+Pressing the \fBPalette\fP menu button displays a submenu showing the
+different drawing colors available.  The current drawing color can be
+changed by choosing a new entry from this menu.
+.TP 8
+\f3Properties\f1
+The \fBProperties\fP button pops up a property window that allows
+the user to choose the current line width, line style, grid appearance,
+and pixmap dimensions.
+.sp .5
+Further details of the controls in the \fBProperties\fP property window
+can be found in the appropriately labeled sections that follow.
+.SH COMMANDS
+.TP 8
+\f3Reading Files In\f1
+Choosing \fBOpen\fP from the \fBFile\fP window initiates a read from
+the file named in the text field.
+Any previous work is discarded and the new pixmap file is read in,
+with the canvas being resized as necessary.
+Any error messages related to reading the specified file will be
+displayed in the window footer.
+.I olpixmap
+supports reading of standard X11 bitmap format files.
+.TP 8
+\f3Browsing\f1
+Choosing \fBBrowse\fP from the \fBFile\fP window will pop up a
+File Manager window from which the user can traverse through the file
+system and potentially choose a pixmap file to open.  Double-click
+\f3SELECT\f1
+on the icon of the desired pixmap file in order to load it
+into the pixmap editor.  The browse operation can be cancelled
+if desired via a File Manager submenu.
+.sp .5
+Alternatively, the user can take advantage of the 
+"drag and drop" feature
+to open pixmap files shown in \fIalready-existing\fP 
+File Manager windows.
+Using \f3SELECT\f1, \fIdrag\fP 
+the desired file from an independent File Manager
+window, and \fIdrop\fP it onto the magnification pane of 
+.I olpixmap.
+The file will then be opened as usual.
+.TP 8
+\f3Writing Files Out\fP
+Choosing \fBSave\fP from the \fBFile\fP window writes the current pixmap
+to the file named in the text field (which by default is the last
+one opened).  If there is an existing file by that name, it will be
+renamed with an appended tilda character.
+Any error messages related to writing the specified file will be
+displayed in the window footer.
+.TP 8
+\f3Show Pixmap\fP
+Selecting the \fBShow Pixmap\fP button pops up a window that contains a
+actual size representation of the pixmap currently being edited.  If the
+window is already popped up, then it will be raised to the front.
+This pixmap is updated as the user works on the canvas.
+.TP 8
+\f3Magnifying\fP
+Magnification is accomplished by the use of the \fBZoom In\fP and
+\fBZoom Out\fP buttons.
+The \fBZoom In\fP button increases the level of magnification for
+the canvas pane (scrollbars are added if not already present).
+The pixel representations are sized accordingly.
+Any number of \fBZoom In\fP operations may be performed up to
+the point of having a single pixel fill the viewport.
+Subsequent \fBZoom In\fP requests are ignored.
+The \fBZoom In\fP operations are stacked;  the \fBZoom Out\fP button
+returns the canvas to the previous magnification value.
+If the user has not zoomed in, no operation is performed.
+.TP 8
+\f3Fill Area\fP
+When \fBFill\fP is chosen, the user is directed to select a point within
+the area that s/he desires to fill.  All pixels in that area that are of
+the same color as the one chosen will be filled to be the current color.
+Thus, the fill stops at the boundaries of where the color is not
+the same as that of the chosen point.
+.TP 8
+\f3Clear Area\fP
+Choosing \fBClear\fP prompts the user to sweep out a rectangular area
+to clear to the background color.
+.TP 8
+\f3Copy Area\fP
+When \fBCopy\fP is chosen, the user is directed to sweep an area
+of the canvas by dragging \f3SELECT\f1, 
+indicating the area to be copied.
+When \f3SELECT\f1 is released, the 
+user is instructed to specify, by pressing \f3SELECT\f1,
+the location where the upper left corner of the copied area is to begin.
+When \f3SELECT\f1 is released, the area is copied.
+.TP 8
+\f3Move Area\fP
+When \fBMove\fP is chosen, the user is directed to sweep an area
+of the canvas by dragging \f3SELECT\f1 indicating the area to be moved.
+When \f3SELECT\f1
+is released, the user is instructed to specify, by 
+pressing \f3SELECT\f1,
+the location where the upper left corner of 
+the swept area is to be moved.
+When \f3SELECT\f1 is released, the area is moved.
+Any pixel ``exposed'' by the move operation will be set to the
+background color.
+.TP 8
+\f3Roll\fP
+The \fBRoll\fP function will
+horizontally and/or vertically rotate the pixmap,
+with wrapping around at the edges.  The user makes
+this happen by choosing a point within the pixmap
+to make the \fInew\fP upper-left corner of the pixmap.
+This point will first be rolled horizontally to the
+left edge of the pixmap, with all pixel data to its
+left wrapping around to the right edge of the pixmap,
+and then the point is rolled vertically to the top edge
+of the pixmap, with all pixel data above wrapping
+around to the bottom edge of the pixmap.
+This function is useful when creating a pixmap
+that needs to join with itself when tiled.
+.TP 8
+\f3Drawing Raw Pixels\fP
+The user may set individual pixels by selecting the \fBPixels\fP
+item under the \fBDraw\fP menu button.
+When the user is drawing raw pixels, 
+\f3SELECT\f1 sets the pixel pointed to by
+the mouse to the current color.
+.TP 8
+\f3Drawing Lines\fP
+To draw a collection of lines, the user would first select the \fBLines\fP
+button.
+The user would then be prompted to select the initial endpoint by pressing
+\f3SELECT\f1 over some pixel.
+A rubber band line would appear anchored to the selected pixel, tracking the
+pointer.
+When the user would release the button, the terminal endpoint is selected and
+the line is drawn using the current color, line width, and
+line style.
+.TP 8
+\f3Drawing Connected Segments\fP
+Drawing connected line segments follows a similar interface to drawing lines.
+The user selects the initial 
+endpoint of the first segment by pressing \f3SELECT\f1.
+A rubber band line tracks the pointer until the user
+releases the button, causing the line to be 
+drawn in the current color using
+the current line width, and line style.
+To draw another segment, the user again presses \f3SELECT\f1.
+However, for this and all subsequent segments, the initial endpoint
+is anchored at the terminal endpoint of the previously drawn segment.
+When \f3SELECT\f1
+is pressed, a rubber band line appears, anchored at the terminal
+endpoint of the previous segment, tracking the pointer.
+When \f3SELECT\f1 is released, the next segment is drawn.
+.TP 8
+\f3Drawing Ovals\fP
+Selecting \fBOvals\fP prompts the user to sweep the bounding box for the oval.
+When the user presses \f3SELECT\f1, 
+a rubber banding rectangle is drawn, centered
+about the pixel over which \f3SELECT\f1 was pressed.
+The appropriate corner (lower right, if the user pulls down and to the right;
+upper left, if the user pulls up and to the left, etc.) tracks the pointer
+until the user releases \f3SELECT\f1.
+An oval is then drawn to the size specified by the bounding rectangle,
+using the current color, line width, and line style.
+.TP 8
+\f3Drawing Circles\fP
+Circles are drawn in an identical manner to ovals.
+The constraint of a square bounding box is automatically imposed.
+.TP 8
+\f3Drawing Rectangles\fP
+Selecting \fBRectangles\fP prompts the user to sweep the bounding box for the
+rectangle.
+When the user presses \f3SELECT\f1, 
+a rubber banding rectangle is drawn, centered
+about the pixel over which \f3SELECT\f1 was pressed.
+The appropriate corner tracks the pointer
+until the user releases \f3SELECT\f1.
+A rectangle is then drawn to the size specified by the rubber banding
+rectangle, using the current color, line width, and line style.
+.TP 8
+\f3Drawing Squares\fP
+Squares are drawn in an identical manner to rectangles.
+The constraint of a square bounding box is automatically imposed.
+.TP 8
+\f3Changing the Current Color\fP
+The color used for drawing operations may be changed using
+the \fBPalette\fP submenu.  This menu displays a box for each
+of the available colors in the colormap.
+The menu can be pinned for rapid access.
+.SH PROPERTIES
+The \fBProperties\fP property sheet allows the user to set the values of
+various parameters pertaining to the operation of 
+.I olpixmap.
+New values may be chosen by manipulating the controls; these values
+are then put into effect by clicking 
+\f3SELECT\f1 on the ``Apply'' button.
+The user may choose the ``Reset'' button at any time to return the
+controls to the values currently in effect.
+.TP 8
+\f3Line Width\fP
+The \fBLine Width\fP slider allows the user to change the width
+of objects drawn (lines, ovals, rectangles, etc.).
+The slider displays the current line width (zero by default).
+This value may be changed by the user to any integer value.
+.TP 8
+\f3Line Style\fP
+The \fBLine Style\fP item allows the user to select the line type.
+Line type is selected by choosing one of the two exclusive settings,
+``Solid'' (the default) or ``Dashed.''
+.TP 8
+\f3Grid Appearance\fP
+The \fBGrid\fP item is an exclusive setting that controls whether
+the canvas grid will be shown;
+selecting ``Off'' inhibits the display of the grid.
+.TP 8
+\f3Pixmap Dimensions\fP
+The \fBPixmap Width\fP and \fBHeight\fP fields show the dimensions
+of the pixmap currently being edited.
+Either or both of these values may be dynamically changed by typing
+a valid integer value into the appropriate fields (and subsequently
+selecting the ``Apply'' button).
+Any error messages will be displayed in the window footer.
+.sp .5
+The pixmap is resized to the size requested by the user, with
+any pixel values being copied into the new pixmap.
+If the new pixmap is larger than the old pixmap, the old pixmap will be copied
+intact, starting at (0,0), with the remainder of the new pixmap being unset.
+If the new pixmap is smaller, the old pixmap is copied starting at (0,0) and
+clipped by the boundary of the new pixmap.
+The magnification pane is sized appropriately.
+.SH "FILE FORMAT"
+.I olpixmap
+reads and writes files in the following format (XPM), which is
+suitable for \f(CW#include\fP'ing in a C program:\f(CW
+.nf
+
+#define \fIname\fP_format 1
+#define \fIname\fP_width 16
+#define \fIname\fP_height 16
+#define \fIname\fP_ncolors 4
+#define \fIname\fP_chars_per_pixel 1
+static char * \fIname\fP_colors[] = {
+" " , "#FFFFFFFFFFFF",
+"." , "SkyBlue",
+"X" , "#000000",
+"o" , "ForestGreen"
+} ;
+static char * \fIname\fP_pixels[] = {
+"X..X           X",
+" X..X          X",
+"  X..X        X ",
+"   X..X      X  ",
+"   X..X     X   ",
+"    X..X   X    ",
+"     X..X  X    ",
+"      X.. X     ",
+"      XX X      ",
+"      X ooX     ",
+"     X  XooX    ",
+"     X   XooX   ",
+"    X    XooX   ",
+"   X      XooX  ",
+"  X        XooX ",
+" X          XooX"
+} ;
+
+.fi
+\fRThe \fIname\fP portion of the shown variables will be
+derived from the name of the file specified either on the original
+command line or in the \fBFile\fP window by
+deleting the directory path (all characters up to and including
+the last `/', if one is present), and
+deleting the extension (the first `.', if one is present,
+and all characters beyond it).
+.P
+For example, invoking
+.I olpixmap
+with the filename
+\f(CW/usr/X/include/X11/pixmaps/cross.xpm\fP on SVR3.2 systems or
+\f(CW/usr/include/X11/pixmaps/cross.xpm\fP on SVR4.0 systems
+will produce a file with variable names
+\fIcross_width\fP, \fIcross_height\fP, \fIcross_ncolors\fP,
+\fIcross_chars_per_pixel\fP, \fIcross_colors\fP, and \fIcross_pixels\fP.
+.P
+It's easy to define a pixmap in an X program by simply \f(CW#include\fP'ing
+a pixmap file and referring to its variables.  For instance, to use a pixmap
+defined in the file \f(CWcross.xpm\fP, one simply writes:\f(CW
+.nf
+
+\s-1#include "cross.xpm"
+
+Pixmap cross = XCreatePixmapFromData(DISPLAY, DRAWABLE, COLORMAP,
+                                    cross_width, cross_height, DEPTH,
+                                    cross_ncolors, cross_chars_per_pixel,
+                                    cross_colors, cross_pixels);\s+1
+
+.fi
+\fPColors will be allocated from the supplied colormap as necessary,
+and the pixmap \fIcross\fP (which will be created with the specified depth)
+could then be used like any normal X pixmap.
+.P
+An X program can also read a pixmap file at runtime by using the function
+\f(CWXReadPixmapFile()\fP.
+.SH "SEE ALSO"
+bitmap(1), xsetroot(1), olfm(1)
+.SH COPYRIGHT
+Copyright 1989, AT&T

@@ -1,0 +1,954 @@
+/	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/	Copyright (c) 1984, 1985, 1986, 1987, 1988, 1989, 1990 AT&T
+/	  All Rights Reserved
+
+/	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/	UNIX System Laboratories, Inc.
+/	The copyright notice above does not evidence any
+/	actual or intended publication of such source code.
+
+	.ident	"@(#)uts-x86at:util/spl.s	1.9"
+	.file	"util/misc_spl.s"
+
+include(../util/symbols.m4)
+
+/	Copyright (c) 1987, 1988 Microsoft Corporation
+/	  All Rights Reserved
+
+/	This Module contains Proprietary Information of Microsoft 
+/	Corporation and should be treated as Confidential.
+
+/	Copyright (c) 1991, 1992  Intel Corporation
+/	All Rights Reserved
+
+	.text
+
+/
+/	SPL - Set interrupt priority level routines.
+/
+/	Routines in the "spl" family are used to set the interrupt
+/	priority level in order to block or enable interrupts.
+/	A typical use would be to protect a data structure that is
+/	in the process of being manipulated:
+/
+/	/*
+/	 * Block interrupts that might affect
+/	 * or rely on our data structure.
+/	 */
+/	saved_level = splN();
+/
+/		/*
+/	...	 * Critical section that
+/		 * manipulates data structure.
+/		 */
+/
+/	/*
+/	 * Restore interrupts by returning
+/	 * to previous interrupt priority level.
+/	 */
+/	splx(saved_level);
+/
+/	The numeric spl values date back to the PDP-11 days and are
+/	maintained for reasons of tradition and compatibility.
+/	The preferred method nowadays is to define symbolic names
+/	(such as spltty or splvm) for use in particular subsystems,
+/	and use the appropriate name to protect data structures
+/	associated with a given subsystem.
+/
+/	spl0 is special; it sets the priority to its base level,
+/	enabling all interrupts.  The historical associations for
+/	the other numeric levels are as follows:
+/
+/	spl1 - minimal priority above base level, no particular device.
+/	spl4 - character devices such as teletypes and paper tape.
+/	spl5 - disk drives.
+/	spl6 - the clock.
+/	spl7 - maximal priority, blocks all interrupts.
+/
+/	Higher levels represent more critical interrupts, and an splN
+/	blocks interrupts at levels N and below.
+/
+/	Care must be taken so as not to lower the priority unwittingly;
+/	for example, if you are going to call splN() you must ensure
+/	that your code is never called in circumstances where the
+/	priority might already be higher than N.  This concern, and
+/	the possibility of subtle bugs, could be eliminated if the
+/	various spl routines were coded such that (with the exception
+/	of spl0 and splx) they would automatically avoid lowering
+/	the priority level.  The current implementation does not do this
+/	for performance reasons.
+/
+/       spl*() sets the interrupt priority level specified by the
+/       spl to ipl level mapping in ipl.h, and returns the old level.
+/
+/       splx(ipl) sets the interrupt priority level to ipl,
+/       and returns the old level.
+/
+/       splint() sets the priority for an interrupt and returns old priority,
+/       without enabling interupts.
+/
+/       splxint(ipl) restores the interrupt priority level to ipl,
+/       without enabling interupts.
+/
+/	The spl* routines come in two flavors, hard and soft.
+/	The hard spl routines (spl0, spl1, etc) set the interrupt
+/	priority level and program the PIC to block all interrupts
+/	at or below the specified priority level.
+/
+/	The soft-spl routines (spl*s) set the interrupt priority level
+/	but do not program the PIC.  If an interrupt occurs whose priority
+/	is at or below the the current (logical) priority level, then
+/	the common interrupt handler will not call the service routine for
+/	that interrupt, but will instead push the interrupt code onto
+/	the deferred interrupt stack.  When the logical priority level
+/	is lowered, either by a soft- or hard-spl routine, the deferred
+/	interrupt stack is checked; if there are deferred interrupts whose
+/	priority levels are above the new priority level, then those
+/	interrupts are handled at that point.
+/
+/	The soft spl routines provide a faster implementation of spl
+/	functionality, and will be used by core kernel code.  Modules
+/	which use soft-spls should include the "util.h" file, which
+/	uses macros to direct spl calls to soft-spls.
+/
+/	The hard spl routines must be maintained for the DDI and for
+/	backwards compatibility.  Older drivers and third-party binaries
+/	which call spl routines will continue to pick up the hard-spl
+/	routines.
+
+	.globl	splvalid_flag
+	.globl  imrport         / PIC imr port addresses
+	.globl  iplmask         / table of masks dimensioned [spl] [pic]
+	.globl  curmask         / array of current masks
+	.globl  picmax          / highest pic index used = (npic-1)
+	.globl  ipl             / current interrupt priority level
+	.globl  picipl          / interrupt priority level in pics
+	.globl  picdeferred	/ deferred interrupt stack
+	.globl  picdeferptr	/ deferred interrupt stack pointer
+	.globl  picdefclear	/ value used to clear out deferred interrupt
+				/ stack.  Generated by idbuild.  Must have
+				/ value such that intpri[picdefclear] = 0.
+
+ifdef(`DEBUG',`
+	.globl	nintr		/ number of interrupts - needed for debug
+	.globl	splxcount
+	.globl	splxnothi
+	.globl	splxeasy
+	.globl	splintcount
+	.globl	splspurcount
+	.globl	realintcount
+	.globl	nodefercount
+	.globl	deferintcount
+	.globl	splxdodefer
+	.globl	setpiccalls
+	.globl	setpicnothi
+	.globl	setpicnotsame
+	.globl	setpiciob
+.data
+splxcount:	.long 0
+splxnothi:	.long 0
+splxeasy:	.long 0
+splintcount:	.long 0
+splspurcount:	.long 0
+realintcount:	.long 0
+nodefercount:	.long 0
+deferintcount:	.long 0
+splxdodefer:	.long 0
+setpiccalls:	.long 0
+setpicnothi:	.long 0
+setpicnotsame:	.long 0
+setpiciob:	.long 0
+.text
+')
+
+/ macros for common SPL code
+/	SPLX used for hard spls, SPLXS for soft spls
+/
+/ Note that the white space between the '$' and the '0' on the third
+/ line of the SPLX macro (the cmpl instruction) is necessary because
+/ m4 expands '$0' as the name of the macro.  Without the white space,
+/ m4 will substitute in the name of the macro and re-scan, causing
+/ infinitely recursive macro expansion.  Putting in the white space
+/ causes m4 to pass the string through to the assembler as is.  The
+/ assembler in turn will ignore the space and treat it as equivalent
+/ to '$0', i.e. an immediate value of zero.
+define(`SPLX',`
+	movl	$1, %eax		/ get new ipl value
+	xchg	%eax, ipl		/ set new ipl value, save old for return
+	cmpl	$ 0, splvalid_flag	/ if splvalid_flag is set then ...
+	jne	_spl			/ ... check for deferred interrupts
+					/	and set PIC
+')
+
+define(`SPLXS',`
+	movl	$1, %eax	/ get new ipl value
+	xchg	%eax, ipl	/ set new ipl value, save old for return
+	cmpl	$1, picipl	/ if (picipl > new ipl) then ...
+	ja	_spl		/ ... check for deferred interrupts and set PIC
+	sti			/ otherwise just enable interrupts
+')
+
+	.align	4
+	.globl	spl0
+spl0:
+	SPLX($SPL0)
+	ret
+
+	.align	4
+	.globl	spl0s
+spl0s:
+	SPLXS($SPL0)
+	ret
+
+	.align	4
+	.globl	spl1
+spl1:
+	SPLX($SPL1)
+	ret
+
+	.align	4
+	.globl	spl1s
+spl1s:
+	SPLXS($SPL1)
+	ret
+
+	.align	4
+	.globl	spl2
+spl2:
+	SPLX($SPL2)
+	ret
+
+	.align	4
+	.globl	spl2s
+spl2s:
+	SPLXS($SPL2)
+	ret
+
+	.align	4
+	.globl	spl3
+spl3:
+	SPLX($SPL3)
+	ret
+
+	.align	4
+	.globl	spl3s
+spl3s:
+	SPLXS($SPL3)
+	ret
+
+	.align	4
+	.globl	splbuf		/ XENIX Support
+splbuf:				/ XENIX Support
+	.globl	spl4
+spl4:
+	SPLX($SPL4)
+	ret
+
+	.align	4
+	.globl	spl4s
+spl4s:
+	SPLXS($SPL4)
+	ret
+
+	.align	4
+	.globl	splcli		/ XENIX Support
+splcli:				/ XENIX Support
+	.globl	spl5
+spl5:
+	SPLX($SPL5)
+	ret
+
+	.align	4
+	.globl	spl5s
+spl5s:
+	SPLXS($SPL5)
+	ret
+
+	.align	4
+	.globl	spl6
+spl6:
+	SPLX($SPL6)
+	ret
+
+	.align	4
+	.globl	spl6s
+spl6s:
+	SPLXS($SPL6)
+	ret
+
+/
+/ Block interrupts to protect the
+/ STREAMS subsystem's data structures.
+/
+	.align	4
+	.globl	splstr
+splstr:
+	SPLX($SPLSTR)
+	ret
+
+	.align	4
+	.globl	splstrs
+splstrs:
+	SPLXS($SPLSTR)
+	ret
+
+
+/
+/ Block interrupts to protect the
+/ VM subsystem's data structures.
+/
+	.align	4
+	.globl	splvm
+splvm:
+	SPLX($SPLVM)
+	ret
+
+	.align	4
+	.globl	splvms
+splvms:
+	SPLXS($SPLVM)
+	ret
+
+	.align	4
+	.globl	splimp
+splimp:
+	SPLX($SPLIMP)
+	ret
+
+	.align	4
+	.globl	splimps
+splimps:
+	SPLXS($SPLIMP)
+	ret
+
+/
+/ Block interrupts to protect the
+/ tty driver's data structures.
+/
+	.align	4
+	.globl	spltty
+spltty:
+	SPLX($SPLTTY)
+	ret
+
+	.align	4
+	.globl	splttys
+splttys:
+	SPLXS($SPLTTY)
+	ret
+
+/ splhi, spl7, splhis, and spl7s are all the same.  This routine
+/ simply does a cli to turn off interrupts.  It does not modify
+/ the PICS.  It does not check the deferred interrupt stack or picipl,
+/ since the new IPL is the highest possible IPL, and thus neither
+/ picipl nor the IPL of any deferred interrupts can be higher.
+	.align	4
+	.globl	splhi
+splhi:
+	.globl	spl7
+spl7:
+	.globl	splhis
+splhis:
+	.globl	spl7s
+spl7s:
+	movl	ipl, %eax	/ get return value
+	cli			/ hold all interrupts
+	movl	$IPLHI, ipl	/ set the new level
+	ret			/ all set
+
+/
+/ Restore previous interrupt level.
+/
+	.align	4
+	.globl	splx
+splx:
+ifdef(`DEBUG',`
+	incl	splxcount
+')
+	movl	4(%esp), %edx	/ get new spl level
+	cmpl	$IPLHI, %edx	/ user want IPLHI?
+	je	splhi		/ yes, go do splhi() instead
+ifdef(`DEBUG',`
+	incl	splxnothi
+')
+	SPLX(%edx)		/ set new level
+	ret
+
+	.align	4
+	.globl	splxs
+splxs:
+ifdef(`DEBUG',`
+	incl	splxcount
+')
+	movl	4(%esp), %edx	/ get new spl level
+	cmpl	$IPLHI, %edx	/ user want IPLHI?
+	je	splhis		/ yes, go do splhis() instead
+ifdef(`DEBUG',`
+	incl	splxnothi
+')
+	SPLXS(%edx)		/ set new level 
+ifdef(`DEBUG',`
+	incl	splxeasy
+')
+	ret
+
+/
+/	Common branch point for spl* routines.  Branched from
+/	`SPLX' macro when splvalid_flag is set (i.e., PICs are
+/	initialized) and from `SPLXS' macro when picipl is greater
+/	then the new ipl.
+/
+/	Most of the actual work is done by splcommon, which is shared
+/	with splxint below.
+/
+/	Changed	name of	spl to _spl, to	identify typos like
+/	spl(6) when spl6() was meant (as in dma_buf_breakup()).
+/
+	.align	4
+	.globl	_spl	/ for debugging; _spl is not a public function
+_spl:
+ifdef(`DEBUG',`
+	cmpl	$IPLHI,	%eax	/ if old level > IPLHI ..
+	ja	splpanic	/   .. panic
+	cmpl	$IPLHI, ipl	/ if new level >= IPLHI
+	jae	splpanic	/   .. panic
+')
+	cmpl	$0, splvalid_flag/ if PICs aren't initialized yet then ...
+	je	_splret		/	... just return
+	pushl	%eax		/ save old ipl value for return
+	pushl	%ebx		/ save %ebx and %esi
+	pushl	%esi
+	cli			/ no interrupts allowed during splcommon
+	call	splcommon
+	sti			/ re-enable interrupts, since new ipl is
+				/	less then IPLHI
+	popl	%esi		/ restore %esi and %ebx
+	popl	%ebx
+	popl	%eax		/ pop the old ipl for the return value ...
+_splret:
+	ret			/ ... and return
+
+
+/ splxint() is called from cmn_int in misc.s to restore the old interrupt
+/ priority level after processing an interrupt.
+/ It is called with interrupts disabled, and does not enable interrupts.
+/ The old interrupt level is passed as an arg on the stack.
+/ Only %edi is preserved.
+
+	.align	4
+	.globl  splxint
+splxint:
+ifdef(`DEBUG',`
+	pushfl			/ get flags
+	popl	%eax
+	testl	$0x200,	%eax	/ if interrupts	enabled,
+	jnz	splxintpanic	/   .. panic
+')
+
+	movl	4(%esp), %eax	/ get new level
+ifdef(`DEBUG',`
+	cmpl    ipl, %eax              / if new level >= current level ..
+	jae     splxintpanic                /   .. panic
+	cmpl    $IPLHI, %eax            / if new level >= IPLHI ..
+	jae     splxintpanic                /   .. panic
+	cmpl    $IPLHI, ipl            / if old level > IPLHI ..
+	ja      splxintpanic                /   .. panic
+')
+	movl	%eax, ipl	/ set new level
+/ fall through to splcommon
+
+/
+/	splcommon is the workhorse for changing picipl to match ipl.
+/	It is shared by both splxint and _spl; _spl in turn is shared
+/	by all spl* routines except splhi.
+/
+/	This routine is called when splx is allowing more interrupts than
+/	picipl.  There are two cases:
+/	1)	An interrupt was deferred.
+/	2)	An interrupt was taken and splxint set picipl == oldipl.
+/	These are expected to be quite uncommon	relative to the	number of
+/	spl/splx calls in the kernel and drivers.
+/
+/	This routine is called with ipl already equal to the desired ipl.
+/	There is no return value.  (_spl has already saved the old ipl and
+/	will return it when the time comes.)
+/
+/	Note that for spl/splx to work correctly at driver init	time, the
+/	picipl should be initialized to	zero, and ipl to IPLHI.
+/
+/	algorithm for splcommon:
+/		while (intpri[*picdeferptr] > ipl) {
+/			picdeferptr--;
+/			call cmnint to handle the deferred interrupt
+/		}
+/		if (picipl != ipl)
+/			setpicmasks(ipl);  /* load new masks into pics */
+/
+/	Note that the while loop terminates when the priority of the
+/	interrupt on the top of the deferred interrupt stack is less
+/	than or equal to the current interrupt priority.  The case where
+/	ipl equals 0 does not need to be treated as a special case,
+/	because the deferred interrupt stack is initialized with one
+/	element on the stack - a "dummy" interrupt value whose intpri
+/	is guaranteede to be 0.  Thus, when ipl is 0, all deferred
+/	interrupts will be handled except for this last dummy interrupt,
+/	which terminates the loop.  Note also that the dummary interrupt
+/	remains on the stack.
+/
+splcommon:				/ check	for deferred interrupts
+	movl	picdeferptr, %eax	/ %eax = deferred stack pointer
+	movl	(%eax), %eax		/ get deferred interrupt
+	movzbl	intpri(%eax), %edx	/ get interrupt priority level
+	cmpl	%edx, ipl		/ ipl >= deferred interrupt priority?
+	jae	splsetmasks		/ yes, leave rest deferred for now
+
+ifdef(`DEBUG',`
+	incl	splxdodefer
+')
+
+	subl	$4, picdeferptr	/ one less interrupt deferred
+	pushfl			/ set up for iret to splcommon
+	push	%cs
+	pushl	$splcommon
+	pushl	$0		/ push dummy error code
+	pushl	%eax		/ push deferred	interrupt number
+	jmp	cmnint		/ handle interrupt
+	.align	4
+splsetmasks:
+/ set mask if picipl is not equal to new ipl.  Note that it is not necessary to
+/ compare the new ipl to IPLHI, since that cannot happen here.
+	movl	ipl, %eax	/ get new ipl
+ifdef(`DEBUG',`
+	cmpl	$IPLHI, %eax	/ new ipl should not be IPLHI
+	je	splpanic
+')
+	cmpl	%eax, picipl	/ if picipl is not equal to new ipl then ...
+	jne	setpicmasks	/	... go to setpicmasks and let it
+				/		return to our caller
+	ret
+
+
+ifdef(`DEBUG',`
+	.align	4
+splxintpanic:
+	call	splxintpanic2
+
+	.align	4
+splpanic:
+	call    splpanic2
+')
+
+/
+/	splint() is called from	cmnint in ttrap.s to raise picipl to the level
+/	of the current interrupt, and send EOI to the pics.
+/
+/	It does	not enable interrupts.
+/
+/	This code will mark interrupts that need to be deferred	as spurious,
+/	so that	cmnint will not	call the driver.  When splx(ipl) lowers	picipl
+/	to match the argument ipl, splx	will present the interrupt again.
+/
+/	The interrupt number is	passed to it in	%edi.
+/
+/	splint() returns the old priority level	in %eax, or -1 if the interrupt
+/	should not be handled, either because it is spurious or	because
+/	it is excluded by the current ipl.
+/
+/	Only %edi is preserved.
+/
+/	if (doing deferred interrupt)
+/		goto deferred_int;
+/	intno = %edi % 8;
+/	/* check for spurious interrupts */
+/	if (intno == 7)	{	/* if interrupt	on IR7,	IR15, ... */
+/		/* read	ISR; if	IS7 bit	off, interrupt is spurious */
+/		if (!(inb(cmdport[picno]) & 0x80)) {
+/			if (picno != 0)	/* master saw spurious slave intr */
+/				/* send	non-specific EOI to master pic */
+/				outb(cmdport[0], PIC_NSEOI);
+/			return(-1);
+/		}
+/	}
+/
+/real_int:
+/	newipl = intpri[%edi];
+/	setpicmasks(newipl);	/* load new mask into pics */
+/	/* send	non-specific EOI to master pic */
+/	outb(cmdport[0], PIC_NSEOI);
+/	picno = %edi / 8;
+/	if (picno != 0)	{
+/		/* send	non-specific EOI to slave pic */
+/		outb(cmdport[picno], PIC_NSEOI);
+/	}
+/	if (ipl	>= newipl) { /*	defer the interrupt */
+/		oldipl = -1;
+/		*++picdeferptr = %edi;
+/	} else {
+/		oldipl = ipl;
+/		ipl = newipl;
+/	}
+/	return(oldipl);
+/
+/deferred_int:
+/	newipl = intpri[%edi];
+/	picdeferred[picdeferptr + 1] = picdefclear; /* clear this entry */
+/	oldipl = ipl;
+/	ipl = newipl;
+/	setpicmasks(ipl);  /* load new masks into pics */
+/	return(oldipl);
+/
+	.align	4
+	.globl	splint
+splint:
+	/ interrupts are disabled
+	/ interrupt number is in %edi
+
+ifdef(`DEBUG',`
+	incl	splintcount
+	pushfl			/ get flags
+	popl	%eax
+	testl	$0x200,	%eax	/ if interrupts	enabled,
+	jnz	splintpanic	/   .. panic
+')
+
+	movl	picdeferptr, %eax	    / get current PIC level
+	cmpl	%edi, 4(%eax)		    / is this a	deferred interrupt?
+	je	deferred_int		    / yes, handle as interrupt
+
+	/ check	for spurious interrupt reflected to IR7	of PIC
+	movl	%edi, %ebx	/ set %ebx to intno modulo 7
+	andl	$7, %ebx
+	cmpl	$7, %ebx	/ if (intno == 7) then
+	je	check_isr	/	go check the PIC in-service register
+
+real_int:
+
+ifdef(`DEBUG',`
+	incl	realintcount
+	cmpl	%edi, nintr	/ if interrupt number >= nintr
+	jbe	splintpanic	/   .. panic
+')
+
+/ set pic up to the priority level of this interrupt
+	movzbl	intpri(%edi), %eax	/ %eax = priority level of interrupt
+
+ifdef(`DEBUG',`
+	cmpl	$IPLHI,	%eax	/ if new level > IPLHI ..
+	ja	splintpanic	/   .. panic
+')
+
+	cmpl	$IPLHI, %eax
+	je	int_nomask
+ifdef(`DEBUG',`
+	cmpl	%eax, picipl
+	je	splintpanic
+')
+/ Note there is no need to save %ebx and %esi.  Not using %esi, and %ebx is
+/ reloaded below
+	call	setpicmasks
+int_nomask:
+
+/ send EOI to master PIC
+
+/*** 380 Support : begin ***/
+ifdef(`AT380',`',`
+	movb	$PIC_NSEOI, %al	/ non-specific EOI
+	movw	cmdport, %dx	/ master pic command port addr
+	outb	(%dx)		/ send EOI to master pic
+	movl	%edi, %ebx
+	shrl	$3, %ebx	/ set %ebx to picno
+	jz	splintnoslave	/   .. if zero, dont do slave
+	/ send EOI to slave PIC
+	movw	cmdport(,%ebx,2), %dx	/ slave	pic command port addr
+	outb	(%dx)			/ send EOI to slave pic
+.align 4
+splintnoslave:
+')
+/*** 380 Support : end ***/
+
+	movzbl	intpri(%edi), %eax	/ %eax = ipl of interrupting device
+	cmpl	%eax, ipl		/ is greater than current ipl?
+	jae	picdefer		/ no, defer it
+
+ifdef(`DEBUG',`
+	incl	nodefercount
+')
+
+	xchg	%eax, ipl		/ set new ipl, return old ipl
+	ret
+
+/ defer the current interrupt
+	.align	4
+picdefer:
+
+ifdef(`DEBUG',`
+	incl	deferintcount
+')
+
+	addl	$4, picdeferptr		/ *++picdeferptr = intno;
+	movl	picdeferptr, %eax
+	movl	%edi, (%eax)
+	movl	$-1, %eax		/ return -1
+	ret
+
+/ check in service register of PIC to see if this is a spurious
+/	interrupt
+.align 4
+check_isr:
+	movl	%edi, %ebx		/ %ebx = picno
+	shrl	$3, %ebx
+	movw	cmdport(,%ebx,2), %dx	/ get status port address
+	/ Assumes PIC is in READ ISR mode
+	inb	(%dx)
+	testb	$0x80, %al	/ check	ISR bit	for interrupt 7
+	jnz	real_int	/ if set, it is a real interrupt
+
+ifdef(`DEBUG',`
+	incl	splspurcount	/ count	spurious interrupts
+')
+
+	orl	%ebx, %ebx	/ if master pic	..
+	jz	splintnone	/   .. do not do EOI
+	movb	$PIC_NSEOI, %al	/ send EOI for slave intr to
+	movw	cmdport, %dx	/ master PIC command port addr
+	outb	(%dx)
+	.align	4
+splintnone:
+	movl	$-1, %eax	/ return -1
+	ret
+
+	.align	4
+deferred_int:
+	movl	picdefclear, %edx
+	movl	%edx, 4(%eax)		/ delete current interrupt
+	movzbl	intpri(%edi), %eax	/ priority level of interrupt
+	cmpl	$IPLHI, %eax
+	je	di_nomask
+	cmpl	%eax, picipl
+	je	di_nomask
+	call	setpicmasks		/ set picipl to	priority level of
+					/	interrupt
+	movzbl	intpri(%edi), %eax	/ reload new ipl into %eax
+di_nomask:
+	xchgl	%eax, ipl		/ %eax = old ipl, ipl = new ipl
+	ret				/ return to cmnint
+
+ifdef(`DEBUG',`
+	.align	4
+splintpanic:
+	call	splintpanic2
+')
+
+
+/ enableint() enables an interrupt by clearing its mask bit in iplmask[0],
+/ and reloading the pic masks.
+
+	.align	4
+	.type	enableint,@function
+	.globl  enableint
+enableint:
+	/ set up standard stack frame at least until debugged
+	pushl   %ebp
+	movl    %esp, %ebp
+	pushl   %ebx
+	pushl   %esi
+
+	pushfl                          / save flags for IF
+	cli                             / turn off interrupts
+
+	movl    8(%ebp), %ecx           / get interrupt index arg
+	btrl	%ecx, iplmask		/ clear mask bit in iplmask[0][pic]
+
+	movl    picipl, %eax            / load masks for level in pics
+	call    setpicmasks             / load masks for new level
+
+	popfl                           / restore flags
+
+	/ restore stack frame and return
+	popl    %esi
+	popl    %ebx
+	popl    %ebp
+	ret
+	.size	enableint,.-enableint
+
+
+/ disableint() disables an interrupt by setting its mask bit in iplmask[0],
+/ and reloading the pic masks.
+
+	.align	4
+	.type	disableint,@function
+	.globl  disableint
+disableint:
+	/ set up standard stack frame at least until debugged
+	pushl   %ebp
+	movl    %esp, %ebp
+	pushl   %ebx
+	pushl   %esi
+
+	pushfl                          / save flags for IF
+	cli                             / turn off interrupts
+
+	movl    8(%ebp), %ecx           / get interrupt index arg
+	btsl	%ecx, iplmask		/ set mask bit in iplmask[0][pic]
+
+	movl    picipl, %eax            / load masks for level in pics
+	call    setpicmasks             / load masks for new level
+
+	popfl                           / restore flags
+
+	/ restore stack frame and return
+	popl    %esi
+	popl    %ebx
+	popl    %ebp
+	ret
+	.size	disableint,.-disableint
+
+
+/ setpicmasks() loads new interrupt masks into the pics.
+/ It is called from other routines in this file with new level in %eax
+/ and interrupts off.
+/ Only %edi is preserved.
+/
+/ algorithm for setpicmasks():
+/
+/       int newipl;     /* temp for new interupt priority level */
+/       int newmask;    /* temp for new mask value */
+/
+/       newipl = %eax;
+/
+/       for (i = picmax; i >= 0; i--) {
+/               /* the level 0 mask has bits set for permanently disabled
+/                  interrupts */
+/               newmask = iplmask[newipl][i] | iplmask[0][i];
+/
+/               /* if the pic mask is not correct, load it */
+/               if (newmask != curmask[i]) {
+/                       outb(imrport[i], newmask);
+/                       curmask[i] = newmask;
+/               }
+/       }
+/
+/       inb(imrport[0]);        /* to let master pic settle down */
+
+	.align	4
+	.globl  setpicmasks     / for debugging; not a public routine
+setpicmasks:
+	/ new interrupt priority level is in %eax
+
+ifdef(`DEBUG',`
+	incl	setpiccalls
+	cmpl	$IPLHI, %eax		/ if new level >= IPLHI
+	jae	setpicmaskspanic	/	panic
+	cmpl	picipl, %eax		/ if new level != old level ...
+	jne	setpicsame		/
+	incl	setpicnotsame		/	++setpicnotsame
+setpicsame:
+')
+
+	movl    %eax, picipl            / set pic ipl
+	movl    npic, %ecx              / number of pics
+	mull    %ecx                    / %eax = newipl * npic
+	leal    iplmask(%eax), %ebx     / &iplmask[newipl][0]
+	movl    $curmask, %esi          / &curmask[0]
+	subl    %edx, %edx              / clear %edx
+
+.picloop:
+	decl    %ecx                    / decrement pic index
+	js      .picread                 / break if index < 0
+
+	movb    (%ebx, %ecx), %al       / new level mask
+	orb     iplmask(%ecx), %al      / OR in level zero mask
+	cmpb    (%esi, %ecx), %al       / compare to current mask
+	je      .picloop                 / dont load pic if identical
+
+	movw    imrport(,%ecx,2), %dx   / mask register port addr for pic
+	outb    (%dx)                   / output new mask that is in %al
+ifdef(`DEBUG',`
+	incl	setpiciob
+')
+	movb    %al, (%esi, %ecx)       / set new current mask
+	jmp     .picloop
+
+	.align	4
+.picread:
+	orl     %edx, %edx              / if we modified a pic ..
+	jz      setpicmasksret
+	inb     (%dx)                   /  .. read last mask register modified
+					/  .. to allow the pics to settle
+ifdef(`DEBUG',`
+	incl	setpiciob
+')
+setpicmasksret:
+	ret
+
+ifdef(`DEBUG',`
+	.align	4
+setpicmaskspanic:
+	call    setpicmaskspanic2
+')
+
+/
+/ void picreload()
+/
+/ Reload the PIC masks from the current picipl value.  Should be used
+/ whenever the iplmask array is modified.
+/
+/ Follows C calling conventions.
+/
+/ Save registers, load picipl into %eax, and call setpicmasks to do
+/ the work.
+/
+/ Must be called with interrupts disabled.
+/
+	.align	4
+	.type	picreload,@function
+	.globl	picreload
+picreload:
+	pushl	%ebp
+	movl	%esp, %ebp
+	pushl	%ebx		/ save %ebx and %esi on stack
+	pushl	%esi
+	movl	picipl, %eax	/ put picipl into %eax for setpicmasks
+	call	setpicmasks	/ call setpicmasks
+	popl	%esi		/ restore %ebx and %esi
+	popl	%ebx
+	popl	%ebp		/ clear stack frame
+	ret			/ return
+	.size	picreload,.-picreload
+
+/
+/ int intr_disable(void)
+/
+/ Disable all interrupts, with minimal overhead.
+/ Returns the previous value of the EFLAGS register
+/ for use in a subsequent call to intr_restore.
+/ Normally an inline asm version of intr_disable
+/ is used; this function version exists for the
+/ benefit of callers who are unable to include
+/ inline.h, or for implementations not supporting
+/ inline asm functions.
+/
+	.align	4
+	.type	intr_disable,@function
+	.globl	intr_disable
+intr_disable:
+	pushfl
+	cli
+	popl	%eax
+	ret
+	.size	intr_disable,.-intr_disable
+
+/
+/ void intr_restore(int)
+/
+/ Restore interrupt enable state, with minimal overhead.
+/ Argument is the EFLAGS value from previous call to intr_disable.
+/
+	.align	4
+	.type	intr_restore,@function
+	.globl	intr_restore
+intr_restore:
+	pushl	4(%esp)
+	popfl
+	ret
+	.size	intr_restore,.-intr_restore

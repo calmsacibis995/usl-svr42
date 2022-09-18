@@ -1,0 +1,4 @@
+#ident	"@(#)uts-x86:net/tcpip/rawip.cf/System	1.4"
+#ident	"$Header: $"
+$version 1
+rawip	N	1	0	0	0	0	0	0	0	-1

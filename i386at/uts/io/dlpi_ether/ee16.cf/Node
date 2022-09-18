@@ -1,0 +1,3 @@
+#ident	"@(#)uts-x86at:io/dlpi_ether/ee16.cf/Node	1.1"
+#ident	"$Header: $"
+clone	ee16_0		c:0	ee16

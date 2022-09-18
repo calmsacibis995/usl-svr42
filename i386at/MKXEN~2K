@@ -1,0 +1,89 @@
+#ident	"@(#)mk:i386at/:mkxenv	1.4"
+#ident	"$Header: $"
+
+Cpu=$1
+Root=$2
+Tools=$3
+Mach=$4
+Work=$5
+Pfx=$6
+
+set +e
+
+cd ${Root}/usr/src/${Work}/cmd/sgs/xenv/${Cpu}
+
+#
+#	Note below, the default parameters are relative
+#	to TOOLS.
+#
+
+echo "$0: Running Cross pathedit"
+(
+	echo n		# Answering NO to building native CCS
+	echo y		# Answering YES to building with default parameter
+	echo y		# Answering YES to parameters question
+) | sh ./pathedit ${Cpu} ${Root} ${Tools} ${Mach} ${Work} ${Pfx}
+
+echo "$0: Building cross make (${Cpu}make)"
+cd ${Root}/usr/src/${Work}/cmd/make
+make -f make.mk YACC=yacc
+cp make ${Tools}/usr/ccs/bin/${Cpu}make
+make -f make.mk clobber
+
+cd ${Root}/usr/src/${Work}/cmd/sgs
+
+${Tools}/usr/ccs/bin/${Cpu}make -P -f sgs.mk clobber \
+	CMDRULES=${Root}/usr/src/${Work}/cmd/sgs/xenv/${Cpu}/sgsrules
+
+${Tools}/usr/ccs/bin/${Cpu}make -P -f sgs.mk install \
+	CMDRULES=${Root}/usr/src/${Work}/cmd/sgs/xenv/${Cpu}/sgsrules
+
+#
+#	Make Function Relocator
+#
+
+cd ${Root}/usr/src/${Work}/cmd/fur
+${Tools}/usr/ccs/bin/${Cpu}make -f fur.mk install \
+	CMDRULES=${Root}/usr/src/${Work}/cmd/sgs/xenv/${Cpu}/sgsrules
+
+#
+#	Get an install command into xenv
+#
+if [ -d "${Root}/usr/src/${Work}/cmd/install" ]
+then
+	cd ${Root}/usr/src/${Work}/cmd/install
+	cp install.sh ${Tools}/bin/install
+else
+	cp /etc/install ${Tools}/bin
+fi
+
+#	Put the chmod here so we'll stop on error
+#	(if Tools/bin/install is not there)
+
+chmod 0755 ${Tools}/bin/install
+
+#
+#	Make xenv libraries
+#
+echo "$0: Making Cross Environment Libraries"
+ROOT=${Tools}
+export ROOT
+cd ${Root}/usr/src/${Work}/cmd/sgs
+${Tools}/usr/ccs/bin/${Cpu}env ${Cpu}make -P -f sgs.mk libs \
+	CMDRULES=${Root}/usr/src/${Work}/cmd/sgs/xenv/${Cpu}/sgsrules
+
+echo "$0: Making Cross xcplibs"
+
+cd ${Root}/usr/src/${Work}/xcplib
+
+for l in libx lxcurses lxtermlib
+do
+	cd $l
+	${Tools}/usr/ccs/bin/${Cpu}env ${Cpu}make -f ${l}.mk install \
+		ROOT=${Tools} MACH=.
+	cd ..
+done
+
+set -e
+
+exit 0

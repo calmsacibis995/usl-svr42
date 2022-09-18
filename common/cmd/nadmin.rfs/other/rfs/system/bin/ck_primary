@@ -1,0 +1,25 @@
+#ident	"@(#)nadmin.rfs:other/rfs/system/bin/ck_primary	1.4.5.1"
+#ident  "$Header: ck_primary 2.0 91/07/12 $"
+/usr/bin/rm /usr/tmp/noadd_$$ 2>/dev/null
+# get domain name
+
+DOM=`$TFADMIN /usr/sbin/dname -d`
+UNAME=`/usr/bin/uname -n`
+ERR=1
+
+TRANS=`$TFADMIN /usr/bin/ls /etc/rfs | /usr/bin/egrep -v "auth.info|loc.passwd|netspec|domain"`
+
+for tran in `echo $TRANS`; do
+	/usr/bin/grep "^$DOM[ 	][ 	]*[Pp][	 ][ 	]*$DOM.$UNAME" /etc/rfs/$tran/rfmaster >/dev/null 2>&1
+	if [ $? -eq 0 ]
+	then
+		ERR=0
+	fi
+done	
+if [ $ERR -eq 1 ]
+then
+	echo "ERROR: Only the administrator of a primary name server may modify the domain password file.\nCheck whether your current domain is correct by choosing the display_domain task on the systems menu.\nYou may change your current domain with the set_domain task." >/usr/tmp/noadd_$$
+fi
+
+#echo the process id so fmli can get the temp file name
+echo $$

@@ -1,0 +1,65 @@
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+#ident	"@(#)siserver:ddx/si/Imakefile	1.7"
+
+#include <Server.tmpl>
+
+SISRCS =  sigc.c sigetsp.c simisc.c simskbits.c sipixmap.c \
+	siwindow.c siclip.c \
+	siscrinit.c siutils.c sizerdline.c \
+	sicmap.c sifillsp.c sifont.c sisetsp.c sisave.c sirop.c
+
+MISRCS = miexpose.c mifpolycon.c miglblt.c mipoly.c mipolypnt.c mipolyrect.c \
+	mipolyseg.c mibitblt.c mifillarc.c mifillrct.c \
+	mipointer.c misprite.c midispcur.c \
+	mipolytext.c mipushpxl.c mizerarc.c mizerline.c miinitext.c
+
+SIOBJS =  sigc.o sigetsp.o simisc.o simskbits.o sipixmap.o \
+	siwindow.o siclip.o \
+	siscrinit.o siutils.o sizerdline.o \
+	sicmap.o sifillsp.o sifont.o sisetsp.o sisave.o sirop.o
+
+MIOBJS = miexpose.o mifpolycon.o miglblt.o mipoly.o mipolypnt.o mipolyrect.o \
+	mipolyseg.o mibitblt.o mifillarc.o mifillrct.o \
+	mipointer.o misprite.o midispcur.o \
+	mipolytext.o mipushpxl.o mizerarc.o mizerline.o miinitext.o
+
+SRCS = $(SISRCS) $(MISRCS)
+OBJS = $(SIOBJS) $(MIOBJS)
+
+INCLUDES = -I. -I../../include -I../mi -I$(INCLUDESRC) -I$(FONTSRC)/include -I$(FONTSRC)/lib/include
+LINTLIBS = ../../dix/llib-ldix.ln ../../os/4.2bsd/llib-los.ln
+
+NormalLibraryObjectRule()
+NormalLibraryTarget(si,$(OBJS))
+LintLibraryTarget(si,$(SRCS))
+NormalLintTarget($(SRCS))
+
+SpecialObjectRule(miinitext.o, $(ICONFIGFILES), $(EXT_DEFINES))
+
+DependTarget()
+
+#if defined(i386Architecture) || defined(ix86Architecture)
+/*
+ * 		Added special rules for mibitblt.o and sirop.o. 
+ *	This is needed as :
+ *	1.	We need the define -Dix86 to enable the compilation of
+ *		sirop related stuff.
+ *	2.	We need to explicitly define -Xa, as -Xc does not recognise 
+ *		the "asm" keyword, causing compilation errors in <sys/inline.h> 
+ */
+mibitblt.o:	mibitblt.c
+	$(RM) $@
+	${CC} $(CFLAGS) -Xa -Dix86 -c mibitblt.c
+
+sirop.o:	sirop.c
+	$(RM) $@
+	${CC} $(CFLAGS) -Xa -Dix86 -c sirop.c
+#endif

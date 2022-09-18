@@ -1,0 +1,8 @@
+#ident	"@(#)uts-x86:io/intmap/intmap.cf/Master	1.1"
+#ident	"$Header: $"
+#
+# version 1
+#
+$version 1
+
+intmap	intmap	o	0	0	0

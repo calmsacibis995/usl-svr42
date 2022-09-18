@@ -1,0 +1,47 @@
+#define brkout_format 1
+#define brkout_width 40
+#define brkout_height 32
+#define brkout_ncolors 6
+#define brkout_chars_per_pixel 1
+static char * brkout_colors[] = {
+" " , "#0000AAAAFFFF",
+"." , "#000000000000",
+"X" , "#FFFF00000000",
+"o" , "#FFFFAAAA0000",
+"O" , "#00000000FFFF",
+"+" , "#0000AAAA0000"
+} ;
+static char * brkout_pixels[] = {
+"     ...   ..                           ",
+"        . .  .                          ",
+"      ..  .  .                          ",
+"        . .  .                          ",
+"     ...   ..                           ",
+"                                        ",
+"XXXX XXXX XXXX oooo oooo XXXX XXXX XXXX ",
+"XXXX.XXXX.XXXX.oooo.oooo.XXXX.XXXX.XXXX.",
+" .... .... .... .... .... .... .... ....",
+"OOOO OOOO OOOO OOOO OOOO OOOO      OOOO ",
+"OOOO.OOOO.OOOO.OOOO.OOOO.OOOO.     OOOO.",
+" .... .... .... .... .... ....      ....",
+"++++      ++++ ++++ ++++                ",
+"++++.     ++++.++++.++++.               ",
+" ....      .... .... ....               ",
+"                                        ",
+"                                        ",
+"                                        ",
+"                                        ",
+"            ..                          ",
+"            ..                          ",
+"              .                         ",
+"               .                        ",
+"                                        ",
+"                 .                      ",
+"                                        ",
+"                   .     .              ",
+"                                        ",
+"                     . .                ",
+"                      .                 ",
+"                   ..........           ",
+"                   ..........           "
+} ;

@@ -1,0 +1,4 @@
+#ident	"@(#)uts-x86:fs/s5fs/s5.cf/Mtune	1.2"
+#ident	"$Header: $"
+* Number of S5 Inodes ----------------------
+NINODE		400	100	1300

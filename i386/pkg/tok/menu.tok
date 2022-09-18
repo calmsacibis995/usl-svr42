@@ -1,0 +1,50 @@
+#ident	"@(#)pkg.tok:menu.tok	1.3"
+#ident	"$Header: $"
+
+.optstring
+Your options are:
+.pageno
+Page %d of %d
+.ul
+Token Ring Hardware Support
+.hhelp_ban
+Instructions
+.helpbanner
+Help: Adaptor Selection Menu
+.ur
+Adaptor Selection Menu
+.lr
+F1=Help
+.top
+The following is a list of the supported Token Ring adaptor boards.
+Please select either 1 or 2 of the required board.
+.form
+3 1 0 2//IBM 16/4//IBMAT_NUM//
+//How many IBM 16/4 adaptors you wish to use (0-2)//
+3 1 0 2//IBM 16/4A//IBMMCA_NUM//
+//How many IBM 16/4A adaptors you wish to use (0-2)//
+.button
+Apply
+Reset
+.bottom
+Press 'TAB' to move the cursor between fields. When finished, move the
+cursor to "Apply" and then press 'Enter' to continue.
+.help
+For detailed instructions, press the 'F1' (or '?') key at any time.
+
+SUPPORTED TOKEN RING ADAPTOR BOARDS:
+
+IBM 16/4  - for AT architectures
+IBM 16/4A - for MCA architectures
+
+If you are not sure which kind of adaptor you have you should refer to the
+hardware documentation that came with the adaptor.
+
+.helpinst
+Esc=Exit help  F1=Instructions  1=Forward  2=Back
+.hhelpinst
+Esc=Exit instructions  1=Forward  2=Back
+.working
+Working...
+.end
+

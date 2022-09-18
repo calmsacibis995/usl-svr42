@@ -1,0 +1,114 @@
+#ifndef NOIDENT
+#ident	"@(#)olam:olamsgstrs	1.8"
+#endif
+
+/*
+ * This file contains all the message
+ * strings for the OPEN LOOK olam client.
+ * 
+ */
+
+String OleMfilevalidate_msg1 	= "Entry is too long." ;
+String OleMfilevalidate_msg2 	= "Entry is empty." ;
+String OleMfilevalidate_msg3 	= "Entry contains an unprintable character." ;
+String OleMfilevalidate_msg4 	= "Entry contains a white-space character." ;
+String OleMfilevalidate_msg5 	= "Entry contains an illegal character: `%s'." ;
+
+String OleMfilerhost_msg1 	= "Changing current item to <%s>\n" ;
+String OleMfilerhost_msg2 	= "Select or insert an entry first" ;
+String OleMfilerhost_msg3 	= "Failed to create a new pfsl" ;
+
+String OleMfilerdisp_msg1 	= "Changing current item to <%s>\n" ;
+String OleMfilerdisp_msg2 	= "Select or insert an entry first" ;
+String OleMfilerdisp_msg3 	= "Failed to create a new pfsl" ;
+String OleMfilerdisp_msg4 	= "Display = <%s>\n" ;
+String OleMfilerdisp_msg5 	= "Host = <%s>\n" ;
+String OleMfilerdisp_msg6 	= "Netspec = <%s>\n" ;
+String OleMfilerdisp_msg7 	= "Failed to malloc() %d bytes in ApplyEdit()" ;
+
+String OleMfilepfsl_msg1 	= "Adding <%s> to scrolling list\n" ;
+String OleMfilepfsl_msg2 	= "Selected item = <%s>\n" ;
+ 
+String OleMfileolam_msg1 	= "Administration Manager" ;
+String OleMfileolam_msg2 	= "usage: %s [-d] [-h]\n" ;
+
+String OleMfilefooter_msg1 	= "Msg=<%s>\n" ;
+
+String OleMfilefile_stuff_msg1 	= "Can't stat %s" ;
+String OleMfilefile_stuff_msg2 	= "Failed to malloc() %d bytes in GetLine()" ;
+String OleMfilefile_stuff_msg3 	= "Can't open %s" ;
+
+String OleMfilecommon_msg1 	= "Can't open \"%s\" for writing." ;
+String OleMfilecommon_msg2 	= "Close failed for %s" ;
+String OleMfilecommon_msg3 	= "No changes need to be saved." ;
+String OleMfilecommon_msg4 	= "Saving <%s>\n" ;
+String OleMfilecommon_msg5 	= "Failed to write to %s" ;
+String OleMfilecommon_msg6 	= "Deleting null entry\n" ;
+String OleMfilecommon_msg7 	= "Deleting <%s>\n" ;
+String OleMfilecommon_msg8 	= "Select an item first." ;
+String OleMfilecommon_msg9 	= "Can't open %s" ;
+String OleMfilecommon_msg10 	= "Can't create \"%s\"" ;
+String OleMfilecommon_msg11 	= "Can't access \"%s\"" ;
+String OleMfilecommon_msg12 	= "Can't write \"%s\"." ;
+String OleMfilecommon_msg13 	= "Administration Manager: File has changed. \
+ Apply changes?" ;
+String OleMfilecommon_msg14 	= "No changes have been made" ;
+
+String OleMfilelist_del_msg1 	= "ListDelete(): Attempt to use a null list." ;
+String OleMfilelist_del_msg2 	= "ListDelete(): Attempt to delete null position" ;
+String OleMfilelist_del_msg3 	= "ListDelete(): Attempt to delete an \
+ undefined position" ;
+
+String OleMfilelist_get_msg1 	= "ListGet(): Attempt to get data from a null\
+ null position\n" ;
+
+String OleMfilelist_head_msg1 	= "ListHead(): Attempt to get the head of a nulllist" ;
+
+String OleMfilelist_ins_msg1 	= "ListInsert(): Failed to malloc() a list node";
+
+String OleMfilelist_new_msg1 	= "ListNew(): Failed to malloc() a list" ;
+
+String OleMfilelist_next_msg1 	= "ListNext(): Attempt to travel past end of \
+ list" ;
+
+String OleMfilelist_prev_msg1 	= "ListPrev(): Attempt to travel past front of \
+ list" ;
+
+String OleMfilelist_prev_msg2 	= "ListPrev(): Attempt to use a null list" ;
+ 
+String OleMfilelist_prev_msg3 	= "ListPrev(): Attempt to use an undefined \
+ position" ;
+
+String OleMfilelist_tail_msg1 	= "ListTail(): Attempt to use a null list" ;
+
+
+String OleMbutton_before = "Before";
+String OleMbutton_after = "After";
+String OleMbutton_del = "Delete";
+String OleMbutton_applyEdit = "Apply Edit";
+String OleMbutton_yes = "Yes";
+String OleMbutton_no = "No";
+
+String OleMcaption_host = "Accepted Remote Hosts:";
+String OleMcaption_display = "Outgoing Remote Displays:";
+
+String OleMmnemonic_before = "B";
+String OleMmnemonic_after = "A";
+String OleMmnemonic_insert = "I";
+String OleMmnemonic_del = "D";
+String OleMmnemonic_applyEdit = "E";
+
+String OleMmnemonic_yes = "Y";
+String OleMmnemonic_no = "N";
+
+String OleMtextField_display = "Display Name:";
+String OleMtextField_host = "Host Name:";
+String OleMtextField_netspec = "Netspec:";
+
+String OleMtitle_insert = "Insert";
+String OleMtitle_popupOut= "Administration Outgoing Remote Displays";
+
+String OleMtitle_popupIn = "Administration Accepted Remote Hosts";
+
+String OleMtitle_dispHelp = "Outgoing Remote Displays";
+String OleMtitle_hostHelp = "Accepted Remote Hosts";

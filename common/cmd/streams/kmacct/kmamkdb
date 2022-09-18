@@ -1,0 +1,35 @@
+#ident	"@(#)cmd-streams:kmacct/kmamkdb	1.1.4.2"
+#ident "$Header: /sms/sinixV5.4es/rcs/s19-full/usr/src/cmd/streams/kmacct/kmamkdb,v 1.1 91/02/28 20:10:47 ccs Exp $"
+
+#
+#	make namelist database used by kmapr
+#	default namelist is /unix
+#	default output file is /tmp/kmanl.db
+#
+
+NAMELIST=/unix
+OUTFILE=/tmp/kmanl.db
+USAGE="Usage: $0 [-n namelist] [-o outfile]"
+
+if [ $# -eq 0 ]
+then
+	echo "using default namelist '${NAMELIST}'\nplacing output in '${OUTFILE}'"
+else
+	while getopts n:o: c
+	do
+		case "$c" in
+
+		n)	NAMELIST=$OPTARG;;
+		o)	OUTFILE=$OPTARG;;
+		\?)	echo $USAGE
+			exit 1;;
+		esac
+	done
+fi
+
+nm -xp ${NAMELIST} |
+	awk '	$2 == "t" {printf "%s %s\n", $1, $3}
+		$2 == "T" {printf "%s %s\n", $1, $3}
+			{ next; }
+		'|
+	 sort -n > ${OUTFILE}

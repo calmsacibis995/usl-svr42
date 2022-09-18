@@ -1,0 +1,105 @@
+#ident	"@(#)face:OBJECTS/Form.find	1.6.4.3"
+
+form=$$uxface:245:"Find" `pathconv -t -v "${ARG1:-$OPWD}"`
+
+`set -l I18N_N="$$uxface:247:Name:";
+set -l I18N_T="$$uxface:250:Type:";
+set -l I18N_O="$$uxface:254:Owner:";
+set -l I18N_A="$$uxface:256:Age:";
+fmlmax -c 4 "$I18N_N" "$I18N_T" "$I18N_O" "$I18N_A" | set -l FCOL;
+regex
+'^.*[	]([^:]*)$0:(.*)$1$' '$$uxfmli:$m0:"$m1"' <$OASYS/info/OH/externals/allobjs | set -l AOBJ`
+
+init=`regex -v "${ARG1:-$OPWD}" '^/$' && 
+	message -f $$uxface:246:"Can not invoke the \"find\" command from root (/)." &&
+	set -l RETVAL=false || set -l RETVAL=true`$RETVAL
+
+help=OPEN TEXT OBJECTS/Text.h "$$uxface:78:'HELP on' $TITLE" T.hfind"$ITEM"
+autolayout=true
+
+begrow=any
+begcol=any
+
+close=`unset -l I18N_N -l I18N_T -l I18N_O -l I18N_A -l FCOL -l AOBJ`
+done=`regex -v "${F2}" "^$$uxface:253:Any\$" 'any' '^.*$' "${F2}" | set -l NF2;
+regex -v "${F3}" "^$$uxface:253:Any\$" 'any' '^.*$' "${F3}" | set -l NF3;
+regex -v "${F4}" "^$$uxface:253:Any\$" 'any' '^.*$' "${F4}" | tr -d ' ' | set -l NF4`OPEN MENU OBJECTS/Menu.find "${ARG1:-$OPWD}" "$F1" "$NF2" "$NF3" "$NF4"
+
+name=$I18N_N
+nrow=0
+ncol=5
+fcol=$FCOL
+# frow=0
+# fcol=11
+flen=16
+rows=1
+columns=16
+scroll=true
+lininfo=`set -l TITLE="$$uxface:248:Name" -l ITEM=1; message -f $$uxface:249:"Enter the name of a file. Press SAVE when you complete the form."`
+value=const *
+valid=`regex -v "${F1}" '^.+$' true '^.*$' false`
+
+name=$I18N_T
+nrow=1
+ncol=5
+# frow=1
+# fcol=11
+flen=16
+rows=1
+columns=16
+scroll=true
+lininfo=`set -l TITLE="$$uxface:251:Type" -l ITEM=2; message -f $$uxface:252:"Press CHOICES to select type. Press SAVE when you complete the form."`
+rmenu=const { $$uxface:253:"Any" $AOBJ }
+value=const $$uxface:253:"Any"
+valid=`echo "$$uxface:253:Any
+$AOBJ" | fmlgrep -s "^$F2" >/dev/null`
+
+name=$I18N_O
+nrow=2
+ncol=4
+# frow=2
+# fcol=11
+flen=16
+rows=1
+columns=8
+scroll=true
+lininfo=`set -l TITLE="$$uxface:80:Owner" -l ITEM=3; message -f "$$uxface:255:Press CHOICES to select owner. Press SAVE when you complete the form."`
+rmenu=const { `regex '^([^:]*)$0:' '$m0' < /etc/passwd ` $$uxface:253:"Any" }
+valid=`regex -v "$F3" "^$$uxface:253:Any\$" || regex "^$F3:" < /etc/passwd` 
+value=const $$uxface:253:"Any"
+
+name=$I18N_A
+nrow=3
+ncol=6
+# frow=3
+# fcol=11
+flen=16
+rows=1
+columns=11
+scroll=true
+lininfo=`set -l TITLE="$$uxface:257:Age" -l ITEM=4; message -f $$uxface:258:"Enter a number or range of days. Press SAVE when you complete the form."`
+valid=`regex -v "$F4"
+	'^ *[><]{0,1} *[0-9]+$' 		'true'
+	'^ *([0-9]+)$0 *- *([0-9]+)$1$' 	'$m0 -le $m1'
+	'^ *([0-9]+)$0 *\.\. *([0-9]+)$1$' 	'$m0 -le $m1'
+	"^$$uxface:253:Any\$"	'true'
+	'^.*$' 				'false' | set -l EXPR;
+if [ ( "${EXPR}" = "true" ) -o ( "${EXPR}" = "false" ) ];
+then
+	set -l MSG=$$uxface:259:"Input is not valid";
+	echo ${EXPR};
+else
+	if [ ${EXPR} ];
+	then
+		echo true;
+	else
+		set -l MSG=$$uxface:260:"Range values must be in increasing order";
+		echo false;
+	fi;
+fi`
+value=const $$uxface:253:"Any"
+invalidmsg="${MSG}"
+
+name=$$uxface:93:"RESET"
+button=8
+action=reset

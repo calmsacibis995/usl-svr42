@@ -1,0 +1,13 @@
+#ident	"@(#)oampkg:common/cmd/oampkg/pkgscripts/nocheck	1.2
+#ident  "$Header: $"
+mail=root
+instance=unique
+partial=nocheck
+runlevel=nocheck
+idepend=nocheck
+rdepend=nocheck
+space=quit
+setuid=nocheck
+conflict=nocheck
+action=nocheck
+basedir=default

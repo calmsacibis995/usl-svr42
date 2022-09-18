@@ -1,0 +1,80 @@
+^=current context
+The current context for a Window Set determines what
+is displayed in each of the windows.  The current
+context is determined by the current frame of the
+current process.  
+^=
+
+^=current frame
+The current frame, along with the current process,
+determines the current context.  The current frame
+is shown with a pointing hand to its left in the
+Stack Pane of the Context Window.
+^=
+
+^=current process
+The current process, along with the current frame,
+determines the current context.  The current process
+is shown with a pointing hand to its left in the
+Process Pane of the Context Window.
+^=
+
+^=current program
+The current program is the program containing the
+current process.  The current program may also contain
+other processes derived from the same executable file.
+^=
+
+^=onstop event
+An onstop event specifies an action for the debugger to
+perform whenever a process stops for any reason.  The
+action may be one or more of the commands available
+through the debugger's command line interface.
+^=
+
+^=primary source window
+The primary source window is displayed when you select
+the Source Window button in the Windows menu.  The
+primary window is always updated to show the current
+source line whenever the current process stops.
+^=
+
+^=program
+A program is a group of processes, all derived from the
+same executable file.
+^=
+
+^=secondary source window
+Secondary source windows are indicated by an
+asterisk ('*') in the window header, and are
+not updated when the current process stops.
+They are created with the New Source option.
+^=
+
+^=signal event
+A signal event suspends the process and performs
+the associated commands whenever the signal has
+been posted to the process.  Multiple events
+may be created for the same signal.
+^=
+
+^=stop event
+A stop event suspends the process and performs
+the associated commands, if any, whenever the
+specified condition in the program's address
+space becomes true.
+^=
+
+^=syscall event
+A syscall event suspends the process and performs
+the associated commands whenever the process enters
+or exits the specified system calls. Multiple events
+may be created for the same system call.
+^=
+
+^=window set
+A Window Set consists of a Context window, Command
+window, Event window, Disassembly window, and one
+or more Source windows.  The windows in a set all
+operate on the same current process.
+^=

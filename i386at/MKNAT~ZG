@@ -1,0 +1,100 @@
+#ident	"@(#)mk:i386at/:mknatccs	1.4"
+#ident	"$Header: $"
+
+trap 'exit 1' 1 2 3 15
+
+set +e
+
+Cpu=$1
+Root=$2
+Tools=$3
+Mach=$4
+Work=$5
+Pfx=$6
+
+#
+#	Note the following will be used to set the
+#	owner and group of the commands
+
+intgr=`id|sed 's/[()]/ /gp'|awk '{print $2}'`
+igrp=`id|sed 's/[()]/ /gp'|awk '{print $4}'`
+
+cd ${Root}/usr/src/${Work}/cmd/sgs/xenv/${Cpu}
+
+#
+#	Note: below, the default parameters are relative
+#	to $TOOLS.
+#
+
+echo "$0: Running Pathedit"
+(
+	echo y		# Answering YES to building native CCS
+	echo n		# Answering YES to building with default parameter
+	echo /usr/ccs/bin	# CCS bin directory
+	echo /usr/ccs/lib	# CCS lib directory
+	echo /usr/lib	# usr/lib directory
+	echo /usr/include	# usr/include directory
+	echo /etc	# etc directory
+	echo /usr/ccs/lib	# cross lint1, lint2 location
+	echo ''		# The prefix to be used for the cross build
+	echo ${intgr}	# Owner of installed commands
+	echo ${igrp}	# Group of the installed commands
+	echo y		# Answering YES to parameters question
+) | sh ./pathedit ${Cpu} ${Root} ${Tools} ${Mach} ${Work} ${Pfx}
+
+ROOT=${Root}
+TOOLS=${Tools}
+export ROOT TOOLS
+
+echo "$0: Building Native CCS"
+
+cd ${Root}/usr/src/${Work}/cmd/sgs
+
+${Tools}/usr/ccs/bin/${Cpu}env ${Cpu}make -P -f sgs.mk clobber \
+	CMDRULES=${Root}/usr/src/${Work}/cmd/sgs/xenv/${Cpu}/sgsrules
+
+${Tools}/usr/ccs/bin/${Cpu}env ${Cpu}make -P -f sgs.mk install \
+	CMDRULES=${Root}/usr/src/${Work}/cmd/sgs/xenv/${Cpu}/sgsrules
+
+cd ${Root}/usr/src/${Work}/cmd
+
+for i in cb cflow cscope ctrace cxref ldd make prof regcmp sccs sdb
+do
+	echo "=== $i"
+	cd ${i}
+	${Tools}/usr/ccs/bin/${Cpu}env ${Cpu}make -P -f ${i}.mk install
+	cd ..
+done
+
+#
+#	Build debug without graphic interface
+
+cd ${Root}/usr/src/${Work}/cmd/debug
+${Tools}/usr/ccs/bin/${Cpu}env ${Cpu}make -P -f debug.mk install_cli
+
+#
+#	Make native libraries
+#	(need to do this install because header files
+#	are installed by some library makefiles.)
+#
+
+echo "$0: Building Native Libraries"
+cd ${Root}/usr/src/${Work}/cmd/sgs
+${Tools}/usr/ccs/bin/${Cpu}env ${Cpu}make -P -f sgs.mk libs \
+	CMDRULES=${Root}/usr/src/${Work}/cmd/sgs/xenv/${Cpu}/sgsrules
+
+echo "$0: Building Native xcplibs"
+
+cd ${Root}/usr/src/${Work}/xcplib
+
+for l in libx lxcurses lxtermlib
+do
+	cd $l
+	${Tools}/usr/ccs/bin/${Cpu}env ${Cpu}make -f ${l}.mk install \
+		ROOT=${Root} MACH=${Mach}
+	cd ..
+done
+
+set -e
+
+exit 0

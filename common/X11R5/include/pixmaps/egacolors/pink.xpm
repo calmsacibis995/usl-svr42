@@ -1,0 +1,19 @@
+#define pink_format 1
+#define pink_width 8
+#define pink_height 8
+#define pink_ncolors 2
+#define pink_chars_per_pixel 1
+static char * pink_colors[] = {
+" " , "#FFFF00000000",
+"." , "#FFFFFFFFFFFF"
+} ;
+static char * pink_pixels[] = {
+" . . . .",
+". . . . ",
+" . . . .",
+". . . . ",
+" . . . .",
+". . . . ",
+" . . . .",
+". . . . "
+} ;

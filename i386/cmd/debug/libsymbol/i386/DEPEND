@@ -1,0 +1,94 @@
+#ident	"@(#)debugger:libsymbol/i386/DEPEND	1.1"
+AddrList.o:	../common/AddrList.C
+	$(CPLUS_CMD) -c ../common/AddrList.C
+
+Build.o:	../common/Build.C
+	$(CPLUS_CMD) -c ../common/Build.C
+
+Dwarfbuild.o:	../common/Dwarfbuild.C
+	$(CPLUS_CMD) -c ../common/Dwarfbuild.C
+
+Coff.o:	../common/Coff.C
+	$(CPLUS_CMD) -c ../common/Coff.C
+
+Coffbuild.o:	../common/Coffbuild.C
+	$(CPLUS_CMD) -c ../common/Coffbuild.C
+
+Cvtaddr.o:	Cvtaddr.C
+	$(CPLUS_CMD) -c Cvtaddr.C
+
+ELF.o:	../common/ELF.C
+	$(CPLUS_CMD) -c ../common/ELF.C
+
+Elfbuild.o:	../common/Elfbuild.C
+	$(CPLUS_CMD) -c ../common/Elfbuild.C
+
+Evaluator.o:	../common/Evaluator.C
+	$(CPLUS_CMD) -c ../common/Evaluator.C
+
+Protoline.o:	../common/Protoline.C
+	$(CPLUS_CMD) -c ../common/Protoline.C
+
+Protorec.o:	../common/Protorec.C
+	$(CPLUS_CMD) -c ../common/Protorec.C
+
+Locdesc.o:	../common/Locdesc.C
+	$(CPLUS_CMD) -c ../common/Locdesc.C
+
+NameList.o:	../common/NameList.C
+	$(CPLUS_CMD) -c ../common/NameList.C
+
+Object.o:	../common/Object.C
+	$(CPLUS_CMD) -c ../common/Object.C
+
+Reflist.o:	../common/Reflist.C
+	$(CPLUS_CMD) -c ../common/Reflist.C
+
+Source.o:	../common/Source.C
+	$(CPLUS_CMD) -c ../common/Source.C
+
+Symbol.o:	../common/Symbol.C
+	$(CPLUS_CMD) -c ../common/Symbol.C
+
+Symtab.o:	../common/Symtab.C
+	$(CPLUS_CMD) -c ../common/Symtab.C
+
+Symtable.o:	../common/Symtable.C
+	$(CPLUS_CMD) -c ../common/Symtable.C
+
+TYPE.o:	../common/TYPE.C
+	$(CPLUS_CMD) -c ../common/TYPE.C
+
+get_stype.o:	get_stype.C
+	$(CPLUS_CMD) -c get_stype.C
+
+Coff_Bit.o:	Coff_Bit.C
+	$(CPLUS_CMD) -c Coff_Bit.C
+
+TYPE.Mach.o:	TYPE.Mach.C
+	$(CPLUS_CMD) -c TYPE.Mach.C
+
+OBJECTS	=  \
+	AddrList.o \
+	Build.o \
+	Coff.o \
+	Coffbuild.o \
+	Cvtaddr.o \
+	Dwarfbuild.o \
+	ELF.o \
+	Elfbuild.o \
+	Evaluator.o \
+	Protoline.o \
+	Protorec.o \
+	Locdesc.o \
+	NameList.o \
+	Object.o \
+	Reflist.o \
+	Source.o \
+	Symbol.o \
+	Symtab.o \
+	Symtable.o \
+	TYPE.o  \
+	TYPE.Mach.o \
+	Coff_Bit.o \
+	get_stype.o

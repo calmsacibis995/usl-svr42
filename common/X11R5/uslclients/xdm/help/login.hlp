@@ -1,0 +1,154 @@
+#ident	"@(#)xdm:help/login.hlp	1.6"
+^*version^1
+^*title^Login
+^*width^70
+^+DesktopMgr/help.defs
+^?Gain access to the UNIX SVR4.2 Desktop
+^0^Login
+^$10
+Login
+
+The Login window provides access (and security) to the UNIX system.
+All users must have a login ID in order to log in. Each login ID is
+protected with a password. Without the correct password, you cannot
+enter the system.
+
+The following window is provided for Login:
+
+        \k(Login Window)
+
+More information: \k(User Setup^dtadmin/LoginMgr.hlp)
+^1^Login Window
+^$20
+\k{Login}
+1. Login Window
+
+The Login window has two text boxes. Use the first to enter your login
+ID. Use the second to enter your password. Notice that when you enter
+your password, it does not display on the screen. This is to protect
+it from being seen by others nearby when you log in.
+
+When the Login window appears, enter your login ID and press Enter.
+Enter your password and either press Enter or click on the Login but-
+ton. If you made an error entering either your login ID or password, a
+message appears at the bottom of the window indicating that the login
+attempt failed. Both text boxes are then cleared and you can try
+again.
+
+Once you enter your login ID and password correctly, one of the fol-
+lowing occurs:
+
+   o If you are set up as a Desktop user and you have set "Start
+     Desktop at Login" to "Yes" in the Desktop Preferences window, the
+     UNIX Desktop appears.
+
+   o If you are setup as a Desktop user and you have set "Start
+     Desktop at Login" to "No" in the Desktop Preferences window, the
+     Do Not Start Desktop At Login window appears.
+
+   o If you are not set up as a Desktop user, this is indicated by a
+     notice window which appears.
+
+     This notice window has three buttons: Exit, Cancel, and Help.
+
+     - Exit Button: This button lets you exit from the notice window.
+       The Console Login prompt appears. You can now log into the
+       system through the Console Login prompt to get to a character-
+       based UNIX system prompt.
+
+     - Cancel Button: This button returns you to the Login window.
+
+     - Help Button: This button provides on-line help for the
+       notice window.
+
+More information: \k(Do Not Start Desktop At Login Window)
+
+The \d(buttons^button) available from the Login Window are:
+
+        \k(Login Button)
+        \k(Reset Button)
+        \k(Exit Button)
+        \k(Help Button)
+^2^Login Button
+^$30
+1. \k{Login Window}
+   1.1 Login Button
+
+The Login button logs you into the UNIX Desktop after you have
+correctly entered your login ID and password.
+^2^Reset Button
+^$40
+1. \k{Login Window}
+   1.2 Reset Button
+
+The Reset button clears the Login ID and Password text boxes. Use the
+Reset button if you make an error while entering your login ID or
+password and want to begin again.
+^2^Exit Button
+^$50
+1. \k{Login Window}
+   1.3 Exit Button
+
+The Exit button lets you exit from the Login window. The Console Login
+prompt appears.
+
+Note: To return to the Login window, you must reboot (restart) your
+system.
+^2^Help Button
+^$60
+1. \k{Login Window}
+   1.4 Help Button
+
+The Help button provides on-line help for the Login window.
+^1^Do Not Start Desktop At Login Window
+^$70
+\k{Login}
+2. Do Not Start Desktop At Login Window
+
+The Do Not Start Desktop At Login window appears if you correctly
+enter your login ID and password in the Login window and have set
+"Start Desktop at Login" to "No" in the Desktop Preferences window.
+
+The Do Not Start Desktop At Login window enables you to start the
+Desktop, exit to the Console Login prompt, or return to the Login
+window.
+
+The \d(buttons^button) available from the Do Not Start Desktop At
+Login window are:
+
+        \k(Start Desktop Button^^Start Desktop ButtonD)
+        \k(Exit Button^^Exit ButtonD)
+        \k(Cancel Button^^Cancel ButtonD)
+        \k(Help Button^^Help ButtonD)
+^2^Start Desktop Button=Start Desktop ButtonD
+^$80
+2. \k{Do Not Start Desktop At Login Window}
+   2.1 Start Desktop Button
+
+The Start Desktop button starts your UNIX Desktop, bypassing the "No"
+setting in the Desktop Preferences window.
+^2^Exit Button=Exit ButtonD
+^$90
+2. \k{Do Not Start Desktop At Login Window}
+   2.2 Exit Button
+
+The Exit button lets you exit from the Do Not Start Desktop At Login
+window. The Console Login prompt appears. You can now log into the
+system through the Console Login prompt to get to a character based
+UNIX system prompt.
+
+Note: To return to the Login window, you must reboot (restart) your
+system.
+^2^Cancel Button=Cancel ButtonD
+^$100
+2. \k{Do Not Start Desktop At Login Window}
+   2.3 Cancel Button
+
+The Cancel button returns you to the Login window.
+^2^Help Button=Help ButtonD
+^$110
+2. \k{Do Not Start Desktop At Login Window}
+   2.4 Help Button
+
+The Help button provides on-line help for the Do Not Start Desktop At
+Login window.

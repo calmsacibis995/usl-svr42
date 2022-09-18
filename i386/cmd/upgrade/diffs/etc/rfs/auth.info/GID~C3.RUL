@@ -1,0 +1,7 @@
+*** x	Tue Mar 10 14:18:29 1992
+--- gid.rules	Tue Mar 10 14:11:09 1992
+***************
+*** 0 ****
+--- 1,2 ----
++ global
++ default transparent

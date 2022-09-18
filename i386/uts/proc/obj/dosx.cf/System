@@ -1,0 +1,4 @@
+#ident	"@(#)uts-x86:proc/obj/dosx.cf/System	1.2"
+#ident	"$Header: $"
+$version 1
+dosx	N	2	5	0	0	0	0	0	0	-1

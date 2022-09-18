@@ -1,0 +1,31 @@
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+/**/#ident	"@(#)r5puzzle:Imakefile	1.2"
+/**/XCOMM $XConsortium: Imakefile,v 1.5 91/07/16 23:08:01 gildea Exp $
+
+#if !Release5
+EXTRA_LOAD_FLAGS =
+#endif
+
+EXTRA_LIBRARIES = -lnsl $(MEMUTILLIB)
+EXTENSIONLIB =
+LOCAL_LIBRARIES = $(XLIB)
+
+SRCS = puzzle.c main.c picture.c
+OBJS = puzzle.o main.o picture.o
+
+APP_NAME=puzzle
+
+ComplexProgramTarget($(APP_NAME))
+
+TOOLBOX=$(DESKTOPDIR)/Applications
+ICON_NAME=Puzzle
+
+InstallDesktopClient($(BINDIR)/$(APP_NAME),$(TOOLBOX)/$(ICON_NAME))

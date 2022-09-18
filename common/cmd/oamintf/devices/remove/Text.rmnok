@@ -1,0 +1,28 @@
+#ident	"@(#)oamintf:common/cmd/oamintf/devices/remove/Text.rmnok	1.2.2.3"
+#ident  "$Header: Text.rmnok 2.0 91/07/12 $"
+################################################################################
+#	Module Name: Text.rmnok
+################################################################################
+Title="Errors Removing Device"
+
+framemsg=`readfile $INTFBASE/conf.msg`
+lifetime=shortterm
+
+rows=6
+columns=75
+
+text="	
+An error occurred while attempting to remove $ARG1 from
+the system:
+	`readfile $ERR`"
+
+altslks
+
+name=CONT
+button=11
+action=CLOSE
+
+name=CANCEL
+button=14
+action=CLEANUP
+

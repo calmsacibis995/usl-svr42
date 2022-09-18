@@ -1,0 +1,173 @@
+#ident	"@(#)debugger:libutil/i386/DEPEND	1.5"
+callstack.o:	../common/callstack.C
+	$(CPLUS_CMD) -c ../common/callstack.C
+
+cancel_sig.o:	../common/cancel_sig.C
+	$(CPLUS_CMD) -c ../common/cancel_sig.C
+
+change.o:	../common/change.C
+	$(CPLUS_CMD) -c ../common/change.C
+
+create.o:	../common/create.C
+	$(CPLUS_CMD) -c ../common/create.C
+
+curr_loc.o:	../common/curr_loc.C
+	$(CPLUS_CMD) -c ../common/curr_loc.C
+
+curr_frame.o:	../common/curr_frame.C
+	$(CPLUS_CMD) -c ../common/curr_frame.C
+
+debug_open.o:	../common/debug_open.c
+	$(CC_CMD) -c ../common/debug_open.c
+
+destroy.o:	../common/destroy.C
+	$(CPLUS_CMD) -c ../common/destroy.C
+
+dis.o:	../common/dis.C
+	$(CPLUS_CMD) -c ../common/dis.C
+
+dump_raw.o:	../common/dump_raw.C
+	$(CPLUS_CMD) -c ../common/dump_raw.C
+
+enable.o:	../common/enable.C
+	$(CPLUS_CMD) -c ../common/enable.C
+
+find_fcn.o:	../common/find_fcn.C
+	$(CPLUS_CMD) -c ../common/find_fcn.C
+
+functions.o:	../common/functions.C
+	$(CPLUS_CMD) -c ../common/functions.C
+
+get_addr.o:	../common/get_addr.C
+	$(CPLUS_CMD) -c ../common/get_addr.C
+
+grab_core.o:	../common/grab_core.C
+	$(CPLUS_CMD) -c ../common/grab_core.C
+
+grab_proc.o:	../common/grab_proc.C
+	$(CPLUS_CMD) -c ../common/grab_proc.C
+
+inform.o:	../common/inform.C
+	$(CPLUS_CMD) -c ../common/inform.C
+
+input.o:	../common/input.C
+	$(CPLUS_CMD) -c ../common/input.C
+
+jump.o:	../common/jump.C
+	$(CPLUS_CMD) -c ../common/jump.C
+
+language.o:	../common/language.C
+	$(CPLUS_CMD) -c ../common/language.C
+
+list_src.o:	../common/list_src.C
+	$(CPLUS_CMD) -c ../common/list_src.C
+
+symbols.o:	 ../common/symbols.C
+	$(CPLUS_CMD) -c ../common/symbols.C
+
+print_map.o:	../common/print_map.C
+	$(CPLUS_CMD) -c ../common/print_map.C
+
+pending.o:	../common/pending.C
+	$(CPLUS_CMD) -c ../common/pending.C
+
+print_expr.o:	../common/print_expr.C
+	$(CPLUS_CMD) -c ../common/print_expr.C
+
+pfiles.o:	../common/pfiles.C
+	$(CPLUS_CMD) -c ../common/pfiles.C
+
+print_path.o:	../common/print_path.C
+	$(CPLUS_CMD) -c ../common/print_path.C
+
+ps.o:	../common/ps.C
+	$(CPLUS_CMD) -c ../common/ps.C
+
+regs.o:	../common/regs.C
+	$(CPLUS_CMD) -c ../common/regs.C
+
+rel_proc.o:	../common/rel_proc.C
+	$(CPLUS_CMD) -c ../common/rel_proc.C
+
+rename.o:	../common/rename.C
+	$(CPLUS_CMD) -c ../common/rename.C
+
+run.o:	../common/run.C
+	$(CPLUS_CMD) -c ../common/run.C
+
+set_fcn.o:	../common/set_fcn.C
+	$(CPLUS_CMD) -c ../common/set_fcn.C
+
+set_onstop.o:	../common/set_onstop.C
+	$(CPLUS_CMD) -c ../common/set_onstop.C
+
+set_path.o:	../common/set_path.C
+	$(CPLUS_CMD) -c ../common/set_path.C
+
+set_sig.o:	../common/set_sig.C
+	$(CPLUS_CMD) -c ../common/set_sig.C
+
+send_sig.o:	../common/send_sig.C
+	$(CPLUS_CMD) -c ../common/send_sig.C
+
+set_stop.o:	../common/set_stop.C
+	$(CPLUS_CMD) -c ../common/set_stop.C
+
+set_sys.o:	../common/set_sys.C
+	$(CPLUS_CMD) -c ../common/set_sys.C
+
+set_val.o:	../common/set_val.C
+	$(CPLUS_CMD) -c ../common/set_val.C
+
+sstep.o:	../common/sstep.C
+	$(CPLUS_CMD) -c ../common/sstep.C
+
+stop.o:	../common/stop.C
+	$(CPLUS_CMD) -c ../common/stop.C
+
+wait.o:	../common/wait.C
+	$(CPLUS_CMD) -c ../common/wait.C
+
+OBJECTS	=  \
+	callstack.o \
+	cancel_sig.o \
+	change.o \
+	create.o \
+	curr_frame.o \
+	curr_loc.o \
+	debug_open.o \
+	destroy.o \
+	dis.o \
+	dump_raw.o \
+	find_fcn.o \
+	functions.o \
+	get_addr.o \
+	grab_core.o \
+	grab_proc.o \
+	inform.o \
+	jump.o \
+	input.o \
+	language.o \
+	list_src.o \
+	pending.o \
+	pfiles.o \
+	print_expr.o \
+	print_map.o \
+	print_path.o \
+	ps.o \
+	regs.o \
+	rel_proc.o \
+	rename.o \
+	run.o \
+	send_sig.o \
+	set_fcn.o \
+	set_onstop.o \
+	set_path.o \
+	set_sig.o \
+	set_stop.o \
+	set_sys.o \
+	set_val.o \
+	sstep.o \
+	stop.o \
+	symbols.o \
+	wait.o

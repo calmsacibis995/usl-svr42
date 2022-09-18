@@ -1,0 +1,7 @@
+#ident	"@(#)oamintf:common/cmd/oamintf/intf_reloc/Prototype	1.2.4.2"
+#ident  "$Header: Prototype 2.0 91/07/12 $"
+!PKGBIN=/usr/sadm/install/bin
+
+f intf $PKGBIN/intf_reloc 0755 bin bin
+f intf $PKGBIN/reloc_menus 0755 bin bin
+

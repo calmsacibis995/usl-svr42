@@ -1,0 +1,58 @@
+You use the Workspace menu to open new application windows, \
+to access utilities such as refreshing the screen, \
+to set global workspace properties, and to exit from the workspace.
+
+You can view and choose from menus in three ways using the MENU mouse button:
+
+Press-Drag-Release
+
+Click-Move-Click
+
+Pinning up the Workspace menu
+
+ Using Press-Drag-Release
+To use press-drag release, \
+move the pointer to the workspace, \
+press MENU, drag the pointer to the control you want, and release MENU.  \
+To see the menus under the Programs or Utilities menu buttons, \
+drag the pointer onto the right half of the menu button.  \
+When the pointer is on the control you want, release MENU.  \
+The control is executed and the menu is dismissed.  \
+If you do not want to choose a control, \
+move the pointer off the menu and release the mouse button.
+
+ Using Click-Move-Click
+To use click-move-click, move the pointer to the workspace and click MENU.  \
+The Workspace menu is displayed and stays on the screen.  \
+Move the pointer to the control you want and click SELECT or MENU.  \
+The control is executed and the menu is dismissed.  \
+If you do not want to choose a control, \
+move the pointer off the menu and click SELECT or MENU \
+to dismiss the menu without choosing a control.
+
+ Using the Pushpin
+To pin up the Workspace menu, \
+press MENU and drag the pointer to the pushpin.  \
+When the pin pops into the hole, release MENU.  \
+The Workspace menu becomes a pop-up window, \
+and you choose from it in the same way you use controls \
+in the control area of a window:  \
+click SELECT to use a button or execute the default choice \
+from the submenu under a menu button, or move the pointer to a \
+menu button and press MENU to display its submenu.
+
+ Changing the Default Setting
+Each menu in a menu group has a default setting, \
+which is shown by a default ring.  \
+You can change the default setting for any menu using the steps below:
+
+1. Press the default modifier key and MENU
+
+2. Drag the pointer from control to control.  \
+The default ring follows the pointer.
+
+3. When the default ring is on the control you want to use as the default, \
+release MENU and then release the modifier key.
+
+If you release the modifier key first and then release MENU, \
+in addition to setting the default, the command is executed.

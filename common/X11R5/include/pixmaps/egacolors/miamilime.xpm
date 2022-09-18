@@ -1,0 +1,19 @@
+#define miamilime_format 1
+#define miamilime_width 8
+#define miamilime_height 8
+#define miamilime_ncolors 2
+#define miamilime_chars_per_pixel 1
+static char * miamilime_colors[] = {
+" " , "#0000FFFFFFFF",
+"." , "#FFFFFFFF0000"
+} ;
+static char * miamilime_pixels[] = {
+" . . . .",
+". . . . ",
+" . . . .",
+". . . . ",
+" . . . .",
+". . . . ",
+" . . . .",
+". . . . "
+} ;

@@ -1,0 +1,5 @@
+*ident	"@(#)uts-x86at:io/target/sw01.cf/System	1.3"
+*ident  "$Header: $"
+$version 1
+$loadable sw01
+sw01	Y	0	0	0	0	0	0	0	0	-1

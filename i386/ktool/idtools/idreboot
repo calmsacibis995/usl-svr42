@@ -1,0 +1,28 @@
+#!/sbin/sh
+
+#ident	"@(#)idtools:i386/ktool/idtools/idreboot	1.4"
+#ident	"$Header:"
+#
+# Reboot script for installable drivers. Forces the user to
+# reboot in a consistent manner.
+#
+
+sync
+message -cu "To complete \
+the install/remove process a shutdown is being initiated automatically.  \
+If you have other packages to install/remove you may cancel this \
+shutdown and wait to perform a shutdown until you have finished with \
+all your packages."
+if  [ "$?" = "0" ]
+then
+	message -t "Make sure your floppy drive is empty.
+If you are installing or removing controller boards, you \
+may power down the system after the shutdown has completed."
+	cd /
+	/etc/shutdown -g0 -y
+	exec sleep 100
+else
+	message -d "When all package install/remove operations are completed, \
+you should shutdown as soon as possible to include the changes in the UNIX \
+Operating System kernel."
+fi

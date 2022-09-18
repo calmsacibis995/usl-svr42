@@ -1,0 +1,12 @@
+#ident	"@(#)cmd-inet:common/cmd/cmd-inet/etc/networks	1.1.2.1"
+#ident "$Header: /sms/sinixV5.4es/rcs/s19-full/usr/src/cmd/cmd-inet/etc/networks,v 1.1 91/02/28 16:30:43 ccs Exp $"
+
+#
+# Internet networks
+#
+loopback	127
+
+#
+# Internet networks
+#
+arpanet		10		arpa

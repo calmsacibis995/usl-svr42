@@ -1,0 +1,198 @@
+#ident	"@(#)pkg.netcmds:common/pkg/netcmds/postinstall	1.11"
+#ident  "$Header: $"
+
+LPSCHED=${USRLIB}/lp/lpsched
+TEMPFILE=/tmp/netcmds.$$
+
+# Add in.smtpd to inetd port monitor
+
+dname=`/usr/lib/mail/surrcmd/mailinfo -n`
+cat >> /etc/inet/inetd.conf <<!
+smtp	stream	tcp	nowait	root	/usr/lib/mail/surrcmd/in.smtpd	in.smtpd -H $dname
+!
+
+inet_pid=`ps -ef | grep inetd | grep -v grep | cut -c9-14`
+[ -n "$inet_pid" ] && kill -1 $inet_pid
+
+
+# Fix mailsurr file to allow smtp mail.
+
+sed -e '/smtpqer -N %R/s/^#//' < /etc/mail/mailsurr > $TEMPFILE
+cat $TEMPFILE > /etc/mail/mailsurr
+rm -f $TEMPFILE
+
+# Add entries to /etc/security/MLD/smtp for our MLDs
+
+if [ -d /etc/security/MLD ]
+then
+	# Make sure the line is NOT already there
+
+	grep "^/var/spool/smtpq$" /etc/security/MLD/smtp >/dev/null 2>&1
+	rc=$?
+	
+	[ "$rc" != "0" ] && echo "/var/spool/smtpq" >>/etc/security/MLD/smtp
+	installf ${PKGINST} /etc/security/MLD/smtp f 0644 root sys 2 NULL NULL
+fi
+
+# Setup cron entries.
+
+grep "^smtp$" /etc/cron.d/cron.allow >/dev/null 2>&1
+rc=$?
+
+[ -f /etc/cron.d/cron.allow -a "$rc" != 0 ] &&
+	echo "smtp" >> /etc/cron.d/cron.allow
+
+cat > $TEMPFILE <<'!'
+# SMTP - Run smtpsched once per hour at 25 minutes after the hour.
+#	 Clean up queues and send warnings at 1:55 AM
+25 * * * * /usr/lib/mail/surrcmd/smtploop -B
+55 1 * * * /usr/lib/mail/surrcmd/smtploop -c -w 1 -r 7
+!
+if /sbin/su smtp -c "crontab $TEMPFILE" 2>/dev/null 
+then
+	if [ -x /sbin/chlvl ]
+	then
+		/sbin/chlvl SYS_PRIVATE /var/spool/cron/crontabs/smtp
+	fi
+else
+	echo "**WARNING**   ${PKGNAME} cannot install crontab entries."
+	echo "Demons will not be running when installation is finished."
+	echo "They will have to be added later."
+fi
+
+# Start the Spooler/Scheduler
+
+cd /
+${LPSCHED} >/dev/null 2>&1
+
+while [ 1 ]
+do
+	if [ -p /var/spool/lp/fifos/listenS5 -a -p /var/spool/lp/fifos/listenBSD ]
+	then	break
+	else	sleep 1
+	fi
+done
+
+# add lp listener service to _pmtab and restart sacadm
+
+if [ -s /etc/saf/tcp/_pmtab ]
+then
+	grep '^lp' /etc/saf/tcp/_pmtab >/dev/null 2>&1
+	if [ $? != 0 ]
+	then	
+		IPADDR=`grep '^0::root' /etc/saf/tcp/_pmtab|cut -d: -f7|sed -e 's/\\\x00020ACE//'` 
+		pmadm -a -p tcp -s lp -i root -v `nlsadmin -V` -m `nlsadmin -o /var/spool/lp/fifos/listenS5` > /dev/null 2>&1
+		pmadm -a -p tcp -s lpd -i root -v `nlsadmin -V` -m `nlsadmin -o /var/spool/lp/fifos/listenBSD -A "\x00020203$IPADDR"` > /dev/null 2>&1
+	fi
+fi
+
+#
+# Complete the installation database
+##########
+removef -f ${PKGINST} 
+installf -f ${PKGINST}
+
+#
+#The following defines the administrative roles for the TFM database.
+#
+
+#echo "##Defining roles for the TFM database. . ."
+#while read cmd roles
+#do
+#    base=`basename $cmd`
+#    privs=`
+#    egrep ":${cmd}$" /etc/security/tcb/privs|	# Find command in tcb database
+#    sed 's/^.*%inher,\(.*\):.*/\1/p' |          # get the set of inher privs
+#    sed 's/,/:/gp'                              # changed ,'s to :'s
+#    `
+#    if [ -z "$privs" ]
+#    then
+#        if [ -f $cmd ]
+#		then
+#        	prvd="no"
+#        else
+#            echo "Warning: $cmd not found on the system.\c" >> ${TEMPFILE}
+#            echo "  Not adding to TFM." >> ${TEMPFILE}
+#            continue
+#        fi
+#    else
+#        prvd="yes"
+#    fi
+#    set $roles
+#    save="$privs"
+#    while [ $# -gt 0 ]
+#    do
+#        role=$1
+#        if echo "$1" | grep ":" > /dev/null
+#        then
+#            role=`
+#            echo "$1" | sed 's/:.*$//p'`
+#            if [ "$prvd" = "yes" ]
+#            then
+#                shutoff=`
+#                echo "$1" | sed 's/^[A-Z]*://p'`
+#				shutoff=`echo "$shutoff"|sed 's/:/ /gp'`
+#				fullset=`echo "$save"|sed 's/:/ /gp'`
+#				for i in $shutoff	#check if privileges to be shut off
+#				do					#are in full set of privilges
+#					found="false"
+#					for j in $fullset
+#					do
+#						if [ "$i" = "$j" ]
+#						then
+#							found="true"
+#							break
+#						fi
+#					done
+#					privs=""
+#					if [ "$found" = "false" ]
+#					then
+#						echo "Warning: \c"
+#						echo "$i privilege specified to be shut off for $cmd,"
+#						echo "         but it is NOT in its set of privileges."
+#						break
+#					fi
+#				done
+#				if [ -z "$shutoff" ]
+#				then
+#					privs="$save"
+#                else
+#	                for i in $fullset
+#	                do
+#	                    found="false"
+#		                for j in $shutoff
+#		                do
+#			                if [ "$i" = "$j" ]
+#			                then
+#				                found="true"
+#				                break
+#			                fi
+#		                done
+#		                if [ "$found" = "false" ]
+#		                then
+#		                    if [ -z "$privs" ]
+#		                    then
+#		    	                privs=$i
+#		                    else
+#		                        privs=$privs:$i
+#                            fi
+#		                fi
+#	                done
+#				fi
+#			fi
+#        else
+#            privs="$save"
+#        fi
+#        if [ -z "$privs" ]
+#        then
+#            adminrole -a $base:$cmd $role 2>/dev/null
+#        else
+#            adminrole -a $base:$cmd:$privs $role 2>/dev/null
+#        fi
+#        shift
+#    done
+#done <<!
+#/usr/sbin/lpsystem	SOP	SSO
+#!
+
+exit 0

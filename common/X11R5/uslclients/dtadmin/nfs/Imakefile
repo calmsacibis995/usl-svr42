@@ -1,0 +1,59 @@
+/**/#ident	"@(#)dtadmin:nfs/Imakefile	1.32"
+/**/#	Copyright (c) 1990, 1991, 1992 UNIX System Laboratories, Inc.
+/**/#	Copyright (c) 1988, 1989, 1990 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+/**/#	UNIX System Laboratories, Inc.
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+
+/**/#  Flags used when debugging.  
+/**/#  Compile with these flags then
+/**/#  Set run-time environment variable DEBUG_NFS=1 and
+/**/#  MEMUTIL= 0, 1, 2, or 3 (for different debug modes).
+
+/**/#  CDEBUGFLAGS = -g -DDEBUG_NFS -DMEMUTIL
+/**/#  LDOPTIONS   = -g
+
+#define PassCDebugFlags 'CDEBUGFLAGS=$(CDEBUGFLAGS)'
+
+         SRCS = \
+		main.c menu.c remoteProp.c p3open.c localAdv.c  \
+		utilities.c getfolder.c container.c mount.c delete.c \
+		verify.c sharetab.c share.c local.c localDel.c status.c \
+		notice.c update.c hosts.c file.c
+
+         OBJS = \
+		main.o menu.o remoteProp.o p3open.o localAdv.o  \
+		utilities.o getfolder.o container.o mount.o delete.o \
+		verify.o sharetab.o share.o local.o localDel.o status.o \
+		notice.o update.o hosts.o file.o
+
+       HEADERS = \
+		nfs.h text.h remoteProp.h verify.h local.h sharetab.h \
+		notice.h utilities.h helpinfo.h help.h
+
+
+   DTCLIENTSLIB = $(USLCLIENTSRC)/libDtI
+       DTLIBSRC = $(LIBSRC)/Dt
+      DTILIBSRC = $(DTCLIENTSLIB)
+         DTILIB = $(DTILIBSRC)/libDtI.so
+          DTLIB = $(DTLIBSRC)/libDt.so
+     DTADMINSRC = $(USLCLIENTSRC)/dtadmin
+     DTAMLIBSRC = $(DTADMINSRC)/dtamlib
+        DTAMLIB = $(DTAMLIBSRC)/libdtam.a
+    GIZMOLIBSRC = $(LIBSRC)/Gizmo
+       GIZMOLIB = $(GIZMOLIBSRC)/libGizmo.so
+
+       INCLUDES = -I$(LIBSRC) -I$(LIBSRC)/Xol -I$(DTILIBSRC) -I$(GIZMOLIBSRC) -I$(USLCLIENTSRC)
+LOCAL_LIBRARIES = $(DTILIB) $(DTLIB) $(GIZMOLIB) $(DTAMLIB) XolClientLibs 
+        DEPLIBS = $(DTILIB) $(DTLIB) $(GIZMOLIB) $(DTAMLIB) XolClientDepLibs
+
+  SYS_LIBRARIES =   -lgen
+
+ComplexProgramTarget(File_Sharing)
+InstallMultiple(nfs,$(DESKTOPDIR)/PackageMgr)
+InstallMultiple(nfs.cdb,$(USRLIBDIR)/classdb)
+InstallDesktopClient($(BINDIR)/File_Sharing,$(DESKTOPDIR)/System_Setup/File_Sharing)

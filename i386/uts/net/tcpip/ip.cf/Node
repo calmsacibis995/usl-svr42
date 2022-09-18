@@ -1,0 +1,3 @@
+#ident	"@(#)uts-x86:net/tcpip/ip.cf/Node	1.2"
+#ident	"$Header: $"
+clone	ip	c	ip

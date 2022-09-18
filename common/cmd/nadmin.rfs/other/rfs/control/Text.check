@@ -1,0 +1,12 @@
+#ident	"@(#)nadmin.rfs:other/rfs/control/Text.check	1.2.5.2"
+#ident  "$Header: Text.check 2.0 91/07/12 $"
+title="Checks Whether Remote File Sharing is Running"
+columns=50
+rows=4
+close=`unset RFSTAT`
+
+`readfile $INTFBASE/display.msg | message -p`
+
+`$TFADMIN /usr/sbin/rfadmin -q | set -l RFSTAT`
+text="Checking whether Remote file Sharing is running...\\n
+${RFSTAT} "

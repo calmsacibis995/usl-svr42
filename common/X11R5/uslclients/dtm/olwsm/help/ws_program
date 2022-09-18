@@ -1,0 +1,69 @@
+Use the Programs Submenu property sheet to customize \
+the applications available on the Programs submenu \
+of the Workspace menu.
+
+Associated with each application in the submenu \
+are three fields of information.
+
+Name:    specifies how the application will be identified in
+the submenu.
+
+Invocation String:    gives the command line that starts the application \
+from a UNIX System shell.
+
+Mnemonic:    specifies an (optional) single letter that you can \
+use to launch the application from the Programs Submenu.
+
+Think of the scrolling list in this property window \
+as a repository for this information, where the application \
+whose information you are currently working on has a boxed name.  \
+To change the application that you are working on, \
+click SELECT on the name for the new one.  \
+The scrollbar may be used to access applications \
+that have scrolled out of view.
+
+To edit the information for an application already in the submenu, \
+first SELECT the entry for that application in the scrolling list.  \
+This will bring up the current data for that entry in the \
+two text fields below.  \
+Then click SELECT in the text field(s) \
+you want to change (or move between them using \
+the Next and Previous Field keys), \
+and modify the text to reflect the new information.  \
+When you are finished with your changes, \
+click SELECT on the Apply Edits button to update the property window settings.
+
+To delete an application from the submenu, \
+SELECT the entry for that application in the scrolling list, \
+then click SELECT on the Delete button.  \
+The application will be removed from the scrolling list.
+
+To insert a new application into the submenu before \
+or after the currently SELECTed one, \
+press MENU on the Insert button, drag the pointer \
+to Before or After as desired, and release MENU.  \
+A new, blank entry will appear in the scrolling list \
+in the appropriate place (either before or after) \
+and becomes the application that you are working on.  \
+Continue then with the procedure for editing an application's information \
+(see above) to fill in the empty text fields.  \
+If you decide not to add this entry after all, \
+you can simply click SELECT on the Delete button to remove it from the list.
+
+Click SELECT on the Apply (or Apply All) button to save all changes \
+made to all property sheets.  \
+The Reset button can be used to reset the property sheet settings \
+to reflect the currently saved values.  \
+The Reset To Factory button can be used to reset \
+the property sheet settings to the factory defaults.  \
+Note that Reset and Reset to Factory do not affect the saved \
+property values; \
+the saved values are changed only when Apply is SELECTed.  \
+Also, Reset and Reset to Factory only reset the properties on \
+the current property sheet.
+
+The property window is automatically dismissed if not pinned \
+when Apply is chosen.
+
+Applied changes go into effect immediately, and are reflected \
+in all OPEN LOOK applications, including those already launched.

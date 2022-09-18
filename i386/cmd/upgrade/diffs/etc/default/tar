@@ -1,0 +1,42 @@
+*** tar.v4	Thu May 14 16:20:36 1992
+--- /etc/default/tar	Mon May 11 00:08:56 1992
+***************
+*** 1 ****
+! #ident	"@(#)tar:tar.dfl	1.1.1.1"
+--- 1,2 ----
+! #ident	"@(#)/etc/default/tar.sl 1.2 4.1dt 05/08/92 62346 AT&T-USL"
+! #ident "$Header: /sms/sinixV5.4es/rcs/s19-full/usr/src/cmd/tar/tar.dfl,v 1.1 91/02/28 20:11:52 ccs Exp $"
+***************
+*** 4,12 ****
+! archive0=/dev/rfd048ds9		18	360
+! archive1=/dev/rfd148ds9		18	360
+! archive2=/dev/rfd096ds15	10	1200
+! archive3=/dev/rfd196ds15	10	1200
+! archive4=/dev/rfd048ss9		18	180
+! archive5=/dev/rfd048ds8		16	320
+! archive6=/dev/rfd048ss8		16	160
+! archive7=./tarfile		1	0
+! archivef=/dev/null		1	0
+--- 4,12 ----
+! archive0=/dev/rdsk/f05dt	18	360
+! archive1=/dev/rdsk/f15dt	18	360
+! archive2=/dev/rdsk/f05ht	15	1200
+! archive3=/dev/rdsk/f15ht	15	1200
+! archive4=/dev/rdsk/f03dt	18	720
+! archive5=/dev/rdsk/f13dt	18	720
+! archive6=/dev/rdsk/f03ht	18	1440
+! archive7=/dev/rdsk/f13ht	18	1440
+! archive8=/dev/rmt/c0s0		20	0
+***************
+*** 12 ****
+--- 12,16 ----
+  archive8=/dev/rmt/c0s0		20	0
++ #archive9=/dev/null #reserved
++ #
++ # The default device in the absence of a numeric or "-f device" argument
++
+***************
+*** 12 ****
+--- 16,17 ----
+
++ archive=/dev/rdsk/f05ht		15	1200

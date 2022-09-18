@@ -1,0 +1,44 @@
+#ident	"@(#)olpkg.oam:pkg.dtnet/prototype	1.2"
+#	Copyright (c) 1990, 1991 UNIX System Laboratories, Inc.
+#	Copyright (c) 1988 AT&T
+#	  All Rights Reserved
+
+#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF
+#	UNIX System Laboratories, Inc.
+#	The copyright notice above does not evidence any
+#	actual or intended publication of such source code.
+
+
+i copyright
+i depend
+i pkginfo
+i postinstall
+i preremove
+
+!PACKDIR=../usr/src/$WORK/X11R5/olpkg.oam
+!PKGINST=dtnet
+
+!default 0755 bin bin
+
+d enduser /usr ? ? ?
+
+d enduser /usr/X
+d enduser /usr/X/adm
+d enduser /usr/X/bin
+d enduser /usr/X/lib
+d enduser /usr/X/lib/locale
+d enduser /usr/X/lib/locale/C
+d enduser /usr/X/lib/locale/C/help
+d enduser /usr/X/lib/locale/C/help/olam
+d enduser /usr/X/lib/app-defaults
+
+f enduser /usr/X/lib/xntad
+f enduser /usr/X/bin/xhost
+f enduser /usr/X/bin/olam
+
+!default 0644 bin bin
+
+f enduser /usr/X/adm/xdaemon.rc=$PACKDIR/adm/xdaemon.rc
+f enduser /usr/X/lib/locale/C/help/olam/display
+f enduser /usr/X/lib/locale/C/help/olam/host_name
+f enduser /usr/X/lib/app-defaults/olam

@@ -1,0 +1,5 @@
+#ident	"@(#)uts-x86at:io/gvid/gvid.cf/Master	1.4"
+#ident	"$Header: $"
+$version 1
+$entry open close read write ioctl
+gvid	gvid	cork	0	0	29

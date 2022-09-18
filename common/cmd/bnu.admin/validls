@@ -1,0 +1,28 @@
+#!/sbin/sh
+#ident	"@(#)bnu.admin:common/cmd/bnu.admin/validls	1.2.6.5"
+#ident  "$Header: validls 2.1 91/09/12 $"
+
+################################################################################
+#	Module Name: validls.sh
+#	Description: Validation for listing functions
+#
+###############################################################################
+
+if [ ! -f $2 ]
+then
+ 	exit 1
+fi
+if [ -z $1 ]
+then
+	exit 1
+fi
+
+$TFADMIN /usr/bin/cat $2 | sed -n -e '/^[ #	]/!p' | sed -n -e '/^$/!p' >/tmp/net.$VPID
+
+if [ ! -s /tmp/net.$VPID ]
+then
+	exit 1
+fi
+
+$TFADMIN /usr/bin/cat /tmp/net.$VPID | /usr/bin/grep "$1" || [ $1 = "All" ]
+rm -f /tmp/net.$VPID
